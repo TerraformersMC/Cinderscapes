@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "cinderscapes",
+  "version": "${version}",
+  "name": "Cinderscapes",
+  "description": "An expansion of Minecraft's Nether biomes!",
+  "authors": [
+    "TerraformersMC"
+  ],
+  "contact": {
+    "sources": "https://github.com/TerraformersMC/Cinderscapes"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/cinderscapes/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.terraformersmc.cinderscapes.Cinderscapes"
+    ],
+    "client": [
+      "com.terraformersmc.cinderscapes.CinderscapesClient"
+    ]
+  },
+  "mixins": [
+    "cinderscapes.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.8.2+build.194",
+    "fabric": "*",
+    "terraform": "*",
+    "minecraft": ">=1.16-"
+  }
+}
