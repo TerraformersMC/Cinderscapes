@@ -49,7 +49,7 @@ public class QuartzCanyonBiome extends Biome {
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, 0.0111D))
                         .build())
                 .parent((String)null)
-                .noises(ImmutableList.of(new Biome.MixedNoisePoint(0.15F, 0.0F, 0.0F, 0.0F, 1.0F))));
+                .noises(ImmutableList.of(new Biome.MixedNoisePoint(-0.5F, 0.0F, 0.0F, 0.0F, 1.0F))));
         //ruined portal
         this.addStructureFeature(Feature.field_23996.configure(new class_5187(class_5183.class_5185.field_24006)));
         this.addCarver(GenerationStep.Carver.AIR, configureCarver(Carver.NETHER_CAVE, new ProbabilityConfig(0.2F)));
@@ -70,6 +70,7 @@ public class QuartzCanyonBiome extends Biome {
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.SPRING_FEATURE.configure(DefaultBiomeFeatures.ENCLOSED_NETHER_SPRING_CONFIG).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(32, 10, 20, 128))));
 
         this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.QUARTZ_PILLAR.configure(FeatureConfig.DEFAULT).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountDecoratorConfig(2))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.QUARTZ_PILLAR_FLOOR.configure(FeatureConfig.DEFAULT).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(2))));
 
         this.addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.GHAST, 40, 1, 1));
         this.addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.MAGMA_CUBE, 100, 2, 5));

@@ -15,8 +15,8 @@ import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class CountCeilingDecorator extends Decorator<CountDecoratorConfig> {
-    public CountCeilingDecorator(Function<Dynamic<?>, ? extends CountDecoratorConfig> configDeserializer) {
+public class CountFloorDecorator extends Decorator<CountDecoratorConfig> {
+    public CountFloorDecorator(Function<Dynamic<?>, ? extends CountDecoratorConfig> configDeserializer) {
         super(configDeserializer);
     }
 
@@ -30,9 +30,9 @@ public class CountCeilingDecorator extends Decorator<CountDecoratorConfig> {
 
             List<BlockPos> positions = new ArrayList<>();
 
-            //iterate downwards and grab all of the positions with a solid block above.
-            for (int y = 127; y > 30; y--) {
-                if (world.getBlockState(new BlockPos(x, y + 1, z)).isOpaque()) {
+            //iterate upwards and grab all of the positions with a solid block below.
+            for (int y = 30; y < 127; y++) {
+                if (world.getBlockState(new BlockPos(x, y - 1, z)).isOpaque()) {
 
                     if (world.getBlockState(new BlockPos(x, y, z)).isAir()) {
                         positions.add(new BlockPos(x, y, z));
