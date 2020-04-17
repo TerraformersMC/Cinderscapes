@@ -24,7 +24,7 @@ public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
-        int yradius = random.nextInt(10) + 5;
+        int yradius = random.nextInt(5) + 5;
 
         while(true) {
             search: {
@@ -44,17 +44,19 @@ public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
                     break search;
                 }
 
-                // If the block below is not one of soul sand, soul soil, or netherrack then move down
-                Block block = world.getBlockState(pos.down()).getBlock();
-                if (block != Blocks.SOUL_SAND && block != Blocks.SOUL_SOIL && block != Blocks.NETHERRACK) {
-                    break search;
+                // If the four blocks below are not each one of soul sand, soul soil, lava, or netherrack then move down
+                for (int y = 1; y <= 4; y++) {
+                    Block block = world.getBlockState(pos.down(y)).getBlock();
+                    if (block != Blocks.SOUL_SAND && block != Blocks.SOUL_SOIL && block != Blocks.NETHERRACK && block != Blocks.LAVA) {
+                        break search;
+                    }
                 }
 
                 // At this point, if we haven't broken, there are suitable conditions for a shale to generate
 
                 // Define the parameters of the ellipse relative to the random y radius
-                int xradius = 4;
-                int zradius = yradius * (3/4);
+                int xradius = 2;
+                int zradius = (yradius*3)/4;
 
                 // Iterate through all of the x, y, and z values that might be potentially included in the ellipse
                 for (int xi = - xradius; xi < xradius ; xi++) {
@@ -63,7 +65,8 @@ public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
                             BlockPos question = pos.east(xi).up(yi).south(zi);
                             // This is literally just the formula for an ellipse, so yeah
                             // If the block in question is within the ellipse then fill it
-                            if (Math.sqrt(    (  ( xi * xi )/( xradius * xradius )  )   +   (  ( yi * yi )/( yradius * yradius )  )   +   (  (zi * zi)/( zradius * zradius )  )    ) <= 1) {
+                            if (Math.sqrt(    (  ( xi * xi )/(float)( xradius * xradius )  )   +   (  ( yi * yi )/(float)( yradius * yradius )  )   +   (  (zi * zi)/(float)( zradius * zradius )  )    ) <= 1) {
+
                                 world.setBlockState(question, Blocks.BLACKSTONE.getDefaultState(), 4);
                             }
                         }
