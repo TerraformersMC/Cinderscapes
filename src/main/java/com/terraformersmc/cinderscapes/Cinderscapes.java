@@ -7,8 +7,12 @@ import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesGeneration;
 import com.terraformersmc.cinderscapes.util.NoiseCollisionChecker;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.util.Identifier;
 
 public class Cinderscapes implements ModInitializer {
+
+	private static final String MOD_ID = "cinderscapes";
+
 	@Override
 	public void onInitialize() {
 		CinderscapesDecorators.init();
@@ -18,5 +22,9 @@ public class Cinderscapes implements ModInitializer {
 		MapBiomesCommand.register();
 
 		NoiseCollisionChecker.init();
+	}
+
+	public static Identifier id(String s) {
+		return new Identifier(MOD_ID, s);
 	}
 }
