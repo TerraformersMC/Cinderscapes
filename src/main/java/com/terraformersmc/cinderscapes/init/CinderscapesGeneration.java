@@ -9,5 +9,6 @@ public class CinderscapesGeneration {
         NetherBiomes.addNetherBiome(CinderscapesBiomes.BLACKSTONE_SHALES);
         NetherBiomes.addNetherBiome(CinderscapesBiomes.QUARTZ_CANYON);
         NetherBiomes.addNetherBiome(CinderscapesBiomes.WITHERED_WASTES);
+        NetherBiomes.addNetherBiome(CinderscapesBiomes.SULFUROUS_PITS);
     }
 }

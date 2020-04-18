@@ -38,6 +38,7 @@ public class MapBiomesCommand {
         BIOME2COLOR.put(CinderscapesBiomes.QUARTZ_CANYON, 0xaaaaaa);
         BIOME2COLOR.put(CinderscapesBiomes.BLACKSTONE_SHALES, 0x813e00);
         BIOME2COLOR.put(CinderscapesBiomes.WITHERED_WASTES, 0x8c6e66);
+        BIOME2COLOR.put(CinderscapesBiomes.SULFUROUS_PITS, 0xccc254);
     }
 
     public static void register() {
