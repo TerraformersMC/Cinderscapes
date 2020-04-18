@@ -29,15 +29,16 @@ public class MapBiomesCommand {
     private static DecimalFormat numberFormat = new DecimalFormat("#.00");
 
     static {
-        BIOME2COLOR.put(Biomes.NETHER_WASTES, 0x990000);
-        BIOME2COLOR.put(Biomes.WARPED_FOREST, 0x220099);
+        BIOME2COLOR.put(Biomes.NETHER_WASTES, 0xff7700);
+        BIOME2COLOR.put(Biomes.WARPED_FOREST, 0x00e6b89);
         BIOME2COLOR.put(Biomes.CRIMSON_FOREST, 0xee0000);
-        BIOME2COLOR.put(Biomes.SOUL_SAND_VALLEY, 0x009955);
-        BIOME2COLOR.put(Biomes.BASALT_DELTAS, 0x555555);
+        BIOME2COLOR.put(Biomes.SOUL_SAND_VALLEY, 0x45e3ff);
+        BIOME2COLOR.put(Biomes.BASALT_DELTAS, 0x949494);
 
-        BIOME2COLOR.put(CinderscapesBiomes.QUARTZ_CANYON, 0xaaaaaa);
-        BIOME2COLOR.put(CinderscapesBiomes.BLACKSTONE_SHALES, 0x813e00);
-        BIOME2COLOR.put(CinderscapesBiomes.WITHERED_WASTES, 0x8c6e66);
+        BIOME2COLOR.put(CinderscapesBiomes.QUARTZ_CANYON, 0xffffff);
+        BIOME2COLOR.put(CinderscapesBiomes.BLACKSTONE_SHALES, 0x303030);
+        BIOME2COLOR.put(CinderscapesBiomes.WITHERED_WASTES, 0x634328);
+        BIOME2COLOR.put(CinderscapesBiomes.LUMINOUS_GROVE, 0x323aa8);
     }
 
     public static void register() {
@@ -88,7 +89,7 @@ public class MapBiomesCommand {
 
             //send a progress update to let people know the server isn't dying
             if (x % progressUpdate == 0) {
-                source.sendFeedback(new TranslatableText((double)x / img.getHeight() + "% Done mapping"), true);
+                source.sendFeedback(new TranslatableText(((double)x / img.getHeight())*100 + "% Done mapping"), true);
             }
         }
 
@@ -96,7 +97,7 @@ public class MapBiomesCommand {
         //summate all of the biome counts
         int totalCount = biomeCount.values().stream().mapToInt(i -> i).sum();
         //TODO: sort by total count
-        biomeCount.forEach((biome, integer) -> source.sendFeedback(new TranslatableText(biome.getTranslationKey()).append(": " + (integer * 16) + Formatting.GRAY +" (" + numberFormat.format((double)integer / totalCount) + ")"), true));
+        biomeCount.forEach((biome, integer) -> source.sendFeedback(new TranslatableText(biome.getTranslationKey()).append(": " + (integer * 16) + Formatting.GRAY +" (" + numberFormat.format(((double)integer / totalCount)*100 ) + "%)"), true));
 
         //save the biome map
         Path p = Paths.get("biomemap.png");

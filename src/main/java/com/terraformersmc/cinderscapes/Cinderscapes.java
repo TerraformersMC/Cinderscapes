@@ -1,11 +1,10 @@
 package com.terraformersmc.cinderscapes;
 
-import com.terraformersmc.cinderscapes.block.CinderscapesBlocks;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.command.MapBiomesCommand;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
-import com.terraformersmc.cinderscapes.init.CinderscapesGeneration;
 import com.terraformersmc.cinderscapes.util.NoiseCollisionChecker;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -21,11 +20,10 @@ public class Cinderscapes implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        CinderscapesBlocks.register();
+        CinderscapesBlocks.init();
         CinderscapesDecorators.init();
         CinderscapesFeatures.init();
         CinderscapesBiomes.init();
-        CinderscapesGeneration.init();
         MapBiomesCommand.register();
 
         NoiseCollisionChecker.init();

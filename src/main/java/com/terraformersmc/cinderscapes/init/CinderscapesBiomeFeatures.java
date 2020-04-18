@@ -1,6 +1,5 @@
 package com.terraformersmc.cinderscapes.init;
 
-import com.terraformersmc.cinderscapes.block.CinderscapesBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.feature.BlockPileFeatureConfig;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;

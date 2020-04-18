@@ -1,6 +1,8 @@
 package com.terraformersmc.cinderscapes.block;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
+import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -22,12 +24,15 @@ public class CinderscapesNyliumBlock extends NyliumBlock {
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         Block block = world.getBlockState(pos).getBlock();
         BlockPos blockPos = pos.up();
+
         if (block == CinderscapesBlocks.WITHERED_NYLIUM) {
             NetherForestVegetationFeature.method_26264(world, random, blockPos, DefaultBiomeFeatures.WARPED_ROOTS_CONFIG, 3, 1);
             NetherForestVegetationFeature.method_26264(world, random, blockPos, DefaultBiomeFeatures.NETHER_SPROUTS_CONFIG, 3, 1);
             if (random.nextInt(8) == 0) {
                 TwistingVinesFeature.method_26265(world, random, blockPos, 3, 1, 2);
             }
+        } else if (block == CinderscapesBlocks.UMBRAL_NYLIUM) {
+            NetherForestVegetationFeature.method_26264(world, random, blockPos, CinderscapesFeatures.LUMINOUS_GROVE_VEGETATION_CONFIG, 3, 1);
         }
 
     }
