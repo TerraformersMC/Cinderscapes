@@ -7,5 +7,6 @@ public class CinderscapesGeneration {
     @SuppressWarnings("deprecation")
     public static void init() {
         NetherBiomes.addNetherBiome(CinderscapesBiomes.BLACKSTONE_SHALES);
+        NetherBiomes.addNetherBiome(CinderscapesBiomes.QUARTZ_CANYON);
     }
 }
