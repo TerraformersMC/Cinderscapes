@@ -10,7 +10,7 @@
   "contact": {
     "sources": "https://github.com/TerraformersMC/Cinderscapes"
   },
-  "license": "CC0-1.0",
+  "license": "LGPLv3",
   "icon": "assets/cinderscapes/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -18,7 +18,7 @@
       "com.terraformersmc.cinderscapes.Cinderscapes"
     ],
     "client": [
-      "com.terraformersmc.cinderscapes.CinderscapesClient"
+      "com.terraformersmc.cinderscapes.client.CinderscapesClient"
     ]
   },
   "mixins": [
