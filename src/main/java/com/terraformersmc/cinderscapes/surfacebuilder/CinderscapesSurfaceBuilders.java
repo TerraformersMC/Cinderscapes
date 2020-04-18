@@ -14,7 +14,7 @@ import java.util.Map;
 public class CinderscapesSurfaceBuilders {
     private static final Map<Identifier, SurfaceBuilder<? extends SurfaceConfig>> SURFACE_BUILDERS = new HashMap<>();
 
-    public static final TernarySurfaceConfig LUMINOUS_NYLIUM_CONFIG = new TernarySurfaceConfig(CinderscapesBlocks.LUMINOUS_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), CinderscapesBlocks.LUMINOUS_WART_BLOCK.getDefaultState());
+    public static final TernarySurfaceConfig LUMINOUS_NYLIUM_CONFIG = new TernarySurfaceConfig(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState());
 
     private static <S extends SurfaceBuilder<? extends SurfaceConfig>> S add(String name, S feature) {
         SURFACE_BUILDERS.put(new Identifier("cinderscapes", name), feature);

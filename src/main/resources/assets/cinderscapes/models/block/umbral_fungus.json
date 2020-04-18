@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "cinderscapes:block/luminous_tendrils"
+    "cross": "cinderscapes:block/umbral_fungus"
   }
 }

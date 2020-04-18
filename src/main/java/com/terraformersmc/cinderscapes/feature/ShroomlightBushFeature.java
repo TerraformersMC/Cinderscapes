@@ -48,7 +48,7 @@ public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
                             if (y >= 0) {
                                 if (block != Blocks.AIR) break search;
                             } else {
-                                if (block != Blocks.NETHERRACK && block != CinderscapesBlocks.LUMINOUS_NYLIUM && block != CinderscapesBlocks.LUMINOUS_WART_BLOCK) break search;
+                                if (block != Blocks.NETHERRACK && block != CinderscapesBlocks.UMBRAL_NYLIUM && block != CinderscapesBlocks.UMBRAL_WART_BLOCK) break search;
                             }
                         }
                     }

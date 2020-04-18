@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "cinderscapes:block/umbrus_wart_block"
+    "all": "cinderscapes:block/umbral_wart_block"
   }
 }
