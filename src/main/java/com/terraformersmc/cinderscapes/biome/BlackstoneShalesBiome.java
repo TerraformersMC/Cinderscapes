@@ -3,7 +3,7 @@ package com.terraformersmc.cinderscapes.biome;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
-import com.terraformersmc.cinderscapes.surfacebuilder.CinderscapesSurfaceBuilders;
+import com.terraformersmc.cinderscapes.init.CinderscapesSurfaceBuilders;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityType;
@@ -25,7 +25,26 @@ import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 
 public class BlackstoneShalesBiome extends Biome {
     public BlackstoneShalesBiome() {
-        super(new Biome.Settings().configureSurfaceBuilder(CinderscapesSurfaceBuilders.BLACKSTONE_SHALES, CinderscapesSurfaceBuilders.BLACKSTONE_CONFIG).precipitation(Precipitation.NONE).category(Category.NETHER).depth(0.1F).scale(0.2F).temperature(2.0F).downfall(0.0F).effects(new BiomeEffects.Builder().waterColor(4159204).waterFogColor(4341314).fogColor(8470016).particleConfig(new BiomeParticleConfig(ParticleTypes.ASH, 0.00625F, (random) -> 0.0D, (random) -> 0.0D, (random) -> 0.0D)).build()).parent(null).noises(ImmutableList.of(new MixedNoisePoint(0.0F, 0.0F, 0.0F, 0.0F, 1.0F))));
+        super(new Biome.Settings()
+                .configureSurfaceBuilder(CinderscapesSurfaceBuilders.BLACKSTONE_SHALES, CinderscapesSurfaceBuilders.BLACKSTONE_CONFIG)
+                .precipitation(Precipitation.NONE)
+                .category(Category.NETHER)
+                .depth(0.1F)
+                .scale(0.2F)
+                .temperature(2.0F)
+                .downfall(0.0F)
+                .effects(new BiomeEffects.Builder()
+                        .waterColor(4159204)
+                        .waterFogColor(4341314)
+                        .fogColor(8470016)
+                        .particleConfig(
+                                new BiomeParticleConfig(ParticleTypes.ASH, 0.00625F,
+                                        (random) -> 0.0D,
+                                        (random) -> 0.0D,
+                                        (random) -> 0.0D))
+                        .build())
+                .parent(null)
+                .noises(ImmutableList.of(new MixedNoisePoint(0.0F, 0.0F, -0.5F, 0.0F, 1.0F))));
 
         this.addCarver(GenerationStep.Carver.AIR, configureCarver(Carver.NETHER_CAVE, new ProbabilityConfig(0.2F)));
         this.addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, Feature.DELTA_FEATURE.configure(DefaultBiomeFeatures.field_23858).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(10))));

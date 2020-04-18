@@ -36,6 +36,8 @@ public class MapBiomesCommand {
         BIOME2COLOR.put(Biomes.BASALT_DELTAS, 0x555555);
 
         BIOME2COLOR.put(CinderscapesBiomes.QUARTZ_CANYON, 0xaaaaaa);
+        BIOME2COLOR.put(CinderscapesBiomes.BLACKSTONE_SHALES, 0x813e00);
+        BIOME2COLOR.put(CinderscapesBiomes.WITHERED_WASTES, 0x8c6e66);
     }
 
     public static void register() {

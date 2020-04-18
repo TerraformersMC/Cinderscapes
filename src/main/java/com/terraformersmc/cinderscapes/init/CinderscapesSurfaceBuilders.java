@@ -1,7 +1,8 @@
-package com.terraformersmc.cinderscapes.surfacebuilder;
+package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.block.CinderscapesBlocks;
+import com.terraformersmc.cinderscapes.surfacebuilder.BlackstoneShalesSurfaceBuilder;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;

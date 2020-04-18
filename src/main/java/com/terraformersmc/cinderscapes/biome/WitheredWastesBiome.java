@@ -2,7 +2,7 @@ package com.terraformersmc.cinderscapes.biome;
 
 import com.google.common.collect.ImmutableList;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomeFeatures;
-import com.terraformersmc.cinderscapes.surfacebuilder.CinderscapesSurfaceBuilders;
+import com.terraformersmc.cinderscapes.init.CinderscapesSurfaceBuilders;
 import net.minecraft.block.Blocks;
 import net.minecraft.class_5183;
 import net.minecraft.class_5187;
