@@ -14,8 +14,8 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 import java.util.function.Function;
 
-public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
-    public BlackstoneShaleFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
+public class BlackstoneLavaShaleFeature extends Feature<DefaultFeatureConfig> {
+    public BlackstoneLavaShaleFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
         super(configDeserializer);
     }
 
@@ -24,7 +24,7 @@ public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
-        int yradius = random.nextInt(5) + 5;
+        int yradius = random.nextInt(5) + 10;
 
         while(true) {
             search: {
@@ -44,10 +44,10 @@ public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
                     break search;
                 }
 
-                // If the four blocks below are not each one of soul sand, soul soil, or netherrack then move down
+                // If the four blocks below are not lava then move down
                 for (int y = 1; y <= 4; y++) {
                     Block block = world.getBlockState(pos.down(y)).getBlock();
-                    if (block != Blocks.SOUL_SAND && block != Blocks.SOUL_SOIL && block != Blocks.NETHERRACK) {
+                    if (block != Blocks.LAVA) {
                         break search;
                     }
                 }
@@ -60,10 +60,10 @@ public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
                 // This random if statement makes it so that 50% of the time the shales are rotated 90deg
                 if (random.nextBoolean()) {
                     xradius = 2;
-                    zradius = (yradius * 3) / 4;
+                    zradius = yradius / 2;
                 } else {
                     zradius = 2;
-                    xradius = (yradius * 3) / 4;
+                    xradius = yradius / 2;
                 }
 
                 // Iterate through all of the x, y, and z values that might be potentially included in the ellipse

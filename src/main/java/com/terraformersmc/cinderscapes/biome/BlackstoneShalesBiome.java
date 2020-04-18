@@ -53,6 +53,7 @@ public class BlackstoneShalesBiome extends Biome {
         this.addStructureFeature(Feature.NETHER_FOSSIL.configure(FeatureConfig.DEFAULT));
         // Shales
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesFeatures.BLACKSTONE_SHALE.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(15, 0, 0, 128))));
+        this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesFeatures.BLACKSTONE_LAVA_SHALE.configure(FeatureConfig.DEFAULT).createDecoratedFeature(   Decorator.CHANCE_RANGE.configure(new ChanceRangeDecoratorConfig(0.25f, 0, 0, 128))));
         // Entity Spawns
         this.addSpawn(EntityCategory.MONSTER, new SpawnEntry(EntityType.GHAST, 40, 1, 1));
         this.addSpawn(EntityCategory.MONSTER, new SpawnEntry(EntityType.SKELETON, 2, 5, 5));
