@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "cinderscapes:block/umbrus_stem_top",
+    "side": "cinderscapes:block/umbrus_stem"
+  }
+}

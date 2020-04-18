@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "cinderscapes:block/tall_photofern_bottom"
+  }
+}

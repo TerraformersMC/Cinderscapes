@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "cinderscapes:block/tall_photofern_bottom"
+    },
+    "half=upper": {
+      "model": "cinderscapes:block/tall_photofern_top"
+    }
+  }
+}

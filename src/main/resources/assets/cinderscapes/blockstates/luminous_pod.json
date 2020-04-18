@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "cinderscapes:block/luminous_pod_bottom"
+    },
+    "half=upper": {
+      "model": "cinderscapes:block/luminous_pod_top"
+    }
+  }
+}
