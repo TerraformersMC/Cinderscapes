@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "cinderscapes:block/withered_nylium",
+    "bottom": "minecraft:block/netherrack",
+    "side": "cinderscapes:block/withered_nylium_side"
+  }
+}

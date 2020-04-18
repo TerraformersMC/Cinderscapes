@@ -1,9 +1,11 @@
 package com.terraformersmc.cinderscapes.surfacebuilder;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
+import com.terraformersmc.cinderscapes.block.CinderscapesBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.surfacebuilder.NetherForestSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig;
 import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
@@ -15,6 +17,7 @@ public class CinderscapesSurfaceBuilders {
     private static final Map<Identifier, SurfaceBuilder<? extends SurfaceConfig>> SURFACE_BUILDERS = new HashMap<>();
 
     public static final TernarySurfaceConfig BLACKSTONE_CONFIG = new TernarySurfaceConfig(Blocks.BLACKSTONE.getDefaultState(), Blocks.BLACKSTONE.getDefaultState(), Blocks.NETHERRACK.getDefaultState());
+    public static final TernarySurfaceConfig WITHERED_WASTES_CONFIG = new TernarySurfaceConfig(CinderscapesBlocks.WITHERED_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), CinderscapesBlocks.WITHERED_WART_BLOCK.getDefaultState());
 
     public static final SurfaceBuilder<TernarySurfaceConfig> BLACKSTONE_SHALES = add("blackstone_shales", new BlackstoneShalesSurfaceBuilder(TernarySurfaceConfig::deserialize));
 

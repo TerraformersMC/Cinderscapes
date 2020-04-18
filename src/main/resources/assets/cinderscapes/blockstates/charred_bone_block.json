@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "cinderscapes:block/charred_bone_block",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "cinderscapes:block/charred_bone_block"
+    },
+    "axis=z": {
+      "model": "cinderscapes:block/charred_bone_block",
+      "x": 90
+    }
+  }
+}
