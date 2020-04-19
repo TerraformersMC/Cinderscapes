@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "cinderscapes:block/luminous_fungus"
+    "layer0": "cinderscapes:block/umbral_fungus"
   }
 }

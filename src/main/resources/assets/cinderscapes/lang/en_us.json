@@ -1,5 +1,8 @@
 {
+  "itemGroup.cinderscapes.items": "Cinderscapes",
+
   "biome.cinderscapes.withering_wastes": "Withering Wastes",
+  "biome.cinderscapes.luminous_grove": "Luminous Grove",
 
   "block.cinderscapes.slate": "Slate",
   "block.cinderscapes.radiant_slate": "Radiant Slate",
@@ -9,5 +12,16 @@
   "block.cinderscapes.withered_fungus": "Withered Fungus",
   "block.cinderscapes.withered_stem": "Withered Stem",
   "block.cinderscapes.withered_wart_block": "Withered Wart Block",
-  "block.cinderscapes.withered_nylium": "Withered Nylium"
+  "block.cinderscapes.withered_nylium": "Withered Nylium",
+
+  "block.cinderscapes.luminous_pod": "Luminous Pod",
+  "block.cinderscapes.umbral_nylium": "Umbral Nylium",
+  "block.cinderscapes.twilight_tendrils": "Twilight Tendrils",
+  "block.cinderscapes.twilight_fescues": "Twilight Fescues",
+  "block.cinderscapes.umbral_wart_block": "Umbral Wart Block",
+  "block.cinderscapes.umbral_flesh_block": "Umbral Flesh Block",
+  "block.cinderscapes.photofern": "Photofern",
+  "block.cinderscapes.tall_photofern": "Tall Photofern",
+  "block.cinderscapes.umbral_stem": "Umbral Stem",
+  "block.cinderscapes.umbral_fungus": "Umbral Fungus"
 }

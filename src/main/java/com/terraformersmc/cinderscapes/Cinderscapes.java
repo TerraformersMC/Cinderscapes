@@ -28,7 +28,7 @@ public class Cinderscapes implements ModInitializer {
 
         NoiseCollisionChecker.init();
 
-        FabricItemGroupBuilder.create(new Identifier(MOD_ID, "items")).icon(() -> Blocks.CRIMSON_FUNGUS.asItem().getStackForRender()).appendItems(stacks -> Registry.ITEM.forEach(item -> {
+        FabricItemGroupBuilder.create(new Identifier(MOD_ID, "items")).icon(() -> CinderscapesBlocks.UMBRAL_FUNGUS.asItem().getStackForRender()).appendItems(stacks -> Registry.ITEM.forEach(item -> {
             if (Registry.ITEM.getId(item).getNamespace().equals(MOD_ID)) {
                 item.appendStacks(item.getGroup(), (DefaultedList<ItemStack>) stacks);
             }

@@ -38,9 +38,9 @@ public class CinderscapesBlocks {
     ///////////////////
     public static final Block UMBRAL_STEM = add("umbral_stem", new PillarBlock(FabricBlockSettings.copy(Blocks.WARPED_STEM).materialColor(MaterialColor.BLUE).breakByTool(FabricToolTags.AXES).build()), ItemGroup.BUILDING_BLOCKS);
     public static final Block UMBRAL_NYLIUM = add("umbral_nylium", new CinderscapesNyliumBlock(FabricBlockSettings.copy(Blocks.WARPED_NYLIUM).materialColor(MaterialColor.BLUE).breakByTool(FabricToolTags.PICKAXES).build()), ItemGroup.BUILDING_BLOCKS);
-    public static final Block UMBRAL_FUNGUS = add("umbral_fungus", new CinderscapesFungusBlock(FabricBlockSettings.copy(Blocks.WARPED_FUNGUS).materialColor(MaterialColor.BLUE).breakByTool(FabricToolTags.PICKAXES).build(), () -> Feature.HUGE_FUNGUS.configure(CinderscapesFeatures.UMBRAL_FUNGUS_CONFIG)), ItemGroup.DECORATIONS);
-    public static Block UMBRAL_WART_BLOCK = add("umbral_wart_block", new Block(FabricBlockSettings.copy(Blocks.WARPED_WART_BLOCK).materialColor(MaterialColor.BLUE).breakByTool(FabricToolTags.HOES).build()), ItemGroup.BUILDING_BLOCKS);
-    public static Block UMBRAL_FLESH_BLOCK = add("umbral_flesh_block", new Block(FabricBlockSettings.copy(UMBRAL_WART_BLOCK).breakByTool(FabricToolTags.HOES).build()));
+    public static final Block UMBRAL_FUNGUS = add("umbral_fungus", new CinderscapesFungusBlock(FabricBlockSettings.copy(Blocks.WARPED_FUNGUS).materialColor(MaterialColor.BLUE).breakByTool(FabricToolTags.PICKAXES).lightLevel(15).build(), () -> Feature.HUGE_FUNGUS.configure(CinderscapesFeatures.UMBRAL_FUNGUS_CONFIG)), ItemGroup.DECORATIONS);
+    public static Block UMBRAL_WART_BLOCK = add("umbral_wart_block", new Block(FabricBlockSettings.copy(Blocks.WARPED_WART_BLOCK).materialColor(MaterialColor.BLUE).breakByTool(FabricToolTags.HOES).nonOpaque().build()), ItemGroup.BUILDING_BLOCKS);
+    public static Block UMBRAL_FLESH_BLOCK = add("umbral_flesh_block", new Block(FabricBlockSettings.copy(UMBRAL_WART_BLOCK).breakByTool(FabricToolTags.HOES).lightLevel(15).build()), ItemGroup.BUILDING_BLOCKS);
 
 
     ///////////
@@ -52,7 +52,7 @@ public class CinderscapesBlocks {
     public static final Block FLAY = add("flay", new CinderscapesRootsBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel(12).build()), ItemGroup.DECORATIONS);
     public static final Block RADIANT_ROOTS = add("radiant_roots", new CinderscapesRootsBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel(8).build()), ItemGroup.DECORATIONS);
 
-    public static Block TWILIGHT_TENDRILS = add("twilight_tendrils", new NetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).build(), Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
+    public static Block TWILIGHT_TENDRILS = add("twilight_tendrils", new NetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel(15).build(), Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
     public static Block TWILIGHT_FESCUES = add("twilight_fescues", new NetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).build(), Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
     public static Block PHOTOFERN = add("photofern", new NetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).build(), Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
     public static Block TALL_PHOTOFERN = add("tall_photofern", new NetherTallPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).build(), Block.createCuboidShape(2.0, 0, 2.0, 14.0, 16.0, 14.0)), ItemGroup.DECORATIONS);
