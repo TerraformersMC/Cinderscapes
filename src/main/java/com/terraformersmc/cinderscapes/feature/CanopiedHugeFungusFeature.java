@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.feature;
 
+import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureConfig;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.StructureAccessor;

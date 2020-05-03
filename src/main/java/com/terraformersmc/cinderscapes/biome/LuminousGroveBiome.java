@@ -2,7 +2,7 @@ package com.terraformersmc.cinderscapes.biome;
 
 import com.google.common.collect.ImmutableList;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
-import com.terraformersmc.cinderscapes.surfacebuilder.CinderscapesSurfaceBuilders;
+import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
@@ -24,7 +24,7 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 public class LuminousGroveBiome extends Biome {
     public LuminousGroveBiome() {
         super((new Settings())
-                .configureSurfaceBuilder(SurfaceBuilder.NETHER_FOREST, CinderscapesSurfaceBuilders.LUMINOUS_NYLIUM_CONFIG)
+                .configureSurfaceBuilder(SurfaceBuilder.NETHER_FOREST, CinderscapesSurfaces.LUMINOUS_NYLIUM_CONFIG)
                 .precipitation(Precipitation.NONE)
                 .category(Category.NETHER)
                 .depth(0.1F)

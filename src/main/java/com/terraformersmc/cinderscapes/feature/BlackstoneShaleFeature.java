@@ -1,6 +1,5 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -12,18 +11,26 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
-import java.util.function.Function;
 
+
+/**
+ * [REVIEWED]
+ *
+ * A large scale like stone feature
+ *
+ * @author <Wtoll> Will Toll
+ * @project Cinderscapes
+ */
 public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
-    public BlackstoneShaleFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
-        super(configDeserializer);
+
+    public BlackstoneShaleFeature() {
+        super(DefaultFeatureConfig::deserialize);
     }
 
-    // This should probably be revisited at some point
-
+    // TODO: Rewrite using the upcoming shapes library
+    // TODO: Rewrite using the CountFloorDecorator
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-
         int yradius = random.nextInt(5) + 5;
 
         while(true) {
@@ -74,7 +81,6 @@ public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
                             // This is literally just the formula for an ellipse, so yeah
                             // If the block in question is within the ellipse then fill it
                             if (Math.sqrt(    (  ( xi * xi )/(float)( xradius * xradius )  )   +   (  ( yi * yi )/(float)( yradius * yradius )  )   +   (  (zi * zi)/(float)( zradius * zradius )  )    ) <= 1) {
-
                                 world.setBlockState(question, Blocks.BLACKSTONE.getDefaultState(), 4);
                             }
                         }

@@ -3,7 +3,8 @@ package com.terraformersmc.cinderscapes.biome;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
-import com.terraformersmc.cinderscapes.init.CinderscapesSurfaceBuilders;
+import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
+import com.terraformersmc.cinderscapes.surfacebuilder.config.EmptySurfaceConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityType;
@@ -26,7 +27,7 @@ import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 public class BlackstoneShalesBiome extends Biome {
     public BlackstoneShalesBiome() {
         super(new Biome.Settings()
-                .configureSurfaceBuilder(CinderscapesSurfaceBuilders.BLACKSTONE_SHALES, CinderscapesSurfaceBuilders.BLACKSTONE_CONFIG)
+                .configureSurfaceBuilder(CinderscapesSurfaces.BLACKSTONE_SHALES, new EmptySurfaceConfig())
                 .precipitation(Precipitation.NONE)
                 .category(Category.NETHER)
                 .depth(0.1F)

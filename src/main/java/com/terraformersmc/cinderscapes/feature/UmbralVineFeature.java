@@ -23,6 +23,8 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
         super(configDeserializer);
     }
 
+    // TODO: Implement a FeatureConfig
+
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         while (pos.getY() >= 3) {

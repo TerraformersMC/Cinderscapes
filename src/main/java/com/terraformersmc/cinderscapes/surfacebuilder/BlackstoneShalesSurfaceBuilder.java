@@ -2,6 +2,7 @@ package com.terraformersmc.cinderscapes.surfacebuilder;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.Dynamic;
+import com.terraformersmc.cinderscapes.surfacebuilder.config.EmptySurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -10,18 +11,23 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
 import java.util.Random;
 import java.util.function.Function;
 
-public class BlackstoneShalesSurfaceBuilder extends SurfaceBuilder<TernarySurfaceConfig> {
-    private static final BlockState NETHERRACK;
+/**
+ * [REVIEWED]
+ *
+ * Surface builder that creates the marbled effect of the blackstone shales biome
+ *
+ * @author <Wtoll> Will Toll on 2020-05-02
+ * @project Cinderscapes
+ */
+public class BlackstoneShalesSurfaceBuilder extends SurfaceBuilder<EmptySurfaceConfig> {
     private static final BlockState BLACKSTONE;
     private static final BlockState SOUL_SAND;
     private static final BlockState SOUL_SOIL;
     private static final BlockState MAGMA_BLOCK;
-    private static final BlockState LAVA;
 
     private OctavePerlinNoiseSampler soulsoilSampler;
     private OctavePerlinNoiseSampler blackstoneSampler;
@@ -29,12 +35,12 @@ public class BlackstoneShalesSurfaceBuilder extends SurfaceBuilder<TernarySurfac
 
     protected long seed;
 
-    public BlackstoneShalesSurfaceBuilder(Function<Dynamic<?>, ? extends TernarySurfaceConfig> function) {
-        super(function);
+    public BlackstoneShalesSurfaceBuilder() {
+        super(EmptySurfaceConfig::deserialize);
     }
 
     @Override
-    public void generate(Random random, Chunk chunk, Biome biome, int x, int z, int height, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, TernarySurfaceConfig surfaceBlocks) {
+    public void generate(Random random, Chunk chunk, Biome biome, int x, int z, int height, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, EmptySurfaceConfig config) {
         // For each x, z value go through every y value
         for (int y = 0; y < 256; y++) {
             // Set a position variable equal to the current block in question
@@ -98,11 +104,9 @@ public class BlackstoneShalesSurfaceBuilder extends SurfaceBuilder<TernarySurfac
     }
 
     static {
-        NETHERRACK = Blocks.NETHERRACK.getDefaultState();
         BLACKSTONE = Blocks.BLACKSTONE.getDefaultState();
         SOUL_SAND = Blocks.SOUL_SAND.getDefaultState();
         SOUL_SOIL = Blocks.SOUL_SOIL.getDefaultState();
         MAGMA_BLOCK = Blocks.MAGMA_BLOCK.getDefaultState();
-        LAVA = Blocks.LAVA.getDefaultState();
     }
 }

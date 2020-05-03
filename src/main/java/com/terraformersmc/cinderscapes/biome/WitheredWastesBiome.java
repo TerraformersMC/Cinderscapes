@@ -1,8 +1,8 @@
 package com.terraformersmc.cinderscapes.biome;
 
 import com.google.common.collect.ImmutableList;
-import com.terraformersmc.cinderscapes.init.CinderscapesBiomeFeatures;
-import com.terraformersmc.cinderscapes.init.CinderscapesSurfaceBuilders;
+import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
 import net.minecraft.block.Blocks;
 import net.minecraft.class_5183;
 import net.minecraft.class_5187;
@@ -28,7 +28,7 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 public class WitheredWastesBiome extends Biome {
     public WitheredWastesBiome() {
         super(new Settings()
-                .configureSurfaceBuilder(SurfaceBuilder.NETHER_FOREST, CinderscapesSurfaceBuilders.WITHERED_WASTES_CONFIG)
+                .configureSurfaceBuilder(SurfaceBuilder.NETHER_FOREST, CinderscapesSurfaces.WITHERED_WASTES_CONFIG)
                 .precipitation(Precipitation.NONE)
                 .category(Category.NETHER)
                 .depth(0.1F)
@@ -69,8 +69,8 @@ public class WitheredWastesBiome extends Biome {
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Target.NETHERRACK, Blocks.MAGMA_BLOCK.getDefaultState(), 33)).createDecoratedFeature(Decorator.MAGMA.configure(new CountDecoratorConfig(4))));
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.SPRING_FEATURE.configure(DefaultBiomeFeatures.ENCLOSED_NETHER_SPRING_CONFIG).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(32, 10, 20, 128))));
 
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.NETHER_FOREST_VEGETATION.configure(CinderscapesBiomeFeatures.RADIANT_ROOTS_CONFIG).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(7))));
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.NETHER_FOREST_VEGETATION.configure(CinderscapesBiomeFeatures.FLAY_CONFIG).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(3))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.NETHER_FOREST_VEGETATION.configure(CinderscapesFeatures.RADIANT_ROOTS_CONFIG).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(7))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.NETHER_FOREST_VEGETATION.configure(CinderscapesFeatures.FLAY_CONFIG).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(3))));
 
         this.addSpawn(EntityCategory.MONSTER, new SpawnEntry(EntityType.GHAST, 40, 1, 1));
         this.addSpawn(EntityCategory.MONSTER, new SpawnEntry(EntityType.WITHER_SKELETON, 20, 1, 3));

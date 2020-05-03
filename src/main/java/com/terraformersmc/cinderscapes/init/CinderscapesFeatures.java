@@ -2,6 +2,7 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.feature.*;
+import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.*;
@@ -10,6 +11,10 @@ import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
 public class CinderscapesFeatures {
+
+    public static final BlockPileFeatureConfig RADIANT_ROOTS_CONFIG = new BlockPileFeatureConfig((new WeightedBlockStateProvider()).addState(CinderscapesBlocks.RADIANT_ROOTS.getDefaultState(), 85).addState(Blocks.WARPED_ROOTS.getDefaultState(), 1).addState(CinderscapesBlocks.WITHERED_FUNGUS.getDefaultState(), 13).addState(Blocks.WARPED_FUNGUS.getDefaultState(), 2).addState(Blocks.CRIMSON_FUNGUS.getDefaultState(), 1));
+    public static final BlockPileFeatureConfig FLAY_CONFIG = new BlockPileFeatureConfig(new SimpleBlockStateProvider(CinderscapesBlocks.FLAY.getDefaultState()));
+
     public static Feature<DefaultFeatureConfig> BLACKSTONE_SHALE;
     public static Feature<DefaultFeatureConfig> BLACKSTONE_LAVA_SHALE;
     public static Feature<DefaultFeatureConfig> BLACKSTONE_WEEPING_VINES;
@@ -35,7 +40,7 @@ public class CinderscapesFeatures {
 
         CANOPIED_HUGE_FUNGUS = Registry.register(Registry.FEATURE, Cinderscapes.id("canopied_huge_fungus"), new CanopiedHugeFungusFeature());
 
-        SHROOMLIGHT_BUSH = Registry.register(Registry.FEATURE, Cinderscapes.id("shroomlight_bush"), new ShroomlightBushFeature(DefaultFeatureConfig::deserialize));
+        SHROOMLIGHT_BUSH = Registry.register(Registry.FEATURE, Cinderscapes.id("shroomlight_bush"), new ShroomlightBushFeature());
         UMBRAL_VINE = Registry.register(Registry.FEATURE, Cinderscapes.id("umbral_vine"), new UmbralVineFeature(DefaultFeatureConfig::deserialize));
 
         LUMINOUS_GROVE_VEGETATION_CONFIG = new BlockPileFeatureConfig((new WeightedBlockStateProvider())
@@ -50,7 +55,7 @@ public class CinderscapesFeatures {
         TALL_PHOTOFERN_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(CinderscapesBlocks.TALL_PHOTOFERN.getDefaultState()), new DoublePlantPlacer())).tries(64).cannotProject().build();
         LUMINOUS_POD_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(CinderscapesBlocks.LUMINOUS_POD.getDefaultState()), new DoublePlantPlacer())).tries(64).cannotProject().build();
 
-        BLACKSTONE_SHALE = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_shale"), new BlackstoneShaleFeature(DefaultFeatureConfig::deserialize));
+        BLACKSTONE_SHALE = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_shale"), new BlackstoneShaleFeature());
         BLACKSTONE_LAVA_SHALE = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_lava_shale"), new BlackstoneLavaShaleFeature(DefaultFeatureConfig::deserialize));
         BLACKSTONE_WEEPING_VINES = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_weeping_vines"), new BlackstoneWeepingVinesFeature(DefaultFeatureConfig::deserialize));
 

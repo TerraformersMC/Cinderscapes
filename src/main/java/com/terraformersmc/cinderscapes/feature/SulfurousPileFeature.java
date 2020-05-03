@@ -1,6 +1,6 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import com.terraformersmc.cinderscapes.block.CinderscapesBlocks;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.StructureAccessor;

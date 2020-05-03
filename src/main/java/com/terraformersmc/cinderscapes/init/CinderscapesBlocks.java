@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.HashMap;
@@ -18,7 +19,9 @@ import java.util.Map;
 
 public class CinderscapesBlocks {
 
+    // Acts as a kind of local registry for block items added by Cinderscapes
     private static final Map<Identifier, BlockItem> ITEMS = new HashMap<>();
+    // Acts as a kind of local registry for blocks added by Cinderscapes
     private static final Map<Identifier, Block> BLOCKS = new HashMap<>();
 
     /////////////////////
@@ -46,14 +49,14 @@ public class CinderscapesBlocks {
     public static final Block SLATE = add("slate", new Block(FabricBlockSettings.copy(Blocks.BLACKSTONE).build()), ItemGroup.BUILDING_BLOCKS);
     public static final Block SULFUR_BLOCK = add("sulfur_block", new Block(FabricBlockSettings.of(Material.SAND).strength(0.5F, 0.5f).build()), ItemGroup.BUILDING_BLOCKS);
     public static final Block RADIANT_SLATE = add("radiant_slate", new Block(FabricBlockSettings.copy(Blocks.BLACKSTONE).lightLevel(12).build()), ItemGroup.BUILDING_BLOCKS);
-    public static final Block FLAY = add("flay", new CinderscapesRootsBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel(12).build()), ItemGroup.DECORATIONS);
-    public static final Block RADIANT_ROOTS = add("radiant_roots", new CinderscapesRootsBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel(8).build()), ItemGroup.DECORATIONS);
+    public static final Block FLAY = add("flay", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel(12).build(), (state) -> VoxelShapes.fullCube()), ItemGroup.DECORATIONS);
+    public static final Block RADIANT_ROOTS = add("radiant_roots", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel(8).build(), (state) -> VoxelShapes.fullCube()), ItemGroup.DECORATIONS);
 
-    public static Block TWILIGHT_TENDRILS = add("twilight_tendrils", new NetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel(15).build(), Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
-    public static Block TWILIGHT_FESCUES = add("twilight_fescues", new NetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).build(), Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
-    public static Block PHOTOFERN = add("photofern", new NetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).build(), Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
-    public static Block TALL_PHOTOFERN = add("tall_photofern", new NetherTallPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).build(), Block.createCuboidShape(2.0, 0, 2.0, 14.0, 16.0, 14.0)), ItemGroup.DECORATIONS);
-    public static Block LUMINOUS_POD = add("luminous_pod", new NetherTallPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel(15).build(), Block.createCuboidShape(2.0, 0, 2.0, 14.0, 16.0, 14.0)), ItemGroup.DECORATIONS);
+    public static Block TWILIGHT_TENDRILS = add("twilight_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel(15).build(), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
+    public static Block TWILIGHT_FESCUES = add("twilight_fescues", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).build(), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
+    public static Block PHOTOFERN = add("photofern", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).build(), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
+    public static Block TALL_PHOTOFERN = add("tall_photofern", new CinderscapesNetherTallPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).build(), (state) -> Block.createCuboidShape(2.0, 0, 2.0, 14.0, 16.0, 14.0)), ItemGroup.DECORATIONS);
+    public static Block LUMINOUS_POD = add("luminous_pod", new CinderscapesNetherTallPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel(15).build(), (state) -> Block.createCuboidShape(2.0, 0, 2.0, 14.0, 16.0, 14.0)), ItemGroup.DECORATIONS);
 
     private static <B extends Block> B add(String name, B block, ItemGroup tab) {
         return add(name, block, new BlockItem(block, new Item.Settings().group(tab)));

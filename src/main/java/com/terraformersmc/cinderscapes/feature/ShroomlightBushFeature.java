@@ -1,9 +1,8 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import com.mojang.datafixers.Dynamic;
-import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.StructureAccessor;
@@ -13,15 +12,27 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
-import java.util.function.Function;
 
+
+/**
+ * [REVIEWED]
+ *
+ * A spherical bush made entirely out of shroomlight
+ *
+ * @author <Wtoll> Will Toll
+ * @project Cinderscapes
+ */
 public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
-    public ShroomlightBushFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
-        super(configDeserializer);
+
+    public ShroomlightBushFeature() {
+        super(DefaultFeatureConfig::deserialize);
     }
 
+    // TODO: Rewrite using the upcoming shapes library
+    // TODO: Rewrite using the CountFloorDecorator
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+
         while(true) {
             search: {
                 // If you've gone through all layers and haven't found a suitable spot then return false
@@ -40,7 +51,7 @@ public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
                     break search;
                 }
 
-                // If the four blocks below are not one of netherrack, luminous nylium, or luminous wart block then move down
+                // If the four blocks below are not one of netherrack, nylium, or a wart block then move down
                 for (int x = -1; x <= 1; x++) {
                     for (int y = -1; y <= 2; y++) {
                         for (int z = -1; z <= 1; z++) {
@@ -48,14 +59,14 @@ public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
                             if (y >= 0) {
                                 if (block != Blocks.AIR) break search;
                             } else {
-                                if (block != Blocks.NETHERRACK && block != CinderscapesBlocks.UMBRAL_NYLIUM && block != CinderscapesBlocks.UMBRAL_WART_BLOCK) break search;
+                                if (block != Blocks.NETHERRACK && !BlockTags.WART_BLOCKS.contains(block) && !BlockTags.NYLIUM.contains(block)) break search;
                             }
                         }
                     }
                 }
 
 
-                // At this point, if we haven't broken, there are suitable conditions for a shale to generate
+                // At this point, if we haven't broken, there are suitable conditions for a bush to generate
 
                 // Iterate through all of the x, y, and z values that might be potentially included in the ellipse
                 for (int xi = -1; xi <= 1 ; xi++) {
