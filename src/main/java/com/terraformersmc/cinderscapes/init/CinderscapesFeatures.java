@@ -1,15 +1,8 @@
 package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
-import com.terraformersmc.cinderscapes.feature.BlackstoneLavaShaleFeature;
-import com.terraformersmc.cinderscapes.feature.BlackstoneShaleFeature;
-import com.terraformersmc.cinderscapes.feature.BlackstoneWeepingVinesFeature;
-import com.terraformersmc.cinderscapes.feature.FloorQuartzPillarFeature;
-import com.terraformersmc.cinderscapes.feature.QuartzPillarFeature;
-import com.terraformersmc.cinderscapes.feature.ShroomlightBushFeature;
-import com.terraformersmc.cinderscapes.feature.UmbralVineFeature;
+import com.terraformersmc.cinderscapes.feature.*;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placer.DoublePlantPlacer;
@@ -22,6 +15,8 @@ public class CinderscapesFeatures {
     public static Feature<DefaultFeatureConfig> BLACKSTONE_WEEPING_VINES;
     public static Feature<DefaultFeatureConfig> QUARTZ_PILLAR;
     public static Feature<DefaultFeatureConfig> QUARTZ_PILLAR_FLOOR;
+
+    public static Feature<CanopiedHugeFungusFeatureConfig> CANOPIED_HUGE_FUNGUS;
 
     public static HugeFungusFeatureConfig UMBRAL_FUNGUS_CONFIG;
     public static HugeFungusFeatureConfig UMBRAL_FUNGUS_NOT_PLANTED_CONFIG;
@@ -36,6 +31,8 @@ public class CinderscapesFeatures {
     public static void init() {
         UMBRAL_FUNGUS_CONFIG = new HugeFungusFeatureConfig(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), CinderscapesBlocks.UMBRAL_STEM.getDefaultState(), CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), true);
         UMBRAL_FUNGUS_NOT_PLANTED_CONFIG = new HugeFungusFeatureConfig(UMBRAL_FUNGUS_CONFIG.validBaseBlock, UMBRAL_FUNGUS_CONFIG.stemState, UMBRAL_FUNGUS_CONFIG.hatState, UMBRAL_FUNGUS_CONFIG.decorationState, false);
+
+        CANOPIED_HUGE_FUNGUS = Registry.register(Registry.FEATURE, Cinderscapes.id("canopied_huge_fungus"), new CanopiedHugeFungusFeature());
 
         SHROOMLIGHT_BUSH = Registry.register(Registry.FEATURE, Cinderscapes.id("shroomlight_bush"), new ShroomlightBushFeature(DefaultFeatureConfig::deserialize));
         UMBRAL_VINE = Registry.register(Registry.FEATURE, Cinderscapes.id("umbral_vine"), new UmbralVineFeature(DefaultFeatureConfig::deserialize));

@@ -2,11 +2,14 @@ package com.terraformersmc.cinderscapes.util;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Quaternion;
 import net.minecraft.world.IWorld;
 import java.lang.Math;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Shapes {
-    public static void line(IWorld world, BlockState state, BlockPos to, BlockPos from) {
+    public static void drawLine(IWorld world, BlockState state, BlockPos to, BlockPos from) {
         int dx = to.getX() - from.getX();
         int dy = to.getY() - from.getY();
         int dz = to.getZ() - from.getZ();
@@ -17,4 +20,6 @@ public class Shapes {
             world.setBlockState(pos, state, 0);
         }
     }
+
+
 }
