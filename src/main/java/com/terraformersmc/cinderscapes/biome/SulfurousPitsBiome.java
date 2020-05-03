@@ -4,8 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
 import net.minecraft.block.Blocks;
-import net.minecraft.class_5183;
-import net.minecraft.class_5187;
 import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityType;
 import net.minecraft.particle.ParticleTypes;
@@ -20,9 +18,7 @@ import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.ProbabilityConfig;
 import net.minecraft.world.gen.carver.Carver;
 import net.minecraft.world.gen.decorator.*;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
 // TODO: Check
@@ -52,14 +48,14 @@ public class SulfurousPitsBiome extends Biome {
                 .parent((String)null)
                 .noises(ImmutableList.of(new MixedNoisePoint(-0.35F, -0.35F, 0.0F, 0.0F, 1.0F))));
         //ruined portal
-        this.addStructureFeature(Feature.field_23996.configure(new class_5187(class_5183.class_5185.field_24006)));
+        this.addStructureFeature(Feature.RUINED_PORTAL.configure(new RuinedPortalFeatureConfig(RuinedPortalFeature.Type.NETHER)));
         this.addCarver(GenerationStep.Carver.AIR, configureCarver(Carver.NETHER_CAVE, new ProbabilityConfig(0.2F)));
         this.addStructureFeature(Feature.NETHER_BRIDGE.configure(FeatureConfig.DEFAULT));
         DefaultBiomeFeatures.addDefaultStructures(this);
         this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.SPRING_FEATURE.configure(DefaultBiomeFeatures.LAVA_SPRING_CONFIG).createDecoratedFeature(Decorator.COUNT_VERY_BIASED_RANGE.configure(new RangeDecoratorConfig(40, 8, 16, 256))));
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.NETHER_BRIDGE.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)));
         //ruined portal
-        this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.field_23996.configure(new class_5187(class_5183.class_5185.field_24006)).createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)));
+        this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.RUINED_PORTAL.configure(new RuinedPortalFeatureConfig(RuinedPortalFeature.Type.NETHER)).createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)));
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.SPRING_FEATURE.configure(DefaultBiomeFeatures.field_23851).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(16, 4, 8, 128))));
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.configure(DefaultBiomeFeatures.NETHER_FIRE_CONFIG).createDecoratedFeature(Decorator.FIRE.configure(new CountDecoratorConfig(10))));
         //glowstone
