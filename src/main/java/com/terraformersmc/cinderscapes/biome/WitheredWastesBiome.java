@@ -46,7 +46,7 @@ public class WitheredWastesBiome extends Biome {
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, 0.0111D))
                         .build())
                 .parent(null)
-                .noises(ImmutableList.of(new MixedNoisePoint(0.0F, 0.0F, 0.5F, 0.0F, 1.0F))));
+                .noises(ImmutableList.of(new MixedNoisePoint(0.0F, 0.0F, 0.5F, 0.0F, 0.2F))));
         //ruined portal
         this.addStructureFeature(Feature.RUINED_PORTAL.configure(new RuinedPortalFeatureConfig(RuinedPortalFeature.Type.NETHER)));
         this.addCarver(GenerationStep.Carver.AIR, configureCarver(Carver.NETHER_CAVE, new ProbabilityConfig(0.2F)));

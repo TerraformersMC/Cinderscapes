@@ -45,8 +45,8 @@ public class SulfurousPitsBiome extends Biome {
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0D))
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, 0.0111D))
                         .build())
-                .parent((String)null)
-                .noises(ImmutableList.of(new MixedNoisePoint(-0.35F, -0.35F, 0.0F, 0.0F, 1.0F))));
+                .parent(null)
+                .noises(ImmutableList.of(new MixedNoisePoint(0.0F, -0.35F, 0.35F, 0.0F, 0.2F))));
         //ruined portal
         this.addStructureFeature(Feature.RUINED_PORTAL.configure(new RuinedPortalFeatureConfig(RuinedPortalFeature.Type.NETHER)));
         this.addCarver(GenerationStep.Carver.AIR, configureCarver(Carver.NETHER_CAVE, new ProbabilityConfig(0.2F)));

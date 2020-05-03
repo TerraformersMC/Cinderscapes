@@ -27,6 +27,7 @@ import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 // TODO: Check
 // TODO: Finalize mob spawns
 public class BlackstoneShalesBiome extends Biome {
+
     public BlackstoneShalesBiome() {
         super(new Biome.Settings()
                 .configureSurfaceBuilder(CinderscapesSurfaces.BLACKSTONE_SHALES, new EmptySurfaceConfig())
@@ -47,7 +48,7 @@ public class BlackstoneShalesBiome extends Biome {
                                         (random) -> 0.0D))
                         .build())
                 .parent(null)
-                .noises(ImmutableList.of(new MixedNoisePoint(0.0F, 0.0F, -0.5F, 0.0F, 1.0F))));
+                .noises(ImmutableList.of(new MixedNoisePoint(0.05F, 0.05F, 0.05F, 0.05F, 0.2F))));
 
         this.addCarver(GenerationStep.Carver.AIR, configureCarver(Carver.NETHER_CAVE, new ProbabilityConfig(0.2F)));
         this.addFeature(GenerationStep.Feature.LOCAL_MODIFICATIONS, Feature.DELTA_FEATURE.configure(DefaultBiomeFeatures.field_23858).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(10))));
