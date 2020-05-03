@@ -4,6 +4,7 @@ import com.terraformersmc.cinderscapes.biome.LuminousGroveBiome;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.biome.BlackstoneShalesBiome;
 import com.terraformersmc.cinderscapes.biome.QuartzCanyonBiome;
+import com.terraformersmc.cinderscapes.biome.SulfurousPitsBiome;
 import com.terraformersmc.cinderscapes.biome.WitheredWastesBiome;
 import net.fabricmc.fabric.api.biomes.v1.NetherBiomes;
 import net.minecraft.util.Identifier;
@@ -20,6 +21,7 @@ public class CinderscapesBiomes {
     public static final Biome QUARTZ_CANYON = add("quartz_canyon", new QuartzCanyonBiome());
     public static final Biome WITHERED_WASTES = add("withered_wastes", new WitheredWastesBiome());
     public static final Biome LUMINOUS_GROVE = add("luminous_grove", new LuminousGroveBiome());
+    public static final Biome SULFUROUS_PITS = add("sulfurous_pits", new SulfurousPitsBiome());
 
     private static <B extends Biome> B add(String s, B b) {
         BIOMES.put(Cinderscapes.id(s), b);

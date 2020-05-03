@@ -15,6 +15,7 @@ public class CinderscapesFeatures {
     public static Feature<DefaultFeatureConfig> BLACKSTONE_WEEPING_VINES;
     public static Feature<DefaultFeatureConfig> QUARTZ_PILLAR;
     public static Feature<DefaultFeatureConfig> QUARTZ_PILLAR_FLOOR;
+    public static Feature<DefaultFeatureConfig> SULFUROUS_PILE;
 
     public static Feature<CanopiedHugeFungusFeatureConfig> CANOPIED_HUGE_FUNGUS;
 
@@ -55,5 +56,6 @@ public class CinderscapesFeatures {
 
         QUARTZ_PILLAR = Registry.register(Registry.FEATURE, Cinderscapes.id("quartz_pillar"), new QuartzPillarFeature(DefaultFeatureConfig::deserialize));
         QUARTZ_PILLAR_FLOOR = Registry.register(Registry.FEATURE, Cinderscapes.id("quartz_pillar_floor"), new FloorQuartzPillarFeature(DefaultFeatureConfig::deserialize));
+        SULFUROUS_PILE = Registry.register(Registry.FEATURE, Cinderscapes.id("sulfurous_pile"), new SulfurousPileFeature());
     }
 }

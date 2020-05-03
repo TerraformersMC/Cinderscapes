@@ -34,11 +34,11 @@ public class MapBiomesCommand {
         BIOME2COLOR.put(Biomes.CRIMSON_FOREST, 0xee0000);
         BIOME2COLOR.put(Biomes.SOUL_SAND_VALLEY, 0x45e3ff);
         BIOME2COLOR.put(Biomes.BASALT_DELTAS, 0x949494);
-
         BIOME2COLOR.put(CinderscapesBiomes.QUARTZ_CANYON, 0xffffff);
         BIOME2COLOR.put(CinderscapesBiomes.BLACKSTONE_SHALES, 0x303030);
         BIOME2COLOR.put(CinderscapesBiomes.WITHERED_WASTES, 0x634328);
         BIOME2COLOR.put(CinderscapesBiomes.LUMINOUS_GROVE, 0x323aa8);
+        BIOME2COLOR.put(CinderscapesBiomes.SULFUROUS_PITS, 0xccc254);
     }
 
     public static void register() {
