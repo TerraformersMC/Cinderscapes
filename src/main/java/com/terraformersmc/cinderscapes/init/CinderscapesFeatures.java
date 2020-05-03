@@ -10,6 +10,7 @@ import net.minecraft.world.gen.placer.DoublePlantPlacer;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
+// TODO: Check
 public class CinderscapesFeatures {
 
     public static final BlockPileFeatureConfig RADIANT_ROOTS_CONFIG = new BlockPileFeatureConfig((new WeightedBlockStateProvider()).addState(CinderscapesBlocks.RADIANT_ROOTS.getDefaultState(), 85).addState(Blocks.WARPED_ROOTS.getDefaultState(), 1).addState(CinderscapesBlocks.WITHERED_FUNGUS.getDefaultState(), 13).addState(Blocks.WARPED_FUNGUS.getDefaultState(), 2).addState(Blocks.CRIMSON_FUNGUS.getDefaultState(), 1));

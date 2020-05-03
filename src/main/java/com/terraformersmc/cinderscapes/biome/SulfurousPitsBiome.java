@@ -25,6 +25,7 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
+// TODO: Check
 public class SulfurousPitsBiome extends Biome {
     public SulfurousPitsBiome() {
         super(new Settings()

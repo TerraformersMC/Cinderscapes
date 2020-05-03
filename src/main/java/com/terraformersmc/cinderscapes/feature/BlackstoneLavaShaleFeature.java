@@ -14,6 +14,7 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 import java.util.function.Function;
 
+// TODO: Merge with the other Shale feature and rewrite using a custom count lava decorator config
 public class BlackstoneLavaShaleFeature extends Feature<DefaultFeatureConfig> {
     public BlackstoneLavaShaleFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
         super(configDeserializer);

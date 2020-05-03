@@ -7,6 +7,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.decorator.CountDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
 
+// TODO: Check
 public class CinderscapesDecorators {
     public static Decorator<CountDecoratorConfig> COUNT_CEILING;
     public static Decorator<CountDecoratorConfig> COUNT_FLOOR;

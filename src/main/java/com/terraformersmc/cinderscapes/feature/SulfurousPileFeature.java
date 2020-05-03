@@ -11,6 +11,8 @@ import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
+//TODO: Rewrite using the upcoming shapes library
+//TODO: Make a feature config allowing the material and size range to change
 public class SulfurousPileFeature extends Feature<DefaultFeatureConfig> {
     public SulfurousPileFeature() {
         super(DefaultFeatureConfig::deserialize);

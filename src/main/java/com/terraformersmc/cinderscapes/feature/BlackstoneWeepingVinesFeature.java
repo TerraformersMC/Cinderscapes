@@ -18,6 +18,7 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 import java.util.function.Function;
 
+// TODO: Make a feature config allowing the blockstates to change
 public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig> {
     private static final Direction[] DIRECTIONS = Direction.values();
 

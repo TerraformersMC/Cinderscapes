@@ -14,6 +14,7 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 
+//TODO: Rewrite using the upcoming shapes library
 public class FloorQuartzPillarFeature extends QuartzPillarFeature {
 	public FloorQuartzPillarFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
 		super(configDeserializer);

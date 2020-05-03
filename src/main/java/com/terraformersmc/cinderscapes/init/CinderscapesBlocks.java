@@ -17,6 +17,7 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO: Check
 public class CinderscapesBlocks {
 
     // Acts as a kind of local registry for block items added by Cinderscapes

@@ -16,6 +16,8 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 import java.util.function.Function;
 
+// TODO: Rewrite using the upcoming shapes library
+// TODO: Extrapolate into a Feature config allowing the material and angle range to change
 public class QuartzPillarFeature extends Feature<DefaultFeatureConfig> {
     public QuartzPillarFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
         super(configDeserializer);

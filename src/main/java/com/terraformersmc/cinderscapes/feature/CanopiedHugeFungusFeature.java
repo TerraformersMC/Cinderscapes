@@ -10,6 +10,7 @@ import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
+//TODO: Actually write this shit
 public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeatureConfig> {
 
     public CanopiedHugeFungusFeature() {

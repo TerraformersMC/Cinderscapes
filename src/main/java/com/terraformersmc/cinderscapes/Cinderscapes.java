@@ -5,6 +5,9 @@ import com.terraformersmc.cinderscapes.command.MapBiomesCommand;
 import com.terraformersmc.cinderscapes.util.NoiseCollisionChecker;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /**
  * [REVIEWED]
@@ -15,6 +18,7 @@ import net.minecraft.util.Identifier;
 public class Cinderscapes implements ModInitializer {
 
     public static final String MOD_ID = "cinderscapes";
+    public static final Logger log = LogManager.getLogger(MOD_ID);
 
     /**
      * Initializes the custom content in the mod

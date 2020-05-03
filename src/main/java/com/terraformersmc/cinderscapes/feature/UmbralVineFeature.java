@@ -18,12 +18,16 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 import java.util.function.Function;
 
+
 public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
     public UmbralVineFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
         super(configDeserializer);
     }
 
-    // TODO: Implement a FeatureConfig
+    // TODO: Implement a FeatureConfig to change the material
+    // TODO: Add the dip height to the potential delta values
+    // TODO: Allow it to go at angles and stuff
+    // TODO: Figure out the chunk boundary issue
 
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {

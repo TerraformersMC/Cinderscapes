@@ -24,6 +24,8 @@ import net.minecraft.world.gen.feature.RandomPatchFeatureConfig;
 import net.minecraft.world.gen.placer.SimpleBlockPlacer;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 
+// TODO: Check
+// TODO: Finalize mob spawns
 public class BlackstoneShalesBiome extends Biome {
     public BlackstoneShalesBiome() {
         super(new Biome.Settings()

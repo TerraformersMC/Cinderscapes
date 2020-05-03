@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//TODO: Check
 @SuppressWarnings("unchecked")
 public class NoiseCollisionChecker {
     private static Map<Biome, Long> Hashes = new HashMap<>();

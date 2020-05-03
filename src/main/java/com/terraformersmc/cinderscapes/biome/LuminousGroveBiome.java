@@ -21,6 +21,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
+// TODO: Check
 public class LuminousGroveBiome extends Biome {
     public LuminousGroveBiome() {
         super((new Settings())

@@ -8,6 +8,7 @@ import java.lang.Math;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Write a proper shapes library
 public class Shapes {
     public static void drawLine(IWorld world, BlockState state, BlockPos to, BlockPos from) {
         int dx = to.getX() - from.getX();

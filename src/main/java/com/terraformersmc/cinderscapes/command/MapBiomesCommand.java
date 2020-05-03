@@ -24,6 +24,7 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO: Check
 public class MapBiomesCommand {
     private static final Map<Biome, Integer> BIOME2COLOR = new HashMap<>();
     private static DecimalFormat numberFormat = new DecimalFormat("#.00");
