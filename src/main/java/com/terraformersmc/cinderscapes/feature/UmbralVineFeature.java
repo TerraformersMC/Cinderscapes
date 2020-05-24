@@ -2,8 +2,7 @@ package com.terraformersmc.cinderscapes.feature;
 
 import com.mojang.datafixers.Dynamic;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.cinderscapes.util.Math;
-import com.terraformersmc.cinderscapes.util.Shapes;
+import com.terraformersmc.cinderscapes.util.shapelib.MathHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -69,13 +68,13 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
 
         // Check if all of the blocks are air or netherrack
         for (float t = 0; t < dt; t+=0.25) {
-            BlockPos pos = new BlockPos( from.getX() + ((float)dx/dt)*t, from.getY() + ((float)dy/dt)*t + Math.map(t*t - dt*t, -dt*dt/4.0f, 0, 0, randomDroop), from.getZ() + ((float)dz/dt)*t );
+            BlockPos pos = new BlockPos( from.getX() + ((float)dx/dt)*t, from.getY() + ((float)dy/dt)*t + MathHelper.map(t*t - dt*t, -dt*dt/4.0f, 0, 0, randomDroop), from.getZ() + ((float)dz/dt)*t );
             if (!world.isAir(pos) && world.getBlockState(pos).getBlock() != Blocks.NETHERRACK) return false;
         }
 
         // If they are then generate the thing
         for (float t = 0; t < dt; t+=0.25) {
-            BlockPos pos = new BlockPos( from.getX() + ((float)dx/dt)*t, from.getY() + ((float)dy/dt)*t + Math.map(t*t - dt*t, -dt*dt/4.0f, 0, 0, randomDroop), from.getZ() + ((float)dz/dt)*t );
+            BlockPos pos = new BlockPos( from.getX() + ((float)dx/dt)*t, from.getY() + ((float)dy/dt)*t + MathHelper.map(t*t - dt*t, -dt*dt/4.0f, 0, 0, randomDroop), from.getZ() + ((float)dz/dt)*t );
             world.setBlockState(pos, state, 4);
         }
         return true;

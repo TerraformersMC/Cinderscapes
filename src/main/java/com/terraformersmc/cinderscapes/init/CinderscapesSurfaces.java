@@ -28,7 +28,7 @@ public class CinderscapesSurfaces {
     /////////////////////
     // SURFACE CONFIGS //
     /////////////////////
-    public static final TernarySurfaceConfig WITHERED_WASTES_CONFIG = new TernarySurfaceConfig(CinderscapesBlocks.WITHERED_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), CinderscapesBlocks.WITHERED_WART_BLOCK.getDefaultState());
+    public static final TernarySurfaceConfig WITHERED_WASTES_CONFIG = new TernarySurfaceConfig(CinderscapesBlocks.WITHERED_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), Blocks.NETHERRACK.getDefaultState());
     public static final TernarySurfaceConfig LUMINOUS_NYLIUM_CONFIG = new TernarySurfaceConfig(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState());
 
     //////////////////////

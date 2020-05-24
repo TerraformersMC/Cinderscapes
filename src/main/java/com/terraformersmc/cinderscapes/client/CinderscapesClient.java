@@ -24,9 +24,6 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.UMBRAL_WART_BLOCK
         );
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
-                CinderscapesBlocks.FLAY,
-                CinderscapesBlocks.WITHERED_FUNGUS,
-                CinderscapesBlocks.RADIANT_ROOTS,
                 CinderscapesBlocks.PHOTOFERN,
                 CinderscapesBlocks.TALL_PHOTOFERN,
                 CinderscapesBlocks.LUMINOUS_POD,

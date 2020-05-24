@@ -3,6 +3,8 @@ package com.terraformersmc.cinderscapes.init;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.feature.*;
 import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureConfig;
+import com.terraformersmc.cinderscapes.feature.config.ShardFeatureConfig;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.*;
@@ -10,17 +12,17 @@ import net.minecraft.world.gen.placer.DoublePlantPlacer;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
+import java.util.Arrays;
+import java.util.List;
+
 // TODO: Check
 public class CinderscapesFeatures {
-
-    public static final BlockPileFeatureConfig RADIANT_ROOTS_CONFIG = new BlockPileFeatureConfig((new WeightedBlockStateProvider()).addState(CinderscapesBlocks.RADIANT_ROOTS.getDefaultState(), 85).addState(Blocks.WARPED_ROOTS.getDefaultState(), 1).addState(CinderscapesBlocks.WITHERED_FUNGUS.getDefaultState(), 13).addState(Blocks.WARPED_FUNGUS.getDefaultState(), 2).addState(Blocks.CRIMSON_FUNGUS.getDefaultState(), 1));
-    public static final BlockPileFeatureConfig FLAY_CONFIG = new BlockPileFeatureConfig(new SimpleBlockStateProvider(CinderscapesBlocks.FLAY.getDefaultState()));
 
     public static Feature<DefaultFeatureConfig> BLACKSTONE_SHALE;
     public static Feature<DefaultFeatureConfig> BLACKSTONE_LAVA_SHALE;
     public static Feature<DefaultFeatureConfig> BLACKSTONE_WEEPING_VINES;
-    public static Feature<DefaultFeatureConfig> QUARTZ_PILLAR;
-    public static Feature<DefaultFeatureConfig> QUARTZ_PILLAR_FLOOR;
+    public static Feature<ShardFeatureConfig> CEILING_SHARD;
+    public static Feature<ShardFeatureConfig> FLOOR_SHARD;
     public static Feature<DefaultFeatureConfig> SULFUROUS_PILE;
 
     public static Feature<CanopiedHugeFungusFeatureConfig> CANOPIED_HUGE_FUNGUS;
@@ -60,8 +62,8 @@ public class CinderscapesFeatures {
         BLACKSTONE_LAVA_SHALE = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_lava_shale"), new BlackstoneLavaShaleFeature(DefaultFeatureConfig::deserialize));
         BLACKSTONE_WEEPING_VINES = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_weeping_vines"), new BlackstoneWeepingVinesFeature(DefaultFeatureConfig::deserialize));
 
-        QUARTZ_PILLAR = Registry.register(Registry.FEATURE, Cinderscapes.id("quartz_pillar"), new QuartzPillarFeature(DefaultFeatureConfig::deserialize));
-        QUARTZ_PILLAR_FLOOR = Registry.register(Registry.FEATURE, Cinderscapes.id("quartz_pillar_floor"), new FloorQuartzPillarFeature(DefaultFeatureConfig::deserialize));
+        CEILING_SHARD = Registry.register(Registry.FEATURE, Cinderscapes.id("ceiling_shard"), new CeilingShardFeature(ShardFeatureConfig::deserialize));
+        FLOOR_SHARD = Registry.register(Registry.FEATURE, Cinderscapes.id("floor_shard"), new FloorShardFeature(ShardFeatureConfig::deserialize));
         SULFUROUS_PILE = Registry.register(Registry.FEATURE, Cinderscapes.id("sulfurous_pile"), new SulfurousPileFeature());
     }
 }

@@ -1,8 +1,11 @@
 package com.terraformersmc.cinderscapes.biome;
 
 import com.google.common.collect.ImmutableList;
+import com.terraformersmc.cinderscapes.feature.config.ShardFeatureConfig;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityType;
@@ -21,8 +24,15 @@ import net.minecraft.world.gen.decorator.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
+import java.util.Arrays;
+import java.util.List;
+
 // TODO: Check
 public class QuartzCanyonBiome extends Biome {
+
+
+    private static List<BlockState> SHARD_WHITELIST = Arrays.asList(Blocks.NETHERRACK.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.GRAVEL.getDefaultState(), Blocks.NETHER_QUARTZ_ORE.getDefaultState(), Blocks.SOUL_SAND.getDefaultState());
+
     public QuartzCanyonBiome() {
         super(new Biome.Settings()
                 .configureSurfaceBuilder(SurfaceBuilder.NETHER, SurfaceBuilder.NETHER_CONFIG)
@@ -66,11 +76,24 @@ public class QuartzCanyonBiome extends Biome {
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Target.NETHERRACK, Blocks.MAGMA_BLOCK.getDefaultState(), 33)).createDecoratedFeature(Decorator.MAGMA.configure(new CountDecoratorConfig(4))));
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.SPRING_FEATURE.configure(DefaultBiomeFeatures.ENCLOSED_NETHER_SPRING_CONFIG).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(32, 10, 20, 128))));
 
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.QUARTZ_PILLAR.configure(FeatureConfig.DEFAULT).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountDecoratorConfig(2))));
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.QUARTZ_PILLAR_FLOOR.configure(FeatureConfig.DEFAULT).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(2))));
+        // QUARTZ SHARDS
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new ShardFeatureConfig(Blocks.SMOOTH_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountDecoratorConfig(1))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new ShardFeatureConfig(Blocks.SMOOTH_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(1))));
 
-        this.addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.GHAST, 40, 1, 1));
-        this.addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.MAGMA_CUBE, 100, 2, 5));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountDecoratorConfig(1))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(1))));
+
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountDecoratorConfig(1))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(1))));
+
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountDecoratorConfig(1))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(1))));
+
+        this.addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.GHAST, 50, 4, 4));
+        this.addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 100, 4, 4));
+        this.addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.MAGMA_CUBE, 2, 4, 4));
+        this.addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4));
+        this.addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.PIGLIN, 15, 4, 4));
         this.addSpawn(EntityCategory.CREATURE, new Biome.SpawnEntry(EntityType.STRIDER, 60, 2, 4));
     }
 }
