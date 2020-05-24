@@ -25,7 +25,9 @@ public class Cinderscapes implements ModInitializer {
      */
     @Override
     public void onInitialize() {
+        CinderscapesItems.init();
         CinderscapesBlocks.init();
+        CinderscapesTags.init();
         CinderscapesDecorators.init();
         CinderscapesFeatures.init();
         CinderscapesSurfaces.init();

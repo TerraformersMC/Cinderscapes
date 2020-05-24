@@ -30,7 +30,7 @@ public class AshyShoalsSurfaceBuilder extends SurfaceBuilder<EmptySurfaceConfig>
             if (state.getBlock() == defaultBlock.getBlock()) {
                 chunk.setBlockState(pos, Blocks.NETHERRACK.getDefaultState(), false);
                 if (chunk.getBlockState(pos.up()).isAir()) {
-                    chunk.setBlockState(pos, CinderscapesBlocks.ASH.getDefaultState(), false);
+                    chunk.setBlockState(pos.up(), CinderscapesBlocks.ASH.getDefaultState(), false);
                 }
             } else if (state.getBlock() == defaultFluid.getBlock()) {
                 if (chunk.getBlockState(pos.up()).isAir()) {

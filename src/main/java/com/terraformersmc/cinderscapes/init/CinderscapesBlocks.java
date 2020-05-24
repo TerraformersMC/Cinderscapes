@@ -25,6 +25,12 @@ public class CinderscapesBlocks {
     private static final Map<Identifier, Block> BLOCKS = new HashMap<>();
 
     /////////////////////
+    // Scorched Nylium //
+    /////////////////////
+
+    public static final Block SCORCHED_STEM = add("scorched_stem", new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_STEM).materialColor(MaterialColor.LIGHT_GRAY).breakByTool(FabricToolTags.AXES)), ItemGroup.BUILDING_BLOCKS);
+
+    /////////////////////
     // Withered Nylium //
     /////////////////////
     public static final Block WITHERED_NYLIUM = add("withered_nylium", new CinderscapesNyliumBlock(FabricBlockSettings.copyOf(Blocks.WARPED_NYLIUM).materialColor(MaterialColor.GRAY).breakByTool(FabricToolTags.PICKAXES)), ItemGroup.BUILDING_BLOCKS);
@@ -44,6 +50,7 @@ public class CinderscapesBlocks {
     // Other //
     ///////////
     public static final Block ASH = add("ash", new AshLayerBlock(FabricBlockSettings.copy(Blocks.SNOW)), ItemGroup.DECORATIONS);
+    public static final Block ASH_BLOCK = add("ash_block", new Block(FabricBlockSettings.copy(Blocks.SNOW_BLOCK)), ItemGroup.DECORATIONS);
 
     public static final Block SULFUR_BLOCK = add("sulfur_block", new Block(FabricBlockSettings.of(Material.SAND).strength(0.5F, 0.5f)), ItemGroup.BUILDING_BLOCKS);
 
