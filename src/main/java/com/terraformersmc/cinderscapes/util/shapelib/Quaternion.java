@@ -3,6 +3,8 @@ package com.terraformersmc.cinderscapes.util.shapelib;
 import net.minecraft.util.math.BlockPos;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A better quaternion class because Mojang's is not awesome
@@ -263,6 +265,15 @@ public class Quaternion {
         base.mul(this);
         base.mul(conjugate);
         set(base);
+        return this;
+    }
+
+    public Quaternion rotateBy(Quaternion ...q) {
+        return rotateBy(Arrays.asList(q));
+    }
+
+    public Quaternion rotateBy(List<Quaternion> q) {
+        q.forEach(this::rotateBy);
         return this;
     }
 

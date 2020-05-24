@@ -1,11 +1,7 @@
 package com.terraformersmc.cinderscapes.init;
 
-import com.terraformersmc.cinderscapes.biome.LuminousGroveBiome;
+import com.terraformersmc.cinderscapes.biome.*;
 import com.terraformersmc.cinderscapes.Cinderscapes;
-import com.terraformersmc.cinderscapes.biome.BlackstoneShalesBiome;
-import com.terraformersmc.cinderscapes.biome.QuartzCanyonBiome;
-import com.terraformersmc.cinderscapes.biome.SulfurousPitsBiome;
-import com.terraformersmc.cinderscapes.biome.WitheredWastesBiome;
 import net.fabricmc.fabric.api.biomes.v1.NetherBiomes;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -31,6 +27,7 @@ public class CinderscapesBiomes {
     public static final Biome WITHERED_WASTES = add("withered_wastes", new WitheredWastesBiome());
     public static final Biome LUMINOUS_GROVE = add("luminous_grove", new LuminousGroveBiome());
     public static final Biome SULFUROUS_PITS = add("sulfurous_pits", new SulfurousPitsBiome());
+    public static final Biome ASHY_SHOALS = add("ashy_shoals", new AshyShoalsBiome());
 
     /**
      * Adds a biome to Cinderscapes local biome registry

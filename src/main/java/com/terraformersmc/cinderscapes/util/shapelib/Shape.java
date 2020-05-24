@@ -105,6 +105,15 @@ public class Shape extends ArrayList<BlockPos> {
         if (safe) fill(state, world);
     }
 
+    public boolean isSafeWhitelist(IWorld world, List<BlockState> whitelist) {
+        boolean safe = true;
+        for (BlockPos pos : this) {
+            BlockState currentState = world.getBlockState(pos);
+            if (!whitelist.contains(currentState)) safe = false;
+        }
+        return safe;
+    }
+
     /**
      * If the list already contains an identical item then don't add it again
      * @param pos The position to be added

@@ -11,7 +11,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.HashMap;
@@ -44,6 +43,8 @@ public class CinderscapesBlocks {
     ///////////
     // Other //
     ///////////
+    public static final Block ASH = add("ash", new AshLayerBlock(FabricBlockSettings.copy(Blocks.SNOW)), ItemGroup.DECORATIONS);
+
     public static final Block SULFUR_BLOCK = add("sulfur_block", new Block(FabricBlockSettings.of(Material.SAND).strength(0.5F, 0.5f)), ItemGroup.BUILDING_BLOCKS);
 
     public static Block TWILIGHT_TENDRILS = add("twilight_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel((state) -> 15), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);

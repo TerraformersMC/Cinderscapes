@@ -6,6 +6,7 @@ import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureC
 import com.terraformersmc.cinderscapes.feature.config.ShardFeatureConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placer.DoublePlantPlacer;
@@ -32,10 +33,16 @@ public class CinderscapesFeatures {
     public static Feature<DefaultFeatureConfig> SHROOMLIGHT_BUSH;
     public static Feature<DefaultFeatureConfig> UMBRAL_VINE;
 
+    public static Feature<DefaultFeatureConfig> DEAD_TREE;
+
     public static BlockPileFeatureConfig LUMINOUS_GROVE_VEGETATION_CONFIG;
 
     public static RandomPatchFeatureConfig TALL_PHOTOFERN_CONFIG;
     public static RandomPatchFeatureConfig LUMINOUS_POD_CONFIG;
+
+    public static NetherrackReplaceBlobsFeatureConfig SOUL_SAND_REPLACE_CONFIG;
+    public static NetherrackReplaceBlobsFeatureConfig SOUL_SOIL_REPLACE_CONFIG;
+    public static NetherrackReplaceBlobsFeatureConfig GRAVEL_REPLACE_CONFIG;
 
     public static void init() {
         UMBRAL_FUNGUS_CONFIG = new HugeFungusFeatureConfig(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), CinderscapesBlocks.UMBRAL_STEM.getDefaultState(), CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), true);
@@ -65,5 +72,11 @@ public class CinderscapesFeatures {
         CEILING_SHARD = Registry.register(Registry.FEATURE, Cinderscapes.id("ceiling_shard"), new CeilingShardFeature(ShardFeatureConfig::deserialize));
         FLOOR_SHARD = Registry.register(Registry.FEATURE, Cinderscapes.id("floor_shard"), new FloorShardFeature(ShardFeatureConfig::deserialize));
         SULFUROUS_PILE = Registry.register(Registry.FEATURE, Cinderscapes.id("sulfurous_pile"), new SulfurousPileFeature());
+
+        DEAD_TREE = Registry.register(Registry.FEATURE, Cinderscapes.id("dead_tree"), new DeadTreeFeature());
+
+        SOUL_SAND_REPLACE_CONFIG = (new NetherrackReplaceBlobsFeatureConfig.Builder()).minReachPos(new Vec3i(3, 3, 3)).maxReachPos(new Vec3i(7, 7, 7)).target(Blocks.NETHERRACK.getDefaultState()).state(Blocks.SOUL_SAND.getDefaultState()).build();
+        SOUL_SOIL_REPLACE_CONFIG = (new NetherrackReplaceBlobsFeatureConfig.Builder()).minReachPos(new Vec3i(3, 3, 3)).maxReachPos(new Vec3i(7, 7, 7)).target(Blocks.NETHERRACK.getDefaultState()).state(Blocks.SOUL_SOIL.getDefaultState()).build();
+        GRAVEL_REPLACE_CONFIG = (new NetherrackReplaceBlobsFeatureConfig.Builder()).minReachPos(new Vec3i(3, 3, 3)).maxReachPos(new Vec3i(7, 7, 7)).target(Blocks.NETHERRACK.getDefaultState()).state(Blocks.GRAVEL.getDefaultState()).build();
     }
 }
