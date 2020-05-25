@@ -41,6 +41,8 @@ Visit the [Cinderscapes Wiki](https://github.com/TerraformersMC/Cinderscapes/wik
  Additionally, it would be cool if you didn't use our code in malicious or problematic ways, and be nice to one another.
  
  ### Want more?
+ <p align=center><a href="https://github.com/TerraformersMC/Terrestria"><img title="Terrestria" height="100" src="https://i.imgur.com/mAviXA0.png" /></a><a href="https://github.com/TerraformersMC/Traverse"><img title="Traverse" height="100" src="https://i.imgur.com/9yLH37E.png" /></a><a href="https://github.com/TerraformersMC/Campanion"><img title="Campanion" height="100" src="https://i.imgur.com/fmnMIrK.png" /></a></p>
+ 
  Check out the twins [Terrestria](https://github.com/TerraformersMC/Terrestria) and [Traverse](https://github.com/TerraformersMC/Traverse), and their good friend [Campanion](https://github.com/TerraformersMC/Campanion)
  
  Campanion is the perfect... well... companion to Cinderscapes. Enjoy your exploration through all the biomes Cinderscapes has to offer alongside Campanion
