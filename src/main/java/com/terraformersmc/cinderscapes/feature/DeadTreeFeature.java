@@ -54,7 +54,7 @@ public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
             return true;
         }
         boolean allGood = true;
-        float zAngle = random.nextFloat() * 45;
+        float zAngle = random.nextFloat() * 30 + 15;
         float yAngle = random.nextFloat() * 360;
         if (recursionLevel == startingPoint) {
             zAngle = 0;
