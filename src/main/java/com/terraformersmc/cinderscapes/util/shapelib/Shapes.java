@@ -248,7 +248,7 @@ public class Shapes {
             float y = dydt * t;
             float z = dzdt * t;
 
-            float radius = MathHelper.map(t, 0, dt, 0, baseRadius);
+            float radius = MathHelper.map(t, 0, dt, baseRadius, 0);
 
             float radiusStep = 1f/2f;
             for (float iRadius = radius; iRadius > 0; iRadius-=radiusStep) {

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "cinderscapes:block/ghastly_ectoplasm_top"
+  }
+}

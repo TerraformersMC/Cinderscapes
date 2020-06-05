@@ -43,7 +43,7 @@ public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
         Shape shape = new Shape();
         boolean good = recursiveTree(world, pos, new ArrayList<>(), 3, 3, random, shape);
         if (good) {
-            shape.fill(CinderscapesBlocks.SCORCHED_STEM.getDefaultState(), world);
+            shape.fill(CinderscapesBlocks.SCORCHED_HYPHAE.getDefaultState(), world);
             return true;
         }
         return false;

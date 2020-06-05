@@ -5,12 +5,9 @@ import com.terraformersmc.cinderscapes.block.*;
 import com.terraformersmc.terraform.block.*;
 import com.terraformersmc.terraform.util.RecipeUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
-import net.fabricmc.fabric.impl.client.particle.FabricParticleManager;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -18,7 +15,6 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.village.TradeOffers;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.gen.feature.Feature;
 
@@ -54,7 +50,8 @@ public class CinderscapesBlocks {
     public static final Block SCORCHED_WALL_SIGN = add("scorched_wall_sign", new TerraformWallSignBlock(Cinderscapes.id("scorched"), FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).materialColor(MaterialColor.LIGHT_GRAY)));
 
     public static final Block SCORCHED_SHRUB = add("scorched_shrub", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.BUILDING_BLOCKS);
-    public static final Block SCORCHED_SPROUTS = add("scorched_sprouts", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.NETHER_SPROUTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block SCORCHED_SPROUTS = add("scorched_sprouts", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block SCORCHED_TENDRILS = add("scorched_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.BUILDING_BLOCKS);
 
     public static final Block ASH = add("ash", new AshLayerBlock(FabricBlockSettings.copy(Blocks.SNOW)), ItemGroup.DECORATIONS);
     public static final Block ASH_BLOCK = add("ash_block", new Block(FabricBlockSettings.copy(Blocks.SNOW_BLOCK)), ItemGroup.DECORATIONS);
@@ -90,6 +87,8 @@ public class CinderscapesBlocks {
 
     // Other
 
+    public static Block TWILIGHT_VINE_BLOCK = add("twilight_vine_block", new Block(FabricBlockSettings.of(Material.SOLID_ORGANIC).strength(1.0F).sounds(BlockSoundGroup.NETHER_STEM)), ItemGroup.DECORATIONS);
+
     public static Block TWILIGHT_TENDRILS = add("twilight_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).lightLevel((state) -> 15), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
     public static Block TWILIGHT_FESCUES = add("twilight_fescues", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
     public static Block PHOTOFERN = add("photofern", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
@@ -101,9 +100,10 @@ public class CinderscapesBlocks {
     // Other //
     ///////////
 
-
     public static final Block SULFUR_BLOCK = add("sulfur_block", new Block(FabricBlockSettings.of(Material.AGGREGATE).strength(0.5F, 0.5f)), ItemGroup.BUILDING_BLOCKS);
     public static final Block SULFUR_ORE = add("sulfur_ore", new OreBlock(FabricBlockSettings.copyOf(Blocks.NETHER_QUARTZ_ORE)), ItemGroup.BUILDING_BLOCKS);
+
+    public static final Block BRAMBLE_BERRY_BUSH = add("bramble_berry_bush", new BrambleBerryBushBlock(FabricBlockSettings.copyOf(Blocks.SWEET_BERRY_BUSH)));
 
     ///////////////////
     // Quartz Canyon //

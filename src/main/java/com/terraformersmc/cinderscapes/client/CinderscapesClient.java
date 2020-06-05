@@ -35,7 +35,9 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.TWILIGHT_TENDRILS,
                 CinderscapesBlocks.UMBRAL_FUNGUS,
                 CinderscapesBlocks.SCORCHED_SHRUB,
-                CinderscapesBlocks.SCORCHED_SPROUTS
+                CinderscapesBlocks.SCORCHED_SPROUTS,
+                CinderscapesBlocks.BRAMBLE_BERRY_BUSH,
+                CinderscapesBlocks.GHASTLY_ECTOPLASM
         );
     }
 }

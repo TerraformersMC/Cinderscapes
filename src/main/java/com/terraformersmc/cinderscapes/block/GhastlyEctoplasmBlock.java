@@ -57,11 +57,15 @@ public class GhastlyEctoplasmBlock extends Block {
         }
     }
 
+    public BlockState typeOf(Type type) {
+        return getDefaultState().with(TYPE, type);
+    }
+
     public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(TYPE);
     }
 
-    private enum Type implements StringIdentifiable {
+    public enum Type implements StringIdentifiable {
         TOP,
         MIDDLE,
         BOTTOM;

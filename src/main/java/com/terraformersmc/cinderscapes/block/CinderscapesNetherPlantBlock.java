@@ -25,8 +25,7 @@ public class CinderscapesNetherPlantBlock extends PlantBlock {
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        Block block = floor.getBlock();
-        return BlockTags.NYLIUM.contains(block) || block == Blocks.SOUL_SOIL || super.canPlantOnTop(floor, world, pos);
+        return BlockTags.NYLIUM.contains(floor.getBlock()) || floor.isOf(Blocks.SOUL_SOIL) || floor.isOf(Blocks.NETHERRACK) || super.canPlantOnTop(floor, world, pos);
     }
 
     @SuppressWarnings("deprecation")

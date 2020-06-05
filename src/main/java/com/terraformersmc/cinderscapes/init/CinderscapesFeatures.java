@@ -4,16 +4,19 @@ import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.feature.*;
 import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureConfig;
 import com.terraformersmc.cinderscapes.feature.config.ShardFeatureConfig;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placer.DoublePlantPlacer;
+import net.minecraft.world.gen.placer.SimpleBlockPlacer;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 // TODO: Check
@@ -36,9 +39,13 @@ public class CinderscapesFeatures {
     public static Feature<DefaultFeatureConfig> DEAD_TREE;
 
     public static BlockPileFeatureConfig LUMINOUS_GROVE_VEGETATION_CONFIG;
+    public static BlockPileFeatureConfig ASHY_SHOALS_VEGETATION_CONFIG;
+    public static BlockPileFeatureConfig QUARTZ_CANYON_VEGETATION_CONFIG;
 
     public static RandomPatchFeatureConfig TALL_PHOTOFERN_CONFIG;
     public static RandomPatchFeatureConfig LUMINOUS_POD_CONFIG;
+
+    public static RandomPatchFeatureConfig BRAMBLE_BERRY_BUSH_CONFIG;
 
     public static NetherrackReplaceBlobsFeatureConfig SOUL_SAND_REPLACE_CONFIG;
     public static NetherrackReplaceBlobsFeatureConfig SOUL_SOIL_REPLACE_CONFIG;
@@ -62,8 +69,18 @@ public class CinderscapesFeatures {
                 .addState(CinderscapesBlocks.TWILIGHT_TENDRILS.getDefaultState(), 10)
                 .addState(CinderscapesBlocks.UMBRAL_FUNGUS.getDefaultState(), 10));
 
+        QUARTZ_CANYON_VEGETATION_CONFIG = new BlockPileFeatureConfig((new WeightedBlockStateProvider())
+                .addState(CinderscapesBlocks.CRYSTINIUM.getDefaultState(), 10));
+
+        ASHY_SHOALS_VEGETATION_CONFIG = new BlockPileFeatureConfig((new WeightedBlockStateProvider())
+                .addState(CinderscapesBlocks.SCORCHED_SHRUB.getDefaultState(), 10)
+                .addState(CinderscapesBlocks.SCORCHED_SPROUTS.getDefaultState(), 10)
+                .addState(CinderscapesBlocks.SCORCHED_TENDRILS.getDefaultState(), 10)
+                .addState(CinderscapesBlocks.PYRACINTH.getDefaultState(), 10));
+
         TALL_PHOTOFERN_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(CinderscapesBlocks.TALL_PHOTOFERN.getDefaultState()), new DoublePlantPlacer())).tries(64).cannotProject().build();
         LUMINOUS_POD_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(CinderscapesBlocks.LUMINOUS_POD.getDefaultState()), new DoublePlantPlacer())).tries(64).cannotProject().build();
+        BRAMBLE_BERRY_BUSH_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(CinderscapesBlocks.BRAMBLE_BERRY_BUSH.getDefaultState()), SimpleBlockPlacer.field_24871)).tries(64).cannotProject().canReplace().whitelist(new HashSet<>(Arrays.asList(CinderscapesBlocks.ASH))).build();
 
         BLACKSTONE_SHALE = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_shale"), new BlackstoneShaleFeature());
         BLACKSTONE_LAVA_SHALE = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_lava_shale"), new BlackstoneLavaShaleFeature());

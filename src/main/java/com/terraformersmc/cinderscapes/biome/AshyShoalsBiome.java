@@ -34,12 +34,18 @@ public class AshyShoalsBiome extends Biome implements AshyBiome, FogDensityBiome
                         .waterColor(4159204)
                         .waterFogColor(4341314)
                         .fogColor(0x363636)
-                        .particleConfig(new BiomeParticleConfig(ParticleTypes.ASH, 0.00625F))
+                        .particleConfig(new BiomeParticleConfig(ParticleTypes.ASH, 0.625F))
                         .loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)
                         .build())
                 .parent(null)
                 .noises(ImmutableList.of(new MixedNoisePoint(-0.35F, 0.0F, 0.35F, 0.0F, 0.2F))));
 
+
+        // VEGETATION
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.NETHER_FOREST_VEGETATION.configure(CinderscapesFeatures.ASHY_SHOALS_VEGETATION_CONFIG).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(8))));
+
+        // BRAMBLE BERRY BUSHES
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(CinderscapesFeatures.BRAMBLE_BERRY_BUSH_CONFIG).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_DOUBLE.configure(new CountDecoratorConfig(1))));
 
         // REPLACE NETHERRACK
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.NETHERRACK_REPLACE_BLOBS.configure(CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(10, 0, 0, 128))));

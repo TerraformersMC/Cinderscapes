@@ -65,6 +65,9 @@ public class QuartzCanyonBiome extends Biome {
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Target.NETHERRACK, CinderscapesBlocks.ROSE_QUARTZ_ORE.getDefaultState(), 14)).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(32, 10, 20, 256))));
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Target.NETHERRACK, CinderscapesBlocks.SULFUR_QUARTZ_ORE.getDefaultState(), 14)).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(32, 10, 20, 256))));
 
+        // VEGETATION
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.NETHER_FOREST_VEGETATION.configure(CinderscapesFeatures.QUARTZ_CANYON_VEGETATION_CONFIG).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(8))));
+
         // QUARTZ SHARDS
         this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountDecoratorConfig(1))));
         this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(1))));
