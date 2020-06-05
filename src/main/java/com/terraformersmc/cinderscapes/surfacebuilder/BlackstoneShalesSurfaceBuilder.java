@@ -1,7 +1,6 @@
 package com.terraformersmc.cinderscapes.surfacebuilder;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.datafixers.Dynamic;
 import com.terraformersmc.cinderscapes.surfacebuilder.config.EmptySurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -13,7 +12,6 @@ import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
 import java.util.Random;
-import java.util.function.Function;
 
 /**
  * [REVIEWED]
@@ -36,7 +34,7 @@ public class BlackstoneShalesSurfaceBuilder extends SurfaceBuilder<EmptySurfaceC
     protected long seed;
 
     public BlackstoneShalesSurfaceBuilder() {
-        super(EmptySurfaceConfig::deserialize);
+        super(EmptySurfaceConfig.CODEC);
     }
 
     @Override

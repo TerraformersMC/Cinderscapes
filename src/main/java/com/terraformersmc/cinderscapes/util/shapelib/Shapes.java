@@ -10,68 +10,33 @@ import static java.lang.Math.sin;
 // TODO: Write a proper shapes library
 public class Shapes {
 
-    public static final BlockPos ORIGIN = new BlockPos(0, 0, 0);
-
-    /////////////////////
-    // One Dimensional //
-    /////////////////////
+    public static Shape line(float x1, float y1, float z1, float x2, float y2, float z2) {
+        Shape shape = new Shape();
+        float dx = x2 - x1;
+        float dy = y2 - y1;
+        float dz = z2 - z1;
+        float dt = MathHelper.max(Math.abs(dx), Math.abs(dy), Math.abs(dz));
+        float dxdt = (float)dx/(float)dt;
+        float dydt = (float)dy/(float)dt;
+        float dzdt = (float)dz/(float)dt;
+        for (int t = 0; t <= dt; t++) {
+            shape.add(new BlockPos(Math.round(x1 + (dxdt * t)), Math.round(y1 + (dydt * t)), Math.round(z1 + (dzdt * t)) ));
+        }
+        return shape;
+    }
 
     /**
      * Returns a list of block positions drawing a line between two points
      * @param start The starting block position of the line
-     * @param end The ending block position of the line
+     * @param end   The ending block position of the line
      * @return A list of block positions drawing a line between the start and end points
      */
     public static Shape line(BlockPos start, BlockPos end) {
-        // Create a dummy list to put the block positions into
-        Shape shape = new Shape();
-
-        // Find the delta value for each cartesian direction
-        int dx = end.getX() - start.getX();
-        int dy = end.getY() - start.getY();
-        int dz = end.getZ() - start.getZ();
-        // Find the delta resolution (the maximum block resolution we need to maintain)
-        int dt = Math.max(Math.abs(dx), Math.max(Math.abs(dy), Math.abs(dz)));
-
-        // Find the slope for each cartesian direction
-        float dxdt = (float)dx/(float)dt;
-        float dydt = (float)dy/(float)dt;
-        float dzdt = (float)dz/(float)dt;
-
-        // Iterate through each delta value and find the block position for that delta value
-        for (int t = 0; t <= dt; t++) {
-            // Add that block position to the return
-            shape.add(new BlockPos(Math.round(start.getX() + (dxdt * t)), Math.round(start.getY() + (dydt * t)), Math.round(start.getZ() + (dzdt * t)) ));
-        }
-
-        // Return the block positions
-        return shape;
+        return line(start.getX(), start.getY(), start.getZ(), end.getX(), end.getY(), end.getZ());
     }
 
-    public static Shape line(float x1, float y1, float z1, float x2, float y2, float z2) {
-        // Create a dummy list to put the block positions into
-        Shape shape = new Shape();
-
-        // Find the delta value for each cartesian direction
-        float dx = x2 - x1;
-        float dy = y2 - y1;
-        float dz = z2 - z1;
-        // Find the delta resolution (the maximum block resolution we need to maintain)
-        float dt = Math.max(Math.abs(dx), Math.max(Math.abs(dy), Math.abs(dz)));
-
-        // Find the slope for each cartesian direction
-        float dxdt = (float)dx/(float)dt;
-        float dydt = (float)dy/(float)dt;
-        float dzdt = (float)dz/(float)dt;
-
-        // Iterate through each delta value and find the block position for that delta value
-        for (int t = 0; t <= dt; t++) {
-            // Add that block position to the return
-            shape.add(new BlockPos(Math.round(x1 + (dxdt * t)), Math.round(y1 + (dydt * t)), Math.round(z1 + (dzdt * t)) ));
-        }
-
-        // Return the block positions
-        return shape;
+    public static Shape line(BlockPos end) {
+        return line(BlockPos.ORIGIN, end);
     }
 
     /**
@@ -84,6 +49,63 @@ public class Shapes {
     public static Shape line(BlockPos origin, float distance, Quaternion rotation) {
         return line(origin, origin.add(Quaternion.of(new BlockPos(distance, 0, 0)).rotateBy(rotation).toBlockPos()));
     }
+
+    public static Shape line(float distance, Quaternion rotation) {
+        return line(BlockPos.ORIGIN, distance, rotation);
+    }
+
+
+
+
+
+    /// I'm happy up until this point
+
+
+
+
+
+
+    public static Shape ellipseShell(float width, float height, Quaternion q) {
+        Shape shape = new Shape();
+        float a = width/2;
+        float b = height/2;
+        float r = Math.max(a, b);
+        float thetaStep = 1/r;
+        for (float theta = 0; theta <= 2 * Math.PI; theta+=thetaStep) {
+            shape.add(new BlockPos(
+                    Math.round(a * cos(theta) * ( (q.getW() * q.getW()) + (q.getI() * q.getI()) - (q.getJ() * q.getJ()) - (q.getK() * q.getK()) ) + b * sin(theta) * ((2 * q.getW() * q.getJ()) + (2 * q.getK() * q.getI()))),
+                    Math.round(a * cos(theta) * ((2 * q.getI() * q.getJ()) + (2 * q.getW() * q.getK())) + b * sin(theta) * ((2 * q.getJ() * q.getK()) - (2 * q.getI() * q.getW()))),
+                    Math.round(b * sin(theta) * ( (q.getW() * q.getW()) - (q.getI() * q.getI()) - (q.getJ() * q.getJ()) + (q.getK() * q.getK()) ) + a * cos(theta) * ((2 * q.getI() * q.getK()) - (2 * q.getJ() * q.getW())))
+            ));
+        }
+        return shape;
+    }
+
+    public static Shape ellipseSolid(float width, float height, Quaternion q) {
+        Shape shape = new Shape();
+        float rstep = Math.max(width, height);
+        for (int i = 0; i < rstep; i++) {
+            shape.join(ellipseShell(MathHelper.map(Math.min(i, rstep), 0, rstep, width, 0), MathHelper.map(Math.min(i, rstep), 0, rstep, height, 0), q));
+        }
+        return shape;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /////////////////////
+    // One Dimensional //
+    /////////////////////
+
+
+
 
     /////////////////////
     // Two Dimensional //
@@ -207,30 +229,7 @@ public class Shapes {
         return shape;
     }
 
-    public static Shape ellipseShellRotated(float width, float height, Quaternion q) {
-        Shape shape = new Shape();
-        float a = width/2;
-        float b = height/2;
-        float r = Math.max(a, b);
-        float thetaStep = 1/r;
-        for (float theta = 0; theta < 2 * Math.PI; theta+=thetaStep) {
-            shape.add(new BlockPos(
-                Math.round(a * cos(theta) * ( (q.getW() * q.getW()) + (q.getI() * q.getI()) - (q.getJ() * q.getJ()) - (q.getK() * q.getK()) ) + b * sin(theta) * ((2 * q.getW() * q.getJ()) + (2 * q.getK() * q.getI()))),
-                Math.round(a * cos(theta) * ((2 * q.getI() * q.getJ()) + (2 * q.getW() * q.getK())) + b * sin(theta) * ((2 * q.getJ() * q.getK()) - (2 * q.getI() * q.getW()))),
-                Math.round(b * sin(theta) * ( (q.getW() * q.getW()) - (q.getI() * q.getI()) - (q.getJ() * q.getJ()) + (q.getK() * q.getK()) ) + a * cos(theta) * ((2 * q.getI() * q.getK()) - (2 * q.getJ() * q.getW())))
-            ));
-        }
-        return shape;
-    }
 
-    public static Shape ellipseSolidRotated(float width, float height, Quaternion q) {
-        Shape shape = new Shape();
-        float rstep = Math.max(width, height);
-        for (int i = 0; i < rstep; i++) {
-            shape.join(ellipseShellRotated(MathHelper.map(Math.min(i, rstep), 0, rstep, width, 0), MathHelper.map(Math.min(i, rstep), 0, rstep, height, 0), q));
-        }
-        return shape;
-    }
 
     public static Shape coneSolidRotated(float baseRadius, int height, Quaternion q) {
         Shape shape = new Shape();
@@ -261,6 +260,38 @@ public class Shapes {
 
         }
 
+        return shape;
+    }
+
+    public static Shape ellipsoidSolidRoatated(float a, float b, float c, Quaternion q) {
+        Shape shape = new Shape();
+
+        Quaternion startPoint = new Quaternion(0, 0, -c, 0);
+        Quaternion endPoint = new Quaternion(0, 0, c, 0);
+        startPoint.rotateBy(q);
+        endPoint.rotateBy(q);
+
+        float dx = endPoint.getI() - startPoint.getI();
+        float dy = endPoint.getJ() - startPoint.getJ();
+        float dz = endPoint.getK() - startPoint.getK();
+
+        float dt = 2 * Math.max(dx, Math.max(dy, dz));
+
+        float dxdt = dx/dt;
+        float dydt = dy/dt;
+        float dzdt = dz/dt;
+
+        for (float t = 0; t <= dt; t++) {
+            float x = dxdt * t;
+            float y = dydt * t;
+            float z = dzdt * t;
+
+            float centerDist = MathHelper.map(t, 0, dt, -c, c);
+            float ta = (float) Math.sqrt( (a * a) - ( (a * a) * (centerDist * centerDist) ) / (c * c) );
+            float tb = (float) Math.sqrt( (b * b) - ( (b * b) * (centerDist * centerDist) ) / (c * c) );
+
+            shape.join(ellipseSolid(2*ta, 2*tb, q).translateBy(new BlockPos(x, y, z)));
+        }
         return shape;
     }
 }

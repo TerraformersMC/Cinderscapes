@@ -1,6 +1,5 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.AbstractPlantStemBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -8,10 +7,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
@@ -22,26 +20,26 @@ import java.util.function.Function;
 public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig> {
     private static final Direction[] DIRECTIONS = Direction.values();
 
-    public BlackstoneWeepingVinesFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function) {
-        super(function);
+    public BlackstoneWeepingVinesFeature() {
+        super(DefaultFeatureConfig.CODEC);
     }
 
-    public boolean generate(IWorld iWorld, StructureAccessor structureAccessor, ChunkGenerator<? extends ChunkGeneratorConfig> chunkGenerator, Random random, BlockPos blockPos, DefaultFeatureConfig defaultFeatureConfig) {
-        if (!iWorld.isAir(blockPos)) {
+    public boolean generate(ServerWorldAccess ServerWorldAccess, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, DefaultFeatureConfig defaultFeatureConfig) {
+        if (!ServerWorldAccess.isAir(blockPos)) {
             return false;
         } else {
-            Block block = iWorld.getBlockState(blockPos.up()).getBlock();
+            Block block = ServerWorldAccess.getBlockState(blockPos.up()).getBlock();
             if (block != Blocks.BLACKSTONE && block != Blocks.NETHER_WART_BLOCK) {
                 return false;
             } else {
-                this.generateNetherWartBlocksInArea(iWorld, random, blockPos);
-                this.generateVinesInArea(iWorld, random, blockPos);
+                this.generateNetherWartBlocksInArea(ServerWorldAccess, random, blockPos);
+                this.generateVinesInArea(ServerWorldAccess, random, blockPos);
                 return true;
             }
         }
     }
 
-    private void generateNetherWartBlocksInArea(IWorld world, Random random, BlockPos pos) {
+    private void generateNetherWartBlocksInArea(ServerWorldAccess world, Random random, BlockPos pos) {
         world.setBlockState(pos, Blocks.NETHER_WART_BLOCK.getDefaultState(), 2);
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         BlockPos.Mutable mutable2 = new BlockPos.Mutable();
@@ -73,7 +71,7 @@ public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig>
 
     }
 
-    private void generateVinesInArea(IWorld world, Random random, BlockPos pos) {
+    private void generateVinesInArea(ServerWorldAccess world, Random random, BlockPos pos) {
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         for(int i = 0; i < 100; ++i) {
             mutable.set(pos, random.nextInt(8) - random.nextInt(8), random.nextInt(2) - random.nextInt(7), random.nextInt(8) - random.nextInt(8));
@@ -96,7 +94,7 @@ public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig>
 
     }
 
-    public static void generateVineColumn(IWorld world, Random random, BlockPos.Mutable pos, int length, int minAge, int maxAge) {
+    public static void generateVineColumn(ServerWorldAccess world, Random random, BlockPos.Mutable pos, int length, int minAge, int maxAge) {
         for(int i = 0; i <= length; ++i) {
             if (world.isAir(pos)) {
                 if (i == length || !world.isAir(pos.down())) {

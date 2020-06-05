@@ -18,6 +18,9 @@ import java.util.List;
  * @project Cinderscapes
  */
 public class Quaternion {
+
+    public static final Quaternion NONE = new Quaternion(1, 0, 0, 0);
+
     private float w;
     private float i;
     private float j;
@@ -39,7 +42,7 @@ public class Quaternion {
     }
 
     public Quaternion(BlockPos pos) {
-        this(0, pos.getX(), pos.getY(), pos.getZ());
+        this(0f, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f);
     }
 
     // TODO: Take another look at this

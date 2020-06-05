@@ -1,10 +1,8 @@
 package com.terraformersmc.cinderscapes.feature.config;
 
-import com.google.common.collect.ImmutableMap;
-import com.mojang.datafixers.Dynamic;
-import com.mojang.datafixers.types.DynamicOps;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
 
@@ -34,25 +32,19 @@ public class CanopiedHugeFungusFeatureConfig implements FeatureConfig {
         this.planted = planted;
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> Dynamic<T> serialize(DynamicOps<T> ops) {
-        return new Dynamic(ops, ops.createMap(new ImmutableMap.Builder()
-                .put(ops.createString("soil_block"), BlockState.serialize(ops, this.soilBlock).getValue())
-                .put(ops.createString("stem_block"), BlockState.serialize(ops, this.stemBlock).getValue())
-                .put(ops.createString("canopy_block"), BlockState.serialize(ops, this.canopyBlock).getValue())
-                .put(ops.createString("decoration_block"), BlockState.serialize(ops, this.decorationBlock).getValue())
-                .put(ops.createString("planted"), ops.createBoolean(this.planted)).build()
-        ));
-    }
-
-    public static <T> CanopiedHugeFungusFeatureConfig deserialize(Dynamic<T> dynamic) {
-        BlockState soilBlock = dynamic.get("soil_block").map(BlockState::deserialize).orElse(Blocks.AIR.getDefaultState());
-        BlockState stemBlock = dynamic.get("stem_block").map(BlockState::deserialize).orElse(Blocks.AIR.getDefaultState());
-        BlockState canopyBlock = dynamic.get("canopy_block").map(BlockState::deserialize).orElse(Blocks.AIR.getDefaultState());
-        BlockState fleshBlock = dynamic.get("flesh_block").map(BlockState::deserialize).orElse(Blocks.AIR.getDefaultState());
-        BlockState decorationBlock = dynamic.get("decoration_block").map(BlockState::deserialize).orElse(Blocks.AIR.getDefaultState());
-        boolean planted = dynamic.get("planted").asBoolean(false);
-        return new CanopiedHugeFungusFeatureConfig(soilBlock, stemBlock, canopyBlock, fleshBlock, decorationBlock, planted);
-    }
+    public static final Codec<CanopiedHugeFungusFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
+        return instance.group(BlockState.field_24734.fieldOf("soil").forGetter((config) -> {
+            return config.soilBlock;
+        }), BlockState.field_24734.fieldOf("stem").forGetter((config) -> {
+            return config.stemBlock;
+        }), BlockState.field_24734.fieldOf("canopy").forGetter((config) -> {
+            return config.canopyBlock;
+        }), BlockState.field_24734.fieldOf("flesh").forGetter((config) -> {
+            return config.fleshBlock;
+        }), BlockState.field_24734.fieldOf("decoration").forGetter((config) -> {
+            return config.decorationBlock;
+        }), Codec.BOOL.fieldOf("planted").forGetter((config) -> {
+            return config.planted;
+        })).apply(instance, CanopiedHugeFungusFeatureConfig::new);
+    });
 }

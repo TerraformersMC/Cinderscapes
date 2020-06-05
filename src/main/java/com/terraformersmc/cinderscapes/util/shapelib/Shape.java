@@ -2,7 +2,7 @@ package com.terraformersmc.cinderscapes.util.shapelib;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ServerWorldAccess;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -71,41 +71,49 @@ public class Shape extends ArrayList<BlockPos> {
         return translateBy(new BlockPos(i, 0, 0));
     }
 
-    public void fill(BlockState state, IWorld world) {
+    public void fill(BlockState state, ServerWorldAccess world) {
         forEach((pos) -> world.setBlockState(pos, state, 0));
     }
 
-    public void fillWhitelist(BlockState state, IWorld world, List<BlockState> whitelist) {
+    public void fillUpdate(BlockState state, ServerWorldAccess world) {
+        forEach((pos) -> {
+            world.setBlockState(pos, state, 2);
+            world.updateNeighbors(pos, state.getBlock());
+        });
+    }
+
+    public void fillWhitelist(BlockState state, ServerWorldAccess world, List<BlockState> whitelist) {
         forEach((pos) -> {
             BlockState currentState = world.getBlockState(pos);
             if (whitelist.contains(currentState)) world.setBlockState(pos, state, 0);
         });
     }
 
-    public void fillBlacklist(BlockState state, IWorld world, List<BlockState> blacklist) {
+    public void fillBlacklist(BlockState state, ServerWorldAccess world, List<BlockState> blacklist) {
         forEach((pos) -> {
             BlockState currentState = world.getBlockState(pos);
             if (!blacklist.contains(currentState)) world.setBlockState(pos, state, 0);
         });
     }
 
-    public void fillIfAir(BlockState state, IWorld world) {
+    public void fillIfAir(BlockState state, ServerWorldAccess world) {
         forEach((pos) -> {
             BlockState currentState = world.getBlockState(pos);
             if (currentState.isAir()) world.setBlockState(pos, state, 0);
         });
     }
 
-    public void fillIfSafeWhitelist(BlockState state, IWorld world, List<BlockState> whitelist) {
+    public boolean fillIfSafeWhitelist(BlockState state, ServerWorldAccess world, List<BlockState> whitelist) {
         boolean safe = true;
         for (BlockPos pos : this) {
             BlockState currentState = world.getBlockState(pos);
             if (!whitelist.contains(currentState)) safe = false;
         }
         if (safe) fill(state, world);
+        return safe;
     }
 
-    public boolean isSafeWhitelist(IWorld world, List<BlockState> whitelist) {
+    public boolean isSafeWhitelist(ServerWorldAccess world, List<BlockState> whitelist) {
         boolean safe = true;
         for (BlockPos pos : this) {
             BlockState currentState = world.getBlockState(pos);

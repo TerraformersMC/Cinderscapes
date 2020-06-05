@@ -1,6 +1,6 @@
 package com.terraformersmc.cinderscapes.surfacebuilder.config;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig;
 
@@ -28,7 +28,5 @@ public class EmptySurfaceConfig implements SurfaceConfig {
         return null;
     }
 
-    public static EmptySurfaceConfig deserialize(Dynamic<?> dynamic) {
-        return new EmptySurfaceConfig();
-    }
+    public static final Codec<EmptySurfaceConfig> CODEC = Codec.unit(() -> null);
 }

@@ -37,9 +37,7 @@ public class MapBiomesCommand {
         BIOME2COLOR.put(Biomes.BASALT_DELTAS, 0x949494);
         BIOME2COLOR.put(CinderscapesBiomes.QUARTZ_CANYON, 0xffffff);
         BIOME2COLOR.put(CinderscapesBiomes.BLACKSTONE_SHALES, 0x303030);
-        BIOME2COLOR.put(CinderscapesBiomes.WITHERED_WASTES, 0x634328);
         BIOME2COLOR.put(CinderscapesBiomes.LUMINOUS_GROVE, 0x323aa8);
-        BIOME2COLOR.put(CinderscapesBiomes.SULFUROUS_PITS, 0xccc254);
     }
 
     public static void register() {
@@ -58,7 +56,7 @@ public class MapBiomesCommand {
 
     private static void execute(ServerCommandSource source) {
         //while this *can* be run in the overworld, it's gonna be pretty useless
-        if (source.getWorld().getDimension().getType() != DimensionType.THE_NETHER) {
+        if (!source.getWorld().getDimension().isNether()) {
             source.sendFeedback(new LiteralText("Please run this in the nether."), false);
             return;
         }

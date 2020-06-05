@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:quartz",
+    "cinderscapes:smoky_quartz",
+    "cinderscapes:rose_quartz",
+    "cinderscapes:sulfur_quartz"
+  ]
+}

@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes;
 
+import com.terraformersmc.cinderscapes.command.ShapeCommand;
 import com.terraformersmc.cinderscapes.init.*;
 import com.terraformersmc.cinderscapes.command.MapBiomesCommand;
 import com.terraformersmc.cinderscapes.util.NoiseCollisionChecker;
@@ -43,6 +44,7 @@ public class Cinderscapes implements ModInitializer {
         LogManager.getLogger("Terraform").info("And with our powers combined we are the biome mods of the fabric mod loader, with powers vastly superior to that of the biome mods of the other mod loader that should not be named!");
 
         MapBiomesCommand.register();
+        ShapeCommand.register();
         NoiseCollisionChecker.init();
     }
 

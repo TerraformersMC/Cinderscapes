@@ -24,9 +24,7 @@ public class CinderscapesBiomes {
 
     public static final Biome BLACKSTONE_SHALES = add("blackstone_shales", new BlackstoneShalesBiome());
     public static final Biome QUARTZ_CANYON = add("quartz_canyon", new QuartzCanyonBiome());
-    public static final Biome WITHERED_WASTES = add("withered_wastes", new WitheredWastesBiome());
     public static final Biome LUMINOUS_GROVE = add("luminous_grove", new LuminousGroveBiome());
-    public static final Biome SULFUROUS_PITS = add("sulfurous_pits", new SulfurousPitsBiome());
     public static final Biome ASHY_SHOALS = add("ashy_shoals", new AshyShoalsBiome());
 
     /**

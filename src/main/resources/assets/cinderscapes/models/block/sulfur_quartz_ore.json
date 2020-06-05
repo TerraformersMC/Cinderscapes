@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "cinderscapes:block/sulfur_quartz_ore"
+  }
+}

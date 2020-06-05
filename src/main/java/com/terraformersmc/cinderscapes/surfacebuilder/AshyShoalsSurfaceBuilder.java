@@ -1,6 +1,5 @@
 package com.terraformersmc.cinderscapes.surfacebuilder;
 
-import com.mojang.datafixers.Dynamic;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.surfacebuilder.config.EmptySurfaceConfig;
 import net.minecraft.block.BlockState;
@@ -11,7 +10,6 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
 import java.util.Random;
-import java.util.function.Function;
 
 /**
  * @author <Wtoll> Will Toll on 2020-05-23
@@ -19,7 +17,7 @@ import java.util.function.Function;
  */
 public class AshyShoalsSurfaceBuilder extends SurfaceBuilder<EmptySurfaceConfig> {
     public AshyShoalsSurfaceBuilder() {
-        super(EmptySurfaceConfig::deserialize);
+        super(EmptySurfaceConfig.CODEC);
     }
 
     @Override

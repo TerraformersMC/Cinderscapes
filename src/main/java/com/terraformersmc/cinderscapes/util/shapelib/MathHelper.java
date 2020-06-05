@@ -3,6 +3,14 @@ package com.terraformersmc.cinderscapes.util.shapelib;
 // TODO: Check
 public class MathHelper {
     public static float map(float val, float instart, float inend, float outstart, float outend) {
-        return outstart + ((inend-val)/(float)(inend-instart))*(outend - outstart);
+        return ((val - instart) / (inend - instart)) * (outend - outstart) + outstart;
+    }
+
+    public static float max(float ...vals) {
+        float max = vals[0];
+        for (int i = 1; i < vals.length; i++) {
+            max = Math.max(max, vals[i]);
+        }
+        return max;
     }
 }

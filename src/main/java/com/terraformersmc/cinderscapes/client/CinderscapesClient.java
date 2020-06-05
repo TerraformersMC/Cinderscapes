@@ -21,7 +21,11 @@ public class CinderscapesClient implements ClientModInitializer {
     public void onInitializeClient() {
         // TODO: Find a more elegant way to add blocks to their render layers
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
-                CinderscapesBlocks.UMBRAL_WART_BLOCK
+                CinderscapesBlocks.UMBRAL_WART_BLOCK,
+                CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ,
+                CinderscapesBlocks.CRYSTALLINE_QUARTZ,
+                CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ,
+                CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ
         );
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
                 CinderscapesBlocks.PHOTOFERN,
@@ -29,7 +33,9 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.LUMINOUS_POD,
                 CinderscapesBlocks.TWILIGHT_FESCUES,
                 CinderscapesBlocks.TWILIGHT_TENDRILS,
-                CinderscapesBlocks.UMBRAL_FUNGUS
+                CinderscapesBlocks.UMBRAL_FUNGUS,
+                CinderscapesBlocks.SCORCHED_SHRUB,
+                CinderscapesBlocks.SCORCHED_SPROUTS
         );
     }
 }

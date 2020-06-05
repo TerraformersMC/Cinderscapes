@@ -9,10 +9,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
@@ -27,11 +26,11 @@ import java.util.Random;
  */
 public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
     public DeadTreeFeature() {
-        super(DefaultFeatureConfig::deserialize);
+        super(DefaultFeatureConfig.CODEC);
     }
 
     @Override
-    public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         if (world.getBlockState(pos.down()).getBlock() == CinderscapesBlocks.ASH) {
             pos = pos.down();
         }
@@ -50,7 +49,7 @@ public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
         return false;
     }
 
-    private boolean recursiveTree(IWorld world, BlockPos pos, List<Quaternion> previousRotations, int startingPoint, int recursionLevel, Random random, Shape toBuild) {
+    private boolean recursiveTree(ServerWorldAccess world, BlockPos pos, List<Quaternion> previousRotations, int startingPoint, int recursionLevel, Random random, Shape toBuild) {
         if (recursionLevel == 0) {
             return true;
         }

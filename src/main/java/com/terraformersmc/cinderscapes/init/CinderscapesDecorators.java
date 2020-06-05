@@ -13,7 +13,7 @@ public class CinderscapesDecorators {
     public static Decorator<CountDecoratorConfig> COUNT_FLOOR;
 
     public static void init() {
-        COUNT_CEILING = Registry.register(Registry.DECORATOR, new Identifier("cinderscapes", "count_ceiling"), new CountCeilingDecorator(CountDecoratorConfig::deserialize));
-        COUNT_FLOOR = Registry.register(Registry.DECORATOR, new Identifier("cinderscapes", "count_floor"), new CountFloorDecorator(CountDecoratorConfig::deserialize));
+        COUNT_CEILING = Registry.register(Registry.DECORATOR, new Identifier("cinderscapes", "count_ceiling"), new CountCeilingDecorator());
+        COUNT_FLOOR = Registry.register(Registry.DECORATOR, new Identifier("cinderscapes", "count_floor"), new CountFloorDecorator());
     }
 }

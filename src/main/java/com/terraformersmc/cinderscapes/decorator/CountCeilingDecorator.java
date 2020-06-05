@@ -1,10 +1,9 @@
 package com.terraformersmc.cinderscapes.decorator;
 
-import com.mojang.datafixers.Dynamic;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.decorator.CountDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
 
@@ -16,12 +15,12 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class CountCeilingDecorator extends Decorator<CountDecoratorConfig> {
-    public CountCeilingDecorator(Function<Dynamic<?>, ? extends CountDecoratorConfig> configDeserializer) {
-        super(configDeserializer);
+    public CountCeilingDecorator() {
+        super(CountDecoratorConfig.field_24985);
     }
 
     @Override
-    public Stream<BlockPos> getPositions(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, CountDecoratorConfig config, BlockPos pos) {
+    public Stream<BlockPos> getPositions(WorldAccess world, ChunkGenerator generator, Random random, CountDecoratorConfig config, BlockPos pos) {
         //TODO: optimize this using a mutable. it's a basic implementation and can be made faster.
         return IntStream.range(0, config.count).mapToObj((i) -> {
             //randomize x and z
