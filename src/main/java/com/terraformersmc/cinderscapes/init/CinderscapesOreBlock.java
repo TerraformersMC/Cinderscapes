@@ -1,0 +1,26 @@
+package com.terraformersmc.cinderscapes.init;
+
+import net.minecraft.block.Blocks;
+import net.minecraft.block.OreBlock;
+import net.minecraft.util.math.MathHelper;
+
+import java.util.Random;
+
+/**
+ * @author <Wtoll> Will Toll on 2020-06-06
+ * @project Cinderscapes
+ */
+public class CinderscapesOreBlock extends OreBlock {
+    public CinderscapesOreBlock(Settings settings) {
+        super(settings);
+    }
+
+    @Override
+    protected int getExperienceWhenMined(Random random) {
+        if (this == CinderscapesBlocks.SULFUR_QUARTZ_ORE || this == CinderscapesBlocks.SMOKY_QUARTZ_ORE || this == CinderscapesBlocks.ROSE_QUARTZ_ORE) {
+            return MathHelper.nextInt(random, 2, 5);
+        } else {
+            return super.getExperienceWhenMined(random);
+        }
+    }
+}
