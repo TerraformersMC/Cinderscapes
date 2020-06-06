@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.block;
 
+import com.terraformersmc.cinderscapes.feature.VegetationFeature;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
 import net.minecraft.block.Block;
@@ -25,7 +26,7 @@ public class CinderscapesNyliumBlock extends NyliumBlock {
         BlockPos blockPos = pos.up();
 
         if (block == CinderscapesBlocks.UMBRAL_NYLIUM) {
-            NetherForestVegetationFeature.method_26264(world, random, blockPos, CinderscapesFeatures.LUMINOUS_GROVE_VEGETATION_CONFIG, 3, 1);
+            VegetationFeature.generateVegetation(world, random, blockPos, CinderscapesFeatures.LUMINOUS_GROVE_VEGETATION_CONFIG, 3, 1);
         }
 
     }

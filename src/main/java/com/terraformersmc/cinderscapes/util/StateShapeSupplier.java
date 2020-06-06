@@ -20,4 +20,4 @@ import java.util.function.Function;
  * @author <Wtoll> Will Toll on 2020-05-03
  * @project Cinderscapes
  */
-public interface StateShapeSupplier extends Function<BlockState, VoxelShape> {}
+public interface StateShapeSupplier extends Function<BlockState, VoxelShape> {  }

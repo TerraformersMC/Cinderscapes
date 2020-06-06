@@ -1,9 +1,11 @@
 package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
+import com.terraformersmc.cinderscapes.block.BrambleBerryBushBlock;
 import com.terraformersmc.cinderscapes.feature.*;
 import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureConfig;
 import com.terraformersmc.cinderscapes.feature.config.ShardFeatureConfig;
+import com.terraformersmc.cinderscapes.feature.config.VegetationFeatureConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -38,9 +40,13 @@ public class CinderscapesFeatures {
 
     public static Feature<DefaultFeatureConfig> DEAD_TREE;
 
-    public static BlockPileFeatureConfig LUMINOUS_GROVE_VEGETATION_CONFIG;
-    public static BlockPileFeatureConfig ASHY_SHOALS_VEGETATION_CONFIG;
-    public static BlockPileFeatureConfig QUARTZ_CANYON_VEGETATION_CONFIG;
+
+    public static Feature<VegetationFeatureConfig> VEGETATION;
+    public static VegetationFeatureConfig LUMINOUS_GROVE_VEGETATION_CONFIG;
+    public static VegetationFeatureConfig ASHY_SHOALS_VEGETATION_CONFIG;
+    public static VegetationFeatureConfig QUARTZ_CANYON_VEGETATION_CONFIG;
+
+
 
     public static RandomPatchFeatureConfig TALL_PHOTOFERN_CONFIG;
     public static RandomPatchFeatureConfig LUMINOUS_POD_CONFIG;
@@ -60,27 +66,51 @@ public class CinderscapesFeatures {
         SHROOMLIGHT_BUSH = Registry.register(Registry.FEATURE, Cinderscapes.id("shroomlight_bush"), new ShroomlightBushFeature());
         UMBRAL_VINE = Registry.register(Registry.FEATURE, Cinderscapes.id("umbral_vine"), new UmbralVineFeature());
 
-        LUMINOUS_GROVE_VEGETATION_CONFIG = new BlockPileFeatureConfig((new WeightedBlockStateProvider())
-                .addState(Blocks.WARPED_ROOTS.getDefaultState(), 10)
-                .addState(Blocks.NETHER_SPROUTS.getDefaultState(), 10)
-                .addState(Blocks.WARPED_FUNGUS.getDefaultState(), 10)
-                .addState(CinderscapesBlocks.PHOTOFERN.getDefaultState(), 10)
-                .addState(CinderscapesBlocks.TWILIGHT_FESCUES.getDefaultState(), 10)
-                .addState(CinderscapesBlocks.TWILIGHT_TENDRILS.getDefaultState(), 10)
-                .addState(CinderscapesBlocks.UMBRAL_FUNGUS.getDefaultState(), 10));
+        VEGETATION = Registry.register(Registry.FEATURE, Cinderscapes.id("vegetation"), new VegetationFeature());
 
-        QUARTZ_CANYON_VEGETATION_CONFIG = new BlockPileFeatureConfig((new WeightedBlockStateProvider())
-                .addState(CinderscapesBlocks.CRYSTINIUM.getDefaultState(), 10));
+        LUMINOUS_GROVE_VEGETATION_CONFIG = new VegetationFeatureConfig(
+            new WeightedBlockStateProvider()
+                .addState(Blocks.WARPED_ROOTS.getDefaultState(), 1)
+                .addState(Blocks.NETHER_SPROUTS.getDefaultState(), 1)
+                .addState(Blocks.WARPED_FUNGUS.getDefaultState(), 1)
+                .addState(CinderscapesBlocks.PHOTOFERN.getDefaultState(), 2)
+                .addState(CinderscapesBlocks.TWILIGHT_FESCUES.getDefaultState(), 5)
+                .addState(CinderscapesBlocks.TWILIGHT_TENDRILS.getDefaultState(), 5)
+                .addState(CinderscapesBlocks.UMBRAL_FUNGUS.getDefaultState(), 2),
+            Arrays.asList(
+                CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState()
+            )
+        );
 
-        ASHY_SHOALS_VEGETATION_CONFIG = new BlockPileFeatureConfig((new WeightedBlockStateProvider())
-                .addState(CinderscapesBlocks.SCORCHED_SHRUB.getDefaultState(), 10)
-                .addState(CinderscapesBlocks.SCORCHED_SPROUTS.getDefaultState(), 10)
-                .addState(CinderscapesBlocks.SCORCHED_TENDRILS.getDefaultState(), 10)
-                .addState(CinderscapesBlocks.PYRACINTH.getDefaultState(), 10));
+        QUARTZ_CANYON_VEGETATION_CONFIG = new VegetationFeatureConfig(
+            new WeightedBlockStateProvider()
+                .addState(CinderscapesBlocks.CRYSTINIUM.getDefaultState(), 1),
+            Arrays.asList(
+                Blocks.NETHERRACK.getDefaultState()
+            )
+        );
+
+        ASHY_SHOALS_VEGETATION_CONFIG = new VegetationFeatureConfig(
+            new WeightedBlockStateProvider()
+                .addState(CinderscapesBlocks.SCORCHED_SHRUB.getDefaultState(), 2)
+                .addState(CinderscapesBlocks.SCORCHED_SPROUTS.getDefaultState(), 5)
+                .addState(CinderscapesBlocks.SCORCHED_TENDRILS.getDefaultState(), 5)
+                .addState(CinderscapesBlocks.PYRACINTH.getDefaultState(), 1),
+            Arrays.asList(
+                Blocks.NETHERRACK.getDefaultState(),
+                Blocks.GRAVEL.getDefaultState(),
+                Blocks.BLACKSTONE.getDefaultState(),
+                Blocks.SOUL_SOIL.getDefaultState(),
+                Blocks.BASALT.getDefaultState()
+            ),
+            Arrays.asList(
+                CinderscapesBlocks.ASH.getDefaultState()
+            )
+        );
 
         TALL_PHOTOFERN_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(CinderscapesBlocks.TALL_PHOTOFERN.getDefaultState()), new DoublePlantPlacer())).tries(64).cannotProject().build();
         LUMINOUS_POD_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(CinderscapesBlocks.LUMINOUS_POD.getDefaultState()), new DoublePlantPlacer())).tries(64).cannotProject().build();
-        BRAMBLE_BERRY_BUSH_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(CinderscapesBlocks.BRAMBLE_BERRY_BUSH.getDefaultState()), SimpleBlockPlacer.field_24871)).tries(64).cannotProject().canReplace().build();
+        BRAMBLE_BERRY_BUSH_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(((BrambleBerryBushBlock) CinderscapesBlocks.BRAMBLE_BERRY_BUSH).getGenerationState()), SimpleBlockPlacer.field_24871)).tries(64).cannotProject().canReplace().build();
 
         BLACKSTONE_SHALE = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_shale"), new BlackstoneShaleFeature());
         BLACKSTONE_LAVA_SHALE = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_lava_shale"), new BlackstoneLavaShaleFeature());

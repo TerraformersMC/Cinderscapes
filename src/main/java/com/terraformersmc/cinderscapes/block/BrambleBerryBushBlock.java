@@ -70,4 +70,8 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.isOf(Blocks.NETHERRACK) || floor.isOf(Blocks.SOUL_SOIL) || floor.isOf(Blocks.SOUL_SAND) || floor.isOf(Blocks.GRAVEL);
     }
+
+    public BlockState getGenerationState() {
+        return this.getDefaultState().with(AGE, AGE.getValues().stream().max(Integer::compare).orElse(0));
+    }
 }

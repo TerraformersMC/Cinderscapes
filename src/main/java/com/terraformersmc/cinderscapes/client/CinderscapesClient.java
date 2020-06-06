@@ -25,7 +25,8 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ,
                 CinderscapesBlocks.CRYSTALLINE_QUARTZ,
                 CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ,
-                CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ
+                CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ,
+                CinderscapesBlocks.GHASTLY_ECTOPLASM
         );
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
                 CinderscapesBlocks.PHOTOFERN,
@@ -37,7 +38,6 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.SCORCHED_SHRUB,
                 CinderscapesBlocks.SCORCHED_SPROUTS,
                 CinderscapesBlocks.BRAMBLE_BERRY_BUSH,
-                CinderscapesBlocks.GHASTLY_ECTOPLASM,
                 CinderscapesBlocks.PYRACINTH,
                 CinderscapesBlocks.CRYSTINIUM
         );
