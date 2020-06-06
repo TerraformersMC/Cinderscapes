@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cinderscapes:block/smooth_rose_quartz_slab"
+    },
+    "type=double": {
+      "model": "cinderscapes:block/smooth_rose_quartz"
+    },
+    "type=top": {
+      "model": "cinderscapes:block/smooth_rose_quartz_slab_top"
+    }
+  }
+}

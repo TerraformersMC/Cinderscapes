@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "cinderscapes:block/sulfur_quartz_block",
+    "top": "cinderscapes:block/sulfur_quartz_block",
+    "side": "cinderscapes:block/sulfur_quartz_block"
+  }
+}

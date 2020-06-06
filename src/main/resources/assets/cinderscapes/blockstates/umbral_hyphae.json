@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "cinderscapes:block/umbral_hyphae",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "cinderscapes:block/umbral_hyphae"
+    },
+    "axis=z": {
+      "model": "cinderscapes:block/umbral_hyphae",
+      "x": 90
+    }
+  }
+}

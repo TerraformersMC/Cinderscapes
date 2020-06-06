@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "cinderscapes:block/scorched_pressure_plate"
+    },
+    "powered=true": {
+      "model": "cinderscapes:block/scorched_pressure_plate_down"
+    }
+  }
+}

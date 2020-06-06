@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cinderscapes:block/umbral_slab"
+    },
+    "type=double": {
+      "model": "cinderscapes:block/umbral_planks"
+    },
+    "type=top": {
+      "model": "cinderscapes:block/umbral_slab_top"
+    }
+  }
+}

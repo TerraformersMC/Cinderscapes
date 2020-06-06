@@ -35,14 +35,6 @@ public class Cinderscapes implements ModInitializer {
         CinderscapesBiomes.init();
         CinderscapesGroups.init();
 
-        // TODO: Move to Terraform
-        LogManager.getLogger("Terraform").info("Fabric biome mods! Assemble!");
-        LogManager.getLogger("Terrestria").info("I am Terrestria with the power of vibrant and enhanced biomes that are out of this world!");
-        LogManager.getLogger("Traverse").info("I am Traverse with the power of intriguing and mysterious biomes that mimic the vanilla feel!");
-        LogManager.getLogger("Cinderscapes").info("I am Cinderscapes with the power of frighteningly beautiful nether biomes that surpass even the nether update itself!");
-        LogManager.getLogger("Campanion").info("I am Campanion with the power of immersive and expansive blocks and items to enhance the vanilla exploration experience!");
-        LogManager.getLogger("Terraform").info("And with our powers combined we are the biome mods of the fabric mod loader, with powers vastly superior to that of the biome mods of the other mod loader that should not be named!");
-
         MapBiomesCommand.register();
         ShapeCommand.register();
         NoiseCollisionChecker.init();

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cinderscapes:block/scorched_slab"
+    },
+    "type=double": {
+      "model": "cinderscapes:block/scorched_planks"
+    },
+    "type=top": {
+      "model": "cinderscapes:block/scorched_slab_top"
+    }
+  }
+}

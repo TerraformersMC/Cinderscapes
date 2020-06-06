@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "cinderscapes:block/smoky_quartz_pillar_top",
+    "side": "cinderscapes:block/smoky_quartz_pillar"
+  }
+}

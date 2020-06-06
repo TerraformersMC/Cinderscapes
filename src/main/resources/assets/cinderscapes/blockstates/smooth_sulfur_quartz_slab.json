@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cinderscapes:block/smooth_sulfur_quartz_slab"
+    },
+    "type=double": {
+      "model": "cinderscapes:block/smooth_sulfur_quartz"
+    },
+    "type=top": {
+      "model": "cinderscapes:block/smooth_sulfur_quartz_slab_top"
+    }
+  }
+}
