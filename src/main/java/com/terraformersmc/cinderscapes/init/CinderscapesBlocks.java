@@ -59,7 +59,7 @@ public class CinderscapesBlocks {
     public static final Block ASH = add("ash", new AshLayerBlock(FabricBlockSettings.copy(Blocks.SNOW)), ItemGroup.DECORATIONS);
     public static final Block ASH_BLOCK = add("ash_block", new Block(FabricBlockSettings.copy(Blocks.SNOW_BLOCK)), ItemGroup.DECORATIONS);
 
-    public static Block PYRACINTH = add("pyracinth", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
+    public static Block PYRACINTH = add("pyracinth", new PyracinthBlock(), ItemGroup.DECORATIONS);
 
     ////////////////////
     // Luminous Grove //
@@ -114,7 +114,7 @@ public class CinderscapesBlocks {
     // Quartz Canyon //
     ///////////////////
 
-    public static Block CRYSTINIUM = add("crystinium", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.DECORATIONS);
+    public static Block CRYSTINIUM = add("crystinium", new CrystiniumBlock(), ItemGroup.DECORATIONS);
 
     public static final Block CRYSTALLINE_QUARTZ = add("crystalline_quartz", new CrystallineQuartzBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(CinderscapesBlocks::never).solidBlock(CinderscapesBlocks::never).suffocates(CinderscapesBlocks::never).blockVision(CinderscapesBlocks::never)), ItemGroup.BUILDING_BLOCKS);
     public static final Block POLYPITE_QUARTZ = add("polypite_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(CRYSTALLINE_QUARTZ)), ItemGroup.DECORATIONS);
