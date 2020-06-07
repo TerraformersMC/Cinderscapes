@@ -14,7 +14,8 @@
 
   "block.cinderscapes.twilight_tendrils": "Twilight Tendrils",
   "block.cinderscapes.twilight_fescues": "Twilight Fescues",
-
+  "block.cinderscapes.twilight_vine_block": "Twilight Vine Block",
+  
   "block.cinderscapes.photofern": "Photofern",
   "block.cinderscapes.tall_photofern": "Tall Photofern",
   
@@ -43,8 +44,10 @@
   
   "block.cinderscapes.crystinium": "Crystinium",
 
+  "block.cinderscapes.polypite_quartz": "Polypite Quartz",
   "block.cinderscapes.crystalline_quartz": "Crystalline Quartz",
-  
+
+  "block.cinderscapes.polypite_sulfur_quartz": "Polypite Sulfur Quartz",
   "block.cinderscapes.sulfur_quartz_bricks": "Sulfur Quartz Bricks",
   "block.cinderscapes.smooth_sulfur_quartz": "Smooth Sulfur Quartz",
   "block.cinderscapes.crystalline_sulfur_quartz": "Crystalline Sulfur Quartz",
@@ -58,6 +61,7 @@
   "block.cinderscapes.sulfur_quartz_ore": "Sulfur Quartz Ore",
   "item.cinderscapes.sulfur_quartz": "Sulfur Quartz",
 
+  "block.cinderscapes.polypite_rose_quartz": "Polypite Rose Quartz",
   "block.cinderscapes.rose_quartz_bricks": "Rose Quartz Bricks",
   "block.cinderscapes.smooth_rose_quartz": "Smooth Rose Quartz",
   "block.cinderscapes.crystalline_rose_quartz": "Crystalline Rose Quartz",
@@ -71,6 +75,7 @@
   "block.cinderscapes.rose_quartz_ore": "Rose Quartz Ore",
   "item.cinderscapes.rose_quartz": "Rose Quartz",
 
+  "block.cinderscapes.polypite_smoky_quartz": "Polypite Smoky Quartz",
   "block.cinderscapes.smoky_quartz_bricks": "Smoky Quartz Bricks",
   "block.cinderscapes.smooth_smoky_quartz": "Smooth Smoky Quartz",
   "block.cinderscapes.crystalline_smoky_quartz": "Crystalline Smoky Quartz",
@@ -90,6 +95,7 @@
 
   "block.cinderscapes.scorched_shrub": "Scorched Shrub",
   "block.cinderscapes.scorched_sprouts": "Scorched Sprouts",
+  "block.cinderscapes.scorched_tendrils": "Scorched Tendrils",
   "block.cinderscapes.pyracinth": "Pyracinth",
 
   "item.cinderscapes.ash_pile": "Ash Pile",

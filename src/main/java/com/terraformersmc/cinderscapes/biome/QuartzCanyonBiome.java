@@ -1,6 +1,8 @@
 package com.terraformersmc.cinderscapes.biome;
 
 import com.google.common.collect.ImmutableList;
+import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
+import com.terraformersmc.cinderscapes.feature.config.PolypiteQuartzFeatureConfig;
 import com.terraformersmc.cinderscapes.feature.config.ShardFeatureConfig;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
@@ -80,5 +82,11 @@ public class QuartzCanyonBiome extends Biome {
 
         this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountDecoratorConfig(1))));
         this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(1))));
+
+        // POLYPITE QUARTZ
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.POLYPITE_QUARTZ.configure(new PolypiteQuartzFeatureConfig((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_QUARTZ)).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(128, 10, 20, 128))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.POLYPITE_QUARTZ.configure(new PolypiteQuartzFeatureConfig((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ)).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(128, 10, 20, 128))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.POLYPITE_QUARTZ.configure(new PolypiteQuartzFeatureConfig((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_ROSE_QUARTZ)).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(128, 10, 20, 128))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.POLYPITE_QUARTZ.configure(new PolypiteQuartzFeatureConfig((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ)).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(128, 10, 20, 128))));
     }
 }

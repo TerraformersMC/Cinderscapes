@@ -44,11 +44,4 @@ public class CrystallineQuartzBlock extends Block {
         return stateFrom.isOf(this) ? true : super.isSideInvisible(state, stateFrom, direction);
     }
     */
-
-    public void onStacksDropped(BlockState state, World world, BlockPos pos, ItemStack stack) {
-        super.onStacksDropped(state, world, pos, stack);
-        if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
-            this.dropExperience(world, pos, MathHelper.nextInt(world.random, 2, 5));
-        }
-    }
 }

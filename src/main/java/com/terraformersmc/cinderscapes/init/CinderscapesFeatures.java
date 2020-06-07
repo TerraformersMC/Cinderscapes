@@ -4,6 +4,7 @@ import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.block.BrambleBerryBushBlock;
 import com.terraformersmc.cinderscapes.feature.*;
 import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureConfig;
+import com.terraformersmc.cinderscapes.feature.config.PolypiteQuartzFeatureConfig;
 import com.terraformersmc.cinderscapes.feature.config.ShardFeatureConfig;
 import com.terraformersmc.cinderscapes.feature.config.VegetationFeatureConfig;
 import net.minecraft.block.Block;
@@ -39,6 +40,8 @@ public class CinderscapesFeatures {
     public static Feature<DefaultFeatureConfig> UMBRAL_VINE;
 
     public static Feature<DefaultFeatureConfig> DEAD_TREE;
+
+    public static Feature<PolypiteQuartzFeatureConfig> POLYPITE_QUARTZ;
 
 
     public static Feature<VegetationFeatureConfig> VEGETATION;
@@ -118,6 +121,9 @@ public class CinderscapesFeatures {
 
         CEILING_SHARD = Registry.register(Registry.FEATURE, Cinderscapes.id("ceiling_shard"), new CeilingShardFeature());
         FLOOR_SHARD = Registry.register(Registry.FEATURE, Cinderscapes.id("floor_shard"), new FloorShardFeature());
+
+        POLYPITE_QUARTZ = Registry.register(Registry.FEATURE, Cinderscapes.id("polypite_quartz"), new PolypiteQuartzFeature());
+
         SULFUROUS_PILE = Registry.register(Registry.FEATURE, Cinderscapes.id("sulfurous_pile"), new SulfurousPileFeature());
 
         DEAD_TREE = Registry.register(Registry.FEATURE, Cinderscapes.id("dead_tree"), new DeadTreeFeature());

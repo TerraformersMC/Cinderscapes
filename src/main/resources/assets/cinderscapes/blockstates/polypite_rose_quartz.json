@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "direction=west": {
+      "model": "cinderscapes:block/polypite_rose_quartz_wall",
+      "y": 90
+    },
+    "direction=south": {
+      "model": "cinderscapes:block/polypite_rose_quartz_wall"
+    },
+    "direction=north": {
+      "model": "cinderscapes:block/polypite_rose_quartz_wall",
+      "y": 180
+    },
+    "direction=east": {
+      "model": "cinderscapes:block/polypite_rose_quartz_wall",
+      "y": 270
+    },
+    "direction=down": {
+      "model": "cinderscapes:block/polypite_rose_quartz_floor"
+    },
+    "direction=up": {
+      "model": "cinderscapes:block/polypite_rose_quartz_floor",
+      "x": 180
+    }
+  }
+}
