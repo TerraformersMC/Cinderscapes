@@ -1,6 +1,7 @@
 package com.terraformersmc.cinderscapes.biome;
 
 import com.google.common.collect.ImmutableList;
+import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
 import net.minecraft.particle.ParticleTypes;
@@ -43,6 +44,8 @@ public class LuminousGroveBiome extends Biome {
                 .noises(ImmutableList.of(new MixedNoisePoint(0.35F, 0.35F, 0.0F, 0.0F, 0.2F))));
 
 
+        // UMBRAL FUNGUS
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CANOPIED_HUGE_FUNGUS.configure(CinderscapesFeatures.UMBRAL_FUNGUS_NOT_PLANTED_CONFIG).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(32))));
 
         // GLOWSTONE
         this.addFeature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.GLOWSTONE_BLOB.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.LIGHT_GEM_CHANCE.configure(new CountDecoratorConfig(40))));
@@ -59,8 +62,6 @@ public class LuminousGroveBiome extends Biome {
         // VINES
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesFeatures.UMBRAL_VINE.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(20, 0, 0, 128))));
 
-        // UMBRAL FUNGUS
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, net.minecraft.world.gen.feature.Feature.HUGE_FUNGUS.configure(CinderscapesFeatures.UMBRAL_FUNGUS_NOT_PLANTED_CONFIG).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(8))));
 
     }
 }
