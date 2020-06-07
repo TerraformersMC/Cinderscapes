@@ -41,6 +41,9 @@ public class AshyShoalsBiome extends Biome implements AshyBiome, FogDensityBiome
                 .noises(ImmutableList.of(new MixedNoisePoint(-0.35F, 0.0F, 0.35F, 0.0F, 0.2F))));
 
 
+        // ASH PILES
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.ASH_PILE.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(5, 10, 10, 128))));
+
         // VEGETATION
         this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.VEGETATION.configure(CinderscapesFeatures.ASHY_SHOALS_VEGETATION_CONFIG).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(8))));
 

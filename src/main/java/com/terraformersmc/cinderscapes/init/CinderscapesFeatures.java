@@ -7,8 +7,6 @@ import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureC
 import com.terraformersmc.cinderscapes.feature.config.PolypiteQuartzFeatureConfig;
 import com.terraformersmc.cinderscapes.feature.config.ShardFeatureConfig;
 import com.terraformersmc.cinderscapes.feature.config.VegetationFeatureConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.registry.Registry;
@@ -19,8 +17,6 @@ import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 
 // TODO: Check
 public class CinderscapesFeatures {
@@ -30,7 +26,7 @@ public class CinderscapesFeatures {
     public static Feature<DefaultFeatureConfig> BLACKSTONE_WEEPING_VINES;
     public static Feature<ShardFeatureConfig> CEILING_SHARD;
     public static Feature<ShardFeatureConfig> FLOOR_SHARD;
-    public static Feature<DefaultFeatureConfig> SULFUROUS_PILE;
+    public static Feature<DefaultFeatureConfig> ASH_PILE;
 
     public static Feature<CanopiedHugeFungusFeatureConfig> CANOPIED_HUGE_FUNGUS;
 
@@ -43,13 +39,10 @@ public class CinderscapesFeatures {
 
     public static Feature<PolypiteQuartzFeatureConfig> POLYPITE_QUARTZ;
 
-
     public static Feature<VegetationFeatureConfig> VEGETATION;
     public static VegetationFeatureConfig LUMINOUS_GROVE_VEGETATION_CONFIG;
     public static VegetationFeatureConfig ASHY_SHOALS_VEGETATION_CONFIG;
     public static VegetationFeatureConfig QUARTZ_CANYON_VEGETATION_CONFIG;
-
-
 
     public static RandomPatchFeatureConfig TALL_PHOTOFERN_CONFIG;
     public static RandomPatchFeatureConfig LUMINOUS_POD_CONFIG;
@@ -124,7 +117,7 @@ public class CinderscapesFeatures {
 
         POLYPITE_QUARTZ = Registry.register(Registry.FEATURE, Cinderscapes.id("polypite_quartz"), new PolypiteQuartzFeature());
 
-        SULFUROUS_PILE = Registry.register(Registry.FEATURE, Cinderscapes.id("sulfurous_pile"), new SulfurousPileFeature());
+        ASH_PILE = Registry.register(Registry.FEATURE, Cinderscapes.id("ash_pile"), new AshPileFeature());
 
         DEAD_TREE = Registry.register(Registry.FEATURE, Cinderscapes.id("dead_tree"), new DeadTreeFeature());
 
