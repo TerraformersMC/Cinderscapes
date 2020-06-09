@@ -8,7 +8,7 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 
 /**
  * [REVIEWED]
- *
+ * <p>
  * The feature configurator for canopied fungus
  *
  * @author <Wtoll> Will Toll
@@ -33,15 +33,15 @@ public class CanopiedHugeFungusFeatureConfig implements FeatureConfig {
     }
 
     public static final Codec<CanopiedHugeFungusFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
-        return instance.group(BlockState.field_24734.fieldOf("soil").forGetter((config) -> {
+        return instance.group(BlockState.CODEC.fieldOf("soil").forGetter((config) -> {
             return config.soilBlock;
-        }), BlockState.field_24734.fieldOf("stem").forGetter((config) -> {
+        }), BlockState.CODEC.fieldOf("stem").forGetter((config) -> {
             return config.stemBlock;
-        }), BlockState.field_24734.fieldOf("canopy").forGetter((config) -> {
+        }), BlockState.CODEC.fieldOf("canopy").forGetter((config) -> {
             return config.canopyBlock;
-        }), BlockState.field_24734.fieldOf("flesh").forGetter((config) -> {
+        }), BlockState.CODEC.fieldOf("flesh").forGetter((config) -> {
             return config.fleshBlock;
-        }), BlockState.field_24734.fieldOf("decoration").forGetter((config) -> {
+        }), BlockState.CODEC.fieldOf("decoration").forGetter((config) -> {
             return config.decorationBlock;
         }), Codec.BOOL.fieldOf("planted").forGetter((config) -> {
             return config.planted;

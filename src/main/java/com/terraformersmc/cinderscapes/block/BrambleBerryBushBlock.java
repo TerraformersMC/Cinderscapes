@@ -40,7 +40,7 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.HOGLIN && entity.getType() != EntityType.ZOGLIN) {
             entity.slowMovement(state, new Vec3d(0.800000011920929D, 0.75D, 0.800000011920929D));
-            if (!world.isClient && (Integer)state.get(AGE) > 0 && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
+            if (!world.isClient && (Integer) state.get(AGE) > 0 && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
                 double d = Math.abs(entity.getX() - entity.lastRenderX);
                 double e = Math.abs(entity.getZ() - entity.lastRenderZ);
                 if (d >= 0.003000000026077032D || e >= 0.003000000026077032D) {
@@ -61,7 +61,7 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
             dropStack(world, pos, new ItemStack(CinderscapesItems.BRAMBLE_BERRIES, j + (bl ? 1 : 0)));
             world.playSound(null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             world.setBlockState(pos, state.with(AGE, 1), 2);
-            return ActionResult.method_29236(world.isClient);
+            return ActionResult.success(world.isClient);
         } else {
             return super.onUse(state, world, pos, player, hand, hit);
         }
