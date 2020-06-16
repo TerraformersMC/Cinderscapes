@@ -1,16 +1,13 @@
 package com.terraformersmc.cinderscapes.command;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import com.mojang.brigadier.context.CommandContext;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import net.fabricmc.fabric.api.registry.CommandRegistry;
-import net.minecraft.client.resource.language.I18n;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.dimension.DimensionType;
@@ -56,7 +53,7 @@ public class MapBiomesCommand {
 
     private static void execute(ServerCommandSource source) {
         //while this *can* be run in the overworld, it's gonna be pretty useless
-        if (!source.getWorld().getDimension().isNether()) {
+        if (source.getWorld().getDimensionRegistryKey() != DimensionType.THE_NETHER_REGISTRY_KEY) {
             source.sendFeedback(new LiteralText("Please run this in the nether."), false);
             return;
         }
@@ -69,7 +66,7 @@ public class MapBiomesCommand {
 
         for (int x = 0; x < img.getHeight(); x++) {
             for (int z = 0; z < img.getWidth(); z++) {
-                Biome b =  source.getWorld().getBiomeForNoiseGen(x*4, 0, z*4);
+                Biome b = source.getWorld().getBiomeForNoiseGen(x * 4, 0, z * 4);
                 Integer color = BIOME2COLOR.get(b);
                 if (color == null) {
                     color = 0xffffff;
@@ -88,7 +85,7 @@ public class MapBiomesCommand {
 
             //send a progress update to let people know the server isn't dying
             if (x % progressUpdate == 0) {
-                source.sendFeedback(new TranslatableText(((double)x / img.getHeight())*100 + "% Done mapping"), true);
+                source.sendFeedback(new TranslatableText(((double) x / img.getHeight()) * 100 + "% Done mapping"), true);
             }
         }
 
@@ -96,7 +93,7 @@ public class MapBiomesCommand {
         //summate all of the biome counts
         int totalCount = biomeCount.values().stream().mapToInt(i -> i).sum();
         //TODO: sort by total count
-        biomeCount.forEach((biome, integer) -> source.sendFeedback(new TranslatableText(biome.getTranslationKey()).append(": " + (integer * 16) + Formatting.GRAY +" (" + numberFormat.format(((double)integer / totalCount)*100 ) + "%)"), true));
+        biomeCount.forEach((biome, integer) -> source.sendFeedback(new TranslatableText(biome.getTranslationKey()).append(": " + (integer * 16) + Formatting.GRAY + " (" + numberFormat.format(((double) integer / totalCount) * 100) + "%)"), true));
 
         //save the biome map
         Path p = Paths.get("biomemap.png");
