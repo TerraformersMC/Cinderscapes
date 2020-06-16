@@ -32,9 +32,9 @@ public class ShardFeatureConfig implements FeatureConfig {
     }
 
     public static final Codec<ShardFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
-        return instance.group(BlockState.field_24734.fieldOf("shard_state").forGetter((config) -> {
+        return instance.group(BlockState.CODEC.fieldOf("shard_state").forGetter((config) -> {
             return config.shardMaterial;
-        }), BlockState.field_24734.listOf().fieldOf("ground_state").forGetter((config) -> {
+        }), BlockState.CODEC.listOf().fieldOf("ground_state").forGetter((config) -> {
             return config.groundMaterials;
         })).apply(instance, ShardFeatureConfig::new);
     });
