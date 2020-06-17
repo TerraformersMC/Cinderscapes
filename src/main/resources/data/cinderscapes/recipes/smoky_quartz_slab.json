@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": [
+      {
+        "item": "cinderscapes:chiseled_smoky_quartz_block"
+      },
+      {
+        "item": "cinderscapes:smoky_quartz_block"
+      },
+      {
+        "item": "cinderscapes:smoky_quartz_pillar"
+      }
+    ]
+  },
+  "result": {
+    "item": "cinderscapes:smoky_quartz_slab",
+    "count": 6
+  }
+}

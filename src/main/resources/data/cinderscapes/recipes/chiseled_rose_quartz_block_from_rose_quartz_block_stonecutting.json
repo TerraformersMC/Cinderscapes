@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "cinderscapes:rose_quartz_block"
+  },
+  "result": "cinderscapes:chiseled_rose_quartz_block",
+  "count": 1
+}

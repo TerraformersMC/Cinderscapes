@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "cinderscapes:sulfur_quartz"
+    }
+  },
+  "result": {
+    "item": "cinderscapes:sulfur_quartz_block"
+  }
+}

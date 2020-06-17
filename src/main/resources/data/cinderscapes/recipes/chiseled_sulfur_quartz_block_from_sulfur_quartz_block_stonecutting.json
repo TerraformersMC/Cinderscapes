@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "cinderscapes:sulfur_quartz_block"
+  },
+  "result": "cinderscapes:chiseled_sulfur_quartz_block",
+  "count": 1
+}

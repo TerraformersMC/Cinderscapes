@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "cinderscapes:smooth_rose_quartz"
+  },
+  "result": "cinderscapes:smooth_rose_quartz_slab",
+  "count": 2
+}

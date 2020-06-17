@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "cinderscapes:umbral_stems"
+    }
+  ],
+  "result": {
+    "item": "cinderscapes:umbral_planks",
+    "count": 4
+  }
+}

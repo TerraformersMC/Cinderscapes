@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "cinderscapes:umbral_planks"
+    }
+  },
+  "result": {
+    "item": "cinderscapes:umbral_trapdoor",
+    "count": 2
+  }
+}
