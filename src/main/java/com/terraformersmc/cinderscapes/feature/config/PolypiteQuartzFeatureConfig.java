@@ -25,7 +25,7 @@ public class PolypiteQuartzFeatureConfig implements FeatureConfig {
     }
 
     public static final Codec<PolypiteQuartzFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
-        return instance.group(   Codec.STRING.fieldOf("quartz_material").forGetter((config) -> {
+        return instance.group(Codec.STRING.fieldOf("quartz_material").forGetter((config) -> {
             return Registry.BLOCK.getId(config.quartzMaterial).toString();
         })).apply(instance, PolypiteQuartzFeatureConfig::from);
     });

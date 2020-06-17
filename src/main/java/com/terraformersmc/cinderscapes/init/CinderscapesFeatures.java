@@ -5,7 +5,7 @@ import com.terraformersmc.cinderscapes.block.BrambleBerryBushBlock;
 import com.terraformersmc.cinderscapes.feature.*;
 import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureConfig;
 import com.terraformersmc.cinderscapes.feature.config.PolypiteQuartzFeatureConfig;
-import com.terraformersmc.cinderscapes.feature.config.ShardFeatureConfig;
+import com.terraformersmc.cinderscapes.feature.config.SimpleStateFeatureConfig;
 import com.terraformersmc.cinderscapes.feature.config.VegetationFeatureConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.Vec3i;
@@ -21,11 +21,13 @@ import java.util.Arrays;
 // TODO: Check
 public class CinderscapesFeatures {
 
+    public static Feature<SimpleStateFeatureConfig> SHALE_FEATURE;
+
     public static Feature<DefaultFeatureConfig> BLACKSTONE_SHALE;
     public static Feature<DefaultFeatureConfig> BLACKSTONE_LAVA_SHALE;
     public static Feature<DefaultFeatureConfig> BLACKSTONE_WEEPING_VINES;
-    public static Feature<ShardFeatureConfig> CEILING_SHARD;
-    public static Feature<ShardFeatureConfig> FLOOR_SHARD;
+    public static Feature<SimpleStateFeatureConfig> CEILING_SHARD;
+    public static Feature<SimpleStateFeatureConfig> FLOOR_SHARD;
     public static Feature<DefaultFeatureConfig> ASH_PILE;
 
     public static Feature<CanopiedHugeFungusFeatureConfig> CANOPIED_HUGE_FUNGUS;
@@ -110,6 +112,9 @@ public class CinderscapesFeatures {
 
         BLACKSTONE_SHALE = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_shale"), new BlackstoneShaleFeature());
         BLACKSTONE_LAVA_SHALE = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_lava_shale"), new BlackstoneLavaShaleFeature());
+
+        SHALE_FEATURE = Registry.register(Registry.FEATURE, Cinderscapes.id("shale"), new ShaleFeature());
+
         BLACKSTONE_WEEPING_VINES = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_weeping_vines"), new BlackstoneWeepingVinesFeature());
 
         CEILING_SHARD = Registry.register(Registry.FEATURE, Cinderscapes.id("ceiling_shard"), new CeilingShardFeature());

@@ -1,9 +1,13 @@
 package com.terraformersmc.cinderscapes.biome;
 
 import com.google.common.collect.ImmutableList;
+import com.terraformersmc.cinderscapes.decorator.config.CountSafelistRangeDecoratorConfig;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
@@ -19,6 +23,9 @@ import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
+
+import java.util.Arrays;
+import java.util.List;
 
 // TODO: Check
 public class LuminousGroveBiome extends Biome {
@@ -45,7 +52,8 @@ public class LuminousGroveBiome extends Biome {
 
 
         // UMBRAL FUNGUS
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CANOPIED_HUGE_FUNGUS.configure(CinderscapesFeatures.UMBRAL_FUNGUS_NOT_PLANTED_CONFIG).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(32))));
+        List<BlockState> safelist = Arrays.asList(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState());
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CANOPIED_HUGE_FUNGUS.configure(CinderscapesFeatures.UMBRAL_FUNGUS_NOT_PLANTED_CONFIG).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountSafelistRangeDecoratorConfig(32, 20, 20, 128, safelist))));
 
         // GLOWSTONE
         this.addFeature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.GLOWSTONE_BLOB.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.LIGHT_GEM_CHANCE.configure(new CountDecoratorConfig(40))));

@@ -28,7 +28,7 @@ public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
     }
 
     // TODO: Rewrite using the upcoming shapes library
-    // TODO: Rewrite using the CountFloorDecorator
+    // TODO: Rewrite using the CountSafelistRangeFloorDecorator
     @Override
     public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 

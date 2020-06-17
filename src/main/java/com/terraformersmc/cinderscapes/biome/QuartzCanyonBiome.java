@@ -2,8 +2,9 @@ package com.terraformersmc.cinderscapes.biome;
 
 import com.google.common.collect.ImmutableList;
 import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
+import com.terraformersmc.cinderscapes.decorator.config.CountSafelistRangeDecoratorConfig;
 import com.terraformersmc.cinderscapes.feature.config.PolypiteQuartzFeatureConfig;
-import com.terraformersmc.cinderscapes.feature.config.ShardFeatureConfig;
+import com.terraformersmc.cinderscapes.feature.config.SimpleStateFeatureConfig;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
@@ -71,17 +72,20 @@ public class QuartzCanyonBiome extends Biome {
         this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.VEGETATION.configure(CinderscapesFeatures.QUARTZ_CANYON_VEGETATION_CONFIG).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(1))));
 
         // QUARTZ SHARDS
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountDecoratorConfig(1))));
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(1))));
 
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountDecoratorConfig(1))));
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(1))));
+        List<BlockState> safelist = Arrays.asList(Blocks.NETHERRACK.getDefaultState(), Blocks.NETHER_QUARTZ_ORE.getDefaultState());
 
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountDecoratorConfig(1))));
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(1))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountSafelistRangeDecoratorConfig(1, 20, 20, 128, safelist))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountSafelistRangeDecoratorConfig(1, 20, 20, 128, safelist))));
 
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountDecoratorConfig(1))));
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new ShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(1))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountSafelistRangeDecoratorConfig(1, 20, 20, 128, safelist))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountSafelistRangeDecoratorConfig(1, 20, 20, 128, safelist))));
+
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountSafelistRangeDecoratorConfig(1, 20, 20, 128, safelist))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountSafelistRangeDecoratorConfig(1, 20, 20, 128, safelist))));
+
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CEILING_SHARD.configure(new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_CEILING.configure(new CountSafelistRangeDecoratorConfig(1, 20, 20, 128, safelist))));
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.FLOOR_SHARD.configure(new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), SHARD_WHITELIST)).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountSafelistRangeDecoratorConfig(1, 20, 20, 128, safelist))));
 
         // POLYPITE QUARTZ
         this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.POLYPITE_QUARTZ.configure(new PolypiteQuartzFeatureConfig((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_QUARTZ)).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(128, 10, 20, 128))));

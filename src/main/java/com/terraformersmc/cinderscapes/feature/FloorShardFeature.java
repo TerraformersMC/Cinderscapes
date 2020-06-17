@@ -2,7 +2,7 @@ package com.terraformersmc.cinderscapes.feature;
 
 import java.util.Random;
 
-import com.terraformersmc.cinderscapes.feature.config.ShardFeatureConfig;
+import com.terraformersmc.cinderscapes.feature.config.SimpleStateFeatureConfig;
 import com.terraformersmc.cinderscapes.util.shapelib.Quaternion;
 import com.terraformersmc.cinderscapes.util.shapelib.Shape;
 import com.terraformersmc.cinderscapes.util.shapelib.Shapes;
@@ -17,7 +17,7 @@ public class FloorShardFeature extends CeilingShardFeature {
 	}
 
 	@Override
-	public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, ShardFeatureConfig config) {
+	public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, SimpleStateFeatureConfig config) {
 		int amount = random.nextInt(3) + 2;
 		Shape shape = new Shape();
 		for (int i = 0; i < amount; i++) {
@@ -27,7 +27,7 @@ public class FloorShardFeature extends CeilingShardFeature {
 			float ytheta = random.nextFloat() * 360;
 			shape.join(Shapes.coneSolidRotated(radius, height, new Quaternion(0, ytheta, ztheta, true)));
 		}
-		shape.translateBy(pos).translateDown(2).fillIfSafeWhitelist(config.shardMaterial, world, config.groundMaterials);
+		shape.translateBy(pos).translateDown(2).fillIfSafeWhitelist(config.state, world, config.replaceableBlocks);
 		return true;
 	}
 }

@@ -25,8 +25,12 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
     modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modCompile "com.terraformersmc:terraform:${project.terraform_version}"
 
+    modCompile "com.terraformersmc:terraform:${project.terraform_version}"
+    modCompile "com.terraformersmc:shapes:${project.shapes_version}"
+    modCompile "com.terraformersmc:dossier:${project.dossier_version}"
+
+    include "com.terraformersmc:dossier:${project.dossier_version}"
     include "com.terraformersmc:terraform:${project.terraform_version}"
 
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"

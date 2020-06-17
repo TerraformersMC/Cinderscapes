@@ -1,12 +1,16 @@
 package com.terraformersmc.cinderscapes.biome;
 
 import com.google.common.collect.ImmutableList;
+import com.terraformersmc.cinderscapes.decorator.config.CountSafelistRangeDecoratorConfig;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
 import com.terraformersmc.cinderscapes.mixinterface.AshyBiome;
 import com.terraformersmc.cinderscapes.mixinterface.FogDensityBiome;
 import com.terraformersmc.cinderscapes.surfacebuilder.config.EmptySurfaceConfig;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.biome.Biome;
@@ -15,6 +19,9 @@ import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.*;
 import net.minecraft.world.gen.feature.*;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author <Wtoll> Will Toll on 2020-05-23
@@ -56,7 +63,8 @@ public class AshyShoalsBiome extends Biome implements AshyBiome, FogDensityBiome
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.NETHERRACK_REPLACE_BLOBS.configure(CinderscapesFeatures.GRAVEL_REPLACE_CONFIG).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(10, 0, 0, 128))));
 
         // FEATURES
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.DEAD_TREE.configure(FeatureConfig.DEFAULT).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountDecoratorConfig(10))));
+        List<BlockState> safelist = Arrays.asList(Blocks.NETHERRACK.getDefaultState(), Blocks.GRAVEL.getDefaultState(), CinderscapesBlocks.ASH.getDefaultState(), Blocks.SOUL_SAND.getDefaultState(), Blocks.SOUL_SOIL.getDefaultState());
+        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.DEAD_TREE.configure(FeatureConfig.DEFAULT).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountSafelistRangeDecoratorConfig(10, 20, 20, 128, safelist))));
         this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.BASALT_PILLAR.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(30, 0, 0, 128))));
 
     }
