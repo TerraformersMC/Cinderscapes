@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "cinderscapes:rose_quartz_ore"
+  },
+  "result": "cinderscapes:rose_quartz",
+  "experience": 0.2,
+  "cookingtime": 200
+}

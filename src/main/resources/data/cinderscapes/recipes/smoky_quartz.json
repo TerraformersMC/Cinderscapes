@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "cinderscapes:smoky_quartz_ore"
+  },
+  "result": "cinderscapes:smoky_quartz",
+  "experience": 0.2,
+  "cookingtime": 200
+}

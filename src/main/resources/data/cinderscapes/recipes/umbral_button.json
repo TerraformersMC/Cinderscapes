@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "cinderscapes:umbral_planks"
+    }
+  ],
+  "result": {
+    "item": "cinderscapes:umbral_button"
+  }
+}

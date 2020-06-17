@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "cinderscapes:rose_quartz"
+    }
+  },
+  "result": {
+    "item": "cinderscapes:rose_quartz_block"
+  }
+}

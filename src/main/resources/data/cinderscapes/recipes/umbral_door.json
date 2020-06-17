@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_door",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "cinderscapes:umbral_planks"
+    }
+  },
+  "result": {
+    "item": "cinderscapes:umbral_door",
+    "count": 3
+  }
+}
