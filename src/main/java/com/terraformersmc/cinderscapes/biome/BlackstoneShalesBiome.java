@@ -47,7 +47,7 @@ public class BlackstoneShalesBiome extends Biome {
                         .particleConfig(new BiomeParticleConfig(ParticleTypes.WHITE_ASH, 0.118093334F))
                         .build())
                 .parent(null)
-                .noises(ImmutableList.of(new MixedNoisePoint(0.05F, 0.05F, 0.05F, 0.05F, 0.2F))));
+                .noises(ImmutableList.of(new MixedNoisePoint(0.15F, 0.05F, 0.25F, 0.05F, 0.2F))));
 
         // VEGETATION
         this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.BLACKSTONE_WEEPING_VINES.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(100, 0, 0, 128))));
