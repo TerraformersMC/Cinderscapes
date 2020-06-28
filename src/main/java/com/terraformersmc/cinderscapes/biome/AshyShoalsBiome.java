@@ -14,6 +14,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.BiomeAdditionsSound;
+import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
@@ -46,6 +48,8 @@ public class AshyShoalsBiome extends Biome implements AshyBiome, FogDensityBiome
                         .fogColor(0x363636)
                         .particleConfig(new BiomeParticleConfig(ParticleTypes.ASH, 0.625F))
                         .loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)
+                        .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D))
+                        .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, 0.0111D))
                         .build())
                 .parent(null)
                 .noises(ImmutableList.of(new MixedNoisePoint(-0.35F, 0.0F, 0.35F, 0.0F, 0.2F))));

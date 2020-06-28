@@ -46,7 +46,7 @@ public class LuminousGroveBiome extends Biome {
                 .effects((new BiomeEffects.Builder())
                         .waterColor(4159204)
                         .waterFogColor(329011)
-                        .fogColor(7251163)
+                        .fogColor(2297392)
                         .particleConfig(new BiomeParticleConfig(ParticleTypes.WARPED_SPORE, 0.01428F))
                         .loopSound(SoundEvents.AMBIENT_WARPED_FOREST_LOOP)
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0D))

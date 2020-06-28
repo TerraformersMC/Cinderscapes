@@ -13,6 +13,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.BiomeAdditionsSound;
+import net.minecraft.sound.BiomeMoodSound;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
@@ -43,7 +46,10 @@ public class BlackstoneShalesBiome extends Biome {
                 .effects(new BiomeEffects.Builder()
                         .waterColor(4159204)
                         .waterFogColor(4341314)
-                        .fogColor(8470016)
+                        .fogColor(6235392)
+                        .loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)
+                        .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0D))
+                        .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, 0.0111D))
                         .particleConfig(new BiomeParticleConfig(ParticleTypes.WHITE_ASH, 0.118093334F))
                         .build())
                 .parent(null)
