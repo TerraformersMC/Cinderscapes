@@ -1,11 +1,15 @@
 package com.terraformersmc.cinderscapes.client;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
+import com.terraformersmc.terraform.block.TerraformSignBlock;
+import com.terraformersmc.terraform.registry.SpriteIdentifierRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.TexturedRenderLayers;
+import net.minecraft.client.util.SpriteIdentifier;
 
 /**
  * [REVIEWED]
@@ -47,5 +51,8 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.CRYSTINIUM,
                 CinderscapesBlocks.SCORCHED_TENDRILS
         );
+
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((TerraformSignBlock) CinderscapesBlocks.UMBRAL_SIGN).getTexture()));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((TerraformSignBlock) CinderscapesBlocks.SCORCHED_SIGN).getTexture()));
     }
 }
