@@ -49,7 +49,8 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.BRAMBLE_BERRY_BUSH,
                 CinderscapesBlocks.PYRACINTH,
                 CinderscapesBlocks.CRYSTINIUM,
-                CinderscapesBlocks.SCORCHED_TENDRILS
+                CinderscapesBlocks.SCORCHED_TENDRILS,
+                CinderscapesBlocks.UMBRAL_DOOR
         );
 
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((TerraformSignBlock) CinderscapesBlocks.UMBRAL_SIGN).getTexture()));
