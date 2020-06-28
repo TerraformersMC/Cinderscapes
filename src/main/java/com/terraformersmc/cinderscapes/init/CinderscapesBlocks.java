@@ -47,8 +47,8 @@ public class CinderscapesBlocks {
     public static final Block SCORCHED_STAIRS = add("scorched_stairs", new TerraformStairsBlock(SCORCHED_PLANKS, FabricBlockSettings.copyOf(Blocks.WARPED_STAIRS).materialColor(MaterialColor.LIGHT_GRAY)), ItemGroup.BUILDING_BLOCKS);
     public static final Block SCORCHED_BUTTON = add("scorched_button", new TerraformButtonBlock(FabricBlockSettings.copyOf(Blocks.WARPED_BUTTON).materialColor(MaterialColor.LIGHT_GRAY)), ItemGroup.BUILDING_BLOCKS);
     public static final Block SCORCHED_DOOR = add("scorched_door", new TerraformDoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_DOOR).materialColor(MaterialColor.LIGHT_GRAY)), ItemGroup.BUILDING_BLOCKS);
-    public static final Block SCORCHED_SIGN = add("scorched_sign", new TerraformSignBlock(Cinderscapes.id("scorched"), FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).materialColor(MaterialColor.LIGHT_GRAY)));
-    public static final Block SCORCHED_WALL_SIGN = add("scorched_wall_sign", new TerraformWallSignBlock(Cinderscapes.id("scorched"), FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).materialColor(MaterialColor.LIGHT_GRAY)));
+    public static final Block SCORCHED_SIGN = add("scorched_sign", new TerraformSignBlock(Cinderscapes.id("entity/signs/scorched"), FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).materialColor(MaterialColor.LIGHT_GRAY)));
+    public static final Block SCORCHED_WALL_SIGN = add("scorched_wall_sign", new TerraformWallSignBlock(Cinderscapes.id("entity/signs/scorched"), FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).materialColor(MaterialColor.LIGHT_GRAY)));
 
     public static final Block SCORCHED_SHRUB = add("scorched_shrub", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.BUILDING_BLOCKS);
     public static final Block SCORCHED_SPROUTS = add("scorched_sprouts", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.BUILDING_BLOCKS);
@@ -85,8 +85,8 @@ public class CinderscapesBlocks {
     public static final Block UMBRAL_STAIRS = add("umbral_stairs", new TerraformStairsBlock(UMBRAL_PLANKS, FabricBlockSettings.copyOf(Blocks.WARPED_STAIRS).materialColor(MaterialColor.BLUE)), ItemGroup.BUILDING_BLOCKS);
     public static final Block UMBRAL_BUTTON = add("umbral_button", new TerraformButtonBlock(FabricBlockSettings.copyOf(Blocks.WARPED_BUTTON).materialColor(MaterialColor.BLUE)), ItemGroup.BUILDING_BLOCKS);
     public static final Block UMBRAL_DOOR = add("umbral_door", new TerraformDoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_DOOR).materialColor(MaterialColor.BLUE)), ItemGroup.BUILDING_BLOCKS);
-    public static final Block UMBRAL_SIGN = add("umbral_sign", new TerraformSignBlock(Cinderscapes.id("umbral"), FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).materialColor(MaterialColor.BLUE)));
-    public static final Block UMBRAL_WALL_SIGN = add("umbral_wall_sign", new TerraformWallSignBlock(Cinderscapes.id("umbral"), FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).materialColor(MaterialColor.BLUE)));
+    public static final Block UMBRAL_SIGN = add("umbral_sign", new TerraformSignBlock(Cinderscapes.id("entity/signs/umbral"), FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).materialColor(MaterialColor.BLUE)));
+    public static final Block UMBRAL_WALL_SIGN = add("umbral_wall_sign", new TerraformWallSignBlock(Cinderscapes.id("entity/signs/umbral"), FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).materialColor(MaterialColor.BLUE)));
 
     // Other
 
