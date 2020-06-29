@@ -62,8 +62,8 @@ public class BackgroundRendererMixin {
                 float oldStart = GlStateManagerHelper.getFogStart();
                 float oldEnd = GlStateManagerHelper.getFogEnd();
 
-                RenderSystem.fogStart(oldStart + (start - oldStart) * 0.05f);
-                RenderSystem.fogEnd(oldEnd + (end - oldEnd) * 0.05f);
+                RenderSystem.fogStart(oldStart + (start - oldStart) * 0.025f);
+                RenderSystem.fogEnd(oldEnd + (end - oldEnd) * 0.025f);
 
                 RenderSystem.fogMode(GlStateManager.FogMode.LINEAR);
                 RenderSystem.setupNvFogDistance();

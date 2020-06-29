@@ -7,7 +7,7 @@
     "ServerWorldMixin"
   ],
   "client": [
-    "WorldRendererMixin"
+    "BackgroundRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
