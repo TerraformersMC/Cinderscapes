@@ -34,6 +34,7 @@ public class Cinderscapes implements ModInitializer {
         CinderscapesSurfaces.init();
         CinderscapesBiomes.init();
         CinderscapesGroups.init();
+
         MapBiomesCommand.register();
         ShapeCommand.register();
         NoiseCollisionChecker.init();
