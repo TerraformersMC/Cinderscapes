@@ -41,29 +41,36 @@ public class BackgroundRendererMixin {
         FluidState fluidState = camera.getSubmergedFluidState();
         Entity entity = camera.getFocusedEntity();
         World world = entity.getEntityWorld();
-
-        float density = 1.0f;
-
-        // If the biome that the entity is in wants to override the fog density
         Biome biome = world.getBiome(pos);
-        if (biome instanceof FogDensityBiome) {
-            // Set the density to that biome's desired density
-            density = ((FogDensityBiome) biome).fogMultiplier();
-        }
 
         // If the entity is not inside of a fluid
         if (fluidState.getFluid() == Fluids.EMPTY) {
             // If the entity doesn't have the blindness effect
             if (!(entity instanceof LivingEntity && ((LivingEntity) entity).hasStatusEffect(StatusEffects.BLINDNESS))) {
-                // At this point the entity is guaranteed to be existing in normal circumstances so we are safe to override the normal fog
-                float start = viewDistance * 0.05F * density;
-                float end = Math.min(viewDistance, 192.0F) * 0.5F * density;
+
+                float newStart, newEnd;
+
+                if (thickFog) {
+                    newStart = viewDistance * 0.05F;
+                    newEnd = Math.min(viewDistance, 192.0F) * 0.5F;
+                } else if (fogType == BackgroundRenderer.FogType.FOG_SKY) {
+                    newStart = 0.0F;
+                    newEnd = viewDistance;
+                } else {
+                    newStart = viewDistance * 0.75F;
+                    newEnd = viewDistance;
+                }
+
+                if (biome instanceof FogDensityBiome) {
+                    newStart = newStart * ((FogDensityBiome) biome).fogMultiplier();
+                    newEnd = newEnd * ((FogDensityBiome) biome).fogMultiplier();
+                }
 
                 float oldStart = GlStateManagerHelper.getFogStart();
                 float oldEnd = GlStateManagerHelper.getFogEnd();
 
-                RenderSystem.fogStart(oldStart + (start - oldStart) * 0.025f);
-                RenderSystem.fogEnd(oldEnd + (end - oldEnd) * 0.025f);
+                RenderSystem.fogStart(oldStart + (newStart - oldStart) * 0.025f);
+                RenderSystem.fogEnd(oldEnd + (newEnd - oldEnd) * 0.025f);
 
                 RenderSystem.fogMode(GlStateManager.FogMode.LINEAR);
                 RenderSystem.setupNvFogDistance();

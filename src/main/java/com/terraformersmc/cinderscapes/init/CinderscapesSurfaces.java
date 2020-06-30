@@ -2,7 +2,6 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.surfacebuilder.AshyShoalsSurfaceBuilder;
-import com.terraformersmc.cinderscapes.surfacebuilder.BlackstoneShalesSurfaceBuilder;
 import com.terraformersmc.cinderscapes.surfacebuilder.config.EmptySurfaceConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
@@ -34,7 +33,6 @@ public class CinderscapesSurfaces {
     //////////////////////
     // SURFACE BUILDERS //
     //////////////////////
-    public static final SurfaceBuilder<EmptySurfaceConfig> BLACKSTONE_SHALES = add("blackstone_shales", new BlackstoneShalesSurfaceBuilder());
     public static final SurfaceBuilder<EmptySurfaceConfig> ASHY_SHOALS = add("ashy_shoals", new AshyShoalsSurfaceBuilder());
 
     /**

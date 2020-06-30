@@ -1,6 +1,5 @@
 package com.terraformersmc.cinderscapes.surfacebuilder;
 
-import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.surfacebuilder.config.EmptySurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -27,9 +26,6 @@ public class AshyShoalsSurfaceBuilder extends SurfaceBuilder<EmptySurfaceConfig>
             BlockState state = chunk.getBlockState(pos);
             if (state.getBlock() == defaultBlock.getBlock()) {
                 chunk.setBlockState(pos, Blocks.NETHERRACK.getDefaultState(), false);
-                if (chunk.getBlockState(pos.up()).isAir()) {
-                    chunk.setBlockState(pos.up(), CinderscapesBlocks.ASH.getDefaultState(), false);
-                }
             } else if (state.getBlock() == defaultFluid.getBlock()) {
                 if (chunk.getBlockState(pos.up()).isAir()) {
                     chunk.setBlockState(pos, Blocks.MAGMA_BLOCK.getDefaultState(), false);

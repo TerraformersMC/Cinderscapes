@@ -16,11 +16,13 @@ import net.minecraft.world.gen.placer.SimpleBlockPlacer;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
+import java.security.Provider;
 import java.util.Arrays;
 
 // TODO: Check
 public class CinderscapesFeatures {
 
+    public static Feature<DefaultFeatureConfig> ASH_TOP_LAYER;
     public static Feature<SimpleStateFeatureConfig> SHALE_FEATURE;
 
     public static Feature<DefaultFeatureConfig> BLACKSTONE_SHALE;
@@ -54,8 +56,12 @@ public class CinderscapesFeatures {
     public static NetherrackReplaceBlobsFeatureConfig SOUL_SAND_REPLACE_CONFIG;
     public static NetherrackReplaceBlobsFeatureConfig SOUL_SOIL_REPLACE_CONFIG;
     public static NetherrackReplaceBlobsFeatureConfig GRAVEL_REPLACE_CONFIG;
+    public static NetherrackReplaceBlobsFeatureConfig BLACKSTONE_REPLACE_CONFIG;
 
     public static void init() {
+
+        ASH_TOP_LAYER = Registry.register(Registry.FEATURE, Cinderscapes.id("ash_top_layer"), new AshTopLayerFeature());
+
         UMBRAL_FUNGUS_CONFIG = new CanopiedHugeFungusFeatureConfig(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), CinderscapesBlocks.UMBRAL_STEM.getDefaultState(), CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState(), CinderscapesBlocks.UMBRAL_FLESH_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), true);
         UMBRAL_FUNGUS_NOT_PLANTED_CONFIG = new CanopiedHugeFungusFeatureConfig(UMBRAL_FUNGUS_CONFIG.soilBlock, UMBRAL_FUNGUS_CONFIG.stemBlock, UMBRAL_FUNGUS_CONFIG.canopyBlock, UMBRAL_FUNGUS_CONFIG.fleshBlock, UMBRAL_FUNGUS_CONFIG.decorationBlock, false);
 
@@ -129,5 +135,6 @@ public class CinderscapesFeatures {
         SOUL_SAND_REPLACE_CONFIG = (new NetherrackReplaceBlobsFeatureConfig.Builder()).minReachPos(new Vec3i(3, 3, 3)).maxReachPos(new Vec3i(7, 7, 7)).target(Blocks.NETHERRACK.getDefaultState()).state(Blocks.SOUL_SAND.getDefaultState()).build();
         SOUL_SOIL_REPLACE_CONFIG = (new NetherrackReplaceBlobsFeatureConfig.Builder()).minReachPos(new Vec3i(3, 3, 3)).maxReachPos(new Vec3i(7, 7, 7)).target(Blocks.NETHERRACK.getDefaultState()).state(Blocks.SOUL_SOIL.getDefaultState()).build();
         GRAVEL_REPLACE_CONFIG = (new NetherrackReplaceBlobsFeatureConfig.Builder()).minReachPos(new Vec3i(3, 3, 3)).maxReachPos(new Vec3i(7, 7, 7)).target(Blocks.NETHERRACK.getDefaultState()).state(Blocks.GRAVEL.getDefaultState()).build();
+        BLACKSTONE_REPLACE_CONFIG = (new NetherrackReplaceBlobsFeatureConfig.Builder()).minReachPos(new Vec3i(3, 3, 3)).maxReachPos(new Vec3i(7, 7, 7)).target(Blocks.NETHERRACK.getDefaultState()).state(Blocks.BLACKSTONE.getDefaultState()).build();
     }
 }
