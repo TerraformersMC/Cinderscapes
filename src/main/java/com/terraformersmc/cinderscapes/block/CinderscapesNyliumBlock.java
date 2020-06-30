@@ -8,9 +8,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.NyliumBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import net.minecraft.world.gen.feature.NetherForestVegetationFeature;
-import net.minecraft.world.gen.feature.TwistingVinesFeature;
 
 import java.util.Random;
 

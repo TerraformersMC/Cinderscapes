@@ -1,7 +1,6 @@
 package com.terraformersmc.cinderscapes.mixin;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.NetherrackBlock;
 import net.minecraft.block.NyliumBlock;
 import net.minecraft.server.world.ServerWorld;
@@ -12,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
