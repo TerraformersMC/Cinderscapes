@@ -27,7 +27,7 @@ public class NetherrackBlockMixin {
 
         for (BlockPos testPos : BlockPos.iterate(pos.add(-1, -1, -1), pos.add(1, 1, 1))) {
             BlockState testState = world.getBlockState(testPos);
-            if (testState.getBlock() instanceof NyliumBlock) potentialStates.add(testState);
+            if (testState.getBlock() instanceof NyliumBlock && !potentialStates.contains(testState)) potentialStates.add(testState);
         }
         if (potentialStates.size() > 0) {
             world.setBlockState(pos, potentialStates.get(random.nextInt(potentialStates.size())), 3);
