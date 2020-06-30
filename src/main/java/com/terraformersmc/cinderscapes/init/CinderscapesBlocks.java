@@ -197,6 +197,21 @@ public class CinderscapesBlocks {
         for (Identifier id : BLOCKS.keySet()) {
             Registry.register(Registry.BLOCK, id, BLOCKS.get(id));
         }
+
+        RecipeUtil.registerCompostableBlock(CRYSTINIUM);
+        RecipeUtil.registerCompostableBlock(PHOTOFERN);
+        RecipeUtil.registerCompostableBlock(TALL_PHOTOFERN);
+        RecipeUtil.registerCompostableBlock(TWILIGHT_VINE_BLOCK);
+        RecipeUtil.registerCompostableBlock(TWILIGHT_FESCUES);
+        RecipeUtil.registerCompostableBlock(TWILIGHT_TENDRILS);
+        RecipeUtil.registerCompostableBlock(PYRACINTH);
+        RecipeUtil.registerCompostableBlock(SCORCHED_TENDRILS);
+        RecipeUtil.registerCompostableBlock(UMBRAL_FUNGUS);
+        RecipeUtil.registerCompostableBlock(LUMINOUS_POD);
+        RecipeUtil.registerCompostableBlock(SCORCHED_SPROUTS);
+        RecipeUtil.registerCompostableBlock(SCORCHED_SHRUB);
+        RecipeUtil.registerCompostableBlock(GHASTLY_ECTOPLASM);
+        RecipeUtil.registerCompostableBlock(UMBRAL_WART_BLOCK);
     }
 
     private static boolean never(BlockState blockState, BlockView blockView, BlockPos pos) {

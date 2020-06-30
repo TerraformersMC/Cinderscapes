@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BiomeAccessor",
-    "ServerWorldMixin"
+    "ServerWorldMixin",
+    "NetherrackBlockMixin"
   ],
   "client": [
     "BackgroundRendererMixin"
