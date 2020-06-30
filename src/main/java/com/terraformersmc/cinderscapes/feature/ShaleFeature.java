@@ -34,7 +34,7 @@ public class ShaleFeature extends Feature<SimpleStateFeatureConfig> {
         float height = random.nextFloat() * 5 + 5;
         List<Boolean> ok = new ArrayList<>();
         Shapes.ellipsoid(height * 0.75, 2, height)
-                .applyLayer(RotateLayer.of(Quaternion.of(new net.minecraft.util.math.Quaternion(pitch, yaw, 0, true))))
+                .applyLayer(RotateLayer.of(Quaternion.of(pitch, yaw, 0, true)))
                 .applyLayer(TranslateLayer.of(Position.of(pos)))
                 .validate(AllMeetValidator.of((valpos) -> {
                     return world.isAir(valpos.toBlockPos()) || config.replaceableBlocks.contains(world.getBlockState(valpos.toBlockPos()));
