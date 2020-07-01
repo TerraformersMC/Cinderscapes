@@ -8,6 +8,7 @@ import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
@@ -32,7 +33,6 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import java.util.Arrays;
 import java.util.List;
 
-// TODO: Check
 public class LuminousGroveBiome extends Biome {
     public LuminousGroveBiome() {
         super((new Settings())
@@ -51,6 +51,7 @@ public class LuminousGroveBiome extends Biome {
                         .loopSound(SoundEvents.AMBIENT_WARPED_FOREST_LOOP)
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0D))
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111D))
+                        .music(MusicType.method_27283(SoundEvents.MUSIC_NETHER_WARPED_FOREST))
                         .build())
                 .parent(null)
                 .noises(ImmutableList.of(new MixedNoisePoint(0.35F, 0.35F, 0.0F, 0.0F, 0.2F))));

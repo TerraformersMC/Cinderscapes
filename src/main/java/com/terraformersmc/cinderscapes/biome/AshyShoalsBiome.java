@@ -11,11 +11,13 @@ import com.terraformersmc.cinderscapes.mixinterface.FogDensityBiome;
 import com.terraformersmc.cinderscapes.surfacebuilder.config.EmptySurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
+import net.minecraft.sound.MusicSound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
@@ -28,10 +30,6 @@ import net.minecraft.world.gen.feature.*;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author <Wtoll> Will Toll on 2020-05-23
- * @project Cinderscapes
- */
 public class AshyShoalsBiome extends Biome implements AshyBiome, FogDensityBiome {
     public AshyShoalsBiome() {
         super(new Settings()
@@ -50,6 +48,7 @@ public class AshyShoalsBiome extends Biome implements AshyBiome, FogDensityBiome
                         .loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D))
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, 0.0111D))
+                        .music(MusicType.method_27283(SoundEvents.MUSIC_NETHER_SOUL_SAND_VALLEY))
                         .build())
                 .parent(null)
                 .noises(ImmutableList.of(new MixedNoisePoint(-0.35F, 0.0F, 0.35F, 0.0F, 0.2F))));

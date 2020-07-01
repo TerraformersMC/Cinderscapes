@@ -10,6 +10,7 @@ import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
 import com.terraformersmc.cinderscapes.surfacebuilder.config.EmptySurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
@@ -31,8 +32,6 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import java.util.Arrays;
 import java.util.List;
 
-// TODO: Check
-// TODO: Finalize mob spawns
 public class BlackstoneShalesBiome extends Biome {
 
     public BlackstoneShalesBiome() {
@@ -51,6 +50,7 @@ public class BlackstoneShalesBiome extends Biome {
                         .loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0D))
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, 0.0111D))
+                        .music(MusicType.method_27283(SoundEvents.MUSIC_NETHER_BASALT_DELTAS))
                         .particleConfig(new BiomeParticleConfig(ParticleTypes.WHITE_ASH, 0.118093334F))
                         .build())
                 .parent(null)

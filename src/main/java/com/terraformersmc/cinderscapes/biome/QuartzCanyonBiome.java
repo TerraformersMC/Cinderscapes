@@ -10,6 +10,7 @@ import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
@@ -50,6 +51,7 @@ public class QuartzCanyonBiome extends Biome {
                         .loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_NETHER_WASTES_MOOD, 6000, 8, 2.0D))
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_NETHER_WASTES_ADDITIONS, 0.0111D))
+                        .music(MusicType.method_27283(SoundEvents.MUSIC_NETHER_NETHER_WASTES))
                         .build())
                 .parent(null)
                 .noises(ImmutableList.of(new Biome.MixedNoisePoint(0.0F, 0.0F, 0.35F, 0.35F, 0.2F))));
