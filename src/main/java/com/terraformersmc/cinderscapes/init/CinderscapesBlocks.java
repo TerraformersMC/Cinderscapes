@@ -54,8 +54,8 @@ public class CinderscapesBlocks {
     public static final Block SCORCHED_SPROUTS = add("scorched_sprouts", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.BUILDING_BLOCKS);
     public static final Block SCORCHED_TENDRILS = add("scorched_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)), ItemGroup.BUILDING_BLOCKS);
 
-    public static final Block ASH = add("ash", new AshLayerBlock(FabricBlockSettings.copy(Blocks.SNOW)), ItemGroup.DECORATIONS);
-    public static final Block ASH_BLOCK = add("ash_block", new Block(FabricBlockSettings.copy(Blocks.SNOW_BLOCK)), ItemGroup.DECORATIONS);
+    public static final Block ASH = add("ash", new AshLayerBlock(FabricBlockSettings.copyOf(Blocks.SNOW).breakByTool(FabricToolTags.SHOVELS)), ItemGroup.DECORATIONS);
+    public static final Block ASH_BLOCK = add("ash_block", new Block(FabricBlockSettings.copyOf(Blocks.SNOW_BLOCK).breakByTool(FabricToolTags.SHOVELS)), ItemGroup.DECORATIONS);
 
     public static Block PYRACINTH = add("pyracinth", new PyracinthBlock(), ItemGroup.DECORATIONS);
 

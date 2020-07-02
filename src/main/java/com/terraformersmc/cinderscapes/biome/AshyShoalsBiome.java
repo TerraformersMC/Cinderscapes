@@ -92,7 +92,7 @@ public class AshyShoalsBiome extends Biome implements AshyBiome, FogDensityBiome
 
         // SPAWNS
         this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 100, 4, 4));
-        this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.ZOGLIN, 4, 3, 4));
+        this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.ZOGLIN, 3, 3, 4));
         this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.ENDERMAN, 1, 4, 4));
         this.addSpawn(SpawnGroup.CREATURE, new SpawnEntry(EntityType.STRIDER, 60, 1, 2));
         this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.SKELETON, 20, 5, 5));
