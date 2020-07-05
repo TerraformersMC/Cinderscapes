@@ -4,6 +4,7 @@ import com.terraformersmc.cinderscapes.util.StateShapeSupplier;
 import net.minecraft.block.*;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
@@ -16,7 +17,7 @@ import net.minecraft.world.BlockView;
  * @project Cinderscapes
  */
 public class CinderscapesNetherPlantBlock extends PlantBlock {
-    private static StateShapeSupplier SHAPE_SUPPLIER;
+    protected final StateShapeSupplier SHAPE_SUPPLIER;
 
     public CinderscapesNetherPlantBlock(Settings settings, StateShapeSupplier supplier) {
         super(settings);

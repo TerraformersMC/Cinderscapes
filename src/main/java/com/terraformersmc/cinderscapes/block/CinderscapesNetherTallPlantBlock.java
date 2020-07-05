@@ -16,7 +16,7 @@ import net.minecraft.world.BlockView;
  * @project Cinderscapes
  */
 public class CinderscapesNetherTallPlantBlock extends TallPlantBlock {
-    private static StateShapeSupplier SHAPE_SUPPLIER;
+    protected final StateShapeSupplier SHAPE_SUPPLIER;
 
     public CinderscapesNetherTallPlantBlock(Settings settings, StateShapeSupplier supplier) {
         super(settings);
