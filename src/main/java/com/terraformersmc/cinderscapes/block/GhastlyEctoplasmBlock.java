@@ -23,18 +23,16 @@ import net.minecraft.world.WorldView;
  */
 public class GhastlyEctoplasmBlock extends Block {
     public static final EnumProperty<GhastlyEctoplasmBlock.Type> TYPE = EnumProperty.of("type", GhastlyEctoplasmBlock.Type.class);
-    private static StateShapeSupplier SHAPE_SUPPLIER;
 
-    public GhastlyEctoplasmBlock(Settings settings, StateShapeSupplier supplier) {
+    public GhastlyEctoplasmBlock(Settings settings) {
         super(settings);
         setDefaultState(getDefaultState().with(TYPE, Type.BOTTOM));
-        SHAPE_SUPPLIER = supplier;
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE_SUPPLIER.apply(state);
+        return state.get(GhastlyEctoplasmBlock.TYPE) == GhastlyEctoplasmBlock.Type.BOTTOM ? Block.createCuboidShape(3.0D, 2.5D, 3.0D, 13.0D, 16.0D, 13.0D) : Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
     }
 
     @Deprecated
