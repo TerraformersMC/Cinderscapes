@@ -34,7 +34,7 @@ public class PyracinthBlock extends CinderscapesNetherPlantBlock {
     @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Vec3d vec3d = state.getModelOffset(world, pos);
-        return SHAPE_SUPPLIER.apply(state).offset(vec3d.x, vec3d.y, vec3d.z);
+        Vec3d modelOffset = state.getModelOffset(world, pos);
+        return SHAPE_SUPPLIER.apply(state).offset(modelOffset.x, modelOffset.y, modelOffset.z);
     }
 }
