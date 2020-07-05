@@ -197,20 +197,27 @@ public class CinderscapesBlocks {
             Registry.register(Registry.BLOCK, id, BLOCKS.get(id));
         }
 
-        RecipeUtil.registerCompostableBlock(CRYSTINIUM);
-        RecipeUtil.registerCompostableBlock(PHOTOFERN);
-        RecipeUtil.registerCompostableBlock(TALL_PHOTOFERN);
-        RecipeUtil.registerCompostableBlock(TWILIGHT_VINE_BLOCK);
-        RecipeUtil.registerCompostableBlock(TWILIGHT_FESCUES);
-        RecipeUtil.registerCompostableBlock(TWILIGHT_TENDRILS);
-        RecipeUtil.registerCompostableBlock(PYRACINTH);
-        RecipeUtil.registerCompostableBlock(SCORCHED_TENDRILS);
-        RecipeUtil.registerCompostableBlock(UMBRAL_FUNGUS);
-        RecipeUtil.registerCompostableBlock(LUMINOUS_POD);
-        RecipeUtil.registerCompostableBlock(SCORCHED_SPROUTS);
-        RecipeUtil.registerCompostableBlock(SCORCHED_SHRUB);
-        RecipeUtil.registerCompostableBlock(GHASTLY_ECTOPLASM);
-        RecipeUtil.registerCompostableBlock(UMBRAL_WART_BLOCK);
+        registerCompostableBlocks();
+    }
+
+    private static void registerCompostableBlocks() {
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(TWILIGHT_FESCUES, 0.3f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(TWILIGHT_TENDRILS, 0.3f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(SCORCHED_TENDRILS, 0.3f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(SCORCHED_SPROUTS, 0.3f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(SCORCHED_SHRUB, 0.3f);
+
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(CRYSTINIUM, 0.65f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(PYRACINTH, 0.65f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(PHOTOFERN, 0.65f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(TALL_PHOTOFERN, 0.65f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(LUMINOUS_POD, 0.65f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(UMBRAL_FUNGUS, 0.65f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(GHASTLY_ECTOPLASM, 0.65f);
+
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(UMBRAL_WART_BLOCK, 0.85f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(UMBRAL_FLESH_BLOCK, 0.85f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(TWILIGHT_VINE_BLOCK, 0.85f);
     }
 
     private static boolean never(BlockState blockState, BlockView blockView, BlockPos pos) {

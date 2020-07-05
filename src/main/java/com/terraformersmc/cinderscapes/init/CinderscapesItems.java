@@ -2,6 +2,7 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.terraform.util.RecipeUtil;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
@@ -42,5 +43,7 @@ public class CinderscapesItems {
         for (Identifier id : ITEMS.keySet()) {
             Registry.register(Registry.ITEM, id, ITEMS.get(id));
         }
+
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(BRAMBLE_BERRIES, 0.3f);
     }
 }
