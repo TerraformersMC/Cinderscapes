@@ -55,10 +55,13 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
     }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (state.get(AGE) == 0) {
-            return SMALL_SHAPE;
-        } else {
-            return state.get(AGE) < 2 ? MEDIUM_SHAPE : LARGE_SHAPE;
+        switch(state.get(AGE)) {
+            case 0:
+                return SMALL_SHAPE;
+            case 1:
+                return MEDIUM_SHAPE;
+            default:
+                return LARGE_SHAPE;
         }
     }
 
