@@ -29,6 +29,10 @@ public class CinderscapesNetherPlantBlock extends PlantBlock {
         return BlockTags.NYLIUM.contains(floor.getBlock()) || floor.isOf(Blocks.SOUL_SOIL) || floor.isOf(Blocks.NETHERRACK) || super.canPlantOnTop(floor, world, pos);
     }
 
+    public AbstractBlock.OffsetType getOffsetType() {
+        return AbstractBlock.OffsetType.XZ;
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
