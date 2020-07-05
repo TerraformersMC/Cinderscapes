@@ -1,14 +1,18 @@
 package com.terraformersmc.cinderscapes.block;
 
+import com.terraformersmc.cinderscapes.util.StateShapeSupplier;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
@@ -18,12 +22,19 @@ import net.minecraft.world.WorldView;
  * @project Cinderscapes
  */
 public class GhastlyEctoplasmBlock extends Block {
-
     public static final EnumProperty<GhastlyEctoplasmBlock.Type> TYPE = EnumProperty.of("type", GhastlyEctoplasmBlock.Type.class);
+    private static StateShapeSupplier SHAPE_SUPPLIER;
 
-    public GhastlyEctoplasmBlock(Settings settings) {
+    public GhastlyEctoplasmBlock(Settings settings, StateShapeSupplier supplier) {
         super(settings);
         setDefaultState(getDefaultState().with(TYPE, Type.BOTTOM));
+        SHAPE_SUPPLIER = supplier;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE_SUPPLIER.apply(state);
     }
 
     @Deprecated
