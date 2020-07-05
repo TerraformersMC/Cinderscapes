@@ -23,6 +23,7 @@ public class GhastlyEctoplasmBlock extends Block {
 
     public GhastlyEctoplasmBlock(Settings settings) {
         super(settings);
+        setDefaultState(getDefaultState().with(TYPE, Type.BOTTOM));
     }
 
     @Deprecated
