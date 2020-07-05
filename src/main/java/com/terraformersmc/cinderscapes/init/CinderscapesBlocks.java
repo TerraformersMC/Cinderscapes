@@ -23,11 +23,6 @@ import java.util.Map;
 // TODO: Check
 public class CinderscapesBlocks {
 
-    // Acts as a kind of local registry for block items added by Cinderscapes
-    private static final Map<Identifier, BlockItem> ITEMS = new HashMap<>();
-    // Acts as a kind of local registry for blocks added by Cinderscapes
-    private static final Map<Identifier, Block> BLOCKS = new HashMap<>();
-
     /////////////////
     // Ashy Shoals //
     /////////////////
@@ -173,31 +168,21 @@ public class CinderscapesBlocks {
         add(name, block);
         if (item != null) {
             item.appendBlocks(Item.BLOCK_ITEMS, item);
-            ITEMS.put(Cinderscapes.id(name), item);
+            add(name, item);
             RecipeUtil.registerCompostableBlock(block);
         }
         return block;
     }
 
     private static <B extends Block> B add(String name, B block) {
-        BLOCKS.put(Cinderscapes.id(name), block);
-        return block;
+        return Registry.register(Registry.BLOCK, Cinderscapes.id(name), block);
     }
 
     private static <I extends BlockItem> I add(String name, I item) {
-        item.appendBlocks(Item.BLOCK_ITEMS, item);
-        ITEMS.put(Cinderscapes.id(name), item);
-        return item;
+        return Registry.register(Registry.ITEM, Cinderscapes.id(name), item);
     }
 
     public static void init() {
-        for (Identifier id : ITEMS.keySet()) {
-            Registry.register(Registry.ITEM, id, ITEMS.get(id));
-        }
-        for (Identifier id : BLOCKS.keySet()) {
-            Registry.register(Registry.BLOCK, id, BLOCKS.get(id));
-        }
-
         RecipeUtil.registerCompostableBlock(CRYSTINIUM);
         RecipeUtil.registerCompostableBlock(PHOTOFERN);
         RecipeUtil.registerCompostableBlock(TALL_PHOTOFERN);

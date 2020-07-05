@@ -16,8 +16,6 @@ import java.util.Map;
  * @project Cinderscapes
  */
 public class CinderscapesItems {
-    // Acts as a kind of local registry for items added by Cinderscapes
-    private static final Map<Identifier, Item> ITEMS = new HashMap<>();
 
     public static final Item BRAMBLE_BERRIES = add("bramble_berries", new AliasedBlockItem(CinderscapesBlocks.BRAMBLE_BERRY_BUSH, new Item.Settings().group(ItemGroup.FOOD).food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).alwaysEdible().snack().statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 2400, 0), 1.0F).build())));
 
@@ -34,13 +32,8 @@ public class CinderscapesItems {
     public static final Item SULFUR_QUARTZ = add("sulfur_quartz", new Item(new Item.Settings().group(ItemGroup.MATERIALS)));
 
     private static <I extends Item> I add(String name, I item) {
-        ITEMS.put(Cinderscapes.id(name), item);
-        return item;
+        return Registry.register(Registry.ITEM, Cinderscapes.id(name), item);
     }
 
-    public static void init() {
-        for (Identifier id : ITEMS.keySet()) {
-            Registry.register(Registry.ITEM, id, ITEMS.get(id));
-        }
-    }
+    public static void init() {}
 }
