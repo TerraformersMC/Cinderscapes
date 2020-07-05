@@ -17,7 +17,7 @@ import net.minecraft.world.BlockView;
  * @project Cinderscapes
  */
 public class CinderscapesNetherPlantBlock extends PlantBlock {
-    protected final StateShapeSupplier SHAPE_SUPPLIER;
+    private final StateShapeSupplier SHAPE_SUPPLIER;
 
     public CinderscapesNetherPlantBlock(Settings settings, StateShapeSupplier supplier) {
         super(settings);

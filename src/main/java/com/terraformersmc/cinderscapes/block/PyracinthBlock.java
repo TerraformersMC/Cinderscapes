@@ -25,9 +25,13 @@ public class PyracinthBlock extends CinderscapesNetherPlantBlock {
 
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        world.addParticle(ParticleTypes.SMOKE, pos.getX() + random.nextFloat(), pos.getY() + random.nextFloat(), pos.getZ() + random.nextFloat(), random.nextFloat() * 0.1 - 0.05, random.nextFloat() * 0.1 - 0.05, random.nextFloat() * 0.1 - 0.05);
+        Vec3d center = this.getOutlineShape(state, world, pos, ShapeContext.absent()).getBoundingBox().getCenter();
+        double x = (double)pos.getX() + center.x;
+        double z = (double)pos.getZ() + center.z;
+
+        world.addParticle(ParticleTypes.SMOKE, x + random.nextFloat() - 0.5f, pos.getY() + random.nextFloat(), z + random.nextFloat() - 0.5f, random.nextFloat() * 0.1 - 0.05, random.nextFloat() * 0.1 - 0.05, random.nextFloat() * 0.1 - 0.05);
         if (random.nextFloat() > 0.6) {
-            world.addParticle(ParticleTypes.FLAME, pos.getX() + 0.4f + random.nextFloat() * 0.2f, pos.getY() + 0.5f, pos.getZ() + 0.4f + random.nextFloat() * 0.2f, 0.0f, 0.05f, 0.0f);
+            world.addParticle(ParticleTypes.FLAME, x - 0.1f + random.nextFloat() * 0.2f, pos.getY() + 0.5f, z - 0.1f + random.nextFloat() * 0.2f, 0.0f, 0.05f, 0.0f);
         }
     }
 
@@ -35,6 +39,6 @@ public class PyracinthBlock extends CinderscapesNetherPlantBlock {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Vec3d modelOffset = state.getModelOffset(world, pos);
-        return SHAPE_SUPPLIER.apply(state).offset(modelOffset.x, modelOffset.y, modelOffset.z);
+        return super.getOutlineShape(state, world, pos, context).offset(modelOffset.x, modelOffset.y, modelOffset.z);
     }
 }
