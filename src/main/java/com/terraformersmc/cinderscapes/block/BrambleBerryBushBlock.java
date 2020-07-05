@@ -3,9 +3,7 @@ package com.terraformersmc.cinderscapes.block;
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SweetBerryBushBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -20,6 +18,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
@@ -28,6 +27,10 @@ import net.minecraft.world.World;
  * @project Cinderscapes
  */
 public class BrambleBerryBushBlock extends SweetBerryBushBlock {
+    private static final VoxelShape SMALL_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
+    private static final VoxelShape MEDIUM_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 13.0D, 13.0D);
+    private static final VoxelShape LARGE_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D);
+
     public BrambleBerryBushBlock(Settings settings) {
         super(settings);
     }
@@ -48,6 +51,14 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
                 }
             }
 
+        }
+    }
+
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (state.get(AGE) == 0) {
+            return SMALL_SHAPE;
+        } else {
+            return state.get(AGE) < 2 ? MEDIUM_SHAPE : LARGE_SHAPE;
         }
     }
 
