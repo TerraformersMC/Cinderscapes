@@ -1,5 +1,6 @@
-package com.terraformersmc.cinderscapes.init;
+package com.terraformersmc.cinderscapes.block;
 
+import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.OreBlock;
 import net.minecraft.util.math.MathHelper;

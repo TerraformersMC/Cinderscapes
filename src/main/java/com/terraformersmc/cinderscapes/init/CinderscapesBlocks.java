@@ -174,7 +174,6 @@ public class CinderscapesBlocks {
         if (item != null) {
             item.appendBlocks(Item.BLOCK_ITEMS, item);
             ITEMS.put(Cinderscapes.id(name), item);
-            RecipeUtil.registerCompostableBlock(block);
         }
         return block;
     }
