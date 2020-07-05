@@ -23,12 +23,12 @@ public class GhastlyEctoplasmBlock extends Block {
 
     public GhastlyEctoplasmBlock(Settings settings) {
         super(settings);
+        setDefaultState(getDefaultState().with(TYPE, Type.BOTTOM));
     }
 
     @Deprecated
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockState aboveState = world.getBlockState(pos.up());
-        setDefaultState(getDefaultState().with(TYPE, Type.BOTTOM));
         return (!world.isAir(pos.up()) && Block.isFaceFullSquare(aboveState.getCollisionShape(world, pos.up()), Direction.DOWN)) || aboveState.getBlock() == this;
     }
 
