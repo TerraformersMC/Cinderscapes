@@ -65,9 +65,9 @@ public class PolypiteQuartzBlock extends Block {
     static {
         DIRECTION_TO_SHAPE.put(Direction.DOWN, Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 4.0D, 14.0D));
         DIRECTION_TO_SHAPE.put(Direction.UP, Block.createCuboidShape(2.0D, 12.0D, 2.0D, 14.0D, 16.0D, 14.0D));
-        DIRECTION_TO_SHAPE.put(Direction.SOUTH, Block.createCuboidShape(0.0D, 4.0D, 5.0D, 16.0D, 12.0D, 16.0D));
-        DIRECTION_TO_SHAPE.put(Direction.NORTH, Block.createCuboidShape(0.0D, 4.0D, 0.0D, 16.0D, 12.0D, 11.0D));
-        DIRECTION_TO_SHAPE.put(Direction.EAST, Block.createCuboidShape(5.0D, 4.0D, 0.0D, 16.0D, 12.0D, 16.0D));
-        DIRECTION_TO_SHAPE.put(Direction.WEST, Block.createCuboidShape(0.0D, 4.0D, 0.0D, 11.0D, 12.0D, 16.0D));
+        DIRECTION_TO_SHAPE.put(Direction.SOUTH, Block.createCuboidShape(3.0D, 5.0D, 6.0D, 13.0D, 13.0D, 16.0D));
+        DIRECTION_TO_SHAPE.put(Direction.NORTH, Block.createCuboidShape(3.0D, 5.0D, 0.0D, 13.0D, 13.0D, 10.0D));
+        DIRECTION_TO_SHAPE.put(Direction.EAST, Block.createCuboidShape(6.0D, 5.0D, 3.0D, 16.0D, 13.0D, 13.0D));
+        DIRECTION_TO_SHAPE.put(Direction.WEST, Block.createCuboidShape(0.0D, 5.0D, 3.0D, 10.0D, 13.0D, 13.0D));
     }
 }

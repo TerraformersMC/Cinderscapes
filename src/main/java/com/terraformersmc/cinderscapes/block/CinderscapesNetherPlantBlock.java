@@ -4,6 +4,7 @@ import com.terraformersmc.cinderscapes.util.StateShapeSupplier;
 import net.minecraft.block.*;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
@@ -16,7 +17,7 @@ import net.minecraft.world.BlockView;
  * @project Cinderscapes
  */
 public class CinderscapesNetherPlantBlock extends PlantBlock {
-    private static StateShapeSupplier SHAPE_SUPPLIER;
+    private final StateShapeSupplier SHAPE_SUPPLIER;
 
     public CinderscapesNetherPlantBlock(Settings settings, StateShapeSupplier supplier) {
         super(settings);
@@ -26,6 +27,10 @@ public class CinderscapesNetherPlantBlock extends PlantBlock {
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return BlockTags.NYLIUM.contains(floor.getBlock()) || floor.isOf(Blocks.SOUL_SOIL) || floor.isOf(Blocks.NETHERRACK) || super.canPlantOnTop(floor, world, pos);
+    }
+
+    public AbstractBlock.OffsetType getOffsetType() {
+        return AbstractBlock.OffsetType.XZ;
     }
 
     @SuppressWarnings("deprecation")
