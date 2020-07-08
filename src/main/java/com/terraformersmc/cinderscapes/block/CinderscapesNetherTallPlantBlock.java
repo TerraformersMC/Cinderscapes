@@ -16,7 +16,7 @@ import net.minecraft.world.BlockView;
  * @project Cinderscapes
  */
 public class CinderscapesNetherTallPlantBlock extends TallPlantBlock {
-    private static StateShapeSupplier SHAPE_SUPPLIER;
+    protected final StateShapeSupplier SHAPE_SUPPLIER;
 
     public CinderscapesNetherTallPlantBlock(Settings settings, StateShapeSupplier supplier) {
         super(settings);
@@ -25,8 +25,7 @@ public class CinderscapesNetherTallPlantBlock extends TallPlantBlock {
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        Block block = floor.getBlock();
-        return BlockTags.NYLIUM.contains(block) || block == Blocks.SOUL_SOIL || super.canPlantOnTop(floor, world, pos);
+        return BlockTags.NYLIUM.contains(floor.getBlock()) || floor.isOf(Blocks.SOUL_SOIL) || floor.isOf(Blocks.NETHERRACK) || super.canPlantOnTop(floor, world, pos);
     }
 
     @SuppressWarnings("deprecation")
