@@ -35,5 +35,11 @@
     "fabric": "*",
     "terraform": "*",
     "minecraft": ">=1.16-"
+  },
+  "custom": {
+    "modupdater": {
+      "strategy": "curseforge",
+      "projectID": 391429
+    }
   }
 }
