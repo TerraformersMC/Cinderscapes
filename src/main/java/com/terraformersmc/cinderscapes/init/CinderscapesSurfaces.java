@@ -33,7 +33,7 @@ public class CinderscapesSurfaces {
     //////////////////////
     // SURFACE BUILDERS //
     //////////////////////
-    public static final SurfaceBuilder<EmptySurfaceConfig> ASHY_SHOALS = add("ashy_shoals", new AshyShoalsSurfaceBuilder());
+    public static final SurfaceBuilder<TernarySurfaceConfig> ASHY_SHOALS = add("ashy_shoals", new AshyShoalsSurfaceBuilder());
 
     /**
      * Adds a surface builder to the Cinderscapes local registry

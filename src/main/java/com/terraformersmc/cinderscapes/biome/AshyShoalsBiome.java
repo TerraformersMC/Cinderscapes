@@ -26,6 +26,7 @@ import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.ProbabilityConfig;
 import net.minecraft.world.gen.decorator.*;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,7 @@ import java.util.List;
 public class AshyShoalsBiome extends Biome implements AshyBiome, FogDensityBiome {
     public AshyShoalsBiome() {
         super(new Settings()
-                .configureSurfaceBuilder(CinderscapesSurfaces.ASHY_SHOALS, new EmptySurfaceConfig())
+                .configureSurfaceBuilder(CinderscapesSurfaces.ASHY_SHOALS, new TernarySurfaceConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), Blocks.MAGMA_BLOCK.getDefaultState()))
                 .precipitation(Precipitation.NONE)
                 .category(Category.NETHER)
                 .depth(0.1F)
