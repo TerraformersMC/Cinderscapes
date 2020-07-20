@@ -3,7 +3,6 @@ package com.terraformersmc.cinderscapes.init;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.block.*;
 import com.terraformersmc.terraform.block.*;
-import com.terraformersmc.terraform.util.RecipeUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
@@ -17,16 +16,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 // TODO: Check
 public class CinderscapesBlocks {
 
     // Acts as a kind of local registry for block items added by Cinderscapes
-    private static final Map<Identifier, BlockItem> ITEMS = new HashMap<>();
+    private static final Map<Identifier, BlockItem> ITEMS = new LinkedHashMap<>();
     // Acts as a kind of local registry for blocks added by Cinderscapes
-    private static final Map<Identifier, Block> BLOCKS = new HashMap<>();
+    private static final Map<Identifier, Block> BLOCKS = new LinkedHashMap<>();
 
     /////////////////
     // Ashy Shoals //

@@ -1,13 +1,10 @@
 package com.terraformersmc.cinderscapes.biome;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import com.terraformersmc.cinderscapes.decorator.config.CountSafelistRangeDecoratorConfig;
 import com.terraformersmc.cinderscapes.feature.config.SimpleStateFeatureConfig;
 import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
-import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
-import com.terraformersmc.cinderscapes.surfacebuilder.config.EmptySurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.sound.MusicType;
@@ -22,11 +19,8 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.ProbabilityConfig;
-import net.minecraft.world.gen.carver.Carver;
 import net.minecraft.world.gen.decorator.*;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.placer.SimpleBlockPlacer;
-import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
 import java.util.Arrays;

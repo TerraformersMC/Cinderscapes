@@ -1,7 +1,6 @@
 package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
-import com.terraformersmc.terraform.util.RecipeUtil;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -9,7 +8,7 @@ import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -18,7 +17,7 @@ import java.util.Map;
  */
 public class CinderscapesItems {
     // Acts as a kind of local registry for items added by Cinderscapes
-    private static final Map<Identifier, Item> ITEMS = new HashMap<>();
+    private static final Map<Identifier, Item> ITEMS = new LinkedHashMap<>();
 
     public static final Item BRAMBLE_BERRIES = add("bramble_berries", new AliasedBlockItem(CinderscapesBlocks.BRAMBLE_BERRY_BUSH, new Item.Settings().group(ItemGroup.FOOD).food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).alwaysEdible().snack().statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 2400, 0), 1.0F).build())));
 

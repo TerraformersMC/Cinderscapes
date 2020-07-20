@@ -1,6 +1,5 @@
 package com.terraformersmc.cinderscapes.surfacebuilder;
 
-import com.terraformersmc.cinderscapes.surfacebuilder.config.EmptySurfaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;

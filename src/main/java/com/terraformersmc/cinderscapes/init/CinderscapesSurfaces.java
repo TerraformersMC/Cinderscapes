@@ -2,7 +2,6 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.surfacebuilder.AshyShoalsSurfaceBuilder;
-import com.terraformersmc.cinderscapes.surfacebuilder.config.EmptySurfaceConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
