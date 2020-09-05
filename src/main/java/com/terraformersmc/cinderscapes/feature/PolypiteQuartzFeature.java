@@ -1,14 +1,11 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import com.mojang.serialization.Codec;
 import com.terraformersmc.cinderscapes.feature.config.PolypiteQuartzFeatureConfig;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.gen.StructureAccessor;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 
@@ -26,7 +23,7 @@ public class PolypiteQuartzFeature extends Feature<PolypiteQuartzFeatureConfig> 
     }
 
     @Override
-    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, PolypiteQuartzFeatureConfig config) {
+    public boolean generate(StructureWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, PolypiteQuartzFeatureConfig config) {
         if (world.isAir(pos)) {
             List<Direction> valid_faces = new ArrayList<>();
             for (Direction dir : Direction.values()) {

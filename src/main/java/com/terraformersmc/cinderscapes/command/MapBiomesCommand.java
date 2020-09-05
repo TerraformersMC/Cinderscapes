@@ -5,12 +5,16 @@ import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import net.fabricmc.fabric.api.registry.CommandRegistry;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.biome.BiomeKeys;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -23,15 +27,15 @@ import java.util.Map;
 
 // TODO: Check
 public class MapBiomesCommand {
-    private static final Map<Biome, Integer> BIOME2COLOR = new HashMap<>();
+    private static final Map<RegistryKey<Biome>, Integer> BIOME2COLOR = new HashMap<>();
     private static DecimalFormat numberFormat = new DecimalFormat("#.00");
 
     static {
-        BIOME2COLOR.put(Biomes.NETHER_WASTES, 0xff7700);
-        BIOME2COLOR.put(Biomes.WARPED_FOREST, 0x00e6b89);
-        BIOME2COLOR.put(Biomes.CRIMSON_FOREST, 0xee0000);
-        BIOME2COLOR.put(Biomes.SOUL_SAND_VALLEY, 0x45e3ff);
-        BIOME2COLOR.put(Biomes.BASALT_DELTAS, 0x949494);
+        BIOME2COLOR.put(BiomeKeys.NETHER_WASTES, 0xff7700);
+        BIOME2COLOR.put(BiomeKeys.WARPED_FOREST, 0x00e6b89);
+        BIOME2COLOR.put(BiomeKeys.CRIMSON_FOREST, 0xee0000);
+        BIOME2COLOR.put(BiomeKeys.SOUL_SAND_VALLEY, 0x45e3ff);
+        BIOME2COLOR.put(BiomeKeys.BASALT_DELTAS, 0x949494);
         BIOME2COLOR.put(CinderscapesBiomes.QUARTZ_CANYON, 0xffffff);
         BIOME2COLOR.put(CinderscapesBiomes.BLACKSTONE_SHALES, 0x303030);
         BIOME2COLOR.put(CinderscapesBiomes.LUMINOUS_GROVE, 0x323aa8);
@@ -53,31 +57,32 @@ public class MapBiomesCommand {
 
     private static void execute(ServerCommandSource source) {
         //while this *can* be run in the overworld, it's gonna be pretty useless
-        if (source.getWorld().getDimensionRegistryKey() != DimensionType.THE_NETHER_REGISTRY_KEY) {
+        ServerWorld world = source.getWorld();
+        Registry<Biome> biomes = world.getRegistryManager().get(Registry.BIOME_KEY);
+        if (world.getRegistryKey() != World.NETHER) {
             source.sendFeedback(new LiteralText("Please run this in the nether."), false);
             return;
         }
 
         //setup image
-        Map<Biome, Integer> biomeCount = new HashMap<>();
+        Map<Identifier, Integer> biomeCount = new HashMap<>();
         BufferedImage img = new BufferedImage(2048, 2048, BufferedImage.TYPE_INT_RGB);
 
         int progressUpdate = img.getHeight() / 8;
 
         for (int x = 0; x < img.getHeight(); x++) {
             for (int z = 0; z < img.getWidth(); z++) {
-                Biome b = source.getWorld().getBiomeForNoiseGen(x * 4, 0, z * 4);
-                Integer color = BIOME2COLOR.get(b);
+                Biome b = world.getBiomeForNoiseGen(x * 4, 0, z * 4);
+                RegistryKey<Biome> key = biomes.getKey(b).orElseThrow(
+                        () -> new IllegalStateException("Unregistered biome: " + b)
+                );
+                Integer color = BIOME2COLOR.get(key);
                 if (color == null) {
                     color = 0xffffff;
                 }
 
                 //rather dumb way of adding the count per biome
-                if (!biomeCount.containsKey(b)) {
-                    biomeCount.put(b, 0);
-                } else {
-                    biomeCount.put(b, biomeCount.get(b) + 1);
-                }
+                biomeCount.merge(key.getValue(), 1, Integer::sum);
 
                 //set the color
                 img.setRGB(x, z, color);
@@ -93,7 +98,7 @@ public class MapBiomesCommand {
         //summate all of the biome counts
         int totalCount = biomeCount.values().stream().mapToInt(i -> i).sum();
         //TODO: sort by total count
-        biomeCount.forEach((biome, integer) -> source.sendFeedback(new TranslatableText(biome.getTranslationKey()).append(": " + (integer * 16) + Formatting.GRAY + " (" + numberFormat.format(((double) integer / totalCount) * 100) + "%)"), true));
+        biomeCount.forEach((biome, integer) -> source.sendFeedback(new LiteralText(biome.toString()).append(": " + (integer * 16) + Formatting.GRAY + " (" + numberFormat.format(((double) integer / totalCount) * 100) + "%)"), true));
 
         //save the biome map
         Path p = Paths.get("biomemap.png");

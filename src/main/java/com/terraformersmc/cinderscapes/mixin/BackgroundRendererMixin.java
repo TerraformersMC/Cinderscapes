@@ -4,7 +4,7 @@ package com.terraformersmc.cinderscapes.mixin;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.terraformersmc.cinderscapes.client.GlStateManagerHelper;
-import com.terraformersmc.cinderscapes.mixinterface.FogDensityBiome;
+import com.terraformersmc.cinderscapes.mixinterface.FogDensityBiomes;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
 import net.minecraft.entity.Entity;
@@ -13,6 +13,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import org.spongepowered.asm.mixin.Mixin;
@@ -41,7 +42,7 @@ public class BackgroundRendererMixin {
         FluidState fluidState = camera.getSubmergedFluidState();
         Entity entity = camera.getFocusedEntity();
         World world = entity.getEntityWorld();
-        Biome biome = world.getBiome(pos);
+        RegistryKey<Biome> biome = world.method_31081(pos).orElse(null);
 
         // If the entity is not inside of a fluid
         if (fluidState.getFluid() == Fluids.EMPTY) {
@@ -61,9 +62,10 @@ public class BackgroundRendererMixin {
                     newEnd = viewDistance;
                 }
 
-                if (biome instanceof FogDensityBiome) {
-                    newStart = newStart * ((FogDensityBiome) biome).fogMultiplier();
-                    newEnd = newEnd * ((FogDensityBiome) biome).fogMultiplier();
+                if (biome != null && FogDensityBiomes.isFogDensityBiome(biome)) {
+                    float multiplier = FogDensityBiomes.getFogMultiplier(biome);
+                    newStart = newStart * multiplier;
+                    newEnd = newEnd * multiplier;
                 }
 
                 float oldStart = GlStateManagerHelper.getFogStart();

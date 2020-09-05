@@ -1,8 +1,14 @@
 package com.terraformersmc.cinderscapes;
 
-import com.terraformersmc.cinderscapes.command.ShapeCommand;
-import com.terraformersmc.cinderscapes.init.*;
 import com.terraformersmc.cinderscapes.command.MapBiomesCommand;
+import com.terraformersmc.cinderscapes.command.ShapeCommand;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
+import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
+import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesGroups;
+import com.terraformersmc.cinderscapes.init.CinderscapesItems;
+import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
+import com.terraformersmc.cinderscapes.init.CinderscapesTags;
 import com.terraformersmc.cinderscapes.util.NoiseCollisionChecker;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
@@ -32,7 +38,6 @@ public class Cinderscapes implements ModInitializer {
         CinderscapesDecorators.init();
         CinderscapesFeatures.init();
         CinderscapesSurfaces.init();
-        CinderscapesBiomes.init();
         CinderscapesGroups.init();
 
         MapBiomesCommand.register();

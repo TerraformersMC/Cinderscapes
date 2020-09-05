@@ -43,19 +43,19 @@ public class UberCountDecoratorConfig implements DecoratorConfig {
     public static final Codec<UberCountDecoratorConfig> CODEC = RecordCodecBuilder.create((instance) -> {
         return instance.group(Codec.INT.fieldOf("count").forGetter((config) -> {
             return config.count;
-        }), Codec.INT.fieldOf("bottom_offset").withDefault(0).forGetter((config) -> {
+        }), Codec.INT.fieldOf("bottom_offset").orElse(0).forGetter((config) -> {
             return config.bottomOffset;
-        }), Codec.INT.fieldOf("top_offset").withDefault(0).forGetter((config) -> {
+        }), Codec.INT.fieldOf("top_offset").orElse(0).forGetter((config) -> {
             return config.topOffset;
-        }), Codec.INT.fieldOf("maximum").withDefault(255).forGetter((config) -> {
+        }), Codec.INT.fieldOf("maximum").orElse(255).forGetter((config) -> {
             return config.maximum;
-        }), BlockState.CODEC.listOf().fieldOf("placeable_list").withDefault(new ArrayList<>()).forGetter((config) -> {
+        }), BlockState.CODEC.listOf().fieldOf("placeable_list").orElse(new ArrayList<>()).forGetter((config) -> {
             return config.placeableList;
-        }), BlockState.CODEC.listOf().fieldOf("replaceable_list").withDefault(new ArrayList<>()).forGetter((config) -> {
+        }), BlockState.CODEC.listOf().fieldOf("replaceable_list").orElse(new ArrayList<>()).forGetter((config) -> {
             return config.replaceableList;
         }), Codec.STRING.fieldOf("offset").forGetter((config) -> {
             return config.offset.getName();
-        }), Codec.INT.fieldOf("radius").withDefault(0).forGetter((config) -> {
+        }), Codec.INT.fieldOf("radius").orElse(0).forGetter((config) -> {
             return config.radius;
         })).apply(instance, UberCountDecoratorConfig::new);
     });

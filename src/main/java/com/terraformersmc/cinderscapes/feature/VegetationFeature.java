@@ -1,13 +1,10 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import com.mojang.serialization.Codec;
 import com.terraformersmc.cinderscapes.feature.config.VegetationFeatureConfig;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 
@@ -23,7 +20,7 @@ public class VegetationFeature extends Feature<VegetationFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, VegetationFeatureConfig config) {
+    public boolean generate(StructureWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, VegetationFeatureConfig config) {
         return generateVegetation(world, random, pos, config, 8, 4);
     }
 

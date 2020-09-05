@@ -5,8 +5,7 @@ import com.terraformersmc.cinderscapes.util.shapelib.Quaternion;
 import com.terraformersmc.cinderscapes.util.shapelib.Shape;
 import com.terraformersmc.cinderscapes.util.shapelib.Shapes;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.gen.StructureAccessor;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 
@@ -18,7 +17,7 @@ public class CeilingShardFeature extends Feature<SimpleStateFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, SimpleStateFeatureConfig config) {
+    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, SimpleStateFeatureConfig config) {
         int amount = random.nextInt(3) + 2;
         Shape shape = new Shape();
         for (int i = 0; i < amount; i++) {

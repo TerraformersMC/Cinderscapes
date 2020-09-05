@@ -7,14 +7,12 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.gen.StructureAccessor;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
-import java.util.function.Function;
 
 // TODO: Make a feature config allowing the blockstates to change
 public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig> {
@@ -24,22 +22,23 @@ public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig>
         super(DefaultFeatureConfig.CODEC);
     }
 
-    public boolean generate(ServerWorldAccess ServerWorldAccess, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, DefaultFeatureConfig defaultFeatureConfig) {
-        if (!ServerWorldAccess.isAir(blockPos)) {
+    @Override
+    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, DefaultFeatureConfig featureConfig) {
+        if (!world.isAir(blockPos)) {
             return false;
         } else {
-            Block block = ServerWorldAccess.getBlockState(blockPos.up()).getBlock();
+            Block block = world.getBlockState(blockPos.up()).getBlock();
             if (block != Blocks.BLACKSTONE && block != Blocks.NETHER_WART_BLOCK) {
                 return false;
             } else {
-                this.generateNetherWartBlocksInArea(ServerWorldAccess, random, blockPos);
-                this.generateVinesInArea(ServerWorldAccess, random, blockPos);
+                this.generateNetherWartBlocksInArea(world, random, blockPos);
+                this.generateVinesInArea(world, random, blockPos);
                 return true;
             }
         }
     }
 
-    private void generateNetherWartBlocksInArea(ServerWorldAccess world, Random random, BlockPos pos) {
+    private void generateNetherWartBlocksInArea(StructureWorldAccess world, Random random, BlockPos pos) {
         world.setBlockState(pos, Blocks.NETHER_WART_BLOCK.getDefaultState(), 2);
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         BlockPos.Mutable mutable2 = new BlockPos.Mutable();
@@ -71,7 +70,7 @@ public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig>
 
     }
 
-    private void generateVinesInArea(ServerWorldAccess world, Random random, BlockPos pos) {
+    private void generateVinesInArea(StructureWorldAccess world, Random random, BlockPos pos) {
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         for(int i = 0; i < 100; ++i) {
             mutable.set(pos, random.nextInt(8) - random.nextInt(8), random.nextInt(2) - random.nextInt(7), random.nextInt(8) - random.nextInt(8));
@@ -94,7 +93,7 @@ public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig>
 
     }
 
-    public static void generateVineColumn(ServerWorldAccess world, Random random, BlockPos.Mutable pos, int length, int minAge, int maxAge) {
+    public static void generateVineColumn(StructureWorldAccess world, Random random, BlockPos.Mutable pos, int length, int minAge, int maxAge) {
         for(int i = 0; i <= length; ++i) {
             if (world.isAir(pos)) {
                 if (i == length || !world.isAir(pos.down())) {

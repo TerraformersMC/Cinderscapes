@@ -35,6 +35,6 @@ public class CinderscapesCanopiedFungusBlock extends FungusBlock {
     }
 
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        (this.config.get()).generate(world, world.getStructureAccessor(), world.getChunkManager().getChunkGenerator(), random, pos);
+        (this.config.get()).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
 }

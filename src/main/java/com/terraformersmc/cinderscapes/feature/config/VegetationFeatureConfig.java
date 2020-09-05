@@ -33,7 +33,7 @@ public class VegetationFeatureConfig implements FeatureConfig {
     }
 
     public static final Codec<VegetationFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
-        return instance.group(BlockStateProvider.CODEC.fieldOf("vegetation_state").forGetter((config) -> {
+        return instance.group(BlockStateProvider.TYPE_CODEC.fieldOf("vegetation_state").forGetter((config) -> {
             return config.vegetationStates;
         }), BlockState.CODEC.listOf().fieldOf("placeable_states").forGetter((config) -> {
             return config.placeableStates;

@@ -2,8 +2,7 @@ package com.terraformersmc.cinderscapes.mixin;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesTags;
-import com.terraformersmc.cinderscapes.mixinterface.AshyBiome;
-import net.minecraft.block.Block;
+import com.terraformersmc.cinderscapes.mixinterface.AshyBiomes;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -32,9 +31,8 @@ import java.util.function.Supplier;
 @Mixin(ServerWorld.class)
 public abstract class ServerWorldMixin extends World {
 
-
-    protected ServerWorldMixin(MutableWorldProperties mutableWorldProperties, RegistryKey<World> registryKey, RegistryKey<DimensionType> registryKey2, DimensionType dimensionType, Supplier<Profiler> supplier, boolean bl, boolean bl2, long l) {
-        super(mutableWorldProperties, registryKey, registryKey2, dimensionType, supplier, bl, bl2, l);
+    public ServerWorldMixin(MutableWorldProperties properties, RegistryKey<World> registryRef, DimensionType dimensionType, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed) {
+        super(properties, registryRef, dimensionType, profiler, isClient, debugWorld, seed);
     }
 
     @Inject(method="tickChunk", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/server/world/ServerWorld;getBiome(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/world/biome/Biome;", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
@@ -42,12 +40,12 @@ public abstract class ServerWorldMixin extends World {
 
         BlockPos pos = this.getRandomPosInChunk(i, 0, j, 15);
         BlockState state = getBlockState(pos);
-        Biome biome = this.getBiome(pos);
+        RegistryKey<Biome> biome = this.method_31081(pos).orElse(null);
 
-        while (!( biome instanceof AshyBiome && Block.isSideSolidFullSquare(state, this, pos, Direction.UP) && CinderscapesTags.ASH_BLOCKER.contains(blockAbove(pos).getBlock()) && ((AshyBiome) biome).canSetAsh(this, pos.up())) && pos.getY() < 128) {
+        while (!( AshyBiomes.isAshyBiome(biome) && state.isSideSolidFullSquare(this, pos, Direction.UP) && CinderscapesTags.ASH_BLOCKER.contains(blockAbove(pos).getBlock()) && AshyBiomes.canSetAsh(biome, this, pos.up())) && pos.getY() < 128) {
             pos = pos.up();
             state = getBlockState(pos);
-            biome = this.getBiome(pos);
+            biome = this.method_31081(pos).orElse(null);
         }
         if (pos.getY() < 128) this.setBlockState(pos.up(), CinderscapesBlocks.ASH.getDefaultState());
     }

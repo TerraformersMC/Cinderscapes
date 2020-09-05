@@ -1,13 +1,8 @@
 package com.terraformersmc.cinderscapes.biome;
 
-import com.google.common.collect.ImmutableList;
-import com.terraformersmc.cinderscapes.decorator.config.CountSafelistRangeDecoratorConfig;
-import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
-import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapeConfiguredFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -18,32 +13,30 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
+import net.minecraft.world.biome.GenerationSettings;
+import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.ProbabilityConfig;
-import net.minecraft.world.gen.decorator.CountDecoratorConfig;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.NoiseHeightmapDecoratorConfig;
-import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
+import net.minecraft.world.gen.carver.ConfiguredCarvers;
+import net.minecraft.world.gen.feature.ConfiguredFeatures;
+import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
-import java.util.Arrays;
-import java.util.List;
+public class LuminousGroveBiome {
 
-public class LuminousGroveBiome extends Biome {
-    public LuminousGroveBiome() {
-        super((new Settings())
-                .configureSurfaceBuilder(SurfaceBuilder.NETHER_FOREST, CinderscapesSurfaces.LUMINOUS_NYLIUM_CONFIG)
-                .precipitation(Precipitation.NONE)
-                .category(Category.NETHER)
+    public static final Biome.MixedNoisePoint NOISE_POINT = new Biome.MixedNoisePoint(0.35F, 0.35F, 0.0F, 0.0F, 0.2F);
+
+    public static Biome create() {
+        return new Biome.Builder()
+                .generationSettings(createGenerationSettings())
+                .spawnSettings(createSpawnSettings())
+                .precipitation(Biome.Precipitation.NONE)
+                .category(Biome.Category.NETHER)
                 .depth(0.1F)
                 .scale(0.2F)
                 .temperature(2.0F)
                 .downfall(0.0F)
                 .effects((new BiomeEffects.Builder())
+                        .skyColor(DefaultBiomeCreatorAccessor.callGetSkyColor(2.0f))
                         .waterColor(4159204)
                         .waterFogColor(329011)
                         .fogColor(2297392)
@@ -51,45 +44,57 @@ public class LuminousGroveBiome extends Biome {
                         .loopSound(SoundEvents.AMBIENT_WARPED_FOREST_LOOP)
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0D))
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111D))
-                        .music(MusicType.method_27283(SoundEvents.MUSIC_NETHER_WARPED_FOREST))
+                        .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_WARPED_FOREST))
                         .build())
-                .parent(null)
-                .noises(ImmutableList.of(new MixedNoisePoint(0.35F, 0.35F, 0.0F, 0.0F, 0.2F))));
+                .build();
+    }
 
+    private static GenerationSettings createGenerationSettings() {
+        GenerationSettings.Builder builder = new GenerationSettings.Builder();
+        builder.surfaceBuilder(CinderscapesSurfaces.CONFIGURED_LUMINOUS_GROVE);
 
         // UMBRAL FUNGUS
-        List<BlockState> safelist = Arrays.asList(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState());
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.CANOPIED_HUGE_FUNGUS.configure(CinderscapesFeatures.UMBRAL_FUNGUS_NOT_PLANTED_CONFIG).createDecoratedFeature(CinderscapesDecorators.COUNT_FLOOR.configure(new CountSafelistRangeDecoratorConfig(32, 20, 20, 128, safelist))));
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.CANOPIED_HUGE_FUNGUS);
 
         // GLOWSTONE
-        this.addFeature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.GLOWSTONE_BLOB.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.LIGHT_GEM_CHANCE.configure(new CountDecoratorConfig(40))));
-        this.addFeature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, Feature.GLOWSTONE_BLOB.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(40, 0, 0, 128))));
+        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.GLOWSTONE_EXTRA);
+        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.GLOWSTONE);
 
         // SHROOMLIGHT BUSHES
-        this.addFeature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesFeatures.SHROOMLIGHT_BUSH.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(5, 0, 0, 128))));
+        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.SHROOMLIGHT_BUSH);
 
         // VEGETATION
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesFeatures.VEGETATION.configure(CinderscapesFeatures.LUMINOUS_GROVE_VEGETATION_CONFIG).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(8))));
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(CinderscapesFeatures.LUMINOUS_POD_CONFIG).createDecoratedFeature(Decorator.NOISE_HEIGHTMAP_32.configure(new NoiseHeightmapDecoratorConfig(-0.8D, 0, 7))));
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(CinderscapesFeatures.TALL_PHOTOFERN_CONFIG).createDecoratedFeature(Decorator.NOISE_HEIGHTMAP_32.configure(new NoiseHeightmapDecoratorConfig(-0.8D, 0, 7))));
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.VEGETATION_LUMINOUS_GROWTH);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.LUMINOUS_POD);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.TALL_PHOTOFERN);
 
         // VINES
-        this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesFeatures.UMBRAL_VINE.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(20, 0, 0, 128))));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.UMBRAL_VINE);
 
         // DEFAULT MINECRAFT FEATURES
-        this.addStructureFeature(DefaultBiomeFeatures.FORTRESS);
-        this.addStructureFeature(DefaultBiomeFeatures.BASTION_REMNANT);
-        this.addStructureFeature(DefaultBiomeFeatures.NETHER_RUINED_PORTAL);
-        this.addCarver(GenerationStep.Carver.AIR, configureCarver(net.minecraft.world.gen.carver.Carver.NETHER_CAVE, new ProbabilityConfig(0.2F)));
-        this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, net.minecraft.world.gen.feature.Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Target.NETHERRACK, Blocks.MAGMA_BLOCK.getDefaultState(), 33)).createDecoratedFeature(Decorator.MAGMA.configure(new CountDecoratorConfig(4))));
-        this.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, net.minecraft.world.gen.feature.Feature.SPRING_FEATURE.configure(DefaultBiomeFeatures.ENCLOSED_NETHER_SPRING_CONFIG).createDecoratedFeature(Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(16, 10, 20, 128))));
-        DefaultBiomeFeatures.addNetherMineables(this);
+        builder.structureFeature(ConfiguredStructureFeatures.FORTRESS);
+        builder.structureFeature(ConfiguredStructureFeatures.BASTION_REMNANT);
+        builder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);
+        builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_MAGMA);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_CLOSED);
+        DefaultBiomeFeatures.addNetherMineables(builder);
 
-        // SPAWNS
-        this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.ENDERMAN, 1, 4, 4));
-        this.addSpawn(SpawnGroup.CREATURE, new SpawnEntry(EntityType.STRIDER, 60, 1, 2));
-        this.addSpawnDensity(EntityType.ENDERMAN, 1.0D, 0.12D);
-
+        return builder.build();
 
     }
+
+    private static SpawnSettings createSpawnSettings() {
+
+        SpawnSettings.Builder builder = new SpawnSettings.Builder();
+
+            // SPAWNS
+        builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4));
+        builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
+        builder.spawnCost(EntityType.ENDERMAN, 1.0D, 0.12D);
+
+        return builder.build();
+
+    }
+
 }

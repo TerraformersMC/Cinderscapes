@@ -3,9 +3,10 @@
   "package": "com.terraformersmc.cinderscapes.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BiomeAccessor",
+    "MultiNoiseBiomeSourceAccessor",
     "ServerWorldMixin",
-    "NetherrackBlockMixin"
+    "NetherrackBlockMixin",
+    "DefaultBiomeCreatorAccessor"
   ],
   "client": [
     "BackgroundRendererMixin"
