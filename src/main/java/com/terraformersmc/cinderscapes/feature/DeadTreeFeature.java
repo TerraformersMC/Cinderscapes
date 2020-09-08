@@ -1,10 +1,16 @@
 package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.cinderscapes.util.shapelib.MathHelper;
-import com.terraformersmc.cinderscapes.util.shapelib.Quaternion;
-import com.terraformersmc.cinderscapes.util.shapelib.Shape;
-import com.terraformersmc.cinderscapes.util.shapelib.Shapes;
+import com.terraformersmc.shapes.api.Position;
+import com.terraformersmc.shapes.api.Quaternion;
+import com.terraformersmc.shapes.api.Shape;
+import com.terraformersmc.shapes.impl.Shapes;
+import com.terraformersmc.shapes.impl.filler.SimpleFiller;
+import com.terraformersmc.shapes.impl.layer.pathfinder.AddLayer;
+import com.terraformersmc.shapes.impl.layer.transform.RotateLayer;
+import com.terraformersmc.shapes.impl.layer.transform.TranslateLayer;
+import com.terraformersmc.shapes.impl.validator.AirValidator;
+import com.terraformersmc.shapes.impl.validator.SafelistValidator;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -39,42 +45,45 @@ public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
         if (world.getBlockState(pos.down()).getBlock() == Blocks.MAGMA_BLOCK || world.getBlockState(pos.down()).getBlock() == CinderscapesBlocks.SCORCHED_STEM) {
             return false;
         }
-        Shape shape = new Shape();
-        boolean good = recursiveTree(world, pos, new ArrayList<>(), 3, 3, random, shape);
-        if (good) {
-            shape.fill(CinderscapesBlocks.SCORCHED_STEM.getDefaultState(), world);
-            return true;
-        }
-        return false;
+
+        int trunkHeight = random.nextInt(4) + 4;
+
+        Shape shape = recursiveTree(3, random);
+        shape
+            .applyLayer(new TranslateLayer(Position.of(0, trunkHeight, 0)))
+            .applyLayer(new AddLayer(Shapes.rectanglarPrism(1, trunkHeight, 1)))
+            .applyLayer(new TranslateLayer(Position.of(pos)))
+            .validate(new SafelistValidator(world, Arrays.asList(Blocks.AIR.getDefaultState(), CinderscapesBlocks.ASH.getDefaultState())), (safeShape) -> {
+                safeShape.fill(new SimpleFiller(world, CinderscapesBlocks.SCORCHED_HYPHAE.getDefaultState()));
+            });
+        return true;
     }
 
-    private boolean recursiveTree(StructureWorldAccess world, BlockPos pos, List<Quaternion> previousRotations, int startingPoint, int recursionLevel, Random random, Shape toBuild) {
+    private Shape recursiveTree(int recursionLevel, Random random) {
         if (recursionLevel == 0) {
-            return true;
+            return Shape.of((point) -> false, Position.of(0, 0, 0), Position.of(0, 0, 0));
         }
-        boolean allGood = true;
-        float zAngle = random.nextFloat() * 30 + 15;
-        float yAngle = random.nextFloat() * 360;
-        if (recursionLevel == startingPoint) {
-            zAngle = 0;
-            yAngle = 0;
-        }
-        int height = random.nextInt(2) + Math.round(MathHelper.map(recursionLevel, startingPoint, 0, 6, 2));
 
-        List<Quaternion> rotations = new ArrayList<Quaternion>(previousRotations);
-        rotations.add(new Quaternion(0, yAngle, zAngle, true));
+        int amount = random.nextInt(4) + 1;
 
-        BlockPos endPoint = Quaternion.of(0, 0, height, 0).rotateBy(rotations).toBlockPos().add(pos);
-        Shape line = Shapes.line(pos, endPoint);
-        if (line.isSafeWhitelist(world, Arrays.asList(Blocks.AIR.getDefaultState(), CinderscapesBlocks.ASH.getDefaultState()))) {
-            toBuild.join(line);
-            int amount = random.nextInt(3) + 2;
-            for (int i = 0; i < amount; i++) {
-                allGood = allGood && recursiveTree(world, endPoint, rotations, startingPoint, recursionLevel - 1, random, toBuild);
-            }
-        } else {
-            allGood = false;
+        Shape shape = Shape.of((point) -> false, Position.of(0, 0, 0), Position.of(0, 0, 0));
+
+        for (int i = 0; i < amount; i++) {
+
+            float zAngle = random.nextFloat() * 30 + 15;
+            float yAngle = random.nextFloat() * 360;
+
+            int height = random.nextInt(2) + 4;
+
+            shape
+                .applyLayer(new AddLayer(
+                    recursiveTree(recursionLevel - 1, random)
+                        .applyLayer(new TranslateLayer(Position.of(0, height, 0)))
+                        .applyLayer(new AddLayer(Shapes.rectanglarPrism(1, height, 1)))
+                        .applyLayer(new RotateLayer(Quaternion.of(0, yAngle, zAngle, true)))
+                ));
         }
-        return allGood;
+
+        return shape;
     }
 }

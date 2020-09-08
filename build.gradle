@@ -30,12 +30,10 @@ dependencies {
     modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
     modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modCompile "net.fabricmc.fabric-api:fabric-biomes-v1:1.1.0+82c487bb4e" // TODO REMOVE ONCE RELEASED / MERGED
-    modCompile "com.terraformersmc:terraform:${project.terraform_version}"
+
     modCompile "com.terraformersmc:shapes:${project.shapes_version}"
-    modCompile "com.terraformersmc:dossier:${project.dossier_version}"
 
     include "com.terraformersmc:shapes:${project.shapes_version}"
-    include "com.terraformersmc:terraform:${project.terraform_version}"
 
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
@@ -294,4 +292,3 @@ ext.createDiscordChangelog = { fullChangelogUrl ->
     }
     return webhookChangelog.toString()
 }
-

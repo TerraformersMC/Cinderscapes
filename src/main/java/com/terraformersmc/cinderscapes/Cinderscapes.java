@@ -1,7 +1,5 @@
 package com.terraformersmc.cinderscapes;
 
-import com.terraformersmc.cinderscapes.command.MapBiomesCommand;
-import com.terraformersmc.cinderscapes.command.ShapeCommand;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
@@ -16,22 +14,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-/**
- * [REVIEWED]
- *
- * @author <Wtoll> Will Toll on 2020-05-02
- * @project Cinderscapes
- */
 public class Cinderscapes implements ModInitializer {
 
-    public static final String MOD_ID = "cinderscapes";
-    public static final Logger LOGGER = LogManager.getLogger(StringUtils.capitalize(MOD_ID));
+    public static final String NAMESPACE = "cinderscapes";
+    public static final Logger LOGGER = LogManager.getLogger(StringUtils.capitalize(NAMESPACE));
 
-    /**
-     * Initializes the custom content in the mod
-     */
+    //TODO: Add back a better implementation of the fog density in the Ashy Shoals
+
     @Override
     public void onInitialize() {
+        // TODO: Review this down
         CinderscapesItems.init();
         CinderscapesBlocks.init();
         CinderscapesTags.init();
@@ -40,17 +32,10 @@ public class Cinderscapes implements ModInitializer {
         CinderscapesSurfaces.init();
         CinderscapesGroups.init();
 
-        MapBiomesCommand.register();
-        ShapeCommand.register();
         NoiseCollisionChecker.init();
     }
 
-    /**
-     * Creates an identifier value using the Cinderscapes namespace
-     * @param s The string representing the path of the identifier within the Cinderscapes namespace
-     * @return An identifier with namespace equal to the Cinderscapes mod id and path equal to s
-     */
-    public static Identifier id(String s) {
-        return new Identifier(MOD_ID, s);
+    public static Identifier id(String path) {
+        return new Identifier(NAMESPACE, path);
     }
 }

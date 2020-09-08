@@ -10,10 +10,6 @@ import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
 import java.util.Random;
 
-/**
- * @author <Wtoll> Will Toll on 2020-05-23
- * @project Cinderscapes
- */
 public class AshyShoalsSurfaceBuilder extends SurfaceBuilder<TernarySurfaceConfig> {
     public AshyShoalsSurfaceBuilder() {
         super(TernarySurfaceConfig.CODEC);
@@ -27,7 +23,7 @@ public class AshyShoalsSurfaceBuilder extends SurfaceBuilder<TernarySurfaceConfi
             if (state.getBlock() == defaultBlock.getBlock()) {
                 chunk.setBlockState(pos, Blocks.NETHERRACK.getDefaultState(), false);
             } else if (state.getBlock() == defaultFluid.getBlock()) {
-                if (chunk.getBlockState(pos.up()).isAir()) {
+                if (chunk.getBlockState(pos.up()).isAir() || (random.nextBoolean() && chunk.getBlockState(pos.up(2)).isAir())) {
                     chunk.setBlockState(pos, Blocks.MAGMA_BLOCK.getDefaultState(), false);
                 } else {
                     chunk.setBlockState(pos, Blocks.NETHERRACK.getDefaultState(), false);

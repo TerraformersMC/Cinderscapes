@@ -11,10 +11,6 @@ import net.minecraft.util.registry.Registry;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * @author <Wtoll> Will Toll on 2020-05-24
- * @project Cinderscapes
- */
 public class CinderscapesItems {
     // Acts as a kind of local registry for items added by Cinderscapes
     private static final Map<Identifier, Item> ITEMS = new LinkedHashMap<>();

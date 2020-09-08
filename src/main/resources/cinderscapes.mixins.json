@@ -9,7 +9,9 @@
     "DefaultBiomeCreatorAccessor"
   ],
   "client": [
-    "BackgroundRendererMixin"
+    "client.MixinBoatEntityRenderer",
+    "client.MixinSignBlockEntityRenderer",
+    "client.MixinTexturedRenderLayers"
   ],
   "injectors": {
     "defaultRequire": 1

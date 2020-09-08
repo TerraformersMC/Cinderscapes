@@ -33,7 +33,6 @@
   "depends": {
     "fabricloader": ">=0.8.2+build.194",
     "fabric": "*",
-    "terraform": "*",
     "minecraft": ">=1.16-"
   },
   "custom": {

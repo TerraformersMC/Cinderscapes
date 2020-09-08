@@ -2,7 +2,7 @@ package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.block.GhastlyEctoplasmBlock;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.cinderscapes.util.shapelib.MathHelper;
+import com.terraformersmc.cinderscapes.util.MathHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;

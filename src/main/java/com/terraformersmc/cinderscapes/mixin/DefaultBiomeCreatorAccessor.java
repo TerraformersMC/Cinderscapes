@@ -11,5 +11,4 @@ public interface DefaultBiomeCreatorAccessor {
     static int callGetSkyColor(float temperature) {
         throw new AssertionError("mixin");
     }
-
 }

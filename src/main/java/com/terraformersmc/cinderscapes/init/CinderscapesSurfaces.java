@@ -13,14 +13,7 @@ import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * [REVIEWED]
- *
- * Contains all of the surface builders and surface configs added by Cinderscapes
- *
- * @author <Wtoll> Will Toll on 2020-05-02
- * @project Cinderscapes
- */
+// Contains all of the surface builders and surface configs added by Cinderscapes
 public class CinderscapesSurfaces {
     // Acts as a kind of local registry for surface builders added by Cinderscapes
     private static final Map<Identifier, SurfaceBuilder<? extends SurfaceConfig>> SURFACE_BUILDERS = new HashMap<>();
