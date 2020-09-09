@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes;
 
+import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
@@ -31,6 +32,7 @@ public class Cinderscapes implements ModInitializer {
         CinderscapesFeatures.init();
         CinderscapesSurfaces.init();
         CinderscapesGroups.init();
+        CinderscapesBiomes.init();
 
         NoiseCollisionChecker.init();
     }

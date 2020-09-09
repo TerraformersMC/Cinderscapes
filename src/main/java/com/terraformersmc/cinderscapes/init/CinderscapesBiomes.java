@@ -5,7 +5,7 @@ import com.terraformersmc.cinderscapes.biome.AshyShoalsBiome;
 import com.terraformersmc.cinderscapes.biome.BlackstoneShalesBiome;
 import com.terraformersmc.cinderscapes.biome.LuminousGroveBiome;
 import com.terraformersmc.cinderscapes.biome.QuartzCanyonBiome;
-import net.fabricmc.fabric.api.biomes.v1.NetherBiomes;
+import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.registry.BuiltinRegistries;
@@ -32,6 +32,11 @@ public class CinderscapesBiomes {
     public static final RegistryKey<Biome> QUARTZ_CANYON = add("quartz_canyon", QuartzCanyonBiome.create(), QuartzCanyonBiome.NOISE_POINT);
     public static final RegistryKey<Biome> LUMINOUS_GROVE = add("luminous_grove", LuminousGroveBiome.create(), LuminousGroveBiome.NOISE_POINT);
     public static final RegistryKey<Biome> ASHY_SHOALS = add("ashy_shoals", AshyShoalsBiome.create(), AshyShoalsBiome.NOISE_POINT);
+
+    // Required because something referencing this class has to be called in order to force the
+    // static initializer to run (Minecraft's Bootstrap class does similar things)
+    public static void init() {
+    }
 
     /**
      * Adds a biome to Cinderscapes local biome registry
