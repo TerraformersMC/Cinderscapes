@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
     id 'idea'
     id 'eclipse'
-    id 'fabric-loom' version '0.4-SNAPSHOT'
+    id 'fabric-loom' version '0.5-SNAPSHOT'
     id 'com.matthewprenger.cursegradle' version '1.4.0'
     id 'net.dumbcode.gradlehook' version '1.3.1'
 }
@@ -22,6 +22,8 @@ version = version + "-" + project.minecraft_version
 
 repositories {
     mavenLocal()
+    // TODO: Remove this
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -29,10 +31,12 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
     modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modCompile "net.fabricmc.fabric-api:fabric-biome-api-v1:2.0.0+2beb7acf4e" // TODO REMOVE ONCE RELEASED / MERGED
+
+    // TODO: Remove this
+    modCompile "com.github.TerraformersMC:Terraform:wip-1.16.3-SNAPSHOT"
+    include "com.github.TerraformersMC:Terraform:wip-1.16.3-SNAPSHOT"
 
     modCompile "com.terraformersmc:shapes:${project.shapes_version}"
-
     include "com.terraformersmc:shapes:${project.shapes_version}"
 
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
