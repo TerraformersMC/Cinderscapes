@@ -30,9 +30,9 @@ public class CinderscapesSurfaces {
     //////////////////////
     public static final SurfaceBuilder<TernarySurfaceConfig> ASHY_SHOALS = add("ashy_shoals", new AshyShoalsSurfaceBuilder());
 
-    public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> CONFIGURED_ASHY_SHOALS = add("ashy_shoals", ASHY_SHOALS.method_30478(ASHY_SHOALS_CONFIG));
+    public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> CONFIGURED_ASHY_SHOALS = add("ashy_shoals", ASHY_SHOALS.withConfig(ASHY_SHOALS_CONFIG));
 
-    public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> CONFIGURED_LUMINOUS_GROVE = add("luminous_grove", SurfaceBuilder.NETHER_FOREST.method_30478(LUMINOUS_NYLIUM_CONFIG));
+    public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> CONFIGURED_LUMINOUS_GROVE = add("luminous_grove", SurfaceBuilder.NETHER_FOREST.withConfig(LUMINOUS_NYLIUM_CONFIG));
 
     /**
      * Adds a surface builder to the Cinderscapes local registry

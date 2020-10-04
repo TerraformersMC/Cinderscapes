@@ -1,16 +1,15 @@
 package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.shapes.api.Position;
-import com.terraformersmc.shapes.api.Quaternion;
-import com.terraformersmc.shapes.api.Shape;
-import com.terraformersmc.shapes.impl.Shapes;
-import com.terraformersmc.shapes.impl.filler.SimpleFiller;
-import com.terraformersmc.shapes.impl.layer.pathfinder.AddLayer;
-import com.terraformersmc.shapes.impl.layer.transform.RotateLayer;
-import com.terraformersmc.shapes.impl.layer.transform.TranslateLayer;
-import com.terraformersmc.shapes.impl.validator.AirValidator;
-import com.terraformersmc.shapes.impl.validator.SafelistValidator;
+import com.terraformersmc.terraform.shapes.api.Position;
+import com.terraformersmc.terraform.shapes.api.Quaternion;
+import com.terraformersmc.terraform.shapes.api.Shape;
+import com.terraformersmc.terraform.shapes.impl.Shapes;
+import com.terraformersmc.terraform.shapes.impl.filler.SimpleFiller;
+import com.terraformersmc.terraform.shapes.impl.layer.pathfinder.AddLayer;
+import com.terraformersmc.terraform.shapes.impl.layer.transform.RotateLayer;
+import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
+import com.terraformersmc.terraform.shapes.impl.validator.SafelistValidator;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -25,10 +24,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @author <Wtoll> Will Toll on 2020-05-23
- * @project Cinderscapes
- */
 public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
     public DeadTreeFeature() {
         super(DefaultFeatureConfig.CODEC);

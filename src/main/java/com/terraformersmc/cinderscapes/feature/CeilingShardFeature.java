@@ -1,15 +1,15 @@
 package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.feature.config.SimpleStateFeatureConfig;
-import com.terraformersmc.shapes.api.Position;
-import com.terraformersmc.shapes.api.Quaternion;
-import com.terraformersmc.shapes.api.Shape;
-import com.terraformersmc.shapes.impl.Shapes;
-import com.terraformersmc.shapes.impl.filler.SimpleFiller;
-import com.terraformersmc.shapes.impl.layer.pathfinder.AddLayer;
-import com.terraformersmc.shapes.impl.layer.transform.RotateLayer;
-import com.terraformersmc.shapes.impl.layer.transform.TranslateLayer;
-import com.terraformersmc.shapes.impl.validator.SafelistValidator;
+import com.terraformersmc.terraform.shapes.api.Position;
+import com.terraformersmc.terraform.shapes.api.Quaternion;
+import com.terraformersmc.terraform.shapes.api.Shape;
+import com.terraformersmc.terraform.shapes.impl.Shapes;
+import com.terraformersmc.terraform.shapes.impl.filler.SimpleFiller;
+import com.terraformersmc.terraform.shapes.impl.layer.pathfinder.AddLayer;
+import com.terraformersmc.terraform.shapes.impl.layer.transform.RotateLayer;
+import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
+import com.terraformersmc.terraform.shapes.impl.validator.SafelistValidator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;

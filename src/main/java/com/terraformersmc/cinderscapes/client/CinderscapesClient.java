@@ -1,8 +1,8 @@
 package com.terraformersmc.cinderscapes.client;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.terraform.SpriteIdentifierRegistry;
-import com.terraformersmc.terraform.TerraformSignBlock;
+import com.terraformersmc.terraform.block.TerraformSignBlock;
+import com.terraformersmc.terraform.registry.SpriteIdentifierRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

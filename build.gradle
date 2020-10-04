@@ -22,8 +22,6 @@ version = version + "-" + project.minecraft_version
 
 repositories {
     mavenLocal()
-    // TODO: Remove this
-    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -32,12 +30,10 @@ dependencies {
     modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
     modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // TODO: Remove this
-    modCompile "com.github.TerraformersMC:Terraform:wip-1.16.3-SNAPSHOT"
-    include "com.github.TerraformersMC:Terraform:wip-1.16.3-SNAPSHOT"
-
-    modCompile "com.terraformersmc:shapes:${project.shapes_version}"
-    include "com.terraformersmc:shapes:${project.shapes_version}"
+    include "com.terraformersmc.terraform-api-experimental:terraform-legacy-v0:0.1.0-SNAPSHOT"
+    modCompile "com.terraformersmc.terraform-api-experimental:terraform-legacy-v0:0.1.0-SNAPSHOT"
+    include "com.terraformersmc.terraform-api-experimental:terraform-shapes-api-v1:0.1.0-SNAPSHOT"
+    modCompile "com.terraformersmc.terraform-api-experimental:terraform-shapes-api-v1:0.1.0-SNAPSHOT"
 
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }

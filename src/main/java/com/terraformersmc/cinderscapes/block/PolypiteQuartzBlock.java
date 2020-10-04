@@ -31,7 +31,7 @@ public class PolypiteQuartzBlock extends Block {
     private static final Map<Direction, VoxelShape> DIRECTION_TO_SHAPE = new HashMap<>();
 
     public PolypiteQuartzBlock(Settings settings) {
-        super(settings.lightLevel((state) -> 15));
+        super(settings.luminance((state) -> 15));
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

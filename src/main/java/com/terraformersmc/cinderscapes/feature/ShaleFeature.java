@@ -1,13 +1,13 @@
 package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.feature.config.SimpleStateFeatureConfig;
-import com.terraformersmc.shapes.api.Position;
-import com.terraformersmc.shapes.api.Quaternion;
-import com.terraformersmc.shapes.api.validator.AllMeetValidator;
-import com.terraformersmc.shapes.impl.Shapes;
-import com.terraformersmc.shapes.impl.filler.SimpleFiller;
-import com.terraformersmc.shapes.impl.layer.transform.RotateLayer;
-import com.terraformersmc.shapes.impl.layer.transform.TranslateLayer;
+import com.terraformersmc.terraform.shapes.api.Position;
+import com.terraformersmc.terraform.shapes.api.Quaternion;
+import com.terraformersmc.terraform.shapes.api.validator.AllMeetValidator;
+import com.terraformersmc.terraform.shapes.impl.Shapes;
+import com.terraformersmc.terraform.shapes.impl.filler.SimpleFiller;
+import com.terraformersmc.terraform.shapes.impl.layer.transform.RotateLayer;
+import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -17,10 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-17
- * @project Cinderscapes
- */
 public class ShaleFeature extends Feature<SimpleStateFeatureConfig> {
     public ShaleFeature() {
         super(SimpleStateFeatureConfig.CODEC);

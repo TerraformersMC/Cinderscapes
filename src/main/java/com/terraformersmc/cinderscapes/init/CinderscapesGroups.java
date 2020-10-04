@@ -11,7 +11,7 @@ public class CinderscapesGroups {
     // Registers the item group added by Cinderscapes
     public static void init() {
         FabricItemGroupBuilder.create(Cinderscapes.id("items"))
-            .icon(() -> CinderscapesBlocks.UMBRAL_FUNGUS.asItem().getStackForRender())
+            .icon(() -> CinderscapesBlocks.UMBRAL_FUNGUS.asItem().getDefaultStack())
             .appendItems((stacks) -> {
                 Registry.ITEM.stream().filter((item) -> {
                     return Registry.ITEM.getId(item).getNamespace().equals(Cinderscapes.NAMESPACE);
