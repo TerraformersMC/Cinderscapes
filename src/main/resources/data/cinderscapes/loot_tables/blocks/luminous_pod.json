@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -15,18 +15,38 @@
                   "predicate": {
                     "item": "minecraft:shears"
                   }
-                },
+                }
+              ],
+              "functions": [
                 {
-                  "condition": "minecraft:block_state_property",
-                  "block": "cinderscapes:luminous_pod",
-                  "properties": {
-                    "half": "lower"
-                  }
+                  "function": "minecraft:set_count",
+                  "count": 2
                 }
               ],
               "name": "cinderscapes:luminous_pod"
             }
           ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "cinderscapes:luminous_pod",
+          "properties": {
+            "half": "upper"
+          }
+        },
+        {
+          "condition": "minecraft:location_check",
+          "predicate": {
+            "block": {
+              "block": "cinderscapes:luminous_pod",
+              "state": {
+                "half": "lower"
+              }
+            }
+          },
+          "offsetY": -1
         }
       ]
     }
