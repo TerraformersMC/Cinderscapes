@@ -1,9 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "wooden_button",
   "ingredients": [
     {
-      "item": "c:sulfur"
+      "tag": "c:sulfurs"
     },
     {
       "item": "minecraft:charcoal"

@@ -1,6 +1,7 @@
 package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
+import com.terraformersmc.cinderscapes.util.MathHelper;
 import com.terraformersmc.terraform.shapes.api.Position;
 import com.terraformersmc.terraform.shapes.api.Quaternion;
 import com.terraformersmc.terraform.shapes.api.Shape;
@@ -14,6 +15,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -24,6 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+//TODO: This is brokededededed
 public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
     public DeadTreeFeature() {
         super(DefaultFeatureConfig.CODEC);
@@ -71,12 +74,12 @@ public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
             int height = random.nextInt(2) + 4;
 
             shape
-                .applyLayer(new AddLayer(
-                    recursiveTree(recursionLevel - 1, random)
-                        .applyLayer(new TranslateLayer(Position.of(0, height, 0)))
-                        .applyLayer(new AddLayer(Shapes.rectanglarPrism(1, height, 1)))
-                        .applyLayer(new RotateLayer(Quaternion.of(0, yAngle, zAngle, true)))
-                ));
+                    .applyLayer(new AddLayer(
+                            recursiveTree(recursionLevel - 1, random)
+                                    .applyLayer(new TranslateLayer(Position.of(0, height, 0)))
+                                    .applyLayer(new AddLayer(Shapes.rectanglarPrism(1, height, 1)))
+                                    .applyLayer(new RotateLayer(Quaternion.of(0, yAngle, zAngle, true)))
+                    ));
         }
 
         return shape;

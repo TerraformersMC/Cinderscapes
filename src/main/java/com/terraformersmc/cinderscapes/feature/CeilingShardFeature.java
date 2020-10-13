@@ -33,7 +33,7 @@ public class CeilingShardFeature extends Feature<SimpleStateFeatureConfig> {
             float ztheta = (random.nextFloat() * 30) + 15;
             float ytheta = random.nextFloat() * 360;
 
-            shape.applyLayer(new AddLayer(Shapes
+            shape = shape.applyLayer(new AddLayer(Shapes
                     .ellipticalPyramid(radius, radius, height)
                     .applyLayer(new RotateLayer(Quaternion.of(new net.minecraft.util.math.Quaternion(0, ytheta, ztheta, true))))
             ));

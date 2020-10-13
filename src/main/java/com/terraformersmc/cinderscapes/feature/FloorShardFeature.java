@@ -32,7 +32,7 @@ public class FloorShardFeature extends CeilingShardFeature {
 			float ztheta = (random.nextFloat() * 30) + 15;
 			float ytheta = random.nextFloat() * 360;
 
-			shape.applyLayer(new AddLayer(Shapes
+			shape = shape.applyLayer(new AddLayer(Shapes
 					.ellipticalPyramid(radius, radius, height)
 					.applyLayer(new RotateLayer(Quaternion.of(new net.minecraft.util.math.Quaternion(0, ytheta, ztheta, true))))
 			));
@@ -40,7 +40,7 @@ public class FloorShardFeature extends CeilingShardFeature {
 
 		shape
 			.applyLayer(new TranslateLayer(Position.of(pos)))
-			.applyLayer(new TranslateLayer(Position.of(0, 2, 0)))
+			.applyLayer(new TranslateLayer(Position.of(0, -2, 0)))
 			.validate(new SafelistValidator(world, config.replaceableBlocks), (validShape) -> {
 				validShape.fill(new SimpleFiller(world, config.state));
 			});
