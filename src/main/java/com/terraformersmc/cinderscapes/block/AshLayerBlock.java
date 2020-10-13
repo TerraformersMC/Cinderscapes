@@ -8,10 +8,6 @@ import net.minecraft.world.LightType;
 
 import java.util.Random;
 
-/**
- * @author <Wtoll> Will Toll on 2020-05-23
- * @project Cinderscapes
- */
 public class AshLayerBlock extends SnowBlock {
     public AshLayerBlock(Settings settings) {
         super(settings);
@@ -19,5 +15,9 @@ public class AshLayerBlock extends SnowBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+    }
+
+    public boolean canMobSpawnInside() {
+        return true;
     }
 }
