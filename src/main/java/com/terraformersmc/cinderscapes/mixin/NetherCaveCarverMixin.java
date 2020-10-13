@@ -10,6 +10,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.HashSet;
+
 @Mixin(NetherCaveCarver.class)
 public abstract class NetherCaveCarverMixin extends CaveCarver {
 
@@ -19,6 +21,7 @@ public abstract class NetherCaveCarverMixin extends CaveCarver {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     public void constructor(CallbackInfo callback) {
+        this.alwaysCarvableBlocks = new HashSet<>(this.alwaysCarvableBlocks);
         this.alwaysCarvableBlocks.add(CinderscapesBlocks.UMBRAL_NYLIUM);
     }
 }
