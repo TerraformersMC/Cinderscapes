@@ -38,8 +38,9 @@ public class NoiseCollisionChecker {
             }
 
             Biome prev = noisePoints.put(noisePoint, biome);
-
-            System.out.println("WARNING: " + biome + " and " + prev + " have the same mixed noise point " + toString(noisePoint) + "! They won't generate properly!!!!");
+            if (prev != null) {
+                System.out.println("WARNING: " + biome + " and " + prev + " have the same mixed noise point " + toString(noisePoint) + "! They won't generate properly!!!!");
+            }
         }
     }
 
