@@ -31,10 +31,6 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.CRYSTALLINE_QUARTZ,
                 CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ,
                 CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ,
-                CinderscapesBlocks.POLYPITE_ROSE_QUARTZ,
-                CinderscapesBlocks.POLYPITE_QUARTZ,
-                CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ,
-                CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ,
                 CinderscapesBlocks.GHASTLY_ECTOPLASM
         );
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
@@ -50,7 +46,11 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.PYRACINTH,
                 CinderscapesBlocks.CRYSTINIUM,
                 CinderscapesBlocks.SCORCHED_TENDRILS,
-                CinderscapesBlocks.UMBRAL_DOOR
+                CinderscapesBlocks.UMBRAL_DOOR,
+                CinderscapesBlocks.POLYPITE_ROSE_QUARTZ,
+                CinderscapesBlocks.POLYPITE_QUARTZ,
+                CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ,
+                CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ
         );
 
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((TerraformSignBlock) CinderscapesBlocks.UMBRAL_SIGN).getTexture()));
