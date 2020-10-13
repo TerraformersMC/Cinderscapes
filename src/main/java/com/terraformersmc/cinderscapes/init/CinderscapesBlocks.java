@@ -120,7 +120,7 @@ public class CinderscapesBlocks {
 
     public static final Block POLYPITE_SULFUR_QUARTZ = add("polypite_sulfur_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(POLYPITE_QUARTZ).materialColor(MaterialColor.YELLOW)), ItemGroup.DECORATIONS);
 
-    public static final Block SULFUR_QUARTZ_ORE = addOre("sulfur_quartz_ore", ItemGroup.BUILDING_BLOCKS, 2, MaterialColor.YELLOW);
+    public static final Block SULFUR_QUARTZ_ORE = addOre("sulfur_quartz_ore", ItemGroup.BUILDING_BLOCKS, 1, MaterialColor.YELLOW);
     public static final Block SULFUR_QUARTZ_BLOCK = add("sulfur_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).materialColor(MaterialColor.YELLOW)), ItemGroup.BUILDING_BLOCKS);
     public static final Block CHISELED_SULFUR_QUARTZ_BLOCK = add("chiseled_sulfur_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).materialColor(MaterialColor.YELLOW)), ItemGroup.BUILDING_BLOCKS);
     public static final Block SULFUR_QUARTZ_PILLAR = add("sulfur_quartz_pillar", new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR).materialColor(MaterialColor.YELLOW)), ItemGroup.BUILDING_BLOCKS);
@@ -136,7 +136,7 @@ public class CinderscapesBlocks {
 
     public static final Block POLYPITE_ROSE_QUARTZ = add("polypite_rose_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(POLYPITE_QUARTZ).materialColor(MaterialColor.PINK)), ItemGroup.DECORATIONS);
 
-    public static final Block ROSE_QUARTZ_ORE = addOre("rose_quartz_ore", ItemGroup.BUILDING_BLOCKS, 2, MaterialColor.PINK);
+    public static final Block ROSE_QUARTZ_ORE = addOre("rose_quartz_ore", ItemGroup.BUILDING_BLOCKS, 1, MaterialColor.PINK);
     public static final Block ROSE_QUARTZ_BLOCK = add("rose_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).materialColor(MaterialColor.PINK)), ItemGroup.BUILDING_BLOCKS);
     public static final Block CHISELED_ROSE_QUARTZ_BLOCK = add("chiseled_rose_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).materialColor(MaterialColor.PINK)), ItemGroup.BUILDING_BLOCKS);
     public static final Block ROSE_QUARTZ_PILLAR = add("rose_quartz_pillar", new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR).materialColor(MaterialColor.PINK)), ItemGroup.BUILDING_BLOCKS);
@@ -152,7 +152,7 @@ public class CinderscapesBlocks {
 
     public static final Block POLYPITE_SMOKY_QUARTZ = add("polypite_smoky_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(POLYPITE_QUARTZ).materialColor(MaterialColor.GRAY)), ItemGroup.DECORATIONS);
 
-    public static final Block SMOKY_QUARTZ_ORE = addOre("smoky_quartz_ore", ItemGroup.BUILDING_BLOCKS, 2, MaterialColor.GRAY);
+    public static final Block SMOKY_QUARTZ_ORE = addOre("smoky_quartz_ore", ItemGroup.BUILDING_BLOCKS, 1, MaterialColor.GRAY);
     public static final Block SMOKY_QUARTZ_BLOCK = add("smoky_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).materialColor(MaterialColor.GRAY)), ItemGroup.BUILDING_BLOCKS);
     public static final Block CHISELED_SMOKY_QUARTZ_BLOCK = add("chiseled_smoky_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).materialColor(MaterialColor.GRAY)), ItemGroup.BUILDING_BLOCKS);
     public static final Block SMOKY_QUARTZ_PILLAR = add("smoky_quartz_pillar", new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR).materialColor(MaterialColor.GRAY)), ItemGroup.BUILDING_BLOCKS);
@@ -165,7 +165,7 @@ public class CinderscapesBlocks {
     public static final Block CRYSTALLINE_SMOKY_QUARTZ = add("crystalline_smoky_quartz", new CinderscapesTransparentBlock(FabricBlockSettings.copyOf(CRYSTALLINE_QUARTZ).materialColor(MaterialColor.GRAY)), ItemGroup.BUILDING_BLOCKS);
 
     private static Block addOre(String name, ItemGroup tab, int miningLevel, MaterialColor color) {
-        CinderscapesOreBlock block = new CinderscapesOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).materialColor(color).breakByTool(FabricToolTags.PICKAXES, miningLevel).requiresTool());
+        CinderscapesOreBlock block = new CinderscapesOreBlock(FabricBlockSettings.copyOf(Blocks.NETHER_QUARTZ_ORE).materialColor(color).breakByTool(FabricToolTags.PICKAXES, miningLevel).requiresTool());
         return add(name, block, tab);
     }
 
