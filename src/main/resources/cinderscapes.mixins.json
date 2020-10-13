@@ -6,7 +6,8 @@
     "MultiNoiseBiomeSourceAccessor",
     "ServerWorldMixin",
     "NetherrackBlockMixin",
-    "DefaultBiomeCreatorAccessor"
+    "DefaultBiomeCreatorAccessor",
+    "NetherCaveCarverMixin"
   ],
   "client": [
   ],

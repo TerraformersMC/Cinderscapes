@@ -57,8 +57,8 @@ public class LuminousGroveBiome {
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.CANOPIED_HUGE_FUNGUS);
 
         // GLOWSTONE
-        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.GLOWSTONE_EXTRA);
-        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.GLOWSTONE);
+        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE_EXTRA);
+        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE);
 
         // SHROOMLIGHT BUSHES
         builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.SHROOMLIGHT_BUSH);
