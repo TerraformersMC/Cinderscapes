@@ -71,6 +71,7 @@ public class CinderscapesFeatures {
     public static NetherrackReplaceBlobsFeatureConfig SOUL_SAND_REPLACE_CONFIG;
     public static NetherrackReplaceBlobsFeatureConfig SOUL_SOIL_REPLACE_CONFIG;
     public static NetherrackReplaceBlobsFeatureConfig GRAVEL_REPLACE_CONFIG;
+    public static NetherrackReplaceBlobsFeatureConfig CRIMSON_NYLIUM_REPLACE_CONFIG;
     public static NetherrackReplaceBlobsFeatureConfig BLACKSTONE_REPLACE_CONFIG;
 
     public static void init() {
@@ -151,6 +152,7 @@ public class CinderscapesFeatures {
         SOUL_SAND_REPLACE_CONFIG = new NetherrackReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.SOUL_SAND.getDefaultState(), spread);
         SOUL_SOIL_REPLACE_CONFIG = new NetherrackReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.SOUL_SOIL.getDefaultState(), spread);
         GRAVEL_REPLACE_CONFIG = new NetherrackReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.GRAVEL.getDefaultState(), spread);
+        CRIMSON_NYLIUM_REPLACE_CONFIG = new NetherrackReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.CRIMSON_NYLIUM.getDefaultState(), spread);
         BLACKSTONE_REPLACE_CONFIG = new NetherrackReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.BLACKSTONE.getDefaultState(), spread);
     }
 }

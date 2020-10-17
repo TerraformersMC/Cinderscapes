@@ -9,14 +9,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
-/**
- * [REVIEWED]
- *
- * The root class for nether plants of varying bounding box shapes
- *
- * @author <Wtoll> Will Toll on 2020-05-02
- * @project Cinderscapes
- */
 public class CinderscapesNetherPlantBlock extends PlantBlock {
     private final StateShapeSupplier SHAPE_SUPPLIER;
 

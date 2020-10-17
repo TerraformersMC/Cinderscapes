@@ -88,10 +88,8 @@ public class LuminousGroveBiome {
 
         SpawnSettings.Builder builder = new SpawnSettings.Builder();
 
-            // SPAWNS
-        builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4));
+        // SPAWNS
         builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
-        builder.spawnCost(EntityType.ENDERMAN, 1.0D, 0.12D);
 
         return builder.build();
 

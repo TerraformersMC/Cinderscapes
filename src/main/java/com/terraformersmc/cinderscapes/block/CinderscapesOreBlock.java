@@ -7,10 +7,6 @@ import net.minecraft.util.math.MathHelper;
 
 import java.util.Random;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-06
- * @project Cinderscapes
- */
 public class CinderscapesOreBlock extends OreBlock {
     public CinderscapesOreBlock(Settings settings) {
         super(settings);

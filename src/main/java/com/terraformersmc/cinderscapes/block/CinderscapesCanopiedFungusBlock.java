@@ -12,14 +12,6 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import java.util.Random;
 import java.util.function.Supplier;
 
-/**
- * [REVIEWED]
- *
- * A shell class to expand the scope of the default FungusBlock class
- *
- * @author <Wtoll> Will Toll on 2020-05-02
- * @project Cinderscapes
- */
 public class CinderscapesCanopiedFungusBlock extends FungusBlock {
     private final Supplier<ConfiguredFeature<CanopiedHugeFungusFeatureConfig, ?>> config;
 

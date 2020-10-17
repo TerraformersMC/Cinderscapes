@@ -20,10 +20,6 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-06
- * @project Cinderscapes
- */
 public class PolypiteQuartzBlock extends Block {
 
     public static final EnumProperty<Direction> DIRECTION = EnumProperty.of("direction", Direction.class);
@@ -31,7 +27,7 @@ public class PolypiteQuartzBlock extends Block {
     private static final Map<Direction, VoxelShape> DIRECTION_TO_SHAPE = new HashMap<>();
 
     public PolypiteQuartzBlock(Settings settings) {
-        super(settings.luminance((state) -> 15));
+        super(settings.luminance((state) -> 4));
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

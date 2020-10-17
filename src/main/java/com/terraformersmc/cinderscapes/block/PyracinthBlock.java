@@ -14,10 +14,6 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-06
- * @project Cinderscapes
- */
 public class PyracinthBlock extends CinderscapesNetherPlantBlock {
     public PyracinthBlock() {
         super(FabricBlockSettings.copy(Blocks.WARPED_ROOTS), (state) -> Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 16.0, 11.0));

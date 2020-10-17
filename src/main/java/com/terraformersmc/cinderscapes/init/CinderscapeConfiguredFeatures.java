@@ -12,10 +12,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.CountConfig;
-import net.minecraft.world.gen.decorator.CountNoiseDecoratorConfig;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.DepthAverageDecoratorConfig;
-import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
+import net.minecraft.world.gen.decorator.*;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.ConfiguredFeatures;
 import net.minecraft.world.gen.feature.Feature;
@@ -70,7 +67,7 @@ public final class CinderscapeConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> GRAVEL_ASHY_SHOALS = register("gravel_ashy_shoals", Feature.NETHERRACK_REPLACE_BLOBS.configure(CinderscapesFeatures.GRAVEL_REPLACE_CONFIG)
             .method_30377(128)
             .spreadHorizontally()
-            .repeat(10)
+            .repeat(5)
     );
 
     public static final ConfiguredFeature<?, ?> ASH_TOP_LAYER = register("ash_top_layer", CinderscapesFeatures.ASH_TOP_LAYER.configure(FeatureConfig.DEFAULT));
@@ -86,21 +83,31 @@ public final class CinderscapeConfiguredFeatures {
             Feature.NETHERRACK_REPLACE_BLOBS.configure(CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG)
                     .method_30377(64)
                     .spreadHorizontally()
-                    .repeat(30));
+                    .repeat(10)
+    );
 
-    public static final ConfiguredFeature<?, ?> SOUL_SOIL_BLACKSTONE_SHALES = register("soul_soil_blackstone_shales", Feature.NETHERRACK_REPLACE_BLOBS.configure(CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG)
-            .method_30377(128)
-            .spreadHorizontally()
-            .repeat(30));
+    public static final ConfiguredFeature<?, ?> SOUL_SOIL_BLACKSTONE_SHALES = register("soul_soil_blackstone_shales",
+            Feature.NETHERRACK_REPLACE_BLOBS.configure(CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG)
+                .method_30377(128)
+                .spreadHorizontally()
+                .repeat(30)
+    );
 
-    public static final ConfiguredFeature<?, ?> GRAVEL_BLACKSTONE_SHALES = register("gravel_blackstone_shales", Feature.NETHERRACK_REPLACE_BLOBS.configure(CinderscapesFeatures.GRAVEL_REPLACE_CONFIG)
-            .method_30377(128)
-            .spreadHorizontally()
-            .repeat(10));
+    public static final ConfiguredFeature<?, ?> PATCH_CRIMSON_ROOTS = register("patch_crimson_roots_blackstone_shales",
+            ConfiguredFeatures.PATCH_CRIMSON_ROOTS.repeat(128)
+            // TODO: Does this need spreadHorizontally? Probably not, vanilla doesn't use it
+    );
 
     private static final List<BlockState> SHALE_SAFELIST = Arrays.asList(Blocks.CRIMSON_ROOTS.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), Blocks.BLACKSTONE.getDefaultState(), Blocks.SOUL_SOIL.getDefaultState(), Blocks.SOUL_SAND.getDefaultState());
+
     public static final ConfiguredFeature<?, ?> SHALES = register("shales",
             CinderscapesFeatures.SHALE_FEATURE.configure(new SimpleStateFeatureConfig(Blocks.BLACKSTONE.getDefaultState(), SHALE_SAFELIST)).decorate(CinderscapesDecorators.COUNT_FLOOR.configure(new CountSafelistRangeDecoratorConfig(2, 20, 20, 128, SHALE_SAFELIST)))
+    );
+
+    private static final List<BlockState> LAVA_SHALE_SAFELIST = Arrays.asList(Blocks.LAVA.getDefaultState());
+
+    public static final ConfiguredFeature<?, ?> LAVA_SHALES = register("lava_shales",
+            CinderscapesFeatures.SHALE_FEATURE.configure(new SimpleStateFeatureConfig(Blocks.BLACKSTONE.getDefaultState(), SHALE_SAFELIST)).decorate(CinderscapesDecorators.COUNT_FLOOR.configure(new CountSafelistRangeDecoratorConfig(2, 20, 20, 128, LAVA_SHALE_SAFELIST)))
     );
 
     /******* LUMINOUS GROVE *********/
@@ -156,7 +163,7 @@ public final class CinderscapeConfiguredFeatures {
 
     /******* QUARTZ CANYON *******/
 
-    public static final ConfiguredFeature<?, ?> VEGETATION_QUARTZ_CANYON = register("quartz_canyon/vegetation", CinderscapesFeatures.VEGETATION.configure(CinderscapesFeatures.QUARTZ_CANYON_VEGETATION_CONFIG).decorate(Decorator.COUNT_MULTILAYER.configure(new CountConfig(1))));
+    public static final ConfiguredFeature<?, ?> VEGETATION_QUARTZ_CANYON = register("quartz_canyon/vegetation", CinderscapesFeatures.VEGETATION.configure(CinderscapesFeatures.QUARTZ_CANYON_VEGETATION_CONFIG).decorate(Decorator.COUNT.configure(new CountConfig(8))));
 
     public static final ConfiguredFeature<?, ?> ORE_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/quartz_ore", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, Blocks.NETHER_QUARTZ_ORE.getDefaultState(), 14)).decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(10, 20, 128))).spreadHorizontally().repeat(32));
     public static final ConfiguredFeature<?, ?> ORE_SULFUR_QUARTZ_CANYON = register("quartz_canyon/sulfur_ore", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, CinderscapesBlocks.SULFUR_ORE.getDefaultState(), 14)).method_30377(128).spreadHorizontally().repeat(16));

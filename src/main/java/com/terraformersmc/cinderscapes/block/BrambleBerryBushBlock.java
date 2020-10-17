@@ -22,10 +22,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-05
- * @project Cinderscapes
- */
 public class BrambleBerryBushBlock extends SweetBerryBushBlock {
     private static final VoxelShape SMALL_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
     private static final VoxelShape MEDIUM_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 13.0D, 13.0D);
