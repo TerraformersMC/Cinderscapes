@@ -55,8 +55,8 @@ public class BlackstoneShalesBiome {
         builder.surfaceBuilder(ConfiguredSurfaceBuilders.NETHER);
 
         // VEGETATION
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.BLACKSTONE_WEEPING_VINES);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.PATCH_CRIMSON_ROOTS);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.WEEPING_VINES.repeat(10));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_CRIMSON_ROOTS.repeat(128));
 
         // NETHERRACK REPLACERS
         builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.SOUL_SAND_BLACKSTONE_SHALES);

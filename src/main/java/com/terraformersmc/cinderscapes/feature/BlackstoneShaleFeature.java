@@ -54,7 +54,7 @@ public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
                 // If the four blocks below are not blackstone, soul soil, or soul sand then move down
                 for (int y = 1; y <= 4; y++) {
                     Block block = world.getBlockState(pos.down(y)).getBlock();
-                    if (!(block == Blocks.BLACKSTONE || block == Blocks.SOUL_SOIL || block == Blocks.SOUL_SAND)) {
+                    if (!(block == Blocks.BLACKSTONE || block == Blocks.SOUL_SOIL || block == Blocks.SOUL_SAND || block == Blocks.NETHERRACK)) {
                         break search;
                     }
                 }
