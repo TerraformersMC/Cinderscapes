@@ -198,7 +198,7 @@ public final class CinderscapeConfiguredFeatures {
 
     private static ConfiguredFeature<?, ?> register(String id, ConfiguredFeature<?, ?> cf) {
         Identifier realId = Cinderscapes.id(id);
-        Preconditions.checkState(!BuiltinRegistries.CONFIGURED_FEATURE.containsId(realId), "Duplicate ID: %s", id);
+        Preconditions.checkState(!BuiltinRegistries.CONFIGURED_FEATURE.getIds().contains(realId), "Duplicate ID: %s", id);
         return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, realId, cf);
     }
 
