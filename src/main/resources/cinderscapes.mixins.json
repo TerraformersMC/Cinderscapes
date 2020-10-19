@@ -3,11 +3,11 @@
   "package": "com.terraformersmc.cinderscapes.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MultiNoiseBiomeSourceAccessor",
-    "ServerWorldMixin",
-    "NetherrackBlockMixin",
-    "DefaultBiomeCreatorAccessor",
-    "NetherCaveCarverMixin"
+    "com.terraformersmc.cinderscapes.legacy.mixin.MultiNoiseBiomeSourceAccessor",
+    "com.terraformersmc.cinderscapes.legacy.mixin.ServerWorldMixin",
+    "com.terraformersmc.cinderscapes.legacy.mixin.NetherrackBlockMixin",
+    "com.terraformersmc.cinderscapes.legacy.mixin.DefaultBiomeCreatorAccessor",
+    "com.terraformersmc.cinderscapes.legacy.mixin.NetherCaveCarverMixin"
   ],
   "client": [
   ],
