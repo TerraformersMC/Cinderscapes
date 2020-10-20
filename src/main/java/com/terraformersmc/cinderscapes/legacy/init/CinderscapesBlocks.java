@@ -1,7 +1,6 @@
 package com.terraformersmc.cinderscapes.legacy.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
-import com.terraformersmc.cinderscapes.block.*;
 import com.terraformersmc.cinderscapes.legacy.block.*;
 import com.terraformersmc.terraform.block.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
