@@ -9,10 +9,6 @@ import net.minecraft.world.gen.decorator.DecoratorConfig;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-16
- * @project Cinderscapes
- */
 public class UberCountDecoratorConfig implements DecoratorConfig {
     public final int count;
     public final int bottomOffset;

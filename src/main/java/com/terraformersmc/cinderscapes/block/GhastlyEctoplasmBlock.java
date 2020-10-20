@@ -17,7 +17,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-
 public class GhastlyEctoplasmBlock extends Block {
     public static final EnumProperty<GhastlyEctoplasmBlock.Type> TYPE = EnumProperty.of("type", GhastlyEctoplasmBlock.Type.class);
 

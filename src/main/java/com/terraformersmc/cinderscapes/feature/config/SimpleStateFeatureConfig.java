@@ -7,15 +7,6 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 
 import java.util.List;
 
-
-/**
- * [REVIEWED]
- *
- * The feature configurator for various shard features
- *
- * @author <Wtoll> Will Toll
- * @project Cinderscapes
- */
 public class SimpleStateFeatureConfig implements FeatureConfig {
 
     public final BlockState state;

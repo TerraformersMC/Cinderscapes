@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-16
- * @project Cinderscapes
- */
 public class CountSafelistRangeDecoratorConfig implements DecoratorConfig {
     public final int count;
     public final int bottomOffset;

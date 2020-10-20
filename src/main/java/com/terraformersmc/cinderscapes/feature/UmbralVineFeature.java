@@ -14,7 +14,6 @@ import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-
 public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
     public UmbralVineFeature() {
         super(DefaultFeatureConfig.CODEC);

@@ -13,10 +13,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-16
- * @project Cinderscapes
- */
 public class UberCountDecorator extends Decorator<UberCountDecoratorConfig> {
     public UberCountDecorator() {
         super(UberCountDecoratorConfig.CODEC);

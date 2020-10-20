@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-//TODO: This is brokededededed
 public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
     public DeadTreeFeature() {
         super(DefaultFeatureConfig.CODEC);

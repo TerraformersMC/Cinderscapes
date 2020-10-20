@@ -16,13 +16,6 @@ import net.minecraft.world.biome.Biome;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * [REVIEWED]
- * <p>
- * Contains the biomes added by Cinderscapes
- *
- * @author Will Toll
- */
 public class CinderscapesBiomes {
 
     // Acts as a kind of local registry for Cinderscape's custom biomes

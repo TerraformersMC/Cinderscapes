@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-
 public class CinderscapesTransparentBlock extends TransparentBlock {
     public CinderscapesTransparentBlock(Settings settings) {
         super(settings);
