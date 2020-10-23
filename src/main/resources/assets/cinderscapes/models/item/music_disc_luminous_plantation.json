@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cinderscapes:item/music_disc_luminous_plantation"
+  }
+}

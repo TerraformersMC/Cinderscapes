@@ -1,4 +1,24 @@
 {
+	"music_disc.chilling_in_hell": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "cinderscapes:music/chilling_in_hell",
+				"stream": true,
+				"weight": 1
+			}
+		]
+	},
+	"music_disc.luminous_plantation": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "cinderscapes:music/luminous_plantation",
+				"stream": true,
+				"weight": 1
+			}
+		]
+	},
 	"music.nether.ashy_shoals": {
 		"category": "music",
 		"sounds": [
@@ -21,6 +41,11 @@
 				"name": "music/game/nether/nether4",
 				"stream": true,
 				"weight": 1
+			},
+			{
+				"name": "cinderscapes:music/chilling_in_hell",
+				"stream": true,
+				"weight": 4
 			}
 		]
 	},
