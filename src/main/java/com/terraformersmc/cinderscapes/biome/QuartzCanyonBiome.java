@@ -1,6 +1,7 @@
 package com.terraformersmc.cinderscapes.biome;
 
 import com.terraformersmc.cinderscapes.init.CinderscapeConfiguredFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -50,7 +51,7 @@ public class QuartzCanyonBiome {
                         .loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_NETHER_WASTES_MOOD, 6000, 8, 2.0D))
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_NETHER_WASTES_ADDITIONS, 0.0111D))
-                        .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_NETHER_WASTES))
+                        .music(MusicType.createIngameMusic(CinderscapesSoundEvents.QUARTZ_CANYON_MUSIC))
                         .build())
                 .build();
     }
