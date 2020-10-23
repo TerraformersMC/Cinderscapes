@@ -1,14 +1,6 @@
 package com.terraformersmc.cinderscapes;
 
-import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
-import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.cinderscapes.init.CinderscapesDecorators;
-import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
-import com.terraformersmc.cinderscapes.init.CinderscapesGroups;
-import com.terraformersmc.cinderscapes.init.CinderscapesItems;
-import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
-import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
-import com.terraformersmc.cinderscapes.init.CinderscapesTags;
+import com.terraformersmc.cinderscapes.init.*;
 import com.terraformersmc.cinderscapes.util.NoiseCollisionChecker;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
@@ -35,6 +27,7 @@ public class Cinderscapes implements ModInitializer {
 		CinderscapesGroups.init();
 		CinderscapesBiomes.init();
 		CinderscapesSoundEvents.init();
+		CinderscapesTrades.init();
 
 		NoiseCollisionChecker.init();
 	}
