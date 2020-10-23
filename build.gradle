@@ -35,6 +35,10 @@ dependencies {
     include "com.terraformersmc.terraform-api-experimental:terraform-shapes-api-v1:0.1.0-SNAPSHOT"
     modCompile "com.terraformersmc.terraform-api-experimental:terraform-shapes-api-v1:0.1.0-SNAPSHOT"
 
+    include "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
+    modCompile "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
+
+
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
 

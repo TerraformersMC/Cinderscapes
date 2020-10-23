@@ -4,8 +4,7 @@
 		"sounds": [
 			{
 				"name": "cinderscapes:music/chilling_in_hell",
-				"stream": true,
-				"weight": 1
+				"stream": true
 			}
 		]
 	},
@@ -14,8 +13,7 @@
 		"sounds": [
 			{
 				"name": "cinderscapes:music/luminous_plantation",
-				"stream": true,
-				"weight": 1
+				"stream": true
 			}
 		]
 	},

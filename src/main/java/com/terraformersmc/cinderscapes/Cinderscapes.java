@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes;
 
+import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.cinderscapes.init.*;
 import com.terraformersmc.cinderscapes.util.NoiseCollisionChecker;
 import net.fabricmc.api.ModInitializer;
@@ -17,7 +18,8 @@ public class Cinderscapes implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		// TODO: Review this down
+		CinderscapesConfig.init();
+
 		CinderscapesItems.init();
 		CinderscapesBlocks.init();
 		CinderscapesTags.init();

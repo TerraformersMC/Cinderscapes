@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.mixin;
 
+import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesTags;
@@ -34,23 +35,24 @@ public abstract class ServerWorldMixin extends World {
     // TODO: Revisit this and make it easier to read
     @Inject(method="tickChunk", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/server/world/ServerWorld;getBiome(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/world/biome/Biome;", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
     private void tickChunk(WorldChunk chunk, int randomTickSpeed, CallbackInfo callback, ChunkPos chunkPos, boolean bl, int i, int j, Profiler profiler, BlockPos blockPos2, BlockPos blockPos3, Biome biome2) {
+        if (CinderscapesConfig.INSTANCE.enableAshFall) {
+            BlockPos pos = this.getRandomPosInChunk(i, 0, j, 15);
+            BlockState state = getBlockState(pos);
+            RegistryKey<Biome> biome = this.method_31081(pos).orElse(null);
 
-        BlockPos pos = this.getRandomPosInChunk(i, 0, j, 15);
-        BlockState state = getBlockState(pos);
-        RegistryKey<Biome> biome = this.method_31081(pos).orElse(null);
-
-        while (!(
+            while (!(
                     biome == CinderscapesBiomes.ASHY_SHOALS &&
-                    state.isSideSolidFullSquare(this, pos, Direction.UP) &&
-                    CinderscapesTags.ASH_PERMEABLE.contains(blockAbove(pos).getBlock()) &&
-                    this.getBlockState(pos.up()).isAir() &&
-                    CinderscapesBlocks.ASH.getDefaultState().canPlaceAt(this, pos.up())) &&
-                pos.getY() < 127) {
-            pos = pos.up();
-            state = getBlockState(pos);
-            biome = this.method_31081(pos).orElse(null);
+                            state.isSideSolidFullSquare(this, pos, Direction.UP) &&
+                            CinderscapesTags.ASH_PERMEABLE.contains(blockAbove(pos).getBlock()) &&
+                            this.getBlockState(pos.up()).isAir() &&
+                            CinderscapesBlocks.ASH.getDefaultState().canPlaceAt(this, pos.up())) &&
+                    pos.getY() < 127) {
+                pos = pos.up();
+                state = getBlockState(pos);
+                biome = this.method_31081(pos).orElse(null);
+            }
+            if (pos.getY() < 127) this.setBlockState(pos.up(), CinderscapesBlocks.ASH.getDefaultState());
         }
-        if (pos.getY() < 127) this.setBlockState(pos.up(), CinderscapesBlocks.ASH.getDefaultState());
     }
 
     private BlockState blockAbove(BlockPos pos) {
