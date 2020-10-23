@@ -1,0 +1,127 @@
+{
+	"music.nether.ashy_shoals": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "music/game/nether/nether1",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether2",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether3",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether4",
+				"stream": true,
+				"weight": 1
+			}
+		]
+	},
+	"music.nether.blackstone_shales": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "music/game/nether/soulsand_valley/so_below",
+				"stream": true,
+				"weight": 7
+			},
+			{
+				"name": "music/game/nether/nether1",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether2",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether3",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether4",
+				"stream": true,
+				"weight": 1
+			}
+		]
+	},
+	"music.nether.luminous_grove": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "cinderscapes:music/oxyluciferin",
+				"stream": true,
+				"weight": 3
+			},
+			{
+				"name": "cinderscapes:music/luminous_plantation",
+				"stream": true,
+				"weight": 3
+			},
+			{
+				"name": "music/game/nether/nether1",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether2",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether3",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether4",
+				"stream": true,
+				"weight": 1
+			}
+		]
+	},
+	"music.nether.quartz_canyon": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "music/game/nether/nether_wastes/rubedo",
+				"stream": true,
+				"weight": 3
+			},
+			{
+				"name": "cinderscapes:music/crystalline_cave",
+				"stream": true,
+				"weight": 3
+			},
+			{
+				"name": "music/game/nether/nether1",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether2",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether3",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether4",
+				"stream": true,
+				"weight": 1
+			}
+		]
+	}
+}
