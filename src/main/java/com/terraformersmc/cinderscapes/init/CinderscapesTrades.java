@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.init;
 
+import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.loottables.IntegratedEntry;
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.FabricLootSupplierBuilder;
@@ -11,9 +12,12 @@ import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.UniformLootTableRange;
 import net.minecraft.loot.condition.LootCondition;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LootPoolEntryType;
 import net.minecraft.loot.function.LootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.VillagerProfession;
 import java.util.List;
@@ -22,7 +26,10 @@ public class CinderscapesTrades {
 
     private static final Identifier BARTERING_LOOT_TABLE_ID = new Identifier("minecraft", "gameplay/piglin_bartering");
 
+    public static final LootPoolEntryType INTEGRATED = Registry.register(Registry.LOOT_POOL_ENTRY_TYPE, Cinderscapes.id("integrated"), new LootPoolEntryType(new IntegratedEntry.Serializer()));
+
     public static void init() {
+
         LootTableLoadingCallback.EVENT.register((resourceManager, manager, id, supplier, setter) -> {
             if (BARTERING_LOOT_TABLE_ID.equals(id)) {
                 List<LootPool> pools = ((LootSupplierBuilderHooks) supplier).getPools();

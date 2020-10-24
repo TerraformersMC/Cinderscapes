@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 
+import com.terraformersmc.cinderscapes.mixin.SoundEventAccessor;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
@@ -24,7 +25,7 @@ public class CinderscapesSoundEvents {
 	public static final SoundEvent MUSIC_DISC_CHILLING_IN_HELL = add(new SoundEvent(Cinderscapes.id("music_disc.chilling_in_hell")));
 
 	private static <S extends SoundEvent> S add(S sound_event) {
-		SOUND_EVENTS.put(sound_event.getId(), sound_event);
+		SOUND_EVENTS.put(((SoundEventAccessor) sound_event).getId(), sound_event);
 		return sound_event;
 	}
 
