@@ -81,11 +81,6 @@
 		"category": "music",
 		"sounds": [
 			{
-				"name": "cinderscapes:music/oxyluciferin",
-				"stream": true,
-				"weight": 3
-			},
-			{
 				"name": "cinderscapes:music/luminous_plantation",
 				"stream": true,
 				"weight": 3
