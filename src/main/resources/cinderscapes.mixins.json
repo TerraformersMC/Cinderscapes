@@ -7,7 +7,8 @@
     "ServerWorldMixin",
     "NetherrackBlockMixin",
     "DefaultBiomeCreatorAccessor",
-    "NetherCaveCarverMixin"
+    "NetherCaveCarverMixin",
+    "SoundEventAccessor"
   ],
   "client": [
   ],
