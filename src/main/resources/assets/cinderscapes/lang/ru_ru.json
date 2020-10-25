@@ -115,5 +115,10 @@
   "block.cinderscapes.scorched_slab": "Выжженная плита",
   "block.cinderscapes.scorched_hyphae": "Выжженные гифы",
   "block.cinderscapes.scorched_fence_gate": "Выжженная калитка",
-  "block.cinderscapes.stripped_scorched_stem": "Очищенный выжженный стебель"
+  "block.cinderscapes.stripped_scorched_stem": "Очищенный выжженный стебель",
+  
+  "item.cinderscapes.music_disc_chilling_in_hell": "Пластинка",
+  "item.cinderscapes.music_disc_chilling_in_hell.desc": "Etorna_Z - Chilling In Hell",
+  "item.cinderscapes.music_disc_luminous_plantation": "Пластинка",
+  "item.cinderscapes.music_disc_luminous_plantation.desc": "LudoCrypt - Luminous Plantation"
 }
