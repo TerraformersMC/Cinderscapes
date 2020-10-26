@@ -1,8 +1,12 @@
 package com.terraformersmc.cinderscapes.biome;
 
+import java.util.Arrays;
+import java.util.List;
+
+import com.terraformersmc.cinderscapes.client.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.init.CinderscapeConfiguredFeatures;
-import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.sound.MusicType;
@@ -23,9 +27,6 @@ import net.minecraft.world.gen.feature.ConfiguredFeatures;
 import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders;
-
-import java.util.Arrays;
-import java.util.List;
 
 // TODO: Check
 public class QuartzCanyonBiome {

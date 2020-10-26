@@ -1,8 +1,9 @@
 package com.terraformersmc.cinderscapes.biome;
 
+import com.terraformersmc.cinderscapes.client.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.init.CinderscapeConfiguredFeatures;
-import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
+
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -10,7 +11,11 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.world.biome.*;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeEffects;
+import net.minecraft.world.biome.BiomeParticleConfig;
+import net.minecraft.world.biome.GenerationSettings;
+import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.feature.ConfiguredFeatures;

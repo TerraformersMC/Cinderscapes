@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "cinderscapes:block/ivory_teeth_top"
+    },
+    "type=middle": {
+      "model": "cinderscapes:block/ivory_teeth_middle"
+    },
+    "type=bottom": {
+      "model": "cinderscapes:block/ivory_teeth_bottom"
+    }
+  }
+}

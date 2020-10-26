@@ -1,11 +1,16 @@
 package com.terraformersmc.cinderscapes.init;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.biome.AshyShoalsBiome;
 import com.terraformersmc.cinderscapes.biome.BlackstoneShalesBiome;
+import com.terraformersmc.cinderscapes.biome.IvoryShallowsBiome;
 import com.terraformersmc.cinderscapes.biome.LuminousGroveBiome;
 import com.terraformersmc.cinderscapes.biome.QuartzCanyonBiome;
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
+
 import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
@@ -13,9 +18,6 @@ import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class CinderscapesBiomes {
 
@@ -26,6 +28,7 @@ public class CinderscapesBiomes {
     public static final RegistryKey<Biome> QUARTZ_CANYON = add("quartz_canyon", QuartzCanyonBiome.create());
     public static final RegistryKey<Biome> LUMINOUS_GROVE = add("luminous_grove", LuminousGroveBiome.create());
     public static final RegistryKey<Biome> ASHY_SHOALS = add("ashy_shoals", AshyShoalsBiome.create());
+    public static final RegistryKey<Biome> IVORY_SHALLOWS = add("ivory_shallows", IvoryShallowsBiome.create());
 
     // Required because something referencing this class has to be called in order to force the
     // static initializer to run (Minecraft's Bootstrap class does similar things)
@@ -41,6 +44,9 @@ public class CinderscapesBiomes {
         }
         if (CinderscapesConfig.INSTANCE.enableBlackstoneShales) {
             NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("blackstone_shales")), BlackstoneShalesBiome.NOISE_POINT);
+        }
+        if (CinderscapesConfig.INSTANCE.enableIvoryShallows) {
+            NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("ivory_shallows")), IvoryShallowsBiome.NOISE_POINT);
         }
     }
 

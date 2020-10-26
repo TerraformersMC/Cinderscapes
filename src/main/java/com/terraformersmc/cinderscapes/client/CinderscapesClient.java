@@ -56,7 +56,9 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ,
                 CinderscapesBlocks.POTTED_POLYPITE_SMOKY_QUARTZ,
                 CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ,
-                CinderscapesBlocks.POTTED_POLYPITE_SULFUR_QUARTZ
+                CinderscapesBlocks.POTTED_POLYPITE_SULFUR_QUARTZ,
+                CinderscapesBlocks.IVORY_TEETH,
+                CinderscapesBlocks.IVORY_SPIKE
         );
 
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((TerraformSignBlock) CinderscapesBlocks.UMBRAL_SIGN).getTexture()));

@@ -14,6 +14,7 @@ public class CinderscapesConfig implements ConfigData {
     public boolean enableBlackstoneShales = true;
     public boolean enableLuminousGrove = true;
     public boolean enableQuartzCanyon = true;
+    public boolean enableIvoryShallows = true;
 
     public boolean enableAshFall = true;
 

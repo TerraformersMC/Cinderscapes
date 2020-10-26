@@ -1,9 +1,10 @@
 package com.terraformersmc.cinderscapes.biome;
 
+import com.terraformersmc.cinderscapes.client.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.init.CinderscapeConfiguredFeatures;
-import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
 import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
+
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;

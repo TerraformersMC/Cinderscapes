@@ -2,6 +2,8 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.surfacebuilder.AshyShoalsSurfaceBuilder;
+import com.terraformersmc.cinderscapes.surfacebuilder.IvoryShallowsSurfaceBuilder;
+
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -24,16 +26,21 @@ public class CinderscapesSurfaces {
     /////////////////////
     public static final TernarySurfaceConfig LUMINOUS_NYLIUM_CONFIG = new TernarySurfaceConfig(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState());
     private static final TernarySurfaceConfig ASHY_SHOALS_CONFIG = new TernarySurfaceConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), Blocks.MAGMA_BLOCK.getDefaultState());
-
+    private static final TernarySurfaceConfig IVORY_SHALLOWS_CONFIG = new TernarySurfaceConfig(CinderscapesBlocks.IVORY_BLOCK.getDefaultState(), CinderscapesBlocks.IVORY_BLOCK.getDefaultState(), CinderscapesBlocks.IVORY_BLOCK.getDefaultState());
+    
     //////////////////////
     // SURFACE BUILDERS //
     //////////////////////
     public static final SurfaceBuilder<TernarySurfaceConfig> ASHY_SHOALS = add("ashy_shoals", new AshyShoalsSurfaceBuilder());
+    
+    public static final SurfaceBuilder<TernarySurfaceConfig> IVORY_SHALLOWS = add("ivory_shallows", new IvoryShallowsSurfaceBuilder());
 
     public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> CONFIGURED_ASHY_SHOALS = add("ashy_shoals", ASHY_SHOALS.withConfig(ASHY_SHOALS_CONFIG));
 
     public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> CONFIGURED_LUMINOUS_GROVE = add("luminous_grove", SurfaceBuilder.NETHER_FOREST.withConfig(LUMINOUS_NYLIUM_CONFIG));
 
+    public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> CONFIGURED_IVORY_SHALLOWS = add("ivory_shallows", IVORY_SHALLOWS.withConfig(IVORY_SHALLOWS_CONFIG));
+    
     /**
      * Adds a surface builder to the Cinderscapes local registry
      * @param name    The path of the surface builder within the Cinderscapes namespace

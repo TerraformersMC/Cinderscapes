@@ -1,0 +1,78 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "cinderscapes:block/ivory_block"
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "x": 90
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "x": 180
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "x": 270
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "y": 90
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "y": 90,
+        "x": 90
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "y": 90,
+        "x": 180
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "y": 90,
+        "x": 270
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "y": 180
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "y": 180,
+        "x": 90
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "y": 180,
+        "x": 180
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "y": 180,
+        "x": 270
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "y": 270
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "y": 270,
+        "x": 90
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "y": 270,
+        "x": 180
+      },
+      {
+        "model": "cinderscapes:block/ivory_block",
+        "y": 270,
+        "x": 270
+      }
+    ]
+  }
+}

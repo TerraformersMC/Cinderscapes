@@ -15,6 +15,7 @@ import net.minecraft.world.gen.CountConfig;
 import net.minecraft.world.gen.decorator.*;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.ConfiguredFeatures;
+import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
@@ -189,6 +190,34 @@ public final class CinderscapeConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> POLYPITE_ROSE_QUARTZ = register("quartz_canyon/polypite_rose_quartz", configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_ROSE_QUARTZ));
     public static final ConfiguredFeature<?, ?> POLYPITE_SMOKY_QUARTZ = register("quartz_canyon/polypite_smoky_quartz", configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ));
 
+    /******* IVORY SHALLOWS *********/
+    public static final ConfiguredFeature<?, ?> IVORY_PILLAR = register("ivory_shallows/ivory_pillar",
+            CinderscapesFeatures.IVORY_PILLAR.configure(FeatureConfig.DEFAULT)
+                    .method_30377(128)
+                    .spreadHorizontally()
+                    .repeat(20)
+    );
+    
+    public static final ConfiguredFeature<?, ?> CEILING_IVORY_TUSK = register("ivory_shallows/ceiling_ivory_tusk",
+    		CinderscapesFeatures.CEILING_IVORY_TUSK.configure(FeatureConfig.DEFAULT)
+    		.decorate(CinderscapesDecorators.COUNT_CEILING
+    				.configure(new CountSafelistRangeDecoratorConfig(1, 20, 20, 128, Arrays.asList(CinderscapesBlocks.IVORY_BLOCK.getDefaultState(), Blocks.AIR.getDefaultState())))));
+    
+    public static final ConfiguredFeature<?, ?> FLOOR_IVORY_TUSK = register("ivory_shallows/floor_ivory_tusk",
+    		CinderscapesFeatures.FLOOR_IVORY_TUSK.configure(FeatureConfig.DEFAULT)
+    		.decorate(CinderscapesDecorators.COUNT_FLOOR
+    				.configure(new CountSafelistRangeDecoratorConfig(2, 20, 20, 128, Arrays.asList(CinderscapesBlocks.IVORY_BLOCK.getDefaultState(), Blocks.AIR.getDefaultState())))));
+    
+    public static final ConfiguredFeature<?, ?> IVORY_TOOTH = register("ivory_shallows/ivory_tooth",
+    		CinderscapesFeatures.IVORY_TOOTH.configure(new DefaultFeatureConfig())
+    		.decorate(Decorator.RANGE
+    				.configure(new RangeDecoratorConfig(5, 15, 128))).spreadHorizontally().repeat(128));
+    
+    public static final ConfiguredFeature<?, ?> IVORY_SPIKE_SHORT = register("ivory_shallows/ivory_spike_short",
+            CinderscapesFeatures.VEGETATION.configure(CinderscapesFeatures.IVORY_SPIKE_SHORT_CONFIG).decorate(Decorator.FIRE
+    				.configure(new CountConfig(8)))
+    );
+    
     private static ConfiguredFeature<?, ?> configurePolypiteQuartz(PolypiteQuartzBlock block) {
         return CinderscapesFeatures.POLYPITE_QUARTZ.configure(new PolypiteQuartzFeatureConfig(block)).decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(10, 20, 128))).spreadHorizontally().repeat(128);
     }

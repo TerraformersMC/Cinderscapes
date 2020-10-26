@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "cinderscapes:block/ivory_spike_top"
+    },
+    "half=lower": {
+      "model": "cinderscapes:block/ivory_spike_bottom"
+    }
+  }
+}

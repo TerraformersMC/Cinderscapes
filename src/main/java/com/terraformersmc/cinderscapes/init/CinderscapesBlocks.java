@@ -1,13 +1,49 @@
 package com.terraformersmc.cinderscapes.init;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import com.terraformersmc.cinderscapes.Cinderscapes;
-import com.terraformersmc.cinderscapes.block.*;
-import com.terraformersmc.terraform.*;
-import com.terraformersmc.terraform.block.*;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import com.terraformersmc.cinderscapes.block.AshLayerBlock;
+import com.terraformersmc.cinderscapes.block.BrambleBerryBushBlock;
+import com.terraformersmc.cinderscapes.block.CinderscapesCanopiedFungusBlock;
+import com.terraformersmc.cinderscapes.block.CinderscapesNetherPlantBlock;
+import com.terraformersmc.cinderscapes.block.CinderscapesNetherTallPlantBlock;
+import com.terraformersmc.cinderscapes.block.CinderscapesNyliumBlock;
+import com.terraformersmc.cinderscapes.block.CinderscapesOreBlock;
+import com.terraformersmc.cinderscapes.block.CinderscapesTransparentBlock;
+import com.terraformersmc.cinderscapes.block.CrystiniumBlock;
+import com.terraformersmc.cinderscapes.block.GhastlyEctoplasmBlock;
+import com.terraformersmc.cinderscapes.block.IvorySpikeBlock;
+import com.terraformersmc.cinderscapes.block.IvoryTeethBlock;
+import com.terraformersmc.cinderscapes.block.PhotofernBlock;
+import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
+import com.terraformersmc.cinderscapes.block.PottedCrystiniumBlock;
+import com.terraformersmc.cinderscapes.block.PottedPyracinthBlock;
+import com.terraformersmc.cinderscapes.block.PyracinthBlock;
+import com.terraformersmc.terraform.block.StrippableLogBlock;
+import com.terraformersmc.terraform.block.TerraformButtonBlock;
+import com.terraformersmc.terraform.block.TerraformDoorBlock;
+import com.terraformersmc.terraform.block.TerraformPressurePlateBlock;
+import com.terraformersmc.terraform.block.TerraformSignBlock;
+import com.terraformersmc.terraform.block.TerraformStairsBlock;
+import com.terraformersmc.terraform.block.TerraformTrapdoorBlock;
+import com.terraformersmc.terraform.block.TerraformWallSignBlock;
+
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ComposterBlock;
+import net.minecraft.block.FenceBlock;
+import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.block.Material;
+import net.minecraft.block.MaterialColor;
+import net.minecraft.block.PillarBlock;
+import net.minecraft.block.PressurePlateBlock;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -17,9 +53,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 // TODO: Check
 public class CinderscapesBlocks {
@@ -183,6 +216,19 @@ public class CinderscapesBlocks {
     public static final Block SMOKY_QUARTZ_BRICKS = add("smoky_quartz_bricks", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BRICKS).materialColor(MaterialColor.GRAY)), ItemGroup.BUILDING_BLOCKS);
     public static final Block CRYSTALLINE_SMOKY_QUARTZ = add("crystalline_smoky_quartz", new CinderscapesTransparentBlock(FabricBlockSettings.copyOf(CRYSTALLINE_QUARTZ).materialColor(MaterialColor.GRAY)), ItemGroup.BUILDING_BLOCKS);
 
+    ////////////////////
+    // Ivory Shallows //
+    ////////////////////
+    
+    // IVORY
+    
+    public static final Block IVORY_BLOCK = add("ivory_block", new Block(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK).strength(4.0f).materialColor(MaterialColor.LIGHT_GRAY)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block POLISHED_IVORY_BLOCK = add("polished_ivory", new Block(FabricBlockSettings.copyOf(IVORY_BLOCK)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block IVORY_PILLAR_BLOCK = add("ivory_pillar", new PillarBlock(FabricBlockSettings.copyOf(IVORY_BLOCK)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block IVORY_MARROW_BLOCK = add("ivory_marrow", new PillarBlock(FabricBlockSettings.copyOf(IVORY_BLOCK).sounds(BlockSoundGroup.STONE).hardness(6.0f)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block IVORY_TEETH = add("ivory_teeth", new IvoryTeethBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).noCollision().sounds(BlockSoundGroup.BONE)), ItemGroup.DECORATIONS);
+    public static final Block IVORY_SPIKE = add("ivory_spike", new IvorySpikeBlock(FabricBlockSettings.copyOf(IVORY_TEETH)), ItemGroup.DECORATIONS);
+    
     private static Block addOre(String name, ItemGroup tab, int miningLevel, MaterialColor color) {
         CinderscapesOreBlock block = new CinderscapesOreBlock(FabricBlockSettings.copyOf(Blocks.NETHER_QUARTZ_ORE).materialColor(color).breakByTool(FabricToolTags.PICKAXES, miningLevel).sounds(BlockSoundGroup.NETHER_ORE).requiresTool());
         return add(name, block, tab);

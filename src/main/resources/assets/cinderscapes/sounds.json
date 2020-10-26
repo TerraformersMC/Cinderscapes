@@ -22,23 +22,20 @@
 		"sounds": [
 			{
 				"name": "music/game/nether/nether1",
-				"stream": true,
-				"weight": 1
+				"stream": true
 			},
 			{
 				"name": "music/game/nether/nether2",
-				"stream": true,
-				"weight": 1
+				"stream": true
 			},
 			{
 				"name": "music/game/nether/nether3",
-				"stream": true,
-				"weight": 1
+				"stream": true
 			},
 			{
 				"name": "music/game/nether/nether4",
-				"stream": true,
-				"weight": 1
+				"stream": true
+				
 			},
 			{
 				"name": "cinderscapes:music/chilling_in_hell",
@@ -57,23 +54,23 @@
 			},
 			{
 				"name": "music/game/nether/nether1",
-				"stream": true,
-				"weight": 1
+				"stream": true
+				
 			},
 			{
 				"name": "music/game/nether/nether2",
-				"stream": true,
-				"weight": 1
+				"stream": true
+				
 			},
 			{
 				"name": "music/game/nether/nether3",
-				"stream": true,
-				"weight": 1
+				"stream": true
+				
 			},
 			{
 				"name": "music/game/nether/nether4",
-				"stream": true,
-				"weight": 1
+				"stream": true
+				
 			}
 		]
 	},
@@ -87,23 +84,23 @@
 			},
 			{
 				"name": "music/game/nether/nether1",
-				"stream": true,
-				"weight": 1
+				"stream": true
+				
 			},
 			{
 				"name": "music/game/nether/nether2",
-				"stream": true,
-				"weight": 1
+				"stream": true
+				
 			},
 			{
 				"name": "music/game/nether/nether3",
-				"stream": true,
-				"weight": 1
+				"stream": true
+				
 			},
 			{
 				"name": "music/game/nether/nether4",
-				"stream": true,
-				"weight": 1
+				"stream": true
+				
 			}
 		]
 	},
@@ -122,23 +119,52 @@
 			},
 			{
 				"name": "music/game/nether/nether1",
-				"stream": true,
-				"weight": 1
+				"stream": true
+				
 			},
 			{
 				"name": "music/game/nether/nether2",
-				"stream": true,
-				"weight": 1
+				"stream": true
+				
 			},
 			{
 				"name": "music/game/nether/nether3",
-				"stream": true,
-				"weight": 1
+				"stream": true
+				
 			},
 			{
 				"name": "music/game/nether/nether4",
+				"stream": true
+				
+			}
+		]
+	},
+	"music.nether.ivory_shallows": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "cinderscapes:music/crystalline_cave",
 				"stream": true,
-				"weight": 1
+				"weight": 6
+			},
+			{
+				"name": "music/game/nether/nether1",
+				"stream": true
+				
+			},
+			{
+				"name": "music/game/nether/nether2",
+				"stream": true
+				
+			},
+			{
+				"name": "music/game/nether/nether3",
+				"stream": true
+				
+			},
+			{
+				"name": "music/game/nether/nether4",
+				"stream": true
 			}
 		]
 	}

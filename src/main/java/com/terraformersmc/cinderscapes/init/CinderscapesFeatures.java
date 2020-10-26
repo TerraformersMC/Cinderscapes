@@ -8,9 +8,13 @@ import com.terraformersmc.cinderscapes.feature.BlackstoneLavaShaleFeature;
 import com.terraformersmc.cinderscapes.feature.BlackstoneShaleFeature;
 import com.terraformersmc.cinderscapes.feature.BlackstoneWeepingVinesFeature;
 import com.terraformersmc.cinderscapes.feature.CanopiedHugeFungusFeature;
+import com.terraformersmc.cinderscapes.feature.CeilingIvoryTuskFeature;
 import com.terraformersmc.cinderscapes.feature.CeilingShardFeature;
 import com.terraformersmc.cinderscapes.feature.DeadTreeFeature;
+import com.terraformersmc.cinderscapes.feature.FloorIvoryTuskFeature;
 import com.terraformersmc.cinderscapes.feature.FloorShardFeature;
+import com.terraformersmc.cinderscapes.feature.IvoryPillarFeature;
+import com.terraformersmc.cinderscapes.feature.IvoryToothFeature;
 import com.terraformersmc.cinderscapes.feature.PolypiteQuartzFeature;
 import com.terraformersmc.cinderscapes.feature.ShaleFeature;
 import com.terraformersmc.cinderscapes.feature.ShroomlightBushFeature;
@@ -73,6 +77,12 @@ public class CinderscapesFeatures {
     public static NetherrackReplaceBlobsFeatureConfig GRAVEL_REPLACE_CONFIG;
     public static NetherrackReplaceBlobsFeatureConfig CRIMSON_NYLIUM_REPLACE_CONFIG;
     public static NetherrackReplaceBlobsFeatureConfig BLACKSTONE_REPLACE_CONFIG;
+    
+    public static Feature<DefaultFeatureConfig> IVORY_PILLAR;
+    public static Feature<DefaultFeatureConfig> CEILING_IVORY_TUSK;
+    public static Feature<DefaultFeatureConfig> FLOOR_IVORY_TUSK;
+    public static Feature<DefaultFeatureConfig> IVORY_TOOTH;
+    public static VegetationFeatureConfig IVORY_SPIKE_SHORT_CONFIG;
 
     public static void init() {
 
@@ -154,5 +164,18 @@ public class CinderscapesFeatures {
         GRAVEL_REPLACE_CONFIG = new NetherrackReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.GRAVEL.getDefaultState(), spread);
         CRIMSON_NYLIUM_REPLACE_CONFIG = new NetherrackReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.CRIMSON_NYLIUM.getDefaultState(), spread);
         BLACKSTONE_REPLACE_CONFIG = new NetherrackReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.BLACKSTONE.getDefaultState(), spread);
+        
+        IVORY_PILLAR = Registry.register(Registry.FEATURE, Cinderscapes.id("ivory_pillar"), new IvoryPillarFeature());
+        CEILING_IVORY_TUSK = Registry.register(Registry.FEATURE, Cinderscapes.id("ceiling_ivory_tusk"), new CeilingIvoryTuskFeature());
+        FLOOR_IVORY_TUSK = Registry.register(Registry.FEATURE, Cinderscapes.id("floor_ivory_tusk"), new FloorIvoryTuskFeature());
+        IVORY_TOOTH = Registry.register(Registry.FEATURE, Cinderscapes.id("ivory_tooth"), new IvoryToothFeature());
+        IVORY_SPIKE_SHORT_CONFIG = new VegetationFeatureConfig(
+                new WeightedBlockStateProvider()
+                    .addState(CinderscapesBlocks.IVORY_SPIKE.getDefaultState(), 1),
+                Arrays.asList(
+                    CinderscapesBlocks.IVORY_BLOCK.getDefaultState(),
+                    CinderscapesBlocks.IVORY_MARROW_BLOCK.getDefaultState()
+                )
+            );
     }
 }
