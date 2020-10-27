@@ -115,5 +115,10 @@
   "block.cinderscapes.scorched_slab": "Losa chamuscada",
   "block.cinderscapes.scorched_hyphae": "Hifas chamuscadas",
   "block.cinderscapes.scorched_fence_gate": "Puerta de valla chamuscada",
-  "block.cinderscapes.stripped_scorched_stem": "Tallo chamuscado sin corteza"
+  "block.cinderscapes.stripped_scorched_stem": "Tallo chamuscado sin corteza",
+
+  "item.cinderscapes.music_disc_chilling_in_hell": "Disco",
+  "item.cinderscapes.music_disc_chilling_in_hell.desc": "Etorna_Z - Chilling In Hell",
+  "item.cinderscapes.music_disc_luminous_plantation": "Disco",
+  "item.cinderscapes.music_disc_luminous_plantation.desc": "LudoCrypt - Luminous Plantation"
 }
