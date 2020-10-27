@@ -21,6 +21,11 @@
 		"category": "music",
 		"sounds": [
 			{
+				"name": "cinderscapes:music/chilling_in_hell",
+				"stream": true,
+				"weight": 4
+			},
+			{
 				"name": "music/game/nether/nether1",
 				"stream": true
 			},
@@ -36,11 +41,6 @@
 				"name": "music/game/nether/nether4",
 				"stream": true
 				
-			},
-			{
-				"name": "cinderscapes:music/chilling_in_hell",
-				"stream": true,
-				"weight": 4
 			}
 		]
 	},
@@ -79,6 +79,11 @@
 		"sounds": [
 			{
 				"name": "cinderscapes:music/luminous_plantation",
+				"stream": true,
+				"weight": 3
+			},
+			{
+				"name": "cinderscapes:music/oxyluciferin",
 				"stream": true,
 				"weight": 3
 			},

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "cinderscapes:polished_ivory"
+  },
+  "result": "cinderscapes:polished_ivory_wall",
+  "count": 1
+}

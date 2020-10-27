@@ -31,7 +31,7 @@ public class IvorySpikeBlock extends Block {
 	}
 	
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+		return state.get(HALF).equals(DoubleBlockHalf.LOWER) ? Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D) : Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
 	}
 
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {

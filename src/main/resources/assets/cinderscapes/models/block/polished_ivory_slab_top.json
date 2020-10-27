@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "cinderscapes:block/polished_ivory",
+    "top": "cinderscapes:block/polished_ivory",
+    "side": "cinderscapes:block/polished_ivory"
+  }
+}

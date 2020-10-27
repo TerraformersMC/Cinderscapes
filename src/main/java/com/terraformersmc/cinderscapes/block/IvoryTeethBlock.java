@@ -1,5 +1,7 @@
 package com.terraformersmc.cinderscapes.block;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -13,6 +15,7 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -82,6 +85,15 @@ public class IvoryTeethBlock extends Block {
 
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
+	}
+	
+	public OffsetType getOffsetType() {
+		return OffsetType.XZ;
+	}
+
+	@Environment(EnvType.CLIENT)
+	public long getRenderingSeed(BlockState state, BlockPos pos) {
+		return MathHelper.hashCode(pos.getX(), 0, pos.getZ());
 	}
 
 	public enum Type implements StringIdentifiable {

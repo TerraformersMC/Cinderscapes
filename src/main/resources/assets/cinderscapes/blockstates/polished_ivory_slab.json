@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cinderscapes:block/polished_ivory_slab"
+    },
+    "type=double": {
+      "model": "cinderscapes:block/polished_ivory"
+    },
+    "type=top": {
+      "model": "cinderscapes:block/polished_ivory_slab_top"
+    }
+  }
+}

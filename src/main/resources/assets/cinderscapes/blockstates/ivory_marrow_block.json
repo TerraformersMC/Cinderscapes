@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "cinderscapes:block/ivory_marrow_block",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "cinderscapes:block/ivory_marrow_block"
+    },
+    "axis=z": {
+      "model": "cinderscapes:block/ivory_marrow_block",
+      "x": 90
+    }
+  }
+}

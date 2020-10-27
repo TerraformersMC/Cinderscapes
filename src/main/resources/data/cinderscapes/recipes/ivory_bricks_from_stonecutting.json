@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "cinderscapes:ivory_block"
+  },
+  "result": "cinderscapes:ivory_bricks",
+  "count": 4
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "cinderscapes:ivory"
+  },
+  "result": "cinderscapes:ivory_teeth",
+  "count": 1
+}

@@ -121,10 +121,22 @@
   
   "block.cinderscapes.ivory_block": "Ivory Block",
   "block.cinderscapes.polished_ivory": "Polished Ivory",
-  "block.cinderscapes.ivory_pillar": "Polished Ivory Block",
-  "block.cinderscapes.ivory_marrow": "Ivory Marrow",
+  "block.cinderscapes.chiseled_ivory": "Chiseled Ivory",
+  "block.cinderscapes.ivory_pillar": "Ivory Pillar",
+  "block.cinderscapes.ivory_bricks": "Ivory Bricks",
+  "block.cinderscapes.ivory_marrow_block": "Ivory Marrow Block",
   "block.cinderscapes.ivory_teeth": "Ivory Teeth",
   "block.cinderscapes.ivory_spike": "Ivory Spike",
+  
+  "block.cinderscapes.ivory_slab": "Ivory Slab",
+  "block.cinderscapes.polished_ivory_slab": "Polished Ivory Slab",
+  "block.cinderscapes.ivory_stairs": "Ivory Stairs",
+  "block.cinderscapes.polished_ivory_stairs": "Polished Ivory Stairs",
+  "block.cinderscapes.ivory_wall": "Ivory Wall",
+  "block.cinderscapes.polished_ivory_wall": "Polished Ivory Wall",
+  
+  "item.cinderscapes.ivory": "Ivory",
+  "item.cinderscapes.ivory_marrow": "Ivory Marrow",
 
   "item.cinderscapes.music_disc_chilling_in_hell": "Music Disc",
   "item.cinderscapes.music_disc_chilling_in_hell.desc": "Etorna_Z - Chilling In Hell",

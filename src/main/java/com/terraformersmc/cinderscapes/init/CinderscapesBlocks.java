@@ -44,6 +44,7 @@ import net.minecraft.block.MaterialColor;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.WallBlock;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -222,12 +223,23 @@ public class CinderscapesBlocks {
     
     // IVORY
     
-    public static final Block IVORY_BLOCK = add("ivory_block", new Block(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK).strength(4.0f).materialColor(MaterialColor.LIGHT_GRAY)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block IVORY_BLOCK = add("ivory_block", new Block(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK).strength(3.0f).materialColor(MaterialColor.LIGHT_GRAY).requiresTool()), ItemGroup.BUILDING_BLOCKS);
     public static final Block POLISHED_IVORY_BLOCK = add("polished_ivory", new Block(FabricBlockSettings.copyOf(IVORY_BLOCK)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block CHISELED_IVORY_BLOCK = add("chiseled_ivory", new Block(FabricBlockSettings.copyOf(IVORY_BLOCK)), ItemGroup.BUILDING_BLOCKS);
     public static final Block IVORY_PILLAR_BLOCK = add("ivory_pillar", new PillarBlock(FabricBlockSettings.copyOf(IVORY_BLOCK)), ItemGroup.BUILDING_BLOCKS);
-    public static final Block IVORY_MARROW_BLOCK = add("ivory_marrow", new PillarBlock(FabricBlockSettings.copyOf(IVORY_BLOCK).sounds(BlockSoundGroup.STONE).hardness(6.0f)), ItemGroup.BUILDING_BLOCKS);
-    public static final Block IVORY_TEETH = add("ivory_teeth", new IvoryTeethBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).noCollision().sounds(BlockSoundGroup.BONE)), ItemGroup.DECORATIONS);
+    public static final Block IVORY_BRICKS = add("ivory_bricks", new Block(FabricBlockSettings.copyOf(IVORY_BLOCK)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block IVORY_MARROW_BLOCK = add("ivory_marrow_block", new PillarBlock(FabricBlockSettings.copyOf(IVORY_BLOCK).sounds(BlockSoundGroup.STONE).hardness(10.0f)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block IVORY_TEETH = add("ivory_teeth", new IvoryTeethBlock(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK).noCollision().sounds(BlockSoundGroup.BONE).requiresTool().strength(2.5f)), ItemGroup.DECORATIONS);
     public static final Block IVORY_SPIKE = add("ivory_spike", new IvorySpikeBlock(FabricBlockSettings.copyOf(IVORY_TEETH)), ItemGroup.DECORATIONS);
+    
+    // SLABS STAIRS AND WALL
+    
+    public static final Block IVORY_SLAB = add("ivory_slab", new SlabBlock(FabricBlockSettings.copyOf(IVORY_BLOCK)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block POLISHED_IVORY_SLAB = add("polished_ivory_slab", new SlabBlock(FabricBlockSettings.copyOf(IVORY_BLOCK)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block IVORY_STAIRS = add("ivory_stairs", new TerraformStairsBlock(IVORY_BLOCK, FabricBlockSettings.copyOf(IVORY_BLOCK)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block POLISHED_IVORY_STAIRS = add("polished_ivory_stairs", new TerraformStairsBlock(IVORY_BLOCK, FabricBlockSettings.copyOf(IVORY_BLOCK)), ItemGroup.BUILDING_BLOCKS);
+    public static final Block IVORY_WALL = add("ivory_wall", new WallBlock(FabricBlockSettings.copyOf(IVORY_BLOCK)), ItemGroup.DECORATIONS);
+    public static final Block POLISHED_IVORY_WALL = add("polished_ivory_wall", new WallBlock(FabricBlockSettings.copyOf(IVORY_BLOCK)), ItemGroup.DECORATIONS);
     
     private static Block addOre(String name, ItemGroup tab, int miningLevel, MaterialColor color) {
         CinderscapesOreBlock block = new CinderscapesOreBlock(FabricBlockSettings.copyOf(Blocks.NETHER_QUARTZ_ORE).materialColor(color).breakByTool(FabricToolTags.PICKAXES, miningLevel).sounds(BlockSoundGroup.NETHER_ORE).requiresTool());
