@@ -83,11 +83,6 @@
 				"weight": 3
 			},
 			{
-				"name": "cinderscapes:music/oxyluciferin",
-				"stream": true,
-				"weight": 3
-			},
-			{
 				"name": "music/game/nether/nether1",
 				"stream": true
 				
