@@ -143,34 +143,5 @@
 				
 			}
 		]
-	},
-	"music.nether.ivory_shallows": {
-		"category": "music",
-		"sounds": [
-			{
-				"name": "cinderscapes:music/crystalline_cave",
-				"stream": true,
-				"weight": 6
-			},
-			{
-				"name": "music/game/nether/nether1",
-				"stream": true
-				
-			},
-			{
-				"name": "music/game/nether/nether2",
-				"stream": true
-				
-			},
-			{
-				"name": "music/game/nether/nether3",
-				"stream": true
-				
-			},
-			{
-				"name": "music/game/nether/nether4",
-				"stream": true
-			}
-		]
 	}
 }
