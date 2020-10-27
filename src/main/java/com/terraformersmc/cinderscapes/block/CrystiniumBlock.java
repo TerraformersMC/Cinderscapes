@@ -19,10 +19,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-06
- * @project Cinderscapes
- */
 public class CrystiniumBlock extends CinderscapesNetherPlantBlock {
     public CrystiniumBlock() {
         super(FabricBlockSettings.copy(Blocks.WARPED_ROOTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0));

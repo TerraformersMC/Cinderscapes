@@ -1,5 +1,5 @@
 {
-  "itemGroup.cinderscapes.items": "Cinderscapes",
+  "itemGroup.cinderscapes.items": "余烬奇景",
 
   "block.cinderscapes.sulfur_ore": "硫矿石",
   "block.cinderscapes.sulfur_block": "硫块",
@@ -8,7 +8,7 @@
   "item.cinderscapes.bramble_berries": "树莓",
   "block.cinderscapes.bramble_berry_bush": "树莓丛",
 
-  "biome.cinderscapes.luminous_grove": "发光果丛",
+  "biome.cinderscapes.luminous_grove": "夜光树林",
 
   "block.cinderscapes.luminous_pod": "发光豆荚",
 
@@ -106,7 +106,7 @@
   "block.cinderscapes.scorched_pressure_plate": "烧焦的压力板",
   "block.cinderscapes.scorched_fence": "烧焦的栅栏",
   "block.cinderscapes.scorched_door": "烧焦的门",
-  "block.cinderscapes.stripped_scorched_hyphae": "去皮烧焦的菌丝",
+  "block.cinderscapes.stripped_scorched_hyphae": "烧焦的去皮菌丝",
   "block.cinderscapes.scorched_trapdoor": "烧焦的活板门",
   "block.cinderscapes.scorched_planks": "烧焦的木板",
   "block.cinderscapes.scorched_stairs": "烧焦的楼梯",
@@ -115,5 +115,5 @@
   "block.cinderscapes.scorched_slab": "烧焦的台阶",
   "block.cinderscapes.scorched_hyphae": "烧焦的菌丝",
   "block.cinderscapes.scorched_fence_gate": "烧焦的栅栏门",
-  "block.cinderscapes.stripped_scorched_stem": "去皮烧焦的树干"
+  "block.cinderscapes.stripped_scorched_stem": "烧焦的去皮树干"
 }

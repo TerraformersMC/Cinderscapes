@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
     id 'idea'
     id 'eclipse'
-    id 'fabric-loom' version '0.4-SNAPSHOT'
+    id 'fabric-loom' version '0.5-SNAPSHOT'
     id 'com.matthewprenger.cursegradle' version '1.4.0'
     id 'net.dumbcode.gradlehook' version '1.3.1'
 }
@@ -18,6 +18,8 @@ group = project.maven_group
 def ENV = System.getenv()
 version = version + "+" + (ENV.BUILD_NUMBER ? ("build." + ENV.BUILD_NUMBER) : "custom")
 
+version = version + "-" + project.minecraft_version
+
 repositories {
     mavenLocal()
 }
@@ -27,12 +29,15 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
     modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modCompile "com.terraformersmc:terraform:${project.terraform_version}"
-    modCompile "com.terraformersmc:shapes:${project.shapes_version}"
-    modCompile "com.terraformersmc:dossier:${project.dossier_version}"
 
-    include "com.terraformersmc:shapes:${project.shapes_version}"
-    include "com.terraformersmc:terraform:${project.terraform_version}"
+    include "com.terraformersmc.terraform-api-experimental:terraform-legacy-v0:0.1.0-SNAPSHOT"
+    modCompile "com.terraformersmc.terraform-api-experimental:terraform-legacy-v0:0.1.0-SNAPSHOT"
+    include "com.terraformersmc.terraform-api-experimental:terraform-shapes-api-v1:0.1.0-SNAPSHOT"
+    modCompile "com.terraformersmc.terraform-api-experimental:terraform-shapes-api-v1:0.1.0-SNAPSHOT"
+
+    include "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
+    modCompile "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
+
 
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
@@ -291,4 +296,3 @@ ext.createDiscordChangelog = { fullChangelogUrl ->
     }
     return webhookChangelog.toString()
 }
-

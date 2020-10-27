@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-16
- * @project Cinderscapes
- */
 public class CountSafelistRangeDecoratorConfig implements DecoratorConfig {
     public final int count;
     public final int bottomOffset;
@@ -35,13 +31,13 @@ public class CountSafelistRangeDecoratorConfig implements DecoratorConfig {
     public static final Codec<CountSafelistRangeDecoratorConfig> CODEC = RecordCodecBuilder.create((instance) -> {
         return instance.group(Codec.INT.fieldOf("count").forGetter((config) -> {
             return config.count;
-        }), Codec.INT.fieldOf("bottom_offset").withDefault(0).forGetter((config) -> {
+        }), Codec.INT.fieldOf("bottom_offset").orElse(0).forGetter((config) -> {
             return config.bottomOffset;
-        }), Codec.INT.fieldOf("top_offset").withDefault(0).forGetter((config) -> {
+        }), Codec.INT.fieldOf("top_offset").orElse(0).forGetter((config) -> {
             return config.topOffset;
-        }), Codec.INT.fieldOf("maximum").withDefault(0).forGetter((config) -> {
+        }), Codec.INT.fieldOf("maximum").orElse(0).forGetter((config) -> {
             return config.maximum;
-        }), BlockState.CODEC.listOf().fieldOf("safelist").withDefault(new ArrayList<>()).forGetter((config) -> {
+        }), BlockState.CODEC.listOf().fieldOf("safelist").orElse(new ArrayList<>()).forGetter((config) -> {
             return config.safelist;
         })).apply(instance, CountSafelistRangeDecoratorConfig::new);
     });

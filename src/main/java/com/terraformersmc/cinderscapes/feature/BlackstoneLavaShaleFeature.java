@@ -3,14 +3,12 @@ package com.terraformersmc.cinderscapes.feature;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.gen.StructureAccessor;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
-import java.util.function.Function;
 
 // TODO: Merge with the other Shale feature and rewrite using a custom count lava decorator config
 public class BlackstoneLavaShaleFeature extends Feature<DefaultFeatureConfig> {
@@ -20,8 +18,9 @@ public class BlackstoneLavaShaleFeature extends Feature<DefaultFeatureConfig> {
 
     // This should probably be revisited at some point
 
+
     @Override
-    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
 
         int yradius = random.nextInt(5) + 10;
 

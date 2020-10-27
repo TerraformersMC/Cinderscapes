@@ -1,29 +1,15 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import com.terraformersmc.cinderscapes.util.shapelib.Quaternion;
-import com.terraformersmc.cinderscapes.util.shapelib.Shape;
-import com.terraformersmc.cinderscapes.util.shapelib.Shapes;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.gen.StructureAccessor;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
-import java.util.Arrays;
 import java.util.Random;
 
-
-/**
- * [REVIEWED]
- *
- * A large scale like stone feature
- *
- * @author <Wtoll> Will Toll
- * @project Cinderscapes
- */
 public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
 
     public BlackstoneShaleFeature() {
@@ -33,7 +19,7 @@ public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
     // TODO: Rewrite using the upcoming shapes library
     // TODO: Rewrite using the CountSafelistRangeFloorDecorator
     @Override
-    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
 
         int yradius = random.nextInt(5) + 7;
 
@@ -59,7 +45,7 @@ public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
                 // If the four blocks below are not blackstone, soul soil, or soul sand then move down
                 for (int y = 1; y <= 4; y++) {
                     Block block = world.getBlockState(pos.down(y)).getBlock();
-                    if (!(block == Blocks.BLACKSTONE || block == Blocks.SOUL_SOIL || block == Blocks.SOUL_SAND)) {
+                    if (!(block == Blocks.BLACKSTONE || block == Blocks.SOUL_SOIL || block == Blocks.SOUL_SAND || block == Blocks.NETHERRACK)) {
                         break search;
                     }
                 }

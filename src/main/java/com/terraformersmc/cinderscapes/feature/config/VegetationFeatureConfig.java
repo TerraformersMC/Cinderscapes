@@ -9,13 +9,6 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * A general class for placing vegetation literally anywhere
- * Based off of NetherForestVegetationFeature.class
- *
- * @author <Wtoll> Will Toll on 2020-06-06
- * @project Cinderscapes
- */
 public class VegetationFeatureConfig implements FeatureConfig {
 
     public final BlockStateProvider vegetationStates;
@@ -33,7 +26,7 @@ public class VegetationFeatureConfig implements FeatureConfig {
     }
 
     public static final Codec<VegetationFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
-        return instance.group(BlockStateProvider.CODEC.fieldOf("vegetation_state").forGetter((config) -> {
+        return instance.group(BlockStateProvider.TYPE_CODEC.fieldOf("vegetation_state").forGetter((config) -> {
             return config.vegetationStates;
         }), BlockState.CODEC.listOf().fieldOf("placeable_states").forGetter((config) -> {
             return config.placeableStates;

@@ -2,19 +2,17 @@ package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.block.GhastlyEctoplasmBlock;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.cinderscapes.util.shapelib.MathHelper;
+import com.terraformersmc.cinderscapes.util.MathHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.gen.StructureAccessor;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
-
 
 public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
     public UmbralVineFeature() {
@@ -27,7 +25,7 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
     // TODO: Figure out the chunk boundary issue
 
     @Override
-    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(StructureWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         while (pos.getY() >= 3) {
             search: {
                 if ( world.getBlockState(pos).getBlock() != Blocks.NETHERRACK ) break search;
@@ -47,7 +45,7 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
         return false;
     }
 
-    public boolean buildVine(ServerWorldAccess world, BlockPos pos, Direction dir, Random random) {
+    public boolean buildVine(StructureWorldAccess world, BlockPos pos, Direction dir, Random random) {
         for (int offset = 5; offset < 50; offset++) {
             if (world.getBlockState(pos.offset(dir, offset)).getBlock() == Blocks.NETHERRACK) {
                 return modifiedLine(world, CinderscapesBlocks.TWILIGHT_VINE_BLOCK.getDefaultState(), pos.offset(dir, offset), pos, random);
@@ -56,7 +54,7 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
         return false;
     }
 
-    public static boolean modifiedLine(ServerWorldAccess world, BlockState state, BlockPos to, BlockPos from, Random random) {
+    public static boolean modifiedLine(StructureWorldAccess world, BlockState state, BlockPos to, BlockPos from, Random random) {
         int dx = to.getX() - from.getX();
         int dy = to.getY() - from.getY();
         int dz = to.getZ() - from.getZ();

@@ -1,16 +1,25 @@
 package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.cinderscapes.util.shapelib.MathHelper;
-import com.terraformersmc.cinderscapes.util.shapelib.Quaternion;
-import com.terraformersmc.cinderscapes.util.shapelib.Shape;
-import com.terraformersmc.cinderscapes.util.shapelib.Shapes;
+import com.terraformersmc.cinderscapes.util.MathHelper;
+import com.terraformersmc.terraform.shapes.api.Filler;
+import com.terraformersmc.terraform.shapes.api.Position;
+import com.terraformersmc.terraform.shapes.api.Quaternion;
+import com.terraformersmc.terraform.shapes.api.Shape;
+import com.terraformersmc.terraform.shapes.api.validator.Validator;
+import com.terraformersmc.terraform.shapes.impl.Shapes;
+import com.terraformersmc.terraform.shapes.impl.filler.SimpleFiller;
+import com.terraformersmc.terraform.shapes.impl.layer.pathfinder.AddLayer;
+import com.terraformersmc.terraform.shapes.impl.layer.transform.RotateLayer;
+import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
+import com.terraformersmc.terraform.shapes.impl.validator.SafelistValidator;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.gen.StructureAccessor;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
@@ -19,18 +28,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-/**
- * @author <Wtoll> Will Toll on 2020-05-23
- * @project Cinderscapes
- */
 public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
     public DeadTreeFeature() {
         super(DefaultFeatureConfig.CODEC);
     }
 
     @Override
-    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(StructureWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         if (world.getBlockState(pos.down()).getBlock() == CinderscapesBlocks.ASH) {
             pos = pos.down();
         }
@@ -40,42 +46,55 @@ public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
         if (world.getBlockState(pos.down()).getBlock() == Blocks.MAGMA_BLOCK || world.getBlockState(pos.down()).getBlock() == CinderscapesBlocks.SCORCHED_STEM) {
             return false;
         }
-        Shape shape = new Shape();
-        boolean good = recursiveTree(world, pos, new ArrayList<>(), 3, 3, random, shape);
-        if (good) {
-            shape.fill(CinderscapesBlocks.SCORCHED_STEM.getDefaultState(), world);
+
+        int trunkHeight = random.nextInt(4) + 4;
+
+        Shape trunkShape = verticalLine(trunkHeight, Quaternion.of(1, 0, 0, 0))
+            .applyLayer(new TranslateLayer(Position.of(pos)));
+
+        Shape topperShape = recursiveTreeTopper(random, 2, 4, 15, 45, 2, 5, 3, 3)
+                .applyLayer(new TranslateLayer(Position.of(0, trunkHeight, 0)))
+                .applyLayer(new TranslateLayer(Position.of(pos)));
+
+        Validator safelistValidator = new SafelistValidator(world,  Arrays.asList(
+                Blocks.AIR.getDefaultState(),
+                CinderscapesBlocks.ASH.getDefaultState()
+        ));
+
+        boolean trunkSafe = safelistValidator.validate(trunkShape);
+        boolean topperSafe = safelistValidator.validate(topperShape);
+
+        if (trunkSafe && topperSafe) {
+            trunkShape.fill(new SimpleFiller(world, CinderscapesBlocks.SCORCHED_STEM.getDefaultState()));
+            topperShape.fill(new SimpleFiller(world, CinderscapesBlocks.SCORCHED_HYPHAE.getDefaultState()));
             return true;
         }
+
         return false;
     }
 
-    private boolean recursiveTree(ServerWorldAccess world, BlockPos pos, List<Quaternion> previousRotations, int startingPoint, int recursionLevel, Random random, Shape toBuild) {
-        if (recursionLevel == 0) {
-            return true;
-        }
-        boolean allGood = true;
-        float zAngle = random.nextFloat() * 30 + 15;
-        float yAngle = random.nextFloat() * 360;
-        if (recursionLevel == startingPoint) {
-            zAngle = 0;
-            yAngle = 0;
-        }
-        int height = random.nextInt(2) + Math.round(MathHelper.map(recursionLevel, startingPoint, 0, 6, 2));
+    private static Shape recursiveTreeTopper(Random random, int minLength, int maxLength, int minSpread, int maxSpread, int minChildren, int maxChildren, int totalRecursionLevel, int recursionCounter) {
+        Shape shape = Shapes.rectanglarPrism(1, 1, 1);
 
-        List<Quaternion> rotations = new ArrayList<Quaternion>(previousRotations);
-        rotations.add(new Quaternion(0, yAngle, zAngle, true));
-
-        BlockPos endPoint = Quaternion.of(0, 0, height, 0).rotateBy(rotations).toBlockPos().add(pos);
-        Shape line = Shapes.line(pos, endPoint);
-        if (line.isSafeWhitelist(world, Arrays.asList(Blocks.AIR.getDefaultState(), CinderscapesBlocks.ASH.getDefaultState()))) {
-            toBuild.join(line);
-            int amount = random.nextInt(3) + 2;
-            for (int i = 0; i < amount; i++) {
-                allGood = allGood && recursiveTree(world, endPoint, rotations, startingPoint, recursionLevel - 1, random, toBuild);
-            }
-        } else {
-            allGood = false;
+        if (recursionCounter == 0) {
+            return shape;
         }
-        return allGood;
+
+        int children = random.nextInt(maxChildren - minChildren) + minChildren;
+        for (int i = 0; i < children; i++) {
+            float recursionRatio = (float) recursionCounter / (float) totalRecursionLevel;
+            int length = random.nextInt(maxLength - minLength) + minLength;
+            shape = shape.applyLayer(new AddLayer(Shapes.rectanglarPrism(1, length, 1)
+                    .applyLayer(new TranslateLayer(Position.of(0, length / 2.0f, 0)))
+                    .applyLayer(new AddLayer(recursiveTreeTopper(random, minLength, (int)((maxLength - minLength) * recursionRatio) + minLength, (int)(minSpread * recursionRatio), (int)(maxSpread * recursionRatio), (int)(minChildren * recursionRatio), (int)(maxChildren * recursionRatio), totalRecursionLevel, recursionCounter - 1)
+                            .applyLayer(new TranslateLayer(Position.of(0, length, 0)))))
+                    .applyLayer(new RotateLayer(Quaternion.of(0, random.nextFloat() * 360, random.nextFloat() * (maxSpread - minSpread) + minSpread, true)))));
+        }
+
+        return shape;
+    }
+
+    private static Shape verticalLine(int height, Quaternion rotation) {
+        return Shape.of((pos) -> true, Position.of(1, height, 1), Position.of(0, 0, 0)).applyLayer(new RotateLayer(rotation));
     }
 }

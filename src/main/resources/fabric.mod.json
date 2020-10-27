@@ -5,13 +5,15 @@
   "name": "Cinderscapes",
   "description": "An expansion of Minecraft's Nether biomes!",
   "authors": [
-    "Wtoll",
+    "Vaerian",
     "NeusFear",
     "TerraformersMC"
   ],
   "contributors": [
     "SuperCoder79",
-    "Prospector"
+    "Prospector",
+    "LudoCrypt",
+    "Etorna_Z"
   ],
   "contact": {
     "sources": "https://github.com/TerraformersMC/Cinderscapes"
@@ -32,8 +34,13 @@
   ],
   "depends": {
     "fabricloader": ">=0.8.2+build.194",
-    "fabric": "*",
-    "terraform": "*",
+    "fabric": ">=0.21.0",
     "minecraft": ">=1.16-"
+  },
+  "custom": {
+    "modupdater": {
+      "strategy": "curseforge",
+      "projectID": 391429
+    }
   }
 }

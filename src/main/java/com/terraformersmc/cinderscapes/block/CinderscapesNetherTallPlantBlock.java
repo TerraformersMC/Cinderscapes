@@ -7,14 +7,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
-/**
- * [REVIEWED]
- *
- * The root class for two tall nether plants of varying bounding box sizes
- *
- * @author <Wtoll> Will Toll
- * @project Cinderscapes
- */
 public class CinderscapesNetherTallPlantBlock extends TallPlantBlock {
     protected final StateShapeSupplier SHAPE_SUPPLIER;
 

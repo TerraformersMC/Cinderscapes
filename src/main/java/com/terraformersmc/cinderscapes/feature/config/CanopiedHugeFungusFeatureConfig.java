@@ -5,15 +5,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
-
-/**
- * [REVIEWED]
- * <p>
- * The feature configurator for canopied fungus
- *
- * @author <Wtoll> Will Toll
- * @project Cinderscapes
- */
 public class CanopiedHugeFungusFeatureConfig implements FeatureConfig {
 
     public final BlockState soilBlock;

@@ -1,50 +1,51 @@
 package com.terraformersmc.cinderscapes.util;
 
-import com.terraformersmc.cinderscapes.mixin.BiomeAccessor;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.JsonOps;
+import com.terraformersmc.cinderscapes.mixin.MultiNoiseBiomeSourceAccessor;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.source.MultiNoiseBiomeSource;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
-//TODO: Check
-@SuppressWarnings("unchecked")
 public class NoiseCollisionChecker {
-    private static final Map<Biome, Long> HASHES = new HashMap<>();
-
     public static void init() {
-        for (Biome biome : Registry.BIOME) {
-            if (biome.getCategory() == Biome.Category.NETHER) {
-                check(biome);
-            }
-        }
+        check();
 
-        RegistryEntryAddedCallback.event(Registry.BIOME).register(((i, identifier, biome) -> {
-            if (biome.getCategory() == Biome.Category.NETHER) {
-                check(biome);
-            }
+        RegistryEntryAddedCallback.event(BuiltinRegistries.BIOME).register(((i, identifier, biome) -> {
+            check();
         }));
     }
 
-    private static void check(Biome biome) {
-        List<Biome.MixedNoisePoint> points = ((BiomeAccessor) biome).getNoisePoints();
-        //biomes can have multiple noise points so we hash all of them
-        long hash = 0;
-        for (Biome.MixedNoisePoint point : points) {
-            hash += point.hashCode();
-        }
+    private static void check() {
+        MultiNoiseBiomeSource biomeSource = MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(BuiltinRegistries.BIOME, 0L);
 
-        // ensure the biomes have distinct hashes
-        long finalHash = hash;
-        HASHES.forEach((cachedBiome, biomeHash) -> {
-            if (finalHash == biomeHash) {
-                System.out.println("WARNING: " + biome.getTranslationKey() + " and " + cachedBiome.getTranslationKey() + " have the same mixed noise points! They won't generate properly!!!!");
+        List<Pair<Biome.MixedNoisePoint, Supplier<Biome>>> points = ((MultiNoiseBiomeSourceAccessor) biomeSource).getBiomePoints();
+
+        // Build a reverse-map from noise point to Biome
+        Map<Biome.MixedNoisePoint, Biome> noisePoints = new HashMap<>();
+        for (Pair<Biome.MixedNoisePoint, Supplier<Biome>> point : points) {
+            Biome biome = point.getSecond().get();
+            Biome.MixedNoisePoint noisePoint = point.getFirst();
+            if (biome == null) {
+                System.out.println("WARNING: Found null-biome for noise-point " + toString(noisePoint));
+                continue;
             }
-        });
 
-        HASHES.put(biome, hash);
-
+            Biome prev = noisePoints.put(noisePoint, biome);
+            if (prev != null) {
+                System.out.println("WARNING: " + biome + " and " + prev + " have the same mixed noise point " + toString(noisePoint) + "! They won't generate properly!!!!");
+            }
+        }
     }
+
+    private static String toString(Biome.MixedNoisePoint noisePoint) {
+        return Biome.MixedNoisePoint.CODEC.encodeStart(JsonOps.INSTANCE, noisePoint).get().left().get().toString();
+    }
+
 }

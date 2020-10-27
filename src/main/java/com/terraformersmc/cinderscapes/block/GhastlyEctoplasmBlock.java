@@ -17,10 +17,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-04
- * @project Cinderscapes
- */
 public class GhastlyEctoplasmBlock extends Block {
     public static final EnumProperty<GhastlyEctoplasmBlock.Type> TYPE = EnumProperty.of("type", GhastlyEctoplasmBlock.Type.class);
 

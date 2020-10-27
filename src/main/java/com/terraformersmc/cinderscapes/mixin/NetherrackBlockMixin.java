@@ -14,10 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-30
- * @project cinderscapes
- */
 @Mixin(NetherrackBlock.class)
 public class NetherrackBlockMixin {
     @Inject(method = "Lnet/minecraft/block/NetherrackBlock;grow(Lnet/minecraft/server/world/ServerWorld;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V", at = @At("HEAD"), cancellable = true)

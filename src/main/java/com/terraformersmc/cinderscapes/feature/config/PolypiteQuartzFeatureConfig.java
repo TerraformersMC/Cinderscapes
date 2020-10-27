@@ -12,10 +12,6 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-06
- * @project Cinderscapes
- */
 public class PolypiteQuartzFeatureConfig implements FeatureConfig {
 
     public final PolypiteQuartzBlock quartzMaterial;
