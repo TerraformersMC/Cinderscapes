@@ -30,12 +30,11 @@ dependencies {
     modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
     modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	includeMod "com.terraformersmc.terraform-api-experimental:terraform-shapes-api-v1:${project.terraform_shapes_api_version}"
-	includeMod "com.terraformersmc.terraform-api-experimental:terraform-wood-api-v1:${project.terraform_wood_api_version}"
+	includeMod "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${project.terraform_shapes_api_version}"
+	includeMod "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
 
     include "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
     modCompile "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
-
 
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
