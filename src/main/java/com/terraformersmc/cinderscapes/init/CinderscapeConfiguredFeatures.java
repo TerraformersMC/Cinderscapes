@@ -56,16 +56,16 @@ public final class CinderscapeConfiguredFeatures {
 
     public static final ConfiguredFeature<?, ?> SOUL_SAND_ASHY_SHOALS = register("soul_sand_ashy_shoals",
             Feature.NETHERRACK_REPLACE_BLOBS.configure(CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG)
-                    .method_30377(64)
+                    .rangeOf(64)
                     .spreadHorizontally()
                     .repeat(5)
     );
     public static final ConfiguredFeature<?, ?> SOUL_SOIL_ASHY_SHOALS = register("soul_soil_ashy_shoals", Feature.NETHERRACK_REPLACE_BLOBS.configure(CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG)
-            .method_30377(128)
+            .rangeOf(128)
             .spreadHorizontally()
             .repeat(10));
     public static final ConfiguredFeature<?, ?> GRAVEL_ASHY_SHOALS = register("gravel_ashy_shoals", Feature.NETHERRACK_REPLACE_BLOBS.configure(CinderscapesFeatures.GRAVEL_REPLACE_CONFIG)
-            .method_30377(128)
+            .rangeOf(128)
             .spreadHorizontally()
             .repeat(5)
     );
@@ -81,14 +81,14 @@ public final class CinderscapeConfiguredFeatures {
     // TODO: Up until "repeat(x)" could be refactored into a separate configured feature and reused by both ashy shoals and blackstone shales
     public static final ConfiguredFeature<?, ?> SOUL_SAND_BLACKSTONE_SHALES = register("soul_sand_blackstone_shales",
             Feature.NETHERRACK_REPLACE_BLOBS.configure(CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG)
-                    .method_30377(64)
+                    .rangeOf(64)
                     .spreadHorizontally()
                     .repeat(10)
     );
 
     public static final ConfiguredFeature<?, ?> SOUL_SOIL_BLACKSTONE_SHALES = register("soul_soil_blackstone_shales",
             Feature.NETHERRACK_REPLACE_BLOBS.configure(CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG)
-                .method_30377(128)
+                .rangeOf(128)
                 .spreadHorizontally()
                 .repeat(30)
     );
@@ -116,14 +116,14 @@ public final class CinderscapeConfiguredFeatures {
                     .decorate(Decorator.GLOWSTONE.configure(new CountConfig(40)))
     );
     public static final ConfiguredFeature<?, ?> GLOWSTONE = register("luminous_grove/glowstone",
-            Feature.GLOWSTONE_BLOB.configure(FeatureConfig.DEFAULT).method_30377(128)
+            Feature.GLOWSTONE_BLOB.configure(FeatureConfig.DEFAULT).rangeOf(128)
                     .spreadHorizontally()
                     .repeat(40)
     );
 
     public static final ConfiguredFeature<?, ?> SHROOMLIGHT_BUSH = register("luminous_grove/shroomlight_bush",
             CinderscapesFeatures.SHROOMLIGHT_BUSH.configure(FeatureConfig.DEFAULT)
-                    .method_30377(128)
+                    .rangeOf(128)
                     .spreadHorizontally()
                     .repeat(5)
     );
@@ -152,7 +152,7 @@ public final class CinderscapeConfiguredFeatures {
 
     public static final ConfiguredFeature<?, ?> UMBRAL_VINE = register("luminous_growth/umbral_vine",
             CinderscapesFeatures.UMBRAL_VINE.configure(FeatureConfig.DEFAULT)
-                    .method_30377(128)
+                    .rangeOf(128)
                     .spreadHorizontally()
                     .repeat(20)
     );
@@ -166,11 +166,11 @@ public final class CinderscapeConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> VEGETATION_QUARTZ_CANYON = register("quartz_canyon/vegetation", CinderscapesFeatures.VEGETATION.configure(CinderscapesFeatures.QUARTZ_CANYON_VEGETATION_CONFIG).decorate(Decorator.COUNT.configure(new CountConfig(8))));
 
     public static final ConfiguredFeature<?, ?> ORE_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/quartz_ore", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, Blocks.NETHER_QUARTZ_ORE.getDefaultState(), 14)).decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(10, 20, 128))).spreadHorizontally().repeat(32));
-    public static final ConfiguredFeature<?, ?> ORE_SULFUR_QUARTZ_CANYON = register("quartz_canyon/sulfur_ore", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, CinderscapesBlocks.SULFUR_ORE.getDefaultState(), 14)).method_30377(128).spreadHorizontally().repeat(16));
+    public static final ConfiguredFeature<?, ?> ORE_SULFUR_QUARTZ_CANYON = register("quartz_canyon/sulfur_ore", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, CinderscapesBlocks.SULFUR_ORE.getDefaultState(), 14)).rangeOf(128).spreadHorizontally().repeat(16));
     public static final ConfiguredFeature<?, ?> ORE_GOLD_QUARTZ_CANYON = register("quartz_canyon/gold_ore", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, Blocks.NETHER_GOLD_ORE.getDefaultState(), 10)).decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(10, 20, 128))).spreadHorizontally().repeat(20));
-    public static final ConfiguredFeature<?, ?> ORE_SMOKY_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/smoky_quartz_ore", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, CinderscapesBlocks.SMOKY_QUARTZ_ORE.getDefaultState(), 14)).method_30377(128).spreadHorizontally().repeat(32));
-    public static final ConfiguredFeature<?, ?> ORE_ROSE_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/rose_quartz_ore", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, CinderscapesBlocks.ROSE_QUARTZ_ORE.getDefaultState(), 14)).method_30377(128).spreadHorizontally().repeat(32));
-    public static final ConfiguredFeature<?, ?> ORE_SULFUR_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/sulfur_quartz_ore", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, CinderscapesBlocks.SULFUR_QUARTZ_ORE.getDefaultState(), 14)).method_30377(128).spreadHorizontally().repeat(32));
+    public static final ConfiguredFeature<?, ?> ORE_SMOKY_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/smoky_quartz_ore", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, CinderscapesBlocks.SMOKY_QUARTZ_ORE.getDefaultState(), 14)).rangeOf(128).spreadHorizontally().repeat(32));
+    public static final ConfiguredFeature<?, ?> ORE_ROSE_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/rose_quartz_ore", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, CinderscapesBlocks.ROSE_QUARTZ_ORE.getDefaultState(), 14)).rangeOf(128).spreadHorizontally().repeat(32));
+    public static final ConfiguredFeature<?, ?> ORE_SULFUR_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/sulfur_quartz_ore", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, CinderscapesBlocks.SULFUR_QUARTZ_ORE.getDefaultState(), 14)).rangeOf(128).spreadHorizontally().repeat(32));
 
     private static final List<BlockState> SHARD_WHITELIST = Arrays.asList(Blocks.NETHERRACK.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.GRAVEL.getDefaultState(), Blocks.NETHER_QUARTZ_ORE.getDefaultState(), Blocks.SOUL_SAND.getDefaultState());
     private static final List<BlockState> SHARED_SAFELIST = Arrays.asList(Blocks.NETHERRACK.getDefaultState(), Blocks.NETHER_QUARTZ_ORE.getDefaultState());
