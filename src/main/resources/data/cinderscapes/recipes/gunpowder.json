@@ -5,7 +5,10 @@
       "tag": "c:sulfurs"
     },
     {
-      "item": "minecraft:charcoal"
+      "tag": "minecraft:coals"
+    },
+    {
+      "item": "minecraft:bone_meal"
     }
   ],
   "result": {
