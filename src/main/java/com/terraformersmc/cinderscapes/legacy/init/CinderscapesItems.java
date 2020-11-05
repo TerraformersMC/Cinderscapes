@@ -1,6 +1,7 @@
 package com.terraformersmc.cinderscapes.legacy.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
+import com.terraformersmc.cinderscapes.legacy.item.CinderscapesMusicDiscItem;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -28,12 +29,16 @@ public class CinderscapesItems {
     public static final Item SMOKY_QUARTZ = add("smoky_quartz", new Item(new Item.Settings().group(ItemGroup.MATERIALS)));
     public static final Item SULFUR_QUARTZ = add("sulfur_quartz", new Item(new Item.Settings().group(ItemGroup.MATERIALS)));
 
+    public static final Item MUSIC_DISC_LUMINOUS_PLANTATION = add("music_disc_luminous_plantation", new CinderscapesMusicDiscItem(14, CinderscapesSoundEvents.MUSIC_DISC_LUMINOUS_PLANTATION));
+    public static final Item MUSIC_DISC_CHILLING_IN_HELL = add("music_disc_chilling_in_hell", new CinderscapesMusicDiscItem(14, CinderscapesSoundEvents.MUSIC_DISC_CHILLING_IN_HELL));
+
     private static <I extends Item> I add(String name, I item) {
         ITEMS.put(Cinderscapes.id(name), item);
         return item;
     }
 
     public static void init() {
+
         for (Identifier id : ITEMS.keySet()) {
             Registry.register(Registry.ITEM, id, ITEMS.get(id));
         }

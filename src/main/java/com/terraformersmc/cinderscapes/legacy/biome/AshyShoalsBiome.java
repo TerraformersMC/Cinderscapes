@@ -3,6 +3,7 @@ package com.terraformersmc.cinderscapes.legacy.biome;
 import com.terraformersmc.cinderscapes.legacy.init.CinderscapeConfiguredFeatures;
 import com.terraformersmc.cinderscapes.legacy.init.CinderscapesSurfaces;
 import com.terraformersmc.cinderscapes.legacy.mixin.DefaultBiomeCreatorAccessor;
+import com.terraformersmc.cinderscapes.legacy.init.CinderscapesSoundEvents;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -44,7 +45,7 @@ public class AshyShoalsBiome {
                         .loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D))
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, 0.0111D))
-                        .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_SOUL_SAND_VALLEY))
+                        .music(MusicType.createIngameMusic(CinderscapesSoundEvents.ASHY_SHOALS_MUSIC))
                         .build())
                 .build();
     }

@@ -7,7 +7,8 @@
     "com.terraformersmc.cinderscapes.legacy.mixin.ServerWorldMixin",
     "com.terraformersmc.cinderscapes.legacy.mixin.NetherrackBlockMixin",
     "com.terraformersmc.cinderscapes.legacy.mixin.DefaultBiomeCreatorAccessor",
-    "com.terraformersmc.cinderscapes.legacy.mixin.NetherCaveCarverMixin"*/
+    "com.terraformersmc.cinderscapes.legacy.mixin.NetherCaveCarverMixin"
+    "com.terraformersmc.cinderscapes.legacy.mixin.SoundEventAccessor*/
   ],
   "client": [
   ],

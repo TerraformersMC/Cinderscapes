@@ -3,6 +3,7 @@ package com.terraformersmc.cinderscapes.legacy.biome;
 import com.terraformersmc.cinderscapes.legacy.init.CinderscapeConfiguredFeatures;
 import com.terraformersmc.cinderscapes.legacy.init.CinderscapesSurfaces;
 import com.terraformersmc.cinderscapes.legacy.mixin.DefaultBiomeCreatorAccessor;
+import com.terraformersmc.cinderscapes.legacy.init.CinderscapesSoundEvents;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -44,7 +45,7 @@ public class LuminousGroveBiome {
                         .loopSound(SoundEvents.AMBIENT_WARPED_FOREST_LOOP)
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0D))
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111D))
-                        .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_WARPED_FOREST))
+                        .music(MusicType.createIngameMusic(CinderscapesSoundEvents.LUMINOUS_GROVE_MUSIC))
                         .build())
                 .build();
     }

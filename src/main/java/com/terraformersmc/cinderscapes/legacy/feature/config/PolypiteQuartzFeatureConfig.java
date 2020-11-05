@@ -7,10 +7,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-06
- * @project Cinderscapes
- */
 public class PolypiteQuartzFeatureConfig implements FeatureConfig {
 
     public final PolypiteQuartzBlock quartzMaterial;

@@ -15,9 +15,7 @@ public class CinderscapesGroups {
             .appendItems((stacks) -> {
                 Registry.ITEM.stream().filter((item) -> {
                     return Registry.ITEM.getId(item).getNamespace().equals(Cinderscapes.NAMESPACE);
-                }).forEach((item) -> {
-                    item.appendStacks(item.getGroup(), (DefaultedList<ItemStack>) stacks);
-                });
+                }).forEach((item) -> stacks.add(new ItemStack(item)));
             })
             .build();
     }

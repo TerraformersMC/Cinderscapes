@@ -9,13 +9,6 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * A general class for placing vegetation literally anywhere
- * Based off of NetherForestVegetationFeature.class
- *
- * @author <Wtoll> Will Toll on 2020-06-06
- * @project Cinderscapes
- */
 public class VegetationFeatureConfig implements FeatureConfig {
 
     public final BlockStateProvider vegetationStates;

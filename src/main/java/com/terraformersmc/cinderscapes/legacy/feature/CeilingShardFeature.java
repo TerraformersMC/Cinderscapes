@@ -35,7 +35,7 @@ public class CeilingShardFeature extends Feature<SimpleStateFeatureConfig> {
 
             shape = shape.applyLayer(new AddLayer(Shapes
                     .ellipticalPyramid(radius, radius, height)
-                    .applyLayer(new RotateLayer(Quaternion.of(new net.minecraft.util.math.Quaternion(0, ytheta, ztheta, true))))
+                    .applyLayer(new RotateLayer(Quaternion.of(0, ytheta, ztheta, true)))
             ));
         }
 

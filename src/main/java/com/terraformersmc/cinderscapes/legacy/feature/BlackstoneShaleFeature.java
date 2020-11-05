@@ -10,15 +10,6 @@ import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-
-/**
- * [REVIEWED]
- *
- * A large scale like stone feature
- *
- * @author <Wtoll> Will Toll
- * @project Cinderscapes
- */
 public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
 
     public BlackstoneShaleFeature() {

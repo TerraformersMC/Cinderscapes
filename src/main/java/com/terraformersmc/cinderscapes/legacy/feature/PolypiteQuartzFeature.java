@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-06
- * @project Cinderscapes
- */
 public class PolypiteQuartzFeature extends Feature<PolypiteQuartzFeatureConfig> {
     public PolypiteQuartzFeature() {
         super(PolypiteQuartzFeatureConfig.CODEC);

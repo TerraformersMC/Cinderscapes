@@ -10,10 +10,6 @@ import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-/**
- * @author <Wtoll> Will Toll on 2020-06-06
- * @project Cinderscapes
- */
 public class VegetationFeature extends Feature<VegetationFeatureConfig> {
     public VegetationFeature() {
         super(VegetationFeatureConfig.CODEC);

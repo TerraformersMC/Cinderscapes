@@ -21,6 +21,8 @@ public class Cinderscapes implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        // TODO: Move elsewhere
+        /*try { SpawnRestrictionAccessor.callRegister(EntityType.ZOGLIN, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZoglinEntity::canMobSpawn); } catch (IllegalStateException e) { }*/
 
         List<Class<?>> classes = Arrays.asList(LuminousGrove.class, MagmaticMire.class);
         classes.forEach((clazz) -> {

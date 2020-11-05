@@ -11,15 +11,6 @@ import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-
-/**
- * [REVIEWED]
- *
- * A spherical bush made entirely out of shroomlight
- *
- * @author <Wtoll> Will Toll
- * @project Cinderscapes
- */
 public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
 
     public ShroomlightBushFeature() {

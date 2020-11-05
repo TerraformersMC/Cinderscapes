@@ -23,7 +23,6 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Arrays;
 import java.util.Random;
 
-//TODO: This is brokededededed
 public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
     public DeadTreeFeature() {
         super(DefaultFeatureConfig.CODEC);
