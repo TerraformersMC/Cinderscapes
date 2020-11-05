@@ -1,4 +1,4 @@
-package com.terraformersmc.cinderscapes.legacy.mixin;
+package com.terraformersmc.cinderscapes.mixin;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.world.biome.Biome;

@@ -1,4 +1,4 @@
-package com.terraformersmc.cinderscapes.legacy.mixin;
+package com.terraformersmc.cinderscapes.mixin;
 
 import net.minecraft.world.biome.DefaultBiomeCreator;
 import org.spongepowered.asm.mixin.Mixin;

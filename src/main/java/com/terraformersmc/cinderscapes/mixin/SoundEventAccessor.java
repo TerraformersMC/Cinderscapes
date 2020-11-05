@@ -1,4 +1,4 @@
-package com.terraformersmc.cinderscapes.legacy.mixin;
+package com.terraformersmc.cinderscapes.mixin;
 
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;

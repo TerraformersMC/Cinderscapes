@@ -1,12 +1,14 @@
 package com.terraformersmc.cinderscapes.modules.magmaticmire;
 
 import com.terraformersmc.cinderscapes.init.CommonModule;
-import com.terraformersmc.cinderscapes.init.Module;
 
-@Module
 public class MagmaticMire implements CommonModule {
+
+    public static MagmaticMire COMMON;
+
     @Override
     public void onInitialize() {
+        COMMON = this;
         System.out.println("Magmatic Mire common");
     }
 }

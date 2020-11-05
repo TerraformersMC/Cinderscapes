@@ -1,9 +1,10 @@
 package com.terraformersmc.cinderscapes.legacy.mixin;
 
+import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.legacy.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.legacy.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.legacy.init.CinderscapesTags;
-import com.terraformersmc.cinderscapes.legacy.config.CinderscapesConfig;
+import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -35,7 +36,7 @@ public abstract class ServerWorldMixin extends World {
     // TODO: Revisit this and make it easier to read
     @Inject(method="tickChunk", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/server/world/ServerWorld;getBiome(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/world/biome/Biome;", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
     private void tickChunk(WorldChunk chunk, int randomTickSpeed, CallbackInfo callback, ChunkPos chunkPos, boolean bl, int i, int j, Profiler profiler, BlockPos blockPos2, BlockPos blockPos3, Biome biome2) {
-        if (CinderscapesConfig.INSTANCE.enableAshFall) {
+        if (Cinderscapes.CONFIG.enableAshFall) {
             BlockPos pos = this.getRandomPosInChunk(i, 0, j, 15);
             BlockState state = getBlockState(pos);
             RegistryKey<Biome> biome = this.method_31081(pos).orElse(null);

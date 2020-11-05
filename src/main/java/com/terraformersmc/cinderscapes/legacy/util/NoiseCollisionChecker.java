@@ -2,7 +2,7 @@ package com.terraformersmc.cinderscapes.legacy.util;
 
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.JsonOps;
-import com.terraformersmc.cinderscapes.legacy.mixin.MultiNoiseBiomeSourceAccessor;
+import com.terraformersmc.cinderscapes.mixin.MultiNoiseBiomeSourceAccessor;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.world.biome.Biome;

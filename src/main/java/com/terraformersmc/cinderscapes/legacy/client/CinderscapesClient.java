@@ -20,24 +20,12 @@ public class CinderscapesClient implements ClientModInitializer {
         // TODO: Find a more elegant way to add blocks to their render layers
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
-                CinderscapesBlocks.UMBRAL_WART_BLOCK,
                 CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ,
                 CinderscapesBlocks.CRYSTALLINE_QUARTZ,
                 CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ,
-                CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ,
-                CinderscapesBlocks.GHASTLY_ECTOPLASM
+                CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ
         );
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
-                CinderscapesBlocks.PHOTOFERN,
-                CinderscapesBlocks.POTTED_PHOTOFERN,
-                CinderscapesBlocks.TALL_PHOTOFERN,
-                CinderscapesBlocks.LUMINOUS_POD,
-                CinderscapesBlocks.POTTED_LUMINOUS_POD,
-                CinderscapesBlocks.TWILIGHT_FESCUES,
-                CinderscapesBlocks.TWILIGHT_TENDRILS,
-                CinderscapesBlocks.POTTED_TWILIGHT_TENDRILS,
-                CinderscapesBlocks.UMBRAL_FUNGUS,
-                CinderscapesBlocks.POTTED_UMBRAL_FUNGUS,
                 CinderscapesBlocks.SCORCHED_SHRUB,
                 CinderscapesBlocks.POTTED_SCORCHED_SHRUB,
                 CinderscapesBlocks.SCORCHED_SPROUTS,
@@ -48,7 +36,6 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.POTTED_CRYSTINIUM,
                 CinderscapesBlocks.SCORCHED_TENDRILS,
                 CinderscapesBlocks.POTTED_SCORCHED_TENDRILS,
-                CinderscapesBlocks.UMBRAL_DOOR,
                 CinderscapesBlocks.POLYPITE_ROSE_QUARTZ,
                 CinderscapesBlocks.POTTED_POLYPITE_ROSE_QUARTZ,
                 CinderscapesBlocks.POLYPITE_QUARTZ,
@@ -59,7 +46,7 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.POTTED_POLYPITE_SULFUR_QUARTZ
         );
 
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((TerraformSignBlock) CinderscapesBlocks.UMBRAL_SIGN).getTexture()));
+
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((TerraformSignBlock) CinderscapesBlocks.SCORCHED_SIGN).getTexture()));
     }
 }

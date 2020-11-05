@@ -1,7 +1,8 @@
-package com.terraformersmc.cinderscapes.legacy.mixin;
+package com.terraformersmc.cinderscapes.mixin;
 
 import com.mojang.serialization.Codec;
 import com.terraformersmc.cinderscapes.legacy.init.CinderscapesBlocks;
+import com.terraformersmc.cinderscapes.modules.luminousgrove.LuminousGroveBlocks;
 import net.minecraft.world.gen.ProbabilityConfig;
 import net.minecraft.world.gen.carver.CaveCarver;
 import net.minecraft.world.gen.carver.NetherCaveCarver;
@@ -22,6 +23,6 @@ public abstract class NetherCaveCarverMixin extends CaveCarver {
     @Inject(method = "<init>", at = @At("TAIL"))
     public void constructor(CallbackInfo callback) {
         this.alwaysCarvableBlocks = new HashSet<>(this.alwaysCarvableBlocks);
-        this.alwaysCarvableBlocks.add(CinderscapesBlocks.UMBRAL_NYLIUM);
+        this.alwaysCarvableBlocks.add(LuminousGroveBlocks.UMBRAL_NYLIUM);
     }
 }

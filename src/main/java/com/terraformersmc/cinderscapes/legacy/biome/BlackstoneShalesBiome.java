@@ -1,7 +1,7 @@
 package com.terraformersmc.cinderscapes.legacy.biome;
 
 import com.terraformersmc.cinderscapes.legacy.init.CinderscapeConfiguredFeatures;
-import com.terraformersmc.cinderscapes.legacy.mixin.DefaultBiomeCreatorAccessor;
+import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
 import com.terraformersmc.cinderscapes.legacy.init.CinderscapesSoundEvents;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
