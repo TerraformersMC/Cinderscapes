@@ -1,6 +1,6 @@
 package com.terraformersmc.cinderscapes.biome;
 
-import com.terraformersmc.cinderscapes.init.CinderscapeConfiguredFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
 import net.minecraft.client.sound.MusicType;
@@ -53,17 +53,17 @@ public class BlackstoneShalesBiome {
 
         // VEGETATION
 
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.WEEPING_VINES.repeat(10));
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.PATCH_CRIMSON_ROOTS);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.BLACKSTONE_SHALE_WEEPING_VINES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.PATCH_CRIMSON_ROOTS);
 
         // NETHERRACK REPLACERS
 
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.SOUL_SAND_BLACKSTONE_SHALES);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.SOUL_SOIL_BLACKSTONE_SHALES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SOUL_SAND_BLACKSTONE_SHALES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SOUL_SOIL_BLACKSTONE_SHALES);
 
         // SHALES
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.SHALES);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.LAVA_SHALES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SHALES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.LAVA_SHALES);
 
         // DEFAULT MINECRAFT FEATURES
         builder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);

@@ -1,6 +1,6 @@
 package com.terraformersmc.cinderscapes.biome;
 
-import com.terraformersmc.cinderscapes.init.CinderscapeConfiguredFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
 import net.minecraft.block.BlockState;
@@ -77,34 +77,34 @@ public class QuartzCanyonBiome {
         DefaultBiomeFeatures.addAncientDebris(builder);
 
         // QUARTZ ORES
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.ORE_QUARTZ_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.ORE_SULFUR_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.ORE_GOLD_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.ORE_SMOKY_QUARTZ_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.ORE_ROSE_QUARTZ_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.ORE_SULFUR_QUARTZ_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_QUARTZ_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_SULFUR_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_GOLD_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_SMOKY_QUARTZ_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_ROSE_QUARTZ_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_SULFUR_QUARTZ_QUARTZ_CANYON);
 
         // VEGETATION
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.VEGETATION_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.VEGETATION_QUARTZ_CANYON);
 
         // QUARTZ SHARDS
 
         List<BlockState> safelist = Arrays.asList(Blocks.NETHERRACK.getDefaultState(), Blocks.NETHER_QUARTZ_ORE.getDefaultState());
 
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.CEILING_SHARD_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.FLOOR_SHARD_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.CEILING_SHARD_ROSE_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.FLOOR_SHARD_ROSE_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.CEILING_SHARD_SMOKY_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.FLOOR_SHARD_SMOKY_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.CEILING_SHARD_SULFUR_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.FLOOR_SHARD_SULFUR_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.CEILING_SHARD_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.FLOOR_SHARD_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.CEILING_SHARD_ROSE_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.FLOOR_SHARD_ROSE_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.CEILING_SHARD_SMOKY_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.FLOOR_SHARD_SMOKY_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.CEILING_SHARD_SULFUR_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.FLOOR_SHARD_SULFUR_QUARTZ);
 
         // POLYPITE QUARTZ
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.POLYPITE_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.POLYPITE_SULFUR_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.POLYPITE_ROSE_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.POLYPITE_SMOKY_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.POLYPITE_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.POLYPITE_SULFUR_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.POLYPITE_ROSE_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.POLYPITE_SMOKY_QUARTZ);
 
         return builder.build();
 

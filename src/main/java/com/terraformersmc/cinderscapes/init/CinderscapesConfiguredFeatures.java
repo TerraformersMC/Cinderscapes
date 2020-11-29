@@ -22,7 +22,9 @@ import net.minecraft.world.gen.feature.OreFeatureConfig;
 import java.util.Arrays;
 import java.util.List;
 
-public final class CinderscapeConfiguredFeatures {
+public final class CinderscapesConfiguredFeatures {
+
+    public static final ConfiguredFeature<?, ?> BLACKSTONE_SHALE_WEEPING_VINES = register("blackstone_shales_weeping_vines", ConfiguredFeatures.WEEPING_VINES.repeat(10));
 
     public static final ConfiguredFeature<?, ?> ORE_DEBRIS_LARGE_ASHY_SHOALS = register("ore_debris_large_ashy_shoals", Feature.NO_SURFACE_ORE
             .configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_NETHER, Blocks.ANCIENT_DEBRIS.getDefaultState(), 3))
@@ -193,7 +195,7 @@ public final class CinderscapeConfiguredFeatures {
         return CinderscapesFeatures.POLYPITE_QUARTZ.configure(new PolypiteQuartzFeatureConfig(block)).decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(10, 20, 128))).spreadHorizontally().repeat(128);
     }
 
-    private CinderscapeConfiguredFeatures() {
+    private CinderscapesConfiguredFeatures() {
     }
 
     private static ConfiguredFeature<?, ?> register(String id, ConfiguredFeature<?, ?> cf) {
