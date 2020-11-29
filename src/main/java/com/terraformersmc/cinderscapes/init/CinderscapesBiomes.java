@@ -30,16 +30,16 @@ public class CinderscapesBiomes {
     // Required because something referencing this class has to be called in order to force the
     // static initializer to run (Minecraft's Bootstrap class does similar things)
     public static void init() {
-        if (CinderscapesConfig.INSTANCE.enableAshyShoals) {
+        if (CinderscapesConfig.INSTANCE.biomes.enableAshyShoals) {
             NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("ashy_shoals")), AshyShoalsBiome.NOISE_POINT);
         }
-        if (CinderscapesConfig.INSTANCE.enableLuminousGrove) {
+        if (CinderscapesConfig.INSTANCE.biomes.enableLuminousGrove) {
             NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("luminous_grove")), LuminousGroveBiome.NOISE_POINT);
         }
-        if (CinderscapesConfig.INSTANCE.enableQuartzCanyon) {
+        if (CinderscapesConfig.INSTANCE.biomes.enableQuartzCanyon) {
             NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("quartz_canyon")), QuartzCanyonBiome.NOISE_POINT);
         }
-        if (CinderscapesConfig.INSTANCE.enableBlackstoneShales) {
+        if (CinderscapesConfig.INSTANCE.biomes.enableBlackstoneShales) {
             NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("blackstone_shales")), BlackstoneShalesBiome.NOISE_POINT);
         }
     }

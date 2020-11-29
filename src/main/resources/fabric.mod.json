@@ -27,6 +27,9 @@
     ],
     "client": [
       "com.terraformersmc.cinderscapes.client.CinderscapesClient"
+    ],
+    "modmenu": [
+      "com.terraformersmc.cinderscapes.integration.ModMenuIntegration"
     ]
   },
   "mixins": [
