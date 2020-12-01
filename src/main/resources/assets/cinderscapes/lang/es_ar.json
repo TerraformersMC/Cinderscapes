@@ -40,7 +40,7 @@
 
   "block.cinderscapes.ghastly_ectoplasm": "Ectoplasma pálido",
   
-  "biome.cinderscapes.quartz_canyon": "Cañón de cuarzo",
+  "biome.cinderscapes.quartz_canyon": "Caverna de cuarzo",
   
   "block.cinderscapes.crystinium": "Cristinio",
 
@@ -120,6 +120,13 @@
   "item.cinderscapes.music_disc_chilling_in_hell": "Disco",
   "item.cinderscapes.music_disc_chilling_in_hell.desc": "Etorna_Z - Chilling In Hell",
   "item.cinderscapes.music_disc_luminous_plantation": "Disco",
-  "item.cinderscapes.music_disc_luminous_plantation.desc": "LudoCrypt - Luminous Plantation"
+  "item.cinderscapes.music_disc_luminous_plantation.desc": "LudoCrypt - Luminous Plantation",
+
+  "text.autoconfig.cinderscapes.title": "Configuración de Cinderscapes",
+  "text.autoconfig.cinderscapes.option.biomes": "Modificar generación de biomas",
+  "text.autoconfig.cinderscapes.option.biomes.enableAshyShoals": "Activar bioma de bancos cenizos",
+  "text.autoconfig.cinderscapes.option.biomes.enableBlackstoneShales": "Activar bioma de esquistos de piedra negra",
+  "text.autoconfig.cinderscapes.option.biomes.enableLuminousGrove": "Activar bioma de arboleda luminosa",
+  "text.autoconfig.cinderscapes.option.biomes.enableQuartzCanyon": "Activar bioma de caverna de cuarzo",
+  "text.autoconfig.cinderscapes.option.enableAshFall": "Activar caida de cenizas"
 } 
-}
