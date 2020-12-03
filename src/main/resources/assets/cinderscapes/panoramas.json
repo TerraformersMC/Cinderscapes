@@ -1,0 +1,22 @@
+{
+  "ashy_shoals": {
+    "name": "Ashy Shoals",
+    "panoramaId": "cinderscapes:textures/gui/panorama/ashy_shoals/panorama",
+    "musicId": "cinderscapes:music.nether.ashy_shoals"
+  },
+  "blackstone_shales": {
+    "name": "Blackstone Shales",
+    "panoramaId": "cinderscapes:textures/gui/panorama/blackstone_shales/panorama",
+    "musicId": "cinderscapes:music.nether.blackstone_shales"
+  },
+  "luminous_grove": {
+    "name": "Luminous Grove",
+    "panoramaId": "cinderscapes:textures/gui/panorama/luminous_grove/panorama",
+    "musicId": "cinderscapes:music.nether.luminous_grove"
+  },
+  "quartz_cavern": {
+    "name": "Quartz Cavern",
+    "panoramaId": "cinderscapes:textures/gui/panorama/quartz_cavern/panorama",
+    "musicId": "cinderscapes:music.nether.quartz_canyon"
+  }
+}

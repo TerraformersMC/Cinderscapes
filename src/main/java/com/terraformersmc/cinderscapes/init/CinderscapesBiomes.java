@@ -20,7 +20,7 @@ import java.util.Map;
 public class CinderscapesBiomes {
 
     // Acts as a kind of local registry for Cinderscape's custom biomes
-    private static final Map<Identifier, Pair<Biome, Biome.MixedNoisePoint>> BIOMES = new HashMap<>();
+    public static final Map<Identifier, Pair<Biome, Biome.MixedNoisePoint>> BIOMES = new HashMap<>();
 
     public static final RegistryKey<Biome> BLACKSTONE_SHALES = add("blackstone_shales", BlackstoneShalesBiome.create());
     public static final RegistryKey<Biome> QUARTZ_CANYON = add("quartz_canyon", QuartzCanyonBiome.create());
