@@ -1,0 +1,32 @@
+{
+	"music.nether.basalt_deltas": {
+		"replace": false,
+		"sounds": [
+			{
+				"name": "cinderscapes:music/gaped_in_awe",
+				"stream": true,
+				"weight": 7
+			},
+			{
+				"name": "music/game/nether/nether1",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether2",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether3",
+				"stream": true,
+				"weight": 1
+			},
+			{
+				"name": "music/game/nether/nether4",
+				"stream": true,
+				"weight": 1
+			}
+		]
+	}
+}
