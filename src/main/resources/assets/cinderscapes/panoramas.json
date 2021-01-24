@@ -1,22 +1,7 @@
 {
-	"Ashy Shoals": {
-		"name": "ashy_shoals",
-		"panoramaId": "cinderscapes:textures/gui/panorama/ashy_shoals/panorama",
-		"musicId": "cinderscapes:music.menu.ashy_shoals"
-	},
-	"Blackstone Shales": {
-		"name": "blackstone_shales",
-		"panoramaId": "cinderscapes:textures/gui/panorama/blackstone_shales/panorama",
-		"musicId": "cinderscapes:music.menu.blackstone_shales"
-	},
 	"Luminous Grove": {
 		"name": "luminous_grove",
-		"panoramaId": "cinderscapes:textures/gui/panorama/luminous_grove/panorama",
-		"musicId": "cinderscapes:music.menu.luminous_grove"
-	},
-	"Quartz Cavern": {
-		"name": "quartz_cavern",
-		"panoramaId": "cinderscapes:textures/gui/panorama/quartz_cavern/panorama",
-		"musicId": "cinderscapes:music.menu.quartz_canyon"
+		"panoramaId": "cinderscapes:textures/gui/panorama/panorama",
+		"musicId": "cinderscapes:music.menu"
 	}
 }

@@ -141,58 +141,9 @@
 			}
 		]
 	},
-	"music.menu.ashy_shoals": {
+	"music.menu": {
 		"category": "music",
 		"sounds": [
-			{
-				"name": "cinderscapes:music.nether.ashy_shoals",
-				"type": "event"
-			},
-			{
-				"name": "cinderscapes:music/ruins",
-				"stream": true,
-				"volume": 0.6,
-				"weight": 3
-			}
-		]
-	},
-	"music.menu.blackstone_shales": {
-		"category": "music",
-		"sounds": [
-			{
-				"name": "cinderscapes:music.nether.blackstone_shales",
-				"type": "event"
-			},
-			{
-				"name": "cinderscapes:music/ruins",
-				"stream": true,
-				"volume": 0.6,
-				"weight": 3
-			}
-		]
-	},
-	"music.menu.luminous_grove": {
-		"category": "music",
-		"sounds": [
-			{
-				"name": "cinderscapes:music.nether.luminous_grove",
-				"type": "event"
-			},
-			{
-				"name": "cinderscapes:music/ruins",
-				"stream": true,
-				"volume": 0.6,
-				"weight": 3
-			}
-		]
-	},
-	"music.menu.quartz_canyon": {
-		"category": "music",
-		"sounds": [
-			{
-				"name": "cinderscapes:music.nether.quartz_canyon",
-				"type": "event"
-			},
 			{
 				"name": "cinderscapes:music/ruins",
 				"stream": true,

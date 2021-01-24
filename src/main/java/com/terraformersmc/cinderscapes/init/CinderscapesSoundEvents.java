@@ -21,10 +21,7 @@ public class CinderscapesSoundEvents {
 	public static final SoundEvent LUMINOUS_GROVE_MUSIC = add(new SoundEvent(Cinderscapes.id("music.nether.luminous_grove")));
 	public static final SoundEvent QUARTZ_CANYON_MUSIC = add(new SoundEvent(Cinderscapes.id("music.nether.quartz_canyon")));
 	
-	public static final SoundEvent MENU_ASHY_SHOALS_MUSIC = add(new SoundEvent(Cinderscapes.id("music.menu.ashy_shoals")));
-	public static final SoundEvent MENU_BLACKSTONE_SHALES_MUSIC = add(new SoundEvent(Cinderscapes.id("music.menu.blackstone_shales")));
-	public static final SoundEvent MENU_LUMINOUS_GROVE_MUSIC = add(new SoundEvent(Cinderscapes.id("music.menu.luminous_grove")));
-	public static final SoundEvent MENU_QUARTZ_CANYON_MUSIC = add(new SoundEvent(Cinderscapes.id("music.menu.quartz_canyon")));
+	public static final SoundEvent MENU_MUSIC = add(new SoundEvent(Cinderscapes.id("music.menu")));
 
 	public static final SoundEvent MUSIC_DISC_LUMINOUS_PLANTATION = add(new SoundEvent(Cinderscapes.id("music_disc.luminous_plantation")));
 	public static final SoundEvent MUSIC_DISC_CHILLING_IN_HELL = add(new SoundEvent(Cinderscapes.id("music_disc.chilling_in_hell")));
