@@ -14,9 +14,16 @@ dependencies {
 	includeMod "terraform-api", "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${project.terraform_shapes_api_version}"
 	includeMod "terraform-api", "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
 
-    mod "mod-menu", "io.github.prospector:modmenu:${project.modmenu_version}"
+    mod "mod-menu", "com.terraformersmc:modmenu:${project.modmenu_version}"
     mod "vistas", "com.terraformersmc:vistas:${project.vistas_version}"
 
     includeMod "cloth-config", "me.shedaniel.cloth:config-2:${project.clothconfig_version}"
     includeMod "auto-config", "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
+}
+
+repositories {
+    maven {
+        name = 'TerraformersMC'
+        url = 'http://maven.terraformersmc.com/'
+    }
 }
