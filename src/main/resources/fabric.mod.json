@@ -18,7 +18,9 @@
     "Slice"
   ],
   "contact": {
-    "sources": "https://github.com/TerraformersMC/Cinderscapes"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/cinderscapes",
+    "sources": "https://github.com/TerraformersMC/Cinderscapes",
+    "issues": "https://github.com/TerraformersMC/Cinderscapes/issues"
   },
   "license": "LGPLv3",
   "icon": "assets/cinderscapes/icon.png",
@@ -41,6 +43,9 @@
     "fabricloader": ">=0.8.2+build.194",
     "fabric": ">=0.25.0",
     "minecraft": ">=1.16-"
+  },
+  "breaks": {
+    "modmenu": "<1.15.0"
   },
   "custom": {
     "modupdater": {

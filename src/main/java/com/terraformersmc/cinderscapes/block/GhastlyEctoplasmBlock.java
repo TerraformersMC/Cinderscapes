@@ -17,6 +17,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
+import java.util.Locale;
+
 public class GhastlyEctoplasmBlock extends Block {
     public static final EnumProperty<GhastlyEctoplasmBlock.Type> TYPE = EnumProperty.of("type", GhastlyEctoplasmBlock.Type.class);
 
@@ -78,7 +80,7 @@ public class GhastlyEctoplasmBlock extends Block {
 
         @Override
         public String asString() {
-            return this.toString().toLowerCase();
+            return this.toString().toLowerCase(Locale.ROOT);
         }
     }
 }
