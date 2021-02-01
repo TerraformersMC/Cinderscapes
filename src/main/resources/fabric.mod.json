@@ -22,7 +22,7 @@
     "sources": "https://github.com/TerraformersMC/Cinderscapes",
     "issues": "https://github.com/TerraformersMC/Cinderscapes/issues"
   },
-  "license": "LGPLv3",
+  "license": "LGPL-3.0-only",
   "icon": "assets/cinderscapes/icon.png",
   "environment": "*",
   "entrypoints": {
