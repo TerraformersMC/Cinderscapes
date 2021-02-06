@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "cinderscapes:rose_quartz_block",
+    "cinderscapes:chiseled_rose_quartz_block",
+    "cinderscapes:rose_quartz_pillar",
+    "cinderscapes:smooth_rose_quartz",
+    "cinderscapes:rose_quartz_bricks",
+    "cinderscapes:smoky_quartz_block",
+    "cinderscapes:chiseled_smoky_quartz_block",
+    "cinderscapes:smoky_quartz_pillar",
+    "cinderscapes:smooth_smoky_quartz",
+    "cinderscapes:smoky_quartz_bricks",
+    "cinderscapes:sulfur_quartz_block",
+    "cinderscapes:chiseled_sulfur_quartz_block",
+    "cinderscapes:sulfur_quartz_pillar",
+    "cinderscapes:smooth_sulfur_quartz",
+    "cinderscapes:sulfur_quartz_bricks"
+  ]
+}
