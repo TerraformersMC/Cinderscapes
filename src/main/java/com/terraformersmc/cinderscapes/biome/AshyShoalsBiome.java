@@ -1,6 +1,6 @@
 package com.terraformersmc.cinderscapes.biome;
 
-import com.terraformersmc.cinderscapes.init.CinderscapeConfiguredFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
 import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
@@ -68,28 +68,28 @@ public class AshyShoalsBiome {
         DefaultBiomeFeatures.addNetherMineables(builder);
 
         // ASH PILES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.ASH_PILES);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.ASH_PILES);
 
         // VEGETATION
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.VEGETATION_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.VEGETATION_ASHY_SHOALS);
 
         // BRAMBLE BERRY BUSHES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.BRAMBLE_BERRY_BUSHES);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.BRAMBLE_BERRY_BUSHES);
 
         // REPLACE NETHERRACK
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.SOUL_SAND_ASHY_SHOALS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.SOUL_SOIL_ASHY_SHOALS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.GRAVEL_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SOUL_SAND_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SOUL_SOIL_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.GRAVEL_ASHY_SHOALS);
 
         // TOP LAYER MODIFICATION
-        builder.feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, CinderscapeConfiguredFeatures.ASH_TOP_LAYER);
+        builder.feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, CinderscapesConfiguredFeatures.ASH_TOP_LAYER);
 
         // FEATURES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapeConfiguredFeatures.DEAD_TREE);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.DEAD_TREE);
 
         // ANCIENT DEBRIS
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.ORE_DEBRIS_LARGE_ASHY_SHOALS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapeConfiguredFeatures.ORE_DEBRIS_SMALL_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_DEBRIS_LARGE_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_DEBRIS_SMALL_ASHY_SHOALS);
 
         return builder.build();
     }

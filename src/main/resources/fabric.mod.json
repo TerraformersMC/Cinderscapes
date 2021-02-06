@@ -13,12 +13,16 @@
     "SuperCoder79",
     "Prospector",
     "LudoCrypt",
-    "Etorna_Z"
+    "Etorna_Z",
+    "Arobazzz",
+    "Slice"
   ],
   "contact": {
-    "sources": "https://github.com/TerraformersMC/Cinderscapes"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/cinderscapes",
+    "sources": "https://github.com/TerraformersMC/Cinderscapes",
+    "issues": "https://github.com/TerraformersMC/Cinderscapes/issues"
   },
-  "license": "LGPLv3",
+  "license": "LGPL-3.0-only",
   "icon": "assets/cinderscapes/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -27,6 +31,9 @@
     ],
     "client": [
       "com.terraformersmc.cinderscapes.client.CinderscapesClient"
+    ],
+    "modmenu": [
+      "com.terraformersmc.cinderscapes.integration.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -36,6 +43,9 @@
     "fabricloader": ">=0.8.2+build.194",
     "fabric": ">=0.25.0",
     "minecraft": ">=1.16-"
+  },
+  "breaks": {
+    "modmenu": "<1.15.0"
   },
   "custom": {
     "modupdater": {

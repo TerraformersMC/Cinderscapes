@@ -23,7 +23,12 @@
 			{
 				"name": "cinderscapes:music/chilling_in_hell",
 				"stream": true,
-				"weight": 4
+				"weight": 3
+			},
+			{
+				"name": "cinderscapes:music/gaped_in_awe",
+				"stream": true,
+				"weight": 3
 			},
 			{
 				"name": "music/game/nether/nether1",
@@ -40,7 +45,6 @@
 			{
 				"name": "music/game/nether/nether4",
 				"stream": true
-				
 			}
 		]
 	},
@@ -50,27 +54,28 @@
 			{
 				"name": "music/game/nether/soulsand_valley/so_below",
 				"stream": true,
-				"weight": 7
+				"weight": 3
+			},
+			{
+				"name": "cinderscapes:music/gaped_in_awe",
+				"stream": true,
+				"weight": 3
 			},
 			{
 				"name": "music/game/nether/nether1",
 				"stream": true
-				
 			},
 			{
 				"name": "music/game/nether/nether2",
 				"stream": true
-				
 			},
 			{
 				"name": "music/game/nether/nether3",
 				"stream": true
-				
 			},
 			{
 				"name": "music/game/nether/nether4",
 				"stream": true
-				
 			}
 		]
 	},
@@ -90,22 +95,18 @@
 			{
 				"name": "music/game/nether/nether1",
 				"stream": true
-				
 			},
 			{
 				"name": "music/game/nether/nether2",
 				"stream": true
-				
 			},
 			{
 				"name": "music/game/nether/nether3",
 				"stream": true
-				
 			},
 			{
 				"name": "music/game/nether/nether4",
 				"stream": true
-				
 			}
 		]
 	},
@@ -125,22 +126,29 @@
 			{
 				"name": "music/game/nether/nether1",
 				"stream": true
-				
 			},
 			{
 				"name": "music/game/nether/nether2",
 				"stream": true
-				
 			},
 			{
 				"name": "music/game/nether/nether3",
 				"stream": true
-				
 			},
 			{
 				"name": "music/game/nether/nether4",
 				"stream": true
-				
+			}
+		]
+	},
+	"music.menu": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "cinderscapes:music/ruins",
+				"stream": true,
+				"volume": 0.6,
+				"weight": 3
 			}
 		]
 	}
