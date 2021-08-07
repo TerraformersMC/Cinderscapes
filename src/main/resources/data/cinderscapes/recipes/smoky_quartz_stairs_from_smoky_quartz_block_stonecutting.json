@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "cinderscapes:smoky_quartz_block"
+  },
+  "result": "cinderscapes:smoky_quartz_stairs",
+  "count": 1
+}

@@ -1,11 +1,13 @@
-package com.terraformersmc.cinderscapes.impl;
+package com.terraformersmc.cinderscapes;
 
-import com.terraformersmc.cinderscapes.impl.witheredwastes.WitheredWastes;
+import com.terraformersmc.cinderscapes.biomes.quartzcavern.QuartzCavern;
+import com.terraformersmc.cinderscapes.biomes.luminousgrove.LuminousGrove;
 import net.fabricmc.api.ClientModInitializer;
 
 public class CinderscapesClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        WitheredWastes.onInitializeClient();
+        LuminousGrove.onInitializeClient();
+        QuartzCavern.onInitializeClient();
     }
 }

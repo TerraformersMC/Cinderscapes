@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": [
+      {
+        "item": "cinderscapes:chiseled_rose_quartz_block"
+      },
+      {
+        "item": "cinderscapes:rose_quartz_block"
+      },
+      {
+        "item": "cinderscapes:rose_quartz_pillar"
+      }
+    ]
+  },
+  "result": {
+    "item": "cinderscapes:rose_quartz_stairs",
+    "count": 4
+  }
+}

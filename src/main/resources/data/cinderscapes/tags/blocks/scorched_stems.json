@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "cinderscapes:stripped_scorched_stem",
+    "cinderscapes:scorched_stem",
+    "cinderscapes:stripped_scorched_hyphae",
+    "cinderscapes:scorched_hyphae"
+  ]
+}

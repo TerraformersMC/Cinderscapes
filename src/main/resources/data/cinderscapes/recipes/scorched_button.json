@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "cinderscapes:scorched_planks"
+    }
+  ],
+  "result": {
+    "item": "cinderscapes:scorched_button"
+  }
+}

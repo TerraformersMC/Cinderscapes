@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:nylium",
+    "minecraft:netherrack",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil",
+    "minecraft:blackstone",
+    "minecraft:basalt",
+    "minecraft:glowstone",
+    "cinderscapes:ash",
+    "cinderscapes:ash_block",
+    "minecraft:gravel",
+    "minecraft:bedrock",
+    "minecraft:lava"
+  ]
+}

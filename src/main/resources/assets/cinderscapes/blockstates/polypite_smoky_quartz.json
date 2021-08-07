@@ -1,24 +1,24 @@
 {
   "variants": {
-    "direction=west": {
+    "direction=east": {
       "model": "cinderscapes:block/polypite_smoky_quartz_wall",
       "y": 90
     },
-    "direction=south": {
+    "direction=north": {
       "model": "cinderscapes:block/polypite_smoky_quartz_wall"
     },
-    "direction=north": {
+    "direction=south": {
       "model": "cinderscapes:block/polypite_smoky_quartz_wall",
       "y": 180
     },
-    "direction=east": {
+    "direction=west": {
       "model": "cinderscapes:block/polypite_smoky_quartz_wall",
       "y": 270
     },
-    "direction=down": {
+    "direction=up": {
       "model": "cinderscapes:block/polypite_smoky_quartz_floor"
     },
-    "direction=up": {
+    "direction=down": {
       "model": "cinderscapes:block/polypite_smoky_quartz_floor",
       "x": 180
     }

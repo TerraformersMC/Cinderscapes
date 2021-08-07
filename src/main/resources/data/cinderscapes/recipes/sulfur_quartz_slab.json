@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": [
+      {
+        "item": "cinderscapes:chiseled_sulfur_quartz_block"
+      },
+      {
+        "item": "cinderscapes:sulfur_quartz_block"
+      },
+      {
+        "item": "cinderscapes:sulfur_quartz_pillar"
+      }
+    ]
+  },
+  "result": {
+    "item": "cinderscapes:sulfur_quartz_slab",
+    "count": 6
+  }
+}

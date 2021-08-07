@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "cinderscapes:rose_quartz_block"
+  },
+  "result": "cinderscapes:smooth_rose_quartz",
+  "experience": 0.1,
+  "cookingtime": 200
+}

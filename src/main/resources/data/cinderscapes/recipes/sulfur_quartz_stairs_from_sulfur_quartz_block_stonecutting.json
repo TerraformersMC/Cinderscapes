@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "cinderscapes:sulfur_quartz_block"
+  },
+  "result": "cinderscapes:sulfur_quartz_stairs",
+  "count": 1
+}

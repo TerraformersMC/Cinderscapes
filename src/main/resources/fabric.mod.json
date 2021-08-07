@@ -7,12 +7,12 @@
   "authors": [
     "Vaerian",
     "NeusFear",
+    "LudoCrypt",
     "TerraformersMC"
   ],
   "contributors": [
     "SuperCoder79",
     "Prospector",
-    "LudoCrypt",
     "Etorna_Z",
     "Arobazzz",
     "Slice"
@@ -30,19 +30,17 @@
       "com.terraformersmc.cinderscapes.Cinderscapes"
     ],
     "client": [
-      "com.terraformersmc.cinderscapes.client.CinderscapesClient"
-    ],
-    "modmenu": [
-      "com.terraformersmc.cinderscapes.integration.ModMenuIntegration"
+      "com.terraformersmc.cinderscapes.CinderscapesClient"
     ]
   },
   "mixins": [
     "cinderscapes.mixins.json"
   ],
+  "accessWidener": "cinderscapes.accesswidener",
   "depends": {
     "fabricloader": ">=0.8.2+build.194",
     "fabric": ">=0.25.0",
-    "minecraft": ">=1.16-"
+    "minecraft": ">=1.17-"
   },
   "breaks": {
     "modmenu": "<1.15.0"

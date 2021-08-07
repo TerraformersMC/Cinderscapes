@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:sulfurs"
+    },
+    {
+      "tag": "minecraft:coals"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    }
+  ],
+  "result": {
+    "item": "minecraft:gunpowder"
+  }
+}

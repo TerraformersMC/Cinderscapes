@@ -1,2 +1,7 @@
-package com.terraformersmc;public class TransparentBlock {
+package com.terraformersmc.terraform;
+
+public class TransparentBlock extends net.minecraft.block.TransparentBlock {
+    public TransparentBlock(Settings settings) {
+        super(settings);
+    }
 }

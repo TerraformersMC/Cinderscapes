@@ -1,8 +1,12 @@
 plugins {
-    id 'fabric-loom' version '0.5-SNAPSHOT'
+    id 'fabric-loom' version '0.8-SNAPSHOT'
 }
 
-apply from: 'https://raw.githubusercontent.com/TerraformersMC/GradleScripts/2.0/ferry.gradle'
+apply from: 'https://raw.githubusercontent.com/TerraformersMC/GradleScripts/2.1/ferry.gradle'
+
+minecraft {
+    accessWidener = file("src/main/resources/cinderscapes.accesswidener")
+}
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -11,19 +15,18 @@ dependencies {
     mod "fabric-loader", "net.fabricmc:fabric-loader:${project.loader_version}"
     mod "fabric-api", "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	includeMod "terraform-api", "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${project.terraform_shapes_api_version}"
-	includeMod "terraform-api", "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
-
-    mod "mod-menu", "com.terraformersmc:modmenu:${project.modmenu_version}"
-    mod "vistas", "com.terraformersmc:vistas:${project.vistas_version}"
-
-    includeMod "cloth-config", "me.shedaniel.cloth:config-2:${project.clothconfig_version}"
-    includeMod "auto-config", "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
+    includeMod "terraform-api", "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${project.terraform_shapes_api_version}"
+    includeMod "terraform-api", "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
 }
 
 repositories {
     maven {
-        name = 'TerraformersMC'
-        url = 'https://maven.terraformersmc.com/'
+      name = 'TerraformersMC'
+      url = 'https://maven.terraformersmc.com/'
+    }
+
+    maven {
+        name = 'FabricMC'
+        url = 'https://maven.fabricmc.net/'
     }
 }
