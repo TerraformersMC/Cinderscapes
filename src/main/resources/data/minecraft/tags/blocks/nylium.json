@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "cinderscapes:umbral_nylium"
+    "minecraft:crimson_nylium",
+    "minecraft:warped_nylium"
   ]
 }
