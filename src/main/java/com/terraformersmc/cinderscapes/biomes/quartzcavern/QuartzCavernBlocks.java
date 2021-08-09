@@ -6,6 +6,7 @@ import com.terraformersmc.cinderscapes.biomes.quartzcavern.block.PolypiteQuartzB
 import com.terraformersmc.terraform.TransparentBlock;
 import com.terraformersmc.terraform.wood.block.TerraformStairsBlock;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
@@ -14,9 +15,14 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.text.Style;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.BlockView;
+
+import java.util.Optional;
 
 public class QuartzCavernBlocks {
     public static final Block CRYSTINIUM = Cinderscapes.REGISTRATION_HELPER.register(new CrystiniumBlock(), "crystinium", new FabricItemSettings());
@@ -95,7 +101,13 @@ public class QuartzCavernBlocks {
         return false;
     }
 
-    public static void onInitializeCommon() { }
+    public static void onInitializeCommon() {
+        if (Cinderscapes.CONFIG.easterEggs) {
+
+        } else {
+            Cinderscapes.HIDDEN_ITEMS.add(QuartzCavernBlocks.NODZOL.asItem());
+        }
+    }
 
     public static void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
@@ -104,6 +116,7 @@ public class QuartzCavernBlocks {
                 QuartzCavernBlocks.CRYSTALLINE_ROSE_QUARTZ,
                 QuartzCavernBlocks.CRYSTALLINE_SMOKY_QUARTZ
         );
+
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
                 QuartzCavernBlocks.CRYSTINIUM,
                 QuartzCavernBlocks.POLYPITE_ROSE_QUARTZ,
@@ -115,6 +128,12 @@ public class QuartzCavernBlocks {
                 QuartzCavernBlocks.POLYPITE_SULFUR_QUARTZ,
                 QuartzCavernBlocks.POTTED_POLYPITE_SULFUR_QUARTZ
         );
+
+        ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
+            if (stack.isOf(QuartzCavernBlocks.NODZOL.asItem())) {
+                lines.add(new TranslatableText("block.cinderscapes.nodzol.description").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
+            }
+        });
     }
 
 }

@@ -30,6 +30,7 @@ public class QuartzCavern {
 
     public static void onInitializeClient() {
         QuartzCavernBlocks.onInitializeClient();
+        QuartzCavernItems.onInitializeClient();
     }
 
     public static Biome constructBiome() {

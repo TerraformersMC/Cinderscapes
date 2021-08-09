@@ -13,11 +13,11 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 import java.util.Arrays;
 import java.util.Random;
 
-public class BlackstoneWeepingVineFeature extends WeepingVinesFeature {
+public class BlackstoneWeepingVinesFeature extends WeepingVinesFeature {
 
     private static final Block[] PLACEABLE = new Block[]{Blocks.SOUL_SOIL, Blocks.SOUL_SAND, Blocks.BLACKSTONE, Blocks.NETHERRACK, Blocks.NETHER_WART_BLOCK};
 
-    public BlackstoneWeepingVineFeature(Codec<DefaultFeatureConfig> codec) {
+    public BlackstoneWeepingVinesFeature(Codec<DefaultFeatureConfig> codec) {
         super(codec);
     }
 

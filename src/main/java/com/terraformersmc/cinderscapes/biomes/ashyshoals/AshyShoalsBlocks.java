@@ -8,10 +8,12 @@ import com.terraformersmc.cinderscapes.block.PottedFlowerBlock;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import com.terraformersmc.terraform.wood.block.*;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -62,5 +64,19 @@ public class AshyShoalsBlocks {
     }
 
     public static void onInitializeCommon() { }
+
+    public static void onInitializeClient() {
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
+                SCORCHED_TRAPDOOR,
+                SCORCHED_DOOR,
+                SCORCHED_TENDRILS,
+                POTTED_SCORCHED_TENDRILS,
+                SCORCHED_SHRUB,
+                POTTED_SCORCHED_SHRUB,
+                SCORCHED_SPROUTS,
+                PYRACINTH,
+                POTTED_PYRACINTH
+        );
+    }
 
 }

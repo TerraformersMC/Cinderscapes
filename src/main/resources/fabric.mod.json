@@ -30,7 +30,7 @@
       "com.terraformersmc.cinderscapes.Cinderscapes"
     ],
     "client": [
-      "com.terraformersmc.cinderscapes.CinderscapesClient"
+      "com.terraformersmc.cinderscapes.Cinderscapes"
     ]
   },
   "mixins": [

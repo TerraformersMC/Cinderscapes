@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "cinderscapes:umbral_stem",
+    "cinderscapes:stripped_umbral_stem",
+    "cinderscapes:umbral_hyphae",
+    "cinderscapes:stripped_umbral_hyphae",
+    "cinderscapes:scorched_stem",
+    "cinderscapes:stripped_scorched_stem",
+    "cinderscapes:scorched_hyphae",
+    "cinderscapes:stripped_scorched_hyphae"
+  ]
+}

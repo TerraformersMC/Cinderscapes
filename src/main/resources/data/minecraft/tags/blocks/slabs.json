@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "cinderscapes:sulfur_quartz_slab",
+    "cinderscapes:smooth_sulfur_quartz_slab",
+    "cinderscapes:rose_quartz_slab",
+    "cinderscapes:smooth_rose_quartz_slab",
+    "cinderscapes:smoky_quartz_slab",
+    "cinderscapes:smooth_smoky_quartz_slab"
+  ]
+}

@@ -1,8 +1,12 @@
 package com.terraformersmc.cinderscapes.biomes.quartzcavern;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
+import net.minecraft.text.Style;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 
 public class QuartzCavernItems {
 

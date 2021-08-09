@@ -3,10 +3,12 @@
   "package": "com.terraformersmc.cinderscapes.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "AlterGroundTreeDecoratorMixin",
     "DefaultBiomeCreatorAccessor",
     "NetherForestVegetationFeatureMixin"
   ],
   "client": [
+    "OrderedTextTooltipComponentMixin"
   ],
   "server": [
   ],
