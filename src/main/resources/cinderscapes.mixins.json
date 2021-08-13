@@ -8,7 +8,6 @@
     "NetherForestVegetationFeatureMixin"
   ],
   "client": [
-    "OrderedTextTooltipComponentMixin"
   ],
   "server": [
   ],

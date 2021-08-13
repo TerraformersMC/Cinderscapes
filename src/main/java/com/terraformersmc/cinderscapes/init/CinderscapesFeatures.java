@@ -1,6 +1,7 @@
 package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
+import com.terraformersmc.cinderscapes.biomes.quartzcavern.QuartzCavernBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -32,4 +33,10 @@ public class CinderscapesFeatures {
                     .configure(new ReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.BASALT.getDefaultState(), UniformIntProvider.create(3, 7)))
                     .range(ConfiguredFeatures.Decorators.BOTTOM_TO_TOP)
                     .spreadHorizontally(), "basalt_blobs");
+
+    public static final ConfiguredFeature<?, ?> QUARTZ_SAND_BLOBS = Cinderscapes.REGISTRATION_HELPER
+            .register(Feature.NETHERRACK_REPLACE_BLOBS
+                    .configure(new ReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), QuartzCavernBlocks.QUARTZ_SAND.getDefaultState(), UniformIntProvider.create(3, 7)))
+                    .range(ConfiguredFeatures.Decorators.BOTTOM_TO_TOP)
+                    .spreadHorizontally(), "quartz_sand_blobs");
 }

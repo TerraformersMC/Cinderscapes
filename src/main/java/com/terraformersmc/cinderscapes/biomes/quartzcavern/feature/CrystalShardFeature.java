@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.biomes.quartzcavern.feature;
 
+import com.terraformersmc.cinderscapes.biomes.quartzcavern.QuartzCavernBlocks;
 import com.terraformersmc.cinderscapes.biomes.quartzcavern.feature.config.CrystalShardFeatureConfig;
 import com.terraformersmc.cinderscapes.util.RegionalSafelistValidator;
 import com.terraformersmc.terraform.shapes.api.Position;
@@ -51,7 +52,7 @@ public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
                 .applyLayer(new RotateLayer(Quaternion.of(config.dir.getRotationQuaternion())))
                 .applyLayer(new TranslateLayer(Position.of(pos)))
                 .applyLayer(new TranslateLayer(Position.of(0, -2, 0)))
-                .validate(new RegionalSafelistValidator(world, config.dir, List.of(Blocks.NETHERRACK.getDefaultState())), (validShape) -> {
+                .validate(new RegionalSafelistValidator(world, config.dir, List.of(Blocks.NETHERRACK.getDefaultState(), QuartzCavernBlocks.QUARTZ_SAND.getDefaultState())), (validShape) -> {
                     validShape.fill(new SimpleFiller(world, config.state));
                 });
         return true;

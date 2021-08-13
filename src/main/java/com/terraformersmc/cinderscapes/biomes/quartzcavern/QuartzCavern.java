@@ -1,6 +1,7 @@
 package com.terraformersmc.cinderscapes.biomes.quartzcavern;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
+import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
 import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
 import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
 import net.minecraft.entity.EntityType;
@@ -122,6 +123,8 @@ public class QuartzCavern {
                                         .configure(QuartzCavernFeatures.SULFUR_QUARTZ_FLOOR)
                                         .decorate(Decorator.COUNT_MULTILAYER
                                                 .configure(new CountConfig(1))), "quartz_cavern/sulfur/floor_crystal"))
+                        .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, Cinderscapes.REGISTRATION_HELPER
+                                .register(CinderscapesFeatures.QUARTZ_SAND_BLOBS.repeat(20), "quartz_cavern/quartz_sand_blobs"))
                         .build())
                 .build();
     }

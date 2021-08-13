@@ -25,6 +25,9 @@ import net.minecraft.world.BlockView;
 import java.util.Optional;
 
 public class QuartzCavernBlocks {
+
+    public static final Block QUARTZ_SAND = Cinderscapes.REGISTRATION_HELPER.register(new SandBlock(2, FabricBlockSettings.copyOf(Blocks.SAND)), "quartz_sand", new FabricItemSettings());
+
     public static final Block CRYSTINIUM = Cinderscapes.REGISTRATION_HELPER.register(new CrystiniumBlock(), "crystinium", new FabricItemSettings());
     public static final Block POTTED_CRYSTINIUM = Cinderscapes.REGISTRATION_HELPER.register(new FlowerPotBlock(CRYSTINIUM, FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS)), "potted_crystinium");
 
