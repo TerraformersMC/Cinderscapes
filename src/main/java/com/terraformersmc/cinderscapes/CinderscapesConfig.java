@@ -7,7 +7,7 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
 @Config(name = Cinderscapes.NAMESPACE)
-public class CinderscapesConfig implements ConfigData {
+public final class CinderscapesConfig implements ConfigData {
     @ConfigEntry.Gui.Excluded
     public static CinderscapesConfig INSTANCE;
 
@@ -15,6 +15,8 @@ public class CinderscapesConfig implements ConfigData {
     public BiomeOptions biomes = new BiomeOptions();
 
     public boolean enableAshFall = true;
+
+    public final boolean easterEggs = false;
 
     public static void init() {
         AutoConfig.register(CinderscapesConfig.class, GsonConfigSerializer::new);

@@ -35,6 +35,9 @@
     ],
     "client": [
       "com.terraformersmc.cinderscapes.client.CinderscapesClient"
+    ],
+    "modmenu": [
+      "com.terraformersmc.cinderscapes.integration.CinderscapesModMenu"
     ]
   },
   "mixins": [
@@ -47,7 +50,7 @@
     "minecraft": ">=1.18.2"
   },
   "breaks": {
-    "modmenu": "<1.15.0"
+    "modmenu": "<2.0.0"
   },
   "custom": {
     "modupdater": {
