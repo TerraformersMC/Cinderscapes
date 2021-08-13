@@ -124,7 +124,7 @@ public class QuartzCavern {
                                         .decorate(Decorator.COUNT_MULTILAYER
                                                 .configure(new CountConfig(1))), "quartz_cavern/sulfur/floor_crystal"))
                         .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, Cinderscapes.REGISTRATION_HELPER
-                                .register(CinderscapesFeatures.QUARTZ_SAND_BLOBS.repeat(20), "quartz_cavern/quartz_sand_blobs"))
+                                .register(CinderscapesFeatures.QUARTZ_SAND_BLOBS.repeat(2), "quartz_cavern/quartz_sand_blobs"))
                         .build())
                 .build();
     }

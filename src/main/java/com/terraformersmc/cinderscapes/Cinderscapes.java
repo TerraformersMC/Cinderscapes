@@ -38,10 +38,10 @@ public class Cinderscapes implements ModInitializer, ClientModInitializer {
 	public static ItemGroup GROUP;
 	public static List<Item> HIDDEN_ITEMS = new ArrayList<>();
 
-	public static final CinderscapesConfig CONFIG = new CinderscapesConfig();
-
 	@Override
 	public void onInitialize() {
+		CinderscapesConfig.init();
+
 		CinderscapesMusicEvents.onInitializeCommon();
 
 		LuminousGrove.onInitializeCommon();

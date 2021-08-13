@@ -1,6 +1,7 @@
 package com.terraformersmc.cinderscapes.biomes.quartzcavern;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
+import com.terraformersmc.cinderscapes.CinderscapesConfig;
 import com.terraformersmc.cinderscapes.biomes.quartzcavern.block.CrystiniumBlock;
 import com.terraformersmc.cinderscapes.biomes.quartzcavern.block.PolypiteQuartzBlock;
 import com.terraformersmc.terraform.TransparentBlock;
@@ -105,7 +106,7 @@ public class QuartzCavernBlocks {
     }
 
     public static void onInitializeCommon() {
-        if (Cinderscapes.CONFIG.easterEggs) {
+        if (CinderscapesConfig.INSTANCE.easterEggs) {
 
         } else {
             Cinderscapes.HIDDEN_ITEMS.add(QuartzCavernBlocks.NODZOL.asItem());

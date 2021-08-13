@@ -17,6 +17,9 @@ dependencies {
 
     includeMod "terraform-api", "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${project.terraform_shapes_api_version}"
     includeMod "terraform-api", "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
+
+    mod "modmenu", "com.terraformersmc:modmenu:${project.modmenu_version}"
+    mod "cloth-config", "me.shedaniel.cloth:cloth-config-fabric:${project.clothconfig_version}"
 }
 
 repositories {
@@ -28,5 +31,10 @@ repositories {
     maven {
         name = 'FabricMC'
         url = 'https://maven.fabricmc.net/'
+    }
+
+    maven {
+        name = 'Shedaniel'
+        url = 'https://maven.shedaniel.me/'
     }
 }
