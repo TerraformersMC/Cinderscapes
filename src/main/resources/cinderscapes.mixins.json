@@ -3,14 +3,13 @@
   "package": "com.terraformersmc.cinderscapes.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MultiNoiseBiomeSourceAccessor",
-    "ServerWorldMixin",
-    "NetherrackBlockMixin",
+    "AlterGroundTreeDecoratorMixin",
     "DefaultBiomeCreatorAccessor",
-    "NetherCaveCarverMixin",
-    "SoundEventAccessor"
+    "NetherForestVegetationFeatureMixin"
   ],
   "client": [
+  ],
+  "server": [
   ],
   "injectors": {
     "defaultRequire": 1

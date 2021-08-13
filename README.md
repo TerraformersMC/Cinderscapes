@@ -30,6 +30,11 @@ The two central tenants of the Cinderscapes project are refinement and simplicit
 
 ##### Images of the biomes can be found on the CurseForge [Images page](https://www.curseforge.com/minecraft/mc-mods/cinderscapes/screenshots).
 
+#### Contributors
+
+Cinderscapes would not be what it is without the amazing contributors that have helped to develop the project into what it is today.
+
+Special thanks to Etorna_Z, LudoCrypt, and BoyBeyondTheStars for composition of an original soundtrack for Cinderscapes, and to Slice, Arobazz, and FireNH for their help in creating amazing textures for this mod.
 
 #### Other Mods by Terraformers:
 <p align="center">

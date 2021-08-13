@@ -6,7 +6,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(DefaultBiomeCreator.class)
 public interface DefaultBiomeCreatorAccessor {
-
     @Invoker
     static int callGetSkyColor(float temperature) {
         throw new AssertionError("mixin");
