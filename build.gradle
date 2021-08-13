@@ -4,7 +4,7 @@ plugins {
 
 apply from: 'https://raw.githubusercontent.com/TerraformersMC/GradleScripts/2.5/ferry.gradle'
 
-loom{
+loom {
     accessWidenerPath = file("src/main/resources/cinderscapes.accesswidener")
 }
 
