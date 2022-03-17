@@ -1,8 +1,16 @@
 plugins {
-    id 'fabric-loom' version '0.5-SNAPSHOT'
+    id 'fabric-loom' version '0.11-SNAPSHOT'
 }
 
-apply from: 'https://raw.githubusercontent.com/TerraformersMC/GradleScripts/2.0/ferry.gradle'
+apply from: 'https://raw.githubusercontent.com/TerraformersMC/GradleScripts/2.3/ferry.gradle'
+
+repositories {
+    maven {
+        name = 'TerraformersMC'
+        url = 'https://maven.terraformersmc.com/'
+    }
+    maven { url "https://maven.shedaniel.me" }
+}
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -11,19 +19,14 @@ dependencies {
     mod "fabric-loader", "net.fabricmc:fabric-loader:${project.loader_version}"
     mod "fabric-api", "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	includeMod "terraform-api", "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${project.terraform_shapes_api_version}"
-	includeMod "terraform-api", "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
+	modImplementation (include("com.terraformersmc.terraform-api:terraform-shapes-api-v1:${project.terraform_shapes_api_version}"))
+	modImplementation (include("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"))
 
-    mod "mod-menu", "com.terraformersmc:modmenu:${project.modmenu_version}"
-    mod "vistas", "com.terraformersmc:vistas:${project.vistas_version}"
+    //mod "mod-menu", "com.terraformersmc:modmenu:${project.modmenu_version}"
+    //mod "vistas", "com.terraformersmc:vistas:${project.vistas_version}"
 
-    includeMod "cloth-config", "me.shedaniel.cloth:config-2:${project.clothconfig_version}"
-    includeMod "auto-config", "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
-}
-
-repositories {
-    maven {
-        name = 'TerraformersMC'
-        url = 'https://maven.terraformersmc.com/'
+    modImplementation(include("me.shedaniel.cloth:cloth-config-fabric:${project.clothconfig_version}")){
+        exclude(module: "fabric-api")
     }
+    //includeMod "auto-config", "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
 }
