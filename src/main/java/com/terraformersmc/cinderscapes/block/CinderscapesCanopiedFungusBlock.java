@@ -21,7 +21,7 @@ public class CinderscapesCanopiedFungusBlock extends FungusBlock {
     }
 
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        Block block = ((this.config.get()).config).soilBlock.getBlock();
+        Block block = ((this.config.get()).config()).soilBlock.getBlock();
         Block block2 = world.getBlockState(pos.down()).getBlock();
         return block2 == block;
     }

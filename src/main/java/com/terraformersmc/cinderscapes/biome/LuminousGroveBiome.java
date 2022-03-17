@@ -2,7 +2,6 @@ package com.terraformersmc.cinderscapes.biome;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
-import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
 import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
@@ -16,15 +15,18 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil.NoiseValuePoint;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
 import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
+import net.minecraft.world.gen.feature.NetherPlacedFeatures;
+import net.minecraft.world.gen.feature.OrePlacedFeatures;
 
 public class LuminousGroveBiome {
 
-    public static final Biome.MixedNoisePoint NOISE_POINT = new Biome.MixedNoisePoint(0.35F, 0.35F, 0.0F, 0.0F, 0.2F);
+    public static final NoiseValuePoint NOISE_POINT = MultiNoiseUtil.createNoiseValuePoint(0.35F, 0.35F, 0.0f, 0.0F, 0.0F, 0.2F);
 
     public static Biome create() {
         return new Biome.Builder()
@@ -32,8 +34,8 @@ public class LuminousGroveBiome {
                 .spawnSettings(createSpawnSettings())
                 .precipitation(Biome.Precipitation.NONE)
                 .category(Biome.Category.NETHER)
-                .depth(0.1F)
-                .scale(0.2F)
+                //.depth(0.1F)
+                //.scale(0.2F)
                 .temperature(2.0F)
                 .downfall(0.0F)
                 .effects((new BiomeEffects.Builder())
@@ -52,14 +54,14 @@ public class LuminousGroveBiome {
 
     private static GenerationSettings createGenerationSettings() {
         GenerationSettings.Builder builder = new GenerationSettings.Builder();
-        builder.surfaceBuilder(CinderscapesSurfaces.CONFIGURED_LUMINOUS_GROVE);
+        //builder.surfaceBuilder(CinderscapesSurfaceRules.CONFIGURED_LUMINOUS_GROVE);
 
         // UMBRAL FUNGUS
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS);
 
         // GLOWSTONE
-        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE_EXTRA);
-        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE);
+        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA);
+        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE);
 
         // SHROOMLIGHT BUSHES
         builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SHROOMLIGHT_BUSH);
@@ -77,8 +79,8 @@ public class LuminousGroveBiome {
         builder.structureFeature(ConfiguredStructureFeatures.BASTION_REMNANT);
         builder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_MAGMA);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_CLOSED);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED);
         DefaultBiomeFeatures.addNetherMineables(builder);
 
         return builder.build();

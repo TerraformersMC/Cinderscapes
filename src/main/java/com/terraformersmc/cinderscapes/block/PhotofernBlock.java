@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Fertilizable;
+import net.minecraft.block.TallPlantBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
@@ -33,7 +34,7 @@ public class PhotofernBlock extends CinderscapesNetherPlantBlock implements Fert
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
 		CinderscapesNetherTallPlantBlock tallPhotofern = (CinderscapesNetherTallPlantBlock) CinderscapesBlocks.TALL_PHOTOFERN;
 		if (tallPhotofern.getDefaultState().canPlaceAt(world, pos) && world.isAir(pos.up())) {
-			tallPhotofern.placeAt(world, pos, 2);
+			TallPlantBlock.placeAt(world, tallPhotofern.getDefaultState(), pos, 2);
 		}
 	}
 }
