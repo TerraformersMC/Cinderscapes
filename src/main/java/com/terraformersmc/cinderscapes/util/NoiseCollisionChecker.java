@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.MultiNoiseBiomeSource;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,15 +24,15 @@ public class NoiseCollisionChecker {
     }
 
     private static void check() {
-        MultiNoiseBiomeSource biomeSource = MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(BuiltinRegistries.BIOME, 0L);
+        MultiNoiseBiomeSource biomeSource = MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(BuiltinRegistries.BIOME, false);
 
-        List<Pair<Biome.MixedNoisePoint, Supplier<Biome>>> points = ((MultiNoiseBiomeSourceAccessor) biomeSource).getBiomePoints();
+        List<Pair<MultiNoiseUtil.NoiseValuePoint, Supplier<Biome>>> points = ((MultiNoiseBiomeSourceAccessor) biomeSource).getBiomePoints();
 
         // Build a reverse-map from noise point to Biome
-        Map<Biome.MixedNoisePoint, Biome> noisePoints = new HashMap<>();
-        for (Pair<Biome.MixedNoisePoint, Supplier<Biome>> point : points) {
+        Map<MultiNoiseUtil.NoiseValuePoint, Biome> noisePoints = new HashMap<>();
+        for (Pair<MultiNoiseUtil.NoiseValuePoint, Supplier<Biome>> point : points) {
             Biome biome = point.getSecond().get();
-            Biome.MixedNoisePoint noisePoint = point.getFirst();
+            MultiNoiseUtil.NoiseValuePoint noisePoint = point.getFirst();
             if (biome == null) {
                 System.out.println("WARNING: Found null-biome for noise-point " + toString(noisePoint));
                 continue;
@@ -44,8 +45,8 @@ public class NoiseCollisionChecker {
         }
     }
 
-    private static String toString(Biome.MixedNoisePoint noisePoint) {
-        return Biome.MixedNoisePoint.CODEC.encodeStart(JsonOps.INSTANCE, noisePoint).get().left().get().toString();
+    private static String toString(MultiNoiseUtil.NoiseValuePoint noisePoint) {
+        return MultiNoiseUtil.NoiseValuePoint.CODEC.encodeStart(JsonOps.INSTANCE, noisePoint).get().left().get().toString();
     }
 
 }

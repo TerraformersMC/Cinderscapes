@@ -13,6 +13,7 @@ import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +21,7 @@ import java.util.Map;
 public class CinderscapesBiomes {
 
     // Acts as a kind of local registry for Cinderscape's custom biomes
-    public static final Map<Identifier, Pair<Biome, Biome.MixedNoisePoint>> BIOMES = new HashMap<>();
+    public static final Map<Identifier, Pair<Biome, MultiNoiseUtil.NoiseValuePoint>> BIOMES = new HashMap<>();
 
     public static final RegistryKey<Biome> BLACKSTONE_SHALES = add("blackstone_shales", BlackstoneShalesBiome.create());
     public static final RegistryKey<Biome> QUARTZ_CANYON = add("quartz_canyon", QuartzCanyonBiome.create());

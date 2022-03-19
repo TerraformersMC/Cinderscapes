@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.profiler.Profiler;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
@@ -28,7 +29,7 @@ import java.util.function.Supplier;
 @Mixin(ServerWorld.class)
 public abstract class ServerWorldMixin extends World {
 
-    public ServerWorldMixin(MutableWorldProperties properties, RegistryKey<World> registryRef, DimensionType dimensionType, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed) {
+    public ServerWorldMixin(MutableWorldProperties properties, RegistryKey<World> registryRef, RegistryEntry<DimensionType> dimensionType, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed) {
         super(properties, registryRef, dimensionType, profiler, isClient, debugWorld, seed);
     }
 
@@ -38,18 +39,18 @@ public abstract class ServerWorldMixin extends World {
         if (CinderscapesConfig.INSTANCE.enableAshFall) {
             BlockPos pos = this.getRandomPosInChunk(i, 0, j, 15);
             BlockState state = getBlockState(pos);
-            RegistryKey<Biome> biome = this.method_31081(pos).orElse(null);
+            RegistryEntry<Biome> biome = this.getBiome(pos);
 
             while (!(
                     biome == CinderscapesBiomes.ASHY_SHOALS &&
                             state.isSideSolidFullSquare(this, pos, Direction.UP) &&
-                            CinderscapesTags.ASH_PERMEABLE.contains(blockAbove(pos).getBlock()) &&
+                            blockAbove(pos).getBlock().getDefaultState().isIn(CinderscapesTags.ASH_PERMEABLE) &&
                             this.getBlockState(pos.up()).isAir() &&
                             CinderscapesBlocks.ASH.getDefaultState().canPlaceAt(this, pos.up())) &&
                     pos.getY() < 127) {
                 pos = pos.up();
                 state = getBlockState(pos);
-                biome = this.method_31081(pos).orElse(null);
+                biome = this.getBiome(pos);
             }
             if (pos.getY() < 127) this.setBlockState(pos.up(), CinderscapesBlocks.ASH.getDefaultState());
         }

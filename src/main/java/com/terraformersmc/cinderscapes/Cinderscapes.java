@@ -30,7 +30,7 @@ public class Cinderscapes implements ModInitializer {
 		CinderscapesTags.init();
 		CinderscapesDecorators.init();
 		CinderscapesFeatures.init();
-		CinderscapesSurfaces.init();
+		CinderscapesSurfaceRules.init();
 		CinderscapesGroups.init();
 		CinderscapesBiomes.init();
 		CinderscapesSoundEvents.init();
