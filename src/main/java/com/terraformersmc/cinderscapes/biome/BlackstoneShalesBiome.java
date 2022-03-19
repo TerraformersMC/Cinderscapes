@@ -1,9 +1,8 @@
 package com.terraformersmc.cinderscapes.biome;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
-import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
-import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
+import com.terraformersmc.cinderscapes.mixin.OverworldBiomeCreatorAccessor;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -20,8 +19,6 @@ import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil.NoiseValuePoint;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
-import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import net.minecraft.world.gen.feature.NetherPlacedFeatures;
 import net.minecraft.world.gen.feature.OrePlacedFeatures;
@@ -42,7 +39,7 @@ public class BlackstoneShalesBiome {
                 .temperature(2.0F)
                 .downfall(0.0F)
                 .effects(new BiomeEffects.Builder()
-                        .skyColor(DefaultBiomeCreatorAccessor.callGetSkyColor(2.0f))
+                        .skyColor(OverworldBiomeCreatorAccessor.callGetSkyColor(2.0f))
                         .waterColor(4159204)
                         .waterFogColor(4341314)
                         .fogColor(6235392)

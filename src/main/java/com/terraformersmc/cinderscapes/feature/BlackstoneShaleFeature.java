@@ -7,6 +7,7 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
@@ -19,8 +20,10 @@ public class BlackstoneShaleFeature extends Feature<DefaultFeatureConfig> {
     // TODO: Rewrite using the upcoming shapes library
     // TODO: Rewrite using the CountSafelistRangeFloorDecorator
     @Override
-    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
-
+    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
+        Random random = context.getRandom();
+        BlockPos pos = context.getOrigin();
+        StructureWorldAccess world = context.getWorld();
         int yradius = random.nextInt(5) + 7;
 
         while(true) {

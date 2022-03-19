@@ -11,6 +11,7 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
@@ -25,7 +26,10 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
     // TODO: Figure out the chunk boundary issue
 
     @Override
-    public boolean generate(StructureWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
+        Random random = context.getRandom();
+        BlockPos pos = context.getOrigin();
+        StructureWorldAccess world = context.getWorld();
         while (pos.getY() >= 3) {
             search: {
                 if ( world.getBlockState(pos).getBlock() != Blocks.NETHERRACK ) break search;

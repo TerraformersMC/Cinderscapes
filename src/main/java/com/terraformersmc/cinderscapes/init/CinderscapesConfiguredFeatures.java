@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
 import com.terraformersmc.cinderscapes.decorator.config.CountSafelistRangeDecoratorConfig;
+import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureConfig;
 import com.terraformersmc.cinderscapes.feature.config.PolypiteQuartzFeatureConfig;
 import com.terraformersmc.cinderscapes.feature.config.SimpleStateFeatureConfig;
 import com.terraformersmc.cinderscapes.feature.config.VegetationFeatureConfig;
@@ -59,7 +60,7 @@ public final class CinderscapesConfiguredFeatures {
 
     public static final RegistryEntry<ConfiguredFeature<ReplaceBlobsFeatureConfig, ?>> SOUL_SAND_ASHY_SHOALS = register("soul_sand_ashy_shoals",
             Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG);
-    public static final RegistryEntry<ConfiguredFeature<ReplaceBlobsFeatureConfig, ?>> SOUL_SOIL_ASHY_SHOALS = register("soul_soil_ashy_shoals", Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG));
+    public static final RegistryEntry<ConfiguredFeature<ReplaceBlobsFeatureConfig, ?>> SOUL_SOIL_ASHY_SHOALS = register("soul_soil_ashy_shoals", Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG);
     public static final RegistryEntry<ConfiguredFeature<ReplaceBlobsFeatureConfig, ?>> GRAVEL_ASHY_SHOALS = register("gravel_ashy_shoals", Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.GRAVEL_REPLACE_CONFIG);
 
     public static final RegistryEntry<ConfiguredFeature<DefaultFeatureConfig, ?>> ASH_TOP_LAYER = register("ash_top_layer", CinderscapesFeatures.ASH_TOP_LAYER, FeatureConfig.DEFAULT);
@@ -129,6 +130,8 @@ public final class CinderscapesConfiguredFeatures {
     public static final List<BlockState> CANOPIED_HUGE_FUNGUS_SAFELIST = List.of(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState());
 
     public static final ConfiguredFeature<?, ?> CANOPIED_HUGE_FUNGUS = register("canopied_huge_fungus", CinderscapesFeatures.CANOPIED_HUGE_FUNGUS.configure(CinderscapesFeatures.UMBRAL_FUNGUS_NOT_PLANTED_CONFIG).decorate(CinderscapesDecorators.COUNT_FLOOR.configure(new CountSafelistRangeDecoratorConfig(32, 20, 20, 128, CANOPIED_HUGE_FUNGUS_SAFELIST))));
+
+    public static final RegistryEntry<ConfiguredFeature<CanopiedHugeFungusFeatureConfig,?>> CANOPIED_HUGE_FUNGUS_PLANTED = register("canopied_huge_fungus_not_planted", CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_CONFIG);
 
     /******* QUARTZ CANYON *******/
 

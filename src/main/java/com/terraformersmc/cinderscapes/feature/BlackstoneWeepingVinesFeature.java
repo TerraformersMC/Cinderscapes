@@ -11,6 +11,7 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
@@ -23,16 +24,19 @@ public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig>
     }
 
     @Override
-    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, DefaultFeatureConfig featureConfig) {
-        if (!world.isAir(blockPos)) {
+    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
+        Random random = context.getRandom();
+        BlockPos pos = context.getOrigin();
+        StructureWorldAccess world = context.getWorld();
+        if (!world.isAir(pos)) {
             return false;
         } else {
-            Block block = world.getBlockState(blockPos.up()).getBlock();
+            Block block = world.getBlockState(pos.up()).getBlock();
             if (block != Blocks.BLACKSTONE && block != Blocks.NETHER_WART_BLOCK) {
                 return false;
             } else {
-                this.generateNetherWartBlocksInArea(world, random, blockPos);
-                this.generateVinesInArea(world, random, blockPos);
+                this.generateNetherWartBlocksInArea(world, random, pos);
+                this.generateVinesInArea(world, random, pos);
                 return true;
             }
         }

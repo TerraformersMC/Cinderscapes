@@ -6,7 +6,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
@@ -16,8 +18,8 @@ public class VegetationFeature extends Feature<VegetationFeatureConfig> {
     }
 
     @Override
-    public boolean generate(StructureWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, VegetationFeatureConfig config) {
-        return generateVegetation(world, random, pos, config, 8, 4);
+    public boolean generate(FeatureContext<VegetationFeatureConfig> context) {
+        return generateVegetation(context.getWorld(), context.getRandom(), context.getOrigin(), context.getConfig(), 8, 4);
     }
 
     public static boolean generateVegetation(WorldAccess world, Random random, BlockPos pos, VegetationFeatureConfig config, int horizontalSpread, int verticalSpread) {

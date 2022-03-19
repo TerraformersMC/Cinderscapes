@@ -7,6 +7,7 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
@@ -20,8 +21,10 @@ public class BlackstoneLavaShaleFeature extends Feature<DefaultFeatureConfig> {
 
 
     @Override
-    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
-
+    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
+        Random random = context.getRandom();
+        BlockPos pos = context.getOrigin();
+        StructureWorldAccess world = context.getWorld();
         int yradius = random.nextInt(5) + 10;
 
         while(true) {

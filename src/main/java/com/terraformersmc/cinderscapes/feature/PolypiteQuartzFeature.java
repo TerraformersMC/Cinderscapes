@@ -7,7 +7,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,10 @@ public class PolypiteQuartzFeature extends Feature<PolypiteQuartzFeatureConfig> 
     }
 
     @Override
-    public boolean generate(StructureWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, PolypiteQuartzFeatureConfig config) {
+    public boolean generate(FeatureContext<PolypiteQuartzFeatureConfig> context) {
+        Random random = context.getRandom();
+        BlockPos pos = context.getOrigin();
+        StructureWorldAccess world = context.getWorld();
         if (world.isAir(pos)) {
             List<Direction> valid_faces = new ArrayList<>();
             for (Direction dir : Direction.values()) {
@@ -31,7 +36,7 @@ public class PolypiteQuartzFeature extends Feature<PolypiteQuartzFeatureConfig> 
             }
             if (!valid_faces.isEmpty()) {
                 Direction setDir = valid_faces.get(random.nextInt(valid_faces.size()));
-                world.setBlockState(pos, config.quartzMaterial.stateOf(setDir), 0);
+                world.setBlockState(pos, context.getConfig().quartzMaterial.stateOf(setDir), 0);
                 return true;
             }
         }

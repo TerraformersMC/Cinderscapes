@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import net.minecraft.world.gen.ProbabilityConfig;
 import net.minecraft.world.gen.carver.CaveCarver;
+import net.minecraft.world.gen.carver.CaveCarverConfig;
 import net.minecraft.world.gen.carver.NetherCaveCarver;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,8 +16,8 @@ import java.util.HashSet;
 @Mixin(NetherCaveCarver.class)
 public abstract class NetherCaveCarverMixin extends CaveCarver {
 
-    public NetherCaveCarverMixin(Codec<ProbabilityConfig> codec, int i) {
-        super(codec, i);
+    public NetherCaveCarverMixin(Codec<CaveCarverConfig> codec) {
+        super(codec);
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))

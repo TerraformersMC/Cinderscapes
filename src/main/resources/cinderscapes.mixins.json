@@ -6,7 +6,7 @@
     "MultiNoiseBiomeSourceAccessor",
     "ServerWorldMixin",
     "NetherrackBlockMixin",
-    "DefaultBiomeCreatorAccessor",
+    "OverworldBiomeCreatorAccessor",
     "NetherCaveCarverMixin",
     "SoundEventAccessor"
   ],
