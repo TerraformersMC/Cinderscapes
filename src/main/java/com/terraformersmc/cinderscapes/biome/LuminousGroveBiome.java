@@ -1,6 +1,6 @@
 package com.terraformersmc.cinderscapes.biome;
 
-import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
 import net.minecraft.client.sound.MusicType;
@@ -57,27 +57,24 @@ public class LuminousGroveBiome {
         //builder.surfaceBuilder(CinderscapesSurfaceRules.CONFIGURED_LUMINOUS_GROVE);
 
         // UMBRAL FUNGUS
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.CANOPIED_HUGE_FUNGUS);
 
         // GLOWSTONE
         builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA);
         builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE);
 
         // SHROOMLIGHT BUSHES
-        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SHROOMLIGHT_BUSH);
+        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SHROOMLIGHT_BUSH);
 
         // VEGETATION
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.VEGETATION_LUMINOUS_GROWTH);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.LUMINOUS_POD);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.TALL_PHOTOFERN);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.VEGETATION_LUMINOUS_GROWTH);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.LUMINOUS_POD);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.TALL_PHOTOFERN);
 
         // VINES
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.UMBRAL_VINE);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.UMBRAL_VINE);
 
         // DEFAULT MINECRAFT FEATURES
-        builder.structureFeature(ConfiguredStructureFeatures.FORTRESS);
-        builder.structureFeature(ConfiguredStructureFeatures.BASTION_REMNANT);
-        builder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
         builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA);
         builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED);

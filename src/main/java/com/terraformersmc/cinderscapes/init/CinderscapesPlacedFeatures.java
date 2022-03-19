@@ -43,6 +43,8 @@ public class CinderscapesPlacedFeatures {
             //HeightRangePlacementModifier.uniform(YOffset.fixed(20), YOffset.fixed(20), YOffset.fixed(128))
             CountPlacementModifier.of(10)
     );
+
+    /******* BLACKSTONE SHALES *********/
     public static final RegistryEntry<PlacedFeature> SOUL_SAND_BLACKSTONE_SHALES = createPlacedFeature("soul_sand_blackstone_shales", CinderscapesConfiguredFeatures.SOUL_SAND_ASHY_SHOALS, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(64)), CountPlacementModifier.of(10), SquarePlacementModifier.of());
     public static final RegistryEntry<PlacedFeature> SOUL_SOIL_BLACKSTONE_SHALES = createPlacedFeature("soul_soil_blackstone_shales", CinderscapesConfiguredFeatures.SOUL_SOIL_ASHY_SHOALS, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(128)), CountPlacementModifier.of(30), SquarePlacementModifier.of());
 
@@ -60,6 +62,40 @@ public class CinderscapesPlacedFeatures {
             CountPlacementModifier.of(2)
     );
 
+
+    /******* LUMINOUS GROVE *********/
+    //todo: figure out how to replace Decorator.GLOWSTONE.configure(new CountConfig(40))
+    public static final RegistryEntry<PlacedFeature> GLOWSTONE_EXTRA = createPlacedFeature("luminous_grove/glowstone_extra", CinderscapesConfiguredFeatures.GLOWSTONE, CountPlacementModifier.of(40));
+    public static final RegistryEntry<PlacedFeature> GLOWSTONE = createPlacedFeature("luminous_grove/glowstone", CinderscapesConfiguredFeatures.GLOWSTONE, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(128)), CountPlacementModifier.of(40), SquarePlacementModifier.of());
+    public static final RegistryEntry<PlacedFeature> SHROOMLIGHT_BUSH = createPlacedFeature("luminous_grove/shroomlight_bush", CinderscapesConfiguredFeatures.SHROOMLIGHT_BUSH, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(128)), CountPlacementModifier.of(5), SquarePlacementModifier.of());
+    public static final RegistryEntry<PlacedFeature> VEGETATION_LUMINOUS_GROWTH = createPlacedFeature("luminous_growth/vegetation", CinderscapesConfiguredFeatures.VEGETATION_LUMINOUS_GROWTH, CountMultilayerPlacementModifier.of(8));
+    public static final RegistryEntry<PlacedFeature> LUMINOUS_POD = createPlacedFeature("luminous_growth/luminous_pod", CinderscapesConfiguredFeatures.LUMINOUS_POD, SquarePlacementModifier.of());
+    public static final RegistryEntry<PlacedFeature> TALL_PHOTOFERN = createPlacedFeature("luminous_growth/tall_photofern", CinderscapesConfiguredFeatures.TALL_PHOTOFERN, SquarePlacementModifier.of());
+    public static final RegistryEntry<PlacedFeature> UMBRAL_VINE = createPlacedFeature("luminous_growth/umbral_vine", CinderscapesConfiguredFeatures.UMBRAL_VINE, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(128)), SquarePlacementModifier.of(), CountPlacementModifier.of(20));
+    public static final RegistryEntry<PlacedFeature> CANOPIED_HUGE_FUNGUS = createPlacedFeature("canopied_huge_fungus", CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS, CountPlacementModifier.of(8));
+
+    /******* QUARTZ CANYON *******/
+    public static final RegistryEntry<PlacedFeature> VEGETATION_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/vegetation", CinderscapesConfiguredFeatures.VEGETATION_QUARTZ_CANYON, CountPlacementModifier.of(8));
+    public static final RegistryEntry<PlacedFeature> ORE_QUARTZ_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/quartz_ore", CinderscapesConfiguredFeatures.ORE_QUARTZ_QUARTZ_CANYON, CountPlacementModifier.of(32), SquarePlacementModifier.of());
+    public static final RegistryEntry<PlacedFeature> ORE_SULFUR_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/sulfur_ore", CinderscapesConfiguredFeatures.ORE_SULFUR_QUARTZ_CANYON, CountPlacementModifier.of(16), SquarePlacementModifier.of(), HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(128)));
+    public static final RegistryEntry<PlacedFeature> ORE_GOLD_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/gold_ore", CinderscapesConfiguredFeatures.ORE_GOLD_QUARTZ_CANYON, CountPlacementModifier.of(20));
+    public static final RegistryEntry<PlacedFeature> ORE_SMOKY_QUARTZ_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/smoky_quartz_ore", CinderscapesConfiguredFeatures.ORE_SMOKY_QUARTZ_QUARTZ_CANYON, CountPlacementModifier.of(32), SquarePlacementModifier.of(), HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(128)));
+    public static final RegistryEntry<PlacedFeature> ORE_ROSE_QUARTZ_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/rose_quartz_ore", CinderscapesConfiguredFeatures.ORE_ROSE_QUARTZ_QUARTZ_CANYON, CountPlacementModifier.of(32), SquarePlacementModifier.of(), HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(128)));
+    public static final RegistryEntry<PlacedFeature> ORE_SULFUR_QUARTZ_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/sulfur_quartz_ore", CinderscapesConfiguredFeatures.ORE_SULFUR_QUARTZ_QUARTZ_CANYON, CountPlacementModifier.of(32), SquarePlacementModifier.of(), HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(128)));
+
+    public static final RegistryEntry<PlacedFeature> CEILING_SHARD_QUARTZ = createPlacedFeature("quartz_canyon/ceiling_shard_quartz", CinderscapesConfiguredFeatures.CEILING_SHARD_QUARTZ);
+    public static final RegistryEntry<PlacedFeature> FLOOR_SHARD_QUARTZ = createPlacedFeature("quartz_canyon/floor_shard_quartz", CinderscapesConfiguredFeatures.FLOOR_SHARD_QUARTZ);
+    public static final RegistryEntry<PlacedFeature> CEILING_SHARD_ROSE_QUARTZ = createPlacedFeature("quartz_canyon/ceiling_shard_rose_quartz", CinderscapesConfiguredFeatures.CEILING_SHARD_ROSE_QUARTZ);
+    public static final RegistryEntry<PlacedFeature> FLOOR_SHARD_ROSE_QUARTZ = createPlacedFeature("quartz_canyon/floor_shard_rose_quartz", CinderscapesConfiguredFeatures.FLOOR_SHARD_ROSE_QUARTZ);
+    public static final RegistryEntry<PlacedFeature> CEILING_SHARD_SMOKY_QUARTZ = createPlacedFeature("quartz_canyon/ceiling_shard_smoky_quartz", CinderscapesConfiguredFeatures.CEILING_SHARD_SMOKY_QUARTZ);
+    public static final RegistryEntry<PlacedFeature> FLOOR_SHARD_SMOKY_QUARTZ = createPlacedFeature("quartz_canyon/floor_shard_smoky_quartz", CinderscapesConfiguredFeatures.FLOOR_SHARD_SMOKY_QUARTZ);
+    public static final RegistryEntry<PlacedFeature> CEILING_SHARD_SULFUR_QUARTZ = createPlacedFeature("quartz_canyon/ceiling_shard_sulfur_quartz", CinderscapesConfiguredFeatures.CEILING_SHARD_SULFUR_QUARTZ);
+    public static final RegistryEntry<PlacedFeature> FLOOR_SHARD_SULFUR_QUARTZ = createPlacedFeature("quartz_canyon/floor_shard_sulfur_quartz", CinderscapesConfiguredFeatures.FLOOR_SHARD_SULFUR_QUARTZ);
+
+    public static final RegistryEntry<PlacedFeature> POLYPITE_QUARTZ = createPlacedFeature("quartz_canyon/polypite_quartz", CinderscapesConfiguredFeatures.POLYPITE_QUARTZ, SquarePlacementModifier.of(), CountPlacementModifier.of(128));
+    public static final RegistryEntry<PlacedFeature> POLYPITE_SULFUR_QUARTZ = createPlacedFeature("quartz_canyon/polypite_sulfur_quartz", CinderscapesConfiguredFeatures.POLYPITE_SULFUR_QUARTZ, SquarePlacementModifier.of(), CountPlacementModifier.of(128));
+    public static final RegistryEntry<PlacedFeature> POLYPITE_ROSE_QUARTZ = createPlacedFeature("quartz_canyon/polypite_rose_quartz", CinderscapesConfiguredFeatures.POLYPITE_ROSE_QUARTZ, SquarePlacementModifier.of(), CountPlacementModifier.of(128));
+    public static final RegistryEntry<PlacedFeature> POLYPITE_SMOKY_QUARTZ = createPlacedFeature("quartz_canyon/polypite_smoky_quartz", CinderscapesConfiguredFeatures.POLYPITE_SMOKY_QUARTZ, SquarePlacementModifier.of(), CountPlacementModifier.of(128));
 
     public static <FC extends FeatureConfig> RegistryEntry<PlacedFeature> createPlacedFeature(String id, RegistryEntry<ConfiguredFeature<FC, ?>> feature, PlacementModifier... placementModifiers) {
         List<PlacementModifier> list = new ArrayList<>(List.of(placementModifiers));

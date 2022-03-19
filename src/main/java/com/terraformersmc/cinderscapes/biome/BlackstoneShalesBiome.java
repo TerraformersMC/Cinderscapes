@@ -1,6 +1,6 @@
 package com.terraformersmc.cinderscapes.biome;
 
-import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
@@ -58,26 +58,24 @@ public class BlackstoneShalesBiome {
 
     private static GenerationSettings createGenerationSettings() {
         GenerationSettings.Builder builder = new GenerationSettings.Builder();
-        builder.surfaceBuilder(ConfiguredSurfaceBuilders.NETHER);
+        //builder.surfaceBuilder(ConfiguredSurfaceBuilders.NETHER);
 
         // VEGETATION
 
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.BLACKSTONE_SHALE_WEEPING_VINES);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.BLACKSTONE_SHALE_WEEPING_VINES);
         builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.PATCH_CRIMSON_ROOTS);
 
         // NETHERRACK REPLACERS
 
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SOUL_SAND_BLACKSTONE_SHALES);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SOUL_SOIL_BLACKSTONE_SHALES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SAND_BLACKSTONE_SHALES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SOIL_BLACKSTONE_SHALES);
 
         // SHALES
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SHALES);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.LAVA_SHALES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SHALES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.LAVA_SHALES);
 
         // DEFAULT MINECRAFT FEATURES
-        builder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
-        builder.structureFeature(ConfiguredStructureFeatures.FORTRESS);
         //builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SPRING_LAVA_DOUBLE);
         vanillaNetherFeatures(builder);
         DefaultBiomeFeatures.addAncientDebris(builder);
