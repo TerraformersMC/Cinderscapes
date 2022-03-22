@@ -17,7 +17,9 @@ import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.NoiseThresholdCountPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
+import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 
 import java.util.ArrayList;
@@ -26,10 +28,10 @@ import java.util.List;
 
 public class CinderscapesPlacedFeatures {
 
-    public static final RegistryEntry<PlacedFeature> BLACKSTONE_SHALE_WEEPING_VINES = createPlacedFeature("blackstone_shales_weeping_vine", CinderscapesConfiguredFeatures.BLACKSTONE_SHALE_WEEPING_VINES, CountPlacementModifier.of(10), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE, BiomePlacementModifier.of());
+    public static final RegistryEntry<PlacedFeature> BLACKSTONE_SHALE_WEEPING_VINES = createPlacedFeature("blackstone_shales_weeping_vine", CinderscapesConfiguredFeatures.BLACKSTONE_SHALE_WEEPING_VINES, CountPlacementModifier.of(10), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE);
     public static final RegistryEntry<PlacedFeature> ORE_DEBRIS_LARGE_ASHY_SHOALS = createPlacedFeature("ore_debris_large_ashy_shoals", CinderscapesConfiguredFeatures.ORE_DEBRIS_LARGE_ASHY_SHOALS, HeightRangePlacementModifier.trapezoid(YOffset.fixed(16), YOffset.fixed(8)), CountPlacementModifier.of(4), SquarePlacementModifier.of());
     public static final RegistryEntry<PlacedFeature> ORE_DEBRIS_SMALL_ASHY_SHOALS = createPlacedFeature("ore_debris_small_ashy_shoals", CinderscapesConfiguredFeatures.ORE_DEBRIS_SMALL_ASHY_SHOALS, HeightRangePlacementModifier.uniform(YOffset.fixed(8), YOffset.fixed(16)), CountPlacementModifier.of(4), SquarePlacementModifier.of());
-    public static final RegistryEntry<PlacedFeature> ASH_PILES = createPlacedFeature("ash_piles", CinderscapesConfiguredFeatures.ASH_PILES, HeightRangePlacementModifier.uniform(YOffset.fixed(10), YOffset.fixed(10)), CountPlacementModifier.of(5), SquarePlacementModifier.of());
+    public static final RegistryEntry<PlacedFeature> ASH_PILES = createPlacedFeature("ash_piles", CinderscapesConfiguredFeatures.ASH_PILES, HeightRangePlacementModifier.uniform(YOffset.fixed(10), YOffset.getTop()), CountPlacementModifier.of(5), SquarePlacementModifier.of());
     public static final RegistryEntry<PlacedFeature> VEGETATION_ASHY_SHOALS = createPlacedFeature("vegetation_ashy_shoals", CinderscapesConfiguredFeatures.VEGETATION_ASHY_SHOALS, CountMultilayerPlacementModifier.of(8));
     public static final RegistryEntry<PlacedFeature> BRAMBLE_BERRY_BUSHES = createPlacedFeature("bramble_berry_bushes", CinderscapesConfiguredFeatures.BRAMBLE_BERRY_BUSHES, VegetationPlacedFeatures.modifiers(8));
 
@@ -69,8 +71,8 @@ public class CinderscapesPlacedFeatures {
     public static final RegistryEntry<PlacedFeature> GLOWSTONE = createPlacedFeature("luminous_grove/glowstone", CinderscapesConfiguredFeatures.GLOWSTONE, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(40), SquarePlacementModifier.of());
     public static final RegistryEntry<PlacedFeature> SHROOMLIGHT_BUSH = createPlacedFeature("luminous_grove/shroomlight_bush", CinderscapesConfiguredFeatures.SHROOMLIGHT_BUSH, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(5), SquarePlacementModifier.of());
     public static final RegistryEntry<PlacedFeature> VEGETATION_LUMINOUS_GROWTH = createPlacedFeature("luminous_growth/vegetation", CinderscapesConfiguredFeatures.VEGETATION_LUMINOUS_GROWTH, CountMultilayerPlacementModifier.of(8));
-    public static final RegistryEntry<PlacedFeature> LUMINOUS_POD = createPlacedFeature("luminous_growth/luminous_pod", CinderscapesConfiguredFeatures.LUMINOUS_POD, SquarePlacementModifier.of());
-    public static final RegistryEntry<PlacedFeature> TALL_PHOTOFERN = createPlacedFeature("luminous_growth/tall_photofern", CinderscapesConfiguredFeatures.TALL_PHOTOFERN, SquarePlacementModifier.of());
+    public static final RegistryEntry<PlacedFeature> LUMINOUS_POD = createPlacedFeature("luminous_growth/luminous_pod", CinderscapesConfiguredFeatures.LUMINOUS_POD, NoiseThresholdCountPlacementModifier.of(-0.8, 0, 7), RarityFilterPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP);
+    public static final RegistryEntry<PlacedFeature> TALL_PHOTOFERN = createPlacedFeature("luminous_growth/tall_photofern", CinderscapesConfiguredFeatures.TALL_PHOTOFERN, NoiseThresholdCountPlacementModifier.of(-0.8, 0, 7), RarityFilterPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP);
     public static final RegistryEntry<PlacedFeature> UMBRAL_VINE = createPlacedFeature("luminous_growth/umbral_vine", CinderscapesConfiguredFeatures.UMBRAL_VINE, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), SquarePlacementModifier.of(), CountPlacementModifier.of(20));
     public static final RegistryEntry<PlacedFeature> CANOPIED_HUGE_FUNGUS = createPlacedFeature("canopied_huge_fungus", CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS, CountPlacementModifier.of(8));
 
