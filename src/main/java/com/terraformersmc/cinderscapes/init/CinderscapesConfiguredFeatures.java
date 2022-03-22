@@ -116,9 +116,9 @@ public final class CinderscapesConfiguredFeatures {
 
     public static final RegistryEntry<ConfiguredFeature<VegetationFeatureConfig, ?>> VEGETATION_QUARTZ_CANYON = register("quartz_canyon/vegetation", CinderscapesFeatures.VEGETATION, CinderscapesFeatures.QUARTZ_CANYON_VEGETATION_CONFIG);
 
-    public static final ConfiguredFeature<?, ?> ORE_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/quartz_ore", Feature.ORE.configure(new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, Blocks.NETHER_QUARTZ_ORE.getDefaultState(), 14)).decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(10, 20, 128))).spreadHorizontally().repeat(32));
+    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/quartz_ore", Feature.ORE, new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, Blocks.NETHER_QUARTZ_ORE.getDefaultState(), 14));
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_SULFUR_QUARTZ_CANYON = register("quartz_canyon/sulfur_ore", Feature.ORE, new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, CinderscapesBlocks.SULFUR_ORE.getDefaultState(), 14));
-    public static final ConfiguredFeature<?, ?> ORE_GOLD_QUARTZ_CANYON = register("quartz_canyon/gold_ore", Feature.ORE.configure(new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, Blocks.NETHER_GOLD_ORE.getDefaultState(), 10)).decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(10, 20, 128))).spreadHorizontally().repeat(20));
+    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_GOLD_QUARTZ_CANYON = register("quartz_canyon/gold_ore", Feature.ORE, new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, Blocks.NETHER_GOLD_ORE.getDefaultState(), 10));
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_SMOKY_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/smoky_quartz_ore", Feature.ORE, new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, CinderscapesBlocks.SMOKY_QUARTZ_ORE.getDefaultState(), 14));
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_ROSE_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/rose_quartz_ore", Feature.ORE, new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, CinderscapesBlocks.ROSE_QUARTZ_ORE.getDefaultState(), 14));
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_SULFUR_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/sulfur_quartz_ore", Feature.ORE, new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, CinderscapesBlocks.SULFUR_QUARTZ_ORE.getDefaultState(), 14));
@@ -135,28 +135,26 @@ public final class CinderscapesConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> CEILING_SHARD_SULFUR_QUARTZ = register("quartz_canyon/ceiling_shard_sulfur_quartz", CinderscapesFeatures.CEILING_SHARD.configure(new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), SHARD_WHITELIST)).decorate(CinderscapesDecorators.COUNT_CEILING.configure(new CountSafelistRangeDecoratorConfig(1, 20, 20, 128, SHARED_SAFELIST))));
     public static final ConfiguredFeature<?, ?> FLOOR_SHARD_SULFUR_QUARTZ = register("quartz_canyon/floor_shard_sulfur_quartz", CinderscapesFeatures.FLOOR_SHARD.configure(new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), SHARD_WHITELIST)).decorate(CinderscapesDecorators.COUNT_FLOOR.configure(new CountSafelistRangeDecoratorConfig(1, 20, 20, 128, SHARED_SAFELIST))));
 
-    public static final ConfiguredFeature<?, ?> POLYPITE_QUARTZ = register("quartz_canyon/polypite_quartz", configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_QUARTZ));
-    public static final ConfiguredFeature<?, ?> POLYPITE_SULFUR_QUARTZ = register("quartz_canyon/polypite_sulfur_quartz", configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ));
-    public static final ConfiguredFeature<?, ?> POLYPITE_ROSE_QUARTZ = register("quartz_canyon/polypite_rose_quartz", configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_ROSE_QUARTZ));
-    public static final ConfiguredFeature<?, ?> POLYPITE_SMOKY_QUARTZ = register("quartz_canyon/polypite_smoky_quartz", configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ));
+    public static final RegistryEntry<ConfiguredFeature<PolypiteQuartzFeatureConfig, ?>> POLYPITE_QUARTZ = register("quartz_canyon/polypite_quartz", configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_QUARTZ));
+    public static final RegistryEntry<ConfiguredFeature<PolypiteQuartzFeatureConfig, ?>> POLYPITE_SULFUR_QUARTZ = register("quartz_canyon/polypite_sulfur_quartz", configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ));
+    public static final RegistryEntry<ConfiguredFeature<PolypiteQuartzFeatureConfig, ?>> POLYPITE_ROSE_QUARTZ = register("quartz_canyon/polypite_rose_quartz", configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_ROSE_QUARTZ));
+    public static final RegistryEntry<ConfiguredFeature<PolypiteQuartzFeatureConfig, ?>> POLYPITE_SMOKY_QUARTZ = register("quartz_canyon/polypite_smoky_quartz", configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ));
 
-    private static ConfiguredFeature<?, ?> configurePolypiteQuartz(PolypiteQuartzBlock block) {
-        return CinderscapesFeatures.POLYPITE_QUARTZ.configure(new PolypiteQuartzFeatureConfig(block)).decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(10, 20, 128))).spreadHorizontally().repeat(128);
+    private static ConfiguredFeature<PolypiteQuartzFeatureConfig, ?> configurePolypiteQuartz(PolypiteQuartzBlock block) {
+        return new ConfiguredFeature<>(CinderscapesFeatures.POLYPITE_QUARTZ, new PolypiteQuartzFeatureConfig(block));
     }
 
     private CinderscapesConfiguredFeatures() {
     }
 
     private static  <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> register(String id, F feature, FC config) {
-        Identifier realId = Cinderscapes.id(id);
-        Preconditions.checkState(!BuiltinRegistries.CONFIGURED_FEATURE.getIds().contains(realId), "Duplicate ID: %s", id);
-        return BuiltinRegistries.method_40360(BuiltinRegistries.CONFIGURED_FEATURE, realId.toString(), new ConfiguredFeature<>(feature, config));
+        return register(id, new ConfiguredFeature<>(feature, config));
     }
 
-    private static ConfiguredFeature<?, ?> register(String id, ConfiguredFeature<?, ?> cf) {
+    private static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> register(String id, ConfiguredFeature<FC, F> cf) {
         Identifier realId = Cinderscapes.id(id);
         Preconditions.checkState(!BuiltinRegistries.CONFIGURED_FEATURE.getIds().contains(realId), "Duplicate ID: %s", id);
-        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, realId, cf);
+        return BuiltinRegistries.method_40360(BuiltinRegistries.CONFIGURED_FEATURE, realId.toString(), cf);
     }
 
 }
