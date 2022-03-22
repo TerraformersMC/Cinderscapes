@@ -36,7 +36,6 @@ public final class CinderscapesConfiguredFeatures {
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_DEBRIS_LARGE_ASHY_SHOALS = register("ore_debris_large_ashy_shoals", Feature.ORE, new OreFeatureConfig(List.of(OreFeatureConfig.createTarget(OreConfiguredFeatures.BASE_STONE_NETHER, Blocks.ANCIENT_DEBRIS.getDefaultState())), 3, 1.0f)
     );
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_DEBRIS_SMALL_ASHY_SHOALS = register("ore_debris_small_ashy_shoals", Feature.ORE, new OreFeatureConfig(List.of(OreFeatureConfig.createTarget(OreConfiguredFeatures.BASE_STONE_NETHER, Blocks.ANCIENT_DEBRIS.getDefaultState())), 2, 1.0f)
-            //.decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(8, 16, 128)))
     );
     public static final RegistryEntry<ConfiguredFeature<DefaultFeatureConfig, ?>> ASH_PILES = register("ash_piles", CinderscapesFeatures.ASH_PILE, FeatureConfig.DEFAULT
             //.decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(10, 10, 128)))
