@@ -2,14 +2,15 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.item.CinderscapesMusicDiscItem;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.ComposterBlock;
-import net.minecraft.block.JukeboxBlock;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.*;
+import net.minecraft.item.AliasedBlockItem;
+import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.SignItem;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
 import java.util.LinkedHashMap;

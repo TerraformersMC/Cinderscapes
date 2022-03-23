@@ -1,15 +1,13 @@
 package com.terraformersmc.cinderscapes.init;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import com.terraformersmc.cinderscapes.Cinderscapes;
-
 import com.terraformersmc.cinderscapes.mixin.SoundEventAccessor;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class CinderscapesSoundEvents {
 

@@ -3,7 +3,6 @@ package com.terraformersmc.cinderscapes.init;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
 
 // Contains the item groups added by Cinderscapes

@@ -1,6 +1,5 @@
 package com.terraformersmc.cinderscapes.placementModifier;
 
-import com.mojang.datafixers.kinds.Applicative;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
