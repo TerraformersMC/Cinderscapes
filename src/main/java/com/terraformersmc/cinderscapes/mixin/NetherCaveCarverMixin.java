@@ -2,7 +2,6 @@ package com.terraformersmc.cinderscapes.mixin;
 
 import com.mojang.serialization.Codec;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import net.minecraft.world.gen.ProbabilityConfig;
 import net.minecraft.world.gen.carver.CaveCarver;
 import net.minecraft.world.gen.carver.CaveCarverConfig;
 import net.minecraft.world.gen.carver.NetherCaveCarver;

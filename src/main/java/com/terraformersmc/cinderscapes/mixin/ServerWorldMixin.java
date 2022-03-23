@@ -25,7 +25,6 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.function.Supplier;
 
-@SuppressWarnings("unused")
 @Mixin(ServerWorld.class)
 public abstract class ServerWorldMixin extends World {
 
@@ -34,17 +33,17 @@ public abstract class ServerWorldMixin extends World {
     }
 
     // TODO: Revisit this and make it easier to read
-    @Inject(method="tickChunk", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/server/world/ServerWorld;getBiome(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/world/biome/Biome;", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void tickChunk(WorldChunk chunk, int randomTickSpeed, CallbackInfo callback, ChunkPos chunkPos, boolean bl, int i, int j, Profiler profiler, BlockPos blockPos2, BlockPos blockPos3, Biome biome2) {
+    @Inject(method="tickChunk", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/server/world/ServerWorld;getBiome(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/registry/RegistryEntry;", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
+    private void tickChunk(WorldChunk chunk, int randomTickSpeed, CallbackInfo callback, ChunkPos chunkPos, boolean bl, int i, int j, Profiler profiler, BlockPos blockPos2, BlockPos blockPos3) {
         if (CinderscapesConfig.INSTANCE.enableAshFall) {
             BlockPos pos = this.getRandomPosInChunk(i, 0, j, 15);
             BlockState state = getBlockState(pos);
             RegistryEntry<Biome> biome = this.getBiome(pos);
 
             while (!(
-                    biome == CinderscapesBiomes.ASHY_SHOALS &&
+                    biome.matchesKey(CinderscapesBiomes.ASHY_SHOALS) &&
                             state.isSideSolidFullSquare(this, pos, Direction.UP) &&
-                            blockAbove(pos).getBlock().getDefaultState().isIn(CinderscapesTags.ASH_PERMEABLE) &&
+                            blockAbove(pos).isIn(CinderscapesTags.ASH_PERMEABLE) &&
                             this.getBlockState(pos.up()).isAir() &&
                             CinderscapesBlocks.ASH.getDefaultState().canPlaceAt(this, pos.up())) &&
                     pos.getY() < 127) {

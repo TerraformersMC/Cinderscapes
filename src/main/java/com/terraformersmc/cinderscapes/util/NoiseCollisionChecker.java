@@ -1,18 +1,8 @@
 package com.terraformersmc.cinderscapes.util;
 
-import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.JsonOps;
-import com.terraformersmc.cinderscapes.mixin.MultiNoiseBiomeSourceAccessor;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.MultiNoiseBiomeSource;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
 
 public class NoiseCollisionChecker {
     public static void init() {
@@ -24,7 +14,8 @@ public class NoiseCollisionChecker {
     }
 
     private static void check() {
-        MultiNoiseBiomeSource biomeSource = MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(BuiltinRegistries.BIOME, false);
+        //TODO fix this checker
+        /*MultiNoiseBiomeSource biomeSource = MultiNoiseBiomeSource.Preset.NETHER.getBiomeSource(BuiltinRegistries.BIOME, false);
 
         List<Pair<MultiNoiseUtil.NoiseValuePoint, Supplier<Biome>>> points = ((MultiNoiseBiomeSourceAccessor) biomeSource).getBiomePoints();
 
@@ -42,7 +33,7 @@ public class NoiseCollisionChecker {
             if (prev != null) {
                 System.out.println("WARNING: " + biome + " and " + prev + " have the same mixed noise point " + toString(noisePoint) + "! They won't generate properly!!!!");
             }
-        }
+        }*/
     }
 
     private static String toString(MultiNoiseUtil.NoiseValuePoint noisePoint) {
