@@ -3,10 +3,13 @@
   "package": "com.terraformersmc.cinderscapes.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "ServerWorldMixin",
-    "NetherrackBlockMixin",
-    "OverworldBiomeCreatorAccessor",
+    "ChunkGeneratorSettingsAccessor",
+    "MinecraftServerMixin",
     "NetherCaveCarverMixin",
+    "NetherrackBlockMixin",
+    "NoiseChunkGeneratorAccessor",
+    "OverworldBiomeCreatorAccessor",
+    "ServerWorldMixin",
     "SoundEventAccessor"
   ],
   "client": [
