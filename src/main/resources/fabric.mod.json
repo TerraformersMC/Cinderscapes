@@ -40,9 +40,9 @@
     "cinderscapes.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.8.2+build.194",
-    "fabric": ">=0.25.0",
-    "minecraft": ">=1.16-"
+    "fabricloader": ">=0.13.2",
+    "fabric": ">=0.47.0",
+    "minecraft": ">=1.18.2"
   },
   "breaks": {
     "modmenu": "<1.15.0"
