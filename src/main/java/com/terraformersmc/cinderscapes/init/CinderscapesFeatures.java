@@ -152,7 +152,7 @@ public class CinderscapesFeatures {
 
         DEAD_TREE = Registry.register(Registry.FEATURE, Cinderscapes.id("dead_tree"), new DeadTreeFeature());
 
-        IntProvider spread = UniformIntProvider.create(3, 4); // 3-7
+        IntProvider spread = UniformIntProvider.create(3, 7);
         SOUL_SAND_REPLACE_CONFIG = new ReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.SOUL_SAND.getDefaultState(), spread);
         SOUL_SOIL_REPLACE_CONFIG = new ReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.SOUL_SOIL.getDefaultState(), spread);
         GRAVEL_REPLACE_CONFIG = new ReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.GRAVEL.getDefaultState(), spread);
