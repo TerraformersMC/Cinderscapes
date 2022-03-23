@@ -10,9 +10,11 @@ import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
 // TODO: Check
 public class CinderscapesPlacementModifierTypes {
-    public static final PlacementModifierType<SafelistRangeCeilingPlacementModifier> COUNT_CEILING = Registry.register(Registry.PLACEMENT_MODIFIER_TYPE, new Identifier("cinderscapes", "safelist_range_ceiling"), () -> SafelistRangeCeilingPlacementModifier.UNIFORM_CODEC);
-    public static final PlacementModifierType<SafelistRangeFloorPlacementModifier> COUNT_FLOOR  = Registry.register(Registry.PLACEMENT_MODIFIER_TYPE, new Identifier("cinderscapes", "safelist_range_floor"), () -> SafelistRangeFloorPlacementModifier.UNIFORM_CODEC);
+    public static final PlacementModifierType<SafelistRangeCeilingPlacementModifier> COUNT_CEILING = () -> SafelistRangeCeilingPlacementModifier.UNIFORM_CODEC;
+    public static final PlacementModifierType<SafelistRangeFloorPlacementModifier> COUNT_FLOOR  = () -> SafelistRangeFloorPlacementModifier.UNIFORM_CODEC;
 
     public static void init() {
+        Registry.register(Registry.PLACEMENT_MODIFIER_TYPE, new Identifier("cinderscapes", "safelist_range_ceiling"), COUNT_CEILING);
+        Registry.register(Registry.PLACEMENT_MODIFIER_TYPE, new Identifier("cinderscapes", "safelist_range_floor"), COUNT_FLOOR);
     }
 }
