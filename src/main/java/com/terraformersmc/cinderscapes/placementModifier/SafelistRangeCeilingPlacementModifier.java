@@ -3,6 +3,7 @@ package com.terraformersmc.cinderscapes.placementModifier;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.terraformersmc.cinderscapes.init.CinderscapesPlacementModifierTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.YOffset;
@@ -62,6 +63,6 @@ public class SafelistRangeCeilingPlacementModifier extends PlacementModifier {
 
     @Override
     public PlacementModifierType<?> getType() {
-        return null;
+        return CinderscapesPlacementModifierTypes.COUNT_CEILING;
     }
 }

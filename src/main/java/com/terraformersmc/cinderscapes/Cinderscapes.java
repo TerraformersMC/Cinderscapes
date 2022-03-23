@@ -5,7 +5,7 @@ import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesGroups;
-import com.terraformersmc.cinderscapes.init.CinderscapesHeightProviderTypes;
+import com.terraformersmc.cinderscapes.init.CinderscapesPlacementModifierTypes;
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.init.CinderscapesSurfaceRules;
@@ -37,7 +37,7 @@ public class Cinderscapes implements ModInitializer {
 		CinderscapesItems.init();
 		CinderscapesBlocks.init();
 		CinderscapesTags.init();
-		CinderscapesHeightProviderTypes.init();
+		CinderscapesPlacementModifierTypes.init();
 		CinderscapesFeatures.init();
 		CinderscapesSurfaceRules.init();
 		CinderscapesGroups.init();

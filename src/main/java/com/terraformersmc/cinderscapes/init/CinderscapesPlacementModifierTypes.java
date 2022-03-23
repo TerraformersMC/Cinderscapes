@@ -9,7 +9,7 @@ import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
 
 // TODO: Check
-public class CinderscapesHeightProviderTypes {
+public class CinderscapesPlacementModifierTypes {
     public static PlacementModifierType<SafelistRangeCeilingPlacementModifier> COUNT_CEILING;
     public static PlacementModifierType<SafelistRangeFloorPlacementModifier> COUNT_FLOOR;
 
