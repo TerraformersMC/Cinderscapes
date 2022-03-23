@@ -1,6 +1,9 @@
 package com.terraformersmc.cinderscapes.init;
 
 import net.minecraft.util.Identifier;
+import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.gen.YOffset;
+import net.minecraft.world.gen.noise.NoiseParametersKeys;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
@@ -16,7 +19,7 @@ public class CinderscapesSurfaceRules {
     /////////////////////
     // SURFACE CONFIGS //
     /////////////////////
-    public static final MaterialRules.MaterialRule LUMINOUS_NYLIUM_RULE = MaterialRules.condition(MaterialRules.biome(CinderscapesBiomes.LUMINOUS_GROVE), MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR ,MaterialRules.block(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState())));
+    public static final MaterialRules.MaterialRule LUMINOUS_NYLIUM_RULE = MaterialRules.condition(MaterialRules.biome(CinderscapesBiomes.LUMINOUS_GROVE), MaterialRules.condition(MaterialRules.not(MaterialRules.noiseThreshold(NoiseParametersKeys.NETHERRACK, 0.54)), MaterialRules.condition(MaterialRules.aboveY(YOffset.fixed(31), 0), MaterialRules.sequence(MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.NETHER_WART, 1.17), MaterialRules.block(CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState())), MaterialRules.block(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState())))));
     //public static final TernarySurfaceConfig LUMINOUS_NYLIUM_CONFIG = new TernarySurfaceConfig(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState());
     //public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> CONFIGURED_LUMINOUS_GROVE = add("luminous_grove", SurfaceBuilder.NETHER_FOREST.withConfig(LUMINOUS_NYLIUM_CONFIG));
     //static final TernarySurfaceConfig ASHY_SHOALS_CONFIG = new TernarySurfaceConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), Blocks.MAGMA_BLOCK.getDefaultState());
