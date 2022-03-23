@@ -1,12 +1,10 @@
-package com.terraformersmc.cinderscapes.surfacebuilder;
+/*package com.terraformersmc.cinderscapes.surfacebuilder;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
 import java.util.Random;
 
@@ -31,4 +29,4 @@ public class AshyShoalsSurfaceBuilder extends SurfaceBuilder<TernarySurfaceConfi
             }
         }
     }
-}
+}*/

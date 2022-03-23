@@ -1,4 +1,4 @@
-package com.terraformersmc.cinderscapes.decorator;
+/*package com.terraformersmc.cinderscapes.decorator;
 
 import com.terraformersmc.cinderscapes.decorator.config.UberCountDecoratorConfig;
 import net.minecraft.block.BlockState;
@@ -47,4 +47,4 @@ public class UberCountDecorator extends Decorator<UberCountDecoratorConfig> {
                 pos.add(new BlockPos(direction.getOffsetX() == 0 ? radius : 0, direction.getOffsetY() == 0 ? radius : 0, direction.getOffsetZ() == 0 ? radius : 0))
         );
     }
-}
+}*/

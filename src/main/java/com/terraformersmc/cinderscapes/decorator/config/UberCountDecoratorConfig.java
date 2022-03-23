@@ -1,4 +1,4 @@
-package com.terraformersmc.cinderscapes.decorator.config;
+/*package com.terraformersmc.cinderscapes.decorator.config;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -55,4 +55,4 @@ public class UberCountDecoratorConfig implements DecoratorConfig {
             return config.radius;
         })).apply(instance, UberCountDecoratorConfig::new);
     });
-}
+}*/

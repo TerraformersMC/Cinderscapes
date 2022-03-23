@@ -46,7 +46,8 @@ public class NoiseCollisionChecker {
     }
 
     private static String toString(MultiNoiseUtil.NoiseValuePoint noisePoint) {
-        return MultiNoiseUtil.NoiseValuePoint.CODEC.encodeStart(JsonOps.INSTANCE, noisePoint).get().left().get().toString();
+        return "TODO";
+        //return MultiNoiseUtil.NoiseValuePoint.CODEC.encodeStart(JsonOps.INSTANCE, noisePoint).get().left().get().toString();
     }
 
 }
