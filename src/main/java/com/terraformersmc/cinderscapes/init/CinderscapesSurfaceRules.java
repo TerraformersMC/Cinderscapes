@@ -67,15 +67,17 @@ public class CinderscapesSurfaceRules {
 
         @Override
         public MaterialRules.BooleanSupplier apply(MaterialRules.MaterialRuleContext context) {
-            MaterialRuleContextAccessor accessor = ((MaterialRuleContextAccessor) ((Object) context));
-            BlockPos pos = new BlockPos(accessor.getX(), accessor.getY(), accessor.getZ());
-            Cinderscapes.LOGGER.info(pos.toString());
-            if (accessor.getChunk().getFluidState(pos).getFluid() == Fluids.LAVA) {
-                if (accessor.getChunk().getBlockState(pos.up()).isAir() /*|| (accessor.getChunk().random.nextBoolean() && chunk.getBlockState(pos.up(2)).isAir())*/){
-                    return () -> true;
+            return () -> {
+                MaterialRuleContextAccessor accessor = ((MaterialRuleContextAccessor) ((Object) context));
+                BlockPos pos = new BlockPos(accessor.getX(), accessor.getY(), accessor.getZ());
+                if (accessor.getChunk().getBlockState(pos).getBlock() == Blocks.LAVA) {
+                    //Cinderscapes.LOGGER.info(pos.toString());
+                    if (accessor.getChunk().getBlockState(pos.up()).isAir() /*|| (accessor.getChunk().random.nextBoolean() && chunk.getBlockState(pos.up(2)).isAir())*/){
+                        return true;
+                    }
                 }
-            }
-            return () -> false;
+                return false;
+            };
         }
     }
 
