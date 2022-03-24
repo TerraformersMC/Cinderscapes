@@ -22,7 +22,7 @@ public abstract class MinecraftServerMixin {
 
     @Inject(method = "createWorlds", at = @At("RETURN"))
     private void cinderscapes_hackyAddSurfaceRules(WorldGenerationProgressListener $$0, CallbackInfo ci) {
-        cinderscapes_appendSurfaceRule(this.getSaveProperties(), DimensionOptions.NETHER, CinderscapesSurfaceRules.LUMINOUS_NYLIUM_RULE);
+        cinderscapes_appendSurfaceRule(this.getSaveProperties(), DimensionOptions.NETHER, CinderscapesSurfaceRules.CIMDERSCAPES_NETHER_RULES);
 
     }
 

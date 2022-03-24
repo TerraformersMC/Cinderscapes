@@ -4,6 +4,10 @@ plugins {
 
 apply from: 'https://raw.githubusercontent.com/TerraformersMC/GradleScripts/2.3/ferry.gradle'
 
+loom{
+    accessWidenerPath = file("src/main/resources/cinderscapes.aw")
+}
+
 repositories {
     maven {
         name = 'TerraformersMC'

@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ChunkGeneratorSettingsAccessor",
+    "MaterialRuleContextAccessor",
     "MinecraftServerMixin",
     "NetherCaveCarverMixin",
     "NetherrackBlockMixin",
