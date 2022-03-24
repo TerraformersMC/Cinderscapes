@@ -36,7 +36,7 @@ public class CinderscapesSurfaceRules {
                                     MaterialRules.condition(
                                             MaterialRules.noiseThreshold(NoiseParametersKeys.NETHER_WART, 1.17),
                                             MaterialRules.block(CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState())),
-                                    MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, MaterialRules.block(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState()))))));
+                                    MaterialRules.block(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState())))));
     //public static final TernarySurfaceConfig LUMINOUS_NYLIUM_CONFIG = new TernarySurfaceConfig(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState());
     //public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> CONFIGURED_LUMINOUS_GROVE = add("luminous_grove", SurfaceBuilder.NETHER_FOREST.withConfig(LUMINOUS_NYLIUM_CONFIG));
     //static final TernarySurfaceConfig ASHY_SHOALS_CONFIG = new TernarySurfaceConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), Blocks.MAGMA_BLOCK.getDefaultState());
@@ -45,7 +45,10 @@ public class CinderscapesSurfaceRules {
                     MaterialRules.condition(new PositionRule(0), MaterialRules.block(Blocks.MAGMA_BLOCK.getDefaultState()))
             )
         );
-    public static final MaterialRules.MaterialRule CIMDERSCAPES_NETHER_RULES = MaterialRules.sequence(LUMINOUS_NYLIUM_RULE, MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, ASHY_SHOALS_RULE));
+
+    public static final MaterialRules.MaterialRule BEDROCK_FLOOR = MaterialRules.condition(MaterialRules.verticalGradient("bedrock_floor", YOffset.getBottom(), YOffset.aboveBottom(5)), MaterialRules.block(Blocks.BEDROCK.getDefaultState()));
+    public static final MaterialRules.MaterialRule BEDROCK_ROOF = MaterialRules.condition(MaterialRules.not(MaterialRules.verticalGradient("bedrock_roof", YOffset.belowTop(5), YOffset.getTop())), MaterialRules.block(Blocks.BEDROCK.getDefaultState()));
+    public static final MaterialRules.MaterialRule CIMDERSCAPES_NETHER_RULES = MaterialRules.sequence(BEDROCK_FLOOR, BEDROCK_ROOF, ASHY_SHOALS_RULE, MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, LUMINOUS_NYLIUM_RULE));
 
     //////////////////////
     // SURFACE BUILDERS //
