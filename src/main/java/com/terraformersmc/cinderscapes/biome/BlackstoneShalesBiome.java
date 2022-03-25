@@ -26,7 +26,7 @@ import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
 public class BlackstoneShalesBiome {
 
-    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.15F, 0.05F, 0.0f, 0.0F, 0.25F, 0.05F, 0.2F);
+    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.15F, 0.05F, 0.2f, 0.0F, 0.25F, 0.05F, 0.0F);
 
     public static Biome create() {
         return new Biome.Builder()
