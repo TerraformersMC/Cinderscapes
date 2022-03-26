@@ -9,6 +9,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.noise.NoiseParametersKeys;
@@ -98,6 +99,7 @@ public class CinderscapesSurfaceRules {
      * Initializes the surface builders added by Cinderscapes
      */
     public static void init() {
+        Registry.register(Registry.MATERIAL_CONDITION, new Identifier(Cinderscapes.NAMESPACE,"position_rule"), PositionRule.CONDITION_CODEC);
     }
 
     /*static <SC extends SurfaceConfig> ConfiguredSurfaceBuilder<SC> add(String name, ConfiguredSurfaceBuilder<SC> s) {
