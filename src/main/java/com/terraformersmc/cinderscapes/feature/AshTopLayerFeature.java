@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.feature;
 
+import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import net.minecraft.block.BlockState;
@@ -29,9 +30,11 @@ public class AshTopLayerFeature extends Feature<DefaultFeatureConfig> {
         StructureWorldAccess world = context.getWorld();
         if (VALID_BIOMES == null) {
             VALID_BIOMES = new HashSet<>();
-            world.getRegistryManager().get(Registry.BIOME_KEY).stream()
+            VALID_BIOMES.add(world.getRegistryManager().get(Registry.BIOME_KEY).get(CinderscapesBiomes.ASHY_SHOALS));
+            //Todo fix this or figure out better system
+            /*world.getRegistryManager().get(Registry.BIOME_KEY).stream()
                     .filter(biome -> biome.getGenerationSettings().isFeatureAllowed(CinderscapesPlacedFeatures.ASH_TOP_LAYER.value()))
-                    .forEach(biome -> VALID_BIOMES.add(biome));
+                    .forEach(biome -> VALID_BIOMES.add(biome));*/
         }
 
         for (int x = 0; x < 16; x++) {
@@ -40,7 +43,7 @@ public class AshTopLayerFeature extends Feature<DefaultFeatureConfig> {
                     BlockPos testPosition = pos.add(x, y, z);
                     BlockState testState = world.getBlockState(testPosition);
 
-                    if (!testState.isOf(Blocks.MAGMA_BLOCK) && testState.isSideSolidFullSquare(world, testPosition, Direction.UP) && world.isAir(testPosition.up()) && VALID_BIOMES.contains(world.getBiome(testPosition))) {
+                    if (!testState.isOf(Blocks.MAGMA_BLOCK) && testState.isSideSolidFullSquare(world, testPosition, Direction.UP) && world.isAir(testPosition.up()) && VALID_BIOMES.contains(world.getBiome(testPosition).value())) {
                         world.setBlockState(testPosition.up(), CinderscapesBlocks.ASH.getDefaultState(), 2);
                     }
                 }
