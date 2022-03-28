@@ -10,16 +10,4 @@ public interface MaterialRuleContextAccessor {
 
     @Accessor
     Chunk getChunk();
-
-    @Accessor("x")
-    int getX();
-
-    @Accessor("z")
-    int getZ();
-
-    @Accessor("y")
-    int getY();
-
-
-
 }

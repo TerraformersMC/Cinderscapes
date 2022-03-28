@@ -4,25 +4,26 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.mixin.MaterialRuleContextAccessor;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.noise.NoiseParametersKeys;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Random;
 
 // Contains all of the surface builders and surface configs added by Cinderscapes
 public class CinderscapesSurfaceRules {
     // Acts as a kind of local registry for surface builders added by Cinderscapes
     public static final Map<Identifier, SurfaceBuilder> SURFACE_BUILDERS = new LinkedHashMap<>();
+    static Random random = new Random();
     //static final Map<Identifier, ConfiguredSurfaceBuilder> CONFIGURED_SURFACE_BUILDERS = new HashMap<>();
 
     /////////////////////
@@ -41,10 +42,8 @@ public class CinderscapesSurfaceRules {
     //public static final TernarySurfaceConfig LUMINOUS_NYLIUM_CONFIG = new TernarySurfaceConfig(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState());
     //public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> CONFIGURED_LUMINOUS_GROVE = add("luminous_grove", SurfaceBuilder.NETHER_FOREST.withConfig(LUMINOUS_NYLIUM_CONFIG));
     //static final TernarySurfaceConfig ASHY_SHOALS_CONFIG = new TernarySurfaceConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), Blocks.MAGMA_BLOCK.getDefaultState());
-    public static final MaterialRules.MaterialRule ASHY_SHOALS_RULE = MaterialRules.condition(MaterialRules.biome(CinderscapesBiomes.ASHY_SHOALS),
-            MaterialRules.condition(MaterialRules.not(MaterialRules.aboveY(YOffset.fixed(32), 0)),
-                    MaterialRules.condition(new PositionRule(0), MaterialRules.block(Blocks.MAGMA_BLOCK.getDefaultState()))
-            )
+    public static final MaterialRules.MaterialRule ASHY_SHOALS_RULE = new PositionRule(MaterialRules.not(MaterialRules.aboveY(YOffset.fixed(32), 0)),
+            MaterialRules.condition(MaterialRules.biome(CinderscapesBiomes.ASHY_SHOALS), MaterialRules.block(Blocks.MAGMA_BLOCK.getDefaultState()))
         );
 
     public static final MaterialRules.MaterialRule BEDROCK_FLOOR = MaterialRules.condition(MaterialRules.verticalGradient("bedrock_floor", YOffset.getBottom(), YOffset.aboveBottom(5)), MaterialRules.block(Blocks.BEDROCK.getDefaultState()));
@@ -58,25 +57,34 @@ public class CinderscapesSurfaceRules {
     //public static final ConfiguredSurfaceBuilder CONFIGURED_ASHY_SHOALS = add("ashy_shoals", ASHY_SHOALS.withConfig(ASHY_SHOALS_CONFIG));
 
 
-    record PositionRule(int unused) implements MaterialRules.MaterialCondition {
-        static final Codec<PositionRule> CONDITION_CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.INT.fieldOf("unused").forGetter(PositionRule::unused)).apply(instance, PositionRule::new));
+    record PositionRule(MaterialRules.MaterialCondition ifTrue, MaterialRules.MaterialRule thenRun) implements MaterialRules.MaterialRule {
+        static final Codec<PositionRule> CONDITION_CODEC = RecordCodecBuilder.create(instance -> instance.group(MaterialRules.MaterialCondition.CODEC.fieldOf("if_true").forGetter(PositionRule::ifTrue), MaterialRules.MaterialRule.CODEC.fieldOf("then_run").forGetter(PositionRule::thenRun)).apply(instance, PositionRule::new));
 
         @Override
-        public Codec<? extends MaterialRules.MaterialCondition> codec() {
+        public Codec<? extends MaterialRules.MaterialRule> codec() {
             return CONDITION_CODEC;
         }
 
         @Override
-        public MaterialRules.BooleanSupplier apply(MaterialRules.MaterialRuleContext context) {
-            return () -> {
+        public MaterialRules.BlockStateRule apply(MaterialRules.MaterialRuleContext context) {
+            MaterialRules.BooleanSupplier condition = ifTrue.apply(context);
+            MaterialRules.BlockStateRule followup = thenRun.apply(context);
+            return (x, y, z) -> {
+                if (!condition.get()) {
+                    return null;
+                }
+                boolean apply = false;
                 MaterialRuleContextAccessor accessor = ((MaterialRuleContextAccessor) ((Object) context));
-                BlockPos pos = new BlockPos(accessor.getX(), accessor.getY(), accessor.getZ());
+                BlockPos pos = new BlockPos(x, y, z);
                 if (accessor.getChunk().getBlockState(pos).getBlock() == Blocks.LAVA) {
                     //Cinderscapes.LOGGER.info(pos.toString());
-                    /*|| (accessor.getChunk().random.nextBoolean() && chunk.getBlockState(pos.up(2)).isAir())*/
-                    return accessor.getChunk().getBlockState(pos.up()).isAir();
+                    /**/
+                    apply = accessor.getChunk().getBlockState(pos.up()).isAir() || (random.nextBoolean() && accessor.getChunk().getBlockState(pos.up(2)).isAir());
                 }
-                return false;
+                if (apply) {
+                    return followup.tryApply(x, y, z);
+                }
+                return null;
             };
         }
     }
@@ -98,7 +106,7 @@ public class CinderscapesSurfaceRules {
      * Initializes the surface builders added by Cinderscapes
      */
     public static void init() {
-        Registry.register(Registry.MATERIAL_CONDITION, new Identifier(Cinderscapes.NAMESPACE,"position_rule"), PositionRule.CONDITION_CODEC);
+        Registry.register(Registry.MATERIAL_RULE, new Identifier(Cinderscapes.NAMESPACE,"position_rule"), PositionRule.CONDITION_CODEC);
     }
 
     /*static <SC extends SurfaceConfig> ConfiguredSurfaceBuilder<SC> add(String name, ConfiguredSurfaceBuilder<SC> s) {

@@ -41,13 +41,14 @@ public class SurfaceBuilderMixin {
                 if (r == Integer.MIN_VALUE){
                     r = y + 1;
                 }
-                if (y < 31) return;
+                if (y < 30) return;
                 BlockState blockState2;
                 int v;
                 v = y - s + 1;
                 materialRuleContext.initVerticalContext(++q, v, r, x, y, z);
                 if (blockState != this.defaultState && blockState != Blocks.LAVA.getDefaultState()) return;
-                if ((blockState2 = blockStateRule.tryApply(x, y, z)) == null) return;
+                blockState2 = blockStateRule.tryApply(x, y, z);
+                if (blockState2 == null || blockState2.getBlock() != Blocks.MAGMA_BLOCK) return;
                 blockColumn.setState(y, blockState2);
                 //Cinderscapes.LOGGER.info("Successfully injected inside fluid not empty if loop");
             }
