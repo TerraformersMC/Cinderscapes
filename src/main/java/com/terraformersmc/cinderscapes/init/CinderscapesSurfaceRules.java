@@ -73,9 +73,8 @@ public class CinderscapesSurfaceRules {
                 BlockPos pos = new BlockPos(accessor.getX(), accessor.getY(), accessor.getZ());
                 if (accessor.getChunk().getBlockState(pos).getBlock() == Blocks.LAVA) {
                     //Cinderscapes.LOGGER.info(pos.toString());
-                    if (accessor.getChunk().getBlockState(pos.up()).isAir() /*|| (accessor.getChunk().random.nextBoolean() && chunk.getBlockState(pos.up(2)).isAir())*/){
-                        return true;
-                    }
+                    /*|| (accessor.getChunk().random.nextBoolean() && chunk.getBlockState(pos.up(2)).isAir())*/
+                    return accessor.getChunk().getBlockState(pos.up()).isAir();
                 }
                 return false;
             };
