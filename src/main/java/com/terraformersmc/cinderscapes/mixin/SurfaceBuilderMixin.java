@@ -41,7 +41,7 @@ public class SurfaceBuilderMixin {
                 if (r == Integer.MIN_VALUE){
                     r = y + 1;
                 }
-                //if (y < 31) return;
+                if (y < 31) return;
                 BlockState blockState2;
                 int v;
                 v = y - s + 1;
