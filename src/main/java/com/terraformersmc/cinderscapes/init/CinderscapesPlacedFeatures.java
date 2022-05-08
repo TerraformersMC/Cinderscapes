@@ -76,7 +76,7 @@ public class CinderscapesPlacedFeatures {
     public static final RegistryEntry<PlacedFeature> CANOPIED_HUGE_FUNGUS = createPlacedFeature("canopied_huge_fungus", CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS, CountMultilayerPlacementModifier.of(8), new SafelistRangeFloorPlacementModifier(YOffset.aboveBottom(20), YOffset.belowTop(20), CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS_SAFELIST));
 
     /******* QUARTZ CANYON *******/
-    public static final RegistryEntry<PlacedFeature> VEGETATION_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/vegetation", CinderscapesConfiguredFeatures.VEGETATION_QUARTZ_CANYON, CountPlacementModifier.of(8));
+    public static final RegistryEntry<PlacedFeature> VEGETATION_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/vegetation", CinderscapesConfiguredFeatures.VEGETATION_QUARTZ_CANYON, CountMultilayerPlacementModifier.of(1));
     public static final RegistryEntry<PlacedFeature> ORE_QUARTZ_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/quartz_ore", CinderscapesConfiguredFeatures.ORE_QUARTZ_QUARTZ_CANYON, CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE);
     public static final RegistryEntry<PlacedFeature> ORE_SULFUR_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/sulfur_ore", CinderscapesConfiguredFeatures.ORE_SULFUR_QUARTZ_CANYON, CountPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE);
     public static final RegistryEntry<PlacedFeature> ORE_GOLD_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/gold_ore", CinderscapesConfiguredFeatures.ORE_GOLD_QUARTZ_CANYON, CountPlacementModifier.of(20), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE);
