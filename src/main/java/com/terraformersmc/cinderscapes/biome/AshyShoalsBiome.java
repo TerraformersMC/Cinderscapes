@@ -16,7 +16,6 @@ import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-import net.minecraft.world.biome.source.util.MultiNoiseUtil.NoiseValuePoint;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
@@ -87,6 +86,7 @@ public class AshyShoalsBiome {
 
         return builder.build();
     }
+
     private static void vanillaNetherFeatures(GenerationSettings.Builder generationSettings) {
         generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA);
         generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE);
@@ -106,7 +106,5 @@ public class AshyShoalsBiome {
         builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 50, 4, 4));
 
         return builder.build();
-
     }
-
 }

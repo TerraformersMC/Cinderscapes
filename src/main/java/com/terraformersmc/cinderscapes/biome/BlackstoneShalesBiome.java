@@ -16,7 +16,6 @@ import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-import net.minecraft.world.biome.source.util.MultiNoiseUtil.NoiseValuePoint;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
@@ -52,7 +51,6 @@ public class BlackstoneShalesBiome {
                 .build();
     }
 
-
     private static GenerationSettings createGenerationSettings() {
         GenerationSettings.Builder builder = new GenerationSettings.Builder();
         //builder.surfaceBuilder(ConfiguredSurfaceBuilders.NETHER);
@@ -78,7 +76,6 @@ public class BlackstoneShalesBiome {
         DefaultBiomeFeatures.addAncientDebris(builder);
 
         return builder.build();
-
     }
 
     private static void vanillaNetherFeatures(GenerationSettings.Builder generationSettings) {
@@ -107,7 +104,5 @@ public class BlackstoneShalesBiome {
         builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
 
         return builder.build();
-
     }
-
 }

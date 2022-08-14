@@ -16,7 +16,6 @@ import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-import net.minecraft.world.biome.source.util.MultiNoiseUtil.NoiseValuePoint;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
@@ -80,7 +79,6 @@ public class LuminousGroveBiome {
         DefaultBiomeFeatures.addNetherMineables(builder);
 
         return builder.build();
-
     }
 
     private static SpawnSettings createSpawnSettings() {
@@ -91,7 +89,5 @@ public class LuminousGroveBiome {
         builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
 
         return builder.build();
-
     }
-
 }
