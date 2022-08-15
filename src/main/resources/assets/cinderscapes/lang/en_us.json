@@ -129,5 +129,8 @@
   "text.autoconfig.cinderscapes.option.biomes.enableBlackstoneShales": "Enable Blackstone Shales Biome",
   "text.autoconfig.cinderscapes.option.biomes.enableLuminousGrove": "Enable Luminous Grove Biome",
   "text.autoconfig.cinderscapes.option.biomes.enableQuartzCanyon": "Enable Quartz Canyon Biome",
-  "text.autoconfig.cinderscapes.option.enableAshFall": "Enable Ash Fall"
+  "text.autoconfig.cinderscapes.option.enableAshFall": "Enable Ash Fall",
+
+  "block.cinderscapes.nodzol": "Nodzol",
+  "block.cinderscapes.nodzol.description": "This block is nursed..."
 }
