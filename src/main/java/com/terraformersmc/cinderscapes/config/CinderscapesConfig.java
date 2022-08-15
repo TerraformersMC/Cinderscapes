@@ -1,5 +1,6 @@
-package com.terraformersmc.cinderscapes;
+package com.terraformersmc.cinderscapes.config;
 
+import com.terraformersmc.cinderscapes.Cinderscapes;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
