@@ -16,6 +16,7 @@ import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
 import com.terraformersmc.cinderscapes.block.PottedCrystiniumBlock;
 import com.terraformersmc.cinderscapes.block.PottedPyracinthBlock;
 import com.terraformersmc.cinderscapes.block.PyracinthBlock;
+import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import com.terraformersmc.terraform.wood.block.StrippableLogBlock;
@@ -24,6 +25,7 @@ import com.terraformersmc.terraform.wood.block.TerraformDoorBlock;
 import com.terraformersmc.terraform.wood.block.TerraformPressurePlateBlock;
 import com.terraformersmc.terraform.wood.block.TerraformStairsBlock;
 import com.terraformersmc.terraform.wood.block.TerraformTrapdoorBlock;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -212,6 +214,8 @@ public class CinderscapesBlocks {
     public static final Block SMOKY_QUARTZ_BRICKS = add("smoky_quartz_bricks", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BRICKS).mapColor(MapColor.GRAY)), ItemGroup.BUILDING_BLOCKS);
     public static final Block CRYSTALLINE_SMOKY_QUARTZ = add("crystalline_smoky_quartz", new CinderscapesTransparentBlock(FabricBlockSettings.copyOf(CRYSTALLINE_QUARTZ).mapColor(MapColor.GRAY)), ItemGroup.BUILDING_BLOCKS);
 
+    public static final Block NODZOL = add("nodzol", new Block(FabricBlockSettings.copyOf(Blocks.NETHERRACK)));
+
     private static Block addOre(String name, ItemGroup tab, int miningLevel, MapColor color) {
         CinderscapesOreBlock block = new CinderscapesOreBlock(FabricBlockSettings.copyOf(Blocks.NETHER_QUARTZ_ORE).mapColor(color).sounds(BlockSoundGroup.NETHER_ORE).requiresTool());
         return add(name, block, tab);
@@ -242,6 +246,13 @@ public class CinderscapesBlocks {
     }
 
     public static void init() {
+        add("nodzol", new BlockItem(CinderscapesBlocks.NODZOL, new FabricItemSettings()));
+        if (CinderscapesConfig.INSTANCE.easterEggs) {
+
+        } else {
+            Cinderscapes.HIDDEN_ITEMS.add(CinderscapesBlocks.NODZOL.asItem());
+        }
+
         for (Identifier id : ITEMS.keySet()) {
             Registry.register(Registry.ITEM, id, ITEMS.get(id));
         }

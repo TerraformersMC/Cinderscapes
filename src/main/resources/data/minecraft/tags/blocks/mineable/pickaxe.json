@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "cinderscapes:nodzol",
     "cinderscapes:sulfur_ore",
     "cinderscapes:sulfur_quartz_ore",
     "cinderscapes:rose_quartz_ore",

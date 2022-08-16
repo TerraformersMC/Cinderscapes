@@ -18,16 +18,22 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.mob.ZoglinEntity;
 import net.minecraft.entity.mob.ZombifiedPiglinEntity;
+import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.Heightmap;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cinderscapes implements ModInitializer {
 
 	public static final String NAMESPACE = "cinderscapes";
 	public static final Logger LOGGER = LogManager.getLogger(StringUtils.capitalize(NAMESPACE));
+
+	public static List<Item> HIDDEN_ITEMS = new ArrayList<>();
 
 	@Override
 	public void onInitialize() {

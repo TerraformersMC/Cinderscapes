@@ -7,9 +7,13 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.util.SpriteIdentifier;
+import net.minecraft.text.Style;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 
 @SuppressWarnings("unused")
 @Environment(EnvType.CLIENT)
@@ -58,6 +62,12 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ,
                 CinderscapesBlocks.POTTED_POLYPITE_SULFUR_QUARTZ
         );
+
+        ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
+            if (stack.isOf(CinderscapesBlocks.NODZOL.asItem())) {
+                lines.add(new TranslatableText("block.cinderscapes.nodzol.description").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
+            }
+        });
 
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((TerraformSignBlock) CinderscapesBlocks.UMBRAL_SIGN).getTexture()));
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((TerraformSignBlock) CinderscapesBlocks.SCORCHED_SIGN).getTexture()));

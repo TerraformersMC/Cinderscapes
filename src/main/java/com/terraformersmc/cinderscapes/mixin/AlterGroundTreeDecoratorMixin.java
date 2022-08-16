@@ -1,6 +1,6 @@
 package com.terraformersmc.cinderscapes.mixin;
 
-import com.terraformersmc.cinderscapes.biomes.quartzcavern.QuartzCavernBlocks;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +30,7 @@ public class AlterGroundTreeDecoratorMixin {
         for(int i = 2; i >= -3; --i) {
             BlockPos blockPos = pos.up(i);
             if (world.testBlockState(blockPos, (state) -> state.isOf(Blocks.NETHERRACK))) {
-                replacer.accept(blockPos, QuartzCavernBlocks.NODZOL.getDefaultState());
+                replacer.accept(blockPos, CinderscapesBlocks.NODZOL.getDefaultState());
                 break;
             }
 
