@@ -60,8 +60,20 @@ public class AshyShoalsBiome {
         vanillaNetherFeatures(builder);
         DefaultBiomeFeatures.addNetherMineables(builder);
 
+        // ANCIENT DEBRIS
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_DEBRIS_LARGE_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_DEBRIS_SMALL_ASHY_SHOALS);
+
+        // REPLACE NETHERRACK
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SAND_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SOIL_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.GRAVEL_ASHY_SHOALS);
+
         // ASH PILES
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.ASH_PILES);
+
+        // FEATURES
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.DEAD_TREES);
 
         // VEGETATION
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.VEGETATION_ASHY_SHOALS);
@@ -69,20 +81,8 @@ public class AshyShoalsBiome {
         // BRAMBLE BERRY BUSHES
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.BRAMBLE_BERRY_BUSHES);
 
-        // REPLACE NETHERRACK
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SAND_ASHY_SHOALS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SOIL_ASHY_SHOALS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.GRAVEL_ASHY_SHOALS);
-
         // TOP LAYER MODIFICATION
         builder.feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, CinderscapesPlacedFeatures.ASH_TOP_LAYER);
-
-        // FEATURES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.DEAD_TREE);
-
-        // ANCIENT DEBRIS
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_DEBRIS_LARGE_ASHY_SHOALS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_DEBRIS_SMALL_ASHY_SHOALS);
 
         return builder.build();
     }

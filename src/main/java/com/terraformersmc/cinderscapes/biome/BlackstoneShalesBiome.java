@@ -55,25 +55,22 @@ public class BlackstoneShalesBiome {
         GenerationSettings.Builder builder = new GenerationSettings.Builder();
         //builder.surfaceBuilder(ConfiguredSurfaceBuilders.NETHER);
 
-        // VEGETATION
-
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.BLACKSTONE_SHALE_WEEPING_VINES);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.PATCH_CRIMSON_ROOTS);
-
-        // NETHERRACK REPLACERS
-
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SAND_BLACKSTONE_SHALES);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SOIL_BLACKSTONE_SHALES);
-
-        // SHALES
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SHALES);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.LAVA_SHALES);
-
         // DEFAULT MINECRAFT FEATURES
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
         //builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SPRING_LAVA_DOUBLE);
         vanillaNetherFeatures(builder);
         DefaultBiomeFeatures.addAncientDebris(builder);
+
+        // VEGETATION
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.BLACKSTONE_SHALE_WEEPING_VINES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.PATCH_CRIMSON_ROOTS);
+
+        // NETHERRACK REPLACERS
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SAND_BLACKSTONE_SHALES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SOIL_BLACKSTONE_SHALES);
+
+        // SHALES
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.SHALES);
 
         return builder.build();
     }

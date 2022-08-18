@@ -54,15 +54,19 @@ public class LuminousGroveBiome {
         GenerationSettings.Builder builder = new GenerationSettings.Builder();
         //builder.surfaceBuilder(CinderscapesSurfaceRules.CONFIGURED_LUMINOUS_GROVE);
 
+        // DEFAULT MINECRAFT FEATURES
+        builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED);
+        DefaultBiomeFeatures.addNetherMineables(builder);
+
         // UMBRAL FUNGUS
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.CANOPIED_HUGE_FUNGUS);
 
-        // GLOWSTONE
-        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA);
-        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE);
-
         // SHROOMLIGHT BUSHES
-        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SHROOMLIGHT_BUSH);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.SHROOMLIGHT_BUSH);
 
         // VEGETATION
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.VEGETATION_LUMINOUS_GROWTH);
@@ -70,13 +74,7 @@ public class LuminousGroveBiome {
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.TALL_PHOTOFERN);
 
         // VINES
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.UMBRAL_VINE);
-
-        // DEFAULT MINECRAFT FEATURES
-        builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED);
-        DefaultBiomeFeatures.addNetherMineables(builder);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.UMBRAL_VINE);
 
         return builder.build();
     }

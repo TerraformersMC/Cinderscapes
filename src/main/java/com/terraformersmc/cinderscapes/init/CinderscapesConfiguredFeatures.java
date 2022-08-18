@@ -7,6 +7,7 @@ import com.terraformersmc.cinderscapes.feature.config.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -69,10 +70,6 @@ public final class CinderscapesConfiguredFeatures {
     );
 
     /******* LUMINOUS GROVE *********/
-    public static final RegistryEntry<ConfiguredFeature<DefaultFeatureConfig, ?>> GLOWSTONE = register("luminous_grove/glowstone",
-            Feature.GLOWSTONE_BLOB, FeatureConfig.DEFAULT
-    );
-
     public static final RegistryEntry<ConfiguredFeature<DefaultFeatureConfig, ?>> SHROOMLIGHT_BUSH = register("luminous_grove/shroomlight_bush",
             CinderscapesFeatures.SHROOMLIGHT_BUSH, FeatureConfig.DEFAULT
     );
@@ -95,9 +92,9 @@ public final class CinderscapesConfiguredFeatures {
 
     public static final List<BlockState> CANOPIED_HUGE_FUNGUS_SAFELIST = List.of(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), Blocks.NETHERRACK.getDefaultState());
 
-    public static final RegistryEntry<ConfiguredFeature<CanopiedHugeFungusFeatureConfig, ?>> CANOPIED_HUGE_FUNGUS = register("canopied_huge_fungus", CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_NOT_PLANTED_CONFIG);
+    public static final RegistryEntry<ConfiguredFeature<CanopiedHugeFungusFeatureConfig, Feature<CanopiedHugeFungusFeatureConfig>>> CANOPIED_HUGE_FUNGUS = registerStrict("canopied_huge_fungus", CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_NOT_PLANTED_CONFIG);
 
-    public static final RegistryEntry<ConfiguredFeature<CanopiedHugeFungusFeatureConfig,?>> CANOPIED_HUGE_FUNGUS_PLANTED = register("canopied_huge_fungus_not_planted", CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_CONFIG);
+    public static final RegistryEntry<ConfiguredFeature<CanopiedHugeFungusFeatureConfig, Feature<CanopiedHugeFungusFeatureConfig>>> CANOPIED_HUGE_FUNGUS_PLANTED = registerStrict("canopied_huge_fungus_planted", CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_CONFIG);
 
     /******* QUARTZ CANYON *******/
 
@@ -110,17 +107,26 @@ public final class CinderscapesConfiguredFeatures {
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_ROSE_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/rose_quartz_ore", Feature.ORE, new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, CinderscapesBlocks.ROSE_QUARTZ_ORE.getDefaultState(), 14));
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_SULFUR_QUARTZ_QUARTZ_CANYON = register("quartz_canyon/sulfur_quartz_ore", Feature.ORE, new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, CinderscapesBlocks.SULFUR_QUARTZ_ORE.getDefaultState(), 14));
 
-    public static final List<BlockState> SHARD_WHITELIST = List.of(Blocks.NETHERRACK.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.GRAVEL.getDefaultState(), Blocks.NETHER_QUARTZ_ORE.getDefaultState(), Blocks.SOUL_SAND.getDefaultState());
-    public static final List<BlockState> SHARED_SAFELIST = List.of(Blocks.NETHERRACK.getDefaultState(), Blocks.NETHER_QUARTZ_ORE.getDefaultState());
+    public static final List<BlockState> SHARD_WHITELIST = List.of(
+            Blocks.NETHERRACK.getDefaultState(),
+            Blocks.AIR.getDefaultState(),
+            Blocks.GRAVEL.getDefaultState(),
+            Blocks.SOUL_SAND.getDefaultState(),
+            Blocks.NETHER_QUARTZ_ORE.getDefaultState(),
+            CinderscapesBlocks.ROSE_QUARTZ_ORE.getDefaultState(),
+            CinderscapesBlocks.SMOKY_QUARTZ_ORE.getDefaultState(),
+            CinderscapesBlocks.SULFUR_QUARTZ_ORE.getDefaultState(),
+            CinderscapesBlocks.SULFUR_ORE.getDefaultState()
+    );
 
-    public static final RegistryEntry<ConfiguredFeature<SimpleStateFeatureConfig, ?>> CEILING_SHARD_QUARTZ = register("quartz_canyon/ceiling_shard_quartz", CinderscapesFeatures.CEILING_SHARD, new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), SHARD_WHITELIST));
-    public static final RegistryEntry<ConfiguredFeature<SimpleStateFeatureConfig, ?>> FLOOR_SHARD_QUARTZ = register("quartz_canyon/floor_shard_quartz", CinderscapesFeatures.FLOOR_SHARD, new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), SHARD_WHITELIST));
-    public static final RegistryEntry<ConfiguredFeature<SimpleStateFeatureConfig, ?>> CEILING_SHARD_ROSE_QUARTZ = register("quartz_canyon/ceiling_shard_rose_quartz", CinderscapesFeatures.CEILING_SHARD, new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ.getDefaultState(), SHARD_WHITELIST));
-    public static final RegistryEntry<ConfiguredFeature<SimpleStateFeatureConfig, ?>> FLOOR_SHARD_ROSE_QUARTZ = register("quartz_canyon/floor_shard_rose_quartz", CinderscapesFeatures.FLOOR_SHARD, new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ.getDefaultState(), SHARD_WHITELIST));
-    public static final RegistryEntry<ConfiguredFeature<SimpleStateFeatureConfig, ?>> CEILING_SHARD_SMOKY_QUARTZ = register("quartz_canyon/ceiling_shard_smoky_quartz", CinderscapesFeatures.CEILING_SHARD, new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ.getDefaultState(), SHARD_WHITELIST));
-    public static final RegistryEntry<ConfiguredFeature<SimpleStateFeatureConfig, ?>> FLOOR_SHARD_SMOKY_QUARTZ = register("quartz_canyon/floor_shard_smoky_quartz", CinderscapesFeatures.FLOOR_SHARD, new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ.getDefaultState(), SHARD_WHITELIST));
-    public static final RegistryEntry<ConfiguredFeature<SimpleStateFeatureConfig, ?>> CEILING_SHARD_SULFUR_QUARTZ = register("quartz_canyon/ceiling_shard_sulfur_quartz", CinderscapesFeatures.CEILING_SHARD, new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), SHARD_WHITELIST));
-    public static final RegistryEntry<ConfiguredFeature<SimpleStateFeatureConfig, ?>> FLOOR_SHARD_SULFUR_QUARTZ = register("quartz_canyon/floor_shard_sulfur_quartz", CinderscapesFeatures.FLOOR_SHARD, new SimpleStateFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), SHARD_WHITELIST));
+    public static final RegistryEntry<ConfiguredFeature<CrystalShardFeatureConfig, ?>> SHARD_QUARTZ_CEILING = register("quartz_canyon/shard_quartz_ceiling", CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), Direction.DOWN, SHARD_WHITELIST));
+    public static final RegistryEntry<ConfiguredFeature<CrystalShardFeatureConfig, ?>> SHARD_QUARTZ_FLOOR = register("quartz_canyon/shard_quartz_floor", CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), Direction.UP, SHARD_WHITELIST));
+    public static final RegistryEntry<ConfiguredFeature<CrystalShardFeatureConfig, ?>> SHARD_ROSE_QUARTZ_CEILING = register("quartz_canyon/shard_rose_quartz_ceiling", CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ.getDefaultState(), Direction.DOWN, SHARD_WHITELIST));
+    public static final RegistryEntry<ConfiguredFeature<CrystalShardFeatureConfig, ?>> SHARD_ROSE_QUARTZ_FLOOR = register("quartz_canyon/shard_rose_quartz_floor", CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ.getDefaultState(), Direction.UP, SHARD_WHITELIST));
+    public static final RegistryEntry<ConfiguredFeature<CrystalShardFeatureConfig, ?>> SHARD_SMOKY_QUARTZ_CEILING = register("quartz_canyon/shard_smoky_quartz_ceiling", CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ.getDefaultState(), Direction.DOWN, SHARD_WHITELIST));
+    public static final RegistryEntry<ConfiguredFeature<CrystalShardFeatureConfig, ?>> SHARD_SMOKY_QUARTZ_FLOOR = register("quartz_canyon/shard_smoky_quartz_floor", CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ.getDefaultState(), Direction.UP, SHARD_WHITELIST));
+    public static final RegistryEntry<ConfiguredFeature<CrystalShardFeatureConfig, ?>> SHARD_SULFUR_QUARTZ_CEILING = register("quartz_canyon/shard_sulfur_quartz_ceiling", CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), Direction.DOWN, SHARD_WHITELIST));
+    public static final RegistryEntry<ConfiguredFeature<CrystalShardFeatureConfig, ?>> SHARD_SULFUR_QUARTZ_FLOOR = register("quartz_canyon/shard_sulfur_quartz_floor", CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), Direction.UP, SHARD_WHITELIST));
 
     public static final RegistryEntry<ConfiguredFeature<PolypiteQuartzFeatureConfig, ?>> POLYPITE_QUARTZ = register("quartz_canyon/polypite_quartz", configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_QUARTZ));
     public static final RegistryEntry<ConfiguredFeature<PolypiteQuartzFeatureConfig, ?>> POLYPITE_SULFUR_QUARTZ = register("quartz_canyon/polypite_sulfur_quartz", configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ));
@@ -134,14 +140,23 @@ public final class CinderscapesConfiguredFeatures {
     private CinderscapesConfiguredFeatures() {
     }
 
-    private static  <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> register(String id, F feature, FC config) {
+    static  <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> register(String id, F feature, FC config) {
         return register(id, new ConfiguredFeature<>(feature, config));
     }
 
-    private static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> register(String id, ConfiguredFeature<FC, F> cf) {
+    static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> register(String id, ConfiguredFeature<FC, F> cf) {
         Identifier realId = Cinderscapes.id(id);
         Preconditions.checkState(!BuiltinRegistries.CONFIGURED_FEATURE.getIds().contains(realId), "Duplicate ID: %s", id);
         return BuiltinRegistries.method_40360(BuiltinRegistries.CONFIGURED_FEATURE, realId.toString(), cf);
     }
 
+    static  <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, F>> registerStrict(String id, F feature, FC config) {
+        return registerStrict(id, new ConfiguredFeature<>(feature, config));
+    }
+
+    static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, F>> registerStrict(String id, ConfiguredFeature<FC, F> cf) {
+        Identifier realId = Cinderscapes.id(id);
+        Preconditions.checkState(!BuiltinRegistries.CONFIGURED_FEATURE.getIds().contains(realId), "Duplicate ID: %s", id);
+        return BuiltinRegistries.method_40360(BuiltinRegistries.CONFIGURED_FEATURE, realId.toString(), cf);
+    }
 }

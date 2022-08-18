@@ -6,19 +6,20 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FungusBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 import java.util.function.Supplier;
 
 public class CinderscapesCanopiedFungusBlock extends FungusBlock {
-    private final Supplier<RegistryEntry<ConfiguredFeature<CanopiedHugeFungusFeatureConfig, ?>>> config;
 
-    public CinderscapesCanopiedFungusBlock(Settings settings, Supplier<RegistryEntry<ConfiguredFeature<CanopiedHugeFungusFeatureConfig, ?>>> supplier) {
+    private final Supplier<ConfiguredFeature<CanopiedHugeFungusFeatureConfig, Feature<CanopiedHugeFungusFeatureConfig>>> feature;
+
+    public CinderscapesCanopiedFungusBlock(Settings settings, Supplier<ConfiguredFeature<CanopiedHugeFungusFeatureConfig, Feature<CanopiedHugeFungusFeatureConfig>>> feature) {
         super(settings, null);
-        this.config = supplier;
+        this.feature = feature;
     }
 
     @Override
@@ -30,6 +31,5 @@ public class CinderscapesCanopiedFungusBlock extends FungusBlock {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        (this.config.get().value()).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
-    }
+        this.feature.get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);    }
 }

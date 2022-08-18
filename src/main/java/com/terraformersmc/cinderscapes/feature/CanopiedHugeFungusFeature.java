@@ -20,8 +20,6 @@ import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
@@ -121,5 +119,22 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
         }
 
         return false;
+    }
+
+    private void makePlatform(StructureWorldAccess world, CanopiedHugeFungusFeatureConfig config, BlockPos origin) {
+        // Iterate through the region beneath the base of the fungus; for some reason, rectangle() does not work
+        for (BlockPos pos : Shapes.rectanglarPrism(3, 1, 3).applyLayer(new TranslateLayer(Position.of(origin))).stream().map(Position::toBlockPos).toList()) {
+            // Look down several blocks for solid ground and build it up with Netherrack to our level if we find it
+            for (int i = 1; i < 5; ++i) {
+                if (world.getBlockState(pos.down(i)).isSolidBlock(world, pos.down(i))) {
+                    for (; i > 1; --i) {
+                        world.setBlockState(pos.down(i), Blocks.NETHERRACK.getDefaultState(), 3);
+                    }
+                    break;
+                }
+            }
+            // Shrooms grow on Nylium ... under Shrooms shall ye find Nylium
+            world.setBlockState(pos.down(), config.soilBlock(), 3);
+        }
     }
 }

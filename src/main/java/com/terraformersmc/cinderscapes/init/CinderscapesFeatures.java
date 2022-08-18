@@ -2,24 +2,8 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.block.BrambleBerryBushBlock;
-import com.terraformersmc.cinderscapes.feature.AshPileFeature;
-import com.terraformersmc.cinderscapes.feature.AshTopLayerFeature;
-import com.terraformersmc.cinderscapes.feature.BlackstoneLavaShaleFeature;
-import com.terraformersmc.cinderscapes.feature.BlackstoneShaleFeature;
-import com.terraformersmc.cinderscapes.feature.BlackstoneWeepingVinesFeature;
-import com.terraformersmc.cinderscapes.feature.CanopiedHugeFungusFeature;
-import com.terraformersmc.cinderscapes.feature.CeilingShardFeature;
-import com.terraformersmc.cinderscapes.feature.DeadTreeFeature;
-import com.terraformersmc.cinderscapes.feature.FloorShardFeature;
-import com.terraformersmc.cinderscapes.feature.PolypiteQuartzFeature;
-import com.terraformersmc.cinderscapes.feature.ShaleFeature;
-import com.terraformersmc.cinderscapes.feature.ShroomlightBushFeature;
-import com.terraformersmc.cinderscapes.feature.UmbralVineFeature;
-import com.terraformersmc.cinderscapes.feature.VegetationFeature;
-import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureConfig;
-import com.terraformersmc.cinderscapes.feature.config.PolypiteQuartzFeatureConfig;
-import com.terraformersmc.cinderscapes.feature.config.SimpleStateFeatureConfig;
-import com.terraformersmc.cinderscapes.feature.config.VegetationFeatureConfig;
+import com.terraformersmc.cinderscapes.feature.*;
+import com.terraformersmc.cinderscapes.feature.config.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.collection.DataPool;
@@ -45,8 +29,7 @@ public class CinderscapesFeatures {
     public static Feature<ShaleFeatureConfig> SHALE_FEATURE;
 
     public static Feature<DefaultFeatureConfig> BLACKSTONE_WEEPING_VINES;
-    public static Feature<SimpleStateFeatureConfig> CEILING_SHARD;
-    public static Feature<SimpleStateFeatureConfig> FLOOR_SHARD;
+    public static Feature<CrystalShardFeatureConfig> CRYSTAL_SHARD_FEATURE;
     public static Feature<DefaultFeatureConfig> ASH_PILE;
 
     public static Feature<CanopiedHugeFungusFeatureConfig> CANOPIED_HUGE_FUNGUS;
@@ -80,8 +63,8 @@ public class CinderscapesFeatures {
 
         ASH_TOP_LAYER = Registry.register(Registry.FEATURE, Cinderscapes.id("ash_top_layer"), new AshTopLayerFeature());
 
-        UMBRAL_FUNGUS_CONFIG = new CanopiedHugeFungusFeatureConfig(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), CinderscapesBlocks.UMBRAL_STEM.getDefaultState(), CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState(), CinderscapesBlocks.UMBRAL_FLESH_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), true);
-        UMBRAL_FUNGUS_NOT_PLANTED_CONFIG = new CanopiedHugeFungusFeatureConfig(UMBRAL_FUNGUS_CONFIG.soilBlock, UMBRAL_FUNGUS_CONFIG.stemBlock, UMBRAL_FUNGUS_CONFIG.canopyBlock, UMBRAL_FUNGUS_CONFIG.fleshBlock, UMBRAL_FUNGUS_CONFIG.decorationBlock, false);
+        UMBRAL_FUNGUS_CONFIG = new CanopiedHugeFungusFeatureConfig(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), CinderscapesBlocks.UMBRAL_HYPHAE.getDefaultState(), CinderscapesBlocks.UMBRAL_STEM.getDefaultState(), CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState(), CinderscapesBlocks.UMBRAL_FLESH_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), true);
+        UMBRAL_FUNGUS_NOT_PLANTED_CONFIG = UMBRAL_FUNGUS_CONFIG.withPlanted(false);
 
         CANOPIED_HUGE_FUNGUS = Registry.register(Registry.FEATURE, Cinderscapes.id("canopied_huge_fungus"), new CanopiedHugeFungusFeature());
 
@@ -138,8 +121,7 @@ public class CinderscapesFeatures {
 
         BLACKSTONE_WEEPING_VINES = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_weeping_vines"), new BlackstoneWeepingVinesFeature());
 
-        CEILING_SHARD = Registry.register(Registry.FEATURE, Cinderscapes.id("ceiling_shard"), new CeilingShardFeature());
-        FLOOR_SHARD = Registry.register(Registry.FEATURE, Cinderscapes.id("floor_shard"), new FloorShardFeature());
+        CRYSTAL_SHARD_FEATURE = Registry.register(Registry.FEATURE, Cinderscapes.id("crystal_shard"), new CrystalShardFeature());
 
         POLYPITE_QUARTZ = Registry.register(Registry.FEATURE, Cinderscapes.id("polypite_quartz"), new PolypiteQuartzFeature());
 

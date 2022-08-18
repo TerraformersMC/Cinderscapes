@@ -10,6 +10,8 @@ public record CanopiedHugeFungusFeatureConfig(BlockState soilBlock, BlockState h
     public static final Codec<CanopiedHugeFungusFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
         return instance.group(BlockState.CODEC.fieldOf("soil").forGetter((config) -> {
             return config.soilBlock;
+        }), BlockState.CODEC.fieldOf("hyphae").forGetter((config) -> {
+            return config.hyphaeBlock;
         }), BlockState.CODEC.fieldOf("stem").forGetter((config) -> {
             return config.stemBlock;
         }), BlockState.CODEC.fieldOf("canopy").forGetter((config) -> {
