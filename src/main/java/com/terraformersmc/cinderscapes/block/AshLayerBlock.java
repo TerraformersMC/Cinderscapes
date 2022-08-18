@@ -16,6 +16,7 @@ public class AshLayerBlock extends SnowBlock {
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
     }
 
+    @Override
     public boolean canMobSpawnInside() {
         return true;
     }

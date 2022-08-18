@@ -5,17 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
-public class ShaleFeatureConfig implements FeatureConfig {
-
-    public final BlockState state;
-    public final int max;
-    public final int min;
-
-    public ShaleFeatureConfig(BlockState state, int min, int max) {
-        this.state = state;
-        this.max = max;
-        this.min = min;
-    }
+public record ShaleFeatureConfig(BlockState state, int min, int max) implements FeatureConfig {
 
     public static final Codec<ShaleFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
         return instance.group(BlockState.CODEC.fieldOf("state").forGetter((config) -> {

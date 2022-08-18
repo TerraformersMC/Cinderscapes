@@ -24,12 +24,13 @@ public class CinderscapesNetherPlantBlock extends PlantBlock {
         return floor.isIn(BlockTags.NYLIUM) || floor.isOf(Blocks.SOUL_SOIL) || floor.isOf(Blocks.NETHERRACK) || super.canPlantOnTop(floor, world, pos);
     }
 
+    @Override
     public AbstractBlock.OffsetType getOffsetType() {
         return AbstractBlock.OffsetType.XZ;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
+    @SuppressWarnings("deprecation")
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE_SUPPLIER.apply(state);
     }

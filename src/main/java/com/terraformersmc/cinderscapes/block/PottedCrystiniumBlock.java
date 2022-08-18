@@ -18,6 +18,7 @@ public class PottedCrystiniumBlock extends FlowerPotBlock {
         super(CinderscapesBlocks.CRYSTINIUM, FabricBlockSettings.copyOf(Blocks.POTTED_ALLIUM));
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         double x = pos.getX() + 0.5;

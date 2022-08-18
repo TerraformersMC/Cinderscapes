@@ -33,12 +33,10 @@ public class BlackstoneShalesBiome {
                 .spawnSettings(createSpawnSettings())
                 .precipitation(Biome.Precipitation.NONE)
                 .category(Biome.Category.NETHER)
-                //.depth(0.1F)
-                //.scale(0.2F)
                 .temperature(2.0F)
                 .downfall(0.0F)
                 .effects(new BiomeEffects.Builder()
-                        .skyColor(OverworldBiomeCreatorAccessor.callGetSkyColor(2.0f))
+                        .skyColor(OverworldBiomeCreatorAccessor.cinderscapes$callGetSkyColor(2.0f))
                         .waterColor(4159204)
                         .waterFogColor(4341314)
                         .fogColor(6235392)
@@ -57,7 +55,6 @@ public class BlackstoneShalesBiome {
 
         // DEFAULT MINECRAFT FEATURES
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
-        //builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SPRING_LAVA_DOUBLE);
         vanillaNetherFeatures(builder);
         DefaultBiomeFeatures.addAncientDebris(builder);
 

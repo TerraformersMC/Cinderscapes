@@ -21,6 +21,7 @@ public class CrystiniumBlock extends CinderscapesNetherPlantBlock {
         super(FabricBlockSettings.copy(Blocks.WARPED_ROOTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0));
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         Vec3d center = this.getOutlineShape(state, world, pos, ShapeContext.absent()).getBoundingBox().getCenter();
@@ -32,7 +33,6 @@ public class CrystiniumBlock extends CinderscapesNetherPlantBlock {
         }
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Vec3d modelOffset = state.getModelOffset(world, pos);

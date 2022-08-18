@@ -7,8 +7,8 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(OverworldBiomeCreator.class)
 public interface OverworldBiomeCreatorAccessor {
 
-    @Invoker
-    static int callGetSkyColor(float temperature) {
+    @Invoker("getSkyColor")
+    static int cinderscapes$callGetSkyColor(float temperature) {
         throw new AssertionError("mixin");
     }
 }

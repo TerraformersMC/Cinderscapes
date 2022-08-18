@@ -35,11 +35,13 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
         super(settings);
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         return new ItemStack(CinderscapesItems.BRAMBLE_BERRIES);
     }
 
+    @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.HOGLIN && entity.getType() != EntityType.ZOGLIN) {
             entity.slowMovement(state, new Vec3d(0.800000011920929D, 0.75D, 0.800000011920929D));
@@ -54,17 +56,16 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
         }
     }
 
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch(state.get(AGE)) {
-            case 0:
-                return SMALL_SHAPE;
-            case 1:
-                return MEDIUM_SHAPE;
-            default:
-                return LARGE_SHAPE;
-        }
+        return switch (state.get(AGE)) {
+            case 0 -> SMALL_SHAPE;
+            case 1 -> MEDIUM_SHAPE;
+            default -> LARGE_SHAPE;
+        };
     }
 
+    @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         int i = state.get(AGE);
         boolean bl = i == 3;
@@ -81,6 +82,7 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
         }
     }
 
+    @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.isOf(Blocks.NETHERRACK) || floor.isOf(Blocks.SOUL_SOIL) || floor.isOf(Blocks.SOUL_SAND) || floor.isOf(Blocks.GRAVEL);
     }

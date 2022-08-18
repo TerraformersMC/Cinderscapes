@@ -77,6 +77,7 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
         for (float t = 0; t < dt; t+=0.25) {
             BlockPos pos = new BlockPos( from.getX() + ((float)dx/dt)*t, from.getY() + ((float)dy/dt)*t + MathHelper.map(t*t - dt*t, -dt*dt/4.0f, 0, randomDroop, 0), from.getZ() + ((float)dz/dt)*t );
             world.setBlockState(pos, state, 0);
+
             if (random.nextFloat() > 0.8f) {
                 int ectoHeight = random.nextInt(3) + 1;
                 boolean clear = true;
@@ -94,15 +95,13 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
                             if (i == 1 && ectoHeight >= 3) {
                                 ectoState = ((GhastlyEctoplasmBlock) CinderscapesBlocks.GHASTLY_ECTOPLASM).typeOf(GhastlyEctoplasmBlock.Type.TOP);
                             }
-                            if (i > ectoHeight) {
-                                ectoState = Blocks.AIR.getDefaultState();
-                            }
                             world.setBlockState(pos.down(i), ectoState, 0);
                         }
                     }
                 }
             }
         }
+
         return true;
     }
 }

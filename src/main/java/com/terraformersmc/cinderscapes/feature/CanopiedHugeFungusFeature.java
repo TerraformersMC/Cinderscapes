@@ -24,7 +24,6 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeatureConfig> {
-
     public CanopiedHugeFungusFeature() {
         super(CanopiedHugeFungusFeatureConfig.CODEC);
     }

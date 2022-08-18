@@ -51,6 +51,7 @@ public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
                 .validate(new RegionalSafelistValidator(world, config.dir(), config.whitelist()), (validShape) -> {
                     validShape.fill(new SimpleFiller(world, config.state()));
                 });
+
         return true;
     }
 }

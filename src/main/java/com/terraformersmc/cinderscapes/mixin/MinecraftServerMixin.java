@@ -21,12 +21,12 @@ public abstract class MinecraftServerMixin {
     @Shadow public abstract SaveProperties getSaveProperties();
 
     @Inject(method = "createWorlds", at = @At("RETURN"))
-    private void cinderscapes_hackyAddSurfaceRules(WorldGenerationProgressListener $$0, CallbackInfo ci) {
-        cinderscapes_appendSurfaceRule(this.getSaveProperties(), DimensionOptions.NETHER, CinderscapesSurfaceRules.CIMDERSCAPES_NETHER_RULES);
+    private void cinderscapes$hackyAddSurfaceRules(WorldGenerationProgressListener $$0, CallbackInfo ci) {
+        cinderscapes$appendSurfaceRule(this.getSaveProperties(), DimensionOptions.NETHER, CinderscapesSurfaceRules.CIMDERSCAPES_NETHER_RULES);
 
     }
 
-    private static void cinderscapes_appendSurfaceRule(SaveProperties worldData, RegistryKey<DimensionOptions> optionsRegistryKey, MaterialRules.MaterialRule materialRule) {
+    private static void cinderscapes$appendSurfaceRule(SaveProperties worldData, RegistryKey<DimensionOptions> optionsRegistryKey, MaterialRules.MaterialRule materialRule) {
         if (worldData == null) { // For some reason mods can make world data null as seen in some user crash logs, this makes that issue clearer for us.
             throw new NullPointerException("Minecraft server's world data is null, this should be impossible...");
         }
@@ -36,8 +36,8 @@ public abstract class MinecraftServerMixin {
         }
         ChunkGenerator chunkGenerator = dimensionOptions.getChunkGenerator();
         if (chunkGenerator instanceof NoiseChunkGenerator) {
-            Object noiseGeneratorSettings = ((NoiseChunkGeneratorAccessor) chunkGenerator).cinderscapes_getSettings().value();
-            ((ChunkGeneratorSettingsAccessor) noiseGeneratorSettings).cinderscapes_setSurfaceRule(MaterialRules.sequence(materialRule, ((ChunkGeneratorSettings) noiseGeneratorSettings).surfaceRule()));
+            Object noiseGeneratorSettings = ((NoiseChunkGeneratorAccessor) chunkGenerator).cinderscapes$getSettings().value();
+            ((ChunkGeneratorSettingsAccessor) noiseGeneratorSettings).cinderscapes$setSurfaceRule(MaterialRules.sequence(materialRule, ((ChunkGeneratorSettings) noiseGeneratorSettings).surfaceRule()));
         }
     }
 

@@ -34,10 +34,11 @@ public class PolypiteQuartzFeature extends Feature<PolypiteQuartzFeatureConfig> 
             }
             if (!valid_faces.isEmpty()) {
                 Direction setDir = valid_faces.get(random.nextInt(valid_faces.size()));
-                world.setBlockState(pos, context.getConfig().quartzMaterial.stateOf(setDir), 0);
+                world.setBlockState(pos, context.getConfig().quartzMaterial().stateOf(setDir), 0);
                 return true;
             }
         }
+
         return false;
     }
 }

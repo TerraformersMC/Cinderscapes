@@ -2,7 +2,6 @@ package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +30,7 @@ public class AshTopLayerFeature extends Feature<DefaultFeatureConfig> {
         if (VALID_BIOMES == null) {
             VALID_BIOMES = new HashSet<>();
             VALID_BIOMES.add(world.getRegistryManager().get(Registry.BIOME_KEY).get(CinderscapesBiomes.ASHY_SHOALS));
-            //Todo fix this or figure out better system
+            // TODO: fix this or figure out better system
             /*world.getRegistryManager().get(Registry.BIOME_KEY).stream()
                     .filter(biome -> biome.getGenerationSettings().isFeatureAllowed(CinderscapesPlacedFeatures.ASH_TOP_LAYER.value()))
                     .forEach(biome -> VALID_BIOMES.add(biome));*/
@@ -49,6 +48,7 @@ public class AshTopLayerFeature extends Feature<DefaultFeatureConfig> {
                 }
             }
         }
+
         return true;
     }
 }

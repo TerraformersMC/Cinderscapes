@@ -34,7 +34,7 @@ public abstract class ServerWorldMixin extends World {
 
     // TODO: Revisit this and make it easier to read
     @Inject(method="tickChunk", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/server/world/ServerWorld;getBiome(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/registry/RegistryEntry;", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void tickChunk(WorldChunk chunk, int randomTickSpeed, CallbackInfo callback, ChunkPos chunkPos, boolean bl, int i, int j, Profiler profiler, BlockPos blockPos2, BlockPos blockPos3) {
+    private void cinderscapes$tickChunk(WorldChunk chunk, int randomTickSpeed, CallbackInfo callback, ChunkPos chunkPos, boolean bl, int i, int j, Profiler profiler, BlockPos blockPos2, BlockPos blockPos3) {
         if (CinderscapesConfig.INSTANCE.enableAshFall) {
             BlockPos pos = this.getRandomPosInChunk(i, 0, j, 15);
             BlockState state = getBlockState(pos);

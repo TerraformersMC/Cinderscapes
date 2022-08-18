@@ -9,5 +9,5 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(NoiseChunkGenerator.class)
 public interface NoiseChunkGeneratorAccessor {
     @Accessor("settings")
-    RegistryEntry<ChunkGeneratorSettings> cinderscapes_getSettings();
+    RegistryEntry<ChunkGeneratorSettings> cinderscapes$getSettings();
 }

@@ -1,10 +1,8 @@
 package com.terraformersmc.cinderscapes.mixin;
 
-import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.Registry;
@@ -17,7 +15,6 @@ import net.minecraft.world.gen.chunk.BlockColumn;
 import net.minecraft.world.gen.chunk.ChunkNoiseSampler;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
-import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -33,7 +30,7 @@ public class SurfaceBuilderMixin {
     private BlockState defaultState;
 
     @Inject(method = "buildSurface", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isEmpty()Z", shift = At.Shift.BY, by = 2), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void cinderscapes_injectFluidCheck(BiomeAccess biomeAccess, Registry<Biome> biomeRegistry, boolean useLegacyRandom, HeightContext context, Chunk chunk, ChunkNoiseSampler chunkNoiseSampler, MaterialRules.MaterialRule surfaceRule, CallbackInfo ci,
+    private void cinderscapes$injectFluidCheck(BiomeAccess biomeAccess, Registry<Biome> biomeRegistry, boolean useLegacyRandom, HeightContext context, Chunk chunk, ChunkNoiseSampler chunkNoiseSampler, MaterialRules.MaterialRule surfaceRule, CallbackInfo ci,
                                                BlockPos.Mutable mutable, ChunkPos chunkPos, int i, int j, BlockColumn blockColumn, MaterialRules.MaterialRuleContext materialRuleContext, MaterialRules.BlockStateRule blockStateRule, BlockPos.Mutable mutable2,
                                                int k, int l, int x, int z, int o, RegistryEntry<Biome> registryEntry, int p, int q, int r, int s, int t, int y, BlockState blockState){
         if (registryEntry.matchesKey(CinderscapesBiomes.ASHY_SHOALS)){

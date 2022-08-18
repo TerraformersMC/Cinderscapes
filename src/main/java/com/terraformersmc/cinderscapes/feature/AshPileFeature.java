@@ -12,8 +12,8 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
-//TODO: Rewrite using the upcoming shapes library
-//TODO: Make a feature config allowing the material and size range to change
+// TODO: Rewrite using the upcoming shapes library
+// TODO: Make a feature config allowing the material and size range to change
 public class AshPileFeature extends Feature<DefaultFeatureConfig> {
     public AshPileFeature() {
         super(DefaultFeatureConfig.CODEC);
@@ -26,7 +26,7 @@ public class AshPileFeature extends Feature<DefaultFeatureConfig> {
         StructureWorldAccess world = context.getWorld();
         int yradius = random.nextInt(5) + 7;
 
-        while(true) {
+        while (true) {
             search:
             {
                 if (pos.getY() <= 3) {

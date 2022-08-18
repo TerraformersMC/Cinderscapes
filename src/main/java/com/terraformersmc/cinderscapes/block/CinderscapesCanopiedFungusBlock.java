@@ -31,5 +31,6 @@ public class CinderscapesCanopiedFungusBlock extends FungusBlock {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        this.feature.get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);    }
+        this.feature.get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+    }
 }

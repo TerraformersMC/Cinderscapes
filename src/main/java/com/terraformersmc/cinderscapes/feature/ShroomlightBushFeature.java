@@ -22,7 +22,7 @@ public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
         BlockPos pos = context.getOrigin();
         StructureWorldAccess world = context.getWorld();
 
-        while(true) {
+        while (true) {
             search: {
                 // If you've gone through all layers and haven't found a suitable spot then return false
                 // so that we don't get stuck in an endless loop

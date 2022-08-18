@@ -8,6 +8,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(MaterialRules.MaterialRuleContext.class)
 public interface MaterialRuleContextAccessor {
 
-    @Accessor
-    Chunk getChunk();
+    @Accessor("chunk")
+    Chunk cinderscapes$getChunk();
 }

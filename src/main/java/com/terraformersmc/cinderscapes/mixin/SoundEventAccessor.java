@@ -8,5 +8,5 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(SoundEvent.class)
 public interface SoundEventAccessor {
     @Accessor("id")
-    Identifier getId();
+    Identifier cinderscapes$getId();
 }

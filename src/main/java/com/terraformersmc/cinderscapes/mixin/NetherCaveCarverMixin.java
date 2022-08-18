@@ -20,7 +20,7 @@ public abstract class NetherCaveCarverMixin extends CaveCarver {
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    public void constructor(CallbackInfo callback) {
+    public void cinderscapes$netherCaveCarverConstructor(CallbackInfo callback) {
         this.alwaysCarvableBlocks = new HashSet<>(this.alwaysCarvableBlocks);
         this.alwaysCarvableBlocks.add(CinderscapesBlocks.UMBRAL_NYLIUM);
     }

@@ -109,6 +109,7 @@ public class CinderscapesBlocks {
 
     public static final Block UMBRAL_NYLIUM = add("umbral_nylium", new CinderscapesNyliumBlock(FabricBlockSettings.copyOf(Blocks.WARPED_NYLIUM).mapColor(MapColor.LIGHT_BLUE_GRAY)), ItemGroup.BUILDING_BLOCKS);
 
+    // No, that lambda cannot be replaced with a method reference.
     public static final Block UMBRAL_FUNGUS = add("umbral_fungus", new CinderscapesCanopiedFungusBlock(FabricBlockSettings.copyOf(Blocks.WARPED_FUNGUS).mapColor(MapColor.BLUE).luminance(15), () -> CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS_PLANTED.value()), ItemGroup.DECORATIONS);
     public static final Block POTTED_UMBRAL_FUNGUS = add("potted_umbral_fungus", new FlowerPotBlock(UMBRAL_FUNGUS, FabricBlockSettings.copyOf(Blocks.POTTED_WARPED_FUNGUS)));
 

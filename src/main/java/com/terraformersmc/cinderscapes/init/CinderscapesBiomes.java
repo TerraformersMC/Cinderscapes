@@ -23,10 +23,10 @@ public class CinderscapesBiomes {
     // Acts as a kind of local registry for Cinderscape's custom biomes
     public static final Map<Identifier, Pair<Biome, MultiNoiseUtil.NoiseValuePoint>> BIOMES = new HashMap<>();
 
-    public static final RegistryKey<Biome> BLACKSTONE_SHALES = add("blackstone_shales", BlackstoneShalesBiome.create());
-    public static final RegistryKey<Biome> QUARTZ_CANYON = add("quartz_canyon", QuartzCanyonBiome.create());
-    public static final RegistryKey<Biome> LUMINOUS_GROVE = add("luminous_grove", LuminousGroveBiome.create());
     public static final RegistryKey<Biome> ASHY_SHOALS = add("ashy_shoals", AshyShoalsBiome.create());
+    public static final RegistryKey<Biome> BLACKSTONE_SHALES = add("blackstone_shales", BlackstoneShalesBiome.create());
+    public static final RegistryKey<Biome> LUMINOUS_GROVE = add("luminous_grove", LuminousGroveBiome.create());
+    public static final RegistryKey<Biome> QUARTZ_CANYON = add("quartz_canyon", QuartzCanyonBiome.create());
 
     // Required because something referencing this class has to be called in order to force the
     // static initializer to run (Minecraft's Bootstrap class does similar things)
@@ -34,14 +34,14 @@ public class CinderscapesBiomes {
         if (CinderscapesConfig.INSTANCE.biomes.enableAshyShoals) {
             NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("ashy_shoals")), AshyShoalsBiome.NOISE_POINT);
         }
+        if (CinderscapesConfig.INSTANCE.biomes.enableBlackstoneShales) {
+            NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("blackstone_shales")), BlackstoneShalesBiome.NOISE_POINT);
+        }
         if (CinderscapesConfig.INSTANCE.biomes.enableLuminousGrove) {
             NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("luminous_grove")), LuminousGroveBiome.NOISE_POINT);
         }
         if (CinderscapesConfig.INSTANCE.biomes.enableQuartzCanyon) {
             NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("quartz_canyon")), QuartzCanyonBiome.NOISE_POINT);
-        }
-        if (CinderscapesConfig.INSTANCE.biomes.enableBlackstoneShales) {
-            NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("blackstone_shales")), BlackstoneShalesBiome.NOISE_POINT);
         }
     }
 
@@ -58,5 +58,4 @@ public class CinderscapesBiomes {
         RegistryKey<Biome> key = RegistryKey.of(Registry.BIOME_KEY, id);
         return key;
     }
-
 }

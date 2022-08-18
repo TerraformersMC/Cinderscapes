@@ -28,7 +28,7 @@ public class ShaleFeature extends Feature<ShaleFeatureConfig> {
             return false;
         }
 
-        float radius = context.getRandom().nextInt(config.max - config.min) + config.min;
+        float radius = context.getRandom().nextInt(config.max() - config.min()) + config.min();
         if (world.getBlockState(pos).isOf(Blocks.LAVA)) {
             radius = radius * 1.5f;
         }
@@ -38,7 +38,7 @@ public class ShaleFeature extends Feature<ShaleFeatureConfig> {
         Shapes.ellipsoid(2, radius / 1.5, radius)
                 .applyLayer(RotateLayer.of(Quaternion.of(tilt, turn, 0, true)))
                 .applyLayer(TranslateLayer.of(Position.of(pos)))
-                .fill(new SimpleFiller(world, config.state));
+                .fill(new SimpleFiller(world, config.state()));
 
         return true;
     }

@@ -36,6 +36,7 @@ public class IntegratedEntry extends LeafEntry {
     }
 
     public static class Serializer extends LeafEntry.Serializer<IntegratedEntry> {
+        @Override
         public void addEntryFields(JsonObject jsonObject, IntegratedEntry itemEntry, JsonSerializationContext jsonSerializationContext) {
             super.addEntryFields(jsonObject, itemEntry, jsonSerializationContext);
             Identifier identifier = Registry.ITEM.getId(itemEntry.item);

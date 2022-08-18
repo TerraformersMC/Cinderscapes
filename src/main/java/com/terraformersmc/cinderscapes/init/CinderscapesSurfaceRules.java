@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.mixin.MaterialRuleContextAccessor;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -13,12 +12,12 @@ import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.noise.NoiseParametersKeys;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
+// TODO: Clone surface builder system from Terrestria and/or clean up this file.
 // Contains all of the surface builders and surface configs added by Cinderscapes
 public class CinderscapesSurfaceRules {
     // Acts as a kind of local registry for surface builders added by Cinderscapes
@@ -76,10 +75,10 @@ public class CinderscapesSurfaceRules {
                 boolean apply = false;
                 MaterialRuleContextAccessor accessor = ((MaterialRuleContextAccessor) ((Object) context));
                 BlockPos pos = new BlockPos(x, y, z);
-                if (accessor.getChunk().getBlockState(pos).getBlock() == Blocks.LAVA) {
+                if (accessor.cinderscapes$getChunk().getBlockState(pos).getBlock() == Blocks.LAVA) {
                     //Cinderscapes.LOGGER.info(pos.toString());
                     /**/
-                    apply = accessor.getChunk().getBlockState(pos.up()).isAir() || (random.nextBoolean() && accessor.getChunk().getBlockState(pos.up(2)).isAir());
+                    apply = accessor.cinderscapes$getChunk().getBlockState(pos.up()).isAir() || (random.nextBoolean() && accessor.cinderscapes$getChunk().getBlockState(pos.up(2)).isAir());
                 }
                 if (apply) {
                     return followup.tryApply(x, y, z);

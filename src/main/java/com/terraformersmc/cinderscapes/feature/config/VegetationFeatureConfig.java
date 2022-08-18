@@ -6,23 +6,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class VegetationFeatureConfig implements FeatureConfig {
-
-    public final BlockStateProvider vegetationStates;
-    public final List<BlockState> placeableStates;
-    public final List<BlockState> replaceableStates;
+public record VegetationFeatureConfig(BlockStateProvider vegetationStates, List<BlockState> placeableStates, List<BlockState> replaceableStates) implements FeatureConfig {
 
     public VegetationFeatureConfig(BlockStateProvider vegetationStates, List<BlockState> placeableStates) {
-        this(vegetationStates, placeableStates, Arrays.asList());
-    }
-
-    public VegetationFeatureConfig(BlockStateProvider vegetationStates, List<BlockState> placeableStates, List<BlockState> replaceableStates) {
-        this.vegetationStates = vegetationStates;
-        this.placeableStates = placeableStates;
-        this.replaceableStates = replaceableStates;
+        this(vegetationStates, placeableStates, List.of());
     }
 
     public static final Codec<VegetationFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {

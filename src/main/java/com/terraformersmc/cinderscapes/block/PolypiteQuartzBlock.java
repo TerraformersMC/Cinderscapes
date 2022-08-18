@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PolypiteQuartzBlock extends Block {
-
     public static final EnumProperty<Direction> DIRECTION = EnumProperty.of("direction", Direction.class);
 
     private static final Map<Direction, VoxelShape> DIRECTION_TO_SHAPE = new HashMap<>();
@@ -27,10 +26,12 @@ public class PolypiteQuartzBlock extends Block {
         super(settings.luminance((state) -> 4));
     }
 
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(DIRECTION);
     }
 
+    @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
         Direction placementSide = state.get(DIRECTION);
         if (!Block.isFaceFullSquare(world.getBlockState(pos.offset(placementSide)).getCollisionShape(world, pos.offset(placementSide)), placementSide.getOpposite())) {
@@ -39,6 +40,7 @@ public class PolypiteQuartzBlock extends Block {
         return state;
     }
 
+    @Override
     @Nullable
     public BlockState getPlacementState(ItemPlacementContext context) {
         Direction placeSide = context.getSide();
@@ -47,6 +49,7 @@ public class PolypiteQuartzBlock extends Block {
         return Block.isFaceFullSquare(placeOnState.getCollisionShape(context.getWorld(), placeOnPos), placeSide) ? this.getDefaultState().with(DIRECTION, placeSide.getOpposite()) : Blocks.AIR.getDefaultState();
     }
 
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return DIRECTION_TO_SHAPE.get(state.get(DIRECTION));
     }

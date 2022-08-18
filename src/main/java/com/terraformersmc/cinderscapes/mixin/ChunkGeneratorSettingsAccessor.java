@@ -9,5 +9,5 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(ChunkGeneratorSettings.class)
 public interface ChunkGeneratorSettingsAccessor {
     @Accessor("surfaceRule") @Mutable
-    void cinderscapes_setSurfaceRule(MaterialRules.MaterialRule ruleSource);
+    void cinderscapes$setSurfaceRule(MaterialRules.MaterialRule ruleSource);
 }

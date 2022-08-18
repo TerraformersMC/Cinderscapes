@@ -1,12 +1,10 @@
 package com.terraformersmc.cinderscapes.init;
 
-
 import com.terraformersmc.cinderscapes.placementModifier.SafelistRangeCeilingPlacementModifier;
 import com.terraformersmc.cinderscapes.placementModifier.SafelistRangeFloorPlacementModifier;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
-
 
 // TODO: Check
 public class CinderscapesPlacementModifierTypes {

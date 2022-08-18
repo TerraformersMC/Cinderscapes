@@ -26,7 +26,7 @@ public class AlterGroundTreeDecoratorMixin {
     private BlockStateProvider provider;
 
     @Inject(method = "setColumn", at = @At(value = "TAIL"))
-    private void setColumn(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, BlockPos pos, CallbackInfo callback) {
+    private void cinderscapes$setColumn(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, BlockPos pos, CallbackInfo callback) {
         for(int i = 2; i >= -3; --i) {
             BlockPos blockPos = pos.up(i);
             if (world.testBlockState(blockPos, (state) -> state.isOf(Blocks.NETHERRACK))) {
