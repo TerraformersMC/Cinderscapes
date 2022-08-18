@@ -11,8 +11,7 @@ import com.terraformersmc.terraform.shapes.impl.layer.pathfinder.SubtractLayer;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
 import com.terraformersmc.terraform.shapes.impl.validator.AirValidator;
 import com.terraformersmc.terraform.shapes.impl.validator.SafelistValidator;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.StructureWorldAccess;
@@ -20,6 +19,8 @@ import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
@@ -36,6 +37,8 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
         BlockPos pos = context.getOrigin();
         Random random = context.getRandom();
 
+        final List<BlockState> baseSafeList = new ArrayList<>(List.of(config.soilBlock(), Blocks.AIR.getDefaultState(), Blocks.NETHERRACK.getDefaultState()));
+
         // If the feature is being generated from a fungus block
         if (config.planted()) {
             // If the block the fungus is placed on isn't a soil block
@@ -51,6 +54,12 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
             // If they are not all solid blocks
             if (!solidGround) {
                 return false;
+            }
+
+            // We have to tolerate a fungus block (sapling) at ground zero if we were planted.
+            BlockState groundZero = world.getBlockState(pos);
+            if (groundZero.getBlock() instanceof FungusBlock) {
+                baseSafeList.add(groundZero);
             }
         }
 
@@ -93,7 +102,7 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
                 .applyLayer(new TranslateLayer(Position.of(canopyPos.toBlockPos().down())));
 
         // The stem and canopy must be placed in open air, but the base can replace some ground blocks
-        boolean baseClear = SafelistValidator.of(world, config.soilBlock(), Blocks.AIR.getDefaultState(), Blocks.NETHERRACK.getDefaultState()).validate(base);
+        boolean baseClear = SafelistValidator.of(world, baseSafeList).validate(base);
         boolean stemClear = AirValidator.of((TestableWorld) world).validate(stem);
         boolean canopyClear = Stream.of(canopy, flesh, detailBlocks, fleshDripping, canopyDripping).allMatch((shape) -> AirValidator.of((TestableWorld) world).validate(shape));
 
