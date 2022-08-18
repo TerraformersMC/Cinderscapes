@@ -31,7 +31,7 @@ public class SafelistRangeFloorPlacementModifier extends PlacementModifier {
     private final List<BlockState> safelist;
     private final YOffset minOffset;
     private final YOffset maxOffset;
-    public SafelistRangeFloorPlacementModifier(YOffset minOffset, YOffset maxOffset, List<BlockState> safelist){
+    public SafelistRangeFloorPlacementModifier(YOffset minOffset, YOffset maxOffset, List<BlockState> safelist) {
         this.safelist = safelist;
         this.minOffset = minOffset;
         this.maxOffset = maxOffset;
@@ -46,7 +46,7 @@ public class SafelistRangeFloorPlacementModifier extends PlacementModifier {
         BlockPos.Mutable offsetPos = new BlockPos.Mutable(x, 0, z);
         List<Integer> ys = IntStream.range(minOffset.getY(context), maxOffset.getY(context)).filter((y) -> {
             testPos.setY(y);
-            offsetPos.setY(y -1);
+            offsetPos.setY(y - 1);
 
             BlockState testState = context.getBlockState(testPos);
             BlockState offsetState = context.getBlockState(offsetPos);

@@ -42,10 +42,8 @@ import java.util.List;
 public class CinderscapesFeatures {
 
     public static Feature<DefaultFeatureConfig> ASH_TOP_LAYER;
-    public static Feature<SimpleStateFeatureConfig> SHALE_FEATURE;
+    public static Feature<ShaleFeatureConfig> SHALE_FEATURE;
 
-    public static Feature<DefaultFeatureConfig> BLACKSTONE_SHALE;
-    public static Feature<DefaultFeatureConfig> BLACKSTONE_LAVA_SHALE;
     public static Feature<DefaultFeatureConfig> BLACKSTONE_WEEPING_VINES;
     public static Feature<SimpleStateFeatureConfig> CEILING_SHARD;
     public static Feature<SimpleStateFeatureConfig> FLOOR_SHARD;
@@ -134,10 +132,7 @@ public class CinderscapesFeatures {
 
         TALL_PHOTOFERN_CONFIG = ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(CinderscapesBlocks.TALL_PHOTOFERN.getDefaultState())), List.of(), 64);
         LUMINOUS_POD_CONFIG = ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(CinderscapesBlocks.LUMINOUS_POD.getDefaultState())), List.of(), 64);
-        BRAMBLE_BERRY_BUSH_CONFIG = ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(((BrambleBerryBushBlock)CinderscapesBlocks.BRAMBLE_BERRY_BUSH).getGenerationState())), List.of(), 64);
-
-        BLACKSTONE_SHALE = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_shale"), new BlackstoneShaleFeature());
-        BLACKSTONE_LAVA_SHALE = Registry.register(Registry.FEATURE, Cinderscapes.id("blackstone_lava_shale"), new BlackstoneLavaShaleFeature());
+        BRAMBLE_BERRY_BUSH_CONFIG = ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(((BrambleBerryBushBlock) CinderscapesBlocks.BRAMBLE_BERRY_BUSH).getGenerationState())), List.of(), 64);
 
         SHALE_FEATURE = Registry.register(Registry.FEATURE, Cinderscapes.id("shale"), new ShaleFeature());
 

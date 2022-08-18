@@ -3,27 +3,19 @@ package com.terraformersmc.cinderscapes.init;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.placementModifier.SafelistRangeCeilingPlacementModifier;
 import com.terraformersmc.cinderscapes.placementModifier.SafelistRangeFloorPlacementModifier;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.intprovider.BiasedToBottomIntProvider;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.util.registry.RegistryEntryList;
 import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.NetherConfiguredFeatures;
-import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.feature.PlacedFeatures;
-import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
-import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.NoiseThresholdCountPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.PlacementModifier;
-import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
+import net.minecraft.world.gen.blockpredicate.BlockPredicate;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.placementmodifier.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,14 +46,11 @@ public class CinderscapesPlacedFeatures {
 
     public static final RegistryEntry<PlacedFeature> PATCH_CRIMSON_ROOTS = createPlacedFeature("patch_crimson_roots_blackstone_shales", NetherConfiguredFeatures.PATCH_CRIMSON_ROOTS, CountPlacementModifier.of(128));
 
-    public static final RegistryEntry<PlacedFeature> SHALES = createPlacedFeature("shales", CinderscapesConfiguredFeatures.SHALES,
-            new SafelistRangeFloorPlacementModifier(YOffset.aboveBottom(20), YOffset.belowTop(20), CinderscapesConfiguredFeatures.SHALE_SAFELIST),
-            CountPlacementModifier.of(2)
-    );
-
-    public static final RegistryEntry<PlacedFeature> LAVA_SHALES = createPlacedFeature("lava_shales", CinderscapesConfiguredFeatures.LAVA_SHALES,
-            new SafelistRangeFloorPlacementModifier(YOffset.aboveBottom(20), YOffset.belowTop(20), CinderscapesConfiguredFeatures.LAVA_SHALE_SAFELIST),
-            CountPlacementModifier.of(2)
+    public static final List<Block> SHALE_SAFELIST = List.of(Blocks.CRIMSON_ROOTS, Blocks.NETHERRACK, Blocks.BLACKSTONE, Blocks.SOUL_SOIL, Blocks.SOUL_SAND);
+    public static final RegistryEntry<PlacedFeature> SHALES = createPlacedFeature("shales", CinderscapesConfiguredFeatures.BLACKSTONE_SHALES,
+            CountMultilayerPlacementModifier.of(10), SquarePlacementModifier.of(),
+            HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(12), YOffset.belowTop(20)),
+            BlockFilterPlacementModifier.of(BlockPredicate.matchingBlocks(SHALE_SAFELIST, Direction.DOWN.getVector()))
     );
 
 

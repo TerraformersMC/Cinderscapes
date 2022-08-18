@@ -3,10 +3,7 @@ package com.terraformersmc.cinderscapes.init;
 import com.google.common.base.Preconditions;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
-import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureConfig;
-import com.terraformersmc.cinderscapes.feature.config.PolypiteQuartzFeatureConfig;
-import com.terraformersmc.cinderscapes.feature.config.SimpleStateFeatureConfig;
-import com.terraformersmc.cinderscapes.feature.config.VegetationFeatureConfig;
+import com.terraformersmc.cinderscapes.feature.config.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
@@ -26,7 +23,8 @@ import java.util.List;
 
 public final class CinderscapesConfiguredFeatures {
 
-    public static void init(){}
+    public static void init() {
+    }
 
     public static final RegistryEntry<ConfiguredFeature<DefaultFeatureConfig, ?>> BLACKSTONE_SHALE_WEEPING_VINES = register("blackstone_shales_weeping_vines", Feature.WEEPING_VINES, FeatureConfig.DEFAULT);
 
@@ -66,16 +64,8 @@ public final class CinderscapesConfiguredFeatures {
             Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG
     );
 
-    public static final List<BlockState> SHALE_SAFELIST = List.of(Blocks.CRIMSON_ROOTS.getDefaultState(), Blocks.NETHERRACK.getDefaultState(), Blocks.BLACKSTONE.getDefaultState(), Blocks.SOUL_SOIL.getDefaultState(), Blocks.SOUL_SAND.getDefaultState());
-
-    public static final RegistryEntry<ConfiguredFeature<SimpleStateFeatureConfig, ?>> SHALES = register("shales",
-            CinderscapesFeatures.SHALE_FEATURE, new SimpleStateFeatureConfig(Blocks.BLACKSTONE.getDefaultState(), SHALE_SAFELIST)
-    );
-
-    public static final List<BlockState> LAVA_SHALE_SAFELIST = List.of(Blocks.LAVA.getDefaultState());
-
-    public static final RegistryEntry<ConfiguredFeature<SimpleStateFeatureConfig, ?>> LAVA_SHALES = register("lava_shales",
-            CinderscapesFeatures.SHALE_FEATURE, new SimpleStateFeatureConfig(Blocks.BLACKSTONE.getDefaultState(), SHALE_SAFELIST)
+    public static final RegistryEntry<ConfiguredFeature<ShaleFeatureConfig, ?>> BLACKSTONE_SHALES = register("blackstone_shales",
+            CinderscapesFeatures.SHALE_FEATURE, new ShaleFeatureConfig(Blocks.BLACKSTONE.getDefaultState(), 7, 12)
     );
 
     /******* LUMINOUS GROVE *********/

@@ -21,12 +21,14 @@ public class CinderscapesCanopiedFungusBlock extends FungusBlock {
         this.config = supplier;
     }
 
+    @Override
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        Block block = ((this.config.get().value()).config()).soilBlock.getBlock();
-        Block block2 = world.getBlockState(pos.down()).getBlock();
-        return block2 == block;
+        Block block = this.feature.get().config().soilBlock().getBlock();
+        BlockState blockState = world.getBlockState(pos.down());
+        return blockState.isOf(block);
     }
 
+    @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         (this.config.get().value()).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }

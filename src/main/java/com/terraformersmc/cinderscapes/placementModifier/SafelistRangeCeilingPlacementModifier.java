@@ -31,7 +31,7 @@ public class SafelistRangeCeilingPlacementModifier extends PlacementModifier {
     private final List<BlockState> safelist;
     private final YOffset minOffset;
     private final YOffset maxOffset;
-    public SafelistRangeCeilingPlacementModifier(YOffset minOffset, YOffset maxOffset, List<BlockState> safelist){
+    public SafelistRangeCeilingPlacementModifier(YOffset minOffset, YOffset maxOffset, List<BlockState> safelist) {
         this.safelist = safelist;
         this.minOffset = minOffset;
         this.maxOffset = maxOffset;

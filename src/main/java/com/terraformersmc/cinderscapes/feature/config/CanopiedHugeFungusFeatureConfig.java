@@ -5,23 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
-public class CanopiedHugeFungusFeatureConfig implements FeatureConfig {
-
-    public final BlockState soilBlock;
-    public final BlockState stemBlock;
-    public final BlockState canopyBlock;
-    public final BlockState fleshBlock;
-    public final BlockState decorationBlock;
-    public final boolean planted;
-
-    public CanopiedHugeFungusFeatureConfig(BlockState soilBlock, BlockState stemBlock, BlockState canopyBlock, BlockState fleshBlock, BlockState decorationBlock, boolean planted) {
-        this.soilBlock = soilBlock;
-        this.stemBlock = stemBlock;
-        this.canopyBlock = canopyBlock;
-        this.fleshBlock = fleshBlock;
-        this.decorationBlock = decorationBlock;
-        this.planted = planted;
-    }
+public record CanopiedHugeFungusFeatureConfig(BlockState soilBlock, BlockState hyphaeBlock, BlockState stemBlock, BlockState canopyBlock, BlockState fleshBlock, BlockState decorationBlock, boolean planted) implements FeatureConfig {
 
     public static final Codec<CanopiedHugeFungusFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
         return instance.group(BlockState.CODEC.fieldOf("soil").forGetter((config) -> {
@@ -38,4 +22,8 @@ public class CanopiedHugeFungusFeatureConfig implements FeatureConfig {
             return config.planted;
         })).apply(instance, CanopiedHugeFungusFeatureConfig::new);
     });
+
+    public CanopiedHugeFungusFeatureConfig withPlanted(boolean planted) {
+        return new CanopiedHugeFungusFeatureConfig(this.soilBlock, this.hyphaeBlock, this.stemBlock, this.canopyBlock, this.fleshBlock, this.decorationBlock, planted);
+    }
 }
