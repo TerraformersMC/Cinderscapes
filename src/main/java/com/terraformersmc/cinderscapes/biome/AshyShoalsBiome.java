@@ -1,9 +1,8 @@
 package com.terraformersmc.cinderscapes.biome;
 
-import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
-import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
-import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
+import com.terraformersmc.cinderscapes.mixin.OverworldBiomeCreatorAccessor;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -16,15 +15,16 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
-import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
+import net.minecraft.world.gen.feature.NetherPlacedFeatures;
+import net.minecraft.world.gen.feature.OrePlacedFeatures;
 
 public class AshyShoalsBiome {
 
-    public static final Biome.MixedNoisePoint NOISE_POINT = new Biome.MixedNoisePoint(-0.35F, 0.0F, 0.35F, 0.0F, 0.2F);
+    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(-0.35F, 0.0F, 0.2f, 0.0f, 0.35F, 0.0F, 0.0F);
 
     public static Biome create() {
         return new Biome.Builder()
@@ -32,12 +32,10 @@ public class AshyShoalsBiome {
                 .spawnSettings(createSpawnSettings())
                 .precipitation(Biome.Precipitation.NONE)
                 .category(Biome.Category.NETHER)
-                .depth(0.1F)
-                .scale(0.2F)
                 .temperature(2.0F)
                 .downfall(0.0F)
                 .effects(new BiomeEffects.Builder()
-                        .skyColor(DefaultBiomeCreatorAccessor.callGetSkyColor(2.0f))
+                        .skyColor(OverworldBiomeCreatorAccessor.cinderscapes$callGetSkyColor(2.0f))
                         .waterColor(4159204)
                         .waterFogColor(4341314)
                         .fogColor(0x363636)
@@ -53,45 +51,44 @@ public class AshyShoalsBiome {
     private static GenerationSettings createGenerationSettings() {
 
         GenerationSettings.Builder builder = new GenerationSettings.Builder();
-        builder.surfaceBuilder(CinderscapesSurfaces.CONFIGURED_ASHY_SHOALS);
+        //builder.surfaceBuilder(CinderscapesSurfaceRules.CONFIGURED_ASHY_SHOALS);
 
         // DEFAULT MINECRAFT FEATURES
-
-        builder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);
-        builder.structureFeature(ConfiguredStructureFeatures.FORTRESS);
-        builder.structureFeature(ConfiguredStructureFeatures.BASTION_REMNANT);
-        builder.structureFeature(ConfiguredStructureFeatures.NETHER_FOSSIL);
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE_EXTRA);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_MAGMA);
+        vanillaNetherFeatures(builder);
         DefaultBiomeFeatures.addNetherMineables(builder);
 
-        // ASH PILES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.ASH_PILES);
-
-        // VEGETATION
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.VEGETATION_ASHY_SHOALS);
-
-        // BRAMBLE BERRY BUSHES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.BRAMBLE_BERRY_BUSHES);
+        // ANCIENT DEBRIS
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_DEBRIS_LARGE_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_DEBRIS_SMALL_ASHY_SHOALS);
 
         // REPLACE NETHERRACK
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SOUL_SAND_ASHY_SHOALS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SOUL_SOIL_ASHY_SHOALS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.GRAVEL_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SAND_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SOIL_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.GRAVEL_ASHY_SHOALS);
 
-        // TOP LAYER MODIFICATION
-        builder.feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, CinderscapesConfiguredFeatures.ASH_TOP_LAYER);
+        // ASH PILES
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.ASH_PILES);
 
         // FEATURES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.DEAD_TREE);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.DEAD_TREES);
 
-        // ANCIENT DEBRIS
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_DEBRIS_LARGE_ASHY_SHOALS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_DEBRIS_SMALL_ASHY_SHOALS);
+        // VEGETATION
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.VEGETATION_ASHY_SHOALS);
+
+        // BRAMBLE BERRY BUSHES
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.BRAMBLE_BERRY_BUSHES);
+
+        // TOP LAYER MODIFICATION
+        builder.feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, CinderscapesPlacedFeatures.ASH_TOP_LAYER);
 
         return builder.build();
+    }
+
+    private static void vanillaNetherFeatures(GenerationSettings.Builder generationSettings) {
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA);
     }
 
     private static SpawnSettings createSpawnSettings() {
@@ -107,7 +104,5 @@ public class AshyShoalsBiome {
         builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 50, 4, 4));
 
         return builder.build();
-
     }
-
 }

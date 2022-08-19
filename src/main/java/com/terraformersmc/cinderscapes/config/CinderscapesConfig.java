@@ -1,14 +1,14 @@
 package com.terraformersmc.cinderscapes.config;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
-import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
-import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
-import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
-import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.ConfigData;
+import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
 @Config(name = Cinderscapes.NAMESPACE)
-public class CinderscapesConfig implements ConfigData {
+public final class CinderscapesConfig implements ConfigData {
     @ConfigEntry.Gui.Excluded
     public static CinderscapesConfig INSTANCE;
 
@@ -16,6 +16,8 @@ public class CinderscapesConfig implements ConfigData {
     public BiomeOptions biomes = new BiomeOptions();
 
     public boolean enableAshFall = true;
+
+    public final boolean easterEggs = false;
 
     public static void init() {
         AutoConfig.register(CinderscapesConfig.class, GsonConfigSerializer::new);

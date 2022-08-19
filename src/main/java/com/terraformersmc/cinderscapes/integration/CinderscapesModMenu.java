@@ -3,12 +3,12 @@ package com.terraformersmc.cinderscapes.integration;
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
+import me.shedaniel.autoconfig.AutoConfig;
 
-public class ModMenuIntegration implements ModMenuApi {
+public class CinderscapesModMenu implements ModMenuApi {
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> AutoConfig.getConfigScreen(CinderscapesConfig.class, parent).get();
+        return (parent) -> AutoConfig.getConfigScreen(CinderscapesConfig.class, parent).get();
     }
 }

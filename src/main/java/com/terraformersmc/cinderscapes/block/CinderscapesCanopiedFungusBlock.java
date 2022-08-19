@@ -8,25 +8,29 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 import java.util.function.Supplier;
 
 public class CinderscapesCanopiedFungusBlock extends FungusBlock {
-    private final Supplier<ConfiguredFeature<CanopiedHugeFungusFeatureConfig, ?>> config;
 
-    public CinderscapesCanopiedFungusBlock(Settings settings, Supplier<ConfiguredFeature<CanopiedHugeFungusFeatureConfig, ?>> supplier) {
+    private final Supplier<ConfiguredFeature<CanopiedHugeFungusFeatureConfig, Feature<CanopiedHugeFungusFeatureConfig>>> feature;
+
+    public CinderscapesCanopiedFungusBlock(Settings settings, Supplier<ConfiguredFeature<CanopiedHugeFungusFeatureConfig, Feature<CanopiedHugeFungusFeatureConfig>>> feature) {
         super(settings, null);
-        this.config = supplier;
+        this.feature = feature;
     }
 
+    @Override
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        Block block = ((this.config.get()).config).soilBlock.getBlock();
-        Block block2 = world.getBlockState(pos.down()).getBlock();
-        return block2 == block;
+        Block block = this.feature.get().config().soilBlock().getBlock();
+        BlockState blockState = world.getBlockState(pos.down());
+        return blockState.isOf(block);
     }
 
+    @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        (this.config.get()).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+        this.feature.get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
 }

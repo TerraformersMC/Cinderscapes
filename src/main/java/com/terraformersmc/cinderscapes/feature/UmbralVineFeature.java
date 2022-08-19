@@ -8,9 +8,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
@@ -25,7 +25,10 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
     // TODO: Figure out the chunk boundary issue
 
     @Override
-    public boolean generate(StructureWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
+        Random random = context.getRandom();
+        BlockPos pos = context.getOrigin();
+        StructureWorldAccess world = context.getWorld();
         while (pos.getY() >= 3) {
             search: {
                 if ( world.getBlockState(pos).getBlock() != Blocks.NETHERRACK ) break search;
@@ -74,6 +77,7 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
         for (float t = 0; t < dt; t+=0.25) {
             BlockPos pos = new BlockPos( from.getX() + ((float)dx/dt)*t, from.getY() + ((float)dy/dt)*t + MathHelper.map(t*t - dt*t, -dt*dt/4.0f, 0, randomDroop, 0), from.getZ() + ((float)dz/dt)*t );
             world.setBlockState(pos, state, 0);
+
             if (random.nextFloat() > 0.8f) {
                 int ectoHeight = random.nextInt(3) + 1;
                 boolean clear = true;
@@ -91,15 +95,13 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
                             if (i == 1 && ectoHeight >= 3) {
                                 ectoState = ((GhastlyEctoplasmBlock) CinderscapesBlocks.GHASTLY_ECTOPLASM).typeOf(GhastlyEctoplasmBlock.Type.TOP);
                             }
-                            if (i > ectoHeight) {
-                                ectoState = Blocks.AIR.getDefaultState();
-                            }
                             world.setBlockState(pos.down(i), ectoState, 0);
                         }
                     }
                 }
             }
         }
+
         return true;
     }
 }

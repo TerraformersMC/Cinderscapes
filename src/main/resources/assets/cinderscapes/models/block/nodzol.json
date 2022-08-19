@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "cinderscapes:block/nodzol_top",
+    "bottom": "minecraft:block/netherrack",
+    "side": "cinderscapes:block/nodzol"
+  }
+}

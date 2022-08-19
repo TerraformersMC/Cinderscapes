@@ -123,10 +123,14 @@
   "item.cinderscapes.music_disc_luminous_plantation.desc": "LudoCrypt - Luminous Plantation",
 
   "text.autoconfig.cinderscapes.title": "Cinderscapes Config",
+  "text.autoconfig.cinderscapes.option.easterEggs": "Enable Easter Eggs",
   "text.autoconfig.cinderscapes.option.biomes": "Modify Biome Generation",
   "text.autoconfig.cinderscapes.option.biomes.enableAshyShoals": "Enable Ashy Shoals Biome",
   "text.autoconfig.cinderscapes.option.biomes.enableBlackstoneShales": "Enable Blackstone Shales Biome",
   "text.autoconfig.cinderscapes.option.biomes.enableLuminousGrove": "Enable Luminous Grove Biome",
   "text.autoconfig.cinderscapes.option.biomes.enableQuartzCanyon": "Enable Quartz Canyon Biome",
-  "text.autoconfig.cinderscapes.option.enableAshFall": "Enable Ash Fall"
+  "text.autoconfig.cinderscapes.option.enableAshFall": "Enable Ash Fall",
+
+  "block.cinderscapes.nodzol": "Nodzol",
+  "block.cinderscapes.nodzol.description": "This block is nursed..."
 }

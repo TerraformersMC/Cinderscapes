@@ -3,7 +3,11 @@ package com.terraformersmc.cinderscapes.block;
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -31,11 +35,13 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
         super(settings);
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         return new ItemStack(CinderscapesItems.BRAMBLE_BERRIES);
     }
 
+    @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.HOGLIN && entity.getType() != EntityType.ZOGLIN) {
             entity.slowMovement(state, new Vec3d(0.800000011920929D, 0.75D, 0.800000011920929D));
@@ -50,17 +56,16 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
         }
     }
 
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch(state.get(AGE)) {
-            case 0:
-                return SMALL_SHAPE;
-            case 1:
-                return MEDIUM_SHAPE;
-            default:
-                return LARGE_SHAPE;
-        }
+        return switch (state.get(AGE)) {
+            case 0 -> SMALL_SHAPE;
+            case 1 -> MEDIUM_SHAPE;
+            default -> LARGE_SHAPE;
+        };
     }
 
+    @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         int i = state.get(AGE);
         boolean bl = i == 3;
@@ -69,7 +74,7 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
         } else if (i > 1) {
             int j = 1 + world.random.nextInt(2);
             dropStack(world, pos, new ItemStack(CinderscapesItems.BRAMBLE_BERRIES, j + (bl ? 1 : 0)));
-            world.playSound(null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+            world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             world.setBlockState(pos, state.with(AGE, 1), 2);
             return ActionResult.SUCCESS;
         } else {
@@ -77,6 +82,7 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
         }
     }
 
+    @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.isOf(Blocks.NETHERRACK) || floor.isOf(Blocks.SOUL_SOIL) || floor.isOf(Blocks.SOUL_SAND) || floor.isOf(Blocks.GRAVEL);
     }

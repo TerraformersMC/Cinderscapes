@@ -1,13 +1,11 @@
 package com.terraformersmc.cinderscapes.block;
 
-import com.terraformersmc.cinderscapes.util.StateShapeSupplier;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -27,23 +25,26 @@ public class GhastlyEctoplasmBlock extends Block {
         setDefaultState(getDefaultState().with(TYPE, Type.BOTTOM));
     }
 
-    @SuppressWarnings("deprecation")
     @Override
+    @SuppressWarnings("deprecation")
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return state.get(GhastlyEctoplasmBlock.TYPE) == GhastlyEctoplasmBlock.Type.BOTTOM ? Block.createCuboidShape(3.0D, 2.5D, 3.0D, 13.0D, 16.0D, 13.0D) : Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
     }
 
+    @Override
     @Deprecated
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockState aboveState = world.getBlockState(pos.up());
         return (!world.isAir(pos.up()) && Block.isFaceFullSquare(aboveState.getCollisionShape(world, pos.up()), Direction.DOWN)) || aboveState.getBlock() == this;
     }
 
+    @Override
     @Deprecated
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         world.setBlockState(pos, evaluateState(state, pos, world));
     }
 
+    @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
         return evaluateState(state, pos, world);
     }
@@ -69,6 +70,7 @@ public class GhastlyEctoplasmBlock extends Block {
         return getDefaultState().with(TYPE, type);
     }
 
+    @Override
     public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(TYPE);
     }

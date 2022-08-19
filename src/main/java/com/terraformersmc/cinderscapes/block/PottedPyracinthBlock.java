@@ -7,10 +7,8 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.block.ShapeContext;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -20,6 +18,7 @@ public class PottedPyracinthBlock extends FlowerPotBlock {
         super(CinderscapesBlocks.PYRACINTH, FabricBlockSettings.copyOf(Blocks.POTTED_ALLIUM));
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         double x = pos.getX() + 0.5;

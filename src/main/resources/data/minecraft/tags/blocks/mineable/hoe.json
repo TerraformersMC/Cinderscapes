@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "cinderscapes:umbral_flesh_block",
+    "cinderscapes:umbral_wart_block",
+    "cinderscapes:rose_quartz_ore",
+    "cinderscapes:smoky_quartz_ore"
+  ]
+}

@@ -5,11 +5,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-
-import java.util.Random;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
 
@@ -20,9 +18,11 @@ public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
     // TODO: Rewrite using the upcoming shapes library
     // TODO: Rewrite using the CountSafelistRangeFloorDecorator
     @Override
-    public boolean generate(StructureWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
+        BlockPos pos = context.getOrigin();
+        StructureWorldAccess world = context.getWorld();
 
-        while(true) {
+        while (true) {
             search: {
                 // If you've gone through all layers and haven't found a suitable spot then return false
                 // so that we don't get stuck in an endless loop
@@ -48,7 +48,7 @@ public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
                             if (y >= 0) {
                                 if (block != Blocks.AIR) break search;
                             } else {
-                                if (block != Blocks.NETHERRACK && !BlockTags.WART_BLOCKS.contains(block) && !BlockTags.NYLIUM.contains(block)) break search;
+                                if (block != Blocks.NETHERRACK && !block.getDefaultState().isIn(BlockTags.WART_BLOCKS) && !block.getDefaultState().isIn(BlockTags.NYLIUM)) break search;
                             }
                         }
                     }

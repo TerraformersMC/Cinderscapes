@@ -1,6 +1,7 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import com.terraformersmc.cinderscapes.feature.config.SimpleStateFeatureConfig;
+import com.terraformersmc.cinderscapes.feature.config.CrystalShardFeatureConfig;
+import com.terraformersmc.cinderscapes.util.RegionalSafelistValidator;
 import com.terraformersmc.terraform.shapes.api.Position;
 import com.terraformersmc.terraform.shapes.api.Quaternion;
 import com.terraformersmc.terraform.shapes.api.Shape;
@@ -9,21 +10,26 @@ import com.terraformersmc.terraform.shapes.impl.filler.SimpleFiller;
 import com.terraformersmc.terraform.shapes.impl.layer.pathfinder.AddLayer;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.RotateLayer;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
-import com.terraformersmc.terraform.shapes.impl.validator.SafelistValidator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
-public class CeilingShardFeature extends Feature<SimpleStateFeatureConfig> {
-    public CeilingShardFeature() {
-        super(SimpleStateFeatureConfig.CODEC);
+public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
+    public CrystalShardFeature() {
+        super(CrystalShardFeatureConfig.CODEC);
     }
 
     @Override
-    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, SimpleStateFeatureConfig config) {
+    public boolean generate(FeatureContext<CrystalShardFeatureConfig> context) {
+
+        Random random = context.getRandom();
+        StructureWorldAccess world = context.getWorld();
+        BlockPos pos = context.getOrigin();
+        CrystalShardFeatureConfig config = context.getConfig();
+
         int amount = random.nextInt(3) + 2;
 
         Shape shape = Shape.of((point) -> false, Position.of(0, 0, 0), Position.of(0, 0, 0));
@@ -40,12 +46,12 @@ public class CeilingShardFeature extends Feature<SimpleStateFeatureConfig> {
         }
 
         shape
-            .applyLayer(new RotateLayer(Quaternion.of(0, 0, 0, 1)))
-            .applyLayer(new TranslateLayer(Position.of(pos)))
-            .applyLayer(new TranslateLayer(Position.of(0, 2, 0)))
-            .validate(new SafelistValidator(world, config.replaceableBlocks), (validShape) -> {
-                validShape.fill(new SimpleFiller(world, config.state));
-            });
+                .applyLayer(new RotateLayer(Quaternion.of(config.dir().getRotationQuaternion())))
+                .applyLayer(new TranslateLayer(Position.of(pos)))
+                .validate(new RegionalSafelistValidator(world, config.dir(), config.whitelist()), (validShape) -> {
+                    validShape.fill(new SimpleFiller(world, config.state()));
+                });
+
         return true;
     }
 }

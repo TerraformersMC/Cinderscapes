@@ -4,7 +4,9 @@ import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -16,6 +18,7 @@ public class PottedCrystiniumBlock extends FlowerPotBlock {
         super(CinderscapesBlocks.CRYSTINIUM, FabricBlockSettings.copyOf(Blocks.POTTED_ALLIUM));
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         double x = pos.getX() + 0.5;

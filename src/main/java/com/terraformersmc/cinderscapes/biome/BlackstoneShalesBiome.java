@@ -1,8 +1,8 @@
 package com.terraformersmc.cinderscapes.biome;
 
-import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
-import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
+import com.terraformersmc.cinderscapes.mixin.OverworldBiomeCreatorAccessor;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -10,17 +10,22 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.world.biome.*;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeEffects;
+import net.minecraft.world.biome.BiomeParticleConfig;
+import net.minecraft.world.biome.GenerationSettings;
+import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
-import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders;
+import net.minecraft.world.gen.feature.NetherPlacedFeatures;
+import net.minecraft.world.gen.feature.OrePlacedFeatures;
+import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
 public class BlackstoneShalesBiome {
 
-    public static final Biome.MixedNoisePoint NOISE_POINT = new Biome.MixedNoisePoint(0.15F, 0.05F, 0.25F, 0.05F, 0.2F);
+    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.15F, 0.05F, 0.2f, 0.0F, 0.25F, 0.05F, 0.0F);
 
     public static Biome create() {
         return new Biome.Builder()
@@ -28,12 +33,10 @@ public class BlackstoneShalesBiome {
                 .spawnSettings(createSpawnSettings())
                 .precipitation(Biome.Precipitation.NONE)
                 .category(Biome.Category.NETHER)
-                .depth(0.1F)
-                .scale(0.2F)
                 .temperature(2.0F)
                 .downfall(0.0F)
                 .effects(new BiomeEffects.Builder()
-                        .skyColor(DefaultBiomeCreatorAccessor.callGetSkyColor(2.0f))
+                        .skyColor(OverworldBiomeCreatorAccessor.cinderscapes$callGetSkyColor(2.0f))
                         .waterColor(4159204)
                         .waterFogColor(4341314)
                         .fogColor(6235392)
@@ -46,45 +49,41 @@ public class BlackstoneShalesBiome {
                 .build();
     }
 
-
     private static GenerationSettings createGenerationSettings() {
         GenerationSettings.Builder builder = new GenerationSettings.Builder();
-        builder.surfaceBuilder(ConfiguredSurfaceBuilders.NETHER);
-
-        // VEGETATION
-
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.BLACKSTONE_SHALE_WEEPING_VINES);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.PATCH_CRIMSON_ROOTS);
-
-        // NETHERRACK REPLACERS
-
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SOUL_SAND_BLACKSTONE_SHALES);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SOUL_SOIL_BLACKSTONE_SHALES);
-
-        // SHALES
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SHALES);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.LAVA_SHALES);
+        //builder.surfaceBuilder(ConfiguredSurfaceBuilders.NETHER);
 
         // DEFAULT MINECRAFT FEATURES
-        builder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
-        builder.structureFeature(ConfiguredStructureFeatures.FORTRESS);
-        //builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SPRING_LAVA_DOUBLE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_DELTA);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_FIRE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_SOUL_FIRE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE_EXTRA);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.BROWN_MUSHROOM_NETHER);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.RED_MUSHROOM_NETHER);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_MAGMA);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_CLOSED_DOUBLE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_GOLD_DELTAS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_QUARTZ_DELTAS);
+        vanillaNetherFeatures(builder);
         DefaultBiomeFeatures.addAncientDebris(builder);
 
-        return builder.build();
+        // VEGETATION
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.BLACKSTONE_SHALE_WEEPING_VINES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.PATCH_CRIMSON_ROOTS);
 
+        // NETHERRACK REPLACERS
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SAND_BLACKSTONE_SHALES);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SOIL_BLACKSTONE_SHALES);
+
+        // SHALES
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.SHALES);
+
+        return builder.build();
+    }
+
+    private static void vanillaNetherFeatures(GenerationSettings.Builder generationSettings) {
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_DELTA);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_FIRE);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_SOUL_FIRE);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, VegetationPlacedFeatures.BROWN_MUSHROOM_NETHER);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, VegetationPlacedFeatures.RED_MUSHROOM_NETHER);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED_DOUBLE);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_GOLD_DELTAS);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_QUARTZ_DELTAS);
     }
 
     private static SpawnSettings createSpawnSettings() {
@@ -99,7 +98,5 @@ public class BlackstoneShalesBiome {
         builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
 
         return builder.build();
-
     }
-
 }

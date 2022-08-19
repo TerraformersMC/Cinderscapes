@@ -1,10 +1,8 @@
 package com.terraformersmc.cinderscapes.biome;
 
-import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
-import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import com.terraformersmc.cinderscapes.mixin.OverworldBiomeCreatorAccessor;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -17,20 +15,18 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
-import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders;
+import net.minecraft.world.gen.feature.MiscPlacedFeatures;
+import net.minecraft.world.gen.feature.NetherPlacedFeatures;
+import net.minecraft.world.gen.feature.OrePlacedFeatures;
+import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
-import java.util.Arrays;
-import java.util.List;
-
-// TODO: Check
 public class QuartzCanyonBiome {
 
-    public static final Biome.MixedNoisePoint NOISE_POINT = new Biome.MixedNoisePoint(0.0F, 0.0F, 0.35F, 0.35F, 0.2F);
+    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.0F, 0f, 0.0F, 0.0F, 0.35F, 0.35F, 0.2F);
 
     public static Biome create() {
         return new Biome.Builder()
@@ -38,12 +34,10 @@ public class QuartzCanyonBiome {
                 .spawnSettings(createSpawnSettings())
                 .precipitation(Biome.Precipitation.NONE)
                 .category(Biome.Category.NETHER)
-                .depth(0.1F)
-                .scale(0.2F)
                 .temperature(2.0F)
                 .downfall(0.0F)
                 .effects(new BiomeEffects.Builder()
-                        .skyColor(DefaultBiomeCreatorAccessor.callGetSkyColor(2.0f))
+                        .skyColor(OverworldBiomeCreatorAccessor.cinderscapes$callGetSkyColor(2.0f))
                         .waterColor(4159204)
                         .waterFogColor(4341314)
                         .fogColor(3344392)
@@ -58,56 +52,48 @@ public class QuartzCanyonBiome {
 
     private static GenerationSettings createGenerationSettings() {
         GenerationSettings.Builder builder = new GenerationSettings.Builder();
-        builder.surfaceBuilder(ConfiguredSurfaceBuilders.NETHER);
+        //builder.surfaceBuilder(ConfiguredSurfaceBuilders.NETHER);
 
         // DEFAULT MINECRAFT FEATURES
-        builder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
-        builder.structureFeature(ConfiguredStructureFeatures.FORTRESS);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SPRING_LAVA_DOUBLE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_DELTA);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_FIRE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_SOUL_FIRE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE_EXTRA);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.BROWN_MUSHROOM_NETHER);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.RED_MUSHROOM_NETHER);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_MAGMA);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_CLOSED_DOUBLE);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, MiscPlacedFeatures.SPRING_LAVA);
+        vanillaNetherFeatures(builder);
         DefaultBiomeFeatures.addAncientDebris(builder);
 
         // QUARTZ ORES
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_QUARTZ_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_SULFUR_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_GOLD_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_SMOKY_QUARTZ_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_ROSE_QUARTZ_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.ORE_SULFUR_QUARTZ_QUARTZ_CANYON);
-
-        // VEGETATION
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.VEGETATION_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_GOLD_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_SULFUR_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_QUARTZ_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_ROSE_QUARTZ_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_SMOKY_QUARTZ_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_SULFUR_QUARTZ_QUARTZ_CANYON);
 
         // QUARTZ SHARDS
-
-        List<BlockState> safelist = Arrays.asList(Blocks.NETHERRACK.getDefaultState(), Blocks.NETHER_QUARTZ_ORE.getDefaultState());
-
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.CEILING_SHARD_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.FLOOR_SHARD_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.CEILING_SHARD_ROSE_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.FLOOR_SHARD_ROSE_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.CEILING_SHARD_SMOKY_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.FLOOR_SHARD_SMOKY_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.CEILING_SHARD_SULFUR_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.FLOOR_SHARD_SULFUR_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.CEILING_SHARDS);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.FLOOR_SHARDS);
 
         // POLYPITE QUARTZ
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.POLYPITE_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.POLYPITE_SULFUR_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.POLYPITE_ROSE_QUARTZ);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.POLYPITE_SMOKY_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.POLYPITE_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.POLYPITE_ROSE_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.POLYPITE_SMOKY_QUARTZ);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.POLYPITE_SULFUR_QUARTZ);
+
+        // VEGETATION
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.VEGETATION_QUARTZ_CANYON);
 
         return builder.build();
+    }
 
+    private static void vanillaNetherFeatures(GenerationSettings.Builder generationSettings) {
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_DELTA);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_FIRE);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_SOUL_FIRE);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, VegetationPlacedFeatures.BROWN_MUSHROOM_NETHER);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, VegetationPlacedFeatures.RED_MUSHROOM_NETHER);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA);
+        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED_DOUBLE);
     }
 
     private static SpawnSettings createSpawnSettings() {
@@ -122,7 +108,5 @@ public class QuartzCanyonBiome {
         builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
 
         return builder.build();
-
     }
-
 }

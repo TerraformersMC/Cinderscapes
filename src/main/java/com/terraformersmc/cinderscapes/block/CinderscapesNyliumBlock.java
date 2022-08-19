@@ -25,6 +25,5 @@ public class CinderscapesNyliumBlock extends NyliumBlock {
         if (block == CinderscapesBlocks.UMBRAL_NYLIUM) {
             VegetationFeature.generateVegetation(world, random, blockPos, CinderscapesFeatures.LUMINOUS_GROVE_VEGETATION_CONFIG, 3, 1);
         }
-
     }
 }

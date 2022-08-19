@@ -1,9 +1,8 @@
 package com.terraformersmc.cinderscapes.biome;
 
-import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
-import com.terraformersmc.cinderscapes.init.CinderscapesSurfaces;
-import com.terraformersmc.cinderscapes.mixin.DefaultBiomeCreatorAccessor;
+import com.terraformersmc.cinderscapes.mixin.OverworldBiomeCreatorAccessor;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -16,15 +15,16 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
-import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
+import net.minecraft.world.gen.feature.NetherPlacedFeatures;
+import net.minecraft.world.gen.feature.OrePlacedFeatures;
 
 public class LuminousGroveBiome {
 
-    public static final Biome.MixedNoisePoint NOISE_POINT = new Biome.MixedNoisePoint(0.35F, 0.35F, 0.0F, 0.0F, 0.2F);
+    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.35F, 0.35F, 0.0f, 0.0f, 0.0F, 0.0F, 0.2F);
 
     public static Biome create() {
         return new Biome.Builder()
@@ -32,12 +32,10 @@ public class LuminousGroveBiome {
                 .spawnSettings(createSpawnSettings())
                 .precipitation(Biome.Precipitation.NONE)
                 .category(Biome.Category.NETHER)
-                .depth(0.1F)
-                .scale(0.2F)
                 .temperature(2.0F)
                 .downfall(0.0F)
                 .effects((new BiomeEffects.Builder())
-                        .skyColor(DefaultBiomeCreatorAccessor.callGetSkyColor(2.0f))
+                        .skyColor(OverworldBiomeCreatorAccessor.cinderscapes$callGetSkyColor(2.0f))
                         .waterColor(4159204)
                         .waterFogColor(329011)
                         .fogColor(2297392)
@@ -52,37 +50,31 @@ public class LuminousGroveBiome {
 
     private static GenerationSettings createGenerationSettings() {
         GenerationSettings.Builder builder = new GenerationSettings.Builder();
-        builder.surfaceBuilder(CinderscapesSurfaces.CONFIGURED_LUMINOUS_GROVE);
-
-        // UMBRAL FUNGUS
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS);
-
-        // GLOWSTONE
-        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE_EXTRA);
-        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE);
-
-        // SHROOMLIGHT BUSHES
-        builder.feature(net.minecraft.world.gen.GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.SHROOMLIGHT_BUSH);
-
-        // VEGETATION
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.VEGETATION_LUMINOUS_GROWTH);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.LUMINOUS_POD);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesConfiguredFeatures.TALL_PHOTOFERN);
-
-        // VINES
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesConfiguredFeatures.UMBRAL_VINE);
+        //builder.surfaceBuilder(CinderscapesSurfaceRules.CONFIGURED_LUMINOUS_GROVE);
 
         // DEFAULT MINECRAFT FEATURES
-        builder.structureFeature(ConfiguredStructureFeatures.FORTRESS);
-        builder.structureFeature(ConfiguredStructureFeatures.BASTION_REMNANT);
-        builder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_MAGMA);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_CLOSED);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED);
         DefaultBiomeFeatures.addNetherMineables(builder);
 
-        return builder.build();
+        // UMBRAL FUNGUS
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.CANOPIED_HUGE_FUNGUS);
 
+        // SHROOMLIGHT BUSHES
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.SHROOMLIGHT_BUSH);
+
+        // VEGETATION
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.VEGETATION_LUMINOUS_GROWTH);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.LUMINOUS_POD);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.TALL_PHOTOFERN);
+
+        // VINES
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.UMBRAL_VINE);
+
+        return builder.build();
     }
 
     private static SpawnSettings createSpawnSettings() {
@@ -93,7 +85,5 @@ public class LuminousGroveBiome {
         builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
 
         return builder.build();
-
     }
-
 }

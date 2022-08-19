@@ -30,21 +30,26 @@ The two central tenants of the Cinderscapes project are refinement and simplicit
 
 ##### Images of the biomes can be found on the CurseForge [Images page](https://www.curseforge.com/minecraft/mc-mods/cinderscapes/screenshots).
 
+#### Contributors
+
+Cinderscapes would not be what it is without the amazing contributors that have helped to develop the project into what it is today.
+
+Special thanks to Etorna_Z, LudoCrypt, and BoyBeyondTheStars for composition of an original soundtrack for Cinderscapes, and to Slice, Arobazz, and FireNH for their help in creating amazing textures for this mod.
 
 #### Other Mods by Terraformers:
 <p align="center">
-	<strong>Check out the sister biome mods, <a href="https://www.curseforge.com/minecraft/mc-mods/traverse">Traverse</a> and <a href="https://www.curseforge.com/minecraft/mc-mods/terrestria">Terrestria</a>:</strong></br>
+	<strong>Check out the sister biome mods, <a href="https://www.curseforge.com/minecraft/mc-mods/traverse">Traverse</a> and <a href="https://www.curseforge.com/minecraft/mc-mods/terrestria">Terrestria</a>:</strong><br/>
 	<a href="https://www.curseforge.com/minecraft/mc-mods/traverse"><img title="Traverse" height="100" src="https://i.imgur.com/ZvKFrFt.png"></a>
-	<a href="https://www.curseforge.com/minecraft/mc-mods/terrestria"><img title="Terrestria" height="100" src="https://i.imgur.com/mAviXA0.png"></a></br>
+	<a href="https://www.curseforge.com/minecraft/mc-mods/terrestria"><img title="Terrestria" height="100" src="https://i.imgur.com/mAviXA0.png"></a><br/>
 	Terrestria and Traverse work well with Cinderscapes if you wish to expand your overall biome experience in the Overworld as well.
 </p>
 
 <p align="center">
-	<strong><a href="https://www.curseforge.com/minecraft/mc-mods/campanion">Campanion</a>, your camping companion:</strong></br>
-	<a href="https://www.curseforge.com/minecraft/mc-mods/campanion"><img title="Campanion" height="100" src="https://i.imgur.com/ArUZ4op.png"></a></br>
+	<strong><a href="https://www.curseforge.com/minecraft/mc-mods/campanion">Campanion</a>, your camping companion:</strong><br/>
+	<a href="https://www.curseforge.com/minecraft/mc-mods/campanion"><img title="Campanion" height="100" src="https://i.imgur.com/ArUZ4op.png"></a><br/>
     Campanion adds various tools and utilities to help improve your adventures away from your home. Campanion also works well alongside biome mods in order to make the exploration of the biomes even more fun.
 </p>
 
 <h5 align="center">
-	Cinderscapes is a mod for Fabric, and there are no plans to port this mod to Forge.</br>
+	Cinderscapes is a mod for Fabric, and there are no plans to port this mod to Forge.<br/>
 </h5>

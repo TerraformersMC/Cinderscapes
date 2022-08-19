@@ -7,15 +7,19 @@
   "authors": [
     "Vaerian",
     "NeusFear",
+    "LudoCrypt",
     "TerraformersMC"
   ],
   "contributors": [
     "SuperCoder79",
     "Prospector",
-    "LudoCrypt",
     "Etorna_Z",
     "Arobazzz",
-    "Slice"
+    "Slice",
+    "Trinsdar",
+    "haykam821",
+    "gniftygnome",
+    "FireNH"
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/cinderscapes",
@@ -33,19 +37,20 @@
       "com.terraformersmc.cinderscapes.client.CinderscapesClient"
     ],
     "modmenu": [
-      "com.terraformersmc.cinderscapes.integration.ModMenuIntegration"
+      "com.terraformersmc.cinderscapes.integration.CinderscapesModMenu"
     ]
   },
   "mixins": [
     "cinderscapes.mixins.json"
   ],
+  "accessWidener": "cinderscapes.accesswidener",
   "depends": {
-    "fabricloader": ">=0.8.2+build.194",
-    "fabric": ">=0.25.0",
-    "minecraft": ">=1.16-"
+    "fabricloader": ">=0.13.2",
+    "fabric": ">=0.47.0",
+    "minecraft": ">=1.18.2"
   },
   "breaks": {
-    "modmenu": "<1.15.0"
+    "modmenu": "<2.0.0"
   },
   "custom": {
     "modupdater": {
