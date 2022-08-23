@@ -1,12 +1,19 @@
 pluginManagement {
     repositories {
-
         maven {
             name = 'Fabric'
             url = 'https://maven.fabricmc.net/'
+        }
+        // Quiltflower
+        maven {
+            name = 'Cotton'
+            url = 'https://server.bbkr.space/artifactory/libs-release/'
         }
         gradlePluginPortal()
     }
 }
 
 rootProject.name = "cinderscapes"
+include "client"
+include "common"
+include "worldgen"

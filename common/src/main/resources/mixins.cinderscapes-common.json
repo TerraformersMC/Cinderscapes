@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "com.terraformersmc.cinderscapes.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AlterGroundTreeDecoratorMixin",
+    "NetherrackBlockMixin",
+    "OverworldBiomeCreatorAccessor",
+    "ServerWorldMixin",
+    "SoundEventAccessor"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

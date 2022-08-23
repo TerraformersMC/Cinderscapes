@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "com.terraformersmc.cinderscapes.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ChunkGeneratorSettingsAccessor",
+    "MaterialRuleContextAccessor",
+    "MinecraftServerMixin",
+    "NetherCaveCarverMixin",
+    "NoiseChunkGeneratorAccessor",
+    "SurfaceBuilderMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

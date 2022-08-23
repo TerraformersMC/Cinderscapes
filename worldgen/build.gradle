@@ -1,0 +1,9 @@
+archivesBaseName = "cinderscapes-worldgen"
+
+loom {
+    accessWidenerPath = file("src/main/resources/cinderscapes-worldgen.accesswidener")
+}
+
+dependencies {
+    implementation project(path: ':common')
+}
