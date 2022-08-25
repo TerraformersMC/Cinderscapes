@@ -1,15 +1,9 @@
 package com.terraformersmc.cinderscapes;
 
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
-import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
-import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
-import com.terraformersmc.cinderscapes.init.CinderscapesGroups;
-import com.terraformersmc.cinderscapes.init.CinderscapesPlacementModifierTypes;
-import com.terraformersmc.cinderscapes.init.CinderscapesItems;
-import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
-import com.terraformersmc.cinderscapes.init.CinderscapesTags;
-import com.terraformersmc.cinderscapes.init.CinderscapesTrades;
+import com.terraformersmc.cinderscapes.init.*;
+import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
+import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
 import com.terraformersmc.cinderscapes.util.NoiseCollisionChecker;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
@@ -45,7 +39,8 @@ public class Cinderscapes implements ModInitializer {
 
 		CinderscapesItems.init();
 		CinderscapesBlocks.init();
-		CinderscapesTags.init();
+		CinderscapesBlockTags.init();
+		CinderscapesItemTags.init();
 		CinderscapesPlacementModifierTypes.init();
 		CinderscapesFeatures.init();
 		CinderscapesGroups.init();

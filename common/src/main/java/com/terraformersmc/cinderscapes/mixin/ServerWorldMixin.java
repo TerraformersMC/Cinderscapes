@@ -3,7 +3,7 @@ package com.terraformersmc.cinderscapes.mixin;
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.cinderscapes.init.CinderscapesTags;
+import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -43,7 +43,7 @@ public abstract class ServerWorldMixin extends World {
             while (!(
                     biome.matchesKey(CinderscapesBiomes.ASHY_SHOALS) &&
                             state.isSideSolidFullSquare(this, pos, Direction.UP) &&
-                            blockAbove(pos).isIn(CinderscapesTags.ASH_PERMEABLE) &&
+                            blockAbove(pos).isIn(CinderscapesBlockTags.ASH_PERMEABLE) &&
                             this.getBlockState(pos.up()).isAir() &&
                             CinderscapesBlocks.ASH.getDefaultState().canPlaceAt(this, pos.up())) &&
                     pos.getY() < 127) {
