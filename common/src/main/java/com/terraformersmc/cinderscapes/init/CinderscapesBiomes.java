@@ -4,7 +4,7 @@ import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.biome.AshyShoalsBiome;
 import com.terraformersmc.cinderscapes.biome.BlackstoneShalesBiome;
 import com.terraformersmc.cinderscapes.biome.LuminousGroveBiome;
-import com.terraformersmc.cinderscapes.biome.QuartzCanyonBiome;
+import com.terraformersmc.cinderscapes.biome.QuartzCavernBiome;
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
 import net.minecraft.util.Identifier;
@@ -26,7 +26,7 @@ public class CinderscapesBiomes {
     public static final RegistryKey<Biome> ASHY_SHOALS = add("ashy_shoals", AshyShoalsBiome.create());
     public static final RegistryKey<Biome> BLACKSTONE_SHALES = add("blackstone_shales", BlackstoneShalesBiome.create());
     public static final RegistryKey<Biome> LUMINOUS_GROVE = add("luminous_grove", LuminousGroveBiome.create());
-    public static final RegistryKey<Biome> QUARTZ_CANYON = add("quartz_canyon", QuartzCanyonBiome.create());
+    public static final RegistryKey<Biome> QUARTZ_CAVERN = add("quartz_cavern", QuartzCavernBiome.create());
 
     // Required because something referencing this class has to be called in order to force the
     // static initializer to run (Minecraft's Bootstrap class does similar things)
@@ -40,8 +40,8 @@ public class CinderscapesBiomes {
         if (CinderscapesConfig.INSTANCE.biomes.enableLuminousGrove) {
             NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("luminous_grove")), LuminousGroveBiome.NOISE_POINT);
         }
-        if (CinderscapesConfig.INSTANCE.biomes.enableQuartzCanyon) {
-            NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("quartz_canyon")), QuartzCanyonBiome.NOISE_POINT);
+        if (CinderscapesConfig.INSTANCE.biomes.enableQuartzCavern) {
+            NetherBiomes.addNetherBiome(RegistryKey.of(Registry.BIOME_KEY, Cinderscapes.id("quartz_cavern")), QuartzCavernBiome.NOISE_POINT);
         }
     }
 

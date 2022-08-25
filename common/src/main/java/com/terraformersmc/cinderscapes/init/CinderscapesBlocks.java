@@ -154,7 +154,7 @@ public class CinderscapesBlocks {
     public static final Block BRAMBLE_BERRY_BUSH = add("bramble_berry_bush", new BrambleBerryBushBlock(FabricBlockSettings.copyOf(Blocks.SWEET_BERRY_BUSH)));
 
     ///////////////////
-    // Quartz Canyon //
+    // Quartz Cavern //
     ///////////////////
 
     public static final Block CRYSTINIUM = add("crystinium", new CrystiniumBlock(), ItemGroup.DECORATIONS);

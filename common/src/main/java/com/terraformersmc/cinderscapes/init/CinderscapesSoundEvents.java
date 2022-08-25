@@ -17,7 +17,7 @@ public class CinderscapesSoundEvents {
 	public static final SoundEvent ASHY_SHOALS_MUSIC = add(new SoundEvent(Cinderscapes.id("music.nether.ashy_shoals")));
 	public static final SoundEvent BLACKSTONE_SHALES_MUSIC = add(new SoundEvent(Cinderscapes.id("music.nether.blackstone_shales")));
 	public static final SoundEvent LUMINOUS_GROVE_MUSIC = add(new SoundEvent(Cinderscapes.id("music.nether.luminous_grove")));
-	public static final SoundEvent QUARTZ_CANYON_MUSIC = add(new SoundEvent(Cinderscapes.id("music.nether.quartz_canyon")));
+	public static final SoundEvent QUARTZ_CAVERN_MUSIC = add(new SoundEvent(Cinderscapes.id("music.nether.quartz_cavern")));
 	
 	public static final SoundEvent MENU_MUSIC = add(new SoundEvent(Cinderscapes.id("music.menu")));
 

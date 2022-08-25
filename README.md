@@ -26,7 +26,7 @@ The two central tenants of the Cinderscapes project are refinement and simplicit
 * Ashy Shoals
 * Blackstone Shales
 * Luminous Grove
-* Quartz Canyon
+* Quartz Cavern
 
 ##### Images of the biomes can be found on the CurseForge [Images page](https://www.curseforge.com/minecraft/mc-mods/cinderscapes/screenshots).
 

@@ -46,7 +46,7 @@ public class CinderscapesFeatures {
     public static Feature<VegetationFeatureConfig> VEGETATION;
     public static VegetationFeatureConfig LUMINOUS_GROVE_VEGETATION_CONFIG;
     public static VegetationFeatureConfig ASHY_SHOALS_VEGETATION_CONFIG;
-    public static VegetationFeatureConfig QUARTZ_CANYON_VEGETATION_CONFIG;
+    public static VegetationFeatureConfig QUARTZ_CAVERN_VEGETATION_CONFIG;
 
     public static RandomPatchFeatureConfig TALL_PHOTOFERN_CONFIG;
     public static RandomPatchFeatureConfig LUMINOUS_POD_CONFIG;
@@ -87,7 +87,7 @@ public class CinderscapesFeatures {
                 )
         );
 
-        QUARTZ_CANYON_VEGETATION_CONFIG = new VegetationFeatureConfig(
+        QUARTZ_CAVERN_VEGETATION_CONFIG = new VegetationFeatureConfig(
                 new WeightedBlockStateProvider(DataPool.<BlockState>builder()
                         .add(CinderscapesBlocks.CRYSTINIUM.getDefaultState(), 1).build()),
                 Arrays.asList(

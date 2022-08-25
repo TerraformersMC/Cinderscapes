@@ -40,7 +40,7 @@
 
   "block.cinderscapes.ghastly_ectoplasm": "Ghastly Ectoplasm",
   
-  "biome.cinderscapes.quartz_canyon": "Quartz Cavern",
+  "biome.cinderscapes.quartz_cavern": "Quartz Cavern",
   
   "block.cinderscapes.crystinium": "Crystinium",
 
@@ -128,7 +128,7 @@
   "text.autoconfig.cinderscapes.option.biomes.enableAshyShoals": "Enable Ashy Shoals Biome",
   "text.autoconfig.cinderscapes.option.biomes.enableBlackstoneShales": "Enable Blackstone Shales Biome",
   "text.autoconfig.cinderscapes.option.biomes.enableLuminousGrove": "Enable Luminous Grove Biome",
-  "text.autoconfig.cinderscapes.option.biomes.enableQuartzCanyon": "Enable Quartz Canyon Biome",
+  "text.autoconfig.cinderscapes.option.biomes.enableQuartzCavern": "Enable Quartz Cavern Biome",
   "text.autoconfig.cinderscapes.option.enableAshFall": "Enable Ash Fall",
 
   "block.cinderscapes.nodzol": "Nodzol",

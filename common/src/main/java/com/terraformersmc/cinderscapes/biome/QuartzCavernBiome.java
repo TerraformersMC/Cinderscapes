@@ -24,7 +24,7 @@ import net.minecraft.world.gen.feature.NetherPlacedFeatures;
 import net.minecraft.world.gen.feature.OrePlacedFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
-public class QuartzCanyonBiome {
+public class QuartzCavernBiome {
 
     public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.0F, 0f, 0.0F, 0.0F, 0.35F, 0.35F, 0.2F);
 
@@ -45,7 +45,7 @@ public class QuartzCanyonBiome {
                         .loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_NETHER_WASTES_MOOD, 6000, 8, 2.0D))
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_NETHER_WASTES_ADDITIONS, 0.0111D))
-                        .music(MusicType.createIngameMusic(CinderscapesSoundEvents.QUARTZ_CANYON_MUSIC))
+                        .music(MusicType.createIngameMusic(CinderscapesSoundEvents.QUARTZ_CAVERN_MUSIC))
                         .build())
                 .build();
     }
@@ -61,12 +61,12 @@ public class QuartzCanyonBiome {
         DefaultBiomeFeatures.addAncientDebris(builder);
 
         // QUARTZ ORES
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_GOLD_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_SULFUR_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_QUARTZ_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_ROSE_QUARTZ_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_SMOKY_QUARTZ_QUARTZ_CANYON);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_SULFUR_QUARTZ_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_GOLD_QUARTZ_CAVERN);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_SULFUR_QUARTZ_CAVERN);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_QUARTZ_QUARTZ_CAVERN);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_ROSE_QUARTZ_QUARTZ_CAVERN);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_SMOKY_QUARTZ_QUARTZ_CAVERN);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_SULFUR_QUARTZ_QUARTZ_CAVERN);
 
         // QUARTZ SHARDS
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.CEILING_SHARDS);
@@ -79,7 +79,7 @@ public class QuartzCanyonBiome {
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.POLYPITE_SULFUR_QUARTZ);
 
         // VEGETATION
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.VEGETATION_QUARTZ_CANYON);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.VEGETATION_QUARTZ_CAVERN);
 
         return builder.build();
     }

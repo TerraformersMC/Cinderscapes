@@ -32,6 +32,6 @@ public final class CinderscapesConfig implements ConfigData {
         @ConfigEntry.Gui.RequiresRestart
         public boolean enableLuminousGrove = true;
         @ConfigEntry.Gui.RequiresRestart
-        public boolean enableQuartzCanyon = true;
+        public boolean enableQuartzCavern = true;
     }
 }

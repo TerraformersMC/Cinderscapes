@@ -21,7 +21,7 @@ public class CinderscapesBiomeTagProvider extends FabricTagProvider.DynamicRegis
 				.add(CinderscapesBiomes.ASHY_SHOALS)
 				.add(CinderscapesBiomes.BLACKSTONE_SHALES)
 				.add(CinderscapesBiomes.LUMINOUS_GROVE)
-				.add(CinderscapesBiomes.QUARTZ_CANYON);
+				.add(CinderscapesBiomes.QUARTZ_CAVERN);
 
 		this.getOrCreateTagBuilder(TagKey.of(this.registry.getKey(), ConventionalBiomeTags.NETHER_FORESTS.id()))
 				.add(CinderscapesBiomes.LUMINOUS_GROVE);

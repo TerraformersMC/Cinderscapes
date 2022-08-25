@@ -83,37 +83,37 @@ public class CinderscapesPlacedFeatures {
     );
 
 
-    /******* QUARTZ CANYON *******/
-    public static final RegistryEntry<PlacedFeature> VEGETATION_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/vegetation", CinderscapesConfiguredFeatures.VEGETATION_QUARTZ_CANYON, CountMultilayerPlacementModifier.of(1));
-    public static final RegistryEntry<PlacedFeature> ORE_QUARTZ_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/quartz_ore", CinderscapesConfiguredFeatures.ORE_QUARTZ_QUARTZ_CANYON, CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE);
-    public static final RegistryEntry<PlacedFeature> ORE_SULFUR_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/sulfur_ore", CinderscapesConfiguredFeatures.ORE_SULFUR_QUARTZ_CANYON, CountPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE);
-    public static final RegistryEntry<PlacedFeature> ORE_GOLD_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/gold_ore", CinderscapesConfiguredFeatures.ORE_GOLD_QUARTZ_CANYON, CountPlacementModifier.of(20), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE);
-    public static final RegistryEntry<PlacedFeature> ORE_SMOKY_QUARTZ_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/smoky_quartz_ore", CinderscapesConfiguredFeatures.ORE_SMOKY_QUARTZ_QUARTZ_CANYON, CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE);
-    public static final RegistryEntry<PlacedFeature> ORE_ROSE_QUARTZ_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/rose_quartz_ore", CinderscapesConfiguredFeatures.ORE_ROSE_QUARTZ_QUARTZ_CANYON, CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE);
-    public static final RegistryEntry<PlacedFeature> ORE_SULFUR_QUARTZ_QUARTZ_CANYON = createPlacedFeature("quartz_canyon/sulfur_quartz_ore", CinderscapesConfiguredFeatures.ORE_SULFUR_QUARTZ_QUARTZ_CANYON, CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE);
+    /******* QUARTZ CAVERN *******/
+    public static final RegistryEntry<PlacedFeature> VEGETATION_QUARTZ_CAVERN = createPlacedFeature("quartz_cavern/vegetation", CinderscapesConfiguredFeatures.VEGETATION_QUARTZ_CAVERN, CountMultilayerPlacementModifier.of(1));
+    public static final RegistryEntry<PlacedFeature> ORE_QUARTZ_QUARTZ_CAVERN = createPlacedFeature("quartz_cavern/quartz_ore", CinderscapesConfiguredFeatures.ORE_QUARTZ_QUARTZ_CAVERN, CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE);
+    public static final RegistryEntry<PlacedFeature> ORE_SULFUR_QUARTZ_CAVERN = createPlacedFeature("quartz_cavern/sulfur_ore", CinderscapesConfiguredFeatures.ORE_SULFUR_QUARTZ_CAVERN, CountPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE);
+    public static final RegistryEntry<PlacedFeature> ORE_GOLD_QUARTZ_CAVERN = createPlacedFeature("quartz_cavern/gold_ore", CinderscapesConfiguredFeatures.ORE_GOLD_QUARTZ_CAVERN, CountPlacementModifier.of(20), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE);
+    public static final RegistryEntry<PlacedFeature> ORE_SMOKY_QUARTZ_QUARTZ_CAVERN = createPlacedFeature("quartz_cavern/smoky_quartz_ore", CinderscapesConfiguredFeatures.ORE_SMOKY_QUARTZ_QUARTZ_CAVERN, CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE);
+    public static final RegistryEntry<PlacedFeature> ORE_ROSE_QUARTZ_QUARTZ_CAVERN = createPlacedFeature("quartz_cavern/rose_quartz_ore", CinderscapesConfiguredFeatures.ORE_ROSE_QUARTZ_QUARTZ_CAVERN, CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE);
+    public static final RegistryEntry<PlacedFeature> ORE_SULFUR_QUARTZ_QUARTZ_CAVERN = createPlacedFeature("quartz_cavern/sulfur_quartz_ore", CinderscapesConfiguredFeatures.ORE_SULFUR_QUARTZ_QUARTZ_CAVERN, CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE);
 
-    private static final RegistryEntry<ConfiguredFeature<SimpleRandomFeatureConfig, ?>> CEILING_SHARDS_CONFIGURED = CinderscapesConfiguredFeatures.register("quartz_canyon/ceiling_shards", Feature.SIMPLE_RANDOM_SELECTOR,
+    private static final RegistryEntry<ConfiguredFeature<SimpleRandomFeatureConfig, ?>> CEILING_SHARDS_CONFIGURED = CinderscapesConfiguredFeatures.register("quartz_cavern/ceiling_shards", Feature.SIMPLE_RANDOM_SELECTOR,
             new SimpleRandomFeatureConfig(RegistryEntryList.of(
-                    createPlacedFeatureWithoutBiomeFilter("quartz_canyon/shard_quartz_ceiling", CinderscapesConfiguredFeatures.SHARD_QUARTZ_CEILING),
-                    createPlacedFeatureWithoutBiomeFilter("quartz_canyon/shard_rose_quartz_ceiling", CinderscapesConfiguredFeatures.SHARD_ROSE_QUARTZ_CEILING),
-                    createPlacedFeatureWithoutBiomeFilter("quartz_canyon/shard_smoky_quartz_ceiling", CinderscapesConfiguredFeatures.SHARD_SMOKY_QUARTZ_CEILING),
-                    createPlacedFeatureWithoutBiomeFilter("quartz_canyon/shard_sulfur_quartz_ceiling", CinderscapesConfiguredFeatures.SHARD_SULFUR_QUARTZ_CEILING)
+                    createPlacedFeatureWithoutBiomeFilter("quartz_cavern/shard_quartz_ceiling", CinderscapesConfiguredFeatures.SHARD_QUARTZ_CEILING),
+                    createPlacedFeatureWithoutBiomeFilter("quartz_cavern/shard_rose_quartz_ceiling", CinderscapesConfiguredFeatures.SHARD_ROSE_QUARTZ_CEILING),
+                    createPlacedFeatureWithoutBiomeFilter("quartz_cavern/shard_smoky_quartz_ceiling", CinderscapesConfiguredFeatures.SHARD_SMOKY_QUARTZ_CEILING),
+                    createPlacedFeatureWithoutBiomeFilter("quartz_cavern/shard_sulfur_quartz_ceiling", CinderscapesConfiguredFeatures.SHARD_SULFUR_QUARTZ_CEILING)
             )));
-    public static final RegistryEntry<PlacedFeature> CEILING_SHARDS = createPlacedFeature("quartz_canyon/ceiling_shards", CEILING_SHARDS_CONFIGURED, PlacedFeatures.createCountExtraModifier(1, 0.5f, 1), new SafelistRangeCeilingPlacementModifier(YOffset.aboveBottom(20), YOffset.belowTop(20), SHARED_SAFELIST));
+    public static final RegistryEntry<PlacedFeature> CEILING_SHARDS = createPlacedFeature("quartz_cavern/ceiling_shards", CEILING_SHARDS_CONFIGURED, PlacedFeatures.createCountExtraModifier(1, 0.5f, 1), new SafelistRangeCeilingPlacementModifier(YOffset.aboveBottom(20), YOffset.belowTop(20), SHARED_SAFELIST));
 
-    private static final RegistryEntry<ConfiguredFeature<SimpleRandomFeatureConfig, ?>> FLOOR_SHARDS_CONFIGURED = CinderscapesConfiguredFeatures.register("quartz_canyon/floor_shards", Feature.SIMPLE_RANDOM_SELECTOR,
+    private static final RegistryEntry<ConfiguredFeature<SimpleRandomFeatureConfig, ?>> FLOOR_SHARDS_CONFIGURED = CinderscapesConfiguredFeatures.register("quartz_cavern/floor_shards", Feature.SIMPLE_RANDOM_SELECTOR,
             new SimpleRandomFeatureConfig(RegistryEntryList.of(
-                    createPlacedFeatureWithoutBiomeFilter("quartz_canyon/shard_quartz_floor", CinderscapesConfiguredFeatures.SHARD_QUARTZ_FLOOR),
-                    createPlacedFeatureWithoutBiomeFilter("quartz_canyon/shard_rose_quartz_floor", CinderscapesConfiguredFeatures.SHARD_ROSE_QUARTZ_FLOOR),
-                    createPlacedFeatureWithoutBiomeFilter("quartz_canyon/shard_smoky_quartz_floor", CinderscapesConfiguredFeatures.SHARD_SMOKY_QUARTZ_FLOOR),
-                    createPlacedFeatureWithoutBiomeFilter("quartz_canyon/shard_sulfur_quartz_floor", CinderscapesConfiguredFeatures.SHARD_SULFUR_QUARTZ_FLOOR)
+                    createPlacedFeatureWithoutBiomeFilter("quartz_cavern/shard_quartz_floor", CinderscapesConfiguredFeatures.SHARD_QUARTZ_FLOOR),
+                    createPlacedFeatureWithoutBiomeFilter("quartz_cavern/shard_rose_quartz_floor", CinderscapesConfiguredFeatures.SHARD_ROSE_QUARTZ_FLOOR),
+                    createPlacedFeatureWithoutBiomeFilter("quartz_cavern/shard_smoky_quartz_floor", CinderscapesConfiguredFeatures.SHARD_SMOKY_QUARTZ_FLOOR),
+                    createPlacedFeatureWithoutBiomeFilter("quartz_cavern/shard_sulfur_quartz_floor", CinderscapesConfiguredFeatures.SHARD_SULFUR_QUARTZ_FLOOR)
             )));
-    public static final RegistryEntry<PlacedFeature> FLOOR_SHARDS = createPlacedFeature("quartz_canyon/floor_shards", FLOOR_SHARDS_CONFIGURED, PlacedFeatures.createCountExtraModifier(1, 0.5f, 1), new SafelistRangeFloorPlacementModifier(YOffset.aboveBottom(20), YOffset.belowTop(20), SHARED_SAFELIST));
+    public static final RegistryEntry<PlacedFeature> FLOOR_SHARDS = createPlacedFeature("quartz_cavern/floor_shards", FLOOR_SHARDS_CONFIGURED, PlacedFeatures.createCountExtraModifier(1, 0.5f, 1), new SafelistRangeFloorPlacementModifier(YOffset.aboveBottom(20), YOffset.belowTop(20), SHARED_SAFELIST));
 
-    public static final RegistryEntry<PlacedFeature> POLYPITE_QUARTZ = createPlacedFeature("quartz_canyon/polypite_quartz", CinderscapesConfiguredFeatures.POLYPITE_QUARTZ, CountPlacementModifier.of(128), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE, RandomOffsetPlacementModifier.of(UniformIntProvider.create(9, 15), UniformIntProvider.create(4, 7)));
-    public static final RegistryEntry<PlacedFeature> POLYPITE_SULFUR_QUARTZ = createPlacedFeature("quartz_canyon/polypite_sulfur_quartz", CinderscapesConfiguredFeatures.POLYPITE_SULFUR_QUARTZ, CountPlacementModifier.of(128), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE, RandomOffsetPlacementModifier.of(UniformIntProvider.create(9, 15), UniformIntProvider.create(4, 7)));
-    public static final RegistryEntry<PlacedFeature> POLYPITE_ROSE_QUARTZ = createPlacedFeature("quartz_canyon/polypite_rose_quartz", CinderscapesConfiguredFeatures.POLYPITE_ROSE_QUARTZ, CountPlacementModifier.of(128), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE, RandomOffsetPlacementModifier.of(UniformIntProvider.create(9, 15), UniformIntProvider.create(4, 7)));
-    public static final RegistryEntry<PlacedFeature> POLYPITE_SMOKY_QUARTZ = createPlacedFeature("quartz_canyon/polypite_smoky_quartz", CinderscapesConfiguredFeatures.POLYPITE_SMOKY_QUARTZ, CountPlacementModifier.of(128), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE, RandomOffsetPlacementModifier.of(UniformIntProvider.create(9, 15), UniformIntProvider.create(4, 7)));
+    public static final RegistryEntry<PlacedFeature> POLYPITE_QUARTZ = createPlacedFeature("quartz_cavern/polypite_quartz", CinderscapesConfiguredFeatures.POLYPITE_QUARTZ, CountPlacementModifier.of(128), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE, RandomOffsetPlacementModifier.of(UniformIntProvider.create(9, 15), UniformIntProvider.create(4, 7)));
+    public static final RegistryEntry<PlacedFeature> POLYPITE_SULFUR_QUARTZ = createPlacedFeature("quartz_cavern/polypite_sulfur_quartz", CinderscapesConfiguredFeatures.POLYPITE_SULFUR_QUARTZ, CountPlacementModifier.of(128), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE, RandomOffsetPlacementModifier.of(UniformIntProvider.create(9, 15), UniformIntProvider.create(4, 7)));
+    public static final RegistryEntry<PlacedFeature> POLYPITE_ROSE_QUARTZ = createPlacedFeature("quartz_cavern/polypite_rose_quartz", CinderscapesConfiguredFeatures.POLYPITE_ROSE_QUARTZ, CountPlacementModifier.of(128), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE, RandomOffsetPlacementModifier.of(UniformIntProvider.create(9, 15), UniformIntProvider.create(4, 7)));
+    public static final RegistryEntry<PlacedFeature> POLYPITE_SMOKY_QUARTZ = createPlacedFeature("quartz_cavern/polypite_smoky_quartz", CinderscapesConfiguredFeatures.POLYPITE_SMOKY_QUARTZ, CountPlacementModifier.of(128), PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE, RandomOffsetPlacementModifier.of(UniformIntProvider.create(9, 15), UniformIntProvider.create(4, 7)));
 
     public static <FC extends FeatureConfig> RegistryEntry<PlacedFeature> createPlacedFeature(String id, RegistryEntry<ConfiguredFeature<FC, ?>> feature, PlacementModifier... placementModifiers) {
         List<PlacementModifier> list = new ArrayList<>(List.of(placementModifiers));

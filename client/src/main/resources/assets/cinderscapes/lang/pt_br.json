@@ -40,7 +40,7 @@
 
   "block.cinderscapes.ghastly_ectoplasm": "Ectoplasma medonho",
   
-  "biome.cinderscapes.quartz_canyon": "Cânions de quartzo",
+  "biome.cinderscapes.quartz_cavern": "Cânions de quartzo",
   
   "block.cinderscapes.crystinium": "Cristíneo",
 
@@ -127,6 +127,6 @@
   "text.autoconfig.cinderscapes.option.biomes.enableAshyShoals": "Permitir o bioma \"Depósitos de cinzas\"",
   "text.autoconfig.cinderscapes.option.biomes.enableBlackstoneShales": "Permitir o bioma \"Folhelos de pedra-negra\"",
   "text.autoconfig.cinderscapes.option.biomes.enableLuminousGrove": "Permitir o bioma \"Bosque luminoso\"",
-  "text.autoconfig.cinderscapes.option.biomes.enableQuartzCanyon": "Permitir o bioma \"Cânions de quartzo\"",
+  "text.autoconfig.cinderscapes.option.biomes.enableQuartzCavern": "Permitir o bioma \"Cânions de quartzo\"",
   "text.autoconfig.cinderscapes.option.enableAshFall": "Permitir chuva de cinzas"
 }
