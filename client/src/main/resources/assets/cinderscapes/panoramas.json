@@ -1,7 +1,15 @@
 {
 	"Luminous Grove": {
-		"name": "luminous_grove",
-		"panoramaId": "cinderscapes:textures/gui/panorama/panorama",
-		"musicId": "cinderscapes:music.menu"
+		"musicSound": {
+			"sound": "cinderscapes:music.menu"
+		},
+		"cubemaps": [
+			{
+				"cubemapId": "cinderscapes:textures/gui/panorama/panorama",
+				"visualControl": {
+					"addedY": 0.0
+				}
+			}
+		]
 	}
 }
