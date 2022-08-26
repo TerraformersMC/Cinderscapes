@@ -47,10 +47,7 @@ public class SurfaceBuilderMixin {
                 blockState2 = blockStateRule.tryApply(x, y, z);
                 if (blockState2 == null || blockState2.getBlock() != Blocks.MAGMA_BLOCK) return;
                 blockColumn.setState(y, blockState2);
-                //Cinderscapes.LOGGER.info("Successfully injected inside fluid not empty if loop");
             }
-
         }
-
     }
 }

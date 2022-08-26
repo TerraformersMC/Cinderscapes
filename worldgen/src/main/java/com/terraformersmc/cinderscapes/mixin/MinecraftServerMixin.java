@@ -21,13 +21,13 @@ public abstract class MinecraftServerMixin {
     @Shadow public abstract SaveProperties getSaveProperties();
 
     @Inject(method = "createWorlds", at = @At("RETURN"))
-    private void cinderscapes$hackyAddSurfaceRules(WorldGenerationProgressListener $$0, CallbackInfo ci) {
+    private void cinderscapes$hackyAddSurfaceRules(WorldGenerationProgressListener worldGenerationProgressListener, CallbackInfo ci) {
         cinderscapes$appendSurfaceRule(this.getSaveProperties(), DimensionOptions.NETHER, CinderscapesSurfaceRules.CINDERSCAPES_NETHER_RULES);
-
     }
 
     private static void cinderscapes$appendSurfaceRule(SaveProperties worldData, RegistryKey<DimensionOptions> optionsRegistryKey, MaterialRules.MaterialRule materialRule) {
-        if (worldData == null) { // For some reason mods can make world data null as seen in some user crash logs, this makes that issue clearer for us.
+        if (worldData == null) {
+            // For some reason mods can make world data null as seen in some user crash logs; this makes that issue clearer for us.
             throw new NullPointerException("Minecraft server's world data is null, this should be impossible...");
         }
         DimensionOptions dimensionOptions = worldData.getGeneratorOptions().getDimensions().get(optionsRegistryKey);
@@ -40,5 +40,4 @@ public abstract class MinecraftServerMixin {
             ((ChunkGeneratorSettingsAccessor) noiseGeneratorSettings).cinderscapes$setSurfaceRule(MaterialRules.sequence(materialRule, ((ChunkGeneratorSettings) noiseGeneratorSettings).surfaceRule()));
         }
     }
-
 }
