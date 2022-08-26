@@ -8,21 +8,12 @@ import com.terraformersmc.cinderscapes.biome.QuartzCavernBiome;
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class CinderscapesBiomes {
-
-    // Acts as a kind of local registry for Cinderscape's custom biomes
-    public static final Map<Identifier, Pair<Biome, MultiNoiseUtil.NoiseValuePoint>> BIOMES = new HashMap<>();
-
     public static final RegistryKey<Biome> ASHY_SHOALS = add("ashy_shoals", AshyShoalsBiome.create());
     public static final RegistryKey<Biome> BLACKSTONE_SHALES = add("blackstone_shales", BlackstoneShalesBiome.create());
     public static final RegistryKey<Biome> LUMINOUS_GROVE = add("luminous_grove", LuminousGroveBiome.create());
@@ -54,8 +45,8 @@ public class CinderscapesBiomes {
      */
     private static RegistryKey<Biome> add(String s, Biome b) {
         Identifier id = Cinderscapes.id(s);
-        Registry.register(BuiltinRegistries.BIOME, id, b);
         RegistryKey<Biome> key = RegistryKey.of(Registry.BIOME_KEY, id);
+        Registry.register(BuiltinRegistries.BIOME, key, b);
         return key;
     }
 }

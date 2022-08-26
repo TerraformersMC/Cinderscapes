@@ -7,6 +7,7 @@ import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
 import com.terraformersmc.cinderscapes.util.NoiseCollisionChecker;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.mob.ZoglinEntity;
@@ -22,11 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cinderscapes implements ModInitializer {
-
 	public static final String NAMESPACE = "cinderscapes";
 	public static final Logger LOGGER = LogManager.getLogger(StringUtils.capitalize(NAMESPACE));
 
 	public static List<Item> HIDDEN_ITEMS = new ArrayList<>();
+
+	private static Boolean initialized = false;
+	private static final ArrayList<Runnable> runnables = new ArrayList<>(1);
 
 	@Override
 	public void onInitialize() {
@@ -49,6 +52,24 @@ public class Cinderscapes implements ModInitializer {
 		CinderscapesTrades.init();
 
 		NoiseCollisionChecker.init();
+
+		if (!FabricLoader.getInstance().isModLoaded("cinderscapes-worldgen")) {
+			Cinderscapes.LOGGER.info("No Traverse worldgen module present; Traverse biomes will not generate.");
+		}
+
+		// At this point Cinderscapes is completely initialized.
+		initialized = true;
+		for (Runnable callback : runnables) {
+			callback.run();
+		}
+	}
+
+	public static void callbackWhenInitialized(Runnable callback) {
+		if (initialized) {
+			callback.run();
+		} else {
+			runnables.add(callback);
+		}
 	}
 
 	public static Identifier id(String path) {

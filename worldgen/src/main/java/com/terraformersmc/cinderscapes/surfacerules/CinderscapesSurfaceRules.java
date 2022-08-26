@@ -49,7 +49,12 @@ public class CinderscapesSurfaceRules {
 
     public static final MaterialRules.MaterialRule BEDROCK_FLOOR = MaterialRules.condition(MaterialRules.verticalGradient("bedrock_floor", YOffset.getBottom(), YOffset.aboveBottom(5)), MaterialRules.block(Blocks.BEDROCK.getDefaultState()));
     public static final MaterialRules.MaterialRule BEDROCK_ROOF = MaterialRules.condition(MaterialRules.not(MaterialRules.verticalGradient("bedrock_roof", YOffset.belowTop(5), YOffset.getTop())), MaterialRules.block(Blocks.BEDROCK.getDefaultState()));
-    public static final MaterialRules.MaterialRule CIMDERSCAPES_NETHER_RULES = MaterialRules.sequence(BEDROCK_FLOOR, BEDROCK_ROOF, ASHY_SHOALS_RULE, MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, LUMINOUS_NYLIUM_RULE));
+    public static final MaterialRules.MaterialRule CINDERSCAPES_NETHER_RULES = MaterialRules.sequence(BEDROCK_FLOOR, BEDROCK_ROOF, ASHY_SHOALS_RULE, MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, LUMINOUS_NYLIUM_RULE));
+
+	public static MaterialRules.MaterialRule createRules() {
+        return CINDERSCAPES_NETHER_RULES;
+	}
+
 
     //////////////////////
     // SURFACE BUILDERS //

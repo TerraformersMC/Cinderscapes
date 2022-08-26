@@ -24,7 +24,7 @@ import net.minecraft.world.gen.feature.OrePlacedFeatures;
 
 public class LuminousGroveBiome {
 
-    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.35F, 0.35F, 0.0f, 0.0f, 0.0F, 0.0F, 0.2F);
+    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.35F, 0.35F, 0.0F, 0.0F, 0.0F, 0.0F, 0.2F);
 
     public static Biome create() {
         return new Biome.Builder()
