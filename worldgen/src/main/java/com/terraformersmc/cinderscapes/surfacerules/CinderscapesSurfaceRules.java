@@ -16,10 +16,11 @@ public class CinderscapesSurfaceRules {
         MaterialRules.condition(MaterialRules.biome(CinderscapesBiomes.LUMINOUS_GROVE),
             MaterialRules.condition(MaterialRules.not(MaterialRules.noiseThreshold(NoiseParametersKeys.NETHERRACK, 0.54)),
                 MaterialRules.condition(MaterialRules.aboveY(YOffset.fixed(31), 0),
-                    MaterialRules.sequence(
-                        MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.NETHER_WART, 1.17),
-                            MaterialRules.block(CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState())),
-                        MaterialRules.block(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState()))))));
+                    MaterialRules.condition(MaterialRules.not(MaterialRules.aboveY(YOffset.fixed(127), 0)),
+                        MaterialRules.sequence(
+                            MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.NETHER_WART, 1.17),
+                                MaterialRules.block(CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState())),
+                            MaterialRules.block(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState())))))));
 
     // At the moment, there's just Luminous Grove.  To add another, wrap them in MaterialRules.sequence()
     public static final MaterialRules.MaterialRule CINDERSCAPES_NETHER_RULES = LUMINOUS_GROVE;
