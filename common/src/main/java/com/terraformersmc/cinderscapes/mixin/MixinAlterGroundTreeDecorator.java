@@ -19,7 +19,7 @@ import java.util.Random;
 import java.util.function.BiConsumer;
 
 @Mixin(AlterGroundTreeDecorator.class)
-public class AlterGroundTreeDecoratorMixin {
+public class MixinAlterGroundTreeDecorator {
 
     @Shadow
     @Final

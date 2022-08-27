@@ -5,10 +5,10 @@
   "mixins": [
     "ChunkGeneratorSettingsAccessor",
     "MaterialRuleContextAccessor",
-    "MinecraftServerMixin",
-    "NetherCaveCarverMixin",
-    "NoiseChunkGeneratorAccessor",
-    "SurfaceBuilderMixin"
+    "MixinMinecraftServer",
+    "MixinNetherCaveCarver",
+    "MixinSurfaceBuilder",
+    "NoiseChunkGeneratorAccessor"
   ],
   "client": [
   ],

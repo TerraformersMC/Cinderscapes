@@ -17,12 +17,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
-public abstract class MinecraftServerMixin {
+public abstract class MixinMinecraftServer {
     @Shadow public abstract SaveProperties getSaveProperties();
 
     @Inject(method = "createWorlds", at = @At("RETURN"))
     private void cinderscapes$hackyAddSurfaceRules(WorldGenerationProgressListener worldGenerationProgressListener, CallbackInfo ci) {
-        cinderscapes$appendSurfaceRule(this.getSaveProperties(), DimensionOptions.NETHER, CinderscapesSurfaceRules.CINDERSCAPES_NETHER_RULES);
+        cinderscapes$appendSurfaceRule(this.getSaveProperties(), DimensionOptions.NETHER, CinderscapesSurfaceRules.createRules());
     }
 
     private static void cinderscapes$appendSurfaceRule(SaveProperties worldData, RegistryKey<DimensionOptions> optionsRegistryKey, MaterialRules.MaterialRule materialRule) {

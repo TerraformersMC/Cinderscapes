@@ -1,32 +1,43 @@
-/*package com.terraformersmc.cinderscapes.surfacebuilder;
+package com.terraformersmc.cinderscapes.surfacebuilders;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.gen.chunk.BlockColumn;
+import net.minecraft.world.gen.random.AbstractRandom;
 
-import java.util.Random;
+public class AshyShoalsSurfaceBuilder extends CinderscapesSurfaceBuilder {
+	private final BlockState topMaterial;
+	private final BlockState midMaterial;
+	private final BlockState lowMaterial;
 
-public class AshyShoalsSurfaceBuilder extends SurfaceBuilder<TernarySurfaceConfig> {
-    public AshyShoalsSurfaceBuilder() {
-        super(TernarySurfaceConfig.CODEC);
+    public AshyShoalsSurfaceBuilder(BlockState topMaterial, BlockState midMaterial, BlockState lowMaterial) {
+        this.topMaterial = topMaterial;
+        this.midMaterial = midMaterial;
+        this.lowMaterial = lowMaterial;
     }
 
     @Override
-    public void generate(Random random, Chunk chunk, Biome biome, int x, int z, int height, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, TernarySurfaceConfig surfaceBlocks) {
-        for (int y = 0; y < 256; y++) {
-            BlockPos pos = new BlockPos(x & 15, y, z & 15);
-            BlockState state = chunk.getBlockState(pos);
-            if (state.getBlock() == defaultBlock.getBlock()) {
-                chunk.setBlockState(pos, Blocks.NETHERRACK.getDefaultState(), false);
-            } else if (state.getBlock() == defaultFluid.getBlock()) {
-                if (chunk.getBlockState(pos.up()).isAir() || (random.nextBoolean() && chunk.getBlockState(pos.up(2)).isAir())) {
-                    chunk.setBlockState(pos, Blocks.MAGMA_BLOCK.getDefaultState(), false);
+    public void generate(BiomeAccess biomeAccess, BlockColumn column, AbstractRandom rand, Chunk chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
+        if (!biomeAccess.getBiome(new BlockPos(x, seaLevel, z)).value().equals(biome)) {
+            // We care most about sea level.
+            return;
+        }
+
+        for (int y = 1; y < 40; y++) {
+            BlockState state = column.getState(y);
+            if (state.isAir() && column.getState(y - 1).equals(midMaterial)) {
+                column.setState(y, topMaterial);
+            } else if (state.isOf(Blocks.LAVA) && state.getFluidState().isStill()) {
+                if (column.getState(y + 1).isAir() || rand.nextBoolean() && column.getState(y + 2).isAir()) {
+                    column.setState(y, midMaterial);
                 } else {
-                    chunk.setBlockState(pos, Blocks.NETHERRACK.getDefaultState(), false);
+                    column.setState(y, lowMaterial);
                 }
             }
         }
     }
-}*/
+}

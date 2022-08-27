@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 @Mixin(NetherrackBlock.class)
-public class NetherrackBlockMixin {
+public class MixinNetherrackBlock {
     @Inject(method = "grow(Lnet/minecraft/server/world/ServerWorld;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V", at = @At("HEAD"), cancellable = true)
     public void cinderscapes$grow(ServerWorld world, Random random, BlockPos pos, BlockState state, CallbackInfo callback) {
 

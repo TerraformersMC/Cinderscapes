@@ -13,8 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.HashSet;
 
 @Mixin(NetherCaveCarver.class)
-public abstract class NetherCaveCarverMixin extends CaveCarver {
-    public NetherCaveCarverMixin(Codec<CaveCarverConfig> codec) {
+public abstract class MixinNetherCaveCarver extends CaveCarver {
+    public MixinNetherCaveCarver(Codec<CaveCarverConfig> codec) {
         super(codec);
     }
 
