@@ -17,6 +17,7 @@
       "com.terraformersmc.cinderscapes.data.CinderscapesDatagen"
     ]
   },
+  "accessWidener": "cinderscapes-common.accesswidener",
   "mixins": [
     "mixins.cinderscapes-common.json"
   ],

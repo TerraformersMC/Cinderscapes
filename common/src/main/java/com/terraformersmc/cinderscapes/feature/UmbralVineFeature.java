@@ -2,11 +2,12 @@ package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.block.GhastlyEctoplasmBlock;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
+import com.terraformersmc.cinderscapes.util.EightWayDirection;
 import com.terraformersmc.cinderscapes.util.MathHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
@@ -21,15 +22,15 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
 
     // TODO: Implement a FeatureConfig to change the material
     // TODO: Add the dip height to the potential delta values
-    // TODO: Allow it to go at angles and stuff
-    // TODO: Figure out the chunk boundary issue
+    // TODO: Allow it to go at angles and stuff (intermediate approach via EightWayDirection)
+    // TODO: Figure out the chunk boundary issue (worked-around by shortening vines)
 
     @Override
     public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
         Random random = context.getRandom();
         BlockPos pos = context.getOrigin();
         StructureWorldAccess world = context.getWorld();
-        while (pos.getY() >= 3) {
+        while (pos.getY() > context.getGenerator().getSeaLevel()) {
             search: {
                 if ( world.getBlockState(pos).getBlock() != Blocks.NETHERRACK ) break search;
                 if ( world.isAir(pos.up()) ) break search;
@@ -38,22 +39,38 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
                     if (world.isAir(pos.down(y))) airBelow = true;
                 }
                 if (!airBelow) break search;
-                if ( world.isAir(pos.north()) && !world.isAir(pos.south()) && !world.isAir(pos.east()) && !world.isAir(pos.west()) ) return buildVine(world, pos, Direction.NORTH, random);
-                if ( world.isAir(pos.south()) && !world.isAir(pos.north()) && !world.isAir(pos.east()) && !world.isAir(pos.west()) ) return buildVine(world, pos, Direction.SOUTH, random);
-                if ( world.isAir(pos.east()) && !world.isAir(pos.south()) && !world.isAir(pos.north()) && !world.isAir(pos.west()) ) return buildVine(world, pos, Direction.EAST, random);
-                if ( world.isAir(pos.west()) && !world.isAir(pos.south()) && !world.isAir(pos.east()) && !world.isAir(pos.north()) ) return buildVine(world, pos, Direction.WEST, random);
+                if ( world.isAir(pos.north()) && !world.isAir(pos.south()) && !world.isAir(pos.east()) && !world.isAir(pos.west()) ) return angleVine(world, pos, EightWayDirection.NORTH, random);
+                if ( world.isAir(pos.south()) && !world.isAir(pos.north()) && !world.isAir(pos.east()) && !world.isAir(pos.west()) ) return angleVine(world, pos, EightWayDirection.SOUTH, random);
+                if ( world.isAir(pos.east()) && !world.isAir(pos.south()) && !world.isAir(pos.north()) && !world.isAir(pos.west()) ) return angleVine(world, pos, EightWayDirection.EAST, random);
+                if ( world.isAir(pos.west()) && !world.isAir(pos.south()) && !world.isAir(pos.east()) && !world.isAir(pos.north()) ) return angleVine(world, pos, EightWayDirection.WEST, random);
             }
             pos = pos.down();
         }
         return false;
     }
 
-    public boolean buildVine(StructureWorldAccess world, BlockPos pos, Direction dir, Random random) {
-        for (int offset = 5; offset < 50; offset++) {
-            if (world.getBlockState(pos.offset(dir, offset)).getBlock() == Blocks.NETHERRACK) {
-                return modifiedLine(world, CinderscapesBlocks.TWILIGHT_VINE_BLOCK.getDefaultState(), pos.offset(dir, offset), pos, random);
+    public boolean angleVine(StructureWorldAccess world, BlockPos origin, EightWayDirection dir, Random random) {
+        int eightWayOffset = random.nextBoolean() ? 1 : -1;
+
+        // Bias towards cardinal vines because ordinal vines are inherently twice as likely.
+        return (buildVine(world, origin, dir, random) ||
+                buildVine(world, origin, getEightWayClockwiseRotation(dir,  eightWayOffset), random) ||
+                buildVine(world, origin, getEightWayClockwiseRotation(dir, -eightWayOffset), random));
+    }
+
+    public boolean buildVine(StructureWorldAccess world, BlockPos origin, EightWayDirection dir, Random random) {
+        final ChunkPos chunkOrigin = new ChunkPos(origin);
+        final BlockPos.Mutable terminus = origin.mutableCopy();
+
+        // Generation is restricted to the current and adjacent chunks, to match limits imposed by Minecraft.
+        terminus.move(5 * dir.method_42015(), 0, 5 * dir.method_42016());
+        while (chunkOrigin.getChebyshevDistance(new ChunkPos(terminus)) < 2) {
+            if (world.getBlockState(terminus).getBlock() == Blocks.NETHERRACK) {
+                return modifiedLine(world, CinderscapesBlocks.TWILIGHT_VINE_BLOCK.getDefaultState(), terminus, origin, random);
             }
+            terminus.move(dir.method_42015(), 0, dir.method_42016());
         }
+
         return false;
     }
 
@@ -103,5 +120,10 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
         }
 
         return true;
+    }
+
+    private EightWayDirection getEightWayClockwiseRotation(EightWayDirection direction, int increment) {
+        assert (increment >= -8);
+        return EightWayDirection.values()[(direction.ordinal() + increment + 8) % 8];
     }
 }

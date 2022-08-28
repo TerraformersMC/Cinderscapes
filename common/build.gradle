@@ -1,6 +1,8 @@
 archivesBaseName = "cinderscapes-common"
 
 loom {
+    accessWidenerPath = file("src/main/resources/cinderscapes-common.accesswidener")
+
     runs {
         datagen {
             server()
