@@ -22,6 +22,7 @@ bin/
 
 # fabric
 
+common/src/main/generated/
 run/
 
 .DS_Store

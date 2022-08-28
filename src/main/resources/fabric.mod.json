@@ -30,20 +30,10 @@
   "icon": "assets/cinderscapes/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "com.terraformersmc.cinderscapes.Cinderscapes"
-    ],
-    "client": [
-      "com.terraformersmc.cinderscapes.client.CinderscapesClient"
-    ],
     "modmenu": [
       "com.terraformersmc.cinderscapes.integration.CinderscapesModMenu"
     ]
   },
-  "mixins": [
-    "cinderscapes.mixins.json"
-  ],
-  "accessWidener": "cinderscapes.accesswidener",
   "depends": {
     "fabricloader": ">=0.13.2",
     "fabric": ">=0.47.0",

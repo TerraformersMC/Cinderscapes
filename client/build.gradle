@@ -1,0 +1,8 @@
+archivesBaseName = "cinderscapes-client"
+
+loom {
+}
+
+dependencies {
+    implementation project(path: ':common')
+}

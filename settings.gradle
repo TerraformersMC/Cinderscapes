@@ -1,6 +1,5 @@
 pluginManagement {
     repositories {
-
         maven {
             name = 'Fabric'
             url = 'https://maven.fabricmc.net/'
@@ -10,3 +9,6 @@ pluginManagement {
 }
 
 rootProject.name = "cinderscapes"
+include "client"
+include "common"
+include "worldgen"

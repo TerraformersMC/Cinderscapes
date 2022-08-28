@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "cinderscapes-client",
+  "name": "Cinderscapes: Client",
+  "version": "$version",
+  "environment": "client",
+  "license": "LGPL-3.0-only",
+  "icon": "assets/cinderscapes/icon.png",
+  "entrypoints": {
+    "client": [
+      "com.terraformersmc.cinderscapes.CinderscapesClient"
+    ]
+  },
+  "mixins": [
+  ],
+  "custom": {
+    "modmenu": {
+      "parent": "cinderscapes"
+    }
+  }
+}

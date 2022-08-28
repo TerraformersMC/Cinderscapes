@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "cinderscapes-worldgen",
+  "name": "Cinderscapes: World Generation",
+  "version": "$version",
+  "environment": "*",
+  "license": "LGPL-3.0-only",
+  "icon": "assets/cinderscapes/icon.png",
+  "entrypoints": {
+    "main": [
+      "com.terraformersmc.cinderscapes.CinderscapesWorldgen"
+    ]
+  },
+  "accessWidener": "cinderscapes-worldgen.accesswidener",
+  "mixins": [
+    "mixins.cinderscapes-worldgen.json"
+  ],
+  "custom": {
+    "modmenu": {
+      "parent": "cinderscapes"
+    }
+  }
+}
