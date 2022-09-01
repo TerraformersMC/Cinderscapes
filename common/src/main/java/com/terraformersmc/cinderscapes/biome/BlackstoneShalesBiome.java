@@ -24,7 +24,6 @@ import net.minecraft.world.gen.feature.OrePlacedFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
 public class BlackstoneShalesBiome {
-
     public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.15F, 0.05F, 0.2F, 0.0F, 0.25F, 0.05F, 0.0F);
 
     public static Biome create() {
@@ -51,7 +50,6 @@ public class BlackstoneShalesBiome {
 
     private static GenerationSettings createGenerationSettings() {
         GenerationSettings.Builder builder = new GenerationSettings.Builder();
-        //builder.surfaceBuilder(ConfiguredSurfaceBuilders.NETHER);
 
         // DEFAULT MINECRAFT FEATURES
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);

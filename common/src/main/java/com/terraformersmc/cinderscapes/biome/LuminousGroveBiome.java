@@ -23,7 +23,6 @@ import net.minecraft.world.gen.feature.NetherPlacedFeatures;
 import net.minecraft.world.gen.feature.OrePlacedFeatures;
 
 public class LuminousGroveBiome {
-
     public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.35F, 0.35F, 0.0F, 0.0F, 0.0F, 0.0F, 0.2F);
 
     public static Biome create() {
@@ -50,7 +49,6 @@ public class LuminousGroveBiome {
 
     private static GenerationSettings createGenerationSettings() {
         GenerationSettings.Builder builder = new GenerationSettings.Builder();
-        //builder.surfaceBuilder(CinderscapesSurfaceRules.CONFIGURED_LUMINOUS_GROVE);
 
         // DEFAULT MINECRAFT FEATURES
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);

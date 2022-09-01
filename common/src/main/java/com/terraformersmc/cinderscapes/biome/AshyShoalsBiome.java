@@ -23,7 +23,6 @@ import net.minecraft.world.gen.feature.NetherPlacedFeatures;
 import net.minecraft.world.gen.feature.OrePlacedFeatures;
 
 public class AshyShoalsBiome {
-
     public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(-0.35F, 0.0F, 0.2F, 0.0F, 0.35F, 0.0F, 0.0F);
 
     public static Biome create() {
@@ -51,7 +50,6 @@ public class AshyShoalsBiome {
     private static GenerationSettings createGenerationSettings() {
 
         GenerationSettings.Builder builder = new GenerationSettings.Builder();
-        //builder.surfaceBuilder(CinderscapesSurfaceRules.CONFIGURED_ASHY_SHOALS);
 
         // DEFAULT MINECRAFT FEATURES
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);

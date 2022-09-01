@@ -63,12 +63,12 @@ public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
         final BlockPos.Mutable terminus = origin.mutableCopy();
 
         // Generation is restricted to the current and adjacent chunks, to match limits imposed by Minecraft.
-        terminus.move(5 * dir.method_42015(), 0, 5 * dir.method_42016());
+        terminus.move(5 * dir.getOffsetX(), 0, 5 * dir.getOffsetZ());
         while (chunkOrigin.getChebyshevDistance(new ChunkPos(terminus)) < 2) {
             if (world.getBlockState(terminus).getBlock() == Blocks.NETHERRACK) {
                 return modifiedLine(world, CinderscapesBlocks.TWILIGHT_VINE_BLOCK.getDefaultState(), terminus, origin, random);
             }
-            terminus.move(dir.method_42015(), 0, dir.method_42016());
+            terminus.move(dir.getOffsetX(), 0, dir.getOffsetZ());
         }
 
         return false;

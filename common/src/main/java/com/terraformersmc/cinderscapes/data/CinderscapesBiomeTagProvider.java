@@ -26,6 +26,12 @@ public class CinderscapesBiomeTagProvider extends FabricTagProvider.DynamicRegis
 		this.getOrCreateTagBuilder(TagKey.of(this.registry.getKey(), ConventionalBiomeTags.NETHER_FORESTS.id()))
 				.add(CinderscapesBiomes.LUMINOUS_GROVE);
 
+		this.getOrCreateTagBuilder(TagKey.of(this.registry.getKey(), ConventionalBiomeTags.WASTELAND.id()))
+				.add(CinderscapesBiomes.ASHY_SHOALS);
+
+		this.getOrCreateTagBuilder(TagKey.of(this.registry.getKey(), ConventionalBiomeTags.VEGETATION_SPARSE.id()))
+				.add(CinderscapesBiomes.BLACKSTONE_SHALES);
+
 
 		// biome structure generation tags
 		this.getOrCreateTagBuilder(TagKey.of(this.registry.getKey(), BiomeTags.BASTION_REMNANT_HAS_STRUCTURE.id()))
@@ -34,8 +40,5 @@ public class CinderscapesBiomeTagProvider extends FabricTagProvider.DynamicRegis
 
 		this.getOrCreateTagBuilder(TagKey.of(this.registry.getKey(), BiomeTags.NETHER_FOSSIL_HAS_STRUCTURE.id()))
 				.add(CinderscapesBiomes.ASHY_SHOALS);
-
-		this.getOrCreateTagBuilder(TagKey.of(this.registry.getKey(), BiomeTags.RUINED_PORTAL_NETHER_HAS_STRUCTURE.id()))
-				.add(CinderscapesBiomes.BLACKSTONE_SHALES);
 	}
 }

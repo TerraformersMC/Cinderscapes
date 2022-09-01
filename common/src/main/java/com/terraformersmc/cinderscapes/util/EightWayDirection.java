@@ -33,11 +33,11 @@ public enum EightWayDirection {
 		return this.directions;
 	}
 
-	public int method_42015() {
+	public int getOffsetX() {
 		return this.field_37995.getX();
 	}
 
-	public int method_42016() {
+	public int getOffsetZ() {
 		return this.field_37995.getZ();
 	}
 }

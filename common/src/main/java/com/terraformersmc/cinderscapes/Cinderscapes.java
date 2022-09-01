@@ -54,7 +54,7 @@ public class Cinderscapes implements ModInitializer {
 		NoiseCollisionChecker.init();
 
 		if (!FabricLoader.getInstance().isModLoaded("cinderscapes-worldgen")) {
-			Cinderscapes.LOGGER.info("No Traverse worldgen module present; Traverse biomes will not generate.");
+			Cinderscapes.LOGGER.info("No Cinderscapes worldgen module present; Cinderscapes biomes will not generate.");
 		}
 
 		// At this point Cinderscapes is completely initialized.
