@@ -22,5 +22,6 @@ public abstract class MixinNetherCaveCarver extends CaveCarver {
     public void cinderscapes$netherCaveCarverConstructor(CallbackInfo callback) {
         this.alwaysCarvableBlocks = new HashSet<>(this.alwaysCarvableBlocks);
         this.alwaysCarvableBlocks.add(CinderscapesBlocks.UMBRAL_NYLIUM);
+        this.alwaysCarvableBlocks.add(CinderscapesBlocks.UMBRAL_WART_BLOCK);
     }
 }
