@@ -9,6 +9,9 @@
   "entrypoints": {
     "main": [
       "com.terraformersmc.cinderscapes.CinderscapesWorldgen"
+    ],
+    "terrablender": [
+      "com.terraformersmc.cinderscapes.biomegen.CinderscapesTerraBlenderGeneration"
     ]
   },
   "accessWidener": "cinderscapes-worldgen.accesswidener",
@@ -19,5 +22,8 @@
     "modmenu": {
       "parent": "cinderscapes"
     }
+  },
+  "depends": {
+    "terrablender": "*"
   }
 }

@@ -6,7 +6,6 @@ import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
 import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
 import com.terraformersmc.cinderscapes.util.NoiseCollisionChecker;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction;
@@ -34,8 +33,8 @@ public class Cinderscapes implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		try {
-			SpawnRestrictionAccessor.callRegister(EntityType.ZOGLIN, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZoglinEntity::canMobSpawn);
-			SpawnRestrictionAccessor.callRegister(EntityType.ZOMBIFIED_PIGLIN, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZombifiedPiglinEntity::canMobSpawn);
+			SpawnRestriction.register(EntityType.ZOGLIN, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZoglinEntity::canMobSpawn);
+			SpawnRestriction.register(EntityType.ZOMBIFIED_PIGLIN, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZombifiedPiglinEntity::canMobSpawn);
 		} catch (IllegalStateException ignored) { }
 
 		CinderscapesConfig.init();

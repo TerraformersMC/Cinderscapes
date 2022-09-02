@@ -6,11 +6,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FungusBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 public class CinderscapesCanopiedFungusBlock extends FungusBlock {

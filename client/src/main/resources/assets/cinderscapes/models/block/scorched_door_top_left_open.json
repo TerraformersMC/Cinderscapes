@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/door_top_rh",
+  "parent": "minecraft:block/door_top_left_open",
   "textures": {
     "top": "cinderscapes:block/scorched_door_top",
     "bottom": "cinderscapes:block/scorched_door_bottom"

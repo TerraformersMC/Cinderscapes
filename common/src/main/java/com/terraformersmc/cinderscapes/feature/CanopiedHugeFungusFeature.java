@@ -14,6 +14,7 @@ import com.terraformersmc.terraform.shapes.impl.validator.SafelistValidator;
 import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.Feature;
@@ -21,7 +22,6 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Stream;
 
 public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeatureConfig> {
@@ -109,10 +109,10 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
         if (baseClear && stemClear && canopyClear) {
             // canopy
             canopy.fill(new SimpleFiller(world, config.canopyBlock()));
-            canopyDripping.fill(new RandomSimpleFiller(world, config.canopyBlock(), random, 0.5f));
+            canopyDripping.fill(new RandomSimpleFiller(world, config.canopyBlock(), (java.util.Random) random, 0.5f));
             flesh.fill(new SimpleFiller(world, config.fleshBlock()));
-            fleshDripping.fill(new RandomSimpleFiller(world, config.fleshBlock(), random, 0.5f));
-            detailBlocks.fill(new RandomSimpleFiller(world, config.decorationBlock(), random, 0.2f));
+            fleshDripping.fill(new RandomSimpleFiller(world, config.fleshBlock(), (java.util.Random) random, 0.5f));
+            detailBlocks.fill(new RandomSimpleFiller(world, config.decorationBlock(), (java.util.Random) random, 0.2f));
 
             // stem
             stem.fill(new SimpleFiller(world, config.stemBlock()));

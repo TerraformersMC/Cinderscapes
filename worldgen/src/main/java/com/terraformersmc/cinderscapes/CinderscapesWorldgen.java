@@ -1,16 +1,20 @@
 package com.terraformersmc.cinderscapes;
 
 import com.terraformersmc.cinderscapes.surfacebuilders.CinderscapesSurfaceBuilders;
-import com.terraformersmc.cinderscapes.worldgen.CinderscapesBiomeAPIGeneration;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 
 public class CinderscapesWorldgen implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		Cinderscapes.LOGGER.info("Enabling Cinderscapes' Fabric Biome API worldgen module.");
+
+		if (FabricLoader.getInstance().isModLoaded("terrablender")) {
+			Cinderscapes.LOGGER.info("Enabling Cinderscapes' TerraBlender worldgen module.");
+		} else {
+			Cinderscapes.LOGGER.warn("Cinderscapes world generation disabled; TerraBlender is not present.");
+		}
 
 		Cinderscapes.callbackWhenInitialized(CinderscapesSurfaceBuilders::init);
-		CinderscapesBiomeAPIGeneration.init();
 	}
 }

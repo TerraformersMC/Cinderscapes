@@ -52,7 +52,7 @@ public class CinderscapesPlacedFeatures {
     );
     public static final RegistryEntry<PlacedFeature> DEAD_TREES = createPlacedFeature("dead_trees", CinderscapesConfiguredFeatures.DEAD_TREE,
             CountMultilayerPlacementModifier.of(12),
-            BlockFilterPlacementModifier.of(BlockPredicate.matchingBlocks(DEAD_TREE_SAFELIST, Direction.DOWN.getVector()))
+            BlockFilterPlacementModifier.of(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), DEAD_TREE_SAFELIST))
     );
 
     /******* BLACKSTONE SHALES *********/
@@ -66,12 +66,12 @@ public class CinderscapesPlacedFeatures {
     public static final RegistryEntry<PlacedFeature> SHALES = createPlacedFeature("shales", CinderscapesConfiguredFeatures.BLACKSTONE_SHALES,
             CountMultilayerPlacementModifier.of(10), SquarePlacementModifier.of(),
             HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(12), YOffset.belowTop(20)),
-            BlockFilterPlacementModifier.of(BlockPredicate.matchingBlocks(SHALE_SAFELIST, Direction.DOWN.getVector()))
+            BlockFilterPlacementModifier.of(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), SHALE_SAFELIST))
     );
 
 
     /******* LUMINOUS GROVE *********/
-    public static final RegistryEntry<PlacedFeature> SHROOMLIGHT_BUSH = createPlacedFeature("luminous_grove/shroomlight_bush", CinderscapesConfiguredFeatures.SHROOMLIGHT_BUSH, CountMultilayerPlacementModifier.of(2), BlockFilterPlacementModifier.of(BlockPredicate.matchingBlock(CinderscapesBlocks.UMBRAL_NYLIUM, Direction.DOWN.getVector())));
+    public static final RegistryEntry<PlacedFeature> SHROOMLIGHT_BUSH = createPlacedFeature("luminous_grove/shroomlight_bush", CinderscapesConfiguredFeatures.SHROOMLIGHT_BUSH, CountMultilayerPlacementModifier.of(2), BlockFilterPlacementModifier.of(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), CinderscapesBlocks.UMBRAL_NYLIUM)));
     public static final RegistryEntry<PlacedFeature> VEGETATION_LUMINOUS_GROWTH = createPlacedFeature("luminous_growth/vegetation", CinderscapesConfiguredFeatures.VEGETATION_LUMINOUS_GROWTH, CountMultilayerPlacementModifier.of(8));
     public static final RegistryEntry<PlacedFeature> LUMINOUS_POD = createPlacedFeature("luminous_growth/luminous_pod", CinderscapesConfiguredFeatures.LUMINOUS_POD, CountMultilayerPlacementModifier.of(7), RarityFilterPlacementModifier.of(32));
     public static final RegistryEntry<PlacedFeature> TALL_PHOTOFERN = createPlacedFeature("luminous_growth/tall_photofern", CinderscapesConfiguredFeatures.TALL_PHOTOFERN, CountMultilayerPlacementModifier.of(7), RarityFilterPlacementModifier.of(32));

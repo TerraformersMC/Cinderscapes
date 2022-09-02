@@ -15,18 +15,13 @@ public class CinderscapesNetherPlantBlock extends PlantBlock {
     private final StateShapeSupplier SHAPE_SUPPLIER;
 
     public CinderscapesNetherPlantBlock(Settings settings, StateShapeSupplier supplier) {
-        super(settings);
+        super(settings.offsetType(AbstractBlock.OffsetType.XZ));
         SHAPE_SUPPLIER = supplier;
     }
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.isIn(BlockTags.NYLIUM) || floor.isOf(Blocks.SOUL_SOIL) || floor.isOf(Blocks.NETHERRACK) || super.canPlantOnTop(floor, world, pos);
-    }
-
-    @Override
-    public AbstractBlock.OffsetType getOffsetType() {
-        return AbstractBlock.OffsetType.XZ;
     }
 
     @Override

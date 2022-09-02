@@ -30,7 +30,6 @@ public class AshyShoalsBiome {
                 .generationSettings(createGenerationSettings())
                 .spawnSettings(createSpawnSettings())
                 .precipitation(Biome.Precipitation.NONE)
-                .category(Biome.Category.NETHER)
                 .temperature(2.0F)
                 .downfall(0.0F)
                 .effects(new BiomeEffects.Builder()

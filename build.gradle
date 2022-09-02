@@ -32,6 +32,10 @@ dependencies {
 
     includeMod "cloth-config", "me.shedaniel.cloth:cloth-config-fabric:${project.clothconfig_version}"
 
+    if (findProject(':worldgen') != null) {
+        includeMod "terrablender", "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
+    }
+
     afterEvaluate {
         subprojects.each {
             testmodImplementation sourceSets.main.output
@@ -105,6 +109,11 @@ allprojects {
         // Cloth Config
         maven {
             url = "https://maven.shedaniel.me"
+        }
+
+        // TerraBlender
+        maven {
+            url = 'https://maven.minecraftforge.net/'
         }
     }
 }

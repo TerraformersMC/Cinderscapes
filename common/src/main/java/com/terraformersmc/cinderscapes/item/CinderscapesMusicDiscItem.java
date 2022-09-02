@@ -8,6 +8,7 @@ import net.minecraft.util.Rarity;
 
 public class CinderscapesMusicDiscItem extends MusicDiscItem {
     public CinderscapesMusicDiscItem(int comparatorOutput, SoundEvent sound) {
-        super(comparatorOutput, sound, new FabricItemSettings().maxCount(1).group(ItemGroup.MISC).rarity(Rarity.RARE));
+        // TODO: Do I really have to tell Minecraft how long the disc is?
+        super(comparatorOutput, sound, new FabricItemSettings().maxCount(1).group(ItemGroup.MISC).rarity(Rarity.RARE), 300);
     }
 }
