@@ -25,7 +25,6 @@ import net.minecraft.world.gen.feature.OrePlacedFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
 public class QuartzCavernBiome {
-//    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.0F, 0.35F, 0.35F, 0.2F);
     public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(-0.225F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.1F);
 
     public static Biome create() {
