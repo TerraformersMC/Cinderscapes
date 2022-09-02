@@ -32,10 +32,6 @@ dependencies {
 
     includeMod "cloth-config", "me.shedaniel.cloth:cloth-config-fabric:${project.clothconfig_version}"
 
-    if (findProject(':worldgen') != null) {
-        includeMod "terrablender", "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
-    }
-
     afterEvaluate {
         subprojects.each {
             testmodImplementation sourceSets.main.output
@@ -51,7 +47,7 @@ allprojects {
     apply plugin: 'eclipse'
     apply plugin: 'maven-publish'
     apply plugin: 'fabric-loom'
-    // apply plugin: 'io.github.juuxel.loom-quiltflower-mini'
+    apply plugin: 'io.github.juuxel.loom-quiltflower'
 
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
@@ -65,9 +61,9 @@ allprojects {
         }
     }
 
-    // quiltflower {
-    // 	addToRuntimeClasspath.set(true)
-    // }
+    quiltflower {
+    	addToRuntimeClasspath.set(true)
+    }
 
     configurations {
         dev {

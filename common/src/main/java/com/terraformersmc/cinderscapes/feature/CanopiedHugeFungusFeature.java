@@ -25,6 +25,9 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeatureConfig> {
+    // TODO: Make the shapes API accept a Minecraft Special Snowflake Random
+    private static final java.util.Random localRandom = new java.util.Random();
+
     public CanopiedHugeFungusFeature() {
         super(CanopiedHugeFungusFeatureConfig.CODEC);
     }
@@ -109,10 +112,10 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
         if (baseClear && stemClear && canopyClear) {
             // canopy
             canopy.fill(new SimpleFiller(world, config.canopyBlock()));
-            canopyDripping.fill(new RandomSimpleFiller(world, config.canopyBlock(), (java.util.Random) random, 0.5f));
+            canopyDripping.fill(new RandomSimpleFiller(world, config.canopyBlock(), localRandom, 0.5f));
             flesh.fill(new SimpleFiller(world, config.fleshBlock()));
-            fleshDripping.fill(new RandomSimpleFiller(world, config.fleshBlock(), (java.util.Random) random, 0.5f));
-            detailBlocks.fill(new RandomSimpleFiller(world, config.decorationBlock(), (java.util.Random) random, 0.2f));
+            fleshDripping.fill(new RandomSimpleFiller(world, config.fleshBlock(), localRandom, 0.5f));
+            detailBlocks.fill(new RandomSimpleFiller(world, config.decorationBlock(), localRandom, 0.2f));
 
             // stem
             stem.fill(new SimpleFiller(world, config.stemBlock()));
