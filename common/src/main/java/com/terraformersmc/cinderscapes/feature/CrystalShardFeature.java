@@ -11,11 +11,10 @@ import com.terraformersmc.terraform.shapes.impl.layer.pathfinder.AddLayer;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.RotateLayer;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
-
-import java.util.Random;
 
 public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
     public CrystalShardFeature() {

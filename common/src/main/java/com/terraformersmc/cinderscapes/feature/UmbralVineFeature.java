@@ -2,18 +2,17 @@ package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.block.GhastlyEctoplasmBlock;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import com.terraformersmc.cinderscapes.util.EightWayDirection;
 import com.terraformersmc.cinderscapes.util.MathHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.EightWayDirection;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
-
-import java.util.Random;
 
 public class UmbralVineFeature extends Feature<DefaultFeatureConfig> {
     public UmbralVineFeature() {

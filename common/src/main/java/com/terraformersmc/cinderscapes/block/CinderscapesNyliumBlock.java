@@ -8,8 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.NyliumBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 // TODO: Look into maybe removing the method and defining that behavior at declaration
 public class CinderscapesNyliumBlock extends NyliumBlock {

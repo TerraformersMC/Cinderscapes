@@ -1,4 +1,4 @@
-package com.terraformersmc.cinderscapes.worldgen;
+package com.terraformersmc.cinderscapes.biomegen;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.biome.AshyShoalsBiome;

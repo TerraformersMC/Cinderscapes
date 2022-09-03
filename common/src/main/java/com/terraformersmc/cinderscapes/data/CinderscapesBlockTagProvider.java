@@ -44,6 +44,10 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 			.add(CinderscapesBlocks.UMBRAL_HYPHAE)
 			.add(CinderscapesBlocks.UMBRAL_STEM);
 
+		this.getOrCreateTagBuilder(BlockTags.NETHER_CARVER_REPLACEABLES)
+			.add(CinderscapesBlocks.UMBRAL_NYLIUM)
+			.add(CinderscapesBlocks.UMBRAL_WART_BLOCK);
+
 		this.getOrCreateTagBuilder(BlockTags.NON_FLAMMABLE_WOOD)
 			.add(CinderscapesBlocks.SCORCHED_BUTTON)
 			.add(CinderscapesBlocks.SCORCHED_DOOR)

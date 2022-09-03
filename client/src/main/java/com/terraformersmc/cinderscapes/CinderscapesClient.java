@@ -12,7 +12,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.text.Style;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 @SuppressWarnings("unused")
@@ -79,7 +79,7 @@ public class CinderscapesClient implements ClientModInitializer {
 
         ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
             if (stack.isOf(CinderscapesBlocks.NODZOL.asItem())) {
-                lines.add(new TranslatableText("block.cinderscapes.nodzol.description").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
+                lines.add(Text.translatable("block.cinderscapes.nodzol.description").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
             }
         });
 

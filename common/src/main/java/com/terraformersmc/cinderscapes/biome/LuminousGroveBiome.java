@@ -23,14 +23,13 @@ import net.minecraft.world.gen.feature.NetherPlacedFeatures;
 import net.minecraft.world.gen.feature.OrePlacedFeatures;
 
 public class LuminousGroveBiome {
-    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.35F, 0.35F, 0.0F, 0.0F, 0.0F, 0.0F, 0.2F);
+    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.35F, 0.3F, 0.0F, 0.0F, 0.0F, 0.0F, 0.225F);
 
     public static Biome create() {
         return new Biome.Builder()
                 .generationSettings(createGenerationSettings())
                 .spawnSettings(createSpawnSettings())
                 .precipitation(Biome.Precipitation.NONE)
-                .category(Biome.Category.NETHER)
                 .temperature(2.0F)
                 .downfall(0.0F)
                 .effects((new BiomeEffects.Builder())

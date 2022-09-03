@@ -29,7 +29,7 @@ import java.util.function.Supplier;
 public abstract class MixinServerWorld extends World {
 
     public MixinServerWorld(MutableWorldProperties properties, RegistryKey<World> registryRef, RegistryEntry<DimensionType> dimensionType, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed) {
-        super(properties, registryRef, dimensionType, profiler, isClient, debugWorld, seed);
+        super(properties, registryRef, dimensionType, profiler, isClient, debugWorld, seed, 0);
     }
 
     // TODO: Revisit this and make it easier to read

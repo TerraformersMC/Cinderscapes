@@ -36,3 +36,35 @@ public class CinderscapesBiomes {
         return key;
     }
 }
+
+/*
+ * Nether biome noise points for future reference:
+ *
+ * |--  -2/+2  ---------------------| |--  =0=  -------------------------------------------------------|  |--  0/+1  --|
+ * float temperature, float humidity, float continentalness, float erosion, float depth, float weirdness, float offset
+ *
+ *  == VANILLA ==
+ *
+ *  TEMP  HUMIDI  CONTIN  EROSI  DEPTH  WEIRD  OFFSET  BIOME
+ *  0.0f,   0.0f,  0.0f,  0.0f,  0.0f,  0.0f,  0.0f    NETHER_WASTES
+ *  0.0f,  -0.5f,  0.0f,  0.0f,  0.0f,  0.0f,  0.0f    SOUL_SAND_VALLEY
+ *  0.4f,   0.0f,  0.0f,  0.0f,  0.0f,  0.0f,  0.0f    CRIMSON_FOREST
+ *  0.0f,   0.5f,  0.0f,  0.0f,  0.0f,  0.0f,  0.375f  WARPED_FOREST
+ * -0.5f,   0.0f,  0.0f,  0.0f,  0.0f,  0.0f,  0.175f  BASALT_DELTAS
+ *
+ *  == 1.18 ==
+ *
+ *  TEMP  HUMIDI  CONTIN  EROSI  DEPTH  WEIRD  OFFSET  BIOME
+ * -0.35F,  0.0F,  0.2F,  0.0F,  0.35F, 0.0F,  0.0F    ASHY_SHOALS
+ *  0.15F,  0.05F, 0.2F,  0.0F,  0.25F, 0.05F, 0.0F    BLACKSTONE_SHALES
+ *  0.35F,  0.35F, 0.0F,  0.0F,  0.0F,  0.0F,  0.2F    LUMINOUS_GROVE
+ *  0.0F,   0.0F,  0.0F,  0.0F,  0.35F, 0.35F, 0.2F    QUARTZ_CAVERN
+ *
+ *  == 1.19 ==
+ *
+ *  TEMP  HUMIDI  CONTIN  EROSI  DEPTH  WEIRD  OFFSET  BIOME
+ * -0.35F, -0.3F,  0.0F,  0.0F,  0.0F,  0.0F,  0.2F    ASHY_SHOALS
+ *  0.1F,  -0.05F, 0.0F,  0.0F,  0.0F,  0.0F,  0.0F    BLACKSTONE_SHALES
+ *  0.35F,  0.3F,  0.0F,  0.0F,  0.0F,  0.0F,  0.225F  LUMINOUS_GROVE
+ * -0.225F, 0.0F,  0.0F,  0.0F,  0.0F,  0.0F,  0.1F    QUARTZ_CAVERN
+ */

@@ -4,9 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "ChunkGeneratorSettingsAccessor",
-    "MaterialRuleContextAccessor",
     "MixinMinecraftServer",
-    "MixinNetherCaveCarver",
     "MixinSurfaceBuilder",
     "NoiseChunkGeneratorAccessor"
   ],

@@ -1,33 +1,27 @@
 package com.terraformersmc.cinderscapes.placementmodifier;
 
-import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacementModifierTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.FeaturePlacementContext;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
-import org.slf4j.Logger;
 
 import java.util.List;
-import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class SafelistRangeFloorPlacementModifier extends PlacementModifier {
-    public static final Codec<SafelistRangeFloorPlacementModifier> UNIFORM_CODEC = RecordCodecBuilder.create(instance -> {
-        return instance.group(YOffset.OFFSET_CODEC.fieldOf("min_inclusive").forGetter(provider -> {
-            return provider.minOffset;
-        }), YOffset.OFFSET_CODEC.fieldOf("max_inclusive").forGetter(provider -> {
-            return provider.maxOffset;
-        }), BlockState.CODEC.listOf().fieldOf("safelist").forGetter(provider -> {
-            return provider.safelist;
-        })).apply(instance, SafelistRangeFloorPlacementModifier::new);
-    });
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Codec<SafelistRangeFloorPlacementModifier> UNIFORM_CODEC = RecordCodecBuilder.create(
+            instance -> instance.group(
+                    YOffset.OFFSET_CODEC.fieldOf("min_inclusive").forGetter(provider -> provider.minOffset),
+                    YOffset.OFFSET_CODEC.fieldOf("max_inclusive").forGetter(provider -> provider.maxOffset),
+                    BlockState.CODEC.listOf().fieldOf("safelist").forGetter(provider -> provider.safelist)
+            ).apply(instance, SafelistRangeFloorPlacementModifier::new));
     private final List<BlockState> safelist;
     private final YOffset minOffset;
     private final YOffset maxOffset;

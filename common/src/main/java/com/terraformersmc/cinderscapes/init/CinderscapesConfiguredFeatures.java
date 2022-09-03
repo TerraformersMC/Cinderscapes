@@ -147,7 +147,7 @@ public final class CinderscapesConfiguredFeatures {
     static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> register(String id, ConfiguredFeature<FC, F> cf) {
         Identifier realId = Cinderscapes.id(id);
         Preconditions.checkState(!BuiltinRegistries.CONFIGURED_FEATURE.getIds().contains(realId), "Duplicate ID: %s", id);
-        return BuiltinRegistries.method_40360(BuiltinRegistries.CONFIGURED_FEATURE, realId.toString(), cf);
+        return BuiltinRegistries.addCasted(BuiltinRegistries.CONFIGURED_FEATURE, realId.toString(), cf);
     }
 
     static  <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, F>> registerStrict(String id, F feature, FC config) {
@@ -157,6 +157,6 @@ public final class CinderscapesConfiguredFeatures {
     static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, F>> registerStrict(String id, ConfiguredFeature<FC, F> cf) {
         Identifier realId = Cinderscapes.id(id);
         Preconditions.checkState(!BuiltinRegistries.CONFIGURED_FEATURE.getIds().contains(realId), "Duplicate ID: %s", id);
-        return BuiltinRegistries.method_40360(BuiltinRegistries.CONFIGURED_FEATURE, realId.toString(), cf);
+        return BuiltinRegistries.addCasted(BuiltinRegistries.CONFIGURED_FEATURE, realId.toString(), cf);
     }
 }

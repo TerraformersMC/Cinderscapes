@@ -24,14 +24,13 @@ import net.minecraft.world.gen.feature.OrePlacedFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
 public class BlackstoneShalesBiome {
-    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.15F, 0.05F, 0.2F, 0.0F, 0.25F, 0.05F, 0.0F);
+    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.10F, -0.05F, 0.0F, 0.0F, 0.0F, 0.00F, 0.0F);
 
     public static Biome create() {
         return new Biome.Builder()
                 .generationSettings(createGenerationSettings())
                 .spawnSettings(createSpawnSettings())
                 .precipitation(Biome.Precipitation.NONE)
-                .category(Biome.Category.NETHER)
                 .temperature(2.0F)
                 .downfall(0.0F)
                 .effects(new BiomeEffects.Builder()

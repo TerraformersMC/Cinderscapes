@@ -3,11 +3,10 @@ package com.terraformersmc.cinderscapes.feature;
 import com.terraformersmc.cinderscapes.feature.config.VegetationFeatureConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
-
-import java.util.Random;
 
 public class VegetationFeature extends Feature<VegetationFeatureConfig> {
     public VegetationFeature() {

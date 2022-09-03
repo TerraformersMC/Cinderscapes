@@ -1,7 +1,7 @@
 package com.terraformersmc.cinderscapes;
 
 import com.terraformersmc.cinderscapes.surfacebuilders.CinderscapesSurfaceBuilders;
-import com.terraformersmc.cinderscapes.worldgen.CinderscapesBiomeAPIGeneration;
+import com.terraformersmc.cinderscapes.biomegen.CinderscapesBiomeAPIGeneration;
 import net.fabricmc.api.ModInitializer;
 
 public class CinderscapesWorldgen implements ModInitializer {

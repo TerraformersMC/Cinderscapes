@@ -219,7 +219,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.criterion("has_logs", InventoryChangedCriterion.Conditions.items(CinderscapesBlocks.SCORCHED_STEM))
 				.offerTo(exporter);
 		offerPlanksRecipe(exporter, CinderscapesBlocks.SCORCHED_PLANKS, CinderscapesItemTags.SCORCHED_STEMS);
-		createPressurePlateRecipe(exporter, CinderscapesBlocks.SCORCHED_PRESSURE_PLATE, CinderscapesBlocks.SCORCHED_PLANKS);
+		offerPressurePlateRecipe(exporter, CinderscapesBlocks.SCORCHED_PRESSURE_PLATE, CinderscapesBlocks.SCORCHED_PLANKS);
 		createSignRecipe(CinderscapesItems.SCORCHED_SIGN, Ingredient.ofItems(CinderscapesBlocks.SCORCHED_PLANKS))
 				.criterion("has_planks", InventoryChangedCriterion.Conditions.items(CinderscapesBlocks.SCORCHED_PLANKS))
 				.offerTo(exporter);
@@ -256,7 +256,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.criterion("has_logs", InventoryChangedCriterion.Conditions.items(CinderscapesBlocks.UMBRAL_STEM))
 				.offerTo(exporter);
 		offerPlanksRecipe(exporter, CinderscapesBlocks.UMBRAL_PLANKS, CinderscapesItemTags.UMBRAL_STEMS);
-		createPressurePlateRecipe(exporter, CinderscapesBlocks.UMBRAL_PRESSURE_PLATE, CinderscapesBlocks.UMBRAL_PLANKS);
+		offerPressurePlateRecipe(exporter, CinderscapesBlocks.UMBRAL_PRESSURE_PLATE, CinderscapesBlocks.UMBRAL_PLANKS);
 		createSignRecipe(CinderscapesItems.UMBRAL_SIGN, Ingredient.ofItems(CinderscapesBlocks.UMBRAL_PLANKS))
 				.criterion("has_planks", InventoryChangedCriterion.Conditions.items(CinderscapesBlocks.UMBRAL_PLANKS))
 				.offerTo(exporter);
