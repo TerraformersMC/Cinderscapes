@@ -16,6 +16,12 @@ public class CinderscapesSurfaceBuilders {
 				Blocks.MAGMA_BLOCK.getDefaultState(),
 				Blocks.LAVA.getDefaultState()
 			).setBiomeKey(CinderscapesBiomes.ASHY_SHOALS));
+
+		builders.add(new LuminousGroveSurfaceBuilder(
+				CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(),
+				CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState(),
+				Blocks.NETHERRACK.getDefaultState()
+		).setBiomeKey(CinderscapesBiomes.LUMINOUS_GROVE));
 	}
 
 	public static ArrayList<CinderscapesSurfaceBuilder> getBuilders() {

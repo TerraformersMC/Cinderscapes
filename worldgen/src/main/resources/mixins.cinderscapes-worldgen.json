@@ -3,12 +3,8 @@
   "package": "com.terraformersmc.cinderscapes.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ChunkGeneratorSettingsAccessor",
-    "MaterialRuleContextAccessor",
-    "MixinMinecraftServer",
     "MixinNetherCaveCarver",
-    "MixinSurfaceBuilder",
-    "NoiseChunkGeneratorAccessor"
+    "MixinSurfaceBuilder"
   ],
   "client": [
   ],

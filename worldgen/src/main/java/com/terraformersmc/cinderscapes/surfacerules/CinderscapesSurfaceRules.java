@@ -22,6 +22,8 @@ public class CinderscapesSurfaceRules {
                                 MaterialRules.block(CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState())),
                             MaterialRules.block(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState())))))));
 
+    // TODO: Actually ATM there are no active Cinderscapes surface rules.  TerraBlender when present overwrites them.
+    //       When we migrate to TerraBlender, consider whether to migrate back from surface builders to surface rules...
     // At the moment, there's just Luminous Grove.  To add another, wrap them in MaterialRules.sequence()
     public static final MaterialRules.MaterialRule CINDERSCAPES_NETHER_RULES = LUMINOUS_GROVE;
 
