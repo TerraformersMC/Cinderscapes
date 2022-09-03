@@ -106,11 +106,6 @@ allprojects {
         maven {
             url = "https://maven.shedaniel.me"
         }
-
-        // TerraBlender
-        maven {
-            url = 'https://maven.minecraftforge.net/'
-        }
     }
 }
 
