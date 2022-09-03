@@ -3,7 +3,7 @@
 ![Gradle Build](https://github.com/TerraformersMC/Cinderscapes/workflows/Check%20Build/badge.svg?event=push)
 
 <p align="center">
-Cinderscapes is a beautiful, yet frightening biomes mod for Minecraft 1.16 and 1.18.2 running on the Fabric mod loader. Cinderscapes enchances the default minecraft experience by adding four new rich and detailed nether biomes following in the same style as those already in the vanilla game. In addition to new biomes Cinderscapes adds some new unique types of building blocks further expanding your building capabilities.
+Cinderscapes is a beautiful, yet frightening biomes mod for Minecraft 1.16, 1.18.2, and 1.19.2+ running on the Fabric mod loader. Cinderscapes enchances the default minecraft experience by adding four new rich and detailed nether biomes following in the same style as those already in the vanilla game. In addition to new biomes Cinderscapes adds some new unique types of building blocks further expanding your building capabilities.
 </p>
 <p align="center">
 	<a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api"><img title="Requires Fabric API" height="50" src="https://i.imgur.com/Ol1Tcf8.png"></a>
