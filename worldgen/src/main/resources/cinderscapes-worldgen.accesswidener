@@ -2,7 +2,4 @@ accessWidener v1 named
 
 accessible  class   net/minecraft/world/gen/surfacebuilder/MaterialRules$BlockStateRule
 accessible  class   net/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRuleContext
-accessible  class   net/minecraft/world/gen/surfacebuilder/MaterialRules$BooleanSupplier
-accessible  method  net/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRuleContext initVerticalContext (IIIIII)V
-accessible  field   net/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRuleContext surfaceBuilder Lnet/minecraft/world/gen/surfacebuilder/SurfaceBuilder;
 accessible  method  net/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRuleContext method_39551 ()I
