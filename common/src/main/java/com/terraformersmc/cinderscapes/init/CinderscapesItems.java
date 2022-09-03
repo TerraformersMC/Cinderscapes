@@ -33,8 +33,8 @@ public class CinderscapesItems {
     public static final Item SMOKY_QUARTZ = add("smoky_quartz", new Item(new Item.Settings().group(ItemGroup.MATERIALS)));
     public static final Item SULFUR_QUARTZ = add("sulfur_quartz", new Item(new Item.Settings().group(ItemGroup.MATERIALS)));
 
-    public static final Item MUSIC_DISC_LUMINOUS_PLANTATION = add("music_disc_luminous_plantation", new CinderscapesMusicDiscItem(14, CinderscapesSoundEvents.MUSIC_DISC_LUMINOUS_PLANTATION));
-    public static final Item MUSIC_DISC_CHILLING_IN_HELL = add("music_disc_chilling_in_hell", new CinderscapesMusicDiscItem(14, CinderscapesSoundEvents.MUSIC_DISC_CHILLING_IN_HELL));
+    public static final Item MUSIC_DISC_LUMINOUS_PLANTATION = add("music_disc_luminous_plantation", new CinderscapesMusicDiscItem(14, CinderscapesSoundEvents.MUSIC_DISC_LUMINOUS_PLANTATION, 231));
+    public static final Item MUSIC_DISC_CHILLING_IN_HELL = add("music_disc_chilling_in_hell", new CinderscapesMusicDiscItem(14, CinderscapesSoundEvents.MUSIC_DISC_CHILLING_IN_HELL, 136));
 
     private static <I extends Item> I add(String name, I item) {
         ITEMS.put(Cinderscapes.id(name), item);
