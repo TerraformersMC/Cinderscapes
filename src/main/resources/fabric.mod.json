@@ -36,11 +36,11 @@
   },
   "depends": {
     "fabricloader": ">=0.13.2",
-    "fabric": ">=0.47.0",
+    "fabric": ">=0.57.0",
     "minecraft": ">=1.18.2"
   },
   "breaks": {
-    "modmenu": "<2.0.0"
+    "modmenu": "<3.1.0"
   },
   "custom": {
     "modupdater": {
