@@ -40,7 +40,7 @@
     "minecraft": ">=1.19"
   },
   "breaks": {
-    "modmenu": "<2.0.0",
+    "modmenu": "<4.0.0",
     "terrablender": "2.0.1.127"
   },
   "custom": {
