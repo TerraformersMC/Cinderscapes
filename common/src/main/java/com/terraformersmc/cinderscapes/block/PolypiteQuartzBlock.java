@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.block;
 
+import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -23,7 +24,7 @@ public class PolypiteQuartzBlock extends Block {
     private static final Map<Direction, VoxelShape> DIRECTION_TO_SHAPE = new HashMap<>();
 
     public PolypiteQuartzBlock(Settings settings) {
-        super(settings.luminance((state) -> 4));
+        super(settings.luminance((state) -> CinderscapesConfig.INSTANCE.polypiteLuminance));
     }
 
     @Override

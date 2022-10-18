@@ -17,12 +17,11 @@ public final class CinderscapesConfig implements ConfigData {
 
     public boolean enableAshFall = true;
 
-    public final boolean easterEggs = false;
+    public boolean easterEggs = false;
 
-    public static void init() {
-        AutoConfig.register(CinderscapesConfig.class, GsonConfigSerializer::new);
-        INSTANCE = AutoConfig.getConfigHolder(CinderscapesConfig.class).getConfig();
-    }
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.BoundedDiscrete(max = 15)
+    public int polypiteLuminance = 4;
 
     public static class BiomeOptions {
         @ConfigEntry.Gui.RequiresRestart
@@ -33,5 +32,12 @@ public final class CinderscapesConfig implements ConfigData {
         public boolean enableLuminousGrove = true;
         @ConfigEntry.Gui.RequiresRestart
         public boolean enableQuartzCavern = true;
+    }
+
+    public static void init() { }
+
+    static {
+        AutoConfig.register(CinderscapesConfig.class, GsonConfigSerializer::new);
+        INSTANCE = AutoConfig.getConfigHolder(CinderscapesConfig.class).getConfig();
     }
 }
