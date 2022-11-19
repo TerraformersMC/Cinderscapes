@@ -22,11 +22,13 @@ import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import com.terraformersmc.terraform.wood.block.StrippableLogBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Items;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -245,27 +247,33 @@ public class CinderscapesBlocks {
             Registry.register(Registry.BLOCK, id, BLOCKS.get(id));
         }
 
-        registerCompostableBlocks();
+        addCompostables();
     }
 
-    private static void registerCompostableBlocks() {
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(TWILIGHT_FESCUES.asItem(), 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(TWILIGHT_TENDRILS.asItem(), 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(SCORCHED_TENDRILS.asItem(), 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(SCORCHED_SPROUTS.asItem(), 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(SCORCHED_SHRUB.asItem(), 0.3f);
+    private static void addCompostables() {
+        CompostingChanceRegistry compostingRegistry = CompostingChanceRegistry.INSTANCE;
+        float FLOWER_CHANCE = compostingRegistry.get(Items.POPPY);
+        float FUNGUS_CHANCE = compostingRegistry.get(Items.CRIMSON_FUNGUS);
+        float GRASS_CHANCE = compostingRegistry.get(Items.GRASS);
+        float WART_BLOCK_CHANCE = compostingRegistry.get(Items.NETHER_WART_BLOCK);
 
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(CRYSTINIUM.asItem(), 0.65f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(PYRACINTH.asItem(), 0.65f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(PHOTOFERN.asItem(), 0.65f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(TALL_PHOTOFERN.asItem(), 0.65f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(LUMINOUS_POD.asItem(), 0.65f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(UMBRAL_FUNGUS.asItem(), 0.65f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(GHASTLY_ECTOPLASM.asItem(), 0.65f);
+        compostingRegistry.add(SCORCHED_SHRUB, GRASS_CHANCE);
+        compostingRegistry.add(SCORCHED_SPROUTS, GRASS_CHANCE);
+        compostingRegistry.add(SCORCHED_TENDRILS, GRASS_CHANCE);
+        compostingRegistry.add(TWILIGHT_FESCUES, GRASS_CHANCE);
+        compostingRegistry.add(TWILIGHT_TENDRILS, GRASS_CHANCE);
 
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(UMBRAL_WART_BLOCK.asItem(), 0.85f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(UMBRAL_FLESH_BLOCK.asItem(), 0.85f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(TWILIGHT_VINE_BLOCK.asItem(), 0.85f);
+        compostingRegistry.add(CRYSTINIUM, FLOWER_CHANCE);
+        compostingRegistry.add(GHASTLY_ECTOPLASM, FLOWER_CHANCE);
+        compostingRegistry.add(LUMINOUS_POD, FLOWER_CHANCE);
+        compostingRegistry.add(PHOTOFERN, FLOWER_CHANCE);
+        compostingRegistry.add(PYRACINTH, FLOWER_CHANCE);
+        compostingRegistry.add(TALL_PHOTOFERN, FLOWER_CHANCE);
+        compostingRegistry.add(UMBRAL_FUNGUS, FUNGUS_CHANCE);
+
+        compostingRegistry.add(TWILIGHT_VINE_BLOCK, WART_BLOCK_CHANCE);
+        compostingRegistry.add(UMBRAL_FLESH_BLOCK, WART_BLOCK_CHANCE);
+        compostingRegistry.add(UMBRAL_WART_BLOCK, WART_BLOCK_CHANCE);
     }
 
     private static boolean never(BlockState blockState, BlockView blockView, BlockPos pos) {
