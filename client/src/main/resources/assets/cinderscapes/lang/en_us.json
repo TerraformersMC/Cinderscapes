@@ -26,6 +26,7 @@
   "block.cinderscapes.stripped_umbral_stem": "Stripped Umbral Stem",
   "block.cinderscapes.umbral_fungus": "Umbral Fungus",
   "block.cinderscapes.umbral_sign": "Umbral Sign",
+  "block.cinderscapes.umbral_hanging_sign": "Umbral Hanging Sign",
   "block.cinderscapes.umbral_hyphae": "Umbral Hyphae",
   "block.cinderscapes.stripped_umbral_hyphae": "Stripped Umbral Hyphae",
   "block.cinderscapes.umbral_button": "Umbral Button",
@@ -103,6 +104,7 @@
   "block.cinderscapes.ash_block": "Ash Block",
 
   "block.cinderscapes.scorched_sign": "Scorched Sign",
+  "block.cinderscapes.scorched_hanging_sign": "Scorched Hanging Sign",
   "block.cinderscapes.scorched_pressure_plate": "Scorched Pressure Plate",
   "block.cinderscapes.scorched_fence": "Scorched Fence",
   "block.cinderscapes.scorched_door": "Scorched Door",

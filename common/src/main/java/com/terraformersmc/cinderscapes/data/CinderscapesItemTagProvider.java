@@ -3,41 +3,45 @@ package com.terraformersmc.cinderscapes.data;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
-import net.minecraft.tag.ItemTags;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.ItemTags;
+
+import java.util.concurrent.CompletableFuture;
 
 public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvider {
-	public CinderscapesItemTagProvider(FabricDataGenerator dataGenerator) {
-		super(dataGenerator);
+	protected CinderscapesItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture, BlockTagProvider blockTagProvider) {
+		super(output, registriesFuture, blockTagProvider);
 	}
 
 	@Override
-	protected void generateTags() {
+	public void configure(RegistryWrapper.WrapperLookup registries) {
 		// local item tags
-		this.getOrCreateTagBuilder(CinderscapesItemTags.ROSE_QUARTZ_CONVERTIBLES)
+		getOrCreateTagBuilder(CinderscapesItemTags.ROSE_QUARTZ_CONVERTIBLES)
 			.add(CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK.asItem())
 			.add(CinderscapesBlocks.ROSE_QUARTZ_BLOCK.asItem())
 			.add(CinderscapesBlocks.ROSE_QUARTZ_PILLAR.asItem());
 
-		this.getOrCreateTagBuilder(CinderscapesItemTags.SCORCHED_STEMS)
+		getOrCreateTagBuilder(CinderscapesItemTags.SCORCHED_STEMS)
 			.add(CinderscapesBlocks.SCORCHED_HYPHAE.asItem())
 			.add(CinderscapesBlocks.SCORCHED_STEM.asItem())
 			.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE.asItem())
 			.add(CinderscapesBlocks.STRIPPED_SCORCHED_STEM.asItem());
 
-		this.getOrCreateTagBuilder(CinderscapesItemTags.SMOKY_QUARTZ_CONVERTIBLES)
+		getOrCreateTagBuilder(CinderscapesItemTags.SMOKY_QUARTZ_CONVERTIBLES)
 			.add(CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK.asItem())
 			.add(CinderscapesBlocks.SMOKY_QUARTZ_BLOCK.asItem())
 			.add(CinderscapesBlocks.SMOKY_QUARTZ_PILLAR.asItem());
 
-		this.getOrCreateTagBuilder(CinderscapesItemTags.SULFUR_QUARTZ_CONVERTIBLES)
+		getOrCreateTagBuilder(CinderscapesItemTags.SULFUR_QUARTZ_CONVERTIBLES)
 			.add(CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK.asItem())
 			.add(CinderscapesBlocks.SULFUR_QUARTZ_BLOCK.asItem())
 			.add(CinderscapesBlocks.SULFUR_QUARTZ_PILLAR.asItem());
 
-		this.getOrCreateTagBuilder(CinderscapesItemTags.UMBRAL_STEMS)
+		getOrCreateTagBuilder(CinderscapesItemTags.UMBRAL_STEMS)
 			.add(CinderscapesBlocks.UMBRAL_HYPHAE.asItem())
 			.add(CinderscapesBlocks.UMBRAL_STEM.asItem())
 			.add(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE.asItem())
@@ -45,16 +49,16 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 
 
 		// common item tags
-		this.getOrCreateTagBuilder(CinderscapesItemTags.DARK_ASHES_DUSTS)
+		getOrCreateTagBuilder(CinderscapesItemTags.DARK_ASHES_DUSTS)
 			.add(CinderscapesItems.ASH_PILE);
 
-		this.getOrCreateTagBuilder(CinderscapesItemTags.QUARTZ)
+		getOrCreateTagBuilder(CinderscapesItemTags.QUARTZ)
 			.add(Items.QUARTZ)
 			.add(CinderscapesItems.ROSE_QUARTZ)
 			.add(CinderscapesItems.SMOKY_QUARTZ)
 			.add(CinderscapesItems.SULFUR_QUARTZ);
 
-		this.getOrCreateTagBuilder(CinderscapesItemTags.QUARTZ_BLOCKS)
+		getOrCreateTagBuilder(CinderscapesItemTags.QUARTZ_BLOCKS)
 			.add(CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK.asItem())
 			.add(CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK.asItem())
 			.add(CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK.asItem())
@@ -71,24 +75,22 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 			.add(CinderscapesBlocks.SULFUR_QUARTZ_BRICKS.asItem())
 			.add(CinderscapesBlocks.SULFUR_QUARTZ_PILLAR.asItem());
 
-		this.getOrCreateTagBuilder(CinderscapesItemTags.QUARTZ_ORES)
+		getOrCreateTagBuilder(CinderscapesItemTags.QUARTZ_ORES)
 			.add(CinderscapesBlocks.ROSE_QUARTZ_ORE.asItem())
 			.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE.asItem())
 			.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE.asItem());
 
-		this.getOrCreateTagBuilder(CinderscapesItemTags.SULFUR_ORES)
+		getOrCreateTagBuilder(CinderscapesItemTags.SULFUR_ORES)
 			.add(CinderscapesBlocks.SULFUR_ORE.asItem());
 
-		this.getOrCreateTagBuilder(CinderscapesItemTags.SULFURS)
+		getOrCreateTagBuilder(CinderscapesItemTags.SULFURS)
 			.add(CinderscapesItems.SULFUR);
 
 
 		// vanilla item tags
-		this.getOrCreateTagBuilder(ItemTags.LOGS)
-			.addTag(CinderscapesItemTags.SCORCHED_STEMS)
-			.addTag(CinderscapesItemTags.UMBRAL_STEMS);
+		copy(BlockTags.LOGS, ItemTags.LOGS);
 
-		this.getOrCreateTagBuilder(ItemTags.NON_FLAMMABLE_WOOD)
+		getOrCreateTagBuilder(ItemTags.NON_FLAMMABLE_WOOD)
 			.add(CinderscapesBlocks.SCORCHED_BUTTON.asItem())
 			.add(CinderscapesBlocks.SCORCHED_DOOR.asItem())
 			.add(CinderscapesBlocks.SCORCHED_FENCE.asItem())
@@ -120,62 +122,32 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 			.add(CinderscapesBlocks.UMBRAL_TRAPDOOR.asItem())
 			.add(CinderscapesBlocks.UMBRAL_WALL_SIGN.asItem());
 
-		this.getOrCreateTagBuilder(ItemTags.PLANKS)
-			.add(CinderscapesBlocks.SCORCHED_PLANKS.asItem())
-			.add(CinderscapesBlocks.UMBRAL_PLANKS.asItem());
+		copy(BlockTags.PLANKS, ItemTags.PLANKS);
 
-		this.getOrCreateTagBuilder(ItemTags.SIGNS)
-			.add(CinderscapesBlocks.SCORCHED_SIGN.asItem())
-			.add(CinderscapesBlocks.UMBRAL_SIGN.asItem());
+		copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
 
-		this.getOrCreateTagBuilder(ItemTags.SLABS)
-			.add(CinderscapesBlocks.ROSE_QUARTZ_SLAB.asItem())
-			.add(CinderscapesBlocks.SMOKY_QUARTZ_SLAB.asItem())
-			.add(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_SLAB.asItem())
-			.add(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_SLAB.asItem())
-			.add(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_SLAB.asItem())
-			.add(CinderscapesBlocks.SULFUR_QUARTZ_SLAB.asItem());
+		copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
 
-		this.getOrCreateTagBuilder(ItemTags.SMALL_FLOWERS)
-			.add(CinderscapesBlocks.CRYSTINIUM.asItem())
-			.add(CinderscapesBlocks.PYRACINTH.asItem())
-			.add(CinderscapesBlocks.SCORCHED_TENDRILS.asItem())
-			.add(CinderscapesBlocks.TWILIGHT_TENDRILS.asItem());
+		copy(BlockTags.SLABS, ItemTags.SLABS);
 
-		this.getOrCreateTagBuilder(ItemTags.STAIRS)
-			.add(CinderscapesBlocks.ROSE_QUARTZ_STAIRS.asItem())
-			.add(CinderscapesBlocks.SMOKY_QUARTZ_STAIRS.asItem())
-			.add(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_STAIRS.asItem())
-			.add(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS.asItem())
-			.add(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_STAIRS.asItem())
-			.add(CinderscapesBlocks.SULFUR_QUARTZ_STAIRS.asItem());
+		copy(BlockTags.SMALL_FLOWERS, ItemTags.SMALL_FLOWERS);
 
-		this.getOrCreateTagBuilder(ItemTags.WOODEN_BUTTONS)
-			.add(CinderscapesBlocks.SCORCHED_BUTTON.asItem())
-			.add(CinderscapesBlocks.UMBRAL_BUTTON.asItem());
+		copy(BlockTags.STAIRS, ItemTags.STAIRS);
 
-		this.getOrCreateTagBuilder(ItemTags.WOODEN_DOORS)
-			.add(CinderscapesBlocks.SCORCHED_DOOR.asItem())
-			.add(CinderscapesBlocks.UMBRAL_DOOR.asItem());
+		copy(BlockTags.WART_BLOCKS, ItemTags.WART_BLOCKS);
 
-		this.getOrCreateTagBuilder(ItemTags.WOODEN_FENCES)
-			.add(CinderscapesBlocks.SCORCHED_FENCE.asItem())
-			.add(CinderscapesBlocks.UMBRAL_FENCE.asItem());
+		copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
 
-		this.getOrCreateTagBuilder(ItemTags.WOODEN_PRESSURE_PLATES)
-			.add(CinderscapesBlocks.SCORCHED_PRESSURE_PLATE.asItem())
-			.add(CinderscapesBlocks.UMBRAL_PRESSURE_PLATE.asItem());
+		copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
 
-		this.getOrCreateTagBuilder(ItemTags.WOODEN_SLABS)
-			.add(CinderscapesBlocks.SCORCHED_SLAB.asItem())
-			.add(CinderscapesBlocks.UMBRAL_SLAB.asItem());
+		copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
 
-		this.getOrCreateTagBuilder(ItemTags.WOODEN_STAIRS)
-			.add(CinderscapesBlocks.SCORCHED_STAIRS.asItem())
-			.add(CinderscapesBlocks.UMBRAL_STAIRS.asItem());
+		copy(BlockTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
 
-		this.getOrCreateTagBuilder(ItemTags.WOODEN_TRAPDOORS)
-			.add(CinderscapesBlocks.SCORCHED_TRAPDOOR.asItem())
-			.add(CinderscapesBlocks.UMBRAL_TRAPDOOR.asItem());
+		copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
+
+		copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
+
+		copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
 	}
 }

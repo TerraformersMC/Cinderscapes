@@ -3,10 +3,12 @@ package com.terraformersmc.cinderscapes.biome;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.mixin.OverworldBiomeCreatorAccessor;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.SoundEvents;
@@ -25,9 +27,9 @@ import net.minecraft.world.gen.feature.OrePlacedFeatures;
 public class AshyShoalsBiome {
     public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(-0.35F, -0.3F, 0.0F, 0.0F, 0.0F, 0.0F, 0.2F);
 
-    public static Biome create() {
+    public static Biome create(FabricDynamicRegistryProvider.Entries entries) {
         return new Biome.Builder()
-                .generationSettings(createGenerationSettings())
+                .generationSettings(createGenerationSettings(entries))
                 .spawnSettings(createSpawnSettings())
                 .precipitation(Biome.Precipitation.NONE)
                 .temperature(2.0F)
@@ -41,55 +43,49 @@ public class AshyShoalsBiome {
                         .loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D))
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, 0.0111D))
-                        .music(MusicType.createIngameMusic(CinderscapesSoundEvents.ASHY_SHOALS_MUSIC))
+                        .music(MusicType.createIngameMusic(Registries.SOUND_EVENT.getEntry(CinderscapesSoundEvents.ASHY_SHOALS_MUSIC)))
                         .build())
                 .build();
     }
 
-    private static GenerationSettings createGenerationSettings() {
-
-        GenerationSettings.Builder builder = new GenerationSettings.Builder();
+    private static GenerationSettings createGenerationSettings(FabricDynamicRegistryProvider.Entries entries) {
+        GenerationSettings.LookupBackedBuilder builder = new GenerationSettings.LookupBackedBuilder(entries.placedFeatures(), entries.configuredCarvers());
 
         // DEFAULT MINECRAFT FEATURES
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
-        vanillaNetherFeatures(builder);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA);
         DefaultBiomeFeatures.addNetherMineables(builder);
 
         // ANCIENT DEBRIS
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_DEBRIS_LARGE_ASHY_SHOALS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.ORE_DEBRIS_SMALL_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.DEBRIS_ORE_LARGE));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.DEBRIS_ORE_SMALL));
 
         // REPLACE NETHERRACK
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SAND_ASHY_SHOALS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.SOUL_SOIL_ASHY_SHOALS);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, CinderscapesPlacedFeatures.GRAVEL_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.ASHY_SOUL_SAND));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.ASHY_SOUL_SOIL));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.ASHY_GRAVEL));
 
         // ASH PILES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.ASH_PILES);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.ASH_PILES));
 
         // FEATURES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.DEAD_TREES);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.DEAD_TREES));
 
         // VEGETATION
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.VEGETATION_ASHY_SHOALS);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.ASHY_VEGETATION));
 
         // BRAMBLE BERRY BUSHES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.BRAMBLE_BERRY_BUSHES);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.BRAMBLE_BERRY_BUSHES));
 
         // TOP LAYER MODIFICATION
-        builder.feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, CinderscapesPlacedFeatures.ASH_TOP_LAYER);
+        builder.feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, entries.ref(CinderscapesPlacedFeatures.ASH_TOP_LAYER));
 
         return builder.build();
     }
 
-    private static void vanillaNetherFeatures(GenerationSettings.Builder generationSettings) {
-        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA);
-        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE);
-        generationSettings.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA);
-    }
-
     private static SpawnSettings createSpawnSettings() {
-
         SpawnSettings.Builder builder = new SpawnSettings.Builder();
 
         // SPAWNS

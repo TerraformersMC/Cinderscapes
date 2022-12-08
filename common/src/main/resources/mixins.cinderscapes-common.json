@@ -5,6 +5,7 @@
   "mixins": [
     "MixinAlterGroundTreeDecorator",
     "MixinNetherrackBlock",
+    "MixinPlantBlock",
     "MixinServerWorld",
     "OverworldBiomeCreatorAccessor",
     "SoundEventAccessor"

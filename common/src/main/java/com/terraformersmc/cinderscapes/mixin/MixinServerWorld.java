@@ -5,13 +5,13 @@ import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.profiler.Profiler;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -33,7 +33,7 @@ public abstract class MixinServerWorld extends World {
     }
 
     // TODO: Revisit this and make it easier to read
-    @Inject(method="tickChunk", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/server/world/ServerWorld;getBiome(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/registry/RegistryEntry;", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
+    @Inject(method="tickChunk", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/server/world/ServerWorld;getBiome(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/registry/entry/RegistryEntry;", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
     private void cinderscapes$tickChunk(WorldChunk chunk, int randomTickSpeed, CallbackInfo callback, ChunkPos chunkPos, boolean bl, int i, int j, Profiler profiler, BlockPos blockPos2, BlockPos blockPos3) {
         if (CinderscapesConfig.INSTANCE.enableAshFall) {
             BlockPos pos = this.getRandomPosInChunk(i, 0, j, 15);
@@ -62,5 +62,4 @@ public abstract class MixinServerWorld extends World {
         }
         return getBlockState(iPos.up());
     }
-
 }

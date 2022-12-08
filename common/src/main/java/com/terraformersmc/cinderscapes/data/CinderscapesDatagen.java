@@ -6,10 +6,13 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 public class CinderscapesDatagen implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator dataGenerator) {
-		dataGenerator.addProvider(CinderscapesBiomeTagProvider::new);
-		dataGenerator.addProvider(CinderscapesBlockLootTableProvider::new);
-		dataGenerator.addProvider(CinderscapesBlockTagProvider::new);
-		dataGenerator.addProvider(CinderscapesItemTagProvider::new);
-		dataGenerator.addProvider(CinderscapesRecipeProvider::new);
+		FabricDataGenerator.Pack pack = dataGenerator.createPack();
+
+		pack.addProvider(CinderscapesDynamicRegistryProvider::new);
+		pack.addProvider(CinderscapesBiomeTagProvider::new);
+		pack.addProvider(CinderscapesBlockLootTableProvider::new);
+		CinderscapesBlockTagProvider blockTagProvider = pack.addProvider(CinderscapesBlockTagProvider::new);
+		pack.addProvider((output, registries) -> new CinderscapesItemTagProvider(output, registries, blockTagProvider));
+		pack.addProvider(CinderscapesRecipeProvider::new);
 	}
 }

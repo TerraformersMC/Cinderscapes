@@ -2,25 +2,27 @@ package com.terraformersmc.cinderscapes.data;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Blocks;
-import net.minecraft.tag.BlockTags;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
+
+import java.util.concurrent.CompletableFuture;
 
 public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProvider {
-
-	public CinderscapesBlockTagProvider(FabricDataGenerator dataGenerator) {
-		super(dataGenerator);
+	protected CinderscapesBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+		super(output, registriesFuture);
 	}
 
 	@Override
-	protected void generateTags() {
+	public void configure(RegistryWrapper.WrapperLookup registries) {
 		// basic block tags
-		this.getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE)
+		getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE)
 			.add(CinderscapesBlocks.UMBRAL_FUNGUS)
 			.add(CinderscapesBlocks.UMBRAL_NYLIUM);
 
-		this.getOrCreateTagBuilder(BlockTags.FLOWER_POTS)
+		getOrCreateTagBuilder(BlockTags.FLOWER_POTS)
 			.add(CinderscapesBlocks.POTTED_CRYSTINIUM)
 			.add(CinderscapesBlocks.POTTED_LUMINOUS_POD)
 			.add(CinderscapesBlocks.POTTED_PHOTOFERN)
@@ -34,7 +36,7 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 			.add(CinderscapesBlocks.POTTED_TWILIGHT_TENDRILS)
 			.add(CinderscapesBlocks.POTTED_UMBRAL_FUNGUS);
 
-		this.getOrCreateTagBuilder(BlockTags.LOGS)
+		getOrCreateTagBuilder(BlockTags.LOGS)
 			.add(CinderscapesBlocks.SCORCHED_HYPHAE)
 			.add(CinderscapesBlocks.SCORCHED_STEM)
 			.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE)
@@ -44,50 +46,34 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 			.add(CinderscapesBlocks.UMBRAL_HYPHAE)
 			.add(CinderscapesBlocks.UMBRAL_STEM);
 
-		this.getOrCreateTagBuilder(BlockTags.NETHER_CARVER_REPLACEABLES)
+		getOrCreateTagBuilder(BlockTags.NETHER_CARVER_REPLACEABLES)
 			.add(CinderscapesBlocks.UMBRAL_NYLIUM)
 			.add(CinderscapesBlocks.UMBRAL_WART_BLOCK);
 
-		this.getOrCreateTagBuilder(BlockTags.NON_FLAMMABLE_WOOD)
-			.add(CinderscapesBlocks.SCORCHED_BUTTON)
-			.add(CinderscapesBlocks.SCORCHED_DOOR)
-			.add(CinderscapesBlocks.SCORCHED_FENCE)
-			.add(CinderscapesBlocks.SCORCHED_FENCE_GATE)
-			.add(CinderscapesBlocks.SCORCHED_HYPHAE)
-			.add(CinderscapesBlocks.SCORCHED_PLANKS)
-			.add(CinderscapesBlocks.SCORCHED_PRESSURE_PLATE)
-			.add(CinderscapesBlocks.SCORCHED_SIGN)
-			.add(CinderscapesBlocks.SCORCHED_SLAB)
-			.add(CinderscapesBlocks.SCORCHED_STAIRS)
-			.add(CinderscapesBlocks.SCORCHED_STEM)
-			.add(CinderscapesBlocks.SCORCHED_TRAPDOOR)
-			.add(CinderscapesBlocks.SCORCHED_WALL_SIGN)
-			.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE)
-			.add(CinderscapesBlocks.STRIPPED_SCORCHED_STEM)
-			.add(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE)
-			.add(CinderscapesBlocks.STRIPPED_UMBRAL_STEM)
-			.add(CinderscapesBlocks.UMBRAL_BUTTON)
-			.add(CinderscapesBlocks.UMBRAL_DOOR)
-			.add(CinderscapesBlocks.UMBRAL_FENCE)
-			.add(CinderscapesBlocks.UMBRAL_FENCE_GATE)
-			.add(CinderscapesBlocks.UMBRAL_HYPHAE)
-			.add(CinderscapesBlocks.UMBRAL_PLANKS)
-			.add(CinderscapesBlocks.UMBRAL_PRESSURE_PLATE)
-			.add(CinderscapesBlocks.UMBRAL_SIGN)
-			.add(CinderscapesBlocks.UMBRAL_SLAB)
-			.add(CinderscapesBlocks.UMBRAL_STAIRS)
-			.add(CinderscapesBlocks.UMBRAL_STEM)
-			.add(CinderscapesBlocks.UMBRAL_TRAPDOOR)
-			.add(CinderscapesBlocks.UMBRAL_WALL_SIGN);
-
-		this.getOrCreateTagBuilder(BlockTags.NYLIUM)
+		getOrCreateTagBuilder(BlockTags.NYLIUM)
 			.add(CinderscapesBlocks.UMBRAL_NYLIUM);
 
-		this.getOrCreateTagBuilder(BlockTags.PLANKS)
+		getOrCreateTagBuilder(BlockTags.PLANKS)
 			.add(CinderscapesBlocks.UMBRAL_PLANKS)
 			.add(CinderscapesBlocks.SCORCHED_PLANKS);
 
-		this.getOrCreateTagBuilder(BlockTags.SLABS)
+		getOrCreateTagBuilder(BlockTags.CEILING_HANGING_SIGNS)
+			.add(CinderscapesBlocks.SCORCHED_HANGING_SIGN)
+			.add(CinderscapesBlocks.UMBRAL_HANGING_SIGN);
+
+		getOrCreateTagBuilder(BlockTags.WALL_HANGING_SIGNS)
+			.add(CinderscapesBlocks.SCORCHED_WALL_HANGING_SIGN)
+			.add(CinderscapesBlocks.UMBRAL_WALL_HANGING_SIGN);
+
+		getOrCreateTagBuilder(BlockTags.STANDING_SIGNS)
+			.add(CinderscapesBlocks.SCORCHED_SIGN)
+			.add(CinderscapesBlocks.UMBRAL_SIGN);
+
+		getOrCreateTagBuilder(BlockTags.WALL_SIGNS)
+			.add(CinderscapesBlocks.SCORCHED_WALL_SIGN)
+			.add(CinderscapesBlocks.UMBRAL_WALL_SIGN);
+
+		getOrCreateTagBuilder(BlockTags.SLABS)
 			.add(CinderscapesBlocks.ROSE_QUARTZ_SLAB)
 			.add(CinderscapesBlocks.SMOKY_QUARTZ_SLAB)
 			.add(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_SLAB)
@@ -95,13 +81,13 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 			.add(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_SLAB)
 			.add(CinderscapesBlocks.SULFUR_QUARTZ_SLAB);
 
-		this.getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS)
+		getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS)
 			.add(CinderscapesBlocks.CRYSTINIUM)
 			.add(CinderscapesBlocks.PYRACINTH)
 			.add(CinderscapesBlocks.SCORCHED_TENDRILS)
 			.add(CinderscapesBlocks.TWILIGHT_TENDRILS);
 
-		this.getOrCreateTagBuilder(BlockTags.STAIRS)
+		getOrCreateTagBuilder(BlockTags.STAIRS)
 			.add(CinderscapesBlocks.ROSE_QUARTZ_STAIRS)
 			.add(CinderscapesBlocks.SMOKY_QUARTZ_STAIRS)
 			.add(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_STAIRS)
@@ -109,48 +95,40 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 			.add(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_STAIRS)
 			.add(CinderscapesBlocks.SULFUR_QUARTZ_STAIRS);
 
-		this.getOrCreateTagBuilder(BlockTags.STANDING_SIGNS)
-			.add(CinderscapesBlocks.SCORCHED_SIGN)
-			.add(CinderscapesBlocks.UMBRAL_SIGN);
-
-		this.getOrCreateTagBuilder(BlockTags.STANDING_SIGNS)
-			.add(CinderscapesBlocks.SCORCHED_WALL_SIGN)
-			.add(CinderscapesBlocks.UMBRAL_WALL_SIGN);
-
-		this.getOrCreateTagBuilder(BlockTags.WART_BLOCKS)
+		getOrCreateTagBuilder(BlockTags.WART_BLOCKS)
 			.add(CinderscapesBlocks.UMBRAL_WART_BLOCK);
 
-		this.getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS)
+		getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS)
 			.add(CinderscapesBlocks.SCORCHED_BUTTON)
 			.add(CinderscapesBlocks.UMBRAL_BUTTON);
 
-		this.getOrCreateTagBuilder(BlockTags.WOODEN_DOORS)
+		getOrCreateTagBuilder(BlockTags.WOODEN_DOORS)
 			.add(CinderscapesBlocks.SCORCHED_DOOR)
 			.add(CinderscapesBlocks.UMBRAL_DOOR);
 
-		this.getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
+		getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
 			.add(CinderscapesBlocks.SCORCHED_FENCE)
 			.add(CinderscapesBlocks.UMBRAL_FENCE);
 
-		this.getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES)
+		getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES)
 			.add(CinderscapesBlocks.SCORCHED_PRESSURE_PLATE)
 			.add(CinderscapesBlocks.UMBRAL_PRESSURE_PLATE);
 
-		this.getOrCreateTagBuilder(BlockTags.WOODEN_SLABS)
+		getOrCreateTagBuilder(BlockTags.WOODEN_SLABS)
 			.add(CinderscapesBlocks.SCORCHED_SLAB)
 			.add(CinderscapesBlocks.UMBRAL_SLAB);
 
-		this.getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS)
+		getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS)
 			.add(CinderscapesBlocks.SCORCHED_STAIRS)
 			.add(CinderscapesBlocks.UMBRAL_STAIRS);
 
-		this.getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS)
+		getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS)
 			.add(CinderscapesBlocks.SCORCHED_TRAPDOOR)
 			.add(CinderscapesBlocks.UMBRAL_TRAPDOOR);
 
 
 		// tool block tags
-		this.getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+		getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
 			.add(CinderscapesBlocks.SCORCHED_HYPHAE)
 			.add(CinderscapesBlocks.SCORCHED_STEM)
 			.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE)
@@ -162,11 +140,11 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 			.add(CinderscapesBlocks.UMBRAL_HYPHAE)
 			.add(CinderscapesBlocks.UMBRAL_STEM);
 
-		this.getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
+		getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
 			.add(CinderscapesBlocks.UMBRAL_FLESH_BLOCK)
 			.add(CinderscapesBlocks.UMBRAL_WART_BLOCK);
 
-		this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+		getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
 			.add(CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK)
 			.add(CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK)
 			.add(CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK)
@@ -209,13 +187,13 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 			.add(CinderscapesBlocks.SULFUR_QUARTZ_STAIRS)
 			.add(CinderscapesBlocks.UMBRAL_NYLIUM);
 
-		this.getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
+		getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
 			.add(CinderscapesBlocks.ASH)
 			.add(CinderscapesBlocks.ASH_BLOCK);
 
 
 		// local block tags
-		this.getOrCreateTagBuilder(CinderscapesBlockTags.ASH_PERMEABLE)
+		getOrCreateTagBuilder(CinderscapesBlockTags.ASH_PERMEABLE)
 			.addTag(BlockTags.NYLIUM)
 			.add(CinderscapesBlocks.ASH)
 			.add(CinderscapesBlocks.ASH_BLOCK)
@@ -229,13 +207,13 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 			.add(Blocks.SOUL_SAND)
 			.add(Blocks.SOUL_SOIL);
 
-		this.getOrCreateTagBuilder(CinderscapesBlockTags.SCORCHED_STEMS)
+		getOrCreateTagBuilder(CinderscapesBlockTags.SCORCHED_STEMS)
 			.add(CinderscapesBlocks.SCORCHED_HYPHAE)
 			.add(CinderscapesBlocks.SCORCHED_STEM)
 			.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE)
 			.add(CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
 
-		this.getOrCreateTagBuilder(CinderscapesBlockTags.UMBRAL_STEMS)
+		getOrCreateTagBuilder(CinderscapesBlockTags.UMBRAL_STEMS)
 			.add(CinderscapesBlocks.UMBRAL_HYPHAE)
 			.add(CinderscapesBlocks.UMBRAL_STEM)
 			.add(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE)

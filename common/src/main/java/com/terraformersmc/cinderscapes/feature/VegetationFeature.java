@@ -32,7 +32,7 @@ public class VegetationFeature extends Feature<VegetationFeatureConfig> {
 
             for(int n = 0; n < horizontalSpread * horizontalSpread; n++) {
                 BlockPos setPos = pos.add(random.nextInt(horizontalSpread) - random.nextInt(horizontalSpread), random.nextInt(verticalSpread) - random.nextInt(verticalSpread), random.nextInt(horizontalSpread) - random.nextInt(horizontalSpread));
-                BlockState setState = config.vegetationStates().getBlockState(random, setPos);
+                BlockState setState = config.vegetationStates().get(random, setPos);
                 if ((world.isAir(setPos) || config.replaceableStates().contains(world.getBlockState(setPos))) && setPos.getY() > 0 && setState.canPlaceAt(world, setPos)) {
                     world.setBlockState(setPos, setState, 2);
                     setCount++;

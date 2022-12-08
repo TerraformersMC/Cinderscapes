@@ -2,9 +2,9 @@ package com.terraformersmc.cinderscapes;
 
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.cinderscapes.init.*;
+import com.terraformersmc.cinderscapes.item.CinderscapesItemGroups;
 import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
 import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
-import com.terraformersmc.cinderscapes.util.NoiseCollisionChecker;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
@@ -39,18 +39,18 @@ public class Cinderscapes implements ModInitializer {
 
 		CinderscapesConfig.init();
 
-		CinderscapesItems.init();
 		CinderscapesBlocks.init();
+		CinderscapesItems.init();
 		CinderscapesBlockTags.init();
 		CinderscapesItemTags.init();
 		CinderscapesPlacementModifierTypes.init();
 		CinderscapesFeatures.init();
-		CinderscapesGroups.init();
-		CinderscapesBiomes.init();
+		CinderscapesConfiguredFeatures.init();
+		CinderscapesPlacedFeatures.init();
 		CinderscapesSoundEvents.init();
+		CinderscapesBiomes.init();
 		CinderscapesTrades.init();
-
-		NoiseCollisionChecker.init();
+		CinderscapesItemGroups.init();
 
 		if (!FabricLoader.getInstance().isModLoaded("cinderscapes-worldgen")) {
 			Cinderscapes.LOGGER.info("No Cinderscapes worldgen module present; Cinderscapes biomes will not generate.");

@@ -2,7 +2,6 @@ package com.terraformersmc.cinderscapes;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
-import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -83,7 +82,9 @@ public class CinderscapesClient implements ClientModInitializer {
             }
         });
 
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((TerraformSignBlock) CinderscapesBlocks.UMBRAL_SIGN).getTexture()));
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ((TerraformSignBlock) CinderscapesBlocks.SCORCHED_SIGN).getTexture()));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, CinderscapesBlocks.SCORCHED_SIGN.getTexture()));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, CinderscapesBlocks.SCORCHED_HANGING_SIGN.getTexture()));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, CinderscapesBlocks.UMBRAL_SIGN.getTexture()));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, CinderscapesBlocks.UMBRAL_HANGING_SIGN.getTexture()));
     }
 }

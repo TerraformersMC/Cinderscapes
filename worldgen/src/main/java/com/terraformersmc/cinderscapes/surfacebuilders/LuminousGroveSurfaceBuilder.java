@@ -1,10 +1,10 @@
 package com.terraformersmc.cinderscapes.surfacebuilders;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.tag.BiomeTags;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.chunk.Chunk;

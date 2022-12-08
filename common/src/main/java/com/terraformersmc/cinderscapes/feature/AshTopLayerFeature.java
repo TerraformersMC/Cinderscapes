@@ -4,9 +4,9 @@ import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -29,7 +29,7 @@ public class AshTopLayerFeature extends Feature<DefaultFeatureConfig> {
         StructureWorldAccess world = context.getWorld();
         if (VALID_BIOMES == null) {
             VALID_BIOMES = new HashSet<>();
-            VALID_BIOMES.add(world.getRegistryManager().get(Registry.BIOME_KEY).get(CinderscapesBiomes.ASHY_SHOALS));
+            VALID_BIOMES.add(world.getRegistryManager().get(RegistryKeys.BIOME).get(CinderscapesBiomes.ASHY_SHOALS));
             // TODO: fix this or figure out better system
             /*world.getRegistryManager().get(Registry.BIOME_KEY).stream()
                     .filter(biome -> biome.getGenerationSettings().isFeatureAllowed(CinderscapesPlacedFeatures.ASH_TOP_LAYER.value()))

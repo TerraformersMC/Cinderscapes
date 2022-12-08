@@ -3,10 +3,12 @@ package com.terraformersmc.cinderscapes.biome;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.mixin.OverworldBiomeCreatorAccessor;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.SoundEvents;
@@ -25,9 +27,9 @@ import net.minecraft.world.gen.feature.OrePlacedFeatures;
 public class LuminousGroveBiome {
     public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.35F, 0.3F, 0.0F, 0.0F, 0.0F, 0.0F, 0.225F);
 
-    public static Biome create() {
+    public static Biome create(FabricDynamicRegistryProvider.Entries entries) {
         return new Biome.Builder()
-                .generationSettings(createGenerationSettings())
+                .generationSettings(createGenerationSettings(entries))
                 .spawnSettings(createSpawnSettings())
                 .precipitation(Biome.Precipitation.NONE)
                 .temperature(2.0F)
@@ -41,13 +43,13 @@ public class LuminousGroveBiome {
                         .loopSound(SoundEvents.AMBIENT_WARPED_FOREST_LOOP)
                         .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0D))
                         .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111D))
-                        .music(MusicType.createIngameMusic(CinderscapesSoundEvents.LUMINOUS_GROVE_MUSIC))
+                        .music(MusicType.createIngameMusic(Registries.SOUND_EVENT.getEntry(CinderscapesSoundEvents.LUMINOUS_GROVE_MUSIC)))
                         .build())
                 .build();
     }
 
-    private static GenerationSettings createGenerationSettings() {
-        GenerationSettings.Builder builder = new GenerationSettings.Builder();
+    private static GenerationSettings createGenerationSettings(FabricDynamicRegistryProvider.Entries entries) {
+        GenerationSettings.LookupBackedBuilder builder = new GenerationSettings.LookupBackedBuilder(entries.placedFeatures(), entries.configuredCarvers());
 
         // DEFAULT MINECRAFT FEATURES
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
@@ -58,24 +60,23 @@ public class LuminousGroveBiome {
         DefaultBiomeFeatures.addNetherMineables(builder);
 
         // UMBRAL FUNGUS
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.CANOPIED_HUGE_FUNGUS);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.CANOPIED_HUGE_FUNGUS));
 
         // SHROOMLIGHT BUSHES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.SHROOMLIGHT_BUSH);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.SHROOMLIGHT_BUSHES));
 
         // VEGETATION
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.VEGETATION_LUMINOUS_GROWTH);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.LUMINOUS_POD);
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.TALL_PHOTOFERN);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.LUMINOUS_VEGETATION));
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.LUMINOUS_PODS));
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.TALL_PHOTOFERNS));
 
         // VINES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, CinderscapesPlacedFeatures.UMBRAL_VINE);
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.UMBRAL_VINES));
 
         return builder.build();
     }
 
     private static SpawnSettings createSpawnSettings() {
-
         SpawnSettings.Builder builder = new SpawnSettings.Builder();
 
         // SPAWNS
