@@ -69,12 +69,12 @@ public class CinderscapesBlocks {
     private static final Identifier SCORCHED_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/scorched");
     public static final TerraformSignBlock SCORCHED_SIGN = add("scorched_sign", new TerraformSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).mapColor(MapColor.LIGHT_GRAY)));
     public static final TerraformWallSignBlock SCORCHED_WALL_SIGN = add("scorched_wall_sign", new TerraformWallSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Item SCORCHED_SIGN_ITEM = CinderscapesItems.add("scorched_sign", new SignItem(new Item.Settings().maxCount(16), SCORCHED_SIGN, SCORCHED_WALL_SIGN));
+    public static final SignItem SCORCHED_SIGN_ITEM = CinderscapesItems.add("scorched_sign", new SignItem(new Item.Settings().maxCount(16), SCORCHED_SIGN, SCORCHED_WALL_SIGN));
     private static final Identifier SCORCHED_HANGING_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/hanging/scorched");
     private static final Identifier SCORCHED_HANGING_SIGN_GUI_TEXTURE = new Identifier(Cinderscapes.NAMESPACE, "textures/gui/hanging_signs/scorched");
     public static final TerraformHangingSignBlock SCORCHED_HANGING_SIGN = add("scorched_hanging_sign", new TerraformHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).requires(FeatureFlags.UPDATE_1_20)));
     public static final TerraformWallHangingSignBlock SCORCHED_WALL_HANGING_SIGN = add("scorched_wall_hanging_sign", new TerraformWallHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).requires(FeatureFlags.UPDATE_1_20)));
-    public static final Item SCORCHED_HANGING_SIGN_ITEM = CinderscapesItems.add("scorched_hanging_sign", new SignItem(new Item.Settings().maxCount(16), SCORCHED_HANGING_SIGN, SCORCHED_WALL_HANGING_SIGN));
+    public static final HangingSignItem SCORCHED_HANGING_SIGN_ITEM = CinderscapesItems.add("scorched_hanging_sign", new HangingSignItem(SCORCHED_HANGING_SIGN, SCORCHED_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
     public static final Block SCORCHED_SHRUB = withItem("scorched_shrub", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 14.0, 14.0)));
     public static final Block POTTED_SCORCHED_SHRUB = add("potted_scorched_shrub", new FlowerPotBlock(SCORCHED_SHRUB, FabricBlockSettings.copyOf(Blocks.POTTED_DEAD_BUSH)));
@@ -122,12 +122,12 @@ public class CinderscapesBlocks {
     private static final Identifier UMBRAL_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/umbral");
     public static final TerraformSignBlock UMBRAL_SIGN = add("umbral_sign", new TerraformSignBlock(UMBRAL_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).mapColor(MapColor.BLUE)));
     public static final TerraformWallSignBlock UMBRAL_WALL_SIGN = add("umbral_wall_sign", new TerraformWallSignBlock(UMBRAL_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.BLUE)));
-    public static final Item UMBRAL_SIGN_ITEM = CinderscapesItems.add("umbral_sign", new SignItem(new Item.Settings().maxCount(16), UMBRAL_SIGN, UMBRAL_WALL_SIGN));
+    public static final SignItem UMBRAL_SIGN_ITEM = CinderscapesItems.add("umbral_sign", new SignItem(new Item.Settings().maxCount(16), UMBRAL_SIGN, UMBRAL_WALL_SIGN));
     private static final Identifier UMBRAL_HANGING_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/hanging/umbral");
     private static final Identifier UMBRAL_HANGING_SIGN_GUI_TEXTURE = new Identifier(Cinderscapes.NAMESPACE, "textures/gui/hanging_signs/umbral");
     public static final TerraformHangingSignBlock UMBRAL_HANGING_SIGN = add("umbral_hanging_sign", new TerraformHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_HANGING_SIGN).mapColor(MapColor.BLUE).requires(FeatureFlags.UPDATE_1_20)));
     public static final TerraformWallHangingSignBlock UMBRAL_WALL_HANGING_SIGN = add("umbral_wall_hanging_sign", new TerraformWallHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_HANGING_SIGN).mapColor(MapColor.BLUE).requires(FeatureFlags.UPDATE_1_20)));
-    public static final Item UMBRAL_HANGING_SIGN_ITEM = CinderscapesItems.add("umbral_hanging_sign", new SignItem(new Item.Settings().maxCount(16), UMBRAL_HANGING_SIGN, UMBRAL_WALL_HANGING_SIGN));
+    public static final HangingSignItem UMBRAL_HANGING_SIGN_ITEM = CinderscapesItems.add("umbral_hanging_sign", new HangingSignItem(UMBRAL_HANGING_SIGN, UMBRAL_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
     // Other
 

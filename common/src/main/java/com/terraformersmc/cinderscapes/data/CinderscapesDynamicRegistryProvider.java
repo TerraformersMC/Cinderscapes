@@ -11,12 +11,12 @@ import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("UnstableApiUsage")
 public class CinderscapesDynamicRegistryProvider extends FabricDynamicRegistryProvider {
-	public CinderscapesDynamicRegistryProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+	protected CinderscapesDynamicRegistryProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
 		super(output, registriesFuture);
 	}
 
 	@Override
-	protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
+	public void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
 		CinderscapesConfiguredFeatures.populate(entries);
 		CinderscapesPlacedFeatures.populate(entries);
 		CinderscapesBiomes.populate(entries);

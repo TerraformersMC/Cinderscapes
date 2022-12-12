@@ -88,6 +88,9 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 
 
 		// vanilla item tags
+		getOrCreateTagBuilder(ItemTags.FOX_FOOD)
+			.add(CinderscapesBlocks.BRAMBLE_BERRIES);
+
 		copy(BlockTags.LOGS, ItemTags.LOGS);
 
 		getOrCreateTagBuilder(ItemTags.NON_FLAMMABLE_WOOD)
@@ -95,6 +98,7 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 			.add(CinderscapesBlocks.SCORCHED_DOOR.asItem())
 			.add(CinderscapesBlocks.SCORCHED_FENCE.asItem())
 			.add(CinderscapesBlocks.SCORCHED_FENCE_GATE.asItem())
+			.add(CinderscapesBlocks.SCORCHED_HANGING_SIGN.asItem())
 			.add(CinderscapesBlocks.SCORCHED_HYPHAE.asItem())
 			.add(CinderscapesBlocks.SCORCHED_PLANKS.asItem())
 			.add(CinderscapesBlocks.SCORCHED_PRESSURE_PLATE.asItem())
@@ -103,6 +107,7 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 			.add(CinderscapesBlocks.SCORCHED_STAIRS.asItem())
 			.add(CinderscapesBlocks.SCORCHED_STEM.asItem())
 			.add(CinderscapesBlocks.SCORCHED_TRAPDOOR.asItem())
+			.add(CinderscapesBlocks.SCORCHED_WALL_HANGING_SIGN.asItem())
 			.add(CinderscapesBlocks.SCORCHED_WALL_SIGN.asItem())
 			.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE.asItem())
 			.add(CinderscapesBlocks.STRIPPED_SCORCHED_STEM.asItem())
@@ -112,6 +117,7 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 			.add(CinderscapesBlocks.UMBRAL_DOOR.asItem())
 			.add(CinderscapesBlocks.UMBRAL_FENCE.asItem())
 			.add(CinderscapesBlocks.UMBRAL_FENCE_GATE.asItem())
+			.add(CinderscapesBlocks.UMBRAL_HANGING_SIGN.asItem())
 			.add(CinderscapesBlocks.UMBRAL_HYPHAE.asItem())
 			.add(CinderscapesBlocks.UMBRAL_PLANKS.asItem())
 			.add(CinderscapesBlocks.UMBRAL_PRESSURE_PLATE.asItem())
@@ -120,6 +126,7 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 			.add(CinderscapesBlocks.UMBRAL_STAIRS.asItem())
 			.add(CinderscapesBlocks.UMBRAL_STEM.asItem())
 			.add(CinderscapesBlocks.UMBRAL_TRAPDOOR.asItem())
+			.add(CinderscapesBlocks.UMBRAL_WALL_HANGING_SIGN.asItem())
 			.add(CinderscapesBlocks.UMBRAL_WALL_SIGN.asItem());
 
 		copy(BlockTags.PLANKS, ItemTags.PLANKS);

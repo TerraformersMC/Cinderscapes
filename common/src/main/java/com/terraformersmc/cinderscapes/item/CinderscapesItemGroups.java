@@ -6,6 +6,7 @@ import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.*;
+import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class CinderscapesItemGroups {
+	@SuppressWarnings("unused")
 	private static final ItemGroup ITEM_GROUP;
 	private static final HashMap<ItemGroup, HashMap<ItemConvertible, ItemGroupEntries>> ITEM_GROUP_ENTRY_MAPS;
 
@@ -29,7 +31,7 @@ public class CinderscapesItemGroups {
 		final Item BUILDING_NETHER_WOOD = Items.WARPED_BUTTON;
 		final Item BUILDING_NETHER_QUARTZ = Items.SMOOTH_QUARTZ_SLAB;
 		final Item BUILDING_NETHER_STORAGE_BLOCK = Items.NETHERITE_BLOCK;
-		final Item FUNCTIONAL_NETHER_SIGN = Items.WARPED_SIGN;  // TODO: s.b. WARPED_HANGING_SIGN but that breaks
+		final Item FUNCTIONAL_NETHER_SIGN = Items.WARPED_HANGING_SIGN;
 		final Item NATURAL_NYLIUM = Items.WARPED_NYLIUM;
 		final Item NATURAL_SNOWLIKE = Items.MOSS_CARPET;
 		final Item NATURAL_QUARTZ_ORE = Items.NETHER_QUARTZ_ORE;
@@ -224,14 +226,19 @@ public class CinderscapesItemGroups {
 		 */
 		for (ItemGroup group : ITEM_GROUP_ENTRY_MAPS.keySet()) {
 			ItemGroupEvents.modifyEntriesEvent(group).register((content) -> {
+				FeatureSet featureSet = content.getEnabledFeatures();
 				HashMap<ItemConvertible, ItemGroupEntries> entryMap = ITEM_GROUP_ENTRY_MAPS.get(group);
 
 				for (ItemConvertible relative : entryMap.keySet()) {
 					ItemGroupEntries entries = entryMap.get(relative);
 
+					// FAPI does not give us a way to add at a feature-flag-disabled location.
+					// So, below we have to adjust for any items which may be disabled.
 					if (relative == null) {
 						// Target the end of the Item Group
 						content.addAll(entries.getCollection());
+					} else if (relative.equals(Items.WARPED_HANGING_SIGN) && !Items.WARPED_HANGING_SIGN.isEnabled(featureSet)) {
+						content.addAfter(Items.WARPED_SIGN, entries.getCollection());
 					} else {
 						//Cinderscapes.LOGGER.warn("About to add to Vanilla Item Group '{}' after Item '{}': '{}'", group.getId(), relative, entries.getCollection().stream().map(ItemStack::getItem).collect(Collectors.toList()));
 						content.addAfter(relative, entries.getCollection());

@@ -98,6 +98,7 @@ public class CinderscapesBlockLootTableProvider extends FabricBlockLootTableProv
 		addDrop(CinderscapesBlocks.SCORCHED_DOOR, this::doorDrops);
 		addDrop(CinderscapesBlocks.SCORCHED_FENCE);
 		addDrop(CinderscapesBlocks.SCORCHED_FENCE_GATE);
+		addDrop(CinderscapesBlocks.SCORCHED_HANGING_SIGN);
 		addDrop(CinderscapesBlocks.SCORCHED_HYPHAE);
 		addDrop(CinderscapesBlocks.SCORCHED_PLANKS);
 		addDrop(CinderscapesBlocks.SCORCHED_PRESSURE_PLATE);
@@ -106,6 +107,7 @@ public class CinderscapesBlockLootTableProvider extends FabricBlockLootTableProv
 		addDrop(CinderscapesBlocks.SCORCHED_STAIRS);
 		addDrop(CinderscapesBlocks.SCORCHED_STEM);
 		addDrop(CinderscapesBlocks.SCORCHED_TRAPDOOR);
+		addDrop(CinderscapesBlocks.SCORCHED_WALL_HANGING_SIGN);
 		addDrop(CinderscapesBlocks.SCORCHED_WALL_SIGN);
 		addDrop(CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
 		addDrop(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE);
@@ -115,6 +117,7 @@ public class CinderscapesBlockLootTableProvider extends FabricBlockLootTableProv
 		addDrop(CinderscapesBlocks.UMBRAL_FENCE);
 		addDrop(CinderscapesBlocks.UMBRAL_FENCE_GATE);
 		addDrop(CinderscapesBlocks.UMBRAL_FUNGUS);
+		addDrop(CinderscapesBlocks.UMBRAL_HANGING_SIGN);
 		addDrop(CinderscapesBlocks.UMBRAL_HYPHAE);
 		addDrop(CinderscapesBlocks.UMBRAL_PLANKS);
 		addDrop(CinderscapesBlocks.UMBRAL_PRESSURE_PLATE);
@@ -123,6 +126,7 @@ public class CinderscapesBlockLootTableProvider extends FabricBlockLootTableProv
 		addDrop(CinderscapesBlocks.UMBRAL_STAIRS);
 		addDrop(CinderscapesBlocks.UMBRAL_STEM);
 		addDrop(CinderscapesBlocks.UMBRAL_TRAPDOOR);
+		addDrop(CinderscapesBlocks.UMBRAL_WALL_HANGING_SIGN);
 		addDrop(CinderscapesBlocks.UMBRAL_WALL_SIGN);
 		addDrop(CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
 		addDrop(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE);
