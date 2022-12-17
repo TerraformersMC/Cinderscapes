@@ -15,7 +15,6 @@ import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
 import com.terraformersmc.cinderscapes.block.PottedCrystiniumBlock;
 import com.terraformersmc.cinderscapes.block.PottedPyracinthBlock;
 import com.terraformersmc.cinderscapes.block.PyracinthBlock;
-import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.terraform.sign.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallHangingSignBlock;
@@ -79,8 +78,8 @@ public class CinderscapesBlocks {
     public static final Block SCORCHED_SHRUB = withItem("scorched_shrub", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 14.0, 14.0)));
     public static final Block POTTED_SCORCHED_SHRUB = add("potted_scorched_shrub", new FlowerPotBlock(SCORCHED_SHRUB, FabricBlockSettings.copyOf(Blocks.POTTED_DEAD_BUSH)));
 
-    public static final Block SCORCHED_SPROUTS = withItem("scorched_sprouts", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 3.0, 14.0)));
-    public static final Block SCORCHED_TENDRILS = withItem("scorched_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)));
+    public static final Block SCORCHED_SPROUTS = withItem("scorched_sprouts", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.NETHER_SPROUTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 3.0, 14.0)));
+    public static final Block SCORCHED_TENDRILS = withItem("scorched_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)));
     public static final Block POTTED_SCORCHED_TENDRILS = add("potted_scorched_tendrils", new FlowerPotBlock(SCORCHED_TENDRILS, FabricBlockSettings.copyOf(Blocks.POTTED_WARPED_ROOTS)));
 
     public static final Block ASH = withItem("ash", new AshLayerBlock(FabricBlockSettings.copyOf(Blocks.SNOW)));
@@ -134,7 +133,7 @@ public class CinderscapesBlocks {
     public static final Block TWILIGHT_VINE_BLOCK = withItem("twilight_vine_block", new Block(FabricBlockSettings.of(Material.SOLID_ORGANIC).strength(1.0F).sounds(BlockSoundGroup.NETHER_STEM)));
     public static final Block TWILIGHT_TENDRILS = withItem("twilight_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).luminance((state) -> 15), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)));
     public static final Block POTTED_TWILIGHT_TENDRILS = add("potted_twilight_tendrils", new FlowerPotBlock(TWILIGHT_TENDRILS, FabricBlockSettings.copyOf(Blocks.POTTED_WARPED_ROOTS).luminance((state) -> 15)));
-    public static final Block TWILIGHT_FESCUES = withItem("twilight_fescues", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 5.0, 14.0)));
+    public static final Block TWILIGHT_FESCUES = withItem("twilight_fescues", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.NETHER_SPROUTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 5.0, 14.0)));
 
     public static Block PHOTOFERN = withItem("photofern", new PhotofernBlock());
     public static final Block POTTED_PHOTOFERN = add("potted_photofern", new FlowerPotBlock(PHOTOFERN, FabricBlockSettings.copyOf(Blocks.POTTED_FERN)));
@@ -217,7 +216,7 @@ public class CinderscapesBlocks {
     public static final Block SMOKY_QUARTZ_BRICKS = withItem("smoky_quartz_bricks", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BRICKS).mapColor(MapColor.GRAY)));
     public static final Block CRYSTALLINE_SMOKY_QUARTZ = withItem("crystalline_smoky_quartz", new CinderscapesTransparentBlock(FabricBlockSettings.copyOf(CRYSTALLINE_QUARTZ).mapColor(MapColor.GRAY)));
 
-    public static final Block NODZOL = add("nodzol", new Block(FabricBlockSettings.copyOf(Blocks.NETHERRACK)));
+    public static final Block NODZOL = withItem("nodzol", new Block(FabricBlockSettings.copyOf(Blocks.NETHERRACK).mapColor(MapColor.BROWN)));
 
     private static Block addOre(String name, int miningLevel, MapColor color) {
         CinderscapesOreBlock block = new CinderscapesOreBlock(FabricBlockSettings.copyOf(Blocks.NETHER_QUARTZ_ORE).mapColor(color).sounds(BlockSoundGroup.NETHER_ORE).requiresTool());
@@ -242,13 +241,6 @@ public class CinderscapesBlocks {
     }
 
     public static void init() {
-        CinderscapesItems.add("nodzol", new BlockItem(NODZOL, new Item.Settings()));
-        if (CinderscapesConfig.INSTANCE.easterEggs) {
-
-        } else {
-            Cinderscapes.HIDDEN_ITEMS.add(NODZOL.asItem());
-        }
-
         for (Identifier id : BLOCKS.keySet()) {
             Registry.register(Registries.BLOCK, id, BLOCKS.get(id));
         }

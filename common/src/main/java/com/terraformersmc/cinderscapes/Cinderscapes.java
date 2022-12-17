@@ -19,13 +19,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Cinderscapes implements ModInitializer {
 	public static final String NAMESPACE = "cinderscapes";
 	public static final Logger LOGGER = LogManager.getLogger(StringUtils.capitalize(NAMESPACE));
-
-	public static List<Item> HIDDEN_ITEMS = new ArrayList<>();
 
 	private static Boolean initialized = false;
 	private static final ArrayList<Runnable> runnables = new ArrayList<>(1);

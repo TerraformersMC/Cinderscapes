@@ -1,6 +1,7 @@
 package com.terraformersmc.cinderscapes.item;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
+import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -42,7 +43,7 @@ public class CinderscapesItemGroups {
 		final Item NATURAL_TALL_VEGETATION = Items.LARGE_FERN;
 		final Item NATURAL_BERRIES = Items.SWEET_BERRIES;
 		final Item TOOLS_MUSIC_DISC = Items.MUSIC_DISC_PIGSTEP;
-		final Item FOOD_BERRIES = Items.SWEET_BERRIES;
+		final Item FOOD_BERRIES = Items.GLOW_BERRIES;
 		final Item INGREDIENTS_QUARTZ = Items.QUARTZ;
 
 
@@ -137,10 +138,15 @@ public class CinderscapesItemGroups {
 
 		// Nylium
 		addGroupEntry(CinderscapesBlocks.UMBRAL_NYLIUM, ItemGroups.NATURAL, NATURAL_NYLIUM);
+		if (CinderscapesConfig.INSTANCE.easterEggs) {
+			addGroupEntry(CinderscapesBlocks.NODZOL, ItemGroups.NATURAL, NATURAL_NYLIUM);
+		}
 
-		// Stems
+		// Stems and worldgen Hyphae
 		addGroupEntry(CinderscapesBlocks.SCORCHED_STEM, ItemGroups.NATURAL, NATURAL_STEM);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_HYPHAE, ItemGroups.NATURAL, NATURAL_STEM);
 		addGroupEntry(CinderscapesBlocks.UMBRAL_STEM, ItemGroups.NATURAL, NATURAL_STEM);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_HYPHAE, ItemGroups.NATURAL, NATURAL_STEM);
 
 		// Fungus
 		addGroupEntry(CinderscapesBlocks.UMBRAL_FUNGUS, ItemGroups.NATURAL, NATURAL_FUNGUS);

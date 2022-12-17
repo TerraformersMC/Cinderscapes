@@ -19,6 +19,7 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 	public void configure(RegistryWrapper.WrapperLookup registries) {
 		// basic block tags
 		getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE)
+			.add(CinderscapesBlocks.NODZOL)
 			.add(CinderscapesBlocks.UMBRAL_FUNGUS)
 			.add(CinderscapesBlocks.UMBRAL_NYLIUM);
 
@@ -36,6 +37,13 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 			.add(CinderscapesBlocks.POTTED_TWILIGHT_TENDRILS)
 			.add(CinderscapesBlocks.POTTED_UMBRAL_FUNGUS);
 
+		getOrCreateTagBuilder(BlockTags.INSIDE_STEP_SOUND_BLOCKS)
+			.add(CinderscapesBlocks.ASH)
+			.add(CinderscapesBlocks.SCORCHED_SPROUTS)
+			.add(CinderscapesBlocks.SCORCHED_TENDRILS)
+			.add(CinderscapesBlocks.TWILIGHT_FESCUES)
+			.add(CinderscapesBlocks.TWILIGHT_TENDRILS);
+
 		getOrCreateTagBuilder(BlockTags.LOGS)
 			.add(CinderscapesBlocks.SCORCHED_HYPHAE)
 			.add(CinderscapesBlocks.SCORCHED_STEM)
@@ -45,6 +53,9 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 			.add(CinderscapesBlocks.STRIPPED_UMBRAL_STEM)
 			.add(CinderscapesBlocks.UMBRAL_HYPHAE)
 			.add(CinderscapesBlocks.UMBRAL_STEM);
+
+		getOrCreateTagBuilder(BlockTags.MUSHROOM_GROW_BLOCK)
+			.add(CinderscapesBlocks.NODZOL);
 
 		getOrCreateTagBuilder(BlockTags.NETHER_CARVER_REPLACEABLES)
 			.add(CinderscapesBlocks.UMBRAL_NYLIUM)
@@ -204,6 +215,7 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 			.add(Blocks.GRAVEL)
 			.add(Blocks.LAVA)
 			.add(Blocks.NETHERRACK)
+			.add(CinderscapesBlocks.NODZOL)
 			.add(Blocks.SOUL_SAND)
 			.add(Blocks.SOUL_SOIL);
 

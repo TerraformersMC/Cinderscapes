@@ -59,7 +59,7 @@ public class CinderscapesBlockLootTableProvider extends FabricBlockLootTableProv
 		addDrop(CinderscapesBlocks.ROSE_QUARTZ_STAIRS);
 		addDrop(CinderscapesBlocks.SCORCHED_SHRUB, VanillaBlockLootTableGenerator::dropsWithShears);
 		addDrop(CinderscapesBlocks.SCORCHED_SPROUTS, VanillaBlockLootTableGenerator::dropsWithShears);
-		addDrop(CinderscapesBlocks.SCORCHED_TENDRILS, VanillaBlockLootTableGenerator::dropsWithShears);
+		addDrop(CinderscapesBlocks.SCORCHED_TENDRILS);
 		addDrop(CinderscapesBlocks.SMOKY_QUARTZ_BLOCK);
 		addDrop(CinderscapesBlocks.SMOKY_QUARTZ_BRICKS);
 		addDrop(CinderscapesBlocks.SMOKY_QUARTZ_ORE, block -> oreDrops(block, CinderscapesItems.SMOKY_QUARTZ));
@@ -84,7 +84,7 @@ public class CinderscapesBlockLootTableProvider extends FabricBlockLootTableProv
 		addDrop(CinderscapesBlocks.SULFUR_QUARTZ_SLAB, this::slabDrops);
 		addDrop(CinderscapesBlocks.SULFUR_QUARTZ_STAIRS);
 		addDrop(CinderscapesBlocks.TWILIGHT_FESCUES, VanillaBlockLootTableGenerator::dropsWithShears);
-		addDrop(CinderscapesBlocks.TWILIGHT_TENDRILS, VanillaBlockLootTableGenerator::dropsWithShears);
+		addDrop(CinderscapesBlocks.TWILIGHT_TENDRILS);
 		addDrop(CinderscapesBlocks.TWILIGHT_VINE_BLOCK);
 		addDrop(CinderscapesBlocks.UMBRAL_FLESH_BLOCK);
 		addDropWithSilkTouch(CinderscapesBlocks.UMBRAL_NYLIUM, Blocks.NETHERRACK);
