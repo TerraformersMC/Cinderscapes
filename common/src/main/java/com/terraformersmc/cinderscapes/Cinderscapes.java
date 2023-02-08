@@ -72,7 +72,7 @@ public class Cinderscapes implements ModInitializer {
 		}
 	}
 
-	public static Identifier id(String path) {
+	public static Identifier asIdentifier(String path) {
 		return new Identifier(NAMESPACE, path);
 	}
 }

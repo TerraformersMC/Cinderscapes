@@ -30,7 +30,7 @@ public class CinderscapesBiomes {
      * @return The biome that was registered with the local biome registry
      */
     private static RegistryKey<Biome> add(String s, Biome b) {
-        Identifier id = Cinderscapes.id(s);
+        Identifier id = Cinderscapes.asIdentifier(s);
         RegistryKey<Biome> key = RegistryKey.of(Registry.BIOME_KEY, id);
         Registry.register(BuiltinRegistries.BIOME, key, b);
         return key;

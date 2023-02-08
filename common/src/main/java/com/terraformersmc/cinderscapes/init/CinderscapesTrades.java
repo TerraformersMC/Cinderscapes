@@ -19,7 +19,7 @@ import net.minecraft.village.VillagerProfession;
 public class CinderscapesTrades {
     private static final Identifier BARTERING_LOOT_TABLE_ID = new Identifier("minecraft", "gameplay/piglin_bartering");
 
-    public static final LootPoolEntryType INTEGRATED = Registry.register(Registry.LOOT_POOL_ENTRY_TYPE, Cinderscapes.id("integrated"), new LootPoolEntryType(new IntegratedEntry.Serializer()));
+    public static final LootPoolEntryType INTEGRATED = Registry.register(Registry.LOOT_POOL_ENTRY_TYPE, Cinderscapes.asIdentifier("integrated"), new LootPoolEntryType(new IntegratedEntry.Serializer()));
 
     public static void init() {
 

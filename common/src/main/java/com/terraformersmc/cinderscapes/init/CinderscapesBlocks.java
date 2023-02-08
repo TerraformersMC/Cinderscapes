@@ -1,65 +1,25 @@
 package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
-import com.terraformersmc.cinderscapes.block.AshLayerBlock;
-import com.terraformersmc.cinderscapes.block.BrambleBerryBushBlock;
-import com.terraformersmc.cinderscapes.block.CinderscapesCanopiedFungusBlock;
-import com.terraformersmc.cinderscapes.block.CinderscapesNetherPlantBlock;
-import com.terraformersmc.cinderscapes.block.CinderscapesNetherTallPlantBlock;
-import com.terraformersmc.cinderscapes.block.CinderscapesNyliumBlock;
-import com.terraformersmc.cinderscapes.block.CinderscapesOreBlock;
-import com.terraformersmc.cinderscapes.block.CinderscapesTransparentBlock;
-import com.terraformersmc.cinderscapes.block.CrystiniumBlock;
-import com.terraformersmc.cinderscapes.block.GhastlyEctoplasmBlock;
-import com.terraformersmc.cinderscapes.block.PhotofernBlock;
-import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
-import com.terraformersmc.cinderscapes.block.PottedCrystiniumBlock;
-import com.terraformersmc.cinderscapes.block.PottedPyracinthBlock;
-import com.terraformersmc.cinderscapes.block.PyracinthBlock;
+import com.terraformersmc.cinderscapes.block.*;
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
-import com.terraformersmc.terraform.wood.block.StrippableLogBlock;
-import com.terraformersmc.terraform.wood.block.TerraformButtonBlock;
-import com.terraformersmc.terraform.wood.block.TerraformDoorBlock;
-import com.terraformersmc.terraform.wood.block.TerraformPressurePlateBlock;
-import com.terraformersmc.terraform.wood.block.TerraformStairsBlock;
-import com.terraformersmc.terraform.wood.block.TerraformTrapdoorBlock;
+import com.terraformersmc.terraform.wood.block.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ComposterBlock;
-import net.minecraft.block.FenceBlock;
-import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.block.MapColor;
-import net.minecraft.block.Material;
-import net.minecraft.block.PillarBlock;
-import net.minecraft.block.PressurePlateBlock;
-import net.minecraft.block.SlabBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 // TODO: Check
 public class CinderscapesBlocks {
-
-    // Acts as a kind of local registry for block items added by Cinderscapes
-    private static final Map<Identifier, BlockItem> ITEMS = new LinkedHashMap<>();
-    // Acts as a kind of local registry for blocks added by Cinderscapes
-    private static final Map<Identifier, Block> BLOCKS = new LinkedHashMap<>();
-
     /////////////////
     // Ashy Shoals //
     /////////////////
@@ -79,8 +39,8 @@ public class CinderscapesBlocks {
     public static final Block SCORCHED_STAIRS = add("scorched_stairs", new TerraformStairsBlock(SCORCHED_PLANKS, FabricBlockSettings.copyOf(Blocks.WARPED_STAIRS).mapColor(MapColor.LIGHT_GRAY)), ItemGroup.BUILDING_BLOCKS);
     public static final Block SCORCHED_BUTTON = add("scorched_button", new TerraformButtonBlock(FabricBlockSettings.copyOf(Blocks.WARPED_BUTTON).mapColor(MapColor.LIGHT_GRAY)), ItemGroup.REDSTONE);
     public static final Block SCORCHED_DOOR = add("scorched_door", new TerraformDoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_DOOR).mapColor(MapColor.LIGHT_GRAY)), ItemGroup.REDSTONE);
-    public static final Block SCORCHED_SIGN = add("scorched_sign", new TerraformSignBlock(Cinderscapes.id("entity/signs/scorched"), FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block SCORCHED_WALL_SIGN = add("scorched_wall_sign", new TerraformWallSignBlock(Cinderscapes.id("entity/signs/scorched"), FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block SCORCHED_SIGN = add("scorched_sign", new TerraformSignBlock(Cinderscapes.asIdentifier("entity/signs/scorched"), FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block SCORCHED_WALL_SIGN = add("scorched_wall_sign", new TerraformWallSignBlock(Cinderscapes.asIdentifier("entity/signs/scorched"), FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.LIGHT_GRAY)));
 
     public static final Block SCORCHED_SHRUB = add("scorched_shrub", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 14.0, 14.0)), ItemGroup.DECORATIONS);
     public static final Block POTTED_SCORCHED_SHRUB = add("potted_scorched_shrub", new FlowerPotBlock(SCORCHED_SHRUB, FabricBlockSettings.copyOf(Blocks.POTTED_DEAD_BUSH)));
@@ -125,8 +85,8 @@ public class CinderscapesBlocks {
     public static final Block UMBRAL_STAIRS = add("umbral_stairs", new TerraformStairsBlock(UMBRAL_PLANKS, FabricBlockSettings.copyOf(Blocks.WARPED_STAIRS).mapColor(MapColor.BLUE)), ItemGroup.BUILDING_BLOCKS);
     public static final Block UMBRAL_BUTTON = add("umbral_button", new TerraformButtonBlock(FabricBlockSettings.copyOf(Blocks.WARPED_BUTTON).mapColor(MapColor.BLUE)), ItemGroup.REDSTONE);
     public static final Block UMBRAL_DOOR = add("umbral_door", new TerraformDoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_DOOR).mapColor(MapColor.BLUE)), ItemGroup.REDSTONE);
-    public static final Block UMBRAL_SIGN = add("umbral_sign", new TerraformSignBlock(Cinderscapes.id("entity/signs/umbral"), FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).mapColor(MapColor.BLUE)));
-    public static final Block UMBRAL_WALL_SIGN = add("umbral_wall_sign", new TerraformWallSignBlock(Cinderscapes.id("entity/signs/umbral"), FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.BLUE)));
+    public static final Block UMBRAL_SIGN = add("umbral_sign", new TerraformSignBlock(Cinderscapes.asIdentifier("entity/signs/umbral"), FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).mapColor(MapColor.BLUE)));
+    public static final Block UMBRAL_WALL_SIGN = add("umbral_wall_sign", new TerraformWallSignBlock(Cinderscapes.asIdentifier("entity/signs/umbral"), FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.BLUE)));
 
     // Other
 
@@ -149,7 +109,7 @@ public class CinderscapesBlocks {
     ///////////
 
     public static final Block SULFUR_BLOCK = add("sulfur_block", new Block(FabricBlockSettings.of(Material.AGGREGATE).strength(0.5F, 0.5f)), ItemGroup.BUILDING_BLOCKS);
-    public static final Block SULFUR_ORE = addOre("sulfur_ore", ItemGroup.BUILDING_BLOCKS, 2, MapColor.YELLOW);
+    public static final Block SULFUR_ORE = addOre("sulfur_ore", 2, MapColor.YELLOW);
 
     public static final Block BRAMBLE_BERRY_BUSH = add("bramble_berry_bush", new BrambleBerryBushBlock(FabricBlockSettings.copyOf(Blocks.SWEET_BERRY_BUSH)));
 
@@ -169,7 +129,7 @@ public class CinderscapesBlocks {
     public static final Block POLYPITE_SULFUR_QUARTZ = add("polypite_sulfur_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(POLYPITE_QUARTZ).mapColor(MapColor.YELLOW)), ItemGroup.DECORATIONS);
     public static final Block POTTED_POLYPITE_SULFUR_QUARTZ = add("potted_polypite_sulfur_quartz", new FlowerPotBlock(POLYPITE_SULFUR_QUARTZ, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
 
-    public static final Block SULFUR_QUARTZ_ORE = addOre("sulfur_quartz_ore", ItemGroup.BUILDING_BLOCKS, 1, MapColor.YELLOW);
+    public static final Block SULFUR_QUARTZ_ORE = addOre("sulfur_quartz_ore", 1, MapColor.YELLOW);
     public static final Block SULFUR_QUARTZ_BLOCK = add("sulfur_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).mapColor(MapColor.YELLOW)), ItemGroup.BUILDING_BLOCKS);
     public static final Block CHISELED_SULFUR_QUARTZ_BLOCK = add("chiseled_sulfur_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).mapColor(MapColor.YELLOW)), ItemGroup.BUILDING_BLOCKS);
     public static final Block SULFUR_QUARTZ_PILLAR = add("sulfur_quartz_pillar", new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR).mapColor(MapColor.YELLOW)), ItemGroup.BUILDING_BLOCKS);
@@ -186,7 +146,7 @@ public class CinderscapesBlocks {
     public static final Block POLYPITE_ROSE_QUARTZ = add("polypite_rose_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(POLYPITE_QUARTZ).mapColor(MapColor.PINK)), ItemGroup.DECORATIONS);
     public static final Block POTTED_POLYPITE_ROSE_QUARTZ = add("potted_polypite_rose_quartz", new FlowerPotBlock(POLYPITE_ROSE_QUARTZ, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
 
-    public static final Block ROSE_QUARTZ_ORE = addOre("rose_quartz_ore", ItemGroup.BUILDING_BLOCKS, 1, MapColor.PINK);
+    public static final Block ROSE_QUARTZ_ORE = addOre("rose_quartz_ore", 1, MapColor.PINK);
     public static final Block ROSE_QUARTZ_BLOCK = add("rose_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).mapColor(MapColor.PINK)), ItemGroup.BUILDING_BLOCKS);
     public static final Block CHISELED_ROSE_QUARTZ_BLOCK = add("chiseled_rose_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).mapColor(MapColor.PINK)), ItemGroup.BUILDING_BLOCKS);
     public static final Block ROSE_QUARTZ_PILLAR = add("rose_quartz_pillar", new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR).mapColor(MapColor.PINK)), ItemGroup.BUILDING_BLOCKS);
@@ -203,7 +163,7 @@ public class CinderscapesBlocks {
     public static final Block POLYPITE_SMOKY_QUARTZ = add("polypite_smoky_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(POLYPITE_QUARTZ).mapColor(MapColor.GRAY)), ItemGroup.DECORATIONS);
     public static final Block POTTED_POLYPITE_SMOKY_QUARTZ = add("potted_polypite_smoky_quartz", new FlowerPotBlock(POLYPITE_SMOKY_QUARTZ, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
 
-    public static final Block SMOKY_QUARTZ_ORE = addOre("smoky_quartz_ore", ItemGroup.BUILDING_BLOCKS, 1, MapColor.GRAY);
+    public static final Block SMOKY_QUARTZ_ORE = addOre("smoky_quartz_ore", 1, MapColor.GRAY);
     public static final Block SMOKY_QUARTZ_BLOCK = add("smoky_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).mapColor(MapColor.GRAY)), ItemGroup.BUILDING_BLOCKS);
     public static final Block CHISELED_SMOKY_QUARTZ_BLOCK = add("chiseled_smoky_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).mapColor(MapColor.GRAY)), ItemGroup.BUILDING_BLOCKS);
     public static final Block SMOKY_QUARTZ_PILLAR = add("smoky_quartz_pillar", new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR).mapColor(MapColor.GRAY)), ItemGroup.BUILDING_BLOCKS);
@@ -217,9 +177,9 @@ public class CinderscapesBlocks {
 
     public static final Block NODZOL = add("nodzol", new Block(FabricBlockSettings.copyOf(Blocks.NETHERRACK)));
 
-    private static Block addOre(String name, ItemGroup tab, int miningLevel, MapColor color) {
+    private static Block addOre(String name, int ignoredMiningLevel, MapColor color) {
         CinderscapesOreBlock block = new CinderscapesOreBlock(FabricBlockSettings.copyOf(Blocks.NETHER_QUARTZ_ORE).mapColor(color).sounds(BlockSoundGroup.NETHER_ORE).requiresTool());
-        return add(name, block, tab);
+        return add(name, block, ItemGroup.BUILDING_BLOCKS);
     }
 
     private static <B extends Block> B add(String name, B block, ItemGroup tab) {
@@ -230,35 +190,25 @@ public class CinderscapesBlocks {
         add(name, block);
         if (item != null) {
             item.appendBlocks(Item.BLOCK_ITEMS, item);
-            ITEMS.put(Cinderscapes.id(name), item);
+            Registry.register(Registry.ITEM, Cinderscapes.asIdentifier(name), item);
         }
         return block;
     }
 
     private static <B extends Block> B add(String name, B block) {
-        BLOCKS.put(Cinderscapes.id(name), block);
+        Registry.register(Registry.BLOCK, name, block);
         return block;
     }
 
-    private static <I extends BlockItem> I add(String name, I item) {
+    private static <I extends BlockItem> void add(I item) {
         item.appendBlocks(Item.BLOCK_ITEMS, item);
-        ITEMS.put(Cinderscapes.id(name), item);
-        return item;
+        Registry.register(Registry.ITEM, Cinderscapes.asIdentifier("nodzol"), item);
     }
 
     public static void init() {
-        add("nodzol", new BlockItem(CinderscapesBlocks.NODZOL, new FabricItemSettings()));
-        if (CinderscapesConfig.INSTANCE.easterEggs) {
-
-        } else {
+        add(new BlockItem(CinderscapesBlocks.NODZOL, new FabricItemSettings()));
+        if (!CinderscapesConfig.INSTANCE.easterEggs) {
             Cinderscapes.HIDDEN_ITEMS.add(CinderscapesBlocks.NODZOL.asItem());
-        }
-
-        for (Identifier id : ITEMS.keySet()) {
-            Registry.register(Registry.ITEM, id, ITEMS.get(id));
-        }
-        for (Identifier id : BLOCKS.keySet()) {
-            Registry.register(Registry.BLOCK, id, BLOCKS.get(id));
         }
 
         registerCompostableBlocks();

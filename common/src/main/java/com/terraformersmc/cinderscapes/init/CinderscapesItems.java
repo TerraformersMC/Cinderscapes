@@ -37,7 +37,7 @@ public class CinderscapesItems {
     public static final Item MUSIC_DISC_CHILLING_IN_HELL = add("music_disc_chilling_in_hell", new CinderscapesMusicDiscItem(14, CinderscapesSoundEvents.MUSIC_DISC_CHILLING_IN_HELL));
 
     private static <I extends Item> I add(String name, I item) {
-        ITEMS.put(Cinderscapes.id(name), item);
+        ITEMS.put(Cinderscapes.asIdentifier(name), item);
         return item;
     }
 

@@ -9,7 +9,7 @@ import net.minecraft.util.registry.Registry;
 public class CinderscapesGroups {
     // Registers the item group added by Cinderscapes
     public static void init() {
-        FabricItemGroupBuilder.create(Cinderscapes.id("items"))
+        FabricItemGroupBuilder.create(Cinderscapes.asIdentifier("items"))
             .icon(() -> CinderscapesBlocks.UMBRAL_FUNGUS.asItem().getDefaultStack())
             .appendItems((stacks) -> {
                 Registry.ITEM.stream().filter((item) -> {

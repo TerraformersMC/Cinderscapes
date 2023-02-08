@@ -127,7 +127,7 @@ public class CinderscapesPlacedFeatures {
     }
 
     public static <FC extends FeatureConfig> RegistryEntry<PlacedFeature> createPlacedFeature(String id, RegistryEntry<ConfiguredFeature<FC, ?>> feature, List<PlacementModifier> placementModifiers) {
-        Identifier realID = Cinderscapes.id(id);
+        Identifier realID = Cinderscapes.asIdentifier(id);
         if (BuiltinRegistries.PLACED_FEATURE.getIds().contains(realID))
             throw new IllegalStateException("Placed Feature ID: \"" + realID.toString() + "\" already exists in the Placed Features registry!");
 
@@ -141,7 +141,7 @@ public class CinderscapesPlacedFeatures {
     }
 
     public static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<PlacedFeature> createPlacedFeatureStrict(String id, RegistryEntry<ConfiguredFeature<FC, F>> feature, List<PlacementModifier> placementModifiers) {
-        Identifier realID = Cinderscapes.id(id);
+        Identifier realID = Cinderscapes.asIdentifier(id);
         if (BuiltinRegistries.PLACED_FEATURE.getIds().contains(realID))
             throw new IllegalStateException("Placed Feature ID: \"" + realID.toString() + "\" already exists in the Placed Features registry!");
 
