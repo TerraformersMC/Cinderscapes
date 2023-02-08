@@ -8,7 +8,6 @@ plugins {
 }
 
 apply from: 'https://raw.githubusercontent.com/TerraformersMC/GradleScripts/2.5/ferry.gradle'
-mod_version = "${project.mod_version}"
 
 repositories {
     maven {
@@ -79,10 +78,10 @@ allprojects {
 
     afterEvaluate {
         processResources {
-            inputs.property "version", mod_version
+            inputs.property "version", project.version
 
             filesMatching("fabric.mod.json") {
-                expand "version": mod_version
+                expand "version": project.version
             }
         }
     }
@@ -127,7 +126,7 @@ subprojects {
         modImplementation "me.shedaniel.cloth:cloth-config-fabric:${project.clothconfig_version}"
     }
 
-    version = mod_version
+    version = project.version
 
     runClient.enabled = false
 }
