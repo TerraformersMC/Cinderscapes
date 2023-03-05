@@ -33,7 +33,7 @@ public class QuartzCavernBiome {
         return new Biome.Builder()
                 .generationSettings(createGenerationSettings(entries))
                 .spawnSettings(createSpawnSettings())
-                .precipitation(Biome.Precipitation.NONE)
+                .precipitation(false)
                 .temperature(2.0F)
                 .downfall(0.0F)
                 .effects(new BiomeEffects.Builder()

@@ -15,7 +15,7 @@ public class CinderscapesNetherPlantBlock extends PlantBlock {
     private final StateShapeSupplier SHAPE_SUPPLIER;
 
     public CinderscapesNetherPlantBlock(Settings settings, StateShapeSupplier supplier) {
-        super(settings.offsetType(AbstractBlock.OffsetType.XZ));
+        super(settings.offset(AbstractBlock.OffsetType.XZ));
         SHAPE_SUPPLIER = supplier;
     }
 

@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.surfacebuilders;
 
+import com.terraformersmc.biolith.api.surface.BiolithSurfaceBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -9,7 +10,7 @@ import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.chunk.BlockColumn;
 
-public class AshyShoalsSurfaceBuilder extends CinderscapesSurfaceBuilder {
+public class AshyShoalsSurfaceBuilder extends BiolithSurfaceBuilder {
 	private final BlockState topMaterial;
 	private final BlockState midMaterial;
 	private final BlockState lowMaterial;

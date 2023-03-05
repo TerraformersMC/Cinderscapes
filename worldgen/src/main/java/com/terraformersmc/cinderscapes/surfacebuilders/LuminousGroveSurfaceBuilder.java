@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.surfacebuilders;
 
+import com.terraformersmc.biolith.api.surface.BiolithSurfaceBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BiomeTags;
@@ -10,7 +11,7 @@ import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.chunk.BlockColumn;
 
-public class LuminousGroveSurfaceBuilder extends CinderscapesSurfaceBuilder {
+public class LuminousGroveSurfaceBuilder extends BiolithSurfaceBuilder {
 	private final BlockState topMaterial;
 	private final BlockState midMaterial;
 	private final BlockState lowMaterial;
@@ -32,7 +33,7 @@ public class LuminousGroveSurfaceBuilder extends CinderscapesSurfaceBuilder {
             if (state.isAir()) {
                 inAir = true;
             } else {
-                if (inAir && state.isOf(lowMaterial.getBlock()) && biomeAccess.getBiome(pos.withY(y)).matchesKey(biomeKey)) {
+                if (inAir && state.isOf(lowMaterial.getBlock()) && super.filterBiome(biomeAccess.getBiome(pos.withY(y)))) {
                     column.setState(y, rand.nextFloat() < 0.99f ? topMaterial : midMaterial);
                 }
                 inAir = false;

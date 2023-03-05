@@ -48,39 +48,39 @@ public class CinderscapesBlocks {
     // Ashy Shoals //
     /////////////////
 
-    public static final Block STRIPPED_SCORCHED_STEM = withItem("stripped_scorched_stem", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_WARPED_STEM).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block SCORCHED_STEM = withItem("scorched_stem", new StrippableLogBlock(() -> STRIPPED_SCORCHED_STEM, MapColor.CLEAR, FabricBlockSettings.copyOf(Blocks.WARPED_STEM).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block STRIPPED_SCORCHED_STEM = withItem("stripped_scorched_stem", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_CRIMSON_STEM).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block SCORCHED_STEM = withItem("scorched_stem", new StrippableLogBlock(() -> STRIPPED_SCORCHED_STEM, MapColor.CLEAR, FabricBlockSettings.copyOf(Blocks.CRIMSON_STEM).mapColor(MapColor.LIGHT_GRAY)));
 
-    public static final Block STRIPPED_SCORCHED_HYPHAE = withItem("stripped_scorched_hyphae", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_WARPED_HYPHAE).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block SCORCHED_HYPHAE = withItem("scorched_hyphae", new StrippableLogBlock(() -> STRIPPED_SCORCHED_HYPHAE, MapColor.CLEAR, FabricBlockSettings.copyOf(Blocks.WARPED_HYPHAE).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block STRIPPED_SCORCHED_HYPHAE = withItem("stripped_scorched_hyphae", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_CRIMSON_HYPHAE).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block SCORCHED_HYPHAE = withItem("scorched_hyphae", new StrippableLogBlock(() -> STRIPPED_SCORCHED_HYPHAE, MapColor.CLEAR, FabricBlockSettings.copyOf(Blocks.CRIMSON_HYPHAE).mapColor(MapColor.LIGHT_GRAY)));
 
-    public static final Block SCORCHED_PLANKS = withItem("scorched_planks", new Block(FabricBlockSettings.copyOf(Blocks.WARPED_PLANKS).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block SCORCHED_SLAB = withItem("scorched_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.WARPED_SLAB).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block SCORCHED_PLANKS = withItem("scorched_planks", new Block(FabricBlockSettings.copyOf(Blocks.CRIMSON_PLANKS).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block SCORCHED_SLAB = withItem("scorched_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_SLAB).mapColor(MapColor.LIGHT_GRAY)));
 
-    public static final Block SCORCHED_PRESSURE_PLATE = withItem("scorched_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.WARPED_PRESSURE_PLATE).mapColor(MapColor.LIGHT_GRAY), SoundEvents.BLOCK_NETHER_WOOD_PRESSURE_PLATE_CLICK_OFF, SoundEvents.BLOCK_NETHER_WOOD_PRESSURE_PLATE_CLICK_ON));
-    public static final Block SCORCHED_FENCE = withItem("scorched_fence", new FenceBlock(FabricBlockSettings.copyOf(Blocks.WARPED_FENCE).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block SCORCHED_TRAPDOOR = withItem("scorched_trapdoor", new TrapdoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_TRAPDOOR).mapColor(MapColor.LIGHT_GRAY), SoundEvents.BLOCK_NETHER_WOOD_TRAPDOOR_CLOSE, SoundEvents.BLOCK_NETHER_WOOD_TRAPDOOR_OPEN));
-    public static final Block SCORCHED_FENCE_GATE = withItem("scorched_fence_gate", new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.WARPED_FENCE_GATE).mapColor(MapColor.LIGHT_GRAY), SoundEvents.BLOCK_NETHER_WOOD_FENCE_GATE_CLOSE, SoundEvents.BLOCK_BAMBOO_WOOD_FENCE_GATE_OPEN));
-    public static final Block SCORCHED_STAIRS = withItem("scorched_stairs", new StairsBlock(SCORCHED_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.WARPED_STAIRS).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block SCORCHED_BUTTON = withItem("scorched_button", new ButtonBlock(FabricBlockSettings.copyOf(Blocks.WARPED_BUTTON).mapColor(MapColor.LIGHT_GRAY), 30, true, SoundEvents.BLOCK_NETHER_WOOD_BUTTON_CLICK_OFF, SoundEvents.BLOCK_NETHER_WOOD_BUTTON_CLICK_ON));
-    public static final Block SCORCHED_DOOR = withItem("scorched_door", new DoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_DOOR).mapColor(MapColor.LIGHT_GRAY), SoundEvents.BLOCK_NETHER_WOOD_DOOR_CLOSE, SoundEvents.BLOCK_NETHER_WOOD_DOOR_OPEN));
+    public static final Block SCORCHED_PRESSURE_PLATE = withItem("scorched_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.CRIMSON_PRESSURE_PLATE).mapColor(MapColor.LIGHT_GRAY), BlockSetType.CRIMSON));
+    public static final Block SCORCHED_FENCE = withItem("scorched_fence", new FenceBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_FENCE).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block SCORCHED_TRAPDOOR = withItem("scorched_trapdoor", new TrapdoorBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_TRAPDOOR).mapColor(MapColor.LIGHT_GRAY), BlockSetType.CRIMSON));
+    public static final Block SCORCHED_FENCE_GATE = withItem("scorched_fence_gate", new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_FENCE_GATE).mapColor(MapColor.LIGHT_GRAY), WoodType.CRIMSON));
+    public static final Block SCORCHED_STAIRS = withItem("scorched_stairs", new StairsBlock(SCORCHED_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.CRIMSON_STAIRS).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block SCORCHED_BUTTON = withItem("scorched_button", new ButtonBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_BUTTON).mapColor(MapColor.LIGHT_GRAY), BlockSetType.CRIMSON, 30, true));
+    public static final Block SCORCHED_DOOR = withItem("scorched_door", new DoorBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_DOOR).mapColor(MapColor.LIGHT_GRAY), BlockSetType.CRIMSON));
 
     private static final Identifier SCORCHED_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/scorched");
-    public static final TerraformSignBlock SCORCHED_SIGN = add("scorched_sign", new TerraformSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).mapColor(MapColor.LIGHT_GRAY)));
-    public static final TerraformWallSignBlock SCORCHED_WALL_SIGN = add("scorched_wall_sign", new TerraformWallSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.LIGHT_GRAY)));
+    public static final TerraformSignBlock SCORCHED_SIGN = add("scorched_sign", new TerraformSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_SIGN).mapColor(MapColor.LIGHT_GRAY)));
+    public static final TerraformWallSignBlock SCORCHED_WALL_SIGN = add("scorched_wall_sign", new TerraformWallSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.LIGHT_GRAY)));
     public static final SignItem SCORCHED_SIGN_ITEM = CinderscapesItems.add("scorched_sign", new SignItem(new Item.Settings().maxCount(16), SCORCHED_SIGN, SCORCHED_WALL_SIGN));
     private static final Identifier SCORCHED_HANGING_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/hanging/scorched");
     private static final Identifier SCORCHED_HANGING_SIGN_GUI_TEXTURE = new Identifier(Cinderscapes.NAMESPACE, "textures/gui/hanging_signs/scorched");
-    public static final TerraformHangingSignBlock SCORCHED_HANGING_SIGN = add("scorched_hanging_sign", new TerraformHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).requires(FeatureFlags.UPDATE_1_20)));
-    public static final TerraformWallHangingSignBlock SCORCHED_WALL_HANGING_SIGN = add("scorched_wall_hanging_sign", new TerraformWallHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).requires(FeatureFlags.UPDATE_1_20)));
+    public static final TerraformHangingSignBlock SCORCHED_HANGING_SIGN = add("scorched_hanging_sign", new TerraformHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).requires(FeatureFlags.UPDATE_1_20)));
+    public static final TerraformWallHangingSignBlock SCORCHED_WALL_HANGING_SIGN = add("scorched_wall_hanging_sign", new TerraformWallHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).requires(FeatureFlags.UPDATE_1_20)));
     public static final HangingSignItem SCORCHED_HANGING_SIGN_ITEM = CinderscapesItems.add("scorched_hanging_sign", new HangingSignItem(SCORCHED_HANGING_SIGN, SCORCHED_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
     public static final Block SCORCHED_SHRUB = withItem("scorched_shrub", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 14.0, 14.0)));
     public static final Block POTTED_SCORCHED_SHRUB = add("potted_scorched_shrub", new FlowerPotBlock(SCORCHED_SHRUB, FabricBlockSettings.copyOf(Blocks.POTTED_DEAD_BUSH)));
 
     public static final Block SCORCHED_SPROUTS = withItem("scorched_sprouts", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.NETHER_SPROUTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 3.0, 14.0)));
-    public static final Block SCORCHED_TENDRILS = withItem("scorched_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)));
-    public static final Block POTTED_SCORCHED_TENDRILS = add("potted_scorched_tendrils", new FlowerPotBlock(SCORCHED_TENDRILS, FabricBlockSettings.copyOf(Blocks.POTTED_WARPED_ROOTS)));
+    public static final Block SCORCHED_TENDRILS = withItem("scorched_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_ROOTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)));
+    public static final Block POTTED_SCORCHED_TENDRILS = add("potted_scorched_tendrils", new FlowerPotBlock(SCORCHED_TENDRILS, FabricBlockSettings.copyOf(Blocks.POTTED_CRIMSON_ROOTS)));
 
     public static final Block ASH = withItem("ash", new AshLayerBlock(FabricBlockSettings.copyOf(Blocks.SNOW)));
     public static final Block ASH_BLOCK = withItem("ash_block", new Block(FabricBlockSettings.copyOf(Blocks.SNOW_BLOCK)));
@@ -110,13 +110,13 @@ public class CinderscapesBlocks {
 
     public static final Block UMBRAL_PLANKS = withItem("umbral_planks", new Block(FabricBlockSettings.copyOf(Blocks.WARPED_PLANKS).mapColor(MapColor.BLUE)));
     public static final Block UMBRAL_SLAB = withItem("umbral_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.WARPED_SLAB).mapColor(MapColor.BLUE)));
-    public static final Block UMBRAL_PRESSURE_PLATE = withItem("umbral_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.WARPED_PRESSURE_PLATE).mapColor(MapColor.BLUE), SoundEvents.BLOCK_NETHER_WOOD_PRESSURE_PLATE_CLICK_OFF, SoundEvents.BLOCK_NETHER_WOOD_PRESSURE_PLATE_CLICK_ON));
+    public static final Block UMBRAL_PRESSURE_PLATE = withItem("umbral_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.WARPED_PRESSURE_PLATE).mapColor(MapColor.BLUE), BlockSetType.WARPED));
     public static final Block UMBRAL_FENCE = withItem("umbral_fence", new FenceBlock(FabricBlockSettings.copyOf(Blocks.WARPED_FENCE).mapColor(MapColor.BLUE)));
-    public static final Block UMBRAL_TRAPDOOR = withItem("umbral_trapdoor", new TrapdoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_TRAPDOOR).mapColor(MapColor.BLUE), SoundEvents.BLOCK_NETHER_WOOD_TRAPDOOR_CLOSE, SoundEvents.BLOCK_NETHER_WOOD_TRAPDOOR_OPEN));
-    public static final Block UMBRAL_FENCE_GATE = withItem("umbral_fence_gate", new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.WARPED_FENCE_GATE).mapColor(MapColor.BLUE), SoundEvents.BLOCK_NETHER_WOOD_FENCE_GATE_CLOSE, SoundEvents.BLOCK_NETHER_WOOD_FENCE_GATE_OPEN));
+    public static final Block UMBRAL_TRAPDOOR = withItem("umbral_trapdoor", new TrapdoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_TRAPDOOR).mapColor(MapColor.BLUE), BlockSetType.WARPED));
+    public static final Block UMBRAL_FENCE_GATE = withItem("umbral_fence_gate", new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.WARPED_FENCE_GATE).mapColor(MapColor.BLUE), WoodType.WARPED));
     public static final Block UMBRAL_STAIRS = withItem("umbral_stairs", new StairsBlock(UMBRAL_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.WARPED_STAIRS).mapColor(MapColor.BLUE)));
-    public static final Block UMBRAL_BUTTON = withItem("umbral_button", new ButtonBlock(FabricBlockSettings.copyOf(Blocks.WARPED_BUTTON).mapColor(MapColor.BLUE), 30, true, SoundEvents.BLOCK_NETHER_WOOD_BUTTON_CLICK_OFF, SoundEvents.BLOCK_NETHER_WOOD_BUTTON_CLICK_ON));
-    public static final Block UMBRAL_DOOR = withItem("umbral_door", new DoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_DOOR).mapColor(MapColor.BLUE), SoundEvents.BLOCK_NETHER_WOOD_DOOR_CLOSE, SoundEvents.BLOCK_NETHER_WOOD_DOOR_OPEN));
+    public static final Block UMBRAL_BUTTON = withItem("umbral_button", new ButtonBlock(FabricBlockSettings.copyOf(Blocks.WARPED_BUTTON).mapColor(MapColor.BLUE), BlockSetType.WARPED, 30, true));
+    public static final Block UMBRAL_DOOR = withItem("umbral_door", new DoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_DOOR).mapColor(MapColor.BLUE), BlockSetType.WARPED));
 
     private static final Identifier UMBRAL_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/umbral");
     public static final TerraformSignBlock UMBRAL_SIGN = add("umbral_sign", new TerraformSignBlock(UMBRAL_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).mapColor(MapColor.BLUE)));

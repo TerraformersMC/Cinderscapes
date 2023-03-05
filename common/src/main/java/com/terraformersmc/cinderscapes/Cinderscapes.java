@@ -11,7 +11,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.mob.ZoglinEntity;
 import net.minecraft.entity.mob.ZombifiedPiglinEntity;
-import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.Heightmap;
 import org.apache.commons.lang3.StringUtils;

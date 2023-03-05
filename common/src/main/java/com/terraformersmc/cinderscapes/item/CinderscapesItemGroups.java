@@ -260,7 +260,7 @@ public class CinderscapesItemGroups {
 		ITEM_GROUP = FabricItemGroup.builder(new Identifier(Cinderscapes.NAMESPACE, "items"))
 				.displayName(Text.literal("Cinderscapes"))
 				.icon(() -> CinderscapesBlocks.UMBRAL_FUNGUS.asItem().getDefaultStack())
-				.entries((enabledFeatures, entries, operatorEnabled) -> {
+				.entries((context, entries) -> {
 					ITEM_GROUP_ENTRY_MAPS.values().stream()
 							.map(HashMap::values).flatMap(Collection::stream)
 							.map(ItemGroupEntries::getCollection).flatMap(Collection::stream)
