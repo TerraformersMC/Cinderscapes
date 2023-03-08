@@ -93,10 +93,6 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 
 		copy(BlockTags.LOGS, ItemTags.LOGS);
 
-		getOrCreateTagBuilder(ItemTags.MUSIC_DISCS)
-			.add(CinderscapesItems.MUSIC_DISC_CHILLING_IN_HELL)
-			.add(CinderscapesItems.MUSIC_DISC_LUMINOUS_PLANTATION);
-
 		getOrCreateTagBuilder(ItemTags.NON_FLAMMABLE_WOOD)
 			.add(CinderscapesBlocks.SCORCHED_BUTTON.asItem())
 			.add(CinderscapesBlocks.SCORCHED_DOOR.asItem())

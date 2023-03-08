@@ -42,7 +42,6 @@ public class CinderscapesItemGroups {
 		final Item NATURAL_NETHER_VEGETATION = Items.NETHER_SPROUTS;
 		final Item NATURAL_TALL_VEGETATION = Items.LARGE_FERN;
 		final Item NATURAL_BERRIES = Items.SWEET_BERRIES;
-		final Item TOOLS_MUSIC_DISC = Items.MUSIC_DISC_PIGSTEP;
 		final Item FOOD_BERRIES = Items.GLOW_BERRIES;
 		final Item INGREDIENTS_QUARTZ = Items.QUARTZ;
 
@@ -198,10 +197,6 @@ public class CinderscapesItemGroups {
 
 
 		// TOOLS
-
-		// Music Disc Items
-		addGroupEntry(CinderscapesItems.MUSIC_DISC_CHILLING_IN_HELL, ItemGroups.TOOLS, TOOLS_MUSIC_DISC);
-		addGroupEntry(CinderscapesItems.MUSIC_DISC_LUMINOUS_PLANTATION, ItemGroups.TOOLS, TOOLS_MUSIC_DISC);
 
 
 		// COMBAT
