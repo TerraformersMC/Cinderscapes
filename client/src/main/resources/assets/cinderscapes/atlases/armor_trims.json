@@ -1,0 +1,13 @@
+{
+    "sources": [
+        {
+            "type": "paletted_permutations",
+            "palette_key": "cinderscapes:trims/color_palettes/trim_palette",
+            "permutations": {
+                "rose_quartz": "cinderscapes:trims/color_palettes/rose_quartz",
+                "smoky_quartz": "cinderscapes:trims/color_palettes/smoky_quartz",
+                "sulfur_quartz": "cinderscapes:trims/color_palettes/sulfur_quartz"
+            }
+        }
+    ]
+}

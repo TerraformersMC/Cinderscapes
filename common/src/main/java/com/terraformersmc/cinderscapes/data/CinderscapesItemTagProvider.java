@@ -141,6 +141,11 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 
 		copy(BlockTags.STAIRS, ItemTags.STAIRS);
 
+		getOrCreateTagBuilder(ItemTags.TRIM_MATERIALS)
+			.add(CinderscapesItems.ROSE_QUARTZ)
+			.add(CinderscapesItems.SMOKY_QUARTZ)
+			.add(CinderscapesItems.SULFUR_QUARTZ);
+
 		copy(BlockTags.WART_BLOCKS, ItemTags.WART_BLOCKS);
 
 		copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);

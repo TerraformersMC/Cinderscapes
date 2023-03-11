@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.data;
 
+import com.terraformersmc.cinderscapes.init.CinderscapesArmorTrimMaterials;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
@@ -17,9 +18,13 @@ public class CinderscapesDynamicRegistryProvider extends FabricDynamicRegistryPr
 
 	@Override
 	public void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
+		// worldgen
 		CinderscapesConfiguredFeatures.populate(entries);
 		CinderscapesPlacedFeatures.populate(entries);
 		CinderscapesBiomes.populate(entries);
+
+		// other registries
+		CinderscapesArmorTrimMaterials.populate(entries);
 	}
 
 	@Override

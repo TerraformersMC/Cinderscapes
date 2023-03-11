@@ -135,6 +135,10 @@
   "text.autoconfig.cinderscapes.option.biomes.enableLuminousGrove": "Enable Luminous Grove Biome",
   "text.autoconfig.cinderscapes.option.biomes.enableQuartzCavern": "Enable Quartz Cavern Biome",
 
+  "trim_material.cinderscapes.rose_quartz": "Rose Quartz Material",
+  "trim_material.cinderscapes.smoky_quartz": "Smoky Quartz Material",
+  "trim_material.cinderscapes.sulfur_quartz": "Sulfur Quartz Material",
+
   "block.cinderscapes.nodzol": "Nodzol",
   "block.cinderscapes.nodzol.description": "This block is nursed..."
 }
