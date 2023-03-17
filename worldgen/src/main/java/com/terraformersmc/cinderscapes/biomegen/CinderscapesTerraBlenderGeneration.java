@@ -1,12 +1,14 @@
 package com.terraformersmc.cinderscapes.biomegen;
 
 import com.mojang.datafixers.util.Pair;
+import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.biome.AshyShoalsBiome;
 import com.terraformersmc.cinderscapes.biome.BlackstoneShalesBiome;
 import com.terraformersmc.cinderscapes.biome.LuminousGroveBiome;
 import com.terraformersmc.cinderscapes.biome.QuartzCavernBiome;
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
+import com.terraformersmc.cinderscapes.surfacebuilders.CinderscapesSurfaceBuilders;
 import com.terraformersmc.cinderscapes.surfacerules.CinderscapesSurfaceRules;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -37,6 +39,7 @@ public class CinderscapesTerraBlenderGeneration extends Region implements Runnab
     public void onTerraBlenderInitialized() {
         // We can't do registration stuff until both Cinderscapes and TerraBlender are ready.
         // The run() method below will be called when Cinderscapes is done initializing.
+        Cinderscapes.callbackWhenInitialized(CinderscapesSurfaceBuilders::init);
         Cinderscapes.callbackWhenInitialized(this);
     }
 
@@ -48,6 +51,9 @@ public class CinderscapesTerraBlenderGeneration extends Region implements Runnab
 
         // Add the Cinderscapes Overworld surface rules via TerraBlender.
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, Cinderscapes.NAMESPACE, CinderscapesSurfaceRules.createRules());
+
+        // Register the Cinderscapes surface builders.
+        CinderscapesSurfaceBuilders.getBuilders().forEach(SurfaceGeneration::addSurfaceBuilder);
 
         // Add the biomes to Overworld generation via TerraBlender.
         BIOME_CONFIG = CinderscapesConfig.INSTANCE.biomes;

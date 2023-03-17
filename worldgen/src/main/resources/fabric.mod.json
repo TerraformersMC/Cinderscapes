@@ -20,7 +20,7 @@
       "parent": "cinderscapes"
     }
   },
-  "recommends": {
+  "depends": {
     "biolith": "*"
   },
   "suggests": {
