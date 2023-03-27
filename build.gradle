@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
     id 'idea'
     id 'eclipse'
-    id 'fabric-loom' version '1.0.+'
+    id 'fabric-loom' version '1.1.+'
     id 'io.github.juuxel.loom-quiltflower' version '1.8.0'
 }
 
@@ -32,7 +32,7 @@ dependencies {
     afterEvaluate {
         subprojects.each {
             testmodImplementation sourceSets.main.output
-            implementation project(path: "${it.name}", configuration: "namedElements")
+            api project(path: "${it.name}", configuration: "namedElements")
             include project("${it.name}:")
         }
     }
@@ -131,4 +131,35 @@ subprojects {
     version = rootProject.version
 
     runClient.enabled = false
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                artifact(sourcesJar) {
+                    builtBy remapSourcesJar
+                }
+
+                afterEvaluate {
+                    artifact remapJar
+                }
+            }
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom.withXml {
+                def depsNode = asNode().appendNode("dependencies")
+                subprojects.each {
+                    def depNode = depsNode.appendNode("dependency")
+                    depNode.appendNode("groupId", it.group)
+                    depNode.appendNode("artifactId", it.name)
+                    depNode.appendNode("version", it.version)
+                    depNode.appendNode("scope", "compile")
+                }
+            }
+        }
+    }
 }
