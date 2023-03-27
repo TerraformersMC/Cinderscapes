@@ -5,7 +5,7 @@ loom {
 }
 
 dependencies {
-    implementation project(path: ':common')
+    implementation project(path: ':cinderscapes-common')
 
     // Biolith and TerraBlender for the worldgen API modules
     modImplementation "com.terraformersmc:biolith:${biolith_version}"

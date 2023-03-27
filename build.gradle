@@ -25,7 +25,7 @@ dependencies {
 
     includeMod "cloth-config", "me.shedaniel.cloth:cloth-config-fabric:${project.clothconfig_version}"
 
-    if (findProject(':worldgen') != null) {
+    if (findProject(':cinderscapes-worldgen') != null) {
         includeMod "biolith", "com.terraformersmc:biolith:${biolith_version}"
     }
 
@@ -135,29 +135,15 @@ subprojects {
     publishing {
         publications {
             mavenJava(MavenPublication) {
+                artifact(jar) {
+                    builtBy remapJar
+                }
                 artifact(sourcesJar) {
                     builtBy remapSourcesJar
                 }
 
                 afterEvaluate {
                     artifact remapJar
-                }
-            }
-        }
-    }
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            pom.withXml {
-                def depsNode = asNode().appendNode("dependencies")
-                subprojects.each {
-                    def depNode = depsNode.appendNode("dependency")
-                    depNode.appendNode("groupId", it.group)
-                    depNode.appendNode("artifactId", "${project.archive_name}-${it.name}")
-                    depNode.appendNode("version", it.version)
-                    depNode.appendNode("scope", "compile")
                 }
             }
         }
