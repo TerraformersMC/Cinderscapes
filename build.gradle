@@ -132,6 +132,7 @@ subprojects {
 
     runClient.enabled = false
 
+    // Ferry functionality but for subprojects
     publishing {
         publications {
             mavenJava(MavenPublication) {
@@ -145,6 +146,23 @@ subprojects {
                 afterEvaluate {
                     artifact remapJar
                 }
+            }
+        }
+
+        setupRepositories(repositories)
+    }
+}
+
+// Copied from Ferry 2.5 ... apparently Ferry's def does not apply to the subprojects
+static void setupRepositories(RepositoryHandler repositories) {
+    //repositories.mavenLocal() // uncomment for testing
+    def ENV = System.getenv()
+    if (ENV.MAVEN_URL) {
+        repositories.maven {
+            url ENV.MAVEN_URL
+            credentials {
+                username ENV.MAVEN_USERNAME
+                password ENV.MAVEN_PASSWORD
             }
         }
     }
