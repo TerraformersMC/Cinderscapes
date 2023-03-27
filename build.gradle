@@ -155,7 +155,7 @@ publishing {
                 subprojects.each {
                     def depNode = depsNode.appendNode("dependency")
                     depNode.appendNode("groupId", it.group)
-                    depNode.appendNode("artifactId", it.name)
+                    depNode.appendNode("artifactId", "${project.archive_name}-${it.name}")
                     depNode.appendNode("version", it.version)
                     depNode.appendNode("scope", "compile")
                 }
