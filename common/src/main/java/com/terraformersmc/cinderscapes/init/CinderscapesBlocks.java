@@ -19,6 +19,7 @@ import com.terraformersmc.terraform.sign.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallHangingSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
+import com.terraformersmc.terraform.wood.block.PillarLogHelper;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
@@ -46,11 +47,11 @@ public class CinderscapesBlocks {
     // Ashy Shoals //
     /////////////////
 
-    public static final Block SCORCHED_STEM = withItem("scorched_stem", new PillarBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_STEM).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block STRIPPED_SCORCHED_STEM = withItem("stripped_scorched_stem", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_CRIMSON_STEM).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block SCORCHED_STEM = withItem("scorched_stem", PillarLogHelper.ofNether(MapColor.GRAY, MapColor.TERRACOTTA_GRAY));
+    public static final Block STRIPPED_SCORCHED_STEM = withItem("stripped_scorched_stem", PillarLogHelper.ofNether(MapColor.GRAY));
 
-    public static final Block SCORCHED_HYPHAE = withItem("scorched_hyphae", new PillarBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_HYPHAE).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block STRIPPED_SCORCHED_HYPHAE = withItem("stripped_scorched_hyphae", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_CRIMSON_HYPHAE).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block SCORCHED_HYPHAE = withItem("scorched_hyphae", PillarLogHelper.ofNether(MapColor.TERRACOTTA_GRAY));
+    public static final Block STRIPPED_SCORCHED_HYPHAE = withItem("stripped_scorched_hyphae", PillarLogHelper.ofNether(MapColor.GRAY));
 
     public static final Block SCORCHED_PLANKS = withItem("scorched_planks", new Block(FabricBlockSettings.copyOf(Blocks.CRIMSON_PLANKS).mapColor(MapColor.LIGHT_GRAY)));
     public static final Block SCORCHED_SLAB = withItem("scorched_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_SLAB).mapColor(MapColor.LIGHT_GRAY)));
@@ -92,11 +93,11 @@ public class CinderscapesBlocks {
 
     // Umbral Nylia
 
-    public static final Block UMBRAL_STEM = withItem("umbral_stem", new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_STEM).mapColor(MapColor.BLUE)));
-    public static final Block STRIPPED_UMBRAL_STEM = withItem("stripped_umbral_stem", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_WARPED_STEM).mapColor(MapColor.BLUE)));
+    public static final Block UMBRAL_STEM = withItem("umbral_stem", PillarLogHelper.ofNether(MapColor.LIGHT_BLUE_GRAY, MapColor.BLUE));
+    public static final Block STRIPPED_UMBRAL_STEM = withItem("stripped_umbral_stem", PillarLogHelper.ofNether(MapColor.LIGHT_BLUE_GRAY));
 
-    public static final Block UMBRAL_HYPHAE = withItem("umbral_hyphae", new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_HYPHAE).mapColor(MapColor.BLUE)));
-    public static final Block STRIPPED_UMBRAL_HYPHAE = withItem("stripped_umbral_hyphae", new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_WARPED_HYPHAE).mapColor(MapColor.BLUE)));
+    public static final Block UMBRAL_HYPHAE = withItem("umbral_hyphae", PillarLogHelper.ofNether(MapColor.BLUE));
+    public static final Block STRIPPED_UMBRAL_HYPHAE = withItem("stripped_umbral_hyphae", PillarLogHelper.ofNether(MapColor.LIGHT_BLUE_GRAY));
 
     public static final Block UMBRAL_NYLIUM = withItem("umbral_nylium", new CinderscapesNyliumBlock(FabricBlockSettings.copyOf(Blocks.WARPED_NYLIUM).mapColor(MapColor.LIGHT_BLUE_GRAY)));
 
