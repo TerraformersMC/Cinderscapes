@@ -30,7 +30,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -70,8 +69,8 @@ public class CinderscapesBlocks {
     public static final SignItem SCORCHED_SIGN_ITEM = CinderscapesItems.add("scorched_sign", new SignItem(new Item.Settings().maxCount(16), SCORCHED_SIGN, SCORCHED_WALL_SIGN));
     private static final Identifier SCORCHED_HANGING_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/hanging/scorched");
     private static final Identifier SCORCHED_HANGING_SIGN_GUI_TEXTURE = new Identifier(Cinderscapes.NAMESPACE, "textures/gui/hanging_signs/scorched");
-    public static final TerraformHangingSignBlock SCORCHED_HANGING_SIGN = add("scorched_hanging_sign", new TerraformHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).requires(FeatureFlags.UPDATE_1_20)));
-    public static final TerraformWallHangingSignBlock SCORCHED_WALL_HANGING_SIGN = add("scorched_wall_hanging_sign", new TerraformWallHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).requires(FeatureFlags.UPDATE_1_20)));
+    public static final TerraformHangingSignBlock SCORCHED_HANGING_SIGN = add("scorched_hanging_sign", new TerraformHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY)));
+    public static final TerraformWallHangingSignBlock SCORCHED_WALL_HANGING_SIGN = add("scorched_wall_hanging_sign", new TerraformWallHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY)));
     public static final HangingSignItem SCORCHED_HANGING_SIGN_ITEM = CinderscapesItems.add("scorched_hanging_sign", new HangingSignItem(SCORCHED_HANGING_SIGN, SCORCHED_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
     public static final Block SCORCHED_SHRUB = withItem("scorched_shrub", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 14.0, 14.0)));
@@ -123,13 +122,13 @@ public class CinderscapesBlocks {
     public static final SignItem UMBRAL_SIGN_ITEM = CinderscapesItems.add("umbral_sign", new SignItem(new Item.Settings().maxCount(16), UMBRAL_SIGN, UMBRAL_WALL_SIGN));
     private static final Identifier UMBRAL_HANGING_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/hanging/umbral");
     private static final Identifier UMBRAL_HANGING_SIGN_GUI_TEXTURE = new Identifier(Cinderscapes.NAMESPACE, "textures/gui/hanging_signs/umbral");
-    public static final TerraformHangingSignBlock UMBRAL_HANGING_SIGN = add("umbral_hanging_sign", new TerraformHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_HANGING_SIGN).mapColor(MapColor.BLUE).requires(FeatureFlags.UPDATE_1_20)));
-    public static final TerraformWallHangingSignBlock UMBRAL_WALL_HANGING_SIGN = add("umbral_wall_hanging_sign", new TerraformWallHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_HANGING_SIGN).mapColor(MapColor.BLUE).requires(FeatureFlags.UPDATE_1_20)));
+    public static final TerraformHangingSignBlock UMBRAL_HANGING_SIGN = add("umbral_hanging_sign", new TerraformHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_HANGING_SIGN).mapColor(MapColor.BLUE)));
+    public static final TerraformWallHangingSignBlock UMBRAL_WALL_HANGING_SIGN = add("umbral_wall_hanging_sign", new TerraformWallHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_HANGING_SIGN).mapColor(MapColor.BLUE)));
     public static final HangingSignItem UMBRAL_HANGING_SIGN_ITEM = CinderscapesItems.add("umbral_hanging_sign", new HangingSignItem(UMBRAL_HANGING_SIGN, UMBRAL_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
     // Other
 
-    public static final Block TWILIGHT_VINE_BLOCK = withItem("twilight_vine_block", new Block(FabricBlockSettings.of(Material.SOLID_ORGANIC).strength(1.0F).sounds(BlockSoundGroup.NETHER_STEM)));
+    public static final Block TWILIGHT_VINE_BLOCK = withItem("twilight_vine_block", new Block(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.NETHER_STEM)));
     public static final Block TWILIGHT_TENDRILS = withItem("twilight_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).luminance((state) -> 15), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)));
     public static final Block POTTED_TWILIGHT_TENDRILS = add("potted_twilight_tendrils", new FlowerPotBlock(TWILIGHT_TENDRILS, FabricBlockSettings.copyOf(Blocks.POTTED_WARPED_ROOTS).luminance((state) -> 15)));
     public static final Block TWILIGHT_FESCUES = withItem("twilight_fescues", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.NETHER_SPROUTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 5.0, 14.0)));
@@ -141,7 +140,7 @@ public class CinderscapesBlocks {
 
     public static final Block LUMINOUS_POD = withItem("luminous_pod", new CinderscapesNetherTallPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).luminance((state) -> 15), (state) -> Block.createCuboidShape(2.0, 0, 2.0, 14.0, 16.0, 14.0)));
     public static final Block POTTED_LUMINOUS_POD = add("potted_luminous_pod", new FlowerPotBlock(LUMINOUS_POD, FabricBlockSettings.copyOf(Blocks.POTTED_WARPED_ROOTS).luminance((state) -> 15)));
-    public static final Block GHASTLY_ECTOPLASM = withItem("ghastly_ectoplasm", new GhastlyEctoplasmBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).noCollision().breakInstantly().sounds(BlockSoundGroup.ROOTS)));
+    public static final Block GHASTLY_ECTOPLASM = withItem("ghastly_ectoplasm", new GhastlyEctoplasmBlock(FabricBlockSettings.of(Material.PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.ROOTS)));
 
     ///////////
     // Other //
