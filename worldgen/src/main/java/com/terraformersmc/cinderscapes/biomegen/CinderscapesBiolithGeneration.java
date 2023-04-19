@@ -18,12 +18,10 @@ public class CinderscapesBiolithGeneration implements Runnable {
 	CinderscapesConfig.BiomeOptions BIOME_CONFIG;
 
 	public void addBiomes() {
-		/* TODO: BiomePlacement.addNetherBiome() is not implemented yet
-		if (BIOME_CONFIG.enableAshyShoals)        { BiomePlacement.addNetherBiome(ASHY_SHOALS, AshyShoalsBiome.NOISE_POINT); }
-		if (BIOME_CONFIG.enableBlackstoneShales)  { BiomePlacement.addNetherBiome(BLACKSTONE_SHALES, BlackstoneShalesBiome.NOISE_POINT); }
-		if (BIOME_CONFIG.enableLuminousGrove)     { BiomePlacement.addNetherBiome(LUMINOUS_GROVE, LuminousGroveBiome.NOISE_POINT); }
-		if (BIOME_CONFIG.enableQuartzCavern)      { BiomePlacement.addNetherBiome(QUARTZ_CAVERN, QuartzCavernBiome.NOISE_POINT); }
-		*/
+		if (BIOME_CONFIG.enableAshyShoals)        { BiomePlacement.addNether(ASHY_SHOALS, AshyShoalsBiome.NOISE_POINT); }
+		if (BIOME_CONFIG.enableBlackstoneShales)  { BiomePlacement.addNether(BLACKSTONE_SHALES, BlackstoneShalesBiome.NOISE_POINT); }
+		if (BIOME_CONFIG.enableLuminousGrove)     { BiomePlacement.addNether(LUMINOUS_GROVE, LuminousGroveBiome.NOISE_POINT); }
+		if (BIOME_CONFIG.enableQuartzCavern)      { BiomePlacement.addNether(QUARTZ_CAVERN, QuartzCavernBiome.NOISE_POINT); }
 	}
 
 	// Use Biolith to register our Biome placements.
