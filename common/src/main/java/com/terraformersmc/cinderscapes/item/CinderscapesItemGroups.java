@@ -7,6 +7,10 @@ import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.*;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -18,9 +22,8 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class CinderscapesItemGroups {
-	@SuppressWarnings("unused")
-	private static final ItemGroup ITEM_GROUP;
-	private static final HashMap<ItemGroup, HashMap<ItemConvertible, ItemGroupEntries>> ITEM_GROUP_ENTRY_MAPS;
+	private static final RegistryKey<ItemGroup> ITEM_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Cinderscapes.NAMESPACE, "items"));
+	private static final HashMap<RegistryKey<ItemGroup>, HashMap<ItemConvertible, ItemGroupEntries>> ITEM_GROUP_ENTRY_MAPS;
 
 	static {
 		ITEM_GROUP_ENTRY_MAPS = new HashMap<>(8);
@@ -225,7 +228,7 @@ public class CinderscapesItemGroups {
 		/*
 		 * Add the items configured above to the Vanilla item groups.
 		 */
-		for (ItemGroup group : ITEM_GROUP_ENTRY_MAPS.keySet()) {
+		for (RegistryKey<ItemGroup> group : ITEM_GROUP_ENTRY_MAPS.keySet()) {
 			ItemGroupEvents.modifyEntriesEvent(group).register((content) -> {
 				FeatureSet featureSet = content.getEnabledFeatures();
 				HashMap<ItemConvertible, ItemGroupEntries> entryMap = ITEM_GROUP_ENTRY_MAPS.get(group);
@@ -250,7 +253,7 @@ public class CinderscapesItemGroups {
 		/*
 		 * Also add all the items to Cinderscapes' own item group.
 		 */
-		ITEM_GROUP = FabricItemGroup.builder(new Identifier(Cinderscapes.NAMESPACE, "items"))
+		Registry.register(Registries.ITEM_GROUP, ITEM_GROUP, FabricItemGroup.builder()
 				.displayName(Text.literal("Cinderscapes"))
 				.icon(() -> CinderscapesBlocks.UMBRAL_FUNGUS.asItem().getDefaultStack())
 				.entries((context, entries) -> {
@@ -259,15 +262,16 @@ public class CinderscapesItemGroups {
 							.map(ItemGroupEntries::getCollection).flatMap(Collection::stream)
 							.collect(Collectors.groupingByConcurrent(ItemStack::getItem)).keySet().stream()
 							.sorted(Comparator.comparing((item) -> item.getName().getString())).forEach(entries::add);
-				}).build();
+				}).build()
+		);
 	}
 
-	public static void addGroupEntry(ItemConvertible item, ItemGroup group) {
+	public static void addGroupEntry(ItemConvertible item, RegistryKey<ItemGroup> group) {
 		// Appends the item to the bottom of the group.
 		addGroupEntry(item, group, null);
 	}
 
-	public static void addGroupEntry(ItemConvertible item, ItemGroup group, @Nullable ItemConvertible relative) {
+	public static void addGroupEntry(ItemConvertible item, RegistryKey<ItemGroup> group, @Nullable ItemConvertible relative) {
 		HashMap<ItemConvertible, ItemGroupEntries> entryMap = ITEM_GROUP_ENTRY_MAPS.computeIfAbsent(group, (key) -> new HashMap<>(32));
 		ItemGroupEntries entries = entryMap.computeIfAbsent(relative, ItemGroupEntries::empty);
 		entries.addItem(item);
