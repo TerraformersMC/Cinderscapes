@@ -3,10 +3,7 @@ package com.terraformersmc.cinderscapes.block;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -17,7 +14,7 @@ import net.minecraft.world.World;
 
 public class PyracinthBlock extends CinderscapesNetherPlantBlock {
     public PyracinthBlock() {
-        super(FabricBlockSettings.copy(Blocks.WARPED_ROOTS), (state) -> Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 16.0, 11.0));
+        super(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).mapColor(MapColor.ORANGE), (state) -> Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 16.0, 11.0));
     }
 
     @Override
