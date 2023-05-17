@@ -22,8 +22,5 @@
   },
   "depends": {
     "biolith": "*"
-  },
-  "suggests": {
-    "terrablender": "*"
   }
 }

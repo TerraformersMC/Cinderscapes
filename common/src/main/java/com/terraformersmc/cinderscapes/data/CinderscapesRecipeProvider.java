@@ -212,7 +212,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 		createFenceGateRecipe(CinderscapesBlocks.SCORCHED_FENCE_GATE, Ingredient.ofItems(CinderscapesBlocks.SCORCHED_PLANKS))
 				.criterion("has_planks", InventoryChangedCriterion.Conditions.items(CinderscapesBlocks.SCORCHED_PLANKS))
 				.offerTo(exporter);
-		offerHangingSignRecipe(exporter, CinderscapesBlocks.SCORCHED_HANGING_SIGN_ITEM, CinderscapesBlocks.SCORCHED_PLANKS);
+		offerHangingSignRecipe(exporter, CinderscapesBlocks.SCORCHED_HANGING_SIGN_ITEM, CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
 		ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SCORCHED_HYPHAE, 3)
 				.group("bark")
 				.pattern("LL")
@@ -250,7 +250,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 		createFenceGateRecipe(CinderscapesBlocks.UMBRAL_FENCE_GATE, Ingredient.ofItems(CinderscapesBlocks.UMBRAL_PLANKS))
 				.criterion("has_planks", InventoryChangedCriterion.Conditions.items(CinderscapesBlocks.UMBRAL_PLANKS))
 				.offerTo(exporter);
-		offerHangingSignRecipe(exporter, CinderscapesBlocks.UMBRAL_HANGING_SIGN_ITEM, CinderscapesBlocks.UMBRAL_PLANKS);
+		offerHangingSignRecipe(exporter, CinderscapesBlocks.UMBRAL_HANGING_SIGN_ITEM, CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
 		ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.UMBRAL_HYPHAE, 3)
 				.group("bark")
 				.pattern("LL")
