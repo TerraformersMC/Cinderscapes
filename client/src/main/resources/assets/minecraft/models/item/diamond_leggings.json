@@ -62,12 +62,6 @@
       }
     },
     {
-      "model": "minecraft:item/diamond_leggings_diamond_trim",
-      "predicate": {
-        "trim_type": 0.8
-      }
-    },
-    {
       "model": "minecraft:item/diamond_leggings_lapis_trim",
       "predicate": {
         "trim_type": 0.9

@@ -62,12 +62,6 @@
       }
     },
     {
-      "model": "minecraft:item/diamond_boots_diamond_trim",
-      "predicate": {
-        "trim_type": 0.8
-      }
-    },
-    {
       "model": "minecraft:item/diamond_boots_lapis_trim",
       "predicate": {
         "trim_type": 0.9

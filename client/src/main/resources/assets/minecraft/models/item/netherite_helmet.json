@@ -14,12 +14,6 @@
       }
     },
     {
-      "model": "minecraft:item/netherite_helmet_netherite_trim",
-      "predicate": {
-        "trim_type": 0.3
-      }
-    },
-    {
       "model": "cinderscapes:item/netherite_helmet_smoky_quartz_trim",
       "predicate": {
         "trim_type": 0.30666
