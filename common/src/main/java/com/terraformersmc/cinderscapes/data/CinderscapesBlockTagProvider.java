@@ -4,6 +4,7 @@ import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBlockTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.tag.BlockTags;
 
@@ -212,6 +213,16 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 		this.getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
 			.add(CinderscapesBlocks.ASH)
 			.add(CinderscapesBlocks.ASH_BLOCK);
+
+
+		// conventional tags
+		getOrCreateTagBuilder(ConventionalBlockTags.ORES)
+				.add(CinderscapesBlocks.SULFUR_ORE);
+
+		getOrCreateTagBuilder(ConventionalBlockTags.QUARTZ_ORES)
+				.add(CinderscapesBlocks.ROSE_QUARTZ_ORE)
+				.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE)
+				.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE);
 
 
 		// local block tags
