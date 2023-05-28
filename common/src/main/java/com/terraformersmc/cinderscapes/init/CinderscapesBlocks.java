@@ -129,7 +129,7 @@ public class CinderscapesBlocks {
 
     // Other
 
-    public static final Block TWILIGHT_VINE_BLOCK = withItem("twilight_vine_block", new Block(FabricBlockSettings.of().mapColor(MapColor.DARK_AQUA).instrument(Instrument.BASS).strength(1.0F).sounds(BlockSoundGroup.NETHER_STEM)));
+    public static final Block TWILIGHT_VINE_BLOCK = withItem("twilight_vine_block", new Block(AbstractBlock.Settings.create().mapColor(MapColor.DARK_AQUA).instrument(Instrument.BASS).strength(1.0F).sounds(BlockSoundGroup.NETHER_STEM)));
     public static final Block TWILIGHT_TENDRILS = withItem("twilight_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS).mapColor(MapColor.PALE_PURPLE).luminance((state) -> 15), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)));
     public static final Block POTTED_TWILIGHT_TENDRILS = add("potted_twilight_tendrils", new FlowerPotBlock(TWILIGHT_TENDRILS, FabricBlockSettings.copyOf(Blocks.POTTED_WARPED_ROOTS).luminance((state) -> 15)));
     public static final Block TWILIGHT_FESCUES = withItem("twilight_fescues", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.NETHER_SPROUTS).mapColor(MapColor.PURPLE), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 5.0, 14.0)));
@@ -147,7 +147,7 @@ public class CinderscapesBlocks {
     // Other //
     ///////////
 
-    public static final Block SULFUR_BLOCK = withItem("sulfur_block", new Block(FabricBlockSettings.of().mapColor(MapColor.YELLOW).instrument(Instrument.SNARE).strength(0.5F, 0.5f).sounds(BlockSoundGroup.GRAVEL)));
+    public static final Block SULFUR_BLOCK = withItem("sulfur_block", new Block(AbstractBlock.Settings.create().mapColor(MapColor.YELLOW).instrument(Instrument.SNARE).strength(0.5F, 0.5f).sounds(BlockSoundGroup.GRAVEL)));
     public static final Block SULFUR_ORE = addOre("sulfur_ore", 2, MapColor.YELLOW);
 
     public static final Block BRAMBLE_BERRY_BUSH = add("bramble_berry_bush", new BrambleBerryBushBlock(FabricBlockSettings.copyOf(Blocks.SWEET_BERRY_BUSH).mapColor(MapColor.TERRACOTTA_BLACK)));

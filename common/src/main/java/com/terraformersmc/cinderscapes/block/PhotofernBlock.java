@@ -12,7 +12,7 @@ import net.minecraft.world.WorldView;
 public class PhotofernBlock extends CinderscapesNetherPlantBlock implements Fertilizable {
 
 	public PhotofernBlock() {
-		super(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).mapColor(MapColor.PURPLE), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0));
+		super(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS).mapColor(MapColor.PURPLE), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0));
 	}
 
 	@Override

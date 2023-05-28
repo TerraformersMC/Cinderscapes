@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class CrystiniumBlock extends CinderscapesNetherPlantBlock {
     public CrystiniumBlock() {
-        super(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).mapColor(MapColor.YELLOW), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0));
+        super(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS).mapColor(MapColor.YELLOW), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0));
     }
 
     @Override

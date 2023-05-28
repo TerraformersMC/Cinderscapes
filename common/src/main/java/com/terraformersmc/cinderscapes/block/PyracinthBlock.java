@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class PyracinthBlock extends CinderscapesNetherPlantBlock {
     public PyracinthBlock() {
-        super(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).mapColor(MapColor.ORANGE), (state) -> Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 16.0, 11.0));
+        super(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS).mapColor(MapColor.ORANGE), (state) -> Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 16.0, 11.0));
     }
 
     @Override
