@@ -62,7 +62,7 @@ public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
                     for (int yi = -1; yi <= 1 ; yi++) {
                         for (int zi = -1; zi <= 1 ; zi++) {
                             BlockPos question = pos.east(xi).up(yi).south(zi);
-                            // This is literally just the formula for a a sphere, so yeah
+                            // This is literally just the formula for a sphere, so yeah
                             // If the block in question is within the sphere then fill it
                             if (Math.sqrt((xi*xi)+(yi*yi)+(zi*zi)) <= 1.5) {
                                 world.setBlockState(question, Blocks.SHROOMLIGHT.getDefaultState(), 0);

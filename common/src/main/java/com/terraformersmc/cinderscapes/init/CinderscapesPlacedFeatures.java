@@ -127,7 +127,7 @@ public class CinderscapesPlacedFeatures {
                 Blocks.SOUL_SOIL
         );
         entries.add(SHALES, placeFeature(entries, CinderscapesConfiguredFeatures.SHALE,
-                CountMultilayerPlacementModifier.of(10), SquarePlacementModifier.of(),
+                CountMultilayerPlacementModifier.of(16),
                 HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(12), YOffset.belowTop(20)),
                 BlockFilterPlacementModifier.of(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), SHALE_SAFELIST))
         ));

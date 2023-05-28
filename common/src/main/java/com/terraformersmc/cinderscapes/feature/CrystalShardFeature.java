@@ -23,7 +23,6 @@ public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
 
     @Override
     public boolean generate(FeatureContext<CrystalShardFeatureConfig> context) {
-
         Random random = context.getRandom();
         StructureWorldAccess world = context.getWorld();
         BlockPos pos = context.getOrigin();
@@ -40,15 +39,15 @@ public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
 
             shape = shape.applyLayer(new AddLayer(Shapes
                     .ellipticalPyramid(radius, radius, height)
-                    .applyLayer(new RotateLayer(Quaternion.of(0, ytheta, ztheta, true)))
+                    .applyLayer(RotateLayer.of(Quaternion.of(0, ytheta, ztheta, true)))
             ));
         }
 
         shape
-                .applyLayer(new RotateLayer(Quaternion.of(config.dir().getRotationQuaternion())))
-                .applyLayer(new TranslateLayer(Position.of(pos)))
+                .applyLayer(RotateLayer.of(Quaternion.of(config.dir().getRotationQuaternion())))
+                .applyLayer(TranslateLayer.of(Position.of(pos)))
                 .validate(new RegionalSafelistValidator(world, config.dir(), config.whitelist()), (validShape) -> {
-                    validShape.fill(new SimpleFiller(world, config.state()));
+                    validShape.fill(SimpleFiller.of(world, config.state()));
                 });
 
         return true;

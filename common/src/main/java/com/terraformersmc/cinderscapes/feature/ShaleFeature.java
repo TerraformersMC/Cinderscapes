@@ -9,6 +9,7 @@ import com.terraformersmc.terraform.shapes.impl.layer.transform.RotateLayer;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
@@ -20,6 +21,7 @@ public class ShaleFeature extends Feature<ShaleFeatureConfig> {
 
     @Override
     public boolean generate(FeatureContext<ShaleFeatureConfig> context) {
+        Random random = context.getRandom();
         ShaleFeatureConfig config = context.getConfig();
         StructureWorldAccess world = context.getWorld();
         BlockPos pos = context.getOrigin();
@@ -28,17 +30,17 @@ public class ShaleFeature extends Feature<ShaleFeatureConfig> {
             return false;
         }
 
-        float radius = context.getRandom().nextInt(config.max() - config.min()) + config.min();
+        float radius = random.nextInt(config.max() - config.min()) + config.min();
         if (world.getBlockState(pos).isOf(Blocks.LAVA)) {
             radius = radius * 1.5f;
         }
-        int tilt = context.getRandom().nextInt(30) - 15;
-        int turn = context.getRandom().nextInt(360);
+        float ztheta = (random.nextFloat() * 30) - 15;
+        float ytheta = random.nextFloat() * 360;
 
         Shapes.ellipsoid(2, radius / 1.5, radius)
-                .applyLayer(RotateLayer.of(Quaternion.of(tilt, turn, 0, true)))
+                .applyLayer(RotateLayer.of(Quaternion.of(0, ytheta, ztheta, true)))
                 .applyLayer(TranslateLayer.of(Position.of(pos)))
-                .fill(new SimpleFiller(world, config.state()));
+                .fill(SimpleFiller.of(world, config.state()));
 
         return true;
     }
