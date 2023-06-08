@@ -22,7 +22,7 @@
     "FireNH"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/cinderscapes",
+    "homepage": "https://modrinth.com/mod/cinderscapes",
     "sources": "https://github.com/TerraformersMC/Cinderscapes",
     "issues": "https://github.com/TerraformersMC/Cinderscapes/issues"
   },
@@ -37,15 +37,9 @@
   "depends": {
     "fabricloader": ">=0.14.11",
     "fabric": ">=0.77.0",
-    "minecraft": ">=1.20-beta.2 <1.21"
+    "minecraft": ">=1.20 <1.21"
   },
   "breaks": {
-    "modmenu": "<6.0.0"
-  },
-  "custom": {
-    "modupdater": {
-      "strategy": "curseforge",
-      "projectID": 391429
-    }
+    "modmenu": "<7.0.0-beta"
   }
 }
