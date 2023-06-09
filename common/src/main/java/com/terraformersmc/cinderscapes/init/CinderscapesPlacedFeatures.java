@@ -64,7 +64,7 @@ public class CinderscapesPlacedFeatures {
 
     public static final List<Block> SHALE_SAFELIST = List.of(Blocks.CRIMSON_ROOTS, Blocks.NETHERRACK, Blocks.BLACKSTONE, Blocks.SOUL_SOIL, Blocks.SOUL_SAND);
     public static final RegistryEntry<PlacedFeature> SHALES = createPlacedFeature("shales", CinderscapesConfiguredFeatures.BLACKSTONE_SHALES,
-            CountMultilayerPlacementModifier.of(10), SquarePlacementModifier.of(),
+            CountMultilayerPlacementModifier.of(16),
             HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(12), YOffset.belowTop(20)),
             BlockFilterPlacementModifier.of(BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), SHALE_SAFELIST))
     );

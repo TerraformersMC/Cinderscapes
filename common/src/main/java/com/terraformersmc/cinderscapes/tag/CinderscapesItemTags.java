@@ -17,6 +17,8 @@ public class CinderscapesItemTags {
     public static final TagKey<Item> QUARTZ = TagKey.of(Registry.ITEM_KEY, new Identifier("c", "quartz"));
     public static final TagKey<Item> QUARTZ_BLOCKS = TagKey.of(Registry.ITEM_KEY, new Identifier("c", "quartz_blocks"));
     public static final TagKey<Item> QUARTZ_ORES = TagKey.of(Registry.ITEM_KEY, new Identifier("c", "quartz_ores"));
+    public static final TagKey<Item> STRIPPED_LOGS = TagKey.of(Registry.ITEM_KEY, new Identifier("c", "stripped_logs"));
+    public static final TagKey<Item> STRIPPED_WOOD = TagKey.of(Registry.ITEM_KEY, new Identifier("c", "stripped_wood"));
     public static final TagKey<Item> SULFUR_ORES = TagKey.of(Registry.ITEM_KEY, new Identifier("c", "sulfur_ores"));
     public static final TagKey<Item> SULFURS = TagKey.of(Registry.ITEM_KEY, new Identifier("c", "sulfurs"));
 
