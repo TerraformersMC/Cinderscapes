@@ -2,6 +2,7 @@ package com.terraformersmc.cinderscapes.data;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
+import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
 import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -79,6 +80,10 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 			.add(CinderscapesBlocks.ROSE_QUARTZ_ORE.asItem())
 			.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE.asItem())
 			.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE.asItem());
+
+		copy(CinderscapesBlockTags.STRIPPED_LOGS, CinderscapesItemTags.STRIPPED_LOGS);
+
+		copy(CinderscapesBlockTags.STRIPPED_WOOD, CinderscapesItemTags.STRIPPED_WOOD);
 
 		getOrCreateTagBuilder(CinderscapesItemTags.SULFUR_ORES)
 			.add(CinderscapesBlocks.SULFUR_ORE.asItem());

@@ -213,6 +213,14 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 			.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE)
 			.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE);
 
+		getOrCreateTagBuilder(CinderscapesBlockTags.STRIPPED_LOGS)
+			.add(CinderscapesBlocks.STRIPPED_SCORCHED_STEM)
+			.add(CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
+
+		getOrCreateTagBuilder(CinderscapesBlockTags.STRIPPED_WOOD)
+			.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE)
+			.add(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE);
+
 
 		// local block tags
 		getOrCreateTagBuilder(CinderscapesBlockTags.ASH_PERMEABLE)
