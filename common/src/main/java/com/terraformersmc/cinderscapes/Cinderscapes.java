@@ -3,8 +3,6 @@ package com.terraformersmc.cinderscapes;
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.cinderscapes.init.*;
 import com.terraformersmc.cinderscapes.item.CinderscapesItemGroups;
-import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
-import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
@@ -37,8 +35,6 @@ public class Cinderscapes implements ModInitializer {
 
 		CinderscapesBlocks.init();
 		CinderscapesItems.init();
-		CinderscapesBlockTags.init();
-		CinderscapesItemTags.init();
 		CinderscapesPlacementModifierTypes.init();
 		CinderscapesFeatures.init();
 		CinderscapesConfiguredFeatures.init();

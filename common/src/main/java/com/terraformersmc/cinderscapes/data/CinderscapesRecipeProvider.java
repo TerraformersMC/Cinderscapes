@@ -6,6 +6,7 @@ import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
@@ -36,10 +37,10 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.pattern("TQT")
 				.pattern("SSS")
 				.input('T', Items.REDSTONE_TORCH)
-				.input('Q', CinderscapesItemTags.QUARTZ)
+				.input('Q', ConventionalItemTags.QUARTZ)
 				.input('S', Items.STONE)
 				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(CinderscapesItemTags.QUARTZ, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+						new ItemPredicate(ConventionalItemTags.QUARTZ, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
 				.offerTo(exporter, new Identifier("minecraft", "comparator"));
 
 		ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.DAYLIGHT_DETECTOR, 1)
@@ -47,10 +48,10 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.pattern("QQQ")
 				.pattern("WWW")
 				.input('G', Items.GLASS)
-				.input('Q', CinderscapesItemTags.QUARTZ)
+				.input('Q', ConventionalItemTags.QUARTZ)
 				.input('W', ItemTags.WOODEN_SLABS)
 				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(CinderscapesItemTags.QUARTZ, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+						new ItemPredicate(ConventionalItemTags.QUARTZ, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
 				.offerTo(exporter, new Identifier("minecraft", "daylight_detector"));
 
 		ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.OBSERVER, 1)
@@ -58,10 +59,10 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.pattern("RRQ")
 				.pattern("CCC")
 				.input('C', Items.COBBLESTONE)
-				.input('Q', CinderscapesItemTags.QUARTZ)
+				.input('Q', ConventionalItemTags.QUARTZ)
 				.input('R', Items.REDSTONE)
 				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(CinderscapesItemTags.QUARTZ, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+						new ItemPredicate(ConventionalItemTags.QUARTZ, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
 				.offerTo(exporter, new Identifier("minecraft", "observer"));
 
 
