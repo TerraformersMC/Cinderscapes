@@ -36,12 +36,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public class CinderscapesBlocks {
-    // Acts as a kind of local registry for blocks added by Cinderscapes
-    private static final Map<Identifier, Block> BLOCKS = new LinkedHashMap<>();
 
     /////////////////
     // Ashy Shoals //
@@ -66,12 +61,12 @@ public class CinderscapesBlocks {
 
     private static final Identifier SCORCHED_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/scorched");
     public static final TerraformSignBlock SCORCHED_SIGN = add("scorched_sign", new TerraformSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_SIGN).mapColor(MapColor.LIGHT_GRAY)));
-    public static final TerraformWallSignBlock SCORCHED_WALL_SIGN = add("scorched_wall_sign", new TerraformWallSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.LIGHT_GRAY)));
+    public static final TerraformWallSignBlock SCORCHED_WALL_SIGN = add("scorched_wall_sign", new TerraformWallSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.LIGHT_GRAY).dropsLike(SCORCHED_SIGN)));
     public static final SignItem SCORCHED_SIGN_ITEM = CinderscapesItems.add("scorched_sign", new SignItem(new Item.Settings().maxCount(16), SCORCHED_SIGN, SCORCHED_WALL_SIGN));
     private static final Identifier SCORCHED_HANGING_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/hanging/scorched");
     private static final Identifier SCORCHED_HANGING_SIGN_GUI_TEXTURE = new Identifier(Cinderscapes.NAMESPACE, "textures/gui/hanging_signs/scorched");
     public static final TerraformHangingSignBlock SCORCHED_HANGING_SIGN = add("scorched_hanging_sign", new TerraformHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY)));
-    public static final TerraformWallHangingSignBlock SCORCHED_WALL_HANGING_SIGN = add("scorched_wall_hanging_sign", new TerraformWallHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY)));
+    public static final TerraformWallHangingSignBlock SCORCHED_WALL_HANGING_SIGN = add("scorched_wall_hanging_sign", new TerraformWallHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).dropsLike(SCORCHED_HANGING_SIGN)));
     public static final HangingSignItem SCORCHED_HANGING_SIGN_ITEM = CinderscapesItems.add("scorched_hanging_sign", new HangingSignItem(SCORCHED_HANGING_SIGN, SCORCHED_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
     public static final Block SCORCHED_SHRUB = withItem("scorched_shrub", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH).mapColor(MapColor.TERRACOTTA_GRAY), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 14.0, 14.0)));
@@ -119,12 +114,12 @@ public class CinderscapesBlocks {
 
     private static final Identifier UMBRAL_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/umbral");
     public static final TerraformSignBlock UMBRAL_SIGN = add("umbral_sign", new TerraformSignBlock(UMBRAL_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).mapColor(MapColor.BLUE)));
-    public static final TerraformWallSignBlock UMBRAL_WALL_SIGN = add("umbral_wall_sign", new TerraformWallSignBlock(UMBRAL_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.BLUE)));
+    public static final TerraformWallSignBlock UMBRAL_WALL_SIGN = add("umbral_wall_sign", new TerraformWallSignBlock(UMBRAL_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.BLUE).dropsLike(UMBRAL_SIGN)));
     public static final SignItem UMBRAL_SIGN_ITEM = CinderscapesItems.add("umbral_sign", new SignItem(new Item.Settings().maxCount(16), UMBRAL_SIGN, UMBRAL_WALL_SIGN));
     private static final Identifier UMBRAL_HANGING_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/hanging/umbral");
     private static final Identifier UMBRAL_HANGING_SIGN_GUI_TEXTURE = new Identifier(Cinderscapes.NAMESPACE, "textures/gui/hanging_signs/umbral");
     public static final TerraformHangingSignBlock UMBRAL_HANGING_SIGN = add("umbral_hanging_sign", new TerraformHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_HANGING_SIGN).mapColor(MapColor.BLUE)));
-    public static final TerraformWallHangingSignBlock UMBRAL_WALL_HANGING_SIGN = add("umbral_wall_hanging_sign", new TerraformWallHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_HANGING_SIGN).mapColor(MapColor.BLUE)));
+    public static final TerraformWallHangingSignBlock UMBRAL_WALL_HANGING_SIGN = add("umbral_wall_hanging_sign", new TerraformWallHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_HANGING_SIGN).mapColor(MapColor.BLUE).dropsLike(UMBRAL_HANGING_SIGN)));
     public static final HangingSignItem UMBRAL_HANGING_SIGN_ITEM = CinderscapesItems.add("umbral_hanging_sign", new HangingSignItem(UMBRAL_HANGING_SIGN, UMBRAL_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
     // Other
@@ -223,27 +218,18 @@ public class CinderscapesBlocks {
     }
 
     private static <B extends Block> B withItem(String name, B block) {
-        return add(name, block, new BlockItem(block, new Item.Settings()));
-    }
+        CinderscapesItems.add(name, new BlockItem(block, new Item.Settings()));
 
-    private static <B extends Block> B add(String name, B block, BlockItem item) {
-        add(name, block);
-        if (item != null) {
-            CinderscapesItems.add(name, item);
-        }
-        return block;
+        return add(name, block);
     }
 
     private static <B extends Block> B add(String name, B block) {
-        BLOCKS.put(Identifier.of(Cinderscapes.NAMESPACE, name), block);
+        Registry.register(Registries.BLOCK, Identifier.of(Cinderscapes.NAMESPACE, name), block);
+
         return block;
     }
 
     public static void init() {
-        for (Identifier id : BLOCKS.keySet()) {
-            Registry.register(Registries.BLOCK, id, BLOCKS.get(id));
-        }
-
         addCompostables();
         addStrippables();
     }
