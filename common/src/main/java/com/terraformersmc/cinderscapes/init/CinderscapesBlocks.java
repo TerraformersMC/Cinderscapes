@@ -36,12 +36,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public class CinderscapesBlocks {
-    // Acts as a kind of local registry for blocks added by Cinderscapes
-    private static final Map<Identifier, Block> BLOCKS = new LinkedHashMap<>();
 
     /////////////////
     // Ashy Shoals //
@@ -65,24 +60,24 @@ public class CinderscapesBlocks {
     public static final Block SCORCHED_DOOR = withItem("scorched_door", new DoorBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_DOOR).mapColor(MapColor.LIGHT_GRAY), BlockSetType.CRIMSON));
 
     private static final Identifier SCORCHED_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/scorched");
-    public static final TerraformSignBlock SCORCHED_SIGN = add("scorched_sign", new TerraformSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_SIGN).mapColor(MapColor.LIGHT_GRAY)));
-    public static final TerraformWallSignBlock SCORCHED_WALL_SIGN = add("scorched_wall_sign", new TerraformWallSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.LIGHT_GRAY)));
+    public static final TerraformSignBlock SCORCHED_SIGN = add("scorched_sign", new TerraformSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD)));
+    public static final TerraformWallSignBlock SCORCHED_WALL_SIGN = add("scorched_wall_sign", new TerraformWallSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD).dropsLike(SCORCHED_SIGN)));
     public static final SignItem SCORCHED_SIGN_ITEM = CinderscapesItems.add("scorched_sign", new SignItem(new Item.Settings().maxCount(16), SCORCHED_SIGN, SCORCHED_WALL_SIGN));
     private static final Identifier SCORCHED_HANGING_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/hanging/scorched");
     private static final Identifier SCORCHED_HANGING_SIGN_GUI_TEXTURE = new Identifier(Cinderscapes.NAMESPACE, "textures/gui/hanging_signs/scorched");
-    public static final TerraformHangingSignBlock SCORCHED_HANGING_SIGN = add("scorched_hanging_sign", new TerraformHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).requires(FeatureFlags.UPDATE_1_20)));
-    public static final TerraformWallHangingSignBlock SCORCHED_WALL_HANGING_SIGN = add("scorched_wall_hanging_sign", new TerraformWallHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).requires(FeatureFlags.UPDATE_1_20)));
+    public static final TerraformHangingSignBlock SCORCHED_HANGING_SIGN = add("scorched_hanging_sign", new TerraformHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN).requires(FeatureFlags.UPDATE_1_20)));
+    public static final TerraformWallHangingSignBlock SCORCHED_WALL_HANGING_SIGN = add("scorched_wall_hanging_sign", new TerraformWallHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN).dropsLike(SCORCHED_HANGING_SIGN).requires(FeatureFlags.UPDATE_1_20)));
     public static final HangingSignItem SCORCHED_HANGING_SIGN_ITEM = CinderscapesItems.add("scorched_hanging_sign", new HangingSignItem(SCORCHED_HANGING_SIGN, SCORCHED_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
-    public static final Block SCORCHED_SHRUB = withItem("scorched_shrub", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 14.0, 14.0)));
+    public static final Block SCORCHED_SHRUB = withItem("scorched_shrub", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUSH).mapColor(MapColor.TERRACOTTA_GRAY), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 14.0, 14.0)));
     public static final Block POTTED_SCORCHED_SHRUB = add("potted_scorched_shrub", new FlowerPotBlock(SCORCHED_SHRUB, FabricBlockSettings.copyOf(Blocks.POTTED_DEAD_BUSH)));
 
-    public static final Block SCORCHED_SPROUTS = withItem("scorched_sprouts", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.NETHER_SPROUTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 3.0, 14.0)));
-    public static final Block SCORCHED_TENDRILS = withItem("scorched_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_ROOTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)));
+    public static final Block SCORCHED_SPROUTS = withItem("scorched_sprouts", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.NETHER_SPROUTS).mapColor(MapColor.GRAY), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 3.0, 14.0)));
+    public static final Block SCORCHED_TENDRILS = withItem("scorched_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_ROOTS).mapColor(MapColor.GRAY), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)));
     public static final Block POTTED_SCORCHED_TENDRILS = add("potted_scorched_tendrils", new FlowerPotBlock(SCORCHED_TENDRILS, FabricBlockSettings.copyOf(Blocks.POTTED_CRIMSON_ROOTS)));
 
-    public static final Block ASH = withItem("ash", new AshLayerBlock(FabricBlockSettings.copyOf(Blocks.SNOW)));
-    public static final Block ASH_BLOCK = withItem("ash_block", new Block(FabricBlockSettings.copyOf(Blocks.SNOW_BLOCK)));
+    public static final Block ASH = withItem("ash", new AshLayerBlock(FabricBlockSettings.copyOf(Blocks.SNOW).mapColor(MapColor.GRAY)));
+    public static final Block ASH_BLOCK = withItem("ash_block", new Block(FabricBlockSettings.copyOf(Blocks.SNOW_BLOCK).mapColor(MapColor.GRAY)));
 
     public static final Block PYRACINTH = withItem("pyracinth", new PyracinthBlock());
     public static final Block POTTED_PYRACINTH = add("potted_pyracinth", new PottedPyracinthBlock());
@@ -118,39 +113,39 @@ public class CinderscapesBlocks {
     public static final Block UMBRAL_DOOR = withItem("umbral_door", new DoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_DOOR).mapColor(MapColor.BLUE), BlockSetType.WARPED));
 
     private static final Identifier UMBRAL_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/umbral");
-    public static final TerraformSignBlock UMBRAL_SIGN = add("umbral_sign", new TerraformSignBlock(UMBRAL_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).mapColor(MapColor.BLUE)));
-    public static final TerraformWallSignBlock UMBRAL_WALL_SIGN = add("umbral_wall_sign", new TerraformWallSignBlock(UMBRAL_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.BLUE)));
+    public static final TerraformSignBlock UMBRAL_SIGN = add("umbral_sign", new TerraformSignBlock(UMBRAL_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD)));
+    public static final TerraformWallSignBlock UMBRAL_WALL_SIGN = add("umbral_wall_sign", new TerraformWallSignBlock(UMBRAL_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD).dropsLike(UMBRAL_SIGN)));
     public static final SignItem UMBRAL_SIGN_ITEM = CinderscapesItems.add("umbral_sign", new SignItem(new Item.Settings().maxCount(16), UMBRAL_SIGN, UMBRAL_WALL_SIGN));
     private static final Identifier UMBRAL_HANGING_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/hanging/umbral");
     private static final Identifier UMBRAL_HANGING_SIGN_GUI_TEXTURE = new Identifier(Cinderscapes.NAMESPACE, "textures/gui/hanging_signs/umbral");
-    public static final TerraformHangingSignBlock UMBRAL_HANGING_SIGN = add("umbral_hanging_sign", new TerraformHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_HANGING_SIGN).mapColor(MapColor.BLUE).requires(FeatureFlags.UPDATE_1_20)));
-    public static final TerraformWallHangingSignBlock UMBRAL_WALL_HANGING_SIGN = add("umbral_wall_hanging_sign", new TerraformWallHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_HANGING_SIGN).mapColor(MapColor.BLUE).requires(FeatureFlags.UPDATE_1_20)));
+    public static final TerraformHangingSignBlock UMBRAL_HANGING_SIGN = add("umbral_hanging_sign", new TerraformHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_HANGING_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN).requires(FeatureFlags.UPDATE_1_20)));
+    public static final TerraformWallHangingSignBlock UMBRAL_WALL_HANGING_SIGN = add("umbral_wall_hanging_sign", new TerraformWallHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_WALL_HANGING_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN).dropsLike(UMBRAL_HANGING_SIGN).requires(FeatureFlags.UPDATE_1_20)));
     public static final HangingSignItem UMBRAL_HANGING_SIGN_ITEM = CinderscapesItems.add("umbral_hanging_sign", new HangingSignItem(UMBRAL_HANGING_SIGN, UMBRAL_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
     // Other
 
-    public static final Block TWILIGHT_VINE_BLOCK = withItem("twilight_vine_block", new Block(FabricBlockSettings.of(Material.SOLID_ORGANIC).strength(1.0F).sounds(BlockSoundGroup.NETHER_STEM)));
-    public static final Block TWILIGHT_TENDRILS = withItem("twilight_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).luminance((state) -> 15), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)));
+    public static final Block TWILIGHT_VINE_BLOCK = withItem("twilight_vine_block", new Block(FabricBlockSettings.of(Material.SOLID_ORGANIC).mapColor(MapColor.DARK_AQUA).strength(1.0F).sounds(BlockSoundGroup.NETHER_STEM)));
+    public static final Block TWILIGHT_TENDRILS = withItem("twilight_tendrils", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS).mapColor(MapColor.PALE_PURPLE).luminance((state) -> 15), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)));
     public static final Block POTTED_TWILIGHT_TENDRILS = add("potted_twilight_tendrils", new FlowerPotBlock(TWILIGHT_TENDRILS, FabricBlockSettings.copyOf(Blocks.POTTED_WARPED_ROOTS).luminance((state) -> 15)));
-    public static final Block TWILIGHT_FESCUES = withItem("twilight_fescues", new CinderscapesNetherPlantBlock(FabricBlockSettings.copy(Blocks.NETHER_SPROUTS), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 5.0, 14.0)));
+    public static final Block TWILIGHT_FESCUES = withItem("twilight_fescues", new CinderscapesNetherPlantBlock(FabricBlockSettings.copyOf(Blocks.NETHER_SPROUTS).mapColor(MapColor.PURPLE), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 5.0, 14.0)));
 
     public static Block PHOTOFERN = withItem("photofern", new PhotofernBlock());
     public static final Block POTTED_PHOTOFERN = add("potted_photofern", new FlowerPotBlock(PHOTOFERN, FabricBlockSettings.copyOf(Blocks.POTTED_FERN)));
 
-    public static final Block TALL_PHOTOFERN = withItem("tall_photofern", new CinderscapesNetherTallPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS), (state) -> Block.createCuboidShape(2.0, 0, 2.0, 14.0, 16.0, 14.0)));
+    public static final Block TALL_PHOTOFERN = withItem("tall_photofern", new CinderscapesNetherTallPlantBlock(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS).mapColor(MapColor.PURPLE), (state) -> Block.createCuboidShape(2.0, 0, 2.0, 14.0, 16.0, 14.0)));
 
-    public static final Block LUMINOUS_POD = withItem("luminous_pod", new CinderscapesNetherTallPlantBlock(FabricBlockSettings.copy(Blocks.WARPED_ROOTS).luminance((state) -> 15), (state) -> Block.createCuboidShape(2.0, 0, 2.0, 14.0, 16.0, 14.0)));
+    public static final Block LUMINOUS_POD = withItem("luminous_pod", new CinderscapesNetherTallPlantBlock(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS).mapColor(MapColor.PALE_GREEN).luminance((state) -> 15), (state) -> Block.createCuboidShape(2.0, 0, 2.0, 14.0, 16.0, 14.0)));
     public static final Block POTTED_LUMINOUS_POD = add("potted_luminous_pod", new FlowerPotBlock(LUMINOUS_POD, FabricBlockSettings.copyOf(Blocks.POTTED_WARPED_ROOTS).luminance((state) -> 15)));
-    public static final Block GHASTLY_ECTOPLASM = withItem("ghastly_ectoplasm", new GhastlyEctoplasmBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).noCollision().breakInstantly().sounds(BlockSoundGroup.ROOTS)));
+    public static final Block GHASTLY_ECTOPLASM = withItem("ghastly_ectoplasm", new GhastlyEctoplasmBlock(FabricBlockSettings.copyOf(Blocks.WEEPING_VINES_PLANT).mapColor(MapColor.OFF_WHITE).sounds(BlockSoundGroup.ROOTS)));
 
     ///////////
     // Other //
     ///////////
 
-    public static final Block SULFUR_BLOCK = withItem("sulfur_block", new Block(FabricBlockSettings.of(Material.AGGREGATE).strength(0.5F, 0.5f)));
+    public static final Block SULFUR_BLOCK = withItem("sulfur_block", new Block(FabricBlockSettings.of(Material.AGGREGATE).mapColor(MapColor.YELLOW).strength(0.5F, 0.5f).sounds(BlockSoundGroup.GRAVEL)));
     public static final Block SULFUR_ORE = addOre("sulfur_ore", 2, MapColor.YELLOW);
 
-    public static final Block BRAMBLE_BERRY_BUSH = add("bramble_berry_bush", new BrambleBerryBushBlock(FabricBlockSettings.copyOf(Blocks.SWEET_BERRY_BUSH)));
+    public static final Block BRAMBLE_BERRY_BUSH = add("bramble_berry_bush", new BrambleBerryBushBlock(FabricBlockSettings.copyOf(Blocks.SWEET_BERRY_BUSH).mapColor(MapColor.TERRACOTTA_BLACK)));
     public static final BlockItem BRAMBLE_BERRIES = CinderscapesItems.add("bramble_berries", new AliasedBlockItem(CinderscapesBlocks.BRAMBLE_BERRY_BUSH, new Item.Settings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).alwaysEdible().snack().statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 600, 0), 0.8F).build())));
 
     ///////////////////
@@ -166,9 +161,6 @@ public class CinderscapesBlocks {
 
     // Sulfur Quartz
 
-    public static final Block POLYPITE_SULFUR_QUARTZ = withItem("polypite_sulfur_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(POLYPITE_QUARTZ).mapColor(MapColor.YELLOW)));
-    public static final Block POTTED_POLYPITE_SULFUR_QUARTZ = add("potted_polypite_sulfur_quartz", new FlowerPotBlock(POLYPITE_SULFUR_QUARTZ, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
-
     public static final Block SULFUR_QUARTZ_ORE = addOre("sulfur_quartz_ore", 1, MapColor.YELLOW);
     public static final Block SULFUR_QUARTZ_BLOCK = withItem("sulfur_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).mapColor(MapColor.YELLOW)));
     public static final Block CHISELED_SULFUR_QUARTZ_BLOCK = withItem("chiseled_sulfur_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).mapColor(MapColor.YELLOW)));
@@ -179,12 +171,12 @@ public class CinderscapesBlocks {
     public static final Block SMOOTH_SULFUR_QUARTZ_STAIRS = withItem("smooth_sulfur_quartz_stairs", new StairsBlock(SMOOTH_SULFUR_QUARTZ.getDefaultState(), FabricBlockSettings.copyOf(Blocks.SMOOTH_QUARTZ_STAIRS).mapColor(MapColor.YELLOW)));
     public static final Block SMOOTH_SULFUR_QUARTZ_SLAB = withItem("smooth_sulfur_quartz_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_QUARTZ_SLAB).mapColor(MapColor.YELLOW)));
     public static final Block SULFUR_QUARTZ_BRICKS = withItem("sulfur_quartz_bricks", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BRICKS).mapColor(MapColor.YELLOW)));
+
     public static final Block CRYSTALLINE_SULFUR_QUARTZ = withItem("crystalline_sulfur_quartz", new CinderscapesTransparentBlock(FabricBlockSettings.copyOf(CRYSTALLINE_QUARTZ).mapColor(MapColor.YELLOW)));
+    public static final Block POLYPITE_SULFUR_QUARTZ = withItem("polypite_sulfur_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(CRYSTALLINE_SULFUR_QUARTZ)));
+    public static final Block POTTED_POLYPITE_SULFUR_QUARTZ = add("potted_polypite_sulfur_quartz", new FlowerPotBlock(POLYPITE_SULFUR_QUARTZ, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
 
     // Rose Quartz
-
-    public static final Block POLYPITE_ROSE_QUARTZ = withItem("polypite_rose_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(POLYPITE_QUARTZ).mapColor(MapColor.PINK)));
-    public static final Block POTTED_POLYPITE_ROSE_QUARTZ = add("potted_polypite_rose_quartz", new FlowerPotBlock(POLYPITE_ROSE_QUARTZ, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
 
     public static final Block ROSE_QUARTZ_ORE = addOre("rose_quartz_ore", 1, MapColor.PINK);
     public static final Block ROSE_QUARTZ_BLOCK = withItem("rose_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).mapColor(MapColor.PINK)));
@@ -196,12 +188,12 @@ public class CinderscapesBlocks {
     public static final Block SMOOTH_ROSE_QUARTZ_STAIRS = withItem("smooth_rose_quartz_stairs", new StairsBlock(SMOOTH_ROSE_QUARTZ.getDefaultState(), FabricBlockSettings.copyOf(Blocks.SMOOTH_QUARTZ_STAIRS).mapColor(MapColor.PINK)));
     public static final Block SMOOTH_ROSE_QUARTZ_SLAB = withItem("smooth_rose_quartz_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_QUARTZ_SLAB).mapColor(MapColor.PINK)));
     public static final Block ROSE_QUARTZ_BRICKS = withItem("rose_quartz_bricks", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BRICKS).mapColor(MapColor.PINK)));
+
     public static final Block CRYSTALLINE_ROSE_QUARTZ = withItem("crystalline_rose_quartz", new CinderscapesTransparentBlock(FabricBlockSettings.copyOf(CRYSTALLINE_QUARTZ).mapColor(MapColor.PINK)));
+    public static final Block POLYPITE_ROSE_QUARTZ = withItem("polypite_rose_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(CRYSTALLINE_ROSE_QUARTZ)));
+    public static final Block POTTED_POLYPITE_ROSE_QUARTZ = add("potted_polypite_rose_quartz", new FlowerPotBlock(POLYPITE_ROSE_QUARTZ, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
 
     // Smoky Quartz
-
-    public static final Block POLYPITE_SMOKY_QUARTZ = withItem("polypite_smoky_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(POLYPITE_QUARTZ).mapColor(MapColor.GRAY)));
-    public static final Block POTTED_POLYPITE_SMOKY_QUARTZ = add("potted_polypite_smoky_quartz", new FlowerPotBlock(POLYPITE_SMOKY_QUARTZ, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
 
     public static final Block SMOKY_QUARTZ_ORE = addOre("smoky_quartz_ore", 1, MapColor.GRAY);
     public static final Block SMOKY_QUARTZ_BLOCK = withItem("smoky_quartz_block", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK).mapColor(MapColor.GRAY)));
@@ -213,7 +205,10 @@ public class CinderscapesBlocks {
     public static final Block SMOOTH_SMOKY_QUARTZ_STAIRS = withItem("smooth_smoky_quartz_stairs", new StairsBlock(SMOOTH_SMOKY_QUARTZ.getDefaultState(), FabricBlockSettings.copyOf(Blocks.SMOOTH_QUARTZ_STAIRS).mapColor(MapColor.GRAY)));
     public static final Block SMOOTH_SMOKY_QUARTZ_SLAB = withItem("smooth_smoky_quartz_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_QUARTZ_SLAB).mapColor(MapColor.GRAY)));
     public static final Block SMOKY_QUARTZ_BRICKS = withItem("smoky_quartz_bricks", new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BRICKS).mapColor(MapColor.GRAY)));
+
     public static final Block CRYSTALLINE_SMOKY_QUARTZ = withItem("crystalline_smoky_quartz", new CinderscapesTransparentBlock(FabricBlockSettings.copyOf(CRYSTALLINE_QUARTZ).mapColor(MapColor.GRAY)));
+    public static final Block POLYPITE_SMOKY_QUARTZ = withItem("polypite_smoky_quartz", new PolypiteQuartzBlock(FabricBlockSettings.copyOf(CRYSTALLINE_SMOKY_QUARTZ)));
+    public static final Block POTTED_POLYPITE_SMOKY_QUARTZ = add("potted_polypite_smoky_quartz", new FlowerPotBlock(POLYPITE_SMOKY_QUARTZ, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
 
     public static final Block NODZOL = withItem("nodzol", new Block(FabricBlockSettings.copyOf(Blocks.NETHERRACK).mapColor(MapColor.BROWN)));
 
@@ -223,27 +218,18 @@ public class CinderscapesBlocks {
     }
 
     private static <B extends Block> B withItem(String name, B block) {
-        return add(name, block, new BlockItem(block, new Item.Settings()));
-    }
+        CinderscapesItems.add(name, new BlockItem(block, new Item.Settings()));
 
-    private static <B extends Block> B add(String name, B block, BlockItem item) {
-        add(name, block);
-        if (item != null) {
-            CinderscapesItems.add(name, item);
-        }
-        return block;
+        return add(name, block);
     }
 
     private static <B extends Block> B add(String name, B block) {
-        BLOCKS.put(Identifier.of(Cinderscapes.NAMESPACE, name), block);
+        Registry.register(Registries.BLOCK, Identifier.of(Cinderscapes.NAMESPACE, name), block);
+
         return block;
     }
 
     public static void init() {
-        for (Identifier id : BLOCKS.keySet()) {
-            Registry.register(Registries.BLOCK, id, BLOCKS.get(id));
-        }
-
         addCompostables();
         addStrippables();
     }

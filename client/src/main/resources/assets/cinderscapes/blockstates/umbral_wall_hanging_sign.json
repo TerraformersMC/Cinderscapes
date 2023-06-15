@@ -1,5 +1,5 @@
 {
   "variants": {
-    "": { "model": "block/warped_hanging_sign" }
+    "": { "model": "cinderscapes:block/umbral_hanging_sign" }
   }
 }
