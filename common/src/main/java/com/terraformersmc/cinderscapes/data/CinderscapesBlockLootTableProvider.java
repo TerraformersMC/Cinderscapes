@@ -152,12 +152,12 @@ public class CinderscapesBlockLootTableProvider extends FabricBlockLootTableProv
 		addDrop(CinderscapesBlocks.BRAMBLE_BERRY_BUSH, block -> BlockLootTableGenerator.applyExplosionDecay(block, LootTable.builder()
 			.pool(
 				LootPool.builder().conditionally(BlockStatePropertyLootCondition.builder(CinderscapesBlocks.BRAMBLE_BERRY_BUSH).properties(StatePredicate.Builder.create().exactMatch(BrambleBerryBushBlock.AGE, 3)))
-					.with(ItemEntry.builder(CinderscapesItems.BRAMBLE_BERRIES)).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0f, 3.0f)))
+					.with(ItemEntry.builder(CinderscapesBlocks.BRAMBLE_BERRIES)).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0f, 3.0f)))
 					.apply(ApplyBonusLootFunction.uniformBonusCount(Enchantments.FORTUNE))
 			)
 			.pool(
 				LootPool.builder().conditionally(BlockStatePropertyLootCondition.builder(CinderscapesBlocks.BRAMBLE_BERRY_BUSH).properties(StatePredicate.Builder.create().exactMatch(BrambleBerryBushBlock.AGE, 2)))
-					.with(ItemEntry.builder(CinderscapesItems.BRAMBLE_BERRIES)).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)))
+					.with(ItemEntry.builder(CinderscapesBlocks.BRAMBLE_BERRIES)).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)))
 					.apply(ApplyBonusLootFunction.uniformBonusCount(Enchantments.FORTUNE))
 			)
 		));

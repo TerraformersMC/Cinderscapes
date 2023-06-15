@@ -93,7 +93,7 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 
 		// vanilla item tags
 		this.getOrCreateTagBuilder(ItemTags.FOX_FOOD)
-			.add(CinderscapesItems.BRAMBLE_BERRIES);
+			.add(CinderscapesBlocks.BRAMBLE_BERRIES);
 
 		this.getOrCreateTagBuilder(ItemTags.LOGS)
 			.addTag(CinderscapesItemTags.SCORCHED_STEMS)
