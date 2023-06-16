@@ -178,7 +178,7 @@ public class CinderscapesItemGroups {
 		addGroupEntry(CinderscapesBlocks.LUMINOUS_POD, ItemGroups.NATURAL, NATURAL_TALL_VEGETATION);
 
 		// Berries
-		addGroupEntry(CinderscapesBlocks.BRAMBLE_BERRIES, ItemGroups.NATURAL, NATURAL_BERRIES);
+		addGroupEntry(CinderscapesItems.BRAMBLE_BERRIES, ItemGroups.NATURAL, NATURAL_BERRIES);
 
 
 		// FUNCTIONAL
@@ -208,7 +208,7 @@ public class CinderscapesItemGroups {
 		// FOOD AND DRINK
 
 		// Berries
-		addGroupEntry(CinderscapesBlocks.BRAMBLE_BERRIES, ItemGroups.FOOD_AND_DRINK, FOOD_BERRIES);
+		addGroupEntry(CinderscapesItems.BRAMBLE_BERRIES, ItemGroups.FOOD_AND_DRINK, FOOD_BERRIES);
 
 
 		// INGREDIENTS

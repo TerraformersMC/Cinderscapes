@@ -23,7 +23,7 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 	public void configure(RegistryWrapper.WrapperLookup registries) {
 		// basic block tags
 		getOrCreateTagBuilder(ItemTags.FOX_FOOD)
-			.add(CinderscapesBlocks.BRAMBLE_BERRIES);
+			.add(CinderscapesItems.BRAMBLE_BERRIES);
 
 		copy(BlockTags.LOGS, ItemTags.LOGS);
 
