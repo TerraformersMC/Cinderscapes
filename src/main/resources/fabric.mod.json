@@ -40,6 +40,7 @@
     "minecraft": ">=1.20 <1.21"
   },
   "breaks": {
+    "bclib": "*",
     "modmenu": "<7.0.0-beta"
   }
 }
