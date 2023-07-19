@@ -1,17 +1,24 @@
 {
   "itemGroup.cinderscapes.items": "Cinderscapes",
+
   "block.cinderscapes.sulfur_ore": "Сірчана руда",
   "block.cinderscapes.sulfur_block": "Сірчаний блок",
   "item.cinderscapes.sulfur": "Сірка",
+
   "item.cinderscapes.bramble_berries": "Колючі ягоди",
   "block.cinderscapes.bramble_berry_bush": "Кущ колючих ягід",
+
   "biome.cinderscapes.luminous_grove": "Люмінесцентний гай",
+
   "block.cinderscapes.luminous_pod": "Люмінесцентний стручок",
+
   "block.cinderscapes.twilight_tendrils": "Сутінкові вусики",
   "block.cinderscapes.twilight_fescues": "Сутінкові фески",
   "block.cinderscapes.twilight_vine_block": "Блок сутінкової лози",
+
   "block.cinderscapes.photofern": "Світло-папороть",
   "block.cinderscapes.tall_photofern": "Висока світло-папороть",
+
   "block.cinderscapes.umbral_nylium": "Тіньовий нілій",
   "block.cinderscapes.umbral_wart_block": "Блок тіньового наросту",
   "block.cinderscapes.umbral_flesh_block": "Блок тіньової плоті",
@@ -31,11 +38,16 @@
   "block.cinderscapes.umbral_door": "Тіньові двері",
   "block.cinderscapes.umbral_planks": "Тіньові дошки",
   "block.cinderscapes.umbral_fence_gate": "Тіньова хвіртка",
+
   "block.cinderscapes.ghastly_ectoplasm": "Жахлива ектоплазма",
+
   "biome.cinderscapes.quartz_cavern": "Кварцова печера",
+
   "block.cinderscapes.crystinium": "Кристаній",
+
   "block.cinderscapes.polypite_quartz": "Кінчастий кварц",
   "block.cinderscapes.crystalline_quartz": "Кристалічний кварц",
+
   "block.cinderscapes.polypite_sulfur_quartz": "Кінчастий сірчаний кварц",
   "block.cinderscapes.sulfur_quartz_bricks": "Сірчано-кварцова цегла",
   "block.cinderscapes.smooth_sulfur_quartz": "Гладкий сірчано-кварцовий блок",
@@ -49,6 +61,7 @@
   "block.cinderscapes.sulfur_quartz_slab": "Сірчано-кварцова плита",
   "block.cinderscapes.sulfur_quartz_ore": "Сірчано-кварцова руда",
   "item.cinderscapes.sulfur_quartz": "Сірчаний кварц",
+
   "block.cinderscapes.polypite_rose_quartz": "Кінчастий рожевий кварц",
   "block.cinderscapes.rose_quartz_bricks": "Рожево-кварцова цегла",
   "block.cinderscapes.smooth_rose_quartz": "Гладкий рожево-кварцовий блок",
@@ -62,6 +75,7 @@
   "block.cinderscapes.rose_quartz_slab": "Рожево-кварцова плита",
   "block.cinderscapes.rose_quartz_ore": "Рожево-кварцова руда",
   "item.cinderscapes.rose_quartz": "Рожевий кварц",
+
   "block.cinderscapes.polypite_smoky_quartz": "Кінчастий димчастий кварц",
   "block.cinderscapes.smoky_quartz_bricks": "Димчасто-кварцова цегла",
   "block.cinderscapes.smooth_smoky_quartz": "Гладкий димчасто-кварцовий блок",
@@ -75,15 +89,20 @@
   "block.cinderscapes.smoky_quartz_slab": "Димчасто-кварцова плита",
   "block.cinderscapes.smoky_quartz_ore": "Димчасто-кварцова руда",
   "item.cinderscapes.smoky_quartz": "Димчастий кварц",
+
   "biome.cinderscapes.blackstone_shales": "Чорнокам'яні сланці",
+
   "biome.cinderscapes.ashy_shoals": "Попільні насипи",
+
   "block.cinderscapes.scorched_shrub": "Обпалений кущ",
   "block.cinderscapes.scorched_sprouts": "Обпалені паростки",
   "block.cinderscapes.scorched_tendrils": "Обпалені вусики",
   "block.cinderscapes.pyracinth": "Вогнецвіт",
+
   "item.cinderscapes.ash_pile": "Купа попелу",
   "block.cinderscapes.ash": "Попіл",
   "block.cinderscapes.ash_block": "Попільний блок",
+
   "block.cinderscapes.scorched_sign": "Обпалена табличка",
   "block.cinderscapes.scorched_hanging_sign": "Обпалена вивіска",
   "block.cinderscapes.scorched_pressure_plate": "Обпалена натискна плита",
@@ -99,10 +118,12 @@
   "block.cinderscapes.scorched_hyphae": "Обпалені гіфи",
   "block.cinderscapes.scorched_fence_gate": "Обпалена хвіртка",
   "block.cinderscapes.stripped_scorched_stem": "Обтесане обпалене стебло",
+
   "item.cinderscapes.music_disc_chilling_in_hell": "Платівка",
   "item.cinderscapes.music_disc_chilling_in_hell.desc": "Etorna_Z - Chilling In Hell",
   "item.cinderscapes.music_disc_luminous_plantation": "Платівка",
   "item.cinderscapes.music_disc_luminous_plantation.desc": "LudoCrypt - Luminous Plantation",
+
   "text.autoconfig.cinderscapes.title": "Конфігурація Cinderscapes",
   "text.autoconfig.cinderscapes.option.easterEggs": "Увімкнути яйця-райця",
   "text.autoconfig.cinderscapes.option.enableAshFall": "Увімкнути падіння попелу",
@@ -113,9 +134,11 @@
   "text.autoconfig.cinderscapes.option.biomes.enableBlackstoneShales": "Увімкнути біом чорнокам'яних сланців",
   "text.autoconfig.cinderscapes.option.biomes.enableLuminousGrove": "Увімкнути біом люмінесцентного гаю",
   "text.autoconfig.cinderscapes.option.biomes.enableQuartzCavern": "Увімкнути біом кварцової печери",
+
   "trim_material.cinderscapes.rose_quartz": "Рожево-кварцовий матеріал",
   "trim_material.cinderscapes.smoky_quartz": "Димчасто-кварцовий матеріал",
   "trim_material.cinderscapes.sulfur_quartz": "Сірчано-кварцовий матеріал",
+
   "block.cinderscapes.nodzol": "Нідзол",
   "block.cinderscapes.nodzol.description": "Цей блок доглянуто..."
 }
