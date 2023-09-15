@@ -8,21 +8,21 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
-import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.predicate.NbtPredicate;
 import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.Optional;
 
 public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 	protected CinderscapesRecipeProvider(FabricDataOutput dataOutput) {
@@ -30,7 +30,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 	}
 
 	@Override
-	public void generate(Consumer<RecipeJsonProvider> exporter) {
+	public void generate(RecipeExporter exporter) {
 		// vanilla recipes
 		ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.COMPARATOR, 1)
 				.pattern(" T ")
@@ -39,8 +39,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.input('T', Items.REDSTONE_TORCH)
 				.input('Q', ConventionalItemTags.QUARTZ)
 				.input('S', Items.STONE)
-				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(ConventionalItemTags.QUARTZ, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(ConventionalItemTags.QUARTZ)))
 				.offerTo(exporter, new Identifier("minecraft", "comparator"));
 
 		ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.DAYLIGHT_DETECTOR, 1)
@@ -50,8 +49,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.input('G', Items.GLASS)
 				.input('Q', ConventionalItemTags.QUARTZ)
 				.input('W', ItemTags.WOODEN_SLABS)
-				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(ConventionalItemTags.QUARTZ, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(ConventionalItemTags.QUARTZ)))
 				.offerTo(exporter, new Identifier("minecraft", "daylight_detector"));
 
 		ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.OBSERVER, 1)
@@ -61,8 +59,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.input('C', Items.COBBLESTONE)
 				.input('Q', ConventionalItemTags.QUARTZ)
 				.input('R', Items.REDSTONE)
-				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(ConventionalItemTags.QUARTZ, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(ConventionalItemTags.QUARTZ)))
 				.offerTo(exporter, new Identifier("minecraft", "observer"));
 
 
@@ -84,8 +81,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.input(CinderscapesItemTags.SULFURS)
 				.input(ItemTags.COALS)
 				.input(Items.BONE_MEAL)
-				.criterion("has_sulfurs", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(CinderscapesItemTags.SULFURS, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+				.criterion("has_sulfurs", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(CinderscapesItemTags.SULFURS)))
 				.offerTo(exporter);
 
 
@@ -110,13 +106,11 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.offerTo(exporter);
 		offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.ROSE_QUARTZ_PILLAR, CinderscapesBlocks.ROSE_QUARTZ_BLOCK);
 		createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.ROSE_QUARTZ_SLAB, Ingredient.ofItems(CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK, CinderscapesBlocks.ROSE_QUARTZ_BLOCK, CinderscapesBlocks.ROSE_QUARTZ_PILLAR))
-				.criterion("has_quartz_blocks", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(CinderscapesItemTags.ROSE_QUARTZ_CONVERTIBLES, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+				.criterion("has_quartz_blocks", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(CinderscapesItemTags.ROSE_QUARTZ_CONVERTIBLES)))
 				.offerTo(exporter);
 		offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.ROSE_QUARTZ_SLAB, CinderscapesBlocks.ROSE_QUARTZ_BLOCK, 2);
 		createStairsRecipe(CinderscapesBlocks.ROSE_QUARTZ_STAIRS, Ingredient.ofItems(CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK, CinderscapesBlocks.ROSE_QUARTZ_BLOCK, CinderscapesBlocks.ROSE_QUARTZ_PILLAR))
-				.criterion("has_quartz_blocks", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(CinderscapesItemTags.ROSE_QUARTZ_CONVERTIBLES, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+				.criterion("has_quartz_blocks", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(CinderscapesItemTags.ROSE_QUARTZ_CONVERTIBLES)))
 				.offerTo(exporter);
 		offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.ROSE_QUARTZ_STAIRS, CinderscapesBlocks.ROSE_QUARTZ_BLOCK);
 		offerSmelting(exporter, List.of(CinderscapesBlocks.ROSE_QUARTZ_BLOCK), RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOOTH_ROSE_QUARTZ, 0.1f, 200, "building_blocks");
@@ -147,13 +141,11 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.offerTo(exporter);
 		offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOKY_QUARTZ_PILLAR, CinderscapesBlocks.SMOKY_QUARTZ_BLOCK);
 		createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOKY_QUARTZ_SLAB, Ingredient.ofItems(CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK, CinderscapesBlocks.SMOKY_QUARTZ_BLOCK, CinderscapesBlocks.SMOKY_QUARTZ_PILLAR))
-				.criterion("has_quartz_blocks", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(CinderscapesItemTags.SMOKY_QUARTZ_CONVERTIBLES, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+				.criterion("has_quartz_blocks", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(CinderscapesItemTags.SMOKY_QUARTZ_CONVERTIBLES)))
 				.offerTo(exporter);
 		offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOKY_QUARTZ_SLAB, CinderscapesBlocks.SMOKY_QUARTZ_BLOCK, 2);
 		createStairsRecipe(CinderscapesBlocks.SMOKY_QUARTZ_STAIRS, Ingredient.ofItems(CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK, CinderscapesBlocks.SMOKY_QUARTZ_BLOCK, CinderscapesBlocks.SMOKY_QUARTZ_PILLAR))
-				.criterion("has_quartz_blocks", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(CinderscapesItemTags.SMOKY_QUARTZ_CONVERTIBLES, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+				.criterion("has_quartz_blocks", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(CinderscapesItemTags.SMOKY_QUARTZ_CONVERTIBLES)))
 				.offerTo(exporter);
 		offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOKY_QUARTZ_STAIRS, CinderscapesBlocks.SMOKY_QUARTZ_BLOCK);
 		offerSmelting(exporter, List.of(CinderscapesBlocks.SMOKY_QUARTZ_BLOCK), RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ, 0.1f, 200, "building_blocks");
@@ -184,13 +176,11 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.offerTo(exporter);
 		offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SULFUR_QUARTZ_PILLAR, CinderscapesBlocks.SULFUR_QUARTZ_BLOCK);
 		createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SULFUR_QUARTZ_SLAB, Ingredient.ofItems(CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK, CinderscapesBlocks.SULFUR_QUARTZ_BLOCK, CinderscapesBlocks.SULFUR_QUARTZ_PILLAR))
-				.criterion("has_quartz_blocks", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(CinderscapesItemTags.SULFUR_QUARTZ_CONVERTIBLES, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+				.criterion("has_quartz_blocks", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(CinderscapesItemTags.SULFUR_QUARTZ_CONVERTIBLES)))
 				.offerTo(exporter);
 		offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SULFUR_QUARTZ_SLAB, CinderscapesBlocks.SULFUR_QUARTZ_BLOCK, 2);
 		createStairsRecipe(CinderscapesBlocks.SULFUR_QUARTZ_STAIRS, Ingredient.ofItems(CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK, CinderscapesBlocks.SULFUR_QUARTZ_BLOCK, CinderscapesBlocks.SULFUR_QUARTZ_PILLAR))
-				.criterion("has_quartz_blocks", InventoryChangedCriterion.Conditions.items(
-						new ItemPredicate(CinderscapesItemTags.SULFUR_QUARTZ_CONVERTIBLES, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
+				.criterion("has_quartz_blocks", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(CinderscapesItemTags.SULFUR_QUARTZ_CONVERTIBLES)))
 				.offerTo(exporter);
 		offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SULFUR_QUARTZ_STAIRS, CinderscapesBlocks.SULFUR_QUARTZ_BLOCK);
 		offerSmelting(exporter, List.of(CinderscapesBlocks.SULFUR_QUARTZ_BLOCK), RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ, 0.1f, 200, "building_blocks");
@@ -278,6 +268,20 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.input('L', CinderscapesBlocks.STRIPPED_UMBRAL_STEM)
 				.criterion("has_logs", InventoryChangedCriterion.Conditions.items(CinderscapesBlocks.STRIPPED_UMBRAL_STEM))
 				.offerTo(exporter);
+	}
+
+	// Returns an ItemPredicate matching any item in the provided ItemTag key.
+	private static ItemPredicate getItemTagPredicate(TagKey<Item> itemTagKey) {
+		return new ItemPredicate(
+				Optional.of(itemTagKey),
+				Optional.empty(),
+				NumberRange.IntRange.ANY,
+				NumberRange.IntRange.ANY,
+				List.of(),
+				List.of(),
+				Optional.empty(),
+				Optional.empty()
+		);
 	}
 
 	@Override

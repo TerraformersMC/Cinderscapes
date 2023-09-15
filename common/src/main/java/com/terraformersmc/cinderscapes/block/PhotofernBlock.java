@@ -16,7 +16,7 @@ public class PhotofernBlock extends CinderscapesNetherPlantBlock implements Fert
 	}
 
 	@Override
-	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
 		return true;
 	}
 

@@ -10,13 +10,11 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.WorldChunk;
 import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -33,10 +31,18 @@ public abstract class MixinServerWorld extends World {
     }
 
     // TODO: Revisit this and make it easier to read
-    @Inject(method="tickChunk", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/server/world/ServerWorld;getBiome(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/registry/entry/RegistryEntry;", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void cinderscapes$tickChunk(WorldChunk chunk, int randomTickSpeed, CallbackInfo callback, ChunkPos chunkPos, boolean bl, int i, int j, Profiler profiler, BlockPos blockPos2, BlockPos blockPos3) {
+    //       And fix having two calls to getBiome (maybe requires MixinExtras)
+    @Inject(method="tickIceAndSnow",
+            at = @At(value = "INVOKE_ASSIGN",
+                    target = "Lnet/minecraft/server/world/ServerWorld;getBiome(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/registry/entry/RegistryEntry;",
+                    ordinal = 0,
+                    shift = At.Shift.AFTER
+            ),
+            locals = LocalCapture.NO_CAPTURE
+    )
+    private void cinderscapes$tickAsh(boolean raining, BlockPos tickPos, CallbackInfo ci) {
         if (CinderscapesConfig.INSTANCE.enableAshFall) {
-            BlockPos pos = this.getRandomPosInChunk(i, 0, j, 15);
+            BlockPos pos = tickPos.mutableCopy();
             BlockState state = getBlockState(pos);
             RegistryEntry<Biome> biome = this.getBiome(pos);
 

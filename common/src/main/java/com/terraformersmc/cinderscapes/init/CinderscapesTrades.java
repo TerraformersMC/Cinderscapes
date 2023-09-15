@@ -1,18 +1,12 @@
 package com.terraformersmc.cinderscapes.init;
 
-import com.terraformersmc.cinderscapes.Cinderscapes;
-import com.terraformersmc.cinderscapes.loottables.IntegratedEntry;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.loot.condition.LootCondition;
-import net.minecraft.loot.entry.LootPoolEntryType;
-import net.minecraft.loot.function.LootFunction;
+import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.VillagerProfession;
@@ -20,16 +14,14 @@ import net.minecraft.village.VillagerProfession;
 public class CinderscapesTrades {
     private static final Identifier BARTERING_LOOT_TABLE_ID = new Identifier("minecraft", "gameplay/piglin_bartering");
 
-    public static final LootPoolEntryType INTEGRATED = Registry.register(Registries.LOOT_POOL_ENTRY_TYPE, Cinderscapes.id("integrated"), new LootPoolEntryType(new IntegratedEntry.Serializer()));
-
     public static void init() {
 
         LootTableEvents.MODIFY.register((resourceManager, manager, id, supplier, setter) -> {
             if (BARTERING_LOOT_TABLE_ID.equals(id)) {
                 supplier.modifyPools((pools) -> {
-                    pools   .with(new IntegratedEntry(CinderscapesItems.ROSE_QUARTZ, 20, 0, new LootCondition[]{}, new LootFunction[]{SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12)).build()}))
-                            .with(new IntegratedEntry(CinderscapesItems.SMOKY_QUARTZ, 20, 0, new LootCondition[]{}, new LootFunction[]{SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12)).build()}))
-                            .with(new IntegratedEntry(CinderscapesItems.SULFUR_QUARTZ, 20, 0, new LootCondition[]{}, new LootFunction[]{SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12)).build()}));
+                    pools   .with(ItemEntry.builder(CinderscapesItems.ROSE_QUARTZ).weight(20).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12))).build())
+                            .with(ItemEntry.builder(CinderscapesItems.SMOKY_QUARTZ).weight(20).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12))).build())
+                            .with(ItemEntry.builder(CinderscapesItems.SULFUR_QUARTZ).weight(20).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12))).build());
                 });
             }
         });
