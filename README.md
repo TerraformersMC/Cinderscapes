@@ -3,7 +3,7 @@
 ![Gradle Build](https://github.com/TerraformersMC/Cinderscapes/workflows/Check%20Build/badge.svg?event=push)
 
 <p align="center">
-Cinderscapes is a beautiful, yet frightening biomes mod for Minecraft 1.16, 1.18.2, 1.19, and 1.20 running on the Fabric mod loader. Cinderscapes enchances the default minecraft experience by adding four new rich and detailed nether biomes following in the same style as those already in the vanilla game. In addition to new biomes Cinderscapes adds some new unique types of building blocks further expanding your building capabilities.
+Cinderscapes is a beautiful, yet frightening biomes mod for Minecraft 1.16, 1.18.2, 1.19, and 1.20 running on the Fabric mod loader. Cinderscapes enhances the default minecraft experience by adding four new rich and detailed nether biomes following in the same style as those already in the vanilla game. In addition to new biomes Cinderscapes adds some new unique types of building blocks further expanding your building capabilities.
 </p>
 <p align="center">
 	<a href="https://modrinth.com/mod/fabric-api"><img title="Requires Fabric API" height="50" src="https://i.imgur.com/Ol1Tcf8.png"></a>
@@ -50,6 +50,8 @@ Special thanks to Etorna_Z, LudoCrypt, and BoyBeyondTheStars for composition of 
     Campanion adds various tools and utilities to help improve your adventures away from your home. Campanion also works well alongside biome mods in order to make the exploration of the biomes even more fun.
 </p>
 
-<h5 align="center">
-	Cinderscapes is a mod for Fabric, and there are no plans to port this mod to Forge.<br/>
+<h5 style="text-align: center;">
+	Cinderscapes is a mod for Fabric, and there are no plans to port this mod to Forge.<br />
+	However, another team is maintaining a Forge fork of this mod at <a href="https://www.curseforge.com/minecraft/mc-mods/cinderscapes-reforged">Cinderscapes Reforged.</a><br />
+	Cinderscapes Reforged is unaffiliated with Terraformers, so please do not ask us for support regarding their mod.
 </h5>
