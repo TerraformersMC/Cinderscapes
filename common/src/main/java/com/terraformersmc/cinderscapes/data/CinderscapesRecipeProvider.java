@@ -88,6 +88,8 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 						new ItemPredicate(CinderscapesItemTags.SULFURS, null, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, EnchantmentPredicate.ARRAY_OF_ANY, EnchantmentPredicate.ARRAY_OF_ANY, null, NbtPredicate.ANY)))
 				.offerTo(exporter);
 
+		offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, CinderscapesItems.SULFUR, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SULFUR_BLOCK);
+
 
 		// quartz recipes
 		offerChiseledBlockRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK, CinderscapesBlocks.ROSE_QUARTZ_SLAB);
