@@ -84,6 +84,8 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.criterion("has_sulfurs", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(CinderscapesItemTags.SULFURS)))
 				.offerTo(exporter);
 
+		offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, CinderscapesItems.SULFUR, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SULFUR_BLOCK);
+
 
 		// quartz recipes
 		offerChiseledBlockRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK, CinderscapesBlocks.ROSE_QUARTZ_SLAB);
