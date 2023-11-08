@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BiomeTags;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.biome.Biome;
 
 import java.util.concurrent.CompletableFuture;
@@ -22,37 +21,37 @@ public class CinderscapesBiomeTagProvider extends FabricTagProvider<Biome> {
 		/*
 		 * Vanilla biome categories
 		 */
-		getOrCreateTagBuilder(TagKey.of(RegistryKeys.BIOME, BiomeTags.IS_NETHER.id()))
+		getOrCreateTagBuilder(BiomeTags.IS_NETHER)
 			.addOptional(CinderscapesBiomes.ASHY_SHOALS)
 			.addOptional(CinderscapesBiomes.BLACKSTONE_SHALES)
 			.addOptional(CinderscapesBiomes.LUMINOUS_GROVE)
 			.addOptional(CinderscapesBiomes.QUARTZ_CAVERN);
 
-		getOrCreateTagBuilder(TagKey.of(RegistryKeys.BIOME, ConventionalBiomeTags.NETHER_FORESTS.id()))
+		getOrCreateTagBuilder(ConventionalBiomeTags.NETHER_FORESTS)
 			.addOptional(CinderscapesBiomes.LUMINOUS_GROVE);
 
-		getOrCreateTagBuilder(TagKey.of(RegistryKeys.BIOME, ConventionalBiomeTags.WASTELAND.id()))
+		getOrCreateTagBuilder(ConventionalBiomeTags.WASTELAND)
 			.addOptional(CinderscapesBiomes.ASHY_SHOALS);
 
-		getOrCreateTagBuilder(TagKey.of(RegistryKeys.BIOME, ConventionalBiomeTags.VEGETATION_SPARSE.id()))
+		getOrCreateTagBuilder(ConventionalBiomeTags.VEGETATION_SPARSE)
 			.addOptional(CinderscapesBiomes.BLACKSTONE_SHALES);
 
 
 		/*
 		 * Biome structure generation tags
 		 */
-		getOrCreateTagBuilder(TagKey.of(RegistryKeys.BIOME, BiomeTags.BASTION_REMNANT_HAS_STRUCTURE.id()))
+		getOrCreateTagBuilder(BiomeTags.BASTION_REMNANT_HAS_STRUCTURE)
 			.addOptional(CinderscapesBiomes.ASHY_SHOALS)
 			.addOptional(CinderscapesBiomes.LUMINOUS_GROVE);
 
-		getOrCreateTagBuilder(TagKey.of(RegistryKeys.BIOME, BiomeTags.NETHER_FORTRESS_HAS_STRUCTURE.id()))
+		getOrCreateTagBuilder(BiomeTags.NETHER_FORTRESS_HAS_STRUCTURE)
 			.addOptional(CinderscapesBiomes.BLACKSTONE_SHALES);
 
-		getOrCreateTagBuilder(TagKey.of(RegistryKeys.BIOME, BiomeTags.NETHER_FOSSIL_HAS_STRUCTURE.id()))
+		getOrCreateTagBuilder(BiomeTags.NETHER_FOSSIL_HAS_STRUCTURE)
 			.addOptional(CinderscapesBiomes.ASHY_SHOALS)
 			.addOptional(CinderscapesBiomes.BLACKSTONE_SHALES);
 
-		getOrCreateTagBuilder(TagKey.of(RegistryKeys.BIOME, BiomeTags.RUINED_PORTAL_NETHER_HAS_STRUCTURE.id()))
+		getOrCreateTagBuilder(BiomeTags.RUINED_PORTAL_NETHER_HAS_STRUCTURE)
 			.addOptional(CinderscapesBiomes.ASHY_SHOALS);
 	}
 }
