@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.block;
 
+import com.terraformersmc.cinderscapes.util.StateShapeRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -14,7 +15,9 @@ import net.minecraft.world.World;
 
 public class CrystiniumBlock extends CinderscapesNetherPlantBlock {
     public CrystiniumBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS).mapColor(MapColor.YELLOW), (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0));
+        super(FabricBlockSettings.copyOf(Blocks.WARPED_ROOTS).mapColor(MapColor.YELLOW));
+
+        StateShapeRegistry.put(this, (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0));
     }
 
     @Override

@@ -211,13 +211,13 @@ public class CinderscapesBlocks {
         SCORCHED_PLANKS = CinderscapesRegistry.register("scorched_planks", new Block(FabricBlockSettings.copyOf(Blocks.CRIMSON_PLANKS).mapColor(MapColor.LIGHT_GRAY)));
         SCORCHED_SLAB = CinderscapesRegistry.register("scorched_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_SLAB).mapColor(MapColor.LIGHT_GRAY)));
 
-        SCORCHED_PRESSURE_PLATE = CinderscapesRegistry.register("scorched_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.CRIMSON_PRESSURE_PLATE).mapColor(MapColor.LIGHT_GRAY), BlockSetType.CRIMSON));
+        SCORCHED_PRESSURE_PLATE = CinderscapesRegistry.register("scorched_pressure_plate", new PressurePlateBlock(BlockSetType.CRIMSON, FabricBlockSettings.copyOf(Blocks.CRIMSON_PRESSURE_PLATE).mapColor(MapColor.LIGHT_GRAY)));
         SCORCHED_FENCE = CinderscapesRegistry.register("scorched_fence", new FenceBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_FENCE).mapColor(MapColor.LIGHT_GRAY)));
-        SCORCHED_TRAPDOOR = CinderscapesRegistry.register("scorched_trapdoor", new TrapdoorBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_TRAPDOOR).mapColor(MapColor.LIGHT_GRAY), BlockSetType.CRIMSON));
-        SCORCHED_FENCE_GATE = CinderscapesRegistry.register("scorched_fence_gate", new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_FENCE_GATE).mapColor(MapColor.LIGHT_GRAY), WoodType.CRIMSON));
+        SCORCHED_TRAPDOOR = CinderscapesRegistry.register("scorched_trapdoor", new TrapdoorBlock(BlockSetType.CRIMSON, FabricBlockSettings.copyOf(Blocks.CRIMSON_TRAPDOOR).mapColor(MapColor.LIGHT_GRAY)));
+        SCORCHED_FENCE_GATE = CinderscapesRegistry.register("scorched_fence_gate", new FenceGateBlock(WoodType.CRIMSON, FabricBlockSettings.copyOf(Blocks.CRIMSON_FENCE_GATE).mapColor(MapColor.LIGHT_GRAY)));
         SCORCHED_STAIRS = CinderscapesRegistry.register("scorched_stairs", new StairsBlock(SCORCHED_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.CRIMSON_STAIRS).mapColor(MapColor.LIGHT_GRAY)));
-        SCORCHED_BUTTON = CinderscapesRegistry.register("scorched_button", new ButtonBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_BUTTON).mapColor(MapColor.LIGHT_GRAY), BlockSetType.CRIMSON, 30, true));
-        SCORCHED_DOOR = CinderscapesRegistry.register("scorched_door", new DoorBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_DOOR).mapColor(MapColor.LIGHT_GRAY), BlockSetType.CRIMSON));
+        SCORCHED_BUTTON = CinderscapesRegistry.register("scorched_button", new ButtonBlock(BlockSetType.CRIMSON, 30, FabricBlockSettings.copyOf(Blocks.CRIMSON_BUTTON).mapColor(MapColor.LIGHT_GRAY)));
+        SCORCHED_DOOR = CinderscapesRegistry.register("scorched_door", new DoorBlock(BlockSetType.CRIMSON, FabricBlockSettings.copyOf(Blocks.CRIMSON_DOOR).mapColor(MapColor.LIGHT_GRAY)));
 
         final Identifier SCORCHED_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/scorched");
         SCORCHED_SIGN = CinderscapesRegistry.register("scorched_sign", new TerraformSignBlock(SCORCHED_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.CRIMSON_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD)));
@@ -254,7 +254,7 @@ public class CinderscapesBlocks {
 
         UMBRAL_NYLIUM = CinderscapesRegistry.register("umbral_nylium", new CinderscapesNyliumBlock(FabricBlockSettings.copyOf(Blocks.WARPED_NYLIUM).mapColor(MapColor.LIGHT_BLUE_GRAY)));
 
-        UMBRAL_FUNGUS = CinderscapesRegistry.register("umbral_fungus", new FungusBlock(FabricBlockSettings.copyOf(Blocks.WARPED_FUNGUS).mapColor(MapColor.BLUE).luminance(15), CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS_PLANTED, UMBRAL_NYLIUM));
+        UMBRAL_FUNGUS = CinderscapesRegistry.register("umbral_fungus", new FungusBlock(CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS_PLANTED, UMBRAL_NYLIUM, FabricBlockSettings.copyOf(Blocks.WARPED_FUNGUS).mapColor(MapColor.BLUE).luminance(15)));
         POTTED_UMBRAL_FUNGUS = CinderscapesRegistry.register("potted_umbral_fungus", new FlowerPotBlock(UMBRAL_FUNGUS, FabricBlockSettings.copyOf(Blocks.POTTED_WARPED_FUNGUS)));
 
         UMBRAL_WART_BLOCK = CinderscapesRegistry.register("umbral_wart_block", new CinderscapesTransparentBlock(FabricBlockSettings.copyOf(Blocks.WARPED_WART_BLOCK).mapColor(MapColor.BLUE).nonOpaque()));
@@ -262,13 +262,13 @@ public class CinderscapesBlocks {
 
         UMBRAL_PLANKS = CinderscapesRegistry.register("umbral_planks", new Block(FabricBlockSettings.copyOf(Blocks.WARPED_PLANKS).mapColor(MapColor.BLUE)));
         UMBRAL_SLAB = CinderscapesRegistry.register("umbral_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.WARPED_SLAB).mapColor(MapColor.BLUE)));
-        UMBRAL_PRESSURE_PLATE = CinderscapesRegistry.register("umbral_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.WARPED_PRESSURE_PLATE).mapColor(MapColor.BLUE), BlockSetType.WARPED));
+        UMBRAL_PRESSURE_PLATE = CinderscapesRegistry.register("umbral_pressure_plate", new PressurePlateBlock(BlockSetType.WARPED, FabricBlockSettings.copyOf(Blocks.WARPED_PRESSURE_PLATE).mapColor(MapColor.BLUE)));
         UMBRAL_FENCE = CinderscapesRegistry.register("umbral_fence", new FenceBlock(FabricBlockSettings.copyOf(Blocks.WARPED_FENCE).mapColor(MapColor.BLUE)));
-        UMBRAL_TRAPDOOR = CinderscapesRegistry.register("umbral_trapdoor", new TrapdoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_TRAPDOOR).mapColor(MapColor.BLUE), BlockSetType.WARPED));
-        UMBRAL_FENCE_GATE = CinderscapesRegistry.register("umbral_fence_gate", new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.WARPED_FENCE_GATE).mapColor(MapColor.BLUE), WoodType.WARPED));
+        UMBRAL_TRAPDOOR = CinderscapesRegistry.register("umbral_trapdoor", new TrapdoorBlock(BlockSetType.WARPED, FabricBlockSettings.copyOf(Blocks.WARPED_TRAPDOOR).mapColor(MapColor.BLUE)));
+        UMBRAL_FENCE_GATE = CinderscapesRegistry.register("umbral_fence_gate", new FenceGateBlock(WoodType.WARPED, FabricBlockSettings.copyOf(Blocks.WARPED_FENCE_GATE).mapColor(MapColor.BLUE)));
         UMBRAL_STAIRS = CinderscapesRegistry.register("umbral_stairs", new StairsBlock(UMBRAL_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.WARPED_STAIRS).mapColor(MapColor.BLUE)));
-        UMBRAL_BUTTON = CinderscapesRegistry.register("umbral_button", new ButtonBlock(FabricBlockSettings.copyOf(Blocks.WARPED_BUTTON).mapColor(MapColor.BLUE), BlockSetType.WARPED, 30, true));
-        UMBRAL_DOOR = CinderscapesRegistry.register("umbral_door", new DoorBlock(FabricBlockSettings.copyOf(Blocks.WARPED_DOOR).mapColor(MapColor.BLUE), BlockSetType.WARPED));
+        UMBRAL_BUTTON = CinderscapesRegistry.register("umbral_button", new ButtonBlock(BlockSetType.WARPED, 30, FabricBlockSettings.copyOf(Blocks.WARPED_BUTTON).mapColor(MapColor.BLUE)));
+        UMBRAL_DOOR = CinderscapesRegistry.register("umbral_door", new DoorBlock(BlockSetType.WARPED, FabricBlockSettings.copyOf(Blocks.WARPED_DOOR).mapColor(MapColor.BLUE)));
 
         final Identifier UMBRAL_SIGN_TEXTURE = Identifier.of(Cinderscapes.NAMESPACE, "entity/signs/umbral");
         UMBRAL_SIGN = CinderscapesRegistry.register("umbral_sign", new TerraformSignBlock(UMBRAL_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.WARPED_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD)));

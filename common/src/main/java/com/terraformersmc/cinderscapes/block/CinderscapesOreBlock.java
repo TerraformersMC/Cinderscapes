@@ -5,6 +5,6 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 public class CinderscapesOreBlock extends ExperienceDroppingBlock {
     public CinderscapesOreBlock(Settings settings) {
-        super(settings, UniformIntProvider.create(2, 5));
+        super(UniformIntProvider.create(2, 5), settings);
     }
 }

@@ -1,5 +1,7 @@
 package com.terraformersmc.cinderscapes.block;
 
+import com.mojang.serialization.MapCodec;
+import com.terraformersmc.cinderscapes.util.StateShapeRegistry;
 import com.terraformersmc.cinderscapes.util.StateShapeSupplier;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
@@ -12,11 +14,21 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
 public class CinderscapesNetherPlantBlock extends PlantBlock {
-    private final StateShapeSupplier SHAPE_SUPPLIER;
+    public static final MapCodec<CinderscapesNetherPlantBlock> CODEC = CinderscapesNetherPlantBlock.createCodec(CinderscapesNetherPlantBlock::new);
 
     public CinderscapesNetherPlantBlock(Settings settings, StateShapeSupplier supplier) {
         super(settings.offset(AbstractBlock.OffsetType.XZ));
-        SHAPE_SUPPLIER = supplier;
+
+        StateShapeRegistry.put(this, supplier);
+    }
+
+    public CinderscapesNetherPlantBlock(Settings settings) {
+        super(settings.offset(AbstractBlock.OffsetType.XZ));
+    }
+
+    @Override
+    protected MapCodec<? extends PlantBlock> getCodec() {
+        return null;
     }
 
     @Override
@@ -27,6 +39,6 @@ public class CinderscapesNetherPlantBlock extends PlantBlock {
     @Override
     @SuppressWarnings("deprecation")
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE_SUPPLIER.apply(state);
+        return StateShapeRegistry.getShape(state);
     }
 }

@@ -1,5 +1,7 @@
 package com.terraformersmc.cinderscapes.block;
 
+import com.mojang.serialization.MapCodec;
+import com.terraformersmc.cinderscapes.util.StateShapeRegistry;
 import com.terraformersmc.cinderscapes.util.StateShapeSupplier;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -11,11 +13,23 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
 public class CinderscapesNetherTallPlantBlock extends TallPlantBlock {
-    protected final StateShapeSupplier SHAPE_SUPPLIER;
+    public static final MapCodec<CinderscapesNetherTallPlantBlock> CODEC = CinderscapesNetherTallPlantBlock.createCodec(CinderscapesNetherTallPlantBlock::new);
 
     public CinderscapesNetherTallPlantBlock(Settings settings, StateShapeSupplier supplier) {
         super(settings);
-        SHAPE_SUPPLIER = supplier;
+
+        StateShapeRegistry.put(this, supplier);
+    }
+
+    public CinderscapesNetherTallPlantBlock(Settings settings) {
+        super(settings);
+    }
+
+    @Override
+    public MapCodec<TallPlantBlock> getCodec() {
+        // Don't look at me; this is how the Fabric folks say we're going to do it...
+        //noinspection unchecked
+        return (MapCodec<TallPlantBlock>) (Object) CODEC;
     }
 
     @Override
@@ -26,6 +40,6 @@ public class CinderscapesNetherTallPlantBlock extends TallPlantBlock {
     @Override
     @SuppressWarnings("deprecation")
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE_SUPPLIER.apply(state);
+        return StateShapeRegistry.getShape(state);
     }
 }
