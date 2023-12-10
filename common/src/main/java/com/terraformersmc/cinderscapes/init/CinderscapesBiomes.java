@@ -13,7 +13,6 @@ import net.minecraft.world.biome.Biome;
 
 import java.util.List;
 
-@SuppressWarnings("UnstableApiUsage")
 public class CinderscapesBiomes {
     public static final RegistryKey<Biome> ASHY_SHOALS = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.NAMESPACE, "ashy_shoals"));
     public static final RegistryKey<Biome> BLACKSTONE_SHALES = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.NAMESPACE, "blackstone_shales"));

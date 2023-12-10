@@ -21,7 +21,6 @@ import net.minecraft.world.gen.placementmodifier.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("UnstableApiUsage")
 public class CinderscapesPlacedFeatures {
     /* ASHY SHOALS */
     public static final RegistryKey<PlacedFeature> DEBRIS_ORE_LARGE = createRegistryKey("ashy_shoals/debris_ore_large");

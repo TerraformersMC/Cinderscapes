@@ -9,21 +9,23 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(AlterGroundTreeDecorator.class)
 public class MixinAlterGroundTreeDecorator {
-    @Inject(method = "setColumn", at = @At(value = "TAIL"))
-    private void cinderscapes$setColumn(TreeDecorator.Generator generator, BlockPos origin, CallbackInfo callback) {
-        for(int i = 2; i >= -3; --i) {
-            BlockPos blockPos = origin.up(i);
-            if (generator.getWorld().testBlockState(blockPos, (state) -> state.isOf(Blocks.NETHERRACK))) {
-                generator.replace(blockPos, CinderscapesBlocks.NODZOL.getDefaultState());
-                break;
-            }
-
-            if (!generator.isAir(blockPos) && i < 0) {
-                break;
-            }
+    @Inject(method = "setColumn",
+            at = @At(
+                    value = "INVOKE_ASSIGN",
+                    target = "Lnet/minecraft/util/math/BlockPos;up(I)Lnet/minecraft/util/math/BlockPos;",
+                    shift = At.Shift.AFTER
+            ),
+            cancellable = true,
+            locals = LocalCapture.CAPTURE_FAILHARD
+    )
+    private void cinderscapes$netherrackConversion(TreeDecorator.Generator generator, BlockPos origin, CallbackInfo ci, int i, BlockPos pos) {
+        if (generator.getWorld().testBlockState(pos, (state) -> state.isOf(Blocks.NETHERRACK))) {
+            generator.replace(pos, CinderscapesBlocks.NODZOL.getDefaultState());
+            ci.cancel();
         }
     }
 }

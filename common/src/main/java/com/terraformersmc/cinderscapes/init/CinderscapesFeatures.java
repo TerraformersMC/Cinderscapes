@@ -21,6 +21,7 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 // TODO: Check
@@ -83,7 +84,7 @@ public class CinderscapesFeatures {
                         .add(CinderscapesBlocks.TWILIGHT_FESCUES.getDefaultState(), 5)
                         .add(CinderscapesBlocks.TWILIGHT_TENDRILS.getDefaultState(), 5)
                         .add(CinderscapesBlocks.UMBRAL_FUNGUS.getDefaultState(), 2).build()),
-                Arrays.asList(
+                Collections.singletonList(
                         CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState()
                 )
         );

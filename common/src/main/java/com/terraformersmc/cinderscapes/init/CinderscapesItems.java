@@ -322,7 +322,7 @@ public class CinderscapesItems {
         float BERRY_CHANCE = compostingRegistry.get(Items.SWEET_BERRIES);
         float FLOWER_CHANCE = compostingRegistry.get(Items.POPPY);
         float FUNGUS_CHANCE = compostingRegistry.get(Items.CRIMSON_FUNGUS);
-        float GRASS_CHANCE = compostingRegistry.get(Items.GRASS);
+        float GRASS_CHANCE = compostingRegistry.get(Items.SHORT_GRASS);
         float WART_BLOCK_CHANCE = compostingRegistry.get(Items.NETHER_WART_BLOCK);
 
         compostingRegistry.add(BRAMBLE_BERRIES, BERRY_CHANCE);

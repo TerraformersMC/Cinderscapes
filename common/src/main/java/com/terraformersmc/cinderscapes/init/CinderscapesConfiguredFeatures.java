@@ -21,7 +21,6 @@ import net.minecraft.world.gen.feature.OreFeatureConfig;
 
 import java.util.List;
 
-@SuppressWarnings("UnstableApiUsage")
 public final class CinderscapesConfiguredFeatures {
     /* ASHY SHOALS */
     private static final RuleTest RULE_TEST_BASE_STONE_NETHER = new TagMatchRuleTest(BlockTags.BASE_STONE_NETHER);

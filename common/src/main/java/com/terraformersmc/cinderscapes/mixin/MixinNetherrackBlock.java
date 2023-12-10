@@ -1,8 +1,9 @@
 package com.terraformersmc.cinderscapes.mixin;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.NetherrackBlock;
-import net.minecraft.block.NyliumBlock;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -16,19 +17,22 @@ import java.util.List;
 
 @Mixin(NetherrackBlock.class)
 public class MixinNetherrackBlock {
-    @Inject(method = "grow(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/random/Random;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V", at = @At("HEAD"), cancellable = true)
-    public void cinderscapes$grow(ServerWorld world, Random random, BlockPos pos, BlockState state, CallbackInfo callback) {
-
+    @Inject(method = "grow", at = @At("RETURN"))
+    private void cinderscapes$growNetherrackAction(ServerWorld world, Random random, BlockPos pos, BlockState state, CallbackInfo ci) {
+        BlockState vanillaState = world.getBlockState(pos);
         List<BlockState> potentialStates = new ArrayList<>();
 
+        // Build a list of the default states of any surrounding Nylium variants.
         for (BlockPos testPos : BlockPos.iterate(pos.add(-1, -1, -1), pos.add(1, 1, 1))) {
-            BlockState testState = world.getBlockState(testPos);
-            if (testState.getBlock() instanceof NyliumBlock && !potentialStates.contains(testState)) potentialStates.add(testState);
-        }
-        if (potentialStates.size() > 0) {
-            world.setBlockState(pos, potentialStates.get(random.nextInt(potentialStates.size())), 3);
+            BlockState testState = world.getBlockState(testPos).getBlock().getDefaultState();
+            if (testState.isIn(BlockTags.NYLIUM) && !potentialStates.contains(testState)) {
+                potentialStates.add(testState);
+            }
         }
 
-        callback.cancel();
+        // If another mod has changed the block state to something not a default Nylium state, leave it be.
+        if (potentialStates.size() > 0 && (vanillaState.isOf(Blocks.NETHERRACK) || potentialStates.contains(vanillaState))) {
+            world.setBlockState(pos, potentialStates.get(random.nextInt(potentialStates.size())), 3);
+        }
     }
 }

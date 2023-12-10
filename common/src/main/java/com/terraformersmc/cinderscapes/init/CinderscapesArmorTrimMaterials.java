@@ -14,7 +14,6 @@ import net.minecraft.util.Util;
 
 import java.util.Map;
 
-@SuppressWarnings("UnstableApiUsage")
 public class CinderscapesArmorTrimMaterials {
     public static final RegistryKey<ArmorTrimMaterial> ROSE_QUARTZ = CinderscapesArmorTrimMaterials.of("rose_quartz");
     public static final RegistryKey<ArmorTrimMaterial> SMOKY_QUARTZ = CinderscapesArmorTrimMaterials.of("smoky_quartz");

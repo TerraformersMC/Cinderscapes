@@ -30,42 +30,40 @@ public abstract class MixinServerWorld extends World {
         super(properties, registryRef, registryManager, dimensionEntry, profiler, isClient, debugWorld, biomeAccess, maxChainedNeighborUpdates);
     }
 
-    // TODO: Revisit this and make it easier to read
-    //       And fix having two calls to getBiome (maybe requires MixinExtras)
-    @Inject(method="tickIceAndSnow",
-            at = @At(value = "INVOKE_ASSIGN",
-                    target = "Lnet/minecraft/server/world/ServerWorld;getBiome(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/registry/entry/RegistryEntry;",
-                    ordinal = 0,
-                    shift = At.Shift.AFTER
-            ),
-            locals = LocalCapture.NO_CAPTURE
-    )
-    private void cinderscapes$tickAsh(boolean raining, BlockPos tickPos, CallbackInfo ci) {
+    /*
+     * NOTE: Unlike this mixin, vanilla evaluates the tick only at the surface Y level.
+     * This means there is no utility for us in reusing vanilla's calculations.
+     */
+    @Inject(method="tickIceAndSnow", at = @At(value = "HEAD"), locals = LocalCapture.NO_CAPTURE)
+    private void cinderscapes$tickAsh(BlockPos tickPos, CallbackInfo ci) {
         if (CinderscapesConfig.INSTANCE.enableAshFall) {
             BlockPos pos = tickPos.mutableCopy();
             BlockState state = getBlockState(pos);
             RegistryEntry<Biome> biome = this.getBiome(pos);
 
-            while (!(
+            while (pos.getY() < 127 && !(
                     biome.matchesKey(CinderscapesBiomes.ASHY_SHOALS) &&
-                            state.isSideSolidFullSquare(this, pos, Direction.UP) &&
-                            blockAbove(pos).isIn(CinderscapesBlockTags.ASH_PERMEABLE) &&
-                            this.getBlockState(pos.up()).isAir() &&
-                            CinderscapesBlocks.ASH.getDefaultState().canPlaceAt(this, pos.up())) &&
-                    pos.getY() < 127) {
+                    state.isSideSolidFullSquare(this, pos, Direction.UP) &&
+                    blockAbove(pos).isIn(CinderscapesBlockTags.ASH_PERMEABLE) &&
+                    this.getBlockState(pos.up()).isAir() &&
+                    CinderscapesBlocks.ASH.getDefaultState().canPlaceAt(this, pos.up()))) {
                 pos = pos.up();
                 state = getBlockState(pos);
                 biome = this.getBiome(pos);
             }
-            if (pos.getY() < 127) this.setBlockState(pos.up(), CinderscapesBlocks.ASH.getDefaultState());
+
+            if (pos.getY() < 127) {
+                this.setBlockState(pos.up(), CinderscapesBlocks.ASH.getDefaultState());
+            }
         }
     }
 
     private BlockState blockAbove(BlockPos pos) {
-        BlockPos iPos = pos.mutableCopy();
-        while(isAir(iPos.up()) && iPos.getY() < 127) {
-            iPos = iPos.up();
-        }
-        return getBlockState(iPos.up());
+        BlockPos iPos = pos.mutableCopy().up();
+
+        //noinspection StatementWithEmptyBody
+        for (; isAir(iPos) && iPos.getY() < 127; iPos = iPos.up());
+
+        return getBlockState(iPos);
     }
 }

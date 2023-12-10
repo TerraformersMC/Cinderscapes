@@ -14,6 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinPlantBlock {
     @Inject(method = "canPlantOnTop", at = @At(value = "RETURN"), cancellable = true)
     protected void cinderscapes$canPlantOnTop(BlockState floor, BlockView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(cir.getReturnValue() || floor.isOf(CinderscapesBlocks.NODZOL));
+        if (floor.isOf(CinderscapesBlocks.NODZOL)) {
+            cir.setReturnValue(true);
+        }
     }
 }
