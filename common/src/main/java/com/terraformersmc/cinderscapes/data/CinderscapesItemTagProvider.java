@@ -101,6 +101,9 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 		getOrCreateTagBuilder(CinderscapesItemTags.DARK_ASHES_DUSTS)
 			.add(CinderscapesItems.ASH_PILE);
 
+		getOrCreateTagBuilder(ConventionalItemTags.FOODS)
+			.add(CinderscapesItems.BRAMBLE_BERRIES);
+
 		getOrCreateTagBuilder(ConventionalItemTags.QUARTZ)
 			.add(Items.QUARTZ)
 			.add(CinderscapesItems.ROSE_QUARTZ)
