@@ -3,12 +3,14 @@ package com.terraformersmc.cinderscapes.biome;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.mixin.OverworldBiomeCreatorAccessor;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registerable;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryEntryLookup;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.SoundEvents;
@@ -19,19 +21,16 @@ import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.carver.ConfiguredCarver;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
-import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import net.minecraft.world.gen.feature.MiscPlacedFeatures;
-import net.minecraft.world.gen.feature.NetherPlacedFeatures;
-import net.minecraft.world.gen.feature.OrePlacedFeatures;
-import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
+import net.minecraft.world.gen.feature.*;
 
 public class QuartzCavernBiome {
     public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(-0.225F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.1F);
 
-    public static Biome create(FabricDynamicRegistryProvider.Entries entries) {
+    public static Biome create(Registerable<Biome> registerable) {
         return new Biome.Builder()
-                .generationSettings(createGenerationSettings(entries))
+                .generationSettings(createGenerationSettings(registerable))
                 .spawnSettings(createSpawnSettings())
                 .precipitation(false)
                 .temperature(2.0F)
@@ -50,8 +49,11 @@ public class QuartzCavernBiome {
                 .build();
     }
 
-    private static GenerationSettings createGenerationSettings(FabricDynamicRegistryProvider.Entries entries) {
-        GenerationSettings.LookupBackedBuilder builder = new GenerationSettings.LookupBackedBuilder(entries.placedFeatures(), entries.configuredCarvers());
+    private static GenerationSettings createGenerationSettings(Registerable<Biome> registerable) {
+        RegistryEntryLookup<ConfiguredCarver<?>> configuredCarvers = registerable.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER);
+        RegistryEntryLookup<PlacedFeature> placedFeatures = registerable.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
+
+        GenerationSettings.LookupBackedBuilder builder = new GenerationSettings.LookupBackedBuilder(placedFeatures, configuredCarvers);
 
         // DEFAULT MINECRAFT FEATURES
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
@@ -68,25 +70,25 @@ public class QuartzCavernBiome {
         DefaultBiomeFeatures.addAncientDebris(builder);
 
         // QUARTZ ORES
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.GOLD_ORE));
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.SULFUR_ORE));
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.QUARTZ_ORE));
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.ROSE_QUARTZ_ORE));
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.SMOKY_QUARTZ_ORE));
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.SULFUR_QUARTZ_ORE));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.GOLD_ORE));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.SULFUR_ORE));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.QUARTZ_ORE));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.ROSE_QUARTZ_ORE));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.SMOKY_QUARTZ_ORE));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.SULFUR_QUARTZ_ORE));
 
         // QUARTZ SHARDS
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.CEILING_SHARDS));
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.FLOOR_SHARDS));
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.CEILING_SHARDS));
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.FLOOR_SHARDS));
 
         // POLYPITE QUARTZ
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.POLYPITE_QUARTZ));
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.POLYPITE_ROSE_QUARTZ));
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.POLYPITE_SMOKY_QUARTZ));
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.POLYPITE_SULFUR_QUARTZ));
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.POLYPITE_QUARTZ));
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.POLYPITE_ROSE_QUARTZ));
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.POLYPITE_SMOKY_QUARTZ));
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.POLYPITE_SULFUR_QUARTZ));
 
         // VEGETATION
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.QUARTZ_VEGETATION));
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.QUARTZ_VEGETATION));
 
         return builder.build();
     }

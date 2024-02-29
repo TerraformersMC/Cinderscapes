@@ -26,10 +26,13 @@ import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.StatePredicate;
 import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.registry.RegistryWrapper;
+
+import java.util.concurrent.CompletableFuture;
 
 public class CinderscapesBlockLootTableProvider extends FabricBlockLootTableProvider {
-	protected CinderscapesBlockLootTableProvider(FabricDataOutput dataOutput) {
-		super(dataOutput);
+	protected CinderscapesBlockLootTableProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+		super(output, registriesFuture);
 	}
 
 	@Override

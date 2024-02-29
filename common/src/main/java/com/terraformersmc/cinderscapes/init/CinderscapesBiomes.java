@@ -5,7 +5,7 @@ import com.terraformersmc.cinderscapes.biome.AshyShoalsBiome;
 import com.terraformersmc.cinderscapes.biome.BlackstoneShalesBiome;
 import com.terraformersmc.cinderscapes.biome.LuminousGroveBiome;
 import com.terraformersmc.cinderscapes.biome.QuartzCavernBiome;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
@@ -19,6 +19,7 @@ public class CinderscapesBiomes {
     public static final RegistryKey<Biome> LUMINOUS_GROVE = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.NAMESPACE, "luminous_grove"));
     public static final RegistryKey<Biome> QUARTZ_CAVERN = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.NAMESPACE, "quartz_cavern"));
 
+    @SuppressWarnings("unused")
     public static final List<RegistryKey<Biome>> BIOMES = List.of(
             ASHY_SHOALS,
             BLACKSTONE_SHALES,
@@ -26,17 +27,11 @@ public class CinderscapesBiomes {
             QUARTZ_CAVERN
     );
 
-    public static void populate(FabricDynamicRegistryProvider.Entries entries) {
-        entries.add(ASHY_SHOALS, AshyShoalsBiome.create(entries));
-        entries.add(BLACKSTONE_SHALES, BlackstoneShalesBiome.create(entries));
-        entries.add(LUMINOUS_GROVE, LuminousGroveBiome.create(entries));
-        entries.add(QUARTZ_CAVERN, QuartzCavernBiome.create(entries));
-    }
-
-    // Required because something referencing this class has to be called in order to force the
-    // static initializer to run (Minecraft's Bootstrap class does similar things)
-    public static void init() {
-        // This just creates the registry keys.  Biome objects are requested and consumed by datagen now.
+    public static void bootstrap(Registerable<Biome> registerable) {
+        registerable.register(ASHY_SHOALS, AshyShoalsBiome.create(registerable));
+        registerable.register(BLACKSTONE_SHALES, BlackstoneShalesBiome.create(registerable));
+        registerable.register(LUMINOUS_GROVE, LuminousGroveBiome.create(registerable));
+        registerable.register(QUARTZ_CAVERN, QuartzCavernBiome.create(registerable));
     }
 }
 

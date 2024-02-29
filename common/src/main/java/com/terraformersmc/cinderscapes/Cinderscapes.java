@@ -5,12 +5,7 @@ import com.terraformersmc.cinderscapes.init.*;
 import com.terraformersmc.cinderscapes.item.CinderscapesItemGroups;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnRestriction;
-import net.minecraft.entity.mob.ZoglinEntity;
-import net.minecraft.entity.mob.ZombifiedPiglinEntity;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.Heightmap;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,21 +21,14 @@ public class Cinderscapes implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		try {
-			SpawnRestriction.register(EntityType.ZOGLIN, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZoglinEntity::canMobSpawn);
-			SpawnRestriction.register(EntityType.ZOMBIFIED_PIGLIN, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZombifiedPiglinEntity::canMobSpawn);
-		} catch (IllegalStateException ignored) { }
-
 		CinderscapesConfig.init();
 
+		CinderscapesSpawnRestrictions.init();
 		CinderscapesBlocks.init();
 		CinderscapesItems.init();
 		CinderscapesPlacementModifierTypes.init();
 		CinderscapesFeatures.init();
-		CinderscapesConfiguredFeatures.init();
-		CinderscapesPlacedFeatures.init();
 		CinderscapesSoundEvents.init();
-		CinderscapesBiomes.init();
 		CinderscapesTrades.init();
 		CinderscapesItemGroups.init();
 

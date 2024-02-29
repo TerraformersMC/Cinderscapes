@@ -32,6 +32,5 @@ public class CinderscapesSoundEvents {
 		for (Identifier id : SOUND_EVENTS.keySet()) {
 			Registry.register(Registries.SOUND_EVENT, id, SOUND_EVENTS.get(id));
 		}
-
 	}
 }

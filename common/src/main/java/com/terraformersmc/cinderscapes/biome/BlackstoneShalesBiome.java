@@ -3,12 +3,14 @@ package com.terraformersmc.cinderscapes.biome;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
 import com.terraformersmc.cinderscapes.mixin.OverworldBiomeCreatorAccessor;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registerable;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryEntryLookup;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.SoundEvents;
@@ -19,18 +21,16 @@ import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.carver.ConfiguredCarver;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
-import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import net.minecraft.world.gen.feature.NetherPlacedFeatures;
-import net.minecraft.world.gen.feature.OrePlacedFeatures;
-import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
+import net.minecraft.world.gen.feature.*;
 
 public class BlackstoneShalesBiome {
     public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.10F, -0.05F, 0.0F, 0.0F, 0.0F, 0.00F, 0.0F);
 
-    public static Biome create(FabricDynamicRegistryProvider.Entries entries) {
+    public static Biome create(Registerable<Biome> registerable) {
         return new Biome.Builder()
-                .generationSettings(createGenerationSettings(entries))
+                .generationSettings(createGenerationSettings(registerable))
                 .spawnSettings(createSpawnSettings())
                 .precipitation(false)
                 .temperature(2.0F)
@@ -49,8 +49,11 @@ public class BlackstoneShalesBiome {
                 .build();
     }
 
-    private static GenerationSettings createGenerationSettings(FabricDynamicRegistryProvider.Entries entries) {
-        GenerationSettings.LookupBackedBuilder builder = new GenerationSettings.LookupBackedBuilder(entries.placedFeatures(), entries.configuredCarvers());
+    private static GenerationSettings createGenerationSettings(Registerable<Biome> registerable) {
+        RegistryEntryLookup<ConfiguredCarver<?>> configuredCarvers = registerable.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER);
+        RegistryEntryLookup<PlacedFeature> placedFeatures = registerable.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
+
+        GenerationSettings.LookupBackedBuilder builder = new GenerationSettings.LookupBackedBuilder(placedFeatures, configuredCarvers);
 
         // DEFAULT MINECRAFT FEATURES
         builder.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE);
@@ -68,15 +71,15 @@ public class BlackstoneShalesBiome {
         DefaultBiomeFeatures.addAncientDebris(builder);
 
         // VEGETATION
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.WEEPING_VINES));
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.PATCH_CRIMSON_ROOTS));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.WEEPING_VINES));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.PATCH_CRIMSON_ROOTS));
 
         // NETHERRACK REPLACERS
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.SHALES_SOUL_SAND));
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.ref(CinderscapesPlacedFeatures.SHALES_SOUL_SOIL));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.SHALES_SOUL_SAND));
+        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.SHALES_SOUL_SOIL));
 
         // SHALES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, entries.ref(CinderscapesPlacedFeatures.SHALES));
+        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.SHALES));
 
         return builder.build();
     }

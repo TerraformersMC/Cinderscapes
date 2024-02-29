@@ -1,6 +1,8 @@
 accessWidener v1 named
 
+accessible  method  net/minecraft/entity/SpawnRestriction register (Lnet/minecraft/entity/EntityType;Lnet/minecraft/entity/SpawnLocation;Lnet/minecraft/world/Heightmap$Type;Lnet/minecraft/entity/SpawnRestriction$SpawnPredicate;)V
+accessible  method  net/minecraft/item/trim/ArmorTrimMaterials register (Lnet/minecraft/registry/Registerable;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/item/Item;Lnet/minecraft/text/Style;F)V
+accessible  method  net/minecraft/item/trim/ArmorTrimMaterials register (Lnet/minecraft/registry/Registerable;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/item/Item;Lnet/minecraft/text/Style;FLjava/util/Map;)V
 accessible  method  net/minecraft/util/math/Vec3i setX (I)Lnet/minecraft/util/math/Vec3i;
 accessible  method  net/minecraft/util/math/Vec3i setY (I)Lnet/minecraft/util/math/Vec3i;
 accessible  method  net/minecraft/util/math/Vec3i setZ (I)Lnet/minecraft/util/math/Vec3i;
-accessible  method  net/minecraft/entity/SpawnRestriction register (Lnet/minecraft/entity/EntityType;Lnet/minecraft/entity/SpawnRestriction$Location;Lnet/minecraft/world/Heightmap$Type;Lnet/minecraft/entity/SpawnRestriction$SpawnPredicate;)V

@@ -3,21 +3,21 @@ package com.terraformersmc.cinderscapes.init;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
 import com.terraformersmc.cinderscapes.feature.config.*;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import com.terraformersmc.cinderscapes.init.helpers.CinderscapesRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.registry.Registerable;
+import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntryList;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.structure.rule.BlockMatchRuleTest;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 
 import java.util.List;
 
@@ -73,61 +73,66 @@ public final class CinderscapesConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> CEILING_SHARD_SULFUR_QUARTZ = createRegistryKey("quartz_cavern/ceiling_shard_sulfur_quartz");
     public static final RegistryKey<ConfiguredFeature<?, ?>> CEILING_SHARD_ROSE_QUARTZ = createRegistryKey("quartz_cavern/ceiling_shard_rose_quartz");
     public static final RegistryKey<ConfiguredFeature<?, ?>> CEILING_SHARD_SMOKY_QUARTZ = createRegistryKey("quartz_cavern/ceiling_shard_smoky_quartz");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CEILING_SHARDS = createRegistryKey("quartz_cavern/ceiling_shards");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> FLOOR_SHARD_QUARTZ = createRegistryKey("quartz_cavern/floor_shard_quartz");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FLOOR_SHARD_SULFUR_QUARTZ = createRegistryKey("quartz_cavern/floor_shard_sulfur_quartz");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FLOOR_SHARD_ROSE_QUARTZ = createRegistryKey("quartz_cavern/floor_shard_rose_quartz");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FLOOR_SHARD_SMOKY_QUARTZ = createRegistryKey("quartz_cavern/floor_shard_smoky_quartz");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FLOOR_SHARDS = createRegistryKey("quartz_cavern/floor_shards");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> POLYPITE_QUARTZ = createRegistryKey("quartz_cavern/polypite_quartz");
     public static final RegistryKey<ConfiguredFeature<?, ?>> POLYPITE_SULFUR_QUARTZ = createRegistryKey("quartz_cavern/polypite_sulfur_quartz");
     public static final RegistryKey<ConfiguredFeature<?, ?>> POLYPITE_ROSE_QUARTZ = createRegistryKey("quartz_cavern/polypite_rose_quartz");
     public static final RegistryKey<ConfiguredFeature<?, ?>> POLYPITE_SMOKY_QUARTZ = createRegistryKey("quartz_cavern/polypite_smoky_quartz");
 
-    public static void populate(FabricDynamicRegistryProvider.Entries entries) {
+    public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> registerable) {
+        RegistryEntryLookup<ConfiguredFeature<?, ?>> configuredFeatures = registerable.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
+        RegistryEntryLookup<PlacedFeature> placedFeatures = registerable.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
+
         /* ASHY SHOALS */
-        entries.add(DEBRIS_ORE_LARGE, configureFeature(Feature.ORE, new OreFeatureConfig(List.of(OreFeatureConfig.createTarget(RULE_TEST_BASE_STONE_NETHER, Blocks.ANCIENT_DEBRIS.getDefaultState())), 3, 1.0f)));
-        entries.add(DEBRIS_ORE_SMALL, configureFeature(Feature.ORE, new OreFeatureConfig(List.of(OreFeatureConfig.createTarget(RULE_TEST_BASE_STONE_NETHER, Blocks.ANCIENT_DEBRIS.getDefaultState())), 2, 1.0f)));
+        CinderscapesRegistry.register(registerable, DEBRIS_ORE_LARGE, Feature.ORE, new OreFeatureConfig(List.of(OreFeatureConfig.createTarget(RULE_TEST_BASE_STONE_NETHER, Blocks.ANCIENT_DEBRIS.getDefaultState())), 3, 1.0f));
+        CinderscapesRegistry.register(registerable, DEBRIS_ORE_SMALL, Feature.ORE, new OreFeatureConfig(List.of(OreFeatureConfig.createTarget(RULE_TEST_BASE_STONE_NETHER, Blocks.ANCIENT_DEBRIS.getDefaultState())), 2, 1.0f));
 
-        entries.add(ASH_PILE, configureFeature(CinderscapesFeatures.ASH_PILE, FeatureConfig.DEFAULT));
-        entries.add(ASHY_VEGETATION, configureFeature(CinderscapesFeatures.VEGETATION, CinderscapesFeatures.ASHY_SHOALS_VEGETATION_CONFIG));
-        entries.add(BRAMBLE_BERRY_BUSHES, configureFeature(Feature.RANDOM_PATCH, CinderscapesFeatures.BRAMBLE_BERRY_BUSH_CONFIG));
+        CinderscapesRegistry.register(registerable, ASH_PILE, CinderscapesFeatures.ASH_PILE, FeatureConfig.DEFAULT);
+        CinderscapesRegistry.register(registerable, ASHY_VEGETATION, CinderscapesFeatures.VEGETATION, CinderscapesFeatures.ASHY_SHOALS_VEGETATION_CONFIG);
+        CinderscapesRegistry.register(registerable, BRAMBLE_BERRY_BUSHES, Feature.RANDOM_PATCH, CinderscapesFeatures.BRAMBLE_BERRY_BUSH_CONFIG);
 
-        entries.add(ASHY_SOUL_SAND, configureFeature(Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG));
-        entries.add(ASHY_SOUL_SOIL, configureFeature(Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG));
-        entries.add(ASHY_GRAVEL, configureFeature(Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.GRAVEL_REPLACE_CONFIG));
-        entries.add(ASH_TOP_LAYER, configureFeature(CinderscapesFeatures.ASH_TOP_LAYER, FeatureConfig.DEFAULT));
+        CinderscapesRegistry.register(registerable, ASHY_SOUL_SAND, Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG);
+        CinderscapesRegistry.register(registerable, ASHY_SOUL_SOIL, Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG);
+        CinderscapesRegistry.register(registerable, ASHY_GRAVEL, Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.GRAVEL_REPLACE_CONFIG);
+        CinderscapesRegistry.register(registerable, ASH_TOP_LAYER, CinderscapesFeatures.ASH_TOP_LAYER, FeatureConfig.DEFAULT);
 
-        entries.add(DEAD_TREE, configureFeature(CinderscapesFeatures.DEAD_TREE, FeatureConfig.DEFAULT));
+        CinderscapesRegistry.register(registerable, DEAD_TREE, CinderscapesFeatures.DEAD_TREE, FeatureConfig.DEFAULT);
 
         /* BLACKSTONE SHALES */
-        entries.add(WEEPING_VINE, configureFeature(Feature.WEEPING_VINES, FeatureConfig.DEFAULT));
+        CinderscapesRegistry.register(registerable, WEEPING_VINE, Feature.WEEPING_VINES, FeatureConfig.DEFAULT);
 
-        entries.add(SHALES_SOUL_SAND, configureFeature(Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG));
-        entries.add(SHALES_SOUL_SOIL, configureFeature(Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG));
+        CinderscapesRegistry.register(registerable, SHALES_SOUL_SAND, Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG);
+        CinderscapesRegistry.register(registerable, SHALES_SOUL_SOIL, Feature.NETHERRACK_REPLACE_BLOBS, CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG);
 
-        entries.add(SHALE, configureFeature(CinderscapesFeatures.SHALE_FEATURE, new ShaleFeatureConfig(Blocks.BLACKSTONE.getDefaultState(), 7, 12)));
+        CinderscapesRegistry.register(registerable, SHALE, CinderscapesFeatures.SHALE_FEATURE, new ShaleFeatureConfig(Blocks.BLACKSTONE.getDefaultState(), 7, 12));
 
         /* LUMINOUS GROVE */
-        entries.add(SHROOMLIGHT_BUSH, configureFeature(CinderscapesFeatures.SHROOMLIGHT_BUSH, FeatureConfig.DEFAULT));
-        entries.add(UMBRAL_VINE, configureFeature(CinderscapesFeatures.UMBRAL_VINE, FeatureConfig.DEFAULT));
+        CinderscapesRegistry.register(registerable, SHROOMLIGHT_BUSH, CinderscapesFeatures.SHROOMLIGHT_BUSH, FeatureConfig.DEFAULT);
+        CinderscapesRegistry.register(registerable, UMBRAL_VINE, CinderscapesFeatures.UMBRAL_VINE, FeatureConfig.DEFAULT);
 
-        entries.add(LUMINOUS_VEGETATION, configureFeature(CinderscapesFeatures.VEGETATION, CinderscapesFeatures.LUMINOUS_GROVE_VEGETATION_CONFIG));
-        entries.add(LUMINOUS_POD, configureFeature(Feature.RANDOM_PATCH, CinderscapesFeatures.LUMINOUS_POD_CONFIG));
-        entries.add(TALL_PHOTOFERN, configureFeature(Feature.RANDOM_PATCH, CinderscapesFeatures.TALL_PHOTOFERN_CONFIG));
+        CinderscapesRegistry.register(registerable, LUMINOUS_VEGETATION, CinderscapesFeatures.VEGETATION, CinderscapesFeatures.LUMINOUS_GROVE_VEGETATION_CONFIG);
+        CinderscapesRegistry.register(registerable, LUMINOUS_POD, Feature.RANDOM_PATCH, CinderscapesFeatures.LUMINOUS_POD_CONFIG);
+        CinderscapesRegistry.register(registerable, TALL_PHOTOFERN, Feature.RANDOM_PATCH, CinderscapesFeatures.TALL_PHOTOFERN_CONFIG);
 
-        entries.add(CANOPIED_HUGE_FUNGUS, configureFeature(CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_NOT_PLANTED_CONFIG));
-        entries.add(CANOPIED_HUGE_FUNGUS_PLANTED, configureFeature(CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_CONFIG));
+        CinderscapesRegistry.register(registerable, CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_NOT_PLANTED_CONFIG);
+        CinderscapesRegistry.register(registerable, CANOPIED_HUGE_FUNGUS_PLANTED, CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_CONFIG);
 
         /* QUARTZ CAVERN */
-        entries.add(QUARTZ_VEGETATION, configureFeature(CinderscapesFeatures.VEGETATION, CinderscapesFeatures.QUARTZ_CAVERN_VEGETATION_CONFIG));
+        CinderscapesRegistry.register(registerable, QUARTZ_VEGETATION, CinderscapesFeatures.VEGETATION, CinderscapesFeatures.QUARTZ_CAVERN_VEGETATION_CONFIG);
 
-        entries.add(QUARTZ_ORE, configureFeature(Feature.ORE, new OreFeatureConfig(RULE_TEST_NETHERRACK, Blocks.NETHER_QUARTZ_ORE.getDefaultState(), 14)));
-        entries.add(SULFUR_QUARTZ_ORE, configureFeature(Feature.ORE, new OreFeatureConfig(RULE_TEST_NETHERRACK, CinderscapesBlocks.SULFUR_QUARTZ_ORE.getDefaultState(), 14)));
-        entries.add(ROSE_QUARTZ_ORE, configureFeature(Feature.ORE, new OreFeatureConfig(RULE_TEST_NETHERRACK, CinderscapesBlocks.ROSE_QUARTZ_ORE.getDefaultState(), 14)));
-        entries.add(SMOKY_QUARTZ_ORE, configureFeature(Feature.ORE, new OreFeatureConfig(RULE_TEST_NETHERRACK, CinderscapesBlocks.SMOKY_QUARTZ_ORE.getDefaultState(), 14)));
-        entries.add(GOLD_ORE, configureFeature(Feature.ORE, new OreFeatureConfig(RULE_TEST_NETHERRACK, Blocks.NETHER_GOLD_ORE.getDefaultState(), 10)));
-        entries.add(SULFUR_ORE, configureFeature(Feature.ORE, new OreFeatureConfig(RULE_TEST_NETHERRACK, CinderscapesBlocks.SULFUR_ORE.getDefaultState(), 14)));
+        CinderscapesRegistry.register(registerable, QUARTZ_ORE, Feature.ORE, new OreFeatureConfig(RULE_TEST_NETHERRACK, Blocks.NETHER_QUARTZ_ORE.getDefaultState(), 14));
+        CinderscapesRegistry.register(registerable, SULFUR_QUARTZ_ORE, Feature.ORE, new OreFeatureConfig(RULE_TEST_NETHERRACK, CinderscapesBlocks.SULFUR_QUARTZ_ORE.getDefaultState(), 14));
+        CinderscapesRegistry.register(registerable, ROSE_QUARTZ_ORE, Feature.ORE, new OreFeatureConfig(RULE_TEST_NETHERRACK, CinderscapesBlocks.ROSE_QUARTZ_ORE.getDefaultState(), 14));
+        CinderscapesRegistry.register(registerable, SMOKY_QUARTZ_ORE, Feature.ORE, new OreFeatureConfig(RULE_TEST_NETHERRACK, CinderscapesBlocks.SMOKY_QUARTZ_ORE.getDefaultState(), 14));
+        CinderscapesRegistry.register(registerable, GOLD_ORE, Feature.ORE, new OreFeatureConfig(RULE_TEST_NETHERRACK, Blocks.NETHER_GOLD_ORE.getDefaultState(), 10));
+        CinderscapesRegistry.register(registerable, SULFUR_ORE, Feature.ORE, new OreFeatureConfig(RULE_TEST_NETHERRACK, CinderscapesBlocks.SULFUR_ORE.getDefaultState(), 14));
 
         final List<BlockState> SHARD_WHITELIST = List.of(
                 Blocks.AIR.getDefaultState(),
@@ -141,35 +146,49 @@ public final class CinderscapesConfiguredFeatures {
                 CinderscapesBlocks.SULFUR_ORE.getDefaultState()
         );
 
-        entries.add(CEILING_SHARD_QUARTZ, configureFeature(CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), Direction.DOWN, SHARD_WHITELIST)));
-        entries.add(CEILING_SHARD_SULFUR_QUARTZ, configureFeature(CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), Direction.DOWN, SHARD_WHITELIST)));
-        entries.add(CEILING_SHARD_ROSE_QUARTZ, configureFeature(CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ.getDefaultState(), Direction.DOWN, SHARD_WHITELIST)));
-        entries.add(CEILING_SHARD_SMOKY_QUARTZ, configureFeature(CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ.getDefaultState(), Direction.DOWN, SHARD_WHITELIST)));
+        CinderscapesRegistry.register(registerable, CEILING_SHARD_QUARTZ, CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), Direction.DOWN, SHARD_WHITELIST));
+        CinderscapesRegistry.register(registerable, CEILING_SHARD_SULFUR_QUARTZ, CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), Direction.DOWN, SHARD_WHITELIST));
+        CinderscapesRegistry.register(registerable, CEILING_SHARD_ROSE_QUARTZ, CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ.getDefaultState(), Direction.DOWN, SHARD_WHITELIST));
+        CinderscapesRegistry.register(registerable, CEILING_SHARD_SMOKY_QUARTZ, CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ.getDefaultState(), Direction.DOWN, SHARD_WHITELIST));
+        CinderscapesRegistry.register(registerable, CEILING_SHARDS,
+                Feature.SIMPLE_RANDOM_SELECTOR,
+                new SimpleRandomFeatureConfig(
+                        RegistryEntryList.of(
+                                placedFeatures.getOrThrow(CinderscapesPlacedFeatures.CEILING_SHARD_QUARTZ),
+                                placedFeatures.getOrThrow(CinderscapesPlacedFeatures.CEILING_SHARD_ROSE_QUARTZ),
+                                placedFeatures.getOrThrow(CinderscapesPlacedFeatures.CEILING_SHARD_SMOKY_QUARTZ),
+                                placedFeatures.getOrThrow(CinderscapesPlacedFeatures.CEILING_SHARD_SULFUR_QUARTZ)
+                        )
+                )
+        );
 
-        entries.add(FLOOR_SHARD_QUARTZ, configureFeature(CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), Direction.UP, SHARD_WHITELIST)));
-        entries.add(FLOOR_SHARD_SULFUR_QUARTZ, configureFeature(CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), Direction.UP, SHARD_WHITELIST)));
-        entries.add(FLOOR_SHARD_ROSE_QUARTZ, configureFeature(CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ.getDefaultState(), Direction.UP, SHARD_WHITELIST)));
-        entries.add(FLOOR_SHARD_SMOKY_QUARTZ, configureFeature(CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ.getDefaultState(), Direction.UP, SHARD_WHITELIST)));
+        CinderscapesRegistry.register(registerable, FLOOR_SHARD_QUARTZ, CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_QUARTZ.getDefaultState(), Direction.UP, SHARD_WHITELIST));
+        CinderscapesRegistry.register(registerable, FLOOR_SHARD_SULFUR_QUARTZ, CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ.getDefaultState(), Direction.UP, SHARD_WHITELIST));
+        CinderscapesRegistry.register(registerable, FLOOR_SHARD_ROSE_QUARTZ, CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ.getDefaultState(), Direction.UP, SHARD_WHITELIST));
+        CinderscapesRegistry.register(registerable, FLOOR_SHARD_SMOKY_QUARTZ, CinderscapesFeatures.CRYSTAL_SHARD_FEATURE, new CrystalShardFeatureConfig(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ.getDefaultState(), Direction.UP, SHARD_WHITELIST));
+        CinderscapesRegistry.register(registerable, FLOOR_SHARDS,
+                Feature.SIMPLE_RANDOM_SELECTOR,
+                new SimpleRandomFeatureConfig(
+                        RegistryEntryList.of(
+                                placedFeatures.getOrThrow(CinderscapesPlacedFeatures.FLOOR_SHARD_QUARTZ),
+                                placedFeatures.getOrThrow(CinderscapesPlacedFeatures.FLOOR_SHARD_ROSE_QUARTZ),
+                                placedFeatures.getOrThrow(CinderscapesPlacedFeatures.FLOOR_SHARD_SMOKY_QUARTZ),
+                                placedFeatures.getOrThrow(CinderscapesPlacedFeatures.FLOOR_SHARD_SULFUR_QUARTZ)
+                        )
+                )
+        );
 
-        entries.add(POLYPITE_QUARTZ, configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_QUARTZ));
-        entries.add(POLYPITE_SULFUR_QUARTZ, configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ));
-        entries.add(POLYPITE_ROSE_QUARTZ, configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_ROSE_QUARTZ));
-        entries.add(POLYPITE_SMOKY_QUARTZ, configurePolypiteQuartz((PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ));
+        registerPolypite(registerable, POLYPITE_QUARTZ, (PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_QUARTZ);
+        registerPolypite(registerable, POLYPITE_SULFUR_QUARTZ, (PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ);
+        registerPolypite(registerable, POLYPITE_ROSE_QUARTZ, (PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_ROSE_QUARTZ);
+        registerPolypite(registerable, POLYPITE_SMOKY_QUARTZ, (PolypiteQuartzBlock) CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ);
     }
 
-    private static ConfiguredFeature<PolypiteQuartzFeatureConfig, ?> configurePolypiteQuartz(PolypiteQuartzBlock block) {
-        return new ConfiguredFeature<>(CinderscapesFeatures.POLYPITE_QUARTZ, new PolypiteQuartzFeatureConfig(block));
-    }
-
-    public static RegistryKey<ConfiguredFeature<?, ?>> createRegistryKey(String name) {
+    private static RegistryKey<ConfiguredFeature<?, ?>> createRegistryKey(String name) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Cinderscapes.NAMESPACE, name));
     }
 
-    public static <FC extends FeatureConfig, F extends Feature<FC>> ConfiguredFeature<FC, ?> configureFeature(F feature, FC config) {
-        return new ConfiguredFeature<>(feature, config);
-    }
-
-    public static void init() {
-        // This just creates the registry keys.  Configured Features are requested and consumed by datagen now.
+    private static void registerPolypite(Registerable<ConfiguredFeature<?, ?>> registerable, RegistryKey<ConfiguredFeature<?, ?>> key, PolypiteQuartzBlock block) {
+        CinderscapesRegistry.register(registerable, key, CinderscapesFeatures.POLYPITE_QUARTZ, new PolypiteQuartzFeatureConfig(block));
     }
 }
