@@ -1,6 +1,6 @@
 package com.terraformersmc.cinderscapes.placementmodifier;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacementModifierTypes;
 import net.minecraft.block.BlockState;
@@ -16,12 +16,13 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class SafelistRangeFloorPlacementModifier extends PlacementModifier {
-    public static final Codec<SafelistRangeFloorPlacementModifier> UNIFORM_CODEC = RecordCodecBuilder.create(
+    public static final MapCodec<SafelistRangeFloorPlacementModifier> MODIFIER_CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
                     YOffset.OFFSET_CODEC.fieldOf("min_inclusive").forGetter(provider -> provider.minOffset),
                     YOffset.OFFSET_CODEC.fieldOf("max_inclusive").forGetter(provider -> provider.maxOffset),
                     BlockState.CODEC.listOf().fieldOf("safelist").forGetter(provider -> provider.safelist)
-            ).apply(instance, SafelistRangeFloorPlacementModifier::new));
+            ).apply(instance, SafelistRangeFloorPlacementModifier::new)
+    );
     private final List<BlockState> safelist;
     private final YOffset minOffset;
     private final YOffset maxOffset;

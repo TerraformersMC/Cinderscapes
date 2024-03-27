@@ -4,26 +4,24 @@ import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.util.Identifier;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradedItem;
 import net.minecraft.village.VillagerProfession;
 
 public class CinderscapesTrades {
-    private static final Identifier BARTERING_LOOT_TABLE_ID = new Identifier("minecraft", "gameplay/piglin_bartering");
-
     public static void init() {
 
-        LootTableEvents.MODIFY.register((resourceManager, manager, id, supplier, setter) -> {
-            if (BARTERING_LOOT_TABLE_ID.equals(id)) {
-                supplier.modifyPools((pools) -> {
+        LootTableEvents.MODIFY.register((key, supplier, setter) -> {
+            if (LootTables.PIGLIN_BARTERING_GAMEPLAY.equals(key)) {
+                supplier.modifyPools((pools) ->
                     pools   .with(ItemEntry.builder(CinderscapesItems.ROSE_QUARTZ).weight(20).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12))).build())
                             .with(ItemEntry.builder(CinderscapesItems.SMOKY_QUARTZ).weight(20).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12))).build())
-                            .with(ItemEntry.builder(CinderscapesItems.SULFUR_QUARTZ).weight(20).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12))).build());
-                });
+                            .with(ItemEntry.builder(CinderscapesItems.SULFUR_QUARTZ).weight(20).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12))).build())
+                );
             }
         });
 

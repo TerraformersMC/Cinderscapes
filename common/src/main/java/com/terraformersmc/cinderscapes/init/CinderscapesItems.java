@@ -2,6 +2,7 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.init.helpers.CinderscapesRegistry;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
