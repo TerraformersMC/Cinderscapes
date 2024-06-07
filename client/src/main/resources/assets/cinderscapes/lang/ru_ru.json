@@ -32,6 +32,7 @@
   "block.cinderscapes.umbral_planks": "Мрачные доски",
   "block.cinderscapes.umbral_pressure_plate": "Мрачная нажимная плита",
   "block.cinderscapes.umbral_sign": "Мрачная табличка",
+  "block.cinderscapes.umbral_hanging_sign": "Мрачная подвесная табличка",
   "block.cinderscapes.umbral_slab": "Мрачная плита",
   "block.cinderscapes.umbral_stairs": "Мрачные ступеньки",
   "block.cinderscapes.umbral_stem": "Мрачный стебель",
@@ -110,6 +111,7 @@
   "block.cinderscapes.scorched_planks": "Выжженные доски",
   "block.cinderscapes.scorched_pressure_plate": "Выжженная нажимная плита",
   "block.cinderscapes.scorched_sign": "Выжженная табличка",
+  "block.cinderscapes.scorched_hanging_sign": "Выжженная подвесная табличка",
   "block.cinderscapes.scorched_slab": "Выжженная плита",
   "block.cinderscapes.scorched_stairs": "Выжженные ступеньки",
   "block.cinderscapes.scorched_stem": "Выжженный стебель",
@@ -120,5 +122,23 @@
   "item.cinderscapes.music_disc_chilling_in_hell": "Пластинка",
   "item.cinderscapes.music_disc_chilling_in_hell.desc": "Etorna_Z - Chilling In Hell",
   "item.cinderscapes.music_disc_luminous_plantation": "Пластинка",
-  "item.cinderscapes.music_disc_luminous_plantation.desc": "LudoCrypt - Luminous Plantation"
+  "item.cinderscapes.music_disc_luminous_plantation.desc": "LudoCrypt - Luminous Plantation",
+
+  "text.autoconfig.cinderscapes.title": "Конфигурация Cinderscapes",
+  "text.autoconfig.cinderscapes.option.easterEggs": "Включить пасхалки",
+  "text.autoconfig.cinderscapes.option.enableAshFall": "Включить падение пепла",
+  "text.autoconfig.cinderscapes.option.polypiteLuminance": "Яркость полипитов кварца",
+  "text.autoconfig.cinderscapes.option.polypiteLuminance.@Tooltip": "Влияет только на вновь созданные чанки (использует кэш освещения).",
+  "text.autoconfig.cinderscapes.option.biomes": "Изменить генерацию биомов",
+  "text.autoconfig.cinderscapes.option.biomes.enableAshyShoals": "Включить биом \"Пепельные косяки\"",
+  "text.autoconfig.cinderscapes.option.biomes.enableBlackstoneShales": "Включить биом \"Чернитовые сланцы\"",
+  "text.autoconfig.cinderscapes.option.biomes.enableLuminousGrove": "Включить биом \"Светящаяся роща\"",
+  "text.autoconfig.cinderscapes.option.biomes.enableQuartzCavern": "Включить биом \"Кварцевый каньон\"",
+  
+  "trim_material.cinderscapes.rose_quartz": "Розовый кварцевый материал",
+  "trim_material.cinderscapes.smoky_quartz": "Дымчатый кварцевый материал",
+  "trim_material.cinderscapes.sulfur_quartz": "Серный кварцевый материал",
+  
+  "block.cinderscapes.nodzol": "Нодзол",
+  "block.cinderscapes.nodzol.description": "Этот блок проклят..."
 }
