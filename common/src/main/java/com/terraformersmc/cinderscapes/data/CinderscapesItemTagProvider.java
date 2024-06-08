@@ -6,7 +6,7 @@ import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
 import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -98,13 +98,19 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 
 
 		// conventional tags
+		getOrCreateTagBuilder(ConventionalItemTags.BERRIES_FOODS)
+			.add(CinderscapesItems.BRAMBLE_BERRIES);
+
 		getOrCreateTagBuilder(CinderscapesItemTags.DARK_ASHES_DUSTS)
+			.add(CinderscapesItems.ASH_PILE);
+
+		getOrCreateTagBuilder(ConventionalItemTags.DUSTS)
 			.add(CinderscapesItems.ASH_PILE);
 
 		getOrCreateTagBuilder(ConventionalItemTags.FOODS)
 			.add(CinderscapesItems.BRAMBLE_BERRIES);
 
-		getOrCreateTagBuilder(ConventionalItemTags.QUARTZ)
+		getOrCreateTagBuilder(ConventionalItemTags.QUARTZ_GEMS)
 			.add(Items.QUARTZ)
 			.add(CinderscapesItems.ROSE_QUARTZ)
 			.add(CinderscapesItems.SMOKY_QUARTZ)
@@ -132,11 +138,17 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 			.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE.asItem())
 			.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE.asItem());
 
+		getOrCreateTagBuilder(ConventionalItemTags.STORAGE_BLOCKS)
+			.add(CinderscapesBlocks.SULFUR_BLOCK.asItem());
+
+		getOrCreateTagBuilder(CinderscapesItemTags.STORAGE_BLOCKS_SULFUR)
+			.add(CinderscapesBlocks.SULFUR_BLOCK.asItem());
+
 		copy(CinderscapesBlockTags.STRIPPED_LOGS, CinderscapesItemTags.STRIPPED_LOGS);
 
 		copy(CinderscapesBlockTags.STRIPPED_WOOD, CinderscapesItemTags.STRIPPED_WOOD);
 
-		getOrCreateTagBuilder(CinderscapesItemTags.SULFUR_ORES)
+		getOrCreateTagBuilder(CinderscapesItemTags.SULFURS_ORES)
 			.add(CinderscapesBlocks.SULFUR_ORE.asItem());
 
 		getOrCreateTagBuilder(CinderscapesItemTags.SULFURS)
@@ -162,5 +174,15 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 			.add(CinderscapesBlocks.SULFUR_QUARTZ_PILLAR.asItem());
 
 		copy(CinderscapesBlockTags.UMBRAL_STEMS, CinderscapesItemTags.UMBRAL_STEMS);
+
+
+		// TODO: DEPRECATED as of 1.21
+		getOrCreateTagBuilder(CinderscapesItemTags.QUARTZ)
+			.add(Items.QUARTZ)
+			.add(CinderscapesItems.ROSE_QUARTZ)
+			.add(CinderscapesItems.SMOKY_QUARTZ)
+			.add(CinderscapesItems.SULFUR_QUARTZ);
+		getOrCreateTagBuilder(CinderscapesItemTags.SULFUR_ORES)
+			.add(CinderscapesBlocks.SULFUR_ORE.asItem());
 	}
 }

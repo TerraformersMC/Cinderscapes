@@ -35,11 +35,8 @@
     ]
   },
   "depends": {
-    "fabricloader": ">=0.15",
+    "fabricloader": ">=0.15.3",
     "fabric-api": ">=0.77.0",
-    "minecraft": ">=1.20.5 <1.21"
-  },
-  "breaks": {
-    "bclib": "<3.0.8"
+    "minecraft": ">=1.21-beta <1.22"
   }
 }

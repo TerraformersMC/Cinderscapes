@@ -140,5 +140,21 @@
   "trim_material.cinderscapes.sulfur_quartz": "Sulfur Quartz Material",
 
   "block.cinderscapes.nodzol": "Nodzol",
-  "block.cinderscapes.nodzol.description": "This block is nursed..."
+  "block.cinderscapes.nodzol.description": "This block is nursed...",
+
+  "tag.item.c.dark_ashes_dusts": "Dark Ashes Dusts",
+  "tag.item.c.quartz": "Quartz",
+  "tag.item.c.quartz_blocks": "Quartz Blocks",
+  "tag.item.c.storage_blocks.sulfur": "Storage Blocks for Sulfur",
+  "tag.item.c.stripped_logs": "Stripped Logs",
+  "tag.item.c.stripped_wood": "Stripped Wood",
+  "tag.item.c.sulfur_ores": "Sulfur Ores",
+  "tag.item.c.ores.sulfurs": "Ores of Sulfurs",
+  "tag.item.c.sulfurs": "Sulfurs",
+
+  "tag.item.cinderscapes.rose_quartz_convertibles": "Rose Quartz Convertibles",
+  "tag.item.cinderscapes.scorched_stems": "Scorched Stems",
+  "tag.item.cinderscapes.smoky_quartz_convertibles": "Smoky Quartz Convertibles",
+  "tag.item.cinderscapes.sulfur_quartz_convertibles": "Sulfur Quartz Convertibles",
+  "tag.item.cinderscapes.umbral_stems": "Umbral Stems"
 }

@@ -191,6 +191,6 @@ public class CinderscapesPlacedFeatures {
     }
 
     private static RegistryKey<PlacedFeature> createRegistryKey(String name) {
-        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(Cinderscapes.NAMESPACE, name));
+        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(Cinderscapes.MOD_ID, name));
     }
 }

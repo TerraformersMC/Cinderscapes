@@ -33,12 +33,12 @@ public class CinderscapesDynamicRegistryProvider extends FabricDynamicRegistryPr
 	@Override
 	public void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
 		// worldgen
-		addAll(entries, registries.getWrapperOrThrow(RegistryKeys.CONFIGURED_FEATURE), Cinderscapes.NAMESPACE);
-		addAll(entries, registries.getWrapperOrThrow(RegistryKeys.PLACED_FEATURE), Cinderscapes.NAMESPACE);
-		addAll(entries, registries.getWrapperOrThrow(RegistryKeys.BIOME), Cinderscapes.NAMESPACE);
+		addAll(entries, registries.getWrapperOrThrow(RegistryKeys.CONFIGURED_FEATURE), Cinderscapes.MOD_ID);
+		addAll(entries, registries.getWrapperOrThrow(RegistryKeys.PLACED_FEATURE), Cinderscapes.MOD_ID);
+		addAll(entries, registries.getWrapperOrThrow(RegistryKeys.BIOME), Cinderscapes.MOD_ID);
 
 		// other registries
-		addAll(entries, registries.getWrapperOrThrow(RegistryKeys.TRIM_MATERIAL), Cinderscapes.NAMESPACE);
+		addAll(entries, registries.getWrapperOrThrow(RegistryKeys.TRIM_MATERIAL), Cinderscapes.MOD_ID);
 	}
 
 	@Override

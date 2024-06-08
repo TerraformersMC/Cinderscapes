@@ -6,7 +6,7 @@ import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
@@ -37,30 +37,30 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				.pattern("TQT")
 				.pattern("SSS")
 				.input('T', Items.REDSTONE_TORCH)
-				.input('Q', ConventionalItemTags.QUARTZ)
+				.input('Q', ConventionalItemTags.QUARTZ_GEMS)
 				.input('S', Items.STONE)
-				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(ConventionalItemTags.QUARTZ)))
-				.offerTo(exporter, new Identifier("minecraft", "comparator"));
+				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(ConventionalItemTags.QUARTZ_GEMS)))
+				.offerTo(exporter, Identifier.ofVanilla("comparator"));
 
 		ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.DAYLIGHT_DETECTOR, 1)
 				.pattern("GGG")
 				.pattern("QQQ")
 				.pattern("WWW")
 				.input('G', Items.GLASS)
-				.input('Q', ConventionalItemTags.QUARTZ)
+				.input('Q', ConventionalItemTags.QUARTZ_GEMS)
 				.input('W', ItemTags.WOODEN_SLABS)
-				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(ConventionalItemTags.QUARTZ)))
-				.offerTo(exporter, new Identifier("minecraft", "daylight_detector"));
+				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(ConventionalItemTags.QUARTZ_GEMS)))
+				.offerTo(exporter, Identifier.ofVanilla("daylight_detector"));
 
 		ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.OBSERVER, 1)
 				.pattern("CCC")
 				.pattern("RRQ")
 				.pattern("CCC")
 				.input('C', Items.COBBLESTONE)
-				.input('Q', ConventionalItemTags.QUARTZ)
+				.input('Q', ConventionalItemTags.QUARTZ_GEMS)
 				.input('R', Items.REDSTONE)
-				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(ConventionalItemTags.QUARTZ)))
-				.offerTo(exporter, new Identifier("minecraft", "observer"));
+				.criterion("has_quartz", InventoryChangedCriterion.Conditions.items(getItemTagPredicate(ConventionalItemTags.QUARTZ_GEMS)))
+				.offerTo(exporter, Identifier.ofVanilla("observer"));
 
 
 		// misc. recipes
@@ -294,6 +294,6 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 
 	@Override
 	protected Identifier getRecipeIdentifier(Identifier identifier) {
-		return new Identifier(Cinderscapes.NAMESPACE, identifier.getPath());
+		return Identifier.of(Cinderscapes.MOD_ID, identifier.getPath());
 	}
 }

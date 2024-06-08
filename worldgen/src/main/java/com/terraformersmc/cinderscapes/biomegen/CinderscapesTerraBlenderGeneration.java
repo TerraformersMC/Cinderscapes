@@ -12,6 +12,7 @@ import com.terraformersmc.cinderscapes.surfacebuilders.CinderscapesSurfaceBuilde
 import com.terraformersmc.cinderscapes.surfacerules.CinderscapesSurfaceRules;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import terrablender.api.*;
@@ -24,7 +25,7 @@ public class CinderscapesTerraBlenderGeneration extends Region implements Runnab
     CinderscapesConfig.BiomeOptions BIOME_CONFIG;
 
     public CinderscapesTerraBlenderGeneration() {
-        super(Cinderscapes.id("nether"), RegionType.NETHER, 10);
+        super(Identifier.of(Cinderscapes.MOD_ID, "nether"), RegionType.NETHER, 10);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class CinderscapesTerraBlenderGeneration extends Region implements Runnab
         CinderscapesSurfaceRules.init();
 
         // Add the Cinderscapes Overworld surface rules via TerraBlender.
-        SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, Cinderscapes.NAMESPACE, CinderscapesSurfaceRules.createRules());
+        SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, Cinderscapes.MOD_ID, CinderscapesSurfaceRules.createRules());
 
         // Register the Cinderscapes surface builders.
         CinderscapesSurfaceBuilders.getBuilders().forEach(SurfaceGeneration::addSurfaceBuilder);

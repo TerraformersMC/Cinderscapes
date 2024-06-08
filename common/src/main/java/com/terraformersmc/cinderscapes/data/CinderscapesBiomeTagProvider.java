@@ -3,7 +3,7 @@ package com.terraformersmc.cinderscapes.data;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BiomeTags;
@@ -19,7 +19,7 @@ public class CinderscapesBiomeTagProvider extends FabricTagProvider<Biome> {
 	@Override
 	public void configure(RegistryWrapper.WrapperLookup registries) {
 		/*
-		 * Vanilla biome categories
+		 * Vanilla and Conventional biome categories
 		 */
 		getOrCreateTagBuilder(BiomeTags.IS_NETHER)
 			.addOptional(CinderscapesBiomes.ASHY_SHOALS)
@@ -27,13 +27,13 @@ public class CinderscapesBiomeTagProvider extends FabricTagProvider<Biome> {
 			.addOptional(CinderscapesBiomes.LUMINOUS_GROVE)
 			.addOptional(CinderscapesBiomes.QUARTZ_CAVERN);
 
-		getOrCreateTagBuilder(ConventionalBiomeTags.NETHER_FORESTS)
+		getOrCreateTagBuilder(ConventionalBiomeTags.IS_NETHER_FOREST)
 			.addOptional(CinderscapesBiomes.LUMINOUS_GROVE);
 
-		getOrCreateTagBuilder(ConventionalBiomeTags.WASTELAND)
+		getOrCreateTagBuilder(ConventionalBiomeTags.IS_WASTELAND)
 			.addOptional(CinderscapesBiomes.ASHY_SHOALS);
 
-		getOrCreateTagBuilder(ConventionalBiomeTags.VEGETATION_SPARSE)
+		getOrCreateTagBuilder(ConventionalBiomeTags.IS_VEGETATION_SPARSE)
 			.addOptional(CinderscapesBiomes.BLACKSTONE_SHALES);
 
 

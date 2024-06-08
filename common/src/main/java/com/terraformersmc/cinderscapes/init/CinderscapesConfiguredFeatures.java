@@ -185,7 +185,7 @@ public final class CinderscapesConfiguredFeatures {
     }
 
     private static RegistryKey<ConfiguredFeature<?, ?>> createRegistryKey(String name) {
-        return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Cinderscapes.NAMESPACE, name));
+        return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Cinderscapes.MOD_ID, name));
     }
 
     private static void registerPolypite(Registerable<ConfiguredFeature<?, ?>> registerable, RegistryKey<ConfiguredFeature<?, ?>> key, PolypiteQuartzBlock block) {

@@ -13,15 +13,15 @@ public class CinderscapesSoundEvents {
 	// Acts as a kind of local registry for sound events added by Cinderscapes
 	private static final Map<Identifier, SoundEvent> SOUND_EVENTS = new LinkedHashMap<>();
 
-	public static final SoundEvent ASHY_SHOALS_MUSIC = add(SoundEvent.of(Cinderscapes.id("music.nether.ashy_shoals")));
-	public static final SoundEvent BLACKSTONE_SHALES_MUSIC = add(SoundEvent.of(Cinderscapes.id("music.nether.blackstone_shales")));
-	public static final SoundEvent LUMINOUS_GROVE_MUSIC = add(SoundEvent.of(Cinderscapes.id("music.nether.luminous_grove")));
-	public static final SoundEvent QUARTZ_CAVERN_MUSIC = add(SoundEvent.of(Cinderscapes.id("music.nether.quartz_cavern")));
+	public static final SoundEvent ASHY_SHOALS_MUSIC = add(SoundEvent.of(Identifier.of(Cinderscapes.MOD_ID, "music.nether.ashy_shoals")));
+	public static final SoundEvent BLACKSTONE_SHALES_MUSIC = add(SoundEvent.of(Identifier.of(Cinderscapes.MOD_ID, "music.nether.blackstone_shales")));
+	public static final SoundEvent LUMINOUS_GROVE_MUSIC = add(SoundEvent.of(Identifier.of(Cinderscapes.MOD_ID, "music.nether.luminous_grove")));
+	public static final SoundEvent QUARTZ_CAVERN_MUSIC = add(SoundEvent.of(Identifier.of(Cinderscapes.MOD_ID, "music.nether.quartz_cavern")));
 
-	public static final SoundEvent MENU_MUSIC = add(SoundEvent.of(Cinderscapes.id("music.menu")));
+	public static final SoundEvent MENU_MUSIC = add(SoundEvent.of(Identifier.of(Cinderscapes.MOD_ID, "music.menu")));
 
-	public static final SoundEvent MUSIC_DISC_LUMINOUS_PLANTATION = add(SoundEvent.of(Cinderscapes.id("music_disc.luminous_plantation")));
-	public static final SoundEvent MUSIC_DISC_CHILLING_IN_HELL = add(SoundEvent.of(Cinderscapes.id("music_disc.chilling_in_hell")));
+	public static final SoundEvent MUSIC_DISC_LUMINOUS_PLANTATION = add(SoundEvent.of(Identifier.of(Cinderscapes.MOD_ID, "music_disc.luminous_plantation")));
+	public static final SoundEvent MUSIC_DISC_CHILLING_IN_HELL = add(SoundEvent.of(Identifier.of(Cinderscapes.MOD_ID, "music_disc.chilling_in_hell")));
 
 	private static <S extends SoundEvent> S add(S sound_event) {
 		SOUND_EVENTS.put(((SoundEventAccessor) sound_event).cinderscapes$getId(), sound_event);

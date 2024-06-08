@@ -31,7 +31,7 @@ public class CinderscapesBiomeAPIGeneration implements Runnable {
     public void run() {
         // Register the Cinderscapes surface rules.
         SurfaceGeneration.addNetherSurfaceRules(
-                Identifier.of(Cinderscapes.NAMESPACE, "surface_rules"),
+                Identifier.of(Cinderscapes.MOD_ID, "surface_rules"),
                 CinderscapesSurfaceRules.createRules());
 
         // Register the Cinderscapes surface builders.

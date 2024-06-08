@@ -21,6 +21,6 @@ public class CinderscapesArmorTrimMaterials {
     }
 
     private static RegistryKey<ArmorTrimMaterial> createRegistryKey(String id) {
-        return RegistryKey.of(RegistryKeys.TRIM_MATERIAL, Identifier.of(Cinderscapes.NAMESPACE, id));
+        return RegistryKey.of(RegistryKeys.TRIM_MATERIAL, Identifier.of(Cinderscapes.MOD_ID, id));
     }
 }

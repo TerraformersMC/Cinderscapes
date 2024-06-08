@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class CinderscapesItemGroups {
-	private static final RegistryKey<ItemGroup> ITEM_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Cinderscapes.NAMESPACE, "items"));
+	private static final RegistryKey<ItemGroup> ITEM_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Cinderscapes.MOD_ID, "items"));
 	private static final HashMap<RegistryKey<ItemGroup>, HashMap<ItemConvertible, ItemGroupEntries>> ITEM_GROUP_ENTRY_MAPS;
 
 	static {

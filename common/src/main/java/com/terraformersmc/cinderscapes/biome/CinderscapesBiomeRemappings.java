@@ -7,7 +7,7 @@ import com.terraformersmc.cinderscapes.Cinderscapes;
 
 public class CinderscapesBiomeRemappings implements BiomeRemapperApi {
 	public void init() {
-		register(Cinderscapes.NAMESPACE, DataVersions.V_1_18_2, ImmutableMap.<String, String>builder()
+		register(Cinderscapes.MOD_ID, DataVersions.V_1_18_2, ImmutableMap.<String, String>builder()
 				.put("cinderscapes:quartz_canyon", "cinderscapes:quartz_cavern")
 				.build());
 	}

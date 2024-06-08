@@ -14,10 +14,10 @@ import net.minecraft.world.biome.Biome;
 import java.util.List;
 
 public class CinderscapesBiomes {
-    public static final RegistryKey<Biome> ASHY_SHOALS = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.NAMESPACE, "ashy_shoals"));
-    public static final RegistryKey<Biome> BLACKSTONE_SHALES = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.NAMESPACE, "blackstone_shales"));
-    public static final RegistryKey<Biome> LUMINOUS_GROVE = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.NAMESPACE, "luminous_grove"));
-    public static final RegistryKey<Biome> QUARTZ_CAVERN = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.NAMESPACE, "quartz_cavern"));
+    public static final RegistryKey<Biome> ASHY_SHOALS = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.MOD_ID, "ashy_shoals"));
+    public static final RegistryKey<Biome> BLACKSTONE_SHALES = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.MOD_ID, "blackstone_shales"));
+    public static final RegistryKey<Biome> LUMINOUS_GROVE = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.MOD_ID, "luminous_grove"));
+    public static final RegistryKey<Biome> QUARTZ_CAVERN = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.MOD_ID, "quartz_cavern"));
 
     @SuppressWarnings("unused")
     public static final List<RegistryKey<Biome>> BIOMES = List.of(

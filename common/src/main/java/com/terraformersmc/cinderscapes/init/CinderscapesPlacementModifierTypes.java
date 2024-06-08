@@ -12,7 +12,7 @@ public class CinderscapesPlacementModifierTypes {
     public static final PlacementModifierType<SafelistRangeFloorPlacementModifier> COUNT_FLOOR  = () -> SafelistRangeFloorPlacementModifier.MODIFIER_CODEC;
 
     public static void init() {
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier("cinderscapes", "safelist_range_ceiling"), COUNT_CEILING);
-        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, new Identifier("cinderscapes", "safelist_range_floor"), COUNT_FLOOR);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of("cinderscapes", "safelist_range_ceiling"), COUNT_CEILING);
+        Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, Identifier.of("cinderscapes", "safelist_range_floor"), COUNT_FLOOR);
     }
 }

@@ -20,7 +20,7 @@ public class CinderscapesBlockTags {
     }
 
     private static TagKey<Block> of(String path) {
-        return CinderscapesBlockTags.of(Identifier.of(Cinderscapes.NAMESPACE, path));
+        return CinderscapesBlockTags.of(Identifier.of(Cinderscapes.MOD_ID, path));
     }
 
     private static TagKey<Block> of(Identifier id) {

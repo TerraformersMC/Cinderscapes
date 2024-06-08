@@ -44,7 +44,7 @@ public class CinderscapesRegistry {
 		if (item instanceof BlockItem blockItem) {
 			blockItem.appendBlocks(Item.BLOCK_ITEMS, blockItem);
 		}
-		return Registry.register(Registries.ITEM, Identifier.of(Cinderscapes.NAMESPACE, name), item);
+		return Registry.register(Registries.ITEM, Identifier.of(Cinderscapes.MOD_ID, name), item);
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class CinderscapesRegistry {
 	 * @return Newly registered {@link Block}
 	 */
 	public static <B extends Block> B register(String name, B block) {
-		return Registry.register(Registries.BLOCK, Identifier.of(Cinderscapes.NAMESPACE, name), block);
+		return Registry.register(Registries.BLOCK, Identifier.of(Cinderscapes.MOD_ID, name), block);
 	}
 
 	/*
@@ -70,7 +70,7 @@ public class CinderscapesRegistry {
 	 * @return Newly registered {@link Feature}
 	 */
 	public static <T extends Feature<FC>, FC extends FeatureConfig> T register(String name, T feature) {
-		return Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.NAMESPACE, name), feature);
+		return Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, name), feature);
 	}
 
 	/**

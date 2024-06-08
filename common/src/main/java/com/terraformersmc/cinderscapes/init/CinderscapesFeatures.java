@@ -8,6 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
@@ -63,17 +64,17 @@ public class CinderscapesFeatures {
 
     public static void init() {
 
-        ASH_TOP_LAYER = Registry.register(Registries.FEATURE, Cinderscapes.id("ash_top_layer"), new AshTopLayerFeature());
+        ASH_TOP_LAYER = Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, "ash_top_layer"), new AshTopLayerFeature());
 
         UMBRAL_FUNGUS_CONFIG = new CanopiedHugeFungusFeatureConfig(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState(), CinderscapesBlocks.UMBRAL_HYPHAE.getDefaultState(), CinderscapesBlocks.UMBRAL_STEM.getDefaultState(), CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState(), CinderscapesBlocks.UMBRAL_FLESH_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), true);
         UMBRAL_FUNGUS_NOT_PLANTED_CONFIG = UMBRAL_FUNGUS_CONFIG.withPlanted(false);
 
-        CANOPIED_HUGE_FUNGUS = Registry.register(Registries.FEATURE, Cinderscapes.id("canopied_huge_fungus"), new CanopiedHugeFungusFeature());
+        CANOPIED_HUGE_FUNGUS = Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, "canopied_huge_fungus"), new CanopiedHugeFungusFeature());
 
-        SHROOMLIGHT_BUSH = Registry.register(Registries.FEATURE, Cinderscapes.id("shroomlight_bush"), new ShroomlightBushFeature());
-        UMBRAL_VINE = Registry.register(Registries.FEATURE, Cinderscapes.id("umbral_vine"), new UmbralVineFeature());
+        SHROOMLIGHT_BUSH = Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, "shroomlight_bush"), new ShroomlightBushFeature());
+        UMBRAL_VINE = Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, "umbral_vine"), new UmbralVineFeature());
 
-        VEGETATION = Registry.register(Registries.FEATURE, Cinderscapes.id("vegetation"), new VegetationFeature());
+        VEGETATION = Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, "vegetation"), new VegetationFeature());
 
         LUMINOUS_GROVE_VEGETATION_CONFIG = new VegetationFeatureConfig(
                 new WeightedBlockStateProvider(DataPool.<BlockState>builder()
@@ -119,17 +120,17 @@ public class CinderscapesFeatures {
         LUMINOUS_POD_CONFIG = ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(CinderscapesBlocks.LUMINOUS_POD.getDefaultState())), List.of(), 64);
         BRAMBLE_BERRY_BUSH_CONFIG = ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(((BrambleBerryBushBlock) CinderscapesBlocks.BRAMBLE_BERRY_BUSH).getGenerationState())), List.of(), 64);
 
-        SHALE_FEATURE = Registry.register(Registries.FEATURE, Cinderscapes.id("shale"), new ShaleFeature());
+        SHALE_FEATURE = Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, "shale"), new ShaleFeature());
 
-        BLACKSTONE_WEEPING_VINES = Registry.register(Registries.FEATURE, Cinderscapes.id("blackstone_weeping_vines"), new BlackstoneWeepingVinesFeature());
+        BLACKSTONE_WEEPING_VINES = Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, "blackstone_weeping_vines"), new BlackstoneWeepingVinesFeature());
 
-        CRYSTAL_SHARD_FEATURE = Registry.register(Registries.FEATURE, Cinderscapes.id("crystal_shard"), new CrystalShardFeature());
+        CRYSTAL_SHARD_FEATURE = Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, "crystal_shard"), new CrystalShardFeature());
 
-        POLYPITE_QUARTZ = Registry.register(Registries.FEATURE, Cinderscapes.id("polypite_quartz"), new PolypiteQuartzFeature());
+        POLYPITE_QUARTZ = Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, "polypite_quartz"), new PolypiteQuartzFeature());
 
-        ASH_PILE = Registry.register(Registries.FEATURE, Cinderscapes.id("ash_pile"), new AshPileFeature());
+        ASH_PILE = Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, "ash_pile"), new AshPileFeature());
 
-        DEAD_TREE = Registry.register(Registries.FEATURE, Cinderscapes.id("dead_tree"), new DeadTreeFeature());
+        DEAD_TREE = Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, "dead_tree"), new DeadTreeFeature());
 
         IntProvider spread = UniformIntProvider.create(3, 7);
         SOUL_SAND_REPLACE_CONFIG = new ReplaceBlobsFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.SOUL_SAND.getDefaultState(), spread);
