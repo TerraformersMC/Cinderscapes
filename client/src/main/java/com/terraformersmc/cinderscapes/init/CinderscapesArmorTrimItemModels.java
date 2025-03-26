@@ -5,9 +5,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import net.minecraft.util.Identifier;
-import net.ramixin.mixson.Mixson;
-import net.ramixin.mixson.events.ModificationEvent;
-import org.jetbrains.annotations.NotNull;
+import net.ramixin.mixson.inline.EventContext;
+import net.ramixin.mixson.inline.Mixson;
+import net.ramixin.mixson.inline.MixsonEvent;
 
 import java.util.List;
 
@@ -37,12 +37,14 @@ public final class CinderscapesArmorTrimItemModels {
     }
 
     private static void registerAddTrimsToArmor(String armor, String armorMaterial) {
-        Mixson.registerModificationEvent(
-                Identifier.ofVanilla("items/" + armorMaterial + "_" + armor),
-                Identifier.of(Cinderscapes.MOD_ID, "add_trims_to_" + armorMaterial + "_" + armor),
-                new ModificationEvent() {
+        Mixson.registerEvent(
+                Mixson.DEFAULT_PRIORITY,
+                "minecraft:items/" + armorMaterial + "_" + armor,
+                Cinderscapes.MOD_ID + ":add_trims_to_" + armorMaterial + "_" + armor,
+                new MixsonEvent<>() {
                     @Override
-                    public @NotNull JsonElement run(JsonElement elem) {
+                    public void runEvent(EventContext<JsonElement> context) {
+                        JsonElement elem = context.getFile();
                         JsonObject root = elem.getAsJsonObject();
                         JsonObject model = root.getAsJsonObject("model");
                         JsonArray cases = model.getAsJsonArray("cases");
@@ -57,25 +59,26 @@ public final class CinderscapesArmorTrimItemModels {
 
                             cases.add(newCase);
                         });
-
-                        return elem;
                     }
 
                     @Override
                     public int ordinal() {
                         return 0;
                     }
-                }
+                },
+                false
         );
     }
 
     private static void registerAddTrimsToAtlas(String name) {
-        Mixson.registerModificationEvent(
-                Identifier.ofVanilla("atlases/" + name),
-                Identifier.of(Cinderscapes.MOD_ID, "add_trims_to_" + name + "_atlas"),
-                new ModificationEvent() {
+        Mixson.registerEvent(
+                Mixson.DEFAULT_PRIORITY,
+                "minecraft:atlases/" + name,
+                Cinderscapes.MOD_ID + ":add_trims_to_" + name + "_atlas",
+                new MixsonEvent<>() {
                     @Override
-                    public @NotNull JsonElement run(JsonElement elem) {
+                    public void runEvent(EventContext<JsonElement> context) {
+                        JsonElement elem = context.getFile();
                         JsonObject root = elem.getAsJsonObject();
                         JsonArray sources = root.getAsJsonArray("sources");
 
@@ -92,15 +95,14 @@ public final class CinderscapesArmorTrimItemModels {
                                 break;
                             }
                         }
-
-                        return elem;
                     }
 
                     @Override
                     public int ordinal() {
                         return 0;
                     }
-                }
+                },
+                false
         );
     }
 

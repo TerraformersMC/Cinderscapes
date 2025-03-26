@@ -24,7 +24,7 @@ dependencies {
 
     includeMod "cloth-config", "me.shedaniel.cloth:cloth-config-fabric:${project.clothconfig_version}"
 
-    includeMod "mixson", "com.github.ramixin:mixson:${project.mixson_version}"
+    includeMod "mixson", "com.github.ramixin:mixson-fabric:${project.mixson_version}"
 
     if (findProject(':cinderscapes-worldgen') != null) {
         includeMod "biolith", "com.terraformersmc:biolith-fabric:${biolith_version}"
