@@ -26,6 +26,10 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 				.add(CinderscapesBlocks.UMBRAL_FUNGUS)
 				.add(CinderscapesBlocks.UMBRAL_NYLIUM);
 
+		getOrCreateTagBuilder(BlockTags.FENCE_GATES)
+				.add(CinderscapesBlocks.SCORCHED_FENCE_GATE)
+				.add(CinderscapesBlocks.UMBRAL_FENCE_GATE);
+
 		getOrCreateTagBuilder(BlockTags.FLOWER_POTS)
 				.add(CinderscapesBlocks.POTTED_CRYSTINIUM)
 				.add(CinderscapesBlocks.POTTED_LUMINOUS_POD)

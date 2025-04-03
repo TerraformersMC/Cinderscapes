@@ -1,10 +1,9 @@
 accessWidener v1 named
 
 accessible  field   net/minecraft/client/data/ItemModelGenerator$TrimMaterial materialKey Lnet/minecraft/registry/RegistryKey;
-accessible  method  net/minecraft/client/data/ItemModelGenerator$TrimMaterial <init> (Ljava/lang/String;Lnet/minecraft/registry/RegistryKey;Ljava/util/Map;)V
+accessible  method  net/minecraft/client/data/ItemModelGenerator$TrimMaterial <init> (Lnet/minecraft/item/equipment/trim/ArmorTrimAssets;Lnet/minecraft/registry/RegistryKey;)V
 accessible  method  net/minecraft/entity/SpawnRestriction register (Lnet/minecraft/entity/EntityType;Lnet/minecraft/entity/SpawnLocation;Lnet/minecraft/world/Heightmap$Type;Lnet/minecraft/entity/SpawnRestriction$SpawnPredicate;)V
-accessible  method  net/minecraft/item/equipment/trim/ArmorTrimMaterials register (Lnet/minecraft/registry/Registerable;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/item/Item;Lnet/minecraft/text/Style;)V
-accessible  method  net/minecraft/item/equipment/trim/ArmorTrimMaterials register (Lnet/minecraft/registry/Registerable;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/item/Item;Lnet/minecraft/text/Style;Ljava/util/Map;)V
+accessible  method  net/minecraft/item/equipment/trim/ArmorTrimMaterials register (Lnet/minecraft/registry/Registerable;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/text/Style;Lnet/minecraft/item/equipment/trim/ArmorTrimAssets;)V
 accessible  method  net/minecraft/util/math/Vec3i setX (I)Lnet/minecraft/util/math/Vec3i;
 accessible  method  net/minecraft/util/math/Vec3i setY (I)Lnet/minecraft/util/math/Vec3i;
 accessible  method  net/minecraft/util/math/Vec3i setZ (I)Lnet/minecraft/util/math/Vec3i;

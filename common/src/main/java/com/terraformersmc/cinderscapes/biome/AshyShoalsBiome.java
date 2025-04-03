@@ -96,12 +96,12 @@ public class AshyShoalsBiome {
         SpawnSettings.Builder builder = new SpawnSettings.Builder();
 
         // SPAWNS
-        builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 1, 1, 4));
-        builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOGLIN, 1, 1, 1));
-        builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4));
-        builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
-        builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SKELETON, 20, 5, 5));
-        builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 50, 4, 4));
+        builder.spawn(SpawnGroup.MONSTER,  1, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 1, 4));
+        builder.spawn(SpawnGroup.MONSTER,  1, new SpawnSettings.SpawnEntry(EntityType.ZOGLIN, 1, 1));
+        builder.spawn(SpawnGroup.MONSTER,  1, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 4, 4));
+        builder.spawn(SpawnGroup.CREATURE, 60, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 1, 2));
+        builder.spawn(SpawnGroup.MONSTER, 20, new SpawnSettings.SpawnEntry(EntityType.SKELETON, 5, 5));
+        builder.spawn(SpawnGroup.MONSTER, 50, new SpawnSettings.SpawnEntry(EntityType.GHAST, 4, 4));
 
         return builder.build();
     }

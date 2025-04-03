@@ -87,7 +87,7 @@ public class LuminousGroveBiome {
         SpawnSettings.Builder builder = new SpawnSettings.Builder();
 
         // SPAWNS
-        builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
+        builder.spawn(SpawnGroup.CREATURE, 60, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 1, 2));
 
         return builder.build();
     }

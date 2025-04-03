@@ -19,9 +19,9 @@ public class CinderscapesArmorTrimMaterials {
     public static final RegistryKey<ArmorTrimMaterial> SULFUR_QUARTZ = createRegistryKey("cinderscapes_sulfur_quartz");
 
     public static void bootstrap(Registerable<ArmorTrimMaterial> registerable) {
-        ArmorTrimMaterials.register(registerable, ROSE_QUARTZ, CinderscapesItems.ROSE_QUARTZ, Style.EMPTY.withColor(0xE77391));
-        ArmorTrimMaterials.register(registerable, SMOKY_QUARTZ, CinderscapesItems.SMOKY_QUARTZ, Style.EMPTY.withColor(0x5a4b46));
-        ArmorTrimMaterials.register(registerable, SULFUR_QUARTZ, CinderscapesItems.SULFUR_QUARTZ, Style.EMPTY.withColor(0xbaa938));
+        ArmorTrimMaterials.register(registerable, ROSE_QUARTZ, Style.EMPTY.withColor(0xE77391), CinderscapesArmorTrimAssets.ROSE_QUARTZ);
+        ArmorTrimMaterials.register(registerable, SMOKY_QUARTZ, Style.EMPTY.withColor(0x5a4b46), CinderscapesArmorTrimAssets.SMOKY_QUARTZ);
+        ArmorTrimMaterials.register(registerable, SULFUR_QUARTZ, Style.EMPTY.withColor(0xbaa938), CinderscapesArmorTrimAssets.SULFUR_QUARTZ);
     }
 
     private static RegistryKey<ArmorTrimMaterial> createRegistryKey(String id) {

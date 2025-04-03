@@ -25,6 +25,8 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 		/*
 		 * Vanilla item tags
 		 */
+		copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
+
 		getOrCreateTagBuilder(ItemTags.FOX_FOOD)
 				.add(CinderscapesItems.BRAMBLE_BERRIES);
 

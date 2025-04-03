@@ -9,7 +9,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DataPool;
+import net.minecraft.util.collection.Pool;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.gen.feature.ConfiguredFeatures;
@@ -77,7 +77,7 @@ public class CinderscapesFeatures {
         VEGETATION = Registry.register(Registries.FEATURE, Identifier.of(Cinderscapes.MOD_ID, "vegetation"), new VegetationFeature());
 
         LUMINOUS_GROVE_VEGETATION_CONFIG = new VegetationFeatureConfig(
-                new WeightedBlockStateProvider(DataPool.<BlockState>builder()
+                new WeightedBlockStateProvider(Pool.<BlockState>builder()
                         .add(Blocks.WARPED_ROOTS.getDefaultState(), 1)
                         .add(Blocks.NETHER_SPROUTS.getDefaultState(), 1)
                         .add(Blocks.WARPED_FUNGUS.getDefaultState(), 1)
@@ -91,7 +91,7 @@ public class CinderscapesFeatures {
         );
 
         QUARTZ_CAVERN_VEGETATION_CONFIG = new VegetationFeatureConfig(
-                new WeightedBlockStateProvider(DataPool.<BlockState>builder()
+                new WeightedBlockStateProvider(Pool.<BlockState>builder()
                         .add(CinderscapesBlocks.CRYSTINIUM.getDefaultState(), 1).build()),
                 Arrays.asList(
                         Blocks.NETHERRACK.getDefaultState()
@@ -99,7 +99,7 @@ public class CinderscapesFeatures {
         );
 
         ASHY_SHOALS_VEGETATION_CONFIG = new VegetationFeatureConfig(
-                new WeightedBlockStateProvider(DataPool.<BlockState>builder()
+                new WeightedBlockStateProvider(Pool.<BlockState>builder()
                         .add(CinderscapesBlocks.SCORCHED_SHRUB.getDefaultState(), 2)
                         .add(CinderscapesBlocks.SCORCHED_SPROUTS.getDefaultState(), 5)
                         .add(CinderscapesBlocks.SCORCHED_TENDRILS.getDefaultState(), 5)

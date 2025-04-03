@@ -85,7 +85,7 @@ public final class CinderscapesArmorTrimItemModels {
                         for (int i = 0; i < sources.size(); ++i) {
                             JsonObject source = sources.get(i).getAsJsonObject();
 
-                            if ("paletted_permutations".equals(source.getAsJsonPrimitive("type").getAsString())) {
+                            if ("minecraft:paletted_permutations".equals(source.getAsJsonPrimitive("type").getAsString())) {
                                 JsonObject permutations = source.getAsJsonObject("permutations");
 
                                 CinderscapesArmorTrimMaterials.TRIM_MATERIALS.forEach(trim ->

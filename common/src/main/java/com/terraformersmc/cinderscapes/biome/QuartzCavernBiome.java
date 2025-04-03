@@ -97,11 +97,11 @@ public class QuartzCavernBiome {
         SpawnSettings.Builder builder = new SpawnSettings.Builder();
 
         // SPAWNS
-        builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 50, 4, 4));
-        builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 15, 2, 4));
-        builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4));
-        builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 20, 4, 4));
-        builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
+        builder.spawn(SpawnGroup.MONSTER, 50, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 4, 4));
+        builder.spawn(SpawnGroup.MONSTER, 15, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 2, 4));
+        builder.spawn(SpawnGroup.MONSTER,  1, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 4, 4));
+        builder.spawn(SpawnGroup.MONSTER, 20, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 4, 4));
+        builder.spawn(SpawnGroup.CREATURE, 60, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 1, 2));
 
         return builder.build();
     }

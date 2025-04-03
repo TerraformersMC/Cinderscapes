@@ -256,9 +256,9 @@ public class CinderscapesItems {
         SULFUR_BLOCK = CinderscapesRegistry.registerBlockItem("sulfur_block", CinderscapesBlocks.SULFUR_BLOCK);
         SULFUR_ORE = CinderscapesRegistry.registerBlockItem("sulfur_ore", CinderscapesBlocks.SULFUR_ORE);
 
-        ROSE_QUARTZ = CinderscapesRegistry.register("rose_quartz", Item::new, new Item.Settings());
-        SMOKY_QUARTZ = CinderscapesRegistry.register("smoky_quartz", Item::new, new Item.Settings());
-        SULFUR_QUARTZ = CinderscapesRegistry.register("sulfur_quartz", Item::new, new Item.Settings());
+        ROSE_QUARTZ = CinderscapesRegistry.register("rose_quartz", Item::new, new Item.Settings().trimMaterial(CinderscapesArmorTrimMaterials.ROSE_QUARTZ));
+        SMOKY_QUARTZ = CinderscapesRegistry.register("smoky_quartz", Item::new, new Item.Settings().trimMaterial(CinderscapesArmorTrimMaterials.SMOKY_QUARTZ));
+        SULFUR_QUARTZ = CinderscapesRegistry.register("sulfur_quartz", Item::new, new Item.Settings().trimMaterial(CinderscapesArmorTrimMaterials.SULFUR_QUARTZ));
 
         ///////////////////
         // Quartz Cavern //

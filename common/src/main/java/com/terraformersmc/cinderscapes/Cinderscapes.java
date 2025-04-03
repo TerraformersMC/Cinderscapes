@@ -22,6 +22,7 @@ public class Cinderscapes implements ModInitializer {
 	public void onInitialize() {
 		CinderscapesConfig.init();
 
+		CinderscapesArmorTrimAssets.init();
 		CinderscapesSpawnRestrictions.init();
 		CinderscapesBlocks.init();
 		CinderscapesItems.init();
