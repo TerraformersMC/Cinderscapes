@@ -1,6 +1,7 @@
 package com.terraformersmc.cinderscapes.surfacebuilders;
 
 import com.terraformersmc.biolith.api.surface.BiolithSurfaceBuilder;
+import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -23,12 +24,12 @@ public class AshyShoalsSurfaceBuilder extends BiolithSurfaceBuilder {
 
     @Override
     public void generate(BiomeAccess biomeAccess, BlockColumn column, Random rand, Chunk chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
-        if (!biomeAccess.getBiome(new BlockPos(x, seaLevel, z)).value().equals(biome)) {
+        if (!biomeAccess.getBiome(new BlockPos(x, seaLevel, z)).matchesKey(CinderscapesBiomes.ASHY_SHOALS)) {
             // We care most about sea level.
             return;
         }
 
-        for (int y = 1; y < 40; y++) {
+        for (int y = chunk.getBottomY(); y < seaLevel + 8; ++y) {
             BlockState state = column.getState(y);
             if (state.isAir() && column.getState(y - 1).equals(midMaterial)) {
                 column.setState(y, topMaterial);

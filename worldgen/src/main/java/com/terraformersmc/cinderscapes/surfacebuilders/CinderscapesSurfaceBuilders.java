@@ -6,6 +6,7 @@ import com.terraformersmc.cinderscapes.block.AshLayerBlock;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import net.minecraft.block.Blocks;
+import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
@@ -19,7 +20,7 @@ public class CinderscapesSurfaceBuilders {
 						CinderscapesBlocks.ASH.getDefaultState().with(AshLayerBlock.LAYERS, 1),
 						Blocks.MAGMA_BLOCK.getDefaultState(),
 						Blocks.LAVA.getDefaultState()
-				).setBiomeKey(CinderscapesBiomes.ASHY_SHOALS));
+				).setBiomeTag(BiomeTags.IS_NETHER));
 
 		builders.put(Identifier.of(Cinderscapes.MOD_ID, "surface/luminous_grove"),
 				new LuminousGroveSurfaceBuilder(

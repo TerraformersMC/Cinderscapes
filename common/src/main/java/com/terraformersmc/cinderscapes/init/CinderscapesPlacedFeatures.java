@@ -98,7 +98,7 @@ public class CinderscapesPlacedFeatures {
         CinderscapesRegistry.register(registerable, ASHY_SOUL_SAND, CinderscapesConfiguredFeatures.ASHY_SOUL_SAND, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(64)), CountPlacementModifier.of(5), SquarePlacementModifier.of(), BiomePlacementModifier.of());
         CinderscapesRegistry.register(registerable, ASHY_SOUL_SOIL, CinderscapesConfiguredFeatures.ASHY_SOUL_SOIL, PlacedFeatures.BOTTOM_TO_TOP_RANGE, CountPlacementModifier.of(10), SquarePlacementModifier.of(), BiomePlacementModifier.of());
         CinderscapesRegistry.register(registerable, ASHY_GRAVEL, CinderscapesConfiguredFeatures.ASHY_GRAVEL, PlacedFeatures.BOTTOM_TO_TOP_RANGE, CountPlacementModifier.of(5), SquarePlacementModifier.of(), BiomePlacementModifier.of());
-        CinderscapesRegistry.register(registerable, ASH_TOP_LAYER, CinderscapesConfiguredFeatures.ASH_TOP_LAYER, BiomePlacementModifier.of());
+        CinderscapesRegistry.register(registerable, ASH_TOP_LAYER, CinderscapesConfiguredFeatures.ASH_TOP_LAYER);
 
         final List<Block> DEAD_TREE_SAFELIST = List.of(
                 CinderscapesBlocks.ASH,
