@@ -1,32 +1,13 @@
 package com.terraformersmc.cinderscapes.init;
 
-import com.terraformersmc.cinderscapes.Cinderscapes;
-import com.terraformersmc.cinderscapes.block.AshLayerBlock;
-import com.terraformersmc.cinderscapes.block.BrambleBerryBushBlock;
-import com.terraformersmc.cinderscapes.block.CinderscapesNetherPlantBlock;
-import com.terraformersmc.cinderscapes.block.CinderscapesNetherTallPlantBlock;
-import com.terraformersmc.cinderscapes.block.CinderscapesNyliumBlock;
-import com.terraformersmc.cinderscapes.block.CinderscapesOreBlock;
-import com.terraformersmc.cinderscapes.block.CinderscapesTransparentBlock;
-import com.terraformersmc.cinderscapes.block.CrystiniumBlock;
-import com.terraformersmc.cinderscapes.block.GhastlyEctoplasmBlock;
-import com.terraformersmc.cinderscapes.block.PhotofernBlock;
-import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
-import com.terraformersmc.cinderscapes.block.PottedCrystiniumBlock;
-import com.terraformersmc.cinderscapes.block.PottedPyracinthBlock;
-import com.terraformersmc.cinderscapes.block.PyracinthBlock;
+import com.terraformersmc.cinderscapes.block.*;
 import com.terraformersmc.cinderscapes.init.helpers.CinderscapesRegistry;
-import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
-import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
-import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock;
-import com.terraformersmc.terraform.sign.api.block.TerraformWallSignBlock;
 import com.terraformersmc.terraform.wood.api.block.PillarLogHelper;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.entity.EntityType;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 
@@ -53,10 +34,10 @@ public class CinderscapesBlocks {
     public static Block SCORCHED_BUTTON;
     public static Block SCORCHED_DOOR;
 
-    public static TerraformSignBlock SCORCHED_SIGN;
-    public static TerraformWallSignBlock SCORCHED_WALL_SIGN;
-    public static TerraformHangingSignBlock SCORCHED_HANGING_SIGN;
-    public static TerraformWallHangingSignBlock SCORCHED_WALL_HANGING_SIGN;
+    public static SignBlock SCORCHED_SIGN;
+    public static WallSignBlock SCORCHED_WALL_SIGN;
+    public static HangingSignBlock SCORCHED_HANGING_SIGN;
+    public static WallHangingSignBlock SCORCHED_WALL_HANGING_SIGN;
 
     public static Block SCORCHED_SHRUB;
     public static Block POTTED_SCORCHED_SHRUB;
@@ -101,10 +82,10 @@ public class CinderscapesBlocks {
     public static Block UMBRAL_BUTTON;
     public static Block UMBRAL_DOOR;
 
-    public static TerraformSignBlock UMBRAL_SIGN;
-    public static TerraformWallSignBlock UMBRAL_WALL_SIGN;
-    public static TerraformHangingSignBlock UMBRAL_HANGING_SIGN;
-    public static TerraformWallHangingSignBlock UMBRAL_WALL_HANGING_SIGN;
+    public static SignBlock UMBRAL_SIGN;
+    public static WallSignBlock UMBRAL_WALL_SIGN;
+    public static HangingSignBlock UMBRAL_HANGING_SIGN;
+    public static WallHangingSignBlock UMBRAL_WALL_HANGING_SIGN;
 
     // Other
 
@@ -218,13 +199,10 @@ public class CinderscapesBlocks {
         SCORCHED_BUTTON = CinderscapesRegistry.register("scorched_button", settings -> new ButtonBlock(BlockSetType.CRIMSON, 30, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_BUTTON).mapColor(MapColor.LIGHT_GRAY));
         SCORCHED_DOOR = CinderscapesRegistry.register("scorched_door", settings -> new DoorBlock(BlockSetType.CRIMSON, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_DOOR).mapColor(MapColor.LIGHT_GRAY));
 
-        final Identifier SCORCHED_SIGN_TEXTURE = Identifier.of(Cinderscapes.MOD_ID, "entity/signs/scorched");
-        SCORCHED_SIGN = CinderscapesRegistry.register("scorched_sign", settings -> new TerraformSignBlock(SCORCHED_SIGN_TEXTURE, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD));
-        SCORCHED_WALL_SIGN = CinderscapesRegistry.register("scorched_wall_sign", settings -> new TerraformWallSignBlock(SCORCHED_SIGN_TEXTURE, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD).lootTable(SCORCHED_SIGN.getLootTableKey()));
-        final Identifier SCORCHED_HANGING_SIGN_TEXTURE = Identifier.of(Cinderscapes.MOD_ID, "entity/signs/hanging/scorched");
-        final Identifier SCORCHED_HANGING_SIGN_GUI_TEXTURE = Identifier.of(Cinderscapes.MOD_ID, "textures/gui/hanging_signs/scorched");
-        SCORCHED_HANGING_SIGN = CinderscapesRegistry.register("scorched_hanging_sign", settings -> new TerraformHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN));
-        SCORCHED_WALL_HANGING_SIGN = CinderscapesRegistry.register("scorched_wall_hanging_sign", settings -> new TerraformWallHangingSignBlock(SCORCHED_HANGING_SIGN_TEXTURE, SCORCHED_HANGING_SIGN_GUI_TEXTURE, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_WALL_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN).lootTable(SCORCHED_HANGING_SIGN.getLootTableKey()));
+        SCORCHED_SIGN = CinderscapesRegistry.registerSignBlock("scorched_sign", settings -> new SignBlock(CinderscapesWoodTypes.SCORCHED, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD));
+        SCORCHED_WALL_SIGN = CinderscapesRegistry.registerSignBlock("scorched_wall_sign", settings -> new WallSignBlock(CinderscapesWoodTypes.SCORCHED, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD).lootTable(SCORCHED_SIGN.getLootTableKey()));
+        SCORCHED_HANGING_SIGN = CinderscapesRegistry.registerSignBlock("scorched_hanging_sign", settings -> new HangingSignBlock(CinderscapesWoodTypes.SCORCHED, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN));
+        SCORCHED_WALL_HANGING_SIGN = CinderscapesRegistry.registerSignBlock("scorched_wall_hanging_sign", settings -> new WallHangingSignBlock(CinderscapesWoodTypes.SCORCHED, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_WALL_HANGING_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN).lootTable(SCORCHED_HANGING_SIGN.getLootTableKey()));
 
         SCORCHED_SHRUB = CinderscapesRegistry.register("scorched_shrub", settings -> new CinderscapesNetherPlantBlock(state -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 14.0, 14.0), settings), AbstractBlock.Settings.copy(Blocks.DEAD_BUSH).mapColor(MapColor.TERRACOTTA_GRAY));
         POTTED_SCORCHED_SHRUB = CinderscapesRegistry.register("potted_scorched_shrub", settings -> new FlowerPotBlock(SCORCHED_SHRUB, settings), AbstractBlock.Settings.copy(Blocks.POTTED_DEAD_BUSH));
@@ -269,13 +247,10 @@ public class CinderscapesBlocks {
         UMBRAL_BUTTON = CinderscapesRegistry.register("umbral_button", settings -> new ButtonBlock(BlockSetType.WARPED, 30, settings), AbstractBlock.Settings.copy(Blocks.WARPED_BUTTON).mapColor(MapColor.BLUE));
         UMBRAL_DOOR = CinderscapesRegistry.register("umbral_door", settings -> new DoorBlock(BlockSetType.WARPED, settings), AbstractBlock.Settings.copy(Blocks.WARPED_DOOR).mapColor(MapColor.BLUE));
 
-        final Identifier UMBRAL_SIGN_TEXTURE = Identifier.of(Cinderscapes.MOD_ID, "entity/signs/umbral");
-        UMBRAL_SIGN = CinderscapesRegistry.register("umbral_sign", settings -> new TerraformSignBlock(UMBRAL_SIGN_TEXTURE, settings), AbstractBlock.Settings.copy(Blocks.WARPED_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD));
-        UMBRAL_WALL_SIGN = CinderscapesRegistry.register("umbral_wall_sign", settings -> new TerraformWallSignBlock(UMBRAL_SIGN_TEXTURE, settings), AbstractBlock.Settings.copy(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD).lootTable(UMBRAL_SIGN.getLootTableKey()));
-        final Identifier UMBRAL_HANGING_SIGN_TEXTURE = Identifier.of(Cinderscapes.MOD_ID, "entity/signs/hanging/umbral");
-        final Identifier UMBRAL_HANGING_SIGN_GUI_TEXTURE = Identifier.of(Cinderscapes.MOD_ID, "textures/gui/hanging_signs/umbral");
-        UMBRAL_HANGING_SIGN = CinderscapesRegistry.register("umbral_hanging_sign", settings -> new TerraformHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, settings), AbstractBlock.Settings.copy(Blocks.WARPED_HANGING_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN));
-        UMBRAL_WALL_HANGING_SIGN = CinderscapesRegistry.register("umbral_wall_hanging_sign", settings -> new TerraformWallHangingSignBlock(UMBRAL_HANGING_SIGN_TEXTURE, UMBRAL_HANGING_SIGN_GUI_TEXTURE, settings), AbstractBlock.Settings.copy(Blocks.WARPED_WALL_HANGING_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN).lootTable(UMBRAL_HANGING_SIGN.getLootTableKey()));
+        UMBRAL_SIGN = CinderscapesRegistry.registerSignBlock("umbral_sign", settings -> new SignBlock(CinderscapesWoodTypes.UMBRAL, settings), AbstractBlock.Settings.copy(Blocks.WARPED_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD));
+        UMBRAL_WALL_SIGN = CinderscapesRegistry.registerSignBlock("umbral_wall_sign", settings -> new WallSignBlock(CinderscapesWoodTypes.UMBRAL, settings), AbstractBlock.Settings.copy(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD).lootTable(UMBRAL_SIGN.getLootTableKey()));
+        UMBRAL_HANGING_SIGN = CinderscapesRegistry.registerSignBlock("umbral_hanging_sign", settings -> new HangingSignBlock(CinderscapesWoodTypes.UMBRAL, settings), AbstractBlock.Settings.copy(Blocks.WARPED_HANGING_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN));
+        UMBRAL_WALL_HANGING_SIGN = CinderscapesRegistry.registerSignBlock("umbral_wall_hanging_sign", settings -> new WallHangingSignBlock(CinderscapesWoodTypes.UMBRAL, settings), AbstractBlock.Settings.copy(Blocks.WARPED_WALL_HANGING_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN).lootTable(UMBRAL_HANGING_SIGN.getLootTableKey()));
 
         // Other
 

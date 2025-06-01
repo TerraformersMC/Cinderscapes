@@ -5,9 +5,9 @@ import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
-import net.minecraft.client.render.RenderLayer;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
+import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -20,7 +20,7 @@ public class CinderscapesClient implements ClientModInitializer {
     public void onInitializeClient() {
         CinderscapesArmorTrimItemModels.init();
 
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
+        BlockRenderLayerMap.putBlocks(BlockRenderLayer.TRANSLUCENT,
                 // Ashy Shoals
 
                 // Blackstone Shales
@@ -36,7 +36,7 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ
         );
 
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
+        BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT,
                 // Ashy Shoals
                 CinderscapesBlocks.BRAMBLE_BERRY_BUSH,
                 CinderscapesBlocks.POTTED_PYRACINTH,
