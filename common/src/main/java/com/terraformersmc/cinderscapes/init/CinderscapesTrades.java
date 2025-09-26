@@ -1,6 +1,6 @@
 package com.terraformersmc.cinderscapes.init;
 
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -15,9 +15,9 @@ import net.minecraft.village.VillagerProfession;
 public class CinderscapesTrades {
     public static void init() {
 
-        LootTableEvents.MODIFY.register((key, supplier, setter) -> {
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             if (LootTables.PIGLIN_BARTERING_GAMEPLAY.equals(key)) {
-                supplier.modifyPools((pools) ->
+                tableBuilder.modifyPools((pools) ->
                     pools   .with(ItemEntry.builder(CinderscapesItems.ROSE_QUARTZ).weight(20).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12))).build())
                             .with(ItemEntry.builder(CinderscapesItems.SMOKY_QUARTZ).weight(20).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12))).build())
                             .with(ItemEntry.builder(CinderscapesItems.SULFUR_QUARTZ).weight(20).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(5, 12))).build())

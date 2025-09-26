@@ -39,7 +39,7 @@ public final class CinderscapesArmorTrimItemModels {
     private static void registerAddTrimsToArmor(String armor, String armorMaterial) {
         Mixson.registerEvent(
                 Mixson.DEFAULT_PRIORITY,
-                "minecraft:items/" + armorMaterial + "_" + armor,
+                id -> Identifier.ofVanilla("items/" + armorMaterial + "_" + armor).equals(id),
                 Cinderscapes.MOD_ID + ":add_trims_to_" + armorMaterial + "_" + armor,
                 new MixsonEvent<>() {
                     @Override
@@ -73,7 +73,7 @@ public final class CinderscapesArmorTrimItemModels {
     private static void registerAddTrimsToAtlas(String name) {
         Mixson.registerEvent(
                 Mixson.DEFAULT_PRIORITY,
-                "minecraft:atlases/" + name,
+                id -> Identifier.ofVanilla("atlases/" + name).equals(id),
                 Cinderscapes.MOD_ID + ":add_trims_to_" + name + "_atlas",
                 new MixsonEvent<>() {
                     @Override

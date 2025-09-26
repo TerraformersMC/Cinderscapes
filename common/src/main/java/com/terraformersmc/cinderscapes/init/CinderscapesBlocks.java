@@ -25,14 +25,15 @@ public class CinderscapesBlocks {
 
     public static Block SCORCHED_PLANKS;
     public static Block SCORCHED_SLAB;
-
-    public static Block SCORCHED_PRESSURE_PLATE;
-    public static Block SCORCHED_FENCE;
-    public static Block SCORCHED_TRAPDOOR;
-    public static Block SCORCHED_FENCE_GATE;
     public static Block SCORCHED_STAIRS;
+
     public static Block SCORCHED_BUTTON;
     public static Block SCORCHED_DOOR;
+    public static Block SCORCHED_FENCE;
+    public static Block SCORCHED_FENCE_GATE;
+    public static Block SCORCHED_PRESSURE_PLATE;
+    public static Block SCORCHED_SHELF;
+    public static Block SCORCHED_TRAPDOOR;
 
     public static SignBlock SCORCHED_SIGN;
     public static WallSignBlock SCORCHED_WALL_SIGN;
@@ -74,13 +75,15 @@ public class CinderscapesBlocks {
 
     public static Block UMBRAL_PLANKS;
     public static Block UMBRAL_SLAB;
-    public static Block UMBRAL_PRESSURE_PLATE;
-    public static Block UMBRAL_FENCE;
-    public static Block UMBRAL_TRAPDOOR;
-    public static Block UMBRAL_FENCE_GATE;
     public static Block UMBRAL_STAIRS;
+
     public static Block UMBRAL_BUTTON;
     public static Block UMBRAL_DOOR;
+    public static Block UMBRAL_FENCE;
+    public static Block UMBRAL_FENCE_GATE;
+    public static Block UMBRAL_PRESSURE_PLATE;
+    public static Block UMBRAL_SHELF;
+    public static Block UMBRAL_TRAPDOOR;
 
     public static SignBlock UMBRAL_SIGN;
     public static WallSignBlock UMBRAL_WALL_SIGN;
@@ -190,14 +193,15 @@ public class CinderscapesBlocks {
 
         SCORCHED_PLANKS = CinderscapesRegistry.register("scorched_planks", Block::new, AbstractBlock.Settings.copy(Blocks.CRIMSON_PLANKS).mapColor(MapColor.LIGHT_GRAY));
         SCORCHED_SLAB = CinderscapesRegistry.register("scorched_slab", SlabBlock::new, AbstractBlock.Settings.copy(Blocks.CRIMSON_SLAB).mapColor(MapColor.LIGHT_GRAY));
-
-        SCORCHED_PRESSURE_PLATE = CinderscapesRegistry.register("scorched_pressure_plate", settings -> new PressurePlateBlock(BlockSetType.CRIMSON, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_PRESSURE_PLATE).mapColor(MapColor.LIGHT_GRAY));
-        SCORCHED_FENCE = CinderscapesRegistry.register("scorched_fence", FenceBlock::new, AbstractBlock.Settings.copy(Blocks.CRIMSON_FENCE).mapColor(MapColor.LIGHT_GRAY));
-        SCORCHED_TRAPDOOR = CinderscapesRegistry.register("scorched_trapdoor", settings -> new TrapdoorBlock(BlockSetType.CRIMSON, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_TRAPDOOR).mapColor(MapColor.LIGHT_GRAY));
-        SCORCHED_FENCE_GATE = CinderscapesRegistry.register("scorched_fence_gate", settings -> new FenceGateBlock(WoodType.CRIMSON, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_FENCE_GATE).mapColor(MapColor.LIGHT_GRAY));
         SCORCHED_STAIRS = CinderscapesRegistry.register("scorched_stairs", settings -> new StairsBlock(SCORCHED_PLANKS.getDefaultState(), settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_STAIRS).mapColor(MapColor.LIGHT_GRAY));
+
         SCORCHED_BUTTON = CinderscapesRegistry.register("scorched_button", settings -> new ButtonBlock(BlockSetType.CRIMSON, 30, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_BUTTON).mapColor(MapColor.LIGHT_GRAY));
         SCORCHED_DOOR = CinderscapesRegistry.register("scorched_door", settings -> new DoorBlock(BlockSetType.CRIMSON, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_DOOR).mapColor(MapColor.LIGHT_GRAY));
+        SCORCHED_FENCE = CinderscapesRegistry.register("scorched_fence", FenceBlock::new, AbstractBlock.Settings.copy(Blocks.CRIMSON_FENCE).mapColor(MapColor.LIGHT_GRAY));
+        SCORCHED_FENCE_GATE = CinderscapesRegistry.register("scorched_fence_gate", settings -> new FenceGateBlock(WoodType.CRIMSON, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_FENCE_GATE).mapColor(MapColor.LIGHT_GRAY));
+        SCORCHED_PRESSURE_PLATE = CinderscapesRegistry.register("scorched_pressure_plate", settings -> new PressurePlateBlock(BlockSetType.CRIMSON, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_PRESSURE_PLATE).mapColor(MapColor.LIGHT_GRAY));
+        SCORCHED_SHELF = CinderscapesRegistry.register("scorched_shelf", ShelfBlock::new, AbstractBlock.Settings.copy(Blocks.CRIMSON_SHELF).mapColor(MapColor.LIGHT_GRAY));
+        SCORCHED_TRAPDOOR = CinderscapesRegistry.register("scorched_trapdoor", settings -> new TrapdoorBlock(BlockSetType.CRIMSON, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_TRAPDOOR).mapColor(MapColor.LIGHT_GRAY));
 
         SCORCHED_SIGN = CinderscapesRegistry.registerSignBlock("scorched_sign", settings -> new SignBlock(CinderscapesWoodTypes.SCORCHED, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD));
         SCORCHED_WALL_SIGN = CinderscapesRegistry.registerSignBlock("scorched_wall_sign", settings -> new WallSignBlock(CinderscapesWoodTypes.SCORCHED, settings), AbstractBlock.Settings.copy(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.NETHER_WOOD).lootTable(SCORCHED_SIGN.getLootTableKey()));
@@ -239,13 +243,15 @@ public class CinderscapesBlocks {
 
         UMBRAL_PLANKS = CinderscapesRegistry.register("umbral_planks", Block::new, AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS).mapColor(MapColor.BLUE));
         UMBRAL_SLAB = CinderscapesRegistry.register("umbral_slab", SlabBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_SLAB).mapColor(MapColor.BLUE));
-        UMBRAL_PRESSURE_PLATE = CinderscapesRegistry.register("umbral_pressure_plate", settings -> new PressurePlateBlock(BlockSetType.WARPED, settings), AbstractBlock.Settings.copy(Blocks.WARPED_PRESSURE_PLATE).mapColor(MapColor.BLUE));
-        UMBRAL_FENCE = CinderscapesRegistry.register("umbral_fence", FenceBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_FENCE).mapColor(MapColor.BLUE));
-        UMBRAL_TRAPDOOR = CinderscapesRegistry.register("umbral_trapdoor", settings -> new TrapdoorBlock(BlockSetType.WARPED, settings), AbstractBlock.Settings.copy(Blocks.WARPED_TRAPDOOR).mapColor(MapColor.BLUE));
-        UMBRAL_FENCE_GATE = CinderscapesRegistry.register("umbral_fence_gate", settings -> new FenceGateBlock(WoodType.WARPED, settings), AbstractBlock.Settings.copy(Blocks.WARPED_FENCE_GATE).mapColor(MapColor.BLUE));
         UMBRAL_STAIRS = CinderscapesRegistry.register("umbral_stairs", settings -> new StairsBlock(UMBRAL_PLANKS.getDefaultState(), settings), AbstractBlock.Settings.copy(Blocks.WARPED_STAIRS).mapColor(MapColor.BLUE));
+
         UMBRAL_BUTTON = CinderscapesRegistry.register("umbral_button", settings -> new ButtonBlock(BlockSetType.WARPED, 30, settings), AbstractBlock.Settings.copy(Blocks.WARPED_BUTTON).mapColor(MapColor.BLUE));
         UMBRAL_DOOR = CinderscapesRegistry.register("umbral_door", settings -> new DoorBlock(BlockSetType.WARPED, settings), AbstractBlock.Settings.copy(Blocks.WARPED_DOOR).mapColor(MapColor.BLUE));
+        UMBRAL_FENCE = CinderscapesRegistry.register("umbral_fence", FenceBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_FENCE).mapColor(MapColor.BLUE));
+        UMBRAL_FENCE_GATE = CinderscapesRegistry.register("umbral_fence_gate", settings -> new FenceGateBlock(WoodType.WARPED, settings), AbstractBlock.Settings.copy(Blocks.WARPED_FENCE_GATE).mapColor(MapColor.BLUE));
+        UMBRAL_PRESSURE_PLATE = CinderscapesRegistry.register("umbral_pressure_plate", settings -> new PressurePlateBlock(BlockSetType.WARPED, settings), AbstractBlock.Settings.copy(Blocks.WARPED_PRESSURE_PLATE).mapColor(MapColor.BLUE));
+        UMBRAL_SHELF = CinderscapesRegistry.register("umbral_shelf", ShelfBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_SHELF).mapColor(MapColor.BLUE));
+        UMBRAL_TRAPDOOR = CinderscapesRegistry.register("umbral_trapdoor", settings -> new TrapdoorBlock(BlockSetType.WARPED, settings), AbstractBlock.Settings.copy(Blocks.WARPED_TRAPDOOR).mapColor(MapColor.BLUE));
 
         UMBRAL_SIGN = CinderscapesRegistry.registerSignBlock("umbral_sign", settings -> new SignBlock(CinderscapesWoodTypes.UMBRAL, settings), AbstractBlock.Settings.copy(Blocks.WARPED_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD));
         UMBRAL_WALL_SIGN = CinderscapesRegistry.registerSignBlock("umbral_wall_sign", settings -> new WallSignBlock(CinderscapesWoodTypes.UMBRAL, settings), AbstractBlock.Settings.copy(Blocks.WARPED_WALL_SIGN).mapColor(MapColor.BLUE).sounds(BlockSoundGroup.NETHER_WOOD).lootTable(UMBRAL_SIGN.getLootTableKey()));

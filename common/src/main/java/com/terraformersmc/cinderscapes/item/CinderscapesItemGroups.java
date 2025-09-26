@@ -36,6 +36,7 @@ public class CinderscapesItemGroups {
 		final Item BUILDING_NETHER_QUARTZ = Items.SMOOTH_QUARTZ_SLAB;
 		final Item BUILDING_NETHER_STORAGE_BLOCK = Items.NETHERITE_BLOCK;
 		final Item FUNCTIONAL_NETHER_SIGN = Items.WARPED_HANGING_SIGN;
+		final Item FUNCTIONAL_NETHER_SHELF = Items.WARPED_SHELF;
 		final Item NATURAL_NYLIUM = Items.WARPED_NYLIUM;
 		final Item NATURAL_SNOWLIKE = Items.MOSS_CARPET;
 		final Item NATURAL_QUARTZ_ORE = Items.NETHER_QUARTZ_ORE;
@@ -184,8 +185,10 @@ public class CinderscapesItemGroups {
 		// FUNCTIONAL
 
 		// Wood Items
+		addGroupEntry(CinderscapesBlocks.SCORCHED_SHELF, ItemGroups.FUNCTIONAL, FUNCTIONAL_NETHER_SHELF);
 		addGroupEntry(CinderscapesBlocks.SCORCHED_SIGN, ItemGroups.FUNCTIONAL, FUNCTIONAL_NETHER_SIGN);
 		addGroupEntry(CinderscapesBlocks.SCORCHED_HANGING_SIGN, ItemGroups.FUNCTIONAL, FUNCTIONAL_NETHER_SIGN);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_SHELF, ItemGroups.FUNCTIONAL, FUNCTIONAL_NETHER_SHELF);
 		addGroupEntry(CinderscapesBlocks.UMBRAL_SIGN, ItemGroups.FUNCTIONAL, FUNCTIONAL_NETHER_SIGN);
 		addGroupEntry(CinderscapesBlocks.UMBRAL_HANGING_SIGN, ItemGroups.FUNCTIONAL, FUNCTIONAL_NETHER_SIGN);
 

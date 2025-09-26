@@ -23,14 +23,15 @@ public class CinderscapesItems {
 
     public static BlockItem SCORCHED_PLANKS;
     public static BlockItem SCORCHED_SLAB;
-
-    public static BlockItem SCORCHED_PRESSURE_PLATE;
-    public static BlockItem SCORCHED_FENCE;
-    public static BlockItem SCORCHED_TRAPDOOR;
-    public static BlockItem SCORCHED_FENCE_GATE;
     public static BlockItem SCORCHED_STAIRS;
+
     public static BlockItem SCORCHED_BUTTON;
     public static BlockItem SCORCHED_DOOR;
+    public static BlockItem SCORCHED_FENCE;
+    public static BlockItem SCORCHED_FENCE_GATE;
+    public static BlockItem SCORCHED_PRESSURE_PLATE;
+    public static BlockItem SCORCHED_SHELF;
+    public static BlockItem SCORCHED_TRAPDOOR;
 
     public static SignItem SCORCHED_SIGN;
     public static HangingSignItem SCORCHED_HANGING_SIGN;
@@ -65,13 +66,15 @@ public class CinderscapesItems {
 
     public static BlockItem UMBRAL_PLANKS;
     public static BlockItem UMBRAL_SLAB;
-    public static BlockItem UMBRAL_PRESSURE_PLATE;
-    public static BlockItem UMBRAL_FENCE;
-    public static BlockItem UMBRAL_TRAPDOOR;
-    public static BlockItem UMBRAL_FENCE_GATE;
     public static BlockItem UMBRAL_STAIRS;
+
     public static BlockItem UMBRAL_BUTTON;
     public static BlockItem UMBRAL_DOOR;
+    public static BlockItem UMBRAL_FENCE;
+    public static BlockItem UMBRAL_FENCE_GATE;
+    public static BlockItem UMBRAL_PRESSURE_PLATE;
+    public static BlockItem UMBRAL_SHELF;
+    public static BlockItem UMBRAL_TRAPDOOR;
 
     public static SignItem UMBRAL_SIGN;
     public static HangingSignItem UMBRAL_HANGING_SIGN;
@@ -177,14 +180,15 @@ public class CinderscapesItems {
 
         SCORCHED_PLANKS = CinderscapesRegistry.registerBlockItem("scorched_planks", CinderscapesBlocks.SCORCHED_PLANKS);
         SCORCHED_SLAB = CinderscapesRegistry.registerBlockItem("scorched_slab", CinderscapesBlocks.SCORCHED_SLAB);
-
-        SCORCHED_PRESSURE_PLATE = CinderscapesRegistry.registerBlockItem("scorched_pressure_plate", CinderscapesBlocks.SCORCHED_PRESSURE_PLATE);
-        SCORCHED_FENCE = CinderscapesRegistry.registerBlockItem("scorched_fence", CinderscapesBlocks.SCORCHED_FENCE);
-        SCORCHED_TRAPDOOR = CinderscapesRegistry.registerBlockItem("scorched_trapdoor", CinderscapesBlocks.SCORCHED_TRAPDOOR);
-        SCORCHED_FENCE_GATE = CinderscapesRegistry.registerBlockItem("scorched_fence_gate", CinderscapesBlocks.SCORCHED_FENCE_GATE);
         SCORCHED_STAIRS = CinderscapesRegistry.registerBlockItem("scorched_stairs", CinderscapesBlocks.SCORCHED_STAIRS);
+
         SCORCHED_BUTTON = CinderscapesRegistry.registerBlockItem("scorched_button", CinderscapesBlocks.SCORCHED_BUTTON);
         SCORCHED_DOOR = CinderscapesRegistry.registerBlockItem("scorched_door", CinderscapesBlocks.SCORCHED_DOOR);
+        SCORCHED_FENCE = CinderscapesRegistry.registerBlockItem("scorched_fence", CinderscapesBlocks.SCORCHED_FENCE);
+        SCORCHED_FENCE_GATE = CinderscapesRegistry.registerBlockItem("scorched_fence_gate", CinderscapesBlocks.SCORCHED_FENCE_GATE);
+        SCORCHED_PRESSURE_PLATE = CinderscapesRegistry.registerBlockItem("scorched_pressure_plate", CinderscapesBlocks.SCORCHED_PRESSURE_PLATE);
+        SCORCHED_SHELF = CinderscapesRegistry.registerBlockItem("scorched_shelf", CinderscapesBlocks.SCORCHED_SHELF);
+        SCORCHED_TRAPDOOR = CinderscapesRegistry.registerBlockItem("scorched_trapdoor", CinderscapesBlocks.SCORCHED_TRAPDOOR);
 
         SCORCHED_SIGN = CinderscapesRegistry.register("scorched_sign", settings -> new SignItem(CinderscapesBlocks.SCORCHED_SIGN, CinderscapesBlocks.SCORCHED_WALL_SIGN, settings), new Item.Settings().maxCount(16).useBlockPrefixedTranslationKey());
         SCORCHED_HANGING_SIGN = CinderscapesRegistry.register("scorched_hanging_sign", settings -> new HangingSignItem(CinderscapesBlocks.SCORCHED_HANGING_SIGN, CinderscapesBlocks.SCORCHED_WALL_HANGING_SIGN, settings), new Item.Settings().maxCount(16).useBlockPrefixedTranslationKey());
@@ -219,13 +223,15 @@ public class CinderscapesItems {
 
         UMBRAL_PLANKS = CinderscapesRegistry.registerBlockItem("umbral_planks", CinderscapesBlocks.UMBRAL_PLANKS);
         UMBRAL_SLAB = CinderscapesRegistry.registerBlockItem("umbral_slab", CinderscapesBlocks.UMBRAL_SLAB);
-        UMBRAL_PRESSURE_PLATE = CinderscapesRegistry.registerBlockItem("umbral_pressure_plate", CinderscapesBlocks.UMBRAL_PRESSURE_PLATE);
-        UMBRAL_FENCE = CinderscapesRegistry.registerBlockItem("umbral_fence", CinderscapesBlocks.UMBRAL_FENCE);
-        UMBRAL_TRAPDOOR = CinderscapesRegistry.registerBlockItem("umbral_trapdoor", CinderscapesBlocks.UMBRAL_TRAPDOOR);
-        UMBRAL_FENCE_GATE = CinderscapesRegistry.registerBlockItem("umbral_fence_gate", CinderscapesBlocks.UMBRAL_FENCE_GATE);
         UMBRAL_STAIRS = CinderscapesRegistry.registerBlockItem("umbral_stairs", CinderscapesBlocks.UMBRAL_STAIRS);
+
         UMBRAL_BUTTON = CinderscapesRegistry.registerBlockItem("umbral_button", CinderscapesBlocks.UMBRAL_BUTTON);
         UMBRAL_DOOR = CinderscapesRegistry.registerBlockItem("umbral_door", CinderscapesBlocks.UMBRAL_DOOR);
+        UMBRAL_FENCE = CinderscapesRegistry.registerBlockItem("umbral_fence", CinderscapesBlocks.UMBRAL_FENCE);
+        UMBRAL_FENCE_GATE = CinderscapesRegistry.registerBlockItem("umbral_fence_gate", CinderscapesBlocks.UMBRAL_FENCE_GATE);
+        UMBRAL_PRESSURE_PLATE = CinderscapesRegistry.registerBlockItem("umbral_pressure_plate", CinderscapesBlocks.UMBRAL_PRESSURE_PLATE);
+        UMBRAL_SHELF = CinderscapesRegistry.registerBlockItem("umbral_shelf", CinderscapesBlocks.UMBRAL_SHELF);
+        UMBRAL_TRAPDOOR = CinderscapesRegistry.registerBlockItem("umbral_trapdoor", CinderscapesBlocks.UMBRAL_TRAPDOOR);
 
         UMBRAL_SIGN = CinderscapesRegistry.register("umbral_sign", settings -> new SignItem(CinderscapesBlocks.UMBRAL_SIGN, CinderscapesBlocks.UMBRAL_WALL_SIGN, settings), new Item.Settings().maxCount(16).useBlockPrefixedTranslationKey());
         UMBRAL_HANGING_SIGN = CinderscapesRegistry.register("umbral_hanging_sign", settings -> new HangingSignItem(CinderscapesBlocks.UMBRAL_HANGING_SIGN, CinderscapesBlocks.UMBRAL_WALL_HANGING_SIGN, settings), new Item.Settings().maxCount(16).useBlockPrefixedTranslationKey());

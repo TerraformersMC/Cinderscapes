@@ -42,6 +42,7 @@ public class CinderscapesModelProvider extends FabricModelProvider {
 
         // Scorched wood set
         generator.registerCubeAllModelTexturePool(CinderscapesBlockFamilies.SCORCHED.getBaseBlock()).family(CinderscapesBlockFamilies.SCORCHED);
+        generator.registerShelf(CinderscapesBlocks.SCORCHED_SHELF, CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
         generator.createLogTexturePool(CinderscapesBlocks.SCORCHED_STEM).log(CinderscapesBlocks.SCORCHED_STEM).wood(CinderscapesBlocks.SCORCHED_HYPHAE);
         generator.createLogTexturePool(CinderscapesBlocks.STRIPPED_SCORCHED_STEM).log(CinderscapesBlocks.STRIPPED_SCORCHED_STEM).wood(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE);
         generator.registerHangingSign(CinderscapesBlockFamilies.SCORCHED.getBaseBlock(), CinderscapesBlocks.SCORCHED_HANGING_SIGN, CinderscapesBlocks.SCORCHED_WALL_HANGING_SIGN);
@@ -81,6 +82,7 @@ public class CinderscapesModelProvider extends FabricModelProvider {
 
         // Umbral wood set
         generator.registerCubeAllModelTexturePool(CinderscapesBlockFamilies.UMBRAL.getBaseBlock()).family(CinderscapesBlockFamilies.UMBRAL);
+        generator.registerShelf(CinderscapesBlocks.UMBRAL_SHELF, CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
         generator.createLogTexturePool(CinderscapesBlocks.UMBRAL_STEM).log(CinderscapesBlocks.UMBRAL_STEM).wood(CinderscapesBlocks.UMBRAL_HYPHAE);
         generator.createLogTexturePool(CinderscapesBlocks.STRIPPED_UMBRAL_STEM).log(CinderscapesBlocks.STRIPPED_UMBRAL_STEM).wood(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE);
         generator.registerHangingSign(CinderscapesBlockFamilies.UMBRAL.getBaseBlock(), CinderscapesBlocks.UMBRAL_HANGING_SIGN, CinderscapesBlocks.UMBRAL_WALL_HANGING_SIGN);

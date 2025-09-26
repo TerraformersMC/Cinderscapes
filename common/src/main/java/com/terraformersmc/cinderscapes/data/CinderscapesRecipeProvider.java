@@ -218,6 +218,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				offerBarkBlockRecipe(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE, CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
 				// (no scorched boat at this time)
 				offerHangingSignRecipe(CinderscapesItems.SCORCHED_HANGING_SIGN, CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
+				offerShelfRecipe(CinderscapesBlocks.SCORCHED_SHELF, CinderscapesItems.STRIPPED_SCORCHED_STEM);
 
 				generateFamily(CinderscapesBlockFamilies.UMBRAL, enabledFeatures);
 				offerPlanksRecipe(CinderscapesBlocks.UMBRAL_PLANKS, CinderscapesItemTags.UMBRAL_STEMS, 4);
@@ -225,6 +226,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				offerBarkBlockRecipe(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE, CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
 				// (no umbral boat at this time)
 				offerHangingSignRecipe(CinderscapesItems.UMBRAL_HANGING_SIGN, CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
+				offerShelfRecipe(CinderscapesBlocks.UMBRAL_SHELF, CinderscapesItems.STRIPPED_UMBRAL_STEM);
 			}
 		};
 	}

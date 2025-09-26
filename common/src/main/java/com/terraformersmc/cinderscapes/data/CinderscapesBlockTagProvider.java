@@ -132,6 +132,10 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 				.add(CinderscapesBlocks.SCORCHED_PRESSURE_PLATE)
 				.add(CinderscapesBlocks.UMBRAL_PRESSURE_PLATE);
 
+		valueLookupBuilder(BlockTags.WOODEN_SHELVES)
+				.add(CinderscapesBlocks.SCORCHED_SHELF)
+				.add(CinderscapesBlocks.UMBRAL_SHELF);
+
 		valueLookupBuilder(BlockTags.WOODEN_SLABS)
 				.add(CinderscapesBlocks.SCORCHED_SLAB)
 				.add(CinderscapesBlocks.UMBRAL_SLAB);

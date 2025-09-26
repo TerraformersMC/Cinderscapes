@@ -104,6 +104,7 @@ public class CinderscapesBlockLootTableProvider extends FabricBlockLootTableProv
 		addDrop(CinderscapesBlocks.SCORCHED_HYPHAE);
 		addDrop(CinderscapesBlocks.SCORCHED_PLANKS);
 		addDrop(CinderscapesBlocks.SCORCHED_PRESSURE_PLATE);
+		addDrop(CinderscapesBlocks.SCORCHED_SHELF);
 		addDrop(CinderscapesBlocks.SCORCHED_SIGN);
 		addDrop(CinderscapesBlocks.SCORCHED_SLAB, this::slabDrops);
 		addDrop(CinderscapesBlocks.SCORCHED_STAIRS);
@@ -123,6 +124,7 @@ public class CinderscapesBlockLootTableProvider extends FabricBlockLootTableProv
 		addDrop(CinderscapesBlocks.UMBRAL_HYPHAE);
 		addDrop(CinderscapesBlocks.UMBRAL_PLANKS);
 		addDrop(CinderscapesBlocks.UMBRAL_PRESSURE_PLATE);
+		addDrop(CinderscapesBlocks.UMBRAL_SHELF);
 		addDrop(CinderscapesBlocks.UMBRAL_SIGN);
 		addDrop(CinderscapesBlocks.UMBRAL_SLAB, this::slabDrops);
 		addDrop(CinderscapesBlocks.UMBRAL_STAIRS);
@@ -171,7 +173,7 @@ public class CinderscapesBlockLootTableProvider extends FabricBlockLootTableProv
 
 		// multi-layer drops
 		addDrop(CinderscapesBlocks.ASH, block -> LootTable.builder().pool(LootPool.builder().conditionally(
-				EntityPropertiesLootCondition.create(LootContext.EntityTarget.THIS))
+				EntityPropertiesLootCondition.create(LootContext.EntityReference.THIS))
 					.with(AlternativeEntry.builder(
 							AlternativeEntry.builder(
 									AshLayerBlock.LAYERS.getValues(), layers -> ItemEntry.builder(CinderscapesItems.ASH_PILE)
@@ -182,7 +184,7 @@ public class CinderscapesBlockLootTableProvider extends FabricBlockLootTableProv
 										AshLayerBlock.LAYERS.getValues(), layers -> layers == 8 ? ItemEntry.builder(CinderscapesBlocks.ASH_BLOCK) : ItemEntry.builder(CinderscapesBlocks.ASH)
 												.conditionally(BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(AshLayerBlock.LAYERS, layers)))
 												.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(layers)))
-							)
+								)
 					))
 		));
 	}
