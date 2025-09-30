@@ -222,6 +222,12 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 		valueLookupBuilder(ConventionalBlockTags.ORES)
 				.add(CinderscapesBlocks.SULFUR_ORE);
 
+		valueLookupBuilder(ConventionalBlockTags.ORES_IN_GROUND_NETHERRACK)
+				.add(CinderscapesBlocks.ROSE_QUARTZ_ORE)
+				.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE)
+				.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE)
+				.add(CinderscapesBlocks.SULFUR_ORE);
+
 		valueLookupBuilder(ConventionalBlockTags.QUARTZ_ORES)
 				.add(CinderscapesBlocks.ROSE_QUARTZ_ORE)
 				.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE)
