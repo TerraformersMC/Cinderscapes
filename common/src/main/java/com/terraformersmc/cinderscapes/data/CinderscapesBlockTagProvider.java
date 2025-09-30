@@ -218,7 +218,13 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 		getOrCreateTagBuilder(ConventionalBlockTags.ORES)
 				.add(CinderscapesBlocks.SULFUR_ORE);
 
-		getOrCreateTagBuilder(ConventionalBlockTags.QUARTZ_ORES)
+        getOrCreateTagBuilder(ConventionalBlockTags.ORES_IN_GROUND_NETHERRACK)
+				.add(CinderscapesBlocks.ROSE_QUARTZ_ORE)
+				.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE)
+				.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE)
+				.add(CinderscapesBlocks.SULFUR_ORE);
+
+        getOrCreateTagBuilder(ConventionalBlockTags.QUARTZ_ORES)
 				.add(CinderscapesBlocks.ROSE_QUARTZ_ORE)
 				.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE)
 				.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE);

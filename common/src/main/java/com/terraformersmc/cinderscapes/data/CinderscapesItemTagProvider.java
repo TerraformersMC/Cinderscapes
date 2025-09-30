@@ -140,7 +140,13 @@ public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvid
 				.add(CinderscapesBlocks.SULFUR_QUARTZ_BRICKS.asItem())
 				.add(CinderscapesBlocks.SULFUR_QUARTZ_PILLAR.asItem());
 
-		getOrCreateTagBuilder(ConventionalItemTags.QUARTZ_ORES)
+        getOrCreateTagBuilder(ConventionalItemTags.ORES_IN_GROUND_NETHERRACK)
+				.add(CinderscapesBlocks.ROSE_QUARTZ_ORE.asItem())
+				.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE.asItem())
+				.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE.asItem())
+				.add(CinderscapesBlocks.SULFUR_ORE.asItem());
+
+        getOrCreateTagBuilder(ConventionalItemTags.QUARTZ_ORES)
 				.add(CinderscapesBlocks.ROSE_QUARTZ_ORE.asItem())
 				.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE.asItem())
 				.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE.asItem());
