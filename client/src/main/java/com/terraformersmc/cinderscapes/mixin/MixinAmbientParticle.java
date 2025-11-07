@@ -3,15 +3,15 @@ package com.terraformersmc.cinderscapes.mixin;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import net.minecraft.particle.ParticleEffect;
-import net.minecraft.world.biome.BiomeParticleConfig;
+import net.minecraft.world.attribute.AmbientParticle;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-@Mixin(BiomeParticleConfig.class)
-public class MixinBiomeParticleConfig {
+@Mixin(AmbientParticle.class)
+public class MixinAmbientParticle {
     @Shadow
     @Mutable
     @Final

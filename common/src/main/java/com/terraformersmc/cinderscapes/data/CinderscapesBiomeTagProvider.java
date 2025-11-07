@@ -27,12 +27,6 @@ public class CinderscapesBiomeTagProvider extends FabricTagProvider<Biome> {
 				.addOptional(CinderscapesBiomes.LUMINOUS_GROVE)
 				.addOptional(CinderscapesBiomes.QUARTZ_CAVERN);
 
-		builder(BiomeTags.SNOW_GOLEM_MELTS)
-				.addOptional(CinderscapesBiomes.ASHY_SHOALS)
-				.addOptional(CinderscapesBiomes.BLACKSTONE_SHALES)
-				.addOptional(CinderscapesBiomes.LUMINOUS_GROVE)
-				.addOptional(CinderscapesBiomes.QUARTZ_CAVERN);
-
 
 		/*
 		 * Conventional biome tags

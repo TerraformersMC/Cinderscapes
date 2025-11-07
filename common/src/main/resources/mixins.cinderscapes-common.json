@@ -6,8 +6,7 @@
     "MixinAlterGroundTreeDecorator",
     "MixinNetherrackBlock",
     "MixinPlantBlock",
-    "MixinServerWorld",
-    "OverworldBiomeCreatorAccessor"
+    "MixinServerWorld"
   ],
   "client": [
   ],

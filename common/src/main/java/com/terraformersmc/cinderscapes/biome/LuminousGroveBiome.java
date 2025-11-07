@@ -2,21 +2,18 @@ package com.terraformersmc.cinderscapes.biome;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
-import com.terraformersmc.cinderscapes.mixin.OverworldBiomeCreatorAccessor;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registerable;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
-import net.minecraft.sound.MusicType;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.world.attribute.*;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
-import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
@@ -28,6 +25,9 @@ import net.minecraft.world.gen.feature.NetherPlacedFeatures;
 import net.minecraft.world.gen.feature.OrePlacedFeatures;
 import net.minecraft.world.gen.feature.PlacedFeature;
 
+import java.util.List;
+import java.util.Optional;
+
 public class LuminousGroveBiome {
     public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.35F, 0.3F, 0.0F, 0.0F, 0.0F, 0.0F, 0.225F);
 
@@ -38,17 +38,19 @@ public class LuminousGroveBiome {
                 .precipitation(false)
                 .temperature(2.0F)
                 .downfall(0.0F)
-                .effects((new BiomeEffects.Builder())
-                        .skyColor(OverworldBiomeCreatorAccessor.cinderscapes$callGetSkyColor(2.0f))
+                .effects(new BiomeEffects.Builder()
                         .waterColor(4159204)
-                        .waterFogColor(329011)
-                        .fogColor(2297392)
-                        .particleConfig(new BiomeParticleConfig(ParticleTypes.WARPED_SPORE, 0.01428F))
-                        .loopSound(SoundEvents.AMBIENT_WARPED_FOREST_LOOP)
-                        .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0D))
-                        .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111D))
-                        .music(MusicType.createIngameMusic(Registries.SOUND_EVENT.getEntry(CinderscapesSoundEvents.LUMINOUS_GROVE_MUSIC)))
-                        .build())
+                        .build()
+                )
+                .addEnvironmentAttributes(EnvironmentAttributeMap.builder()
+                        .with(EnvironmentAttributes.AMBIENT_PARTICLES_VISUAL, List.of(new AmbientParticle(ParticleTypes.WARPED_SPORE, 0.01428F)))
+                        .with(EnvironmentAttributes.AMBIENT_SOUNDS_AUDIO, new AmbientSounds(Optional.of(SoundEvents.AMBIENT_WARPED_FOREST_LOOP), Optional.of(new BiomeMoodSound(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0D)), List.of(new BiomeAdditionsSound(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111D))))
+                        .with(EnvironmentAttributes.BACKGROUND_MUSIC_AUDIO, new BackgroundMusic(CinderscapesSoundEvents.LUMINOUS_GROVE_MUSIC))
+                        .with(EnvironmentAttributes.FOG_COLOR_VISUAL, 2297392)
+                        .with(EnvironmentAttributes.SNOW_GOLEM_MELTS_GAMEPLAY, true)
+                        .with(EnvironmentAttributes.WATER_FOG_COLOR_VISUAL, 329011)
+                        .build()
+                )
                 .build();
     }
 
