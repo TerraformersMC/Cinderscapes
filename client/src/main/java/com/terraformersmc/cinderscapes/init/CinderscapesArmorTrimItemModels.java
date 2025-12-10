@@ -13,7 +13,7 @@ import java.util.List;
 
 public final class CinderscapesArmorTrimItemModels {
     private static final List<String> ARMORS = List.of("helmet", "chestplate", "leggings", "boots");
-    private static final List<String> ARMOR_MATERIALS = List.of("leather", "chainmail", "iron", "golden", "diamond", "netherite");
+    private static final List<String> ARMOR_MATERIALS = List.of("leather", "copper", "chainmail", "iron", "golden", "diamond", "netherite");
 
     @SuppressWarnings("UnnecessaryReturnStatement")
     private CinderscapesArmorTrimItemModels() {
@@ -33,7 +33,7 @@ public final class CinderscapesArmorTrimItemModels {
          * Add trim materials to vanilla atlases.
          */
         registerAddTrimsToAtlas("armor_trims");
-        registerAddTrimsToAtlas("blocks");
+        registerAddTrimsToAtlas("items");
     }
 
     private static void registerAddTrimsToArmor(String armor, String armorMaterial) {
