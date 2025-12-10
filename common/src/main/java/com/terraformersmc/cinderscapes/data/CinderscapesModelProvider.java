@@ -244,6 +244,10 @@ public class CinderscapesModelProvider extends FabricModelProvider {
         this.registerArmorTrims(generator, Items.LEATHER_CHESTPLATE, EquipmentAssetKeys.LEATHER, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, true);
         this.registerArmorTrims(generator, Items.LEATHER_LEGGINGS, EquipmentAssetKeys.LEATHER, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, true);
         this.registerArmorTrims(generator, Items.LEATHER_BOOTS, EquipmentAssetKeys.LEATHER, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, true);
+        this.registerArmorTrims(generator, Items.COPPER_HELMET, EquipmentAssetKeys.COPPER, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
+        this.registerArmorTrims(generator, Items.COPPER_CHESTPLATE, EquipmentAssetKeys.COPPER, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
+        this.registerArmorTrims(generator, Items.COPPER_LEGGINGS, EquipmentAssetKeys.COPPER, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
+        this.registerArmorTrims(generator, Items.COPPER_BOOTS, EquipmentAssetKeys.COPPER, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
         this.registerArmorTrims(generator, Items.CHAINMAIL_HELMET, EquipmentAssetKeys.CHAINMAIL, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
         this.registerArmorTrims(generator, Items.CHAINMAIL_CHESTPLATE, EquipmentAssetKeys.CHAINMAIL, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
         this.registerArmorTrims(generator, Items.CHAINMAIL_LEGGINGS, EquipmentAssetKeys.CHAINMAIL, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
