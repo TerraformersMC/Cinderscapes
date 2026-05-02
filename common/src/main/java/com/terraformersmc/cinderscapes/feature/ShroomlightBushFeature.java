@@ -1,26 +1,26 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
-public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
+public class ShroomlightBushFeature extends Feature<NoneFeatureConfiguration> {
 
     public ShroomlightBushFeature() {
-        super(DefaultFeatureConfig.CODEC);
+        super(NoneFeatureConfiguration.CODEC);
     }
 
     // TODO: Rewrite using the upcoming shapes library
     // TODO: Rewrite using the CountSafelistRangeFloorDecorator
     @Override
-    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
-        BlockPos pos = context.getOrigin();
-        StructureWorldAccess world = context.getWorld();
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        BlockPos pos = context.origin();
+        WorldGenLevel world = context.level();
 
         while (true) {
             search: {
@@ -36,7 +36,7 @@ public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
                 }
 
                 // If there's air under the blob then move down
-                if (world.isAir(pos.down())) {
+                if (world.isEmptyBlock(pos.below())) {
                     break search;
                 }
 
@@ -44,11 +44,11 @@ public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
                 for (int x = -1; x <= 1; x++) {
                     for (int y = -1; y <= 2; y++) {
                         for (int z = -1; z <= 1; z++) {
-                            Block block = world.getBlockState(pos.up(y).north(z).east(x)).getBlock();
+                            Block block = world.getBlockState(pos.above(y).north(z).east(x)).getBlock();
                             if (y >= 0) {
                                 if (block != Blocks.AIR) break search;
                             } else {
-                                if (block != Blocks.NETHERRACK && !block.getDefaultState().isIn(BlockTags.WART_BLOCKS) && !block.getDefaultState().isIn(BlockTags.NYLIUM)) break search;
+                                if (block != Blocks.NETHERRACK && !block.defaultBlockState().is(BlockTags.WART_BLOCKS) && !block.defaultBlockState().is(BlockTags.NYLIUM)) break search;
                             }
                         }
                     }
@@ -61,11 +61,11 @@ public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
                 for (int xi = -1; xi <= 1 ; xi++) {
                     for (int yi = -1; yi <= 1 ; yi++) {
                         for (int zi = -1; zi <= 1 ; zi++) {
-                            BlockPos question = pos.east(xi).up(yi).south(zi);
+                            BlockPos question = pos.east(xi).above(yi).south(zi);
                             // This is literally just the formula for a sphere, so yeah
                             // If the block in question is within the sphere then fill it
                             if (Math.sqrt((xi*xi)+(yi*yi)+(zi*zi)) <= 1.5) {
-                                world.setBlockState(question, Blocks.SHROOMLIGHT.getDefaultState(), 0);
+                                world.setBlock(question, Blocks.SHROOMLIGHT.defaultBlockState(), 0);
                             }
                         }
                     }
@@ -75,7 +75,7 @@ public class ShroomlightBushFeature extends Feature<DefaultFeatureConfig> {
                 return true;
             }
 
-            pos = pos.down();
+            pos = pos.below();
         }
     }
 }

@@ -5,19 +5,19 @@ import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
-import net.minecraft.block.Blocks;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.BlockTags;
 
 import java.util.concurrent.CompletableFuture;
 
 public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProvider {
-	protected CinderscapesBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+	protected CinderscapesBlockTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 
 	@Override
-	public void configure(RegistryWrapper.WrapperLookup registries) {
+	public void addTags(HolderLookup.Provider registries) {
 		/*
 		 * Basic block tags
 		 */
@@ -152,7 +152,7 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 		/*
 		 * Tool block tags
 		 */
-		valueLookupBuilder(BlockTags.AXE_MINEABLE)
+		valueLookupBuilder(BlockTags.MINEABLE_WITH_AXE)
 				.add(CinderscapesBlocks.SCORCHED_HYPHAE)
 				.add(CinderscapesBlocks.SCORCHED_STEM)
 				.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE)
@@ -164,11 +164,11 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 				.add(CinderscapesBlocks.UMBRAL_HYPHAE)
 				.add(CinderscapesBlocks.UMBRAL_STEM);
 
-		valueLookupBuilder(BlockTags.HOE_MINEABLE)
+		valueLookupBuilder(BlockTags.MINEABLE_WITH_HOE)
 				.add(CinderscapesBlocks.UMBRAL_FLESH_BLOCK)
 				.add(CinderscapesBlocks.UMBRAL_WART_BLOCK);
 
-		valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
+		valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
 				.add(CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK)
 				.add(CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK)
 				.add(CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK)
@@ -211,7 +211,7 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 				.add(CinderscapesBlocks.SULFUR_QUARTZ_STAIRS)
 				.add(CinderscapesBlocks.UMBRAL_NYLIUM);
 
-		valueLookupBuilder(BlockTags.SHOVEL_MINEABLE)
+		valueLookupBuilder(BlockTags.MINEABLE_WITH_SHOVEL)
 				.add(CinderscapesBlocks.ASH)
 				.add(CinderscapesBlocks.ASH_BLOCK);
 

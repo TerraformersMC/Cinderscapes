@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.terraformersmc.cinderscapes.Cinderscapes;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
 import net.ramixin.mixson.inline.EventContext;
 import net.ramixin.mixson.inline.Mixson;
 import net.ramixin.mixson.inline.MixsonEvent;
@@ -39,7 +39,7 @@ public final class CinderscapesArmorTrimItemModels {
     private static void registerAddTrimsToArmor(String armor, String armorMaterial) {
         Mixson.registerEvent(
                 Mixson.DEFAULT_PRIORITY,
-                id -> Identifier.ofVanilla("items/" + armorMaterial + "_" + armor).equals(id),
+                id -> Identifier.withDefaultNamespace("items/" + armorMaterial + "_" + armor).equals(id),
                 Cinderscapes.MOD_ID + ":add_trims_to_" + armorMaterial + "_" + armor,
                 new MixsonEvent<>() {
                     @Override
@@ -73,7 +73,7 @@ public final class CinderscapesArmorTrimItemModels {
     private static void registerAddTrimsToAtlas(String name) {
         Mixson.registerEvent(
                 Mixson.DEFAULT_PRIORITY,
-                id -> Identifier.ofVanilla("atlases/" + name).equals(id),
+                id -> Identifier.withDefaultNamespace("atlases/" + name).equals(id),
                 Cinderscapes.MOD_ID + ":add_trims_to_" + name + "_atlas",
                 new MixsonEvent<>() {
                     @Override
@@ -107,14 +107,14 @@ public final class CinderscapesArmorTrimItemModels {
     }
 
     private static Identifier trimMaterialId(String trim) {
-        return Identifier.of(Cinderscapes.MOD_ID, trim);
+        return Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, trim);
     }
 
     private static Identifier itemModelId(String armor, String armorMaterial, String trim) {
-        return Identifier.of(Cinderscapes.MOD_ID, "item/" + armorMaterial + "_" + armor + "_" + trim + "_trim");
+        return Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, "item/" + armorMaterial + "_" + armor + "_" + trim + "_trim");
     }
 
     private static Identifier paletteId(String trim) {
-        return Identifier.of(Cinderscapes.MOD_ID, "trims/color_palettes/" + trim);
+        return Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, "trims/color_palettes/" + trim);
     }
 }

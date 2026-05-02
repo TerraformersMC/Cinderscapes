@@ -7,12 +7,12 @@ import com.terraformersmc.terraform.shapes.impl.Shapes;
 import com.terraformersmc.terraform.shapes.impl.filler.SimpleFiller;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.RotateLayer;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 public class ShaleFeature extends Feature<ShaleFeatureConfig> {
     public ShaleFeature() {
@@ -20,18 +20,18 @@ public class ShaleFeature extends Feature<ShaleFeatureConfig> {
     }
 
     @Override
-    public boolean generate(FeatureContext<ShaleFeatureConfig> context) {
-        Random random = context.getRandom();
-        ShaleFeatureConfig config = context.getConfig();
-        StructureWorldAccess world = context.getWorld();
-        BlockPos pos = context.getOrigin();
+    public boolean place(FeaturePlaceContext<ShaleFeatureConfig> context) {
+        RandomSource random = context.random();
+        ShaleFeatureConfig config = context.config();
+        WorldGenLevel world = context.level();
+        BlockPos pos = context.origin();
 
-        if (world.isAir(pos) || !world.getBlockState(pos.up()).isAir() || world.getBlockState(pos).isOf(Blocks.BLACKSTONE)) {
+        if (world.isEmptyBlock(pos) || !world.getBlockState(pos.above()).isAir() || world.getBlockState(pos).is(Blocks.BLACKSTONE)) {
             return false;
         }
 
         float radius = random.nextInt(config.max() - config.min()) + config.min();
-        if (world.getBlockState(pos).isOf(Blocks.LAVA)) {
+        if (world.getBlockState(pos).is(Blocks.LAVA)) {
             radius = radius * 1.5f;
         }
         float ztheta = (random.nextFloat() * 30) - 15;

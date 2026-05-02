@@ -1,15 +1,15 @@
 package com.terraformersmc.cinderscapes.surfacebuilders;
 
 import com.terraformersmc.biolith.api.surface.BiolithSurfaceBuilder;
-import net.minecraft.block.BlockState;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.BiomeTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.BiomeAccess;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.gen.chunk.BlockColumn;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.Holder;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeManager;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.BlockColumn;
 
 public class LuminousGroveSurfaceBuilder extends BiolithSurfaceBuilder {
 	private final BlockState topMaterial;
@@ -23,19 +23,19 @@ public class LuminousGroveSurfaceBuilder extends BiolithSurfaceBuilder {
     }
 
     @Override
-    public void generate(BiomeAccess biomeAccess, BlockColumn column, Random rand, Chunk chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
+    public void generate(BiomeManager biomeAccess, BlockColumn column, RandomSource rand, ChunkAccess chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
         BlockPos pos = new BlockPos(x, -128, z);
         boolean inAir = false;
 
         // Set in-biome netherrack
         // TODO: It would be nicer to make this start below the ceiling bedrock.
-        for (int y = chunk.getTopYInclusive(); y >= seaLevel - 1; --y) {
-            BlockState state = column.getState(y);
+        for (int y = chunk.getMaxY(); y >= seaLevel - 1; --y) {
+            BlockState state = column.getBlock(y);
             if (state.isAir()) {
                 inAir = true;
             } else {
-                if (inAir && state.isOf(lowMaterial.getBlock()) && super.filterBiome(biomeAccess.getBiome(pos.withY(y)))) {
-                    column.setState(y, rand.nextFloat() < 0.99f ? topMaterial : midMaterial);
+                if (inAir && state.is(lowMaterial.getBlock()) && super.filterBiome(biomeAccess.getBiome(pos.atY(y)))) {
+                    column.setBlock(y, rand.nextFloat() < 0.99f ? topMaterial : midMaterial);
                 }
                 inAir = false;
             }
@@ -43,7 +43,7 @@ public class LuminousGroveSurfaceBuilder extends BiolithSurfaceBuilder {
     }
 
     @Override
-    public boolean filterBiome(RegistryEntry<Biome> biome) {
-        return biome.isIn(BiomeTags.IS_NETHER);
+    public boolean filterBiome(Holder<Biome> biome) {
+        return biome.is(BiomeTags.IS_NETHER);
     }
 }

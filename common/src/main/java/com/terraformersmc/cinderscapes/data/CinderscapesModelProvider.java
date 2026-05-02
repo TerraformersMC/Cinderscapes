@@ -3,30 +3,43 @@ package com.terraformersmc.cinderscapes.data;
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.block.GhastlyEctoplasmBlock;
 import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
-import com.terraformersmc.cinderscapes.init.*;
+import com.terraformersmc.cinderscapes.init.CinderscapesArmorTrimAssets;
+import com.terraformersmc.cinderscapes.init.CinderscapesArmorTrimMaterials;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlockFamilies;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
+import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.data.*;
-import net.minecraft.client.render.model.json.WeightedVariant;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.item.equipment.EquipmentAsset;
-import net.minecraft.item.equipment.EquipmentAssetKeys;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Direction;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.blockstates.PropertyDispatch;
+import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.model.ModelTemplate;
+import net.minecraft.client.data.models.model.ModelLocationUtils;
+import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.equipment.EquipmentAsset;
+import net.minecraft.world.item.equipment.EquipmentAssets;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.resources.Identifier;
+import net.minecraft.core.Direction;
 
 import java.util.List;
 import java.util.Optional;
 
 public class CinderscapesModelProvider extends FabricModelProvider {
-    private static final List<ItemModelGenerator.TrimMaterial> TRIM_MATERIALS = List.of(
-            new ItemModelGenerator.TrimMaterial(CinderscapesArmorTrimAssets.ROSE_QUARTZ, CinderscapesArmorTrimMaterials.ROSE_QUARTZ),
-            new ItemModelGenerator.TrimMaterial(CinderscapesArmorTrimAssets.SMOKY_QUARTZ, CinderscapesArmorTrimMaterials.SMOKY_QUARTZ),
-            new ItemModelGenerator.TrimMaterial(CinderscapesArmorTrimAssets.SULFUR_QUARTZ, CinderscapesArmorTrimMaterials.SULFUR_QUARTZ)
+    private static final List<ItemModelGenerators.TrimMaterialData> TRIM_MATERIALS = List.of(
+            new ItemModelGenerators.TrimMaterialData(CinderscapesArmorTrimAssets.ROSE_QUARTZ, CinderscapesArmorTrimMaterials.ROSE_QUARTZ),
+            new ItemModelGenerators.TrimMaterialData(CinderscapesArmorTrimAssets.SMOKY_QUARTZ, CinderscapesArmorTrimMaterials.SMOKY_QUARTZ),
+            new ItemModelGenerators.TrimMaterialData(CinderscapesArmorTrimAssets.SULFUR_QUARTZ, CinderscapesArmorTrimMaterials.SULFUR_QUARTZ)
     );
 
     public CinderscapesModelProvider(FabricDataOutput output) {
@@ -34,45 +47,45 @@ public class CinderscapesModelProvider extends FabricModelProvider {
     }
 
     @Override
-    public void generateBlockStateModels(BlockStateModelGenerator generator) {
+    public void generateBlockStateModels(BlockModelGenerators generator) {
 
         /////////////////
         // Ashy Shoals //
         /////////////////
 
         // Scorched wood set
-        generator.registerCubeAllModelTexturePool(CinderscapesBlockFamilies.SCORCHED.getBaseBlock()).family(CinderscapesBlockFamilies.SCORCHED);
-        generator.registerShelf(CinderscapesBlocks.SCORCHED_SHELF, CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
-        generator.createLogTexturePool(CinderscapesBlocks.SCORCHED_STEM).log(CinderscapesBlocks.SCORCHED_STEM).wood(CinderscapesBlocks.SCORCHED_HYPHAE);
-        generator.createLogTexturePool(CinderscapesBlocks.STRIPPED_SCORCHED_STEM).log(CinderscapesBlocks.STRIPPED_SCORCHED_STEM).wood(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE);
-        generator.registerHangingSign(CinderscapesBlockFamilies.SCORCHED.getBaseBlock(), CinderscapesBlocks.SCORCHED_HANGING_SIGN, CinderscapesBlocks.SCORCHED_WALL_HANGING_SIGN);
+        generator.family(CinderscapesBlockFamilies.SCORCHED.getBaseBlock()).generateFor(CinderscapesBlockFamilies.SCORCHED);
+        generator.createShelf(CinderscapesBlocks.SCORCHED_SHELF, CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
+        generator.woodProvider(CinderscapesBlocks.SCORCHED_STEM).logWithHorizontal(CinderscapesBlocks.SCORCHED_STEM).wood(CinderscapesBlocks.SCORCHED_HYPHAE);
+        generator.woodProvider(CinderscapesBlocks.STRIPPED_SCORCHED_STEM).logWithHorizontal(CinderscapesBlocks.STRIPPED_SCORCHED_STEM).wood(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE);
+        generator.createHangingSign(CinderscapesBlockFamilies.SCORCHED.getBaseBlock(), CinderscapesBlocks.SCORCHED_HANGING_SIGN, CinderscapesBlocks.SCORCHED_WALL_HANGING_SIGN);
         // Item models missed by vanilla code
         this.registerBlockItemModel(generator, CinderscapesBlocks.SCORCHED_FENCE_GATE);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SCORCHED_PLANKS);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SCORCHED_PRESSURE_PLATE);
 
         // Misc. vegetation
-        generator.registerFlowerPotPlantAndItem(CinderscapesBlocks.SCORCHED_SHRUB, CinderscapesBlocks.POTTED_SCORCHED_SHRUB, BlockStateModelGenerator.CrossType.NOT_TINTED);
-        generator.registerTintableCrossBlockState(CinderscapesBlocks.SCORCHED_SPROUTS, BlockStateModelGenerator.CrossType.NOT_TINTED);
-        generator.registerTintableCross(CinderscapesBlocks.SCORCHED_TENDRILS, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        generator.createPlantWithDefaultItem(CinderscapesBlocks.SCORCHED_SHRUB, CinderscapesBlocks.POTTED_SCORCHED_SHRUB, BlockModelGenerators.PlantType.NOT_TINTED);
+        generator.createCrossBlock(CinderscapesBlocks.SCORCHED_SPROUTS, BlockModelGenerators.PlantType.NOT_TINTED);
+        generator.createCrossBlockWithDefaultItem(CinderscapesBlocks.SCORCHED_TENDRILS, BlockModelGenerators.PlantType.NOT_TINTED);
         this.registerPottedPlantOnly(generator, CinderscapesBlocks.SCORCHED_TENDRILS, CinderscapesBlocks.POTTED_SCORCHED_TENDRILS, true);
-        generator.registerFlowerPotPlant(CinderscapesBlocks.PYRACINTH, CinderscapesBlocks.POTTED_PYRACINTH, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        generator.createPlant(CinderscapesBlocks.PYRACINTH, CinderscapesBlocks.POTTED_PYRACINTH, BlockModelGenerators.PlantType.NOT_TINTED);
 
         // BlockStateModelGenerator.registerSnows() equivalent  (Ash is a snow-like layered powder block)
         // We have to make models inheriting from vanilla's hand-rolled snow models...
-        TextureMap ashTexture = TextureMap.all(CinderscapesBlocks.ASH);
-        Identifier ashModelId = Models.CUBE_ALL.upload(CinderscapesBlocks.ASH_BLOCK, ashTexture, generator.modelCollector);
-        WeightedVariant ashModel = BlockStateModelGenerator.createWeightedVariant(ashModelId);
-        generator.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(CinderscapesBlocks.ASH).with(
-                BlockStateVariantMap.models(Properties.LAYERS).generate(height ->
-                        BlockStateModelGenerator.createWeightedVariant(height < 8 ?
-                                new Model(Optional.of(ModelIds.getBlockSubModelId(Blocks.SNOW, "_height" + height * 2)),
-                                        Optional.empty(), TextureKey.PARTICLE, TextureKey.TEXTURE)
-                                        .upload(ModelIds.getBlockSubModelId(CinderscapesBlocks.ASH, "_height" + height * 2),
-                                                ashTexture, generator.modelCollector) :
+        TextureMapping ashTexture = TextureMapping.cube(CinderscapesBlocks.ASH);
+        Identifier ashModelId = ModelTemplates.CUBE_ALL.create(CinderscapesBlocks.ASH_BLOCK, ashTexture, generator.modelOutput);
+        MultiVariant ashModel = BlockModelGenerators.plainVariant(ashModelId);
+        generator.blockStateOutput.accept(MultiVariantGenerator.dispatch(CinderscapesBlocks.ASH).with(
+                PropertyDispatch.initial(BlockStateProperties.LAYERS).generate(height ->
+                        BlockModelGenerators.plainVariant(height < 8 ?
+                                new ModelTemplate(Optional.of(ModelLocationUtils.getModelLocation(Blocks.SNOW, "_height" + height * 2)),
+                                        Optional.empty(), TextureSlot.PARTICLE, TextureSlot.TEXTURE)
+                                        .create(ModelLocationUtils.getModelLocation(CinderscapesBlocks.ASH, "_height" + height * 2),
+                                                ashTexture, generator.modelOutput) :
                                 ashModelId))));
-        generator.registerParentedItemModel(CinderscapesBlocks.ASH, ModelIds.getBlockSubModelId(CinderscapesBlocks.ASH, "_height2"));
-        generator.blockStateCollector.accept(BlockStateModelGenerator.createSingletonBlockState(CinderscapesBlocks.ASH_BLOCK, ashModel));
+        generator.registerSimpleItemModel(CinderscapesBlocks.ASH, ModelLocationUtils.getModelLocation(CinderscapesBlocks.ASH, "_height2"));
+        generator.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(CinderscapesBlocks.ASH_BLOCK, ashModel));
         this.registerBlockItemModel(generator, CinderscapesBlocks.ASH_BLOCK);
 
 
@@ -81,52 +94,52 @@ public class CinderscapesModelProvider extends FabricModelProvider {
         ////////////////////
 
         // Umbral wood set
-        generator.registerCubeAllModelTexturePool(CinderscapesBlockFamilies.UMBRAL.getBaseBlock()).family(CinderscapesBlockFamilies.UMBRAL);
-        generator.registerShelf(CinderscapesBlocks.UMBRAL_SHELF, CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
-        generator.createLogTexturePool(CinderscapesBlocks.UMBRAL_STEM).log(CinderscapesBlocks.UMBRAL_STEM).wood(CinderscapesBlocks.UMBRAL_HYPHAE);
-        generator.createLogTexturePool(CinderscapesBlocks.STRIPPED_UMBRAL_STEM).log(CinderscapesBlocks.STRIPPED_UMBRAL_STEM).wood(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE);
-        generator.registerHangingSign(CinderscapesBlockFamilies.UMBRAL.getBaseBlock(), CinderscapesBlocks.UMBRAL_HANGING_SIGN, CinderscapesBlocks.UMBRAL_WALL_HANGING_SIGN);
-        generator.registerFlowerPotPlantAndItem(CinderscapesBlocks.UMBRAL_FUNGUS, CinderscapesBlocks.POTTED_UMBRAL_FUNGUS, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        generator.family(CinderscapesBlockFamilies.UMBRAL.getBaseBlock()).generateFor(CinderscapesBlockFamilies.UMBRAL);
+        generator.createShelf(CinderscapesBlocks.UMBRAL_SHELF, CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
+        generator.woodProvider(CinderscapesBlocks.UMBRAL_STEM).logWithHorizontal(CinderscapesBlocks.UMBRAL_STEM).wood(CinderscapesBlocks.UMBRAL_HYPHAE);
+        generator.woodProvider(CinderscapesBlocks.STRIPPED_UMBRAL_STEM).logWithHorizontal(CinderscapesBlocks.STRIPPED_UMBRAL_STEM).wood(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE);
+        generator.createHangingSign(CinderscapesBlockFamilies.UMBRAL.getBaseBlock(), CinderscapesBlocks.UMBRAL_HANGING_SIGN, CinderscapesBlocks.UMBRAL_WALL_HANGING_SIGN);
+        generator.createPlantWithDefaultItem(CinderscapesBlocks.UMBRAL_FUNGUS, CinderscapesBlocks.POTTED_UMBRAL_FUNGUS, BlockModelGenerators.PlantType.NOT_TINTED);
         // Item models missed by vanilla code
         this.registerBlockItemModel(generator, CinderscapesBlocks.UMBRAL_FENCE_GATE);
         this.registerBlockItemModel(generator, CinderscapesBlocks.UMBRAL_PLANKS);
         this.registerBlockItemModel(generator, CinderscapesBlocks.UMBRAL_PRESSURE_PLATE);
 
         // Luminous Grove misc.
-        generator.registerNetherrackBottomCustomTop(CinderscapesBlocks.UMBRAL_NYLIUM);
+        generator.createNyliumBlock(CinderscapesBlocks.UMBRAL_NYLIUM);
         this.registerBlockItemModel(generator, CinderscapesBlocks.UMBRAL_NYLIUM);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.UMBRAL_FLESH_BLOCK);
+        generator.createTrivialCube(CinderscapesBlocks.UMBRAL_FLESH_BLOCK);
         this.registerBlockItemModel(generator, CinderscapesBlocks.UMBRAL_FLESH_BLOCK);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.UMBRAL_WART_BLOCK);
+        generator.createTrivialCube(CinderscapesBlocks.UMBRAL_WART_BLOCK);
         this.registerBlockItemModel(generator, CinderscapesBlocks.UMBRAL_WART_BLOCK);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.TWILIGHT_VINE_BLOCK);
+        generator.createTrivialCube(CinderscapesBlocks.TWILIGHT_VINE_BLOCK);
         this.registerBlockItemModel(generator, CinderscapesBlocks.TWILIGHT_VINE_BLOCK);
-        generator.registerTintableCross(CinderscapesBlocks.TWILIGHT_TENDRILS, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        generator.createCrossBlockWithDefaultItem(CinderscapesBlocks.TWILIGHT_TENDRILS, BlockModelGenerators.PlantType.NOT_TINTED);
         this.registerPottedPlantOnly(generator, CinderscapesBlocks.TWILIGHT_TENDRILS, CinderscapesBlocks.POTTED_TWILIGHT_TENDRILS, true);
-        generator.registerTintableCrossBlockState(CinderscapesBlocks.TWILIGHT_FESCUES, BlockStateModelGenerator.CrossType.NOT_TINTED);
-        generator.registerFlowerPotPlant(CinderscapesBlocks.PHOTOFERN, CinderscapesBlocks.POTTED_PHOTOFERN, BlockStateModelGenerator.CrossType.NOT_TINTED);
-        generator.registerDoubleBlock(CinderscapesBlocks.TALL_PHOTOFERN, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        generator.createCrossBlock(CinderscapesBlocks.TWILIGHT_FESCUES, BlockModelGenerators.PlantType.NOT_TINTED);
+        generator.createPlant(CinderscapesBlocks.PHOTOFERN, CinderscapesBlocks.POTTED_PHOTOFERN, BlockModelGenerators.PlantType.NOT_TINTED);
+        generator.createDoublePlant(CinderscapesBlocks.TALL_PHOTOFERN, BlockModelGenerators.PlantType.NOT_TINTED);
         // Luminous Pod is two tall but potted
-        generator.registerDoubleBlock(CinderscapesBlocks.LUMINOUS_POD, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        generator.createDoublePlant(CinderscapesBlocks.LUMINOUS_POD, BlockModelGenerators.PlantType.NOT_TINTED);
         this.registerPottedPlantOnly(generator, CinderscapesBlocks.LUMINOUS_POD, CinderscapesBlocks.POTTED_LUMINOUS_POD, true);
 
         // Ghastly Ectoplasm is a multi-part variable length hanging cross block
-        generator.blockStateCollector.accept(
-                VariantsBlockModelDefinitionCreator.of(CinderscapesBlocks.GHASTLY_ECTOPLASM)
+        generator.blockStateOutput.accept(
+                MultiVariantGenerator.dispatch(CinderscapesBlocks.GHASTLY_ECTOPLASM)
                         .with(
-                                BlockStateVariantMap.models(GhastlyEctoplasmBlock.TYPE)
-                                        .register(GhastlyEctoplasmBlock.Type.TOP, BlockStateModelGenerator.createWeightedVariant(
-                                                Models.TINTED_CROSS.upload(CinderscapesBlocks.GHASTLY_ECTOPLASM, "_top",
-                                                        TextureMap.cross(TextureMap.getSubId(CinderscapesBlocks.GHASTLY_ECTOPLASM, "_top")),
-                                                        generator.modelCollector)))
-                                        .register(GhastlyEctoplasmBlock.Type.MIDDLE, BlockStateModelGenerator.createWeightedVariant(
-                                                Models.TINTED_CROSS.upload(CinderscapesBlocks.GHASTLY_ECTOPLASM, "_middle",
-                                                        TextureMap.cross(TextureMap.getSubId(CinderscapesBlocks.GHASTLY_ECTOPLASM, "_middle")),
-                                                        generator.modelCollector)))
-                                        .register(GhastlyEctoplasmBlock.Type.BOTTOM, BlockStateModelGenerator.createWeightedVariant(
-                                                Models.TINTED_CROSS.upload(CinderscapesBlocks.GHASTLY_ECTOPLASM, "_bottom",
-                                                        TextureMap.cross(TextureMap.getSubId(CinderscapesBlocks.GHASTLY_ECTOPLASM, "_bottom")),
-                                                        generator.modelCollector)))
+                                PropertyDispatch.initial(GhastlyEctoplasmBlock.TYPE)
+                                        .select(GhastlyEctoplasmBlock.Type.TOP, BlockModelGenerators.plainVariant(
+                                                ModelTemplates.TINTED_CROSS.createWithSuffix(CinderscapesBlocks.GHASTLY_ECTOPLASM, "_top",
+                                                        TextureMapping.cross(TextureMapping.getBlockTexture(CinderscapesBlocks.GHASTLY_ECTOPLASM, "_top")),
+                                                        generator.modelOutput)))
+                                        .select(GhastlyEctoplasmBlock.Type.MIDDLE, BlockModelGenerators.plainVariant(
+                                                ModelTemplates.TINTED_CROSS.createWithSuffix(CinderscapesBlocks.GHASTLY_ECTOPLASM, "_middle",
+                                                        TextureMapping.cross(TextureMapping.getBlockTexture(CinderscapesBlocks.GHASTLY_ECTOPLASM, "_middle")),
+                                                        generator.modelOutput)))
+                                        .select(GhastlyEctoplasmBlock.Type.BOTTOM, BlockModelGenerators.plainVariant(
+                                                ModelTemplates.TINTED_CROSS.createWithSuffix(CinderscapesBlocks.GHASTLY_ECTOPLASM, "_bottom",
+                                                        TextureMapping.cross(TextureMapping.getBlockTexture(CinderscapesBlocks.GHASTLY_ECTOPLASM, "_bottom")),
+                                                        generator.modelOutput)))
                         )
         );
 
@@ -137,214 +150,214 @@ public class CinderscapesModelProvider extends FabricModelProvider {
         ///////////////////
 
         // Rose Quartz set
-        generator.registerCubeAllModelTexturePool(CinderscapesBlockFamilies.ROSE_QUARTZ_BLOCK.getBaseBlock()).family(CinderscapesBlockFamilies.ROSE_QUARTZ_BLOCK);
+        generator.family(CinderscapesBlockFamilies.ROSE_QUARTZ_BLOCK.getBaseBlock()).generateFor(CinderscapesBlockFamilies.ROSE_QUARTZ_BLOCK);
         this.registerBlockItemModel(generator, CinderscapesBlocks.ROSE_QUARTZ_BLOCK);
-        generator.registerCubeAllModelTexturePool(CinderscapesBlockFamilies.SMOOTH_ROSE_QUARTZ.getBaseBlock()).family(CinderscapesBlockFamilies.SMOOTH_ROSE_QUARTZ);
+        generator.family(CinderscapesBlockFamilies.SMOOTH_ROSE_QUARTZ.getBaseBlock()).generateFor(CinderscapesBlockFamilies.SMOOTH_ROSE_QUARTZ);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SMOOTH_ROSE_QUARTZ);
         this.registerCubeColumn(generator, CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK);
         this.registerBlockItemModel(generator, CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.ROSE_QUARTZ_ORE);
+        generator.createTrivialCube(CinderscapesBlocks.ROSE_QUARTZ_ORE);
         this.registerBlockItemModel(generator, CinderscapesBlocks.ROSE_QUARTZ_ORE);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.ROSE_QUARTZ_BRICKS);
+        generator.createTrivialCube(CinderscapesBlocks.ROSE_QUARTZ_BRICKS);
         this.registerBlockItemModel(generator, CinderscapesBlocks.ROSE_QUARTZ_BRICKS);
-        generator.registerAxisRotated(CinderscapesBlocks.ROSE_QUARTZ_PILLAR, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
+        generator.createRotatedPillarWithHorizontalVariant(CinderscapesBlocks.ROSE_QUARTZ_PILLAR, TexturedModel.COLUMN_ALT, TexturedModel.COLUMN_HORIZONTAL_ALT);
         this.registerBlockItemModel(generator, CinderscapesBlocks.ROSE_QUARTZ_PILLAR);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ);
+        generator.createTrivialCube(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ);
         this.registerBlockItemModel(generator, CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ);
         this.registerPolyp(generator, CinderscapesBlocks.POLYPITE_ROSE_QUARTZ);
         this.registerPottedPlantOnly(generator, CinderscapesBlocks.POLYPITE_ROSE_QUARTZ, CinderscapesBlocks.POTTED_POLYPITE_ROSE_QUARTZ);
 
         // Smoky Quartz set
-        generator.registerCubeAllModelTexturePool(CinderscapesBlockFamilies.SMOKY_QUARTZ_BLOCK.getBaseBlock()).family(CinderscapesBlockFamilies.SMOKY_QUARTZ_BLOCK);
+        generator.family(CinderscapesBlockFamilies.SMOKY_QUARTZ_BLOCK.getBaseBlock()).generateFor(CinderscapesBlockFamilies.SMOKY_QUARTZ_BLOCK);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SMOKY_QUARTZ_BLOCK);
-        generator.registerCubeAllModelTexturePool(CinderscapesBlockFamilies.SMOOTH_SMOKY_QUARTZ.getBaseBlock()).family(CinderscapesBlockFamilies.SMOOTH_SMOKY_QUARTZ);
+        generator.family(CinderscapesBlockFamilies.SMOOTH_SMOKY_QUARTZ.getBaseBlock()).generateFor(CinderscapesBlockFamilies.SMOOTH_SMOKY_QUARTZ);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ);
         this.registerCubeColumn(generator, CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK);
         this.registerBlockItemModel(generator, CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.SMOKY_QUARTZ_ORE);
+        generator.createTrivialCube(CinderscapesBlocks.SMOKY_QUARTZ_ORE);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SMOKY_QUARTZ_ORE);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.SMOKY_QUARTZ_BRICKS);
+        generator.createTrivialCube(CinderscapesBlocks.SMOKY_QUARTZ_BRICKS);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SMOKY_QUARTZ_BRICKS);
-        generator.registerAxisRotated(CinderscapesBlocks.SMOKY_QUARTZ_PILLAR, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
+        generator.createRotatedPillarWithHorizontalVariant(CinderscapesBlocks.SMOKY_QUARTZ_PILLAR, TexturedModel.COLUMN_ALT, TexturedModel.COLUMN_HORIZONTAL_ALT);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SMOKY_QUARTZ_PILLAR);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ);
+        generator.createTrivialCube(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ);
         this.registerBlockItemModel(generator, CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ);
         this.registerPolyp(generator, CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ);
         this.registerPottedPlantOnly(generator, CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ, CinderscapesBlocks.POTTED_POLYPITE_SMOKY_QUARTZ);
 
         // Sulfur Quartz set
-        generator.registerCubeAllModelTexturePool(CinderscapesBlockFamilies.SULFUR_QUARTZ_BLOCK.getBaseBlock()).family(CinderscapesBlockFamilies.SULFUR_QUARTZ_BLOCK);
+        generator.family(CinderscapesBlockFamilies.SULFUR_QUARTZ_BLOCK.getBaseBlock()).generateFor(CinderscapesBlockFamilies.SULFUR_QUARTZ_BLOCK);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SULFUR_QUARTZ_BLOCK);
-        generator.registerCubeAllModelTexturePool(CinderscapesBlockFamilies.SMOOTH_SULFUR_QUARTZ.getBaseBlock()).family(CinderscapesBlockFamilies.SMOOTH_SULFUR_QUARTZ);
+        generator.family(CinderscapesBlockFamilies.SMOOTH_SULFUR_QUARTZ.getBaseBlock()).generateFor(CinderscapesBlockFamilies.SMOOTH_SULFUR_QUARTZ);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ);
         this.registerCubeColumn(generator, CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK);
         this.registerBlockItemModel(generator, CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.SULFUR_QUARTZ_ORE);
+        generator.createTrivialCube(CinderscapesBlocks.SULFUR_QUARTZ_ORE);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SULFUR_QUARTZ_ORE);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.SULFUR_QUARTZ_BRICKS);
+        generator.createTrivialCube(CinderscapesBlocks.SULFUR_QUARTZ_BRICKS);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SULFUR_QUARTZ_BRICKS);
-        generator.registerAxisRotated(CinderscapesBlocks.SULFUR_QUARTZ_PILLAR, TexturedModel.END_FOR_TOP_CUBE_COLUMN, TexturedModel.END_FOR_TOP_CUBE_COLUMN_HORIZONTAL);
+        generator.createRotatedPillarWithHorizontalVariant(CinderscapesBlocks.SULFUR_QUARTZ_PILLAR, TexturedModel.COLUMN_ALT, TexturedModel.COLUMN_HORIZONTAL_ALT);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SULFUR_QUARTZ_PILLAR);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ);
+        generator.createTrivialCube(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ);
         this.registerBlockItemModel(generator, CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ);
         this.registerPolyp(generator, CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ);
         this.registerPottedPlantOnly(generator, CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ, CinderscapesBlocks.POTTED_POLYPITE_SULFUR_QUARTZ);
 
         // Nether Quartz additions
-        generator.registerSimpleCubeAll(CinderscapesBlocks.CRYSTALLINE_QUARTZ);
+        generator.createTrivialCube(CinderscapesBlocks.CRYSTALLINE_QUARTZ);
         this.registerBlockItemModel(generator, CinderscapesBlocks.CRYSTALLINE_QUARTZ);
         this.registerPolyp(generator, CinderscapesBlocks.POLYPITE_QUARTZ);
         this.registerPottedPlantOnly(generator, CinderscapesBlocks.POLYPITE_QUARTZ, CinderscapesBlocks.POTTED_POLYPITE_QUARTZ);
 
         // Quartz Cavern misc.
-        generator.registerFlowerPotPlant(CinderscapesBlocks.CRYSTINIUM, CinderscapesBlocks.POTTED_CRYSTINIUM, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        generator.createPlant(CinderscapesBlocks.CRYSTINIUM, CinderscapesBlocks.POTTED_CRYSTINIUM, BlockModelGenerators.PlantType.NOT_TINTED);
 
 
         ///////////
         // Other //
         ///////////
 
-        generator.registerNetherrackBottomCustomTop(CinderscapesBlocks.NODZOL);
+        generator.createNyliumBlock(CinderscapesBlocks.NODZOL);
         this.registerBlockItemModel(generator, CinderscapesBlocks.NODZOL);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.SULFUR_BLOCK);
+        generator.createTrivialCube(CinderscapesBlocks.SULFUR_BLOCK);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SULFUR_BLOCK);
-        generator.registerSimpleCubeAll(CinderscapesBlocks.SULFUR_ORE);
+        generator.createTrivialCube(CinderscapesBlocks.SULFUR_ORE);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SULFUR_ORE);
 
         // Adapted copy of BlockStateModelGenerator.registerSweetBerryBush for Bramble Berry Bush
-        generator.registerItemModel(CinderscapesItems.BRAMBLE_BERRIES);
-        generator.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(CinderscapesBlocks.BRAMBLE_BERRY_BUSH)
-                .with(BlockStateVariantMap.models(Properties.AGE_3).generate(stage -> BlockStateModelGenerator
-                        .createWeightedVariant(generator.createSubModel(CinderscapesBlocks.BRAMBLE_BERRY_BUSH,
-                                "_stage" + stage, Models.CROSS, TextureMap::cross)))));
+        generator.registerSimpleFlatItemModel(CinderscapesItems.BRAMBLE_BERRIES);
+        generator.blockStateOutput.accept(MultiVariantGenerator.dispatch(CinderscapesBlocks.BRAMBLE_BERRY_BUSH)
+                .with(PropertyDispatch.initial(BlockStateProperties.AGE_3).generate(stage -> BlockModelGenerators
+                        .plainVariant(generator.createSuffixedVariant(CinderscapesBlocks.BRAMBLE_BERRY_BUSH,
+                                "_stage" + stage, ModelTemplates.CROSS, TextureMapping::cross)))));
     }
 
     @Override
-    public void generateItemModels(ItemModelGenerator generator) {
-        generator.register(CinderscapesItems.ASH_PILE, Models.GENERATED);
-        generator.register(CinderscapesItems.SULFUR, Models.GENERATED);
+    public void generateItemModels(ItemModelGenerators generator) {
+        generator.generateFlatItem(CinderscapesItems.ASH_PILE, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(CinderscapesItems.SULFUR, ModelTemplates.FLAT_ITEM);
 
-        generator.register(CinderscapesItems.ROSE_QUARTZ, Models.GENERATED);
-        generator.register(CinderscapesItems.SMOKY_QUARTZ, Models.GENERATED);
-        generator.register(CinderscapesItems.SULFUR_QUARTZ, Models.GENERATED);
+        generator.generateFlatItem(CinderscapesItems.ROSE_QUARTZ, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(CinderscapesItems.SMOKY_QUARTZ, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(CinderscapesItems.SULFUR_QUARTZ, ModelTemplates.FLAT_ITEM);
 
         // Block items with provided item textures
-        generator.register(CinderscapesItems.CRYSTINIUM, Models.GENERATED);
-        generator.register(CinderscapesItems.GHASTLY_ECTOPLASM, Models.GENERATED);
-        generator.register(CinderscapesItems.LUMINOUS_POD, Models.GENERATED);
-        generator.register(CinderscapesItems.PYRACINTH, Models.GENERATED);
-        generator.register(CinderscapesItems.PHOTOFERN, Models.GENERATED);
-        generator.register(CinderscapesItems.SCORCHED_SPROUTS, Models.GENERATED);
-        generator.register(CinderscapesItems.TALL_PHOTOFERN, Models.GENERATED);
-        generator.register(CinderscapesItems.TWILIGHT_FESCUES, Models.GENERATED);
+        generator.generateFlatItem(CinderscapesItems.CRYSTINIUM, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(CinderscapesItems.GHASTLY_ECTOPLASM, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(CinderscapesItems.LUMINOUS_POD, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(CinderscapesItems.PYRACINTH, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(CinderscapesItems.PHOTOFERN, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(CinderscapesItems.SCORCHED_SPROUTS, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(CinderscapesItems.TALL_PHOTOFERN, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(CinderscapesItems.TWILIGHT_FESCUES, ModelTemplates.FLAT_ITEM);
 
         // Armor items with Cinderscapes trim materials
-        this.registerArmorTrims(generator, Items.TURTLE_HELMET, EquipmentAssetKeys.TURTLE_SCUTE, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.LEATHER_HELMET, EquipmentAssetKeys.LEATHER, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, true);
-        this.registerArmorTrims(generator, Items.LEATHER_CHESTPLATE, EquipmentAssetKeys.LEATHER, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, true);
-        this.registerArmorTrims(generator, Items.LEATHER_LEGGINGS, EquipmentAssetKeys.LEATHER, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, true);
-        this.registerArmorTrims(generator, Items.LEATHER_BOOTS, EquipmentAssetKeys.LEATHER, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, true);
-        this.registerArmorTrims(generator, Items.COPPER_HELMET, EquipmentAssetKeys.COPPER, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.COPPER_CHESTPLATE, EquipmentAssetKeys.COPPER, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.COPPER_LEGGINGS, EquipmentAssetKeys.COPPER, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.COPPER_BOOTS, EquipmentAssetKeys.COPPER, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.CHAINMAIL_HELMET, EquipmentAssetKeys.CHAINMAIL, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.CHAINMAIL_CHESTPLATE, EquipmentAssetKeys.CHAINMAIL, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.CHAINMAIL_LEGGINGS, EquipmentAssetKeys.CHAINMAIL, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.CHAINMAIL_BOOTS, EquipmentAssetKeys.CHAINMAIL, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.IRON_HELMET, EquipmentAssetKeys.IRON, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.IRON_CHESTPLATE, EquipmentAssetKeys.IRON, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.IRON_LEGGINGS, EquipmentAssetKeys.IRON, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.IRON_BOOTS, EquipmentAssetKeys.IRON, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.DIAMOND_HELMET, EquipmentAssetKeys.DIAMOND, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.DIAMOND_CHESTPLATE, EquipmentAssetKeys.DIAMOND, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.DIAMOND_LEGGINGS, EquipmentAssetKeys.DIAMOND, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.DIAMOND_BOOTS, EquipmentAssetKeys.DIAMOND, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.GOLDEN_HELMET, EquipmentAssetKeys.GOLD, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.GOLDEN_CHESTPLATE, EquipmentAssetKeys.GOLD, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.GOLDEN_LEGGINGS, EquipmentAssetKeys.GOLD, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.GOLDEN_BOOTS, EquipmentAssetKeys.GOLD, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.NETHERITE_HELMET, EquipmentAssetKeys.NETHERITE, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.NETHERITE_CHESTPLATE, EquipmentAssetKeys.NETHERITE, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.NETHERITE_LEGGINGS, EquipmentAssetKeys.NETHERITE, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
-        this.registerArmorTrims(generator, Items.NETHERITE_BOOTS, EquipmentAssetKeys.NETHERITE, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
+        this.registerArmorTrims(generator, Items.TURTLE_HELMET, EquipmentAssets.TURTLE_SCUTE, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
+        this.registerArmorTrims(generator, Items.LEATHER_HELMET, EquipmentAssets.LEATHER, ItemModelGenerators.TRIM_PREFIX_HELMET, true);
+        this.registerArmorTrims(generator, Items.LEATHER_CHESTPLATE, EquipmentAssets.LEATHER, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, true);
+        this.registerArmorTrims(generator, Items.LEATHER_LEGGINGS, EquipmentAssets.LEATHER, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, true);
+        this.registerArmorTrims(generator, Items.LEATHER_BOOTS, EquipmentAssets.LEATHER, ItemModelGenerators.TRIM_PREFIX_BOOTS, true);
+        this.registerArmorTrims(generator, Items.COPPER_HELMET, EquipmentAssets.COPPER, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
+        this.registerArmorTrims(generator, Items.COPPER_CHESTPLATE, EquipmentAssets.COPPER, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
+        this.registerArmorTrims(generator, Items.COPPER_LEGGINGS, EquipmentAssets.COPPER, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
+        this.registerArmorTrims(generator, Items.COPPER_BOOTS, EquipmentAssets.COPPER, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
+        this.registerArmorTrims(generator, Items.CHAINMAIL_HELMET, EquipmentAssets.CHAINMAIL, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
+        this.registerArmorTrims(generator, Items.CHAINMAIL_CHESTPLATE, EquipmentAssets.CHAINMAIL, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
+        this.registerArmorTrims(generator, Items.CHAINMAIL_LEGGINGS, EquipmentAssets.CHAINMAIL, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
+        this.registerArmorTrims(generator, Items.CHAINMAIL_BOOTS, EquipmentAssets.CHAINMAIL, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
+        this.registerArmorTrims(generator, Items.IRON_HELMET, EquipmentAssets.IRON, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
+        this.registerArmorTrims(generator, Items.IRON_CHESTPLATE, EquipmentAssets.IRON, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
+        this.registerArmorTrims(generator, Items.IRON_LEGGINGS, EquipmentAssets.IRON, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
+        this.registerArmorTrims(generator, Items.IRON_BOOTS, EquipmentAssets.IRON, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
+        this.registerArmorTrims(generator, Items.DIAMOND_HELMET, EquipmentAssets.DIAMOND, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
+        this.registerArmorTrims(generator, Items.DIAMOND_CHESTPLATE, EquipmentAssets.DIAMOND, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
+        this.registerArmorTrims(generator, Items.DIAMOND_LEGGINGS, EquipmentAssets.DIAMOND, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
+        this.registerArmorTrims(generator, Items.DIAMOND_BOOTS, EquipmentAssets.DIAMOND, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
+        this.registerArmorTrims(generator, Items.GOLDEN_HELMET, EquipmentAssets.GOLD, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
+        this.registerArmorTrims(generator, Items.GOLDEN_CHESTPLATE, EquipmentAssets.GOLD, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
+        this.registerArmorTrims(generator, Items.GOLDEN_LEGGINGS, EquipmentAssets.GOLD, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
+        this.registerArmorTrims(generator, Items.GOLDEN_BOOTS, EquipmentAssets.GOLD, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
+        this.registerArmorTrims(generator, Items.NETHERITE_HELMET, EquipmentAssets.NETHERITE, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
+        this.registerArmorTrims(generator, Items.NETHERITE_CHESTPLATE, EquipmentAssets.NETHERITE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
+        this.registerArmorTrims(generator, Items.NETHERITE_LEGGINGS, EquipmentAssets.NETHERITE, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
+        this.registerArmorTrims(generator, Items.NETHERITE_BOOTS, EquipmentAssets.NETHERITE, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
     }
 
 
-    private void registerPottedPlantOnly(BlockStateModelGenerator generator, Block plant, Block pottedPlant) {
+    private void registerPottedPlantOnly(BlockModelGenerators generator, Block plant, Block pottedPlant) {
         registerPottedPlantOnly(generator, plant, pottedPlant, false);
     }
 
-    private void registerPottedPlantOnly(BlockStateModelGenerator generator, Block plant, Block pottedPlant, boolean usePottedTexture) {
-        TextureMap pottedTextures = usePottedTexture ?
-                BlockStateModelGenerator.CrossType.NOT_TINTED.getFlowerPotTextureMap(pottedPlant) :
-                BlockStateModelGenerator.CrossType.NOT_TINTED.getFlowerPotTextureMap(plant);
-        Identifier pottedModelId = BlockStateModelGenerator.CrossType.NOT_TINTED.getFlowerPotCrossModel()
-                .upload(pottedPlant, pottedTextures, generator.modelCollector);
-        WeightedVariant pottedModel = BlockStateModelGenerator.createWeightedVariant(pottedModelId);
-        generator.blockStateCollector.accept(BlockStateModelGenerator
-                .createSingletonBlockState(pottedPlant, pottedModel));
+    private void registerPottedPlantOnly(BlockModelGenerators generator, Block plant, Block pottedPlant, boolean usePottedTexture) {
+        TextureMapping pottedTextures = usePottedTexture ?
+                BlockModelGenerators.PlantType.NOT_TINTED.getPlantTextureMapping(pottedPlant) :
+                BlockModelGenerators.PlantType.NOT_TINTED.getPlantTextureMapping(plant);
+        Identifier pottedModelId = BlockModelGenerators.PlantType.NOT_TINTED.getCrossPot()
+                .create(pottedPlant, pottedTextures, generator.modelOutput);
+        MultiVariant pottedModel = BlockModelGenerators.plainVariant(pottedModelId);
+        generator.blockStateOutput.accept(BlockModelGenerators
+                .createSimpleBlock(pottedPlant, pottedModel));
     }
 
-    private void registerPolyp(BlockStateModelGenerator generator, Block polyp) {
+    private void registerPolyp(BlockModelGenerators generator, Block polyp) {
         // Cribbed somewhat from BlockStateModelGenerator.registerCoralFan(), but with only one Block
         // involved and downward orientation added, the variants are more like a dispenser...
         TexturedModel floorPolypModel = TexturedModel.CORAL_FAN.get(polyp);
-        Identifier floorPolypId = floorPolypModel.upload(polyp, "_floor", generator.modelCollector);
-        Identifier wallPolypId = Models.CORAL_WALL_FAN
-                .upload(polyp, "_wall", floorPolypModel.getTextures(), generator.modelCollector);
+        Identifier floorPolypId = floorPolypModel.createWithSuffix(polyp, "_floor", generator.modelOutput);
+        Identifier wallPolypId = ModelTemplates.CORAL_WALL_FAN
+                .createWithSuffix(polyp, "_wall", floorPolypModel.getMapping(), generator.modelOutput);
 
-        generator.blockStateCollector
+        generator.blockStateOutput
                 .accept(
-                        VariantsBlockModelDefinitionCreator.of(polyp)
+                        MultiVariantGenerator.dispatch(polyp)
                                 .with(
-                                        BlockStateVariantMap.models(PolypiteQuartzBlock.DIRECTION)
-                                                .register(Direction.DOWN, BlockStateModelGenerator.createWeightedVariant(floorPolypId))
-                                                .register(Direction.UP, BlockStateModelGenerator.createWeightedVariant(floorPolypId).apply(BlockStateModelGenerator.ROTATE_X_180))
-                                                .register(Direction.NORTH, BlockStateModelGenerator.createWeightedVariant(wallPolypId).apply(BlockStateModelGenerator.ROTATE_Y_180))
-                                                .register(Direction.EAST, BlockStateModelGenerator.createWeightedVariant(wallPolypId).apply(BlockStateModelGenerator.ROTATE_X_270))
-                                                .register(Direction.SOUTH, BlockStateModelGenerator.createWeightedVariant(wallPolypId))
-                                                .register(Direction.WEST, BlockStateModelGenerator.createWeightedVariant(wallPolypId).apply(BlockStateModelGenerator.ROTATE_Y_90))
+                                        PropertyDispatch.initial(PolypiteQuartzBlock.DIRECTION)
+                                                .select(Direction.DOWN, BlockModelGenerators.plainVariant(floorPolypId))
+                                                .select(Direction.UP, BlockModelGenerators.plainVariant(floorPolypId).with(BlockModelGenerators.X_ROT_180))
+                                                .select(Direction.NORTH, BlockModelGenerators.plainVariant(wallPolypId).with(BlockModelGenerators.Y_ROT_180))
+                                                .select(Direction.EAST, BlockModelGenerators.plainVariant(wallPolypId).with(BlockModelGenerators.X_ROT_270))
+                                                .select(Direction.SOUTH, BlockModelGenerators.plainVariant(wallPolypId))
+                                                .select(Direction.WEST, BlockModelGenerators.plainVariant(wallPolypId).with(BlockModelGenerators.Y_ROT_90))
                                 )
                 );
 
-        generator.registerItemModel(polyp);
+        generator.registerSimpleFlatItemModel(polyp);
     }
 
-    private void registerCubeColumn(BlockStateModelGenerator generator, Block cubeColumn) {
+    private void registerCubeColumn(BlockModelGenerators generator, Block cubeColumn) {
         // Put together from the hard-coded mess in BlockTexturePool that can only handle vanilla blocks
-        TexturedModel columnModel = TexturedModel.CUBE_COLUMN.get(cubeColumn)
-                .textures(textures -> textures.put(TextureKey.SIDE, TextureMap.getId(cubeColumn)));
-        Identifier modelId = columnModel.upload(cubeColumn, generator.modelCollector);
-        WeightedVariant model = BlockStateModelGenerator.createWeightedVariant(modelId);
-        generator.blockStateCollector.accept(BlockStateModelGenerator.createSingletonBlockState(cubeColumn, model));
+        TexturedModel columnModel = TexturedModel.COLUMN.get(cubeColumn)
+                .updateTextures(textures -> textures.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(cubeColumn)));
+        Identifier modelId = columnModel.create(cubeColumn, generator.modelOutput);
+        MultiVariant model = BlockModelGenerators.plainVariant(modelId);
+        generator.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(cubeColumn, model));
     }
 
 
     /*
      * Shorthand for registering just the item model of a block item which uses its block's model.
      */
-    private void registerBlockItemModel(BlockStateModelGenerator generator, Block block) {
-        generator.registerParentedItemModel(block, ModelIds.getBlockModelId(block));
+    private void registerBlockItemModel(BlockModelGenerators generator, Block block) {
+        generator.registerSimpleItemModel(block, ModelLocationUtils.getModelLocation(block));
     }
 
-    private void uploadArmor(ItemModelGenerator generator, Identifier id, Identifier layer0, Identifier layer1) {
-        Models.GENERATED_TWO_LAYERS.upload(id, TextureMap.layered(layer0, layer1), generator.modelCollector);
+    private void uploadArmor(ItemModelGenerators generator, Identifier id, Identifier layer0, Identifier layer1) {
+        ModelTemplates.TWO_LAYERED_ITEM.create(id, TextureMapping.layered(layer0, layer1), generator.modelOutput);
     }
 
-    private void uploadArmor(ItemModelGenerator generator, Identifier id, Identifier layer0, Identifier layer1, Identifier layer2) {
-        Models.GENERATED_THREE_LAYERS.upload(id, TextureMap.layered(layer0, layer1, layer2), generator.modelCollector);
+    private void uploadArmor(ItemModelGenerators generator, Identifier id, Identifier layer0, Identifier layer1, Identifier layer2) {
+        ModelTemplates.THREE_LAYERED_ITEM.create(id, TextureMapping.layered(layer0, layer1, layer2), generator.modelOutput);
     }
 
-    private void registerArmorTrims(ItemModelGenerator generator, Item armor, RegistryKey<EquipmentAsset> equipmentKey, Identifier trimIdPrefix, boolean dyeable) {
-        Identifier armorModelId = ModelIds.getItemModelId(armor);
-        Identifier armorTextures = TextureMap.getId(armor);
-        Identifier armorOverlayTextures = TextureMap.getSubId(armor, "_overlay");
-        for (ItemModelGenerator.TrimMaterial trimMaterial : TRIM_MATERIALS) {
-            Identifier trimmedModelId = Identifier.of(Cinderscapes.MOD_ID, armorModelId.getPath())
-                    .withSuffixedPath("_" + trimMaterial.assets().base().suffix() + "_trim");
+    private void registerArmorTrims(ItemModelGenerators generator, Item armor, ResourceKey<EquipmentAsset> equipmentKey, Identifier trimIdPrefix, boolean dyeable) {
+        Identifier armorModelId = ModelLocationUtils.getModelLocation(armor);
+        Identifier armorTextures = TextureMapping.getItemTexture(armor);
+        Identifier armorOverlayTextures = TextureMapping.getItemTexture(armor, "_overlay");
+        for (ItemModelGenerators.TrimMaterialData trimMaterial : TRIM_MATERIALS) {
+            Identifier trimmedModelId = Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, armorModelId.getPath())
+                    .withSuffix("_" + trimMaterial.assets().base().suffix() + "_trim");
             Identifier trimTextureId = trimIdPrefix
-                    .withSuffixedPath("_" + trimMaterial.assets().getAssetId(equipmentKey).suffix());
+                    .withSuffix("_" + trimMaterial.assets().assetId(equipmentKey).suffix());
             if (dyeable) {
                 this.uploadArmor(generator, trimmedModelId, armorTextures, armorOverlayTextures, trimTextureId);
             } else {

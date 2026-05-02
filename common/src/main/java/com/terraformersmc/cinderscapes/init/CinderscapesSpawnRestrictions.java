@@ -1,22 +1,22 @@
 package com.terraformersmc.cinderscapes.init;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnLocation;
-import net.minecraft.entity.SpawnLocationTypes;
-import net.minecraft.entity.SpawnRestriction;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.ZoglinEntity;
-import net.minecraft.world.Heightmap;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.SpawnPlacementType;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.monster.Zoglin;
+import net.minecraft.world.level.levelgen.Heightmap;
 
 public class CinderscapesSpawnRestrictions {
     public static void init() {
-            register(EntityType.ZOGLIN, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZoglinEntity::canMobSpawn);
+            register(EntityType.ZOGLIN, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Zoglin::checkMobSpawnRules);
     }
 
     // Register ignoring if somebody else has already done so.
-    private static <T extends MobEntity> void register(EntityType<T> type, SpawnLocation location, Heightmap.Type heightmapType, SpawnRestriction.SpawnPredicate<T> predicate) {
+    private static <T extends Mob> void register(EntityType<T> type, SpawnPlacementType location, Heightmap.Types heightmapType, SpawnPlacements.SpawnPredicate<T> predicate) {
         try {
-            SpawnRestriction.register(type, location, heightmapType, predicate);
+            SpawnPlacements.register(type, location, heightmapType, predicate);
         } catch (IllegalStateException ignored) { }
     }
 }

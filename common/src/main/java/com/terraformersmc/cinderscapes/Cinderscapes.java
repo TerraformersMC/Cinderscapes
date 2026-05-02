@@ -1,7 +1,16 @@
 package com.terraformersmc.cinderscapes;
 
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
-import com.terraformersmc.cinderscapes.init.*;
+import com.terraformersmc.cinderscapes.init.CinderscapesArmorTrimAssets;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlockEntityTypes;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
+import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesItems;
+import com.terraformersmc.cinderscapes.init.CinderscapesPlacementModifierTypes;
+import com.terraformersmc.cinderscapes.init.CinderscapesRegistryAliases;
+import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
+import com.terraformersmc.cinderscapes.init.CinderscapesSpawnRestrictions;
+import com.terraformersmc.cinderscapes.init.CinderscapesTrades;
 import com.terraformersmc.cinderscapes.item.CinderscapesItemGroups;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;

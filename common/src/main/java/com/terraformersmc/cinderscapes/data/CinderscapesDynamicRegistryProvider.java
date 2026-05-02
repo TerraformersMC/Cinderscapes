@@ -7,38 +7,38 @@ import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
-import net.minecraft.registry.RegistryBuilder;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Holder;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class CinderscapesDynamicRegistryProvider extends FabricDynamicRegistryProvider {
-	protected CinderscapesDynamicRegistryProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+	protected CinderscapesDynamicRegistryProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 
-	public static void buildRegistry(RegistryBuilder registryBuilder) {
+	public static void buildRegistry(RegistrySetBuilder registryBuilder) {
 		// worldgen
-		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, CinderscapesConfiguredFeatures::bootstrap);
-		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, CinderscapesPlacedFeatures::bootstrap);
-		registryBuilder.addRegistry(RegistryKeys.BIOME, CinderscapesBiomes::bootstrap);
+		registryBuilder.add(Registries.CONFIGURED_FEATURE, CinderscapesConfiguredFeatures::bootstrap);
+		registryBuilder.add(Registries.PLACED_FEATURE, CinderscapesPlacedFeatures::bootstrap);
+		registryBuilder.add(Registries.BIOME, CinderscapesBiomes::bootstrap);
 
 		// other registries
-		registryBuilder.addRegistry(RegistryKeys.TRIM_MATERIAL, CinderscapesArmorTrimMaterials::bootstrap);
+		registryBuilder.add(Registries.TRIM_MATERIAL, CinderscapesArmorTrimMaterials::bootstrap);
 	}
 
 	@Override
-	public void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
+	public void configure(HolderLookup.Provider registries, Entries entries) {
 		// worldgen
-		addAll(entries, registries.getOrThrow(RegistryKeys.CONFIGURED_FEATURE), Cinderscapes.MOD_ID);
-		addAll(entries, registries.getOrThrow(RegistryKeys.PLACED_FEATURE), Cinderscapes.MOD_ID);
-		addAll(entries, registries.getOrThrow(RegistryKeys.BIOME), Cinderscapes.MOD_ID);
+		addAll(entries, registries.lookupOrThrow(Registries.CONFIGURED_FEATURE), Cinderscapes.MOD_ID);
+		addAll(entries, registries.lookupOrThrow(Registries.PLACED_FEATURE), Cinderscapes.MOD_ID);
+		addAll(entries, registries.lookupOrThrow(Registries.BIOME), Cinderscapes.MOD_ID);
 
 		// other registries
-		addAll(entries, registries.getOrThrow(RegistryKeys.TRIM_MATERIAL), Cinderscapes.MOD_ID);
+		addAll(entries, registries.lookupOrThrow(Registries.TRIM_MATERIAL), Cinderscapes.MOD_ID);
 	}
 
 	@Override
@@ -50,9 +50,9 @@ public class CinderscapesDynamicRegistryProvider extends FabricDynamicRegistryPr
 	 * Version of FabricDynamicRegistryProvider.Entries.addAll() using specified mod ID.
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	public <T> List<RegistryEntry<T>> addAll(Entries entries, RegistryWrapper.Impl<T> registry, String modId) {
-		return registry.streamKeys()
-				.filter(registryKey -> registryKey.getValue().getNamespace().equals(modId))
+	public <T> List<Holder<T>> addAll(Entries entries, HolderLookup.RegistryLookup<T> registry, String modId) {
+		return registry.listElementIds()
+				.filter(registryKey -> registryKey.identifier().getNamespace().equals(modId))
 				.map(key -> entries.add(registry, key))
 				.toList();
 	}

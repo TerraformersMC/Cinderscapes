@@ -3,42 +3,43 @@ package com.terraformersmc.cinderscapes.block;
 import com.mojang.serialization.MapCodec;
 import com.terraformersmc.cinderscapes.util.StateShapeRegistry;
 import com.terraformersmc.cinderscapes.util.StateShapeSupplier;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.TallPlantBlock;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
 
-public class CinderscapesNetherTallPlantBlock extends TallPlantBlock {
-    public static final MapCodec<CinderscapesNetherTallPlantBlock> CODEC = CinderscapesNetherTallPlantBlock.createCodec(CinderscapesNetherTallPlantBlock::new);
+public class CinderscapesNetherTallPlantBlock extends DoublePlantBlock {
+    public static final MapCodec<CinderscapesNetherTallPlantBlock> CODEC = CinderscapesNetherTallPlantBlock.simpleCodec(CinderscapesNetherTallPlantBlock::new);
 
-    public CinderscapesNetherTallPlantBlock(StateShapeSupplier supplier, Settings settings) {
+    public CinderscapesNetherTallPlantBlock(StateShapeSupplier supplier, Properties settings) {
         super(settings);
 
         StateShapeRegistry.put(this, supplier);
     }
 
-    public CinderscapesNetherTallPlantBlock(Settings settings) {
+    public CinderscapesNetherTallPlantBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    public MapCodec<TallPlantBlock> getCodec() {
+    public MapCodec<DoublePlantBlock> codec() {
         // Don't look at me; this is how the Fabric folks say we're going to do it...
         //noinspection unchecked
-        return (MapCodec<TallPlantBlock>) (Object) CODEC;
+        return (MapCodec<DoublePlantBlock>) (Object) CODEC;
     }
 
     @Override
-    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(BlockTags.NYLIUM) || floor.isOf(Blocks.SOUL_SOIL) || floor.isOf(Blocks.NETHERRACK) || super.canPlantOnTop(floor, world, pos);
+    protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
+        return floor.is(BlockTags.NYLIUM) || floor.is(Blocks.SOUL_SOIL) || floor.is(Blocks.NETHERRACK) || super.mayPlaceOn(floor, world, pos);
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return StateShapeRegistry.getShape(state);
     }
 }

@@ -1,9 +1,9 @@
 package com.terraformersmc.cinderscapes.util;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.Shapes;
 
 import java.util.IdentityHashMap;
 import java.util.Map;
@@ -37,7 +37,7 @@ public class StateShapeRegistry {
 
         StateShapeSupplier shapeSupplier = SUPPLIER_MAP.get(state.getBlock());
 
-        return shapeSupplier != null ? shapeSupplier.apply(state) : VoxelShapes.empty();
+        return shapeSupplier != null ? shapeSupplier.apply(state) : Shapes.empty();
     }
 
     public static StateShapeSupplier remove(Block block) {

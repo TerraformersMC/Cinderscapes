@@ -1,9 +1,9 @@
 accessWidener v1 named
 
-accessible  field   net/minecraft/client/data/ItemModelGenerator$TrimMaterial materialKey Lnet/minecraft/registry/RegistryKey;
-accessible  method  net/minecraft/client/data/ItemModelGenerator$TrimMaterial <init> (Lnet/minecraft/item/equipment/trim/ArmorTrimAssets;Lnet/minecraft/registry/RegistryKey;)V
-accessible  method  net/minecraft/entity/SpawnRestriction register (Lnet/minecraft/entity/EntityType;Lnet/minecraft/entity/SpawnLocation;Lnet/minecraft/world/Heightmap$Type;Lnet/minecraft/entity/SpawnRestriction$SpawnPredicate;)V
-accessible  method  net/minecraft/item/equipment/trim/ArmorTrimMaterials register (Lnet/minecraft/registry/Registerable;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/text/Style;Lnet/minecraft/item/equipment/trim/ArmorTrimAssets;)V
-accessible  method  net/minecraft/util/math/Vec3i setX (I)Lnet/minecraft/util/math/Vec3i;
-accessible  method  net/minecraft/util/math/Vec3i setY (I)Lnet/minecraft/util/math/Vec3i;
-accessible  method  net/minecraft/util/math/Vec3i setZ (I)Lnet/minecraft/util/math/Vec3i;
+accessible  field   net/minecraft/client/data/models/ItemModelGenerators$TrimMaterialData materialKey Lnet/minecraft/resources/ResourceKey;
+accessible  method  net/minecraft/client/data/models/ItemModelGenerators$TrimMaterialData <init> (Lnet/minecraft/world/item/equipment/trim/MaterialAssetGroup;Lnet/minecraft/resources/ResourceKey;)V
+accessible  method  net/minecraft/world/entity/SpawnPlacements register (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/entity/SpawnPlacementType;Lnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/entity/SpawnPlacements$SpawnPredicate;)V
+accessible  method  net/minecraft/world/item/equipment/trim/TrimMaterials register (Lnet/minecraft/data/worldgen/BootstrapContext;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/network/chat/Style;Lnet/minecraft/world/item/equipment/trim/MaterialAssetGroup;)V
+accessible  method  net/minecraft/core/Vec3i setX (I)Lnet/minecraft/core/Vec3i;
+accessible  method  net/minecraft/core/Vec3i setY (I)Lnet/minecraft/core/Vec3i;
+accessible  method  net/minecraft/core/Vec3i setZ (I)Lnet/minecraft/core/Vec3i;

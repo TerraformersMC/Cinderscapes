@@ -10,11 +10,11 @@ import com.terraformersmc.terraform.shapes.impl.filler.SimpleFiller;
 import com.terraformersmc.terraform.shapes.impl.layer.pathfinder.AddLayer;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.RotateLayer;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
     public CrystalShardFeature() {
@@ -22,11 +22,11 @@ public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
     }
 
     @Override
-    public boolean generate(FeatureContext<CrystalShardFeatureConfig> context) {
-        Random random = context.getRandom();
-        StructureWorldAccess world = context.getWorld();
-        BlockPos pos = context.getOrigin();
-        CrystalShardFeatureConfig config = context.getConfig();
+    public boolean place(FeaturePlaceContext<CrystalShardFeatureConfig> context) {
+        RandomSource random = context.random();
+        WorldGenLevel world = context.level();
+        BlockPos pos = context.origin();
+        CrystalShardFeatureConfig config = context.config();
 
         int amount = random.nextInt(3) + 2;
 
@@ -44,7 +44,7 @@ public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
         }
 
         shape
-                .applyLayer(RotateLayer.of(Quaternion.of(config.dir().getRotationQuaternion())))
+                .applyLayer(RotateLayer.of(Quaternion.of(config.dir().getRotation())))
                 .applyLayer(TranslateLayer.of(Position.of(pos)))
                 .validate(new RegionalSafelistValidator(world, config.dir(), config.whitelist()), (validShape) -> {
                     validShape.fill(SimpleFiller.of(world, config.state()));
