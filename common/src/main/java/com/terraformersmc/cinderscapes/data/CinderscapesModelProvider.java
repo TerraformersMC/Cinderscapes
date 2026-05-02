@@ -315,7 +315,7 @@ public class CinderscapesModelProvider extends FabricModelProvider {
                                                 .select(Direction.DOWN, BlockModelGenerators.plainVariant(floorPolypId))
                                                 .select(Direction.UP, BlockModelGenerators.plainVariant(floorPolypId).with(BlockModelGenerators.X_ROT_180))
                                                 .select(Direction.NORTH, BlockModelGenerators.plainVariant(wallPolypId).with(BlockModelGenerators.Y_ROT_180))
-                                                .select(Direction.EAST, BlockModelGenerators.plainVariant(wallPolypId).with(BlockModelGenerators.X_ROT_270))
+                                                .select(Direction.EAST, BlockModelGenerators.plainVariant(wallPolypId).with(BlockModelGenerators.Y_ROT_270))
                                                 .select(Direction.SOUTH, BlockModelGenerators.plainVariant(wallPolypId))
                                                 .select(Direction.WEST, BlockModelGenerators.plainVariant(wallPolypId).with(BlockModelGenerators.Y_ROT_90))
                                 )
