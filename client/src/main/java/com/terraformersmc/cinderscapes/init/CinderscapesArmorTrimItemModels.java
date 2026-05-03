@@ -7,7 +7,6 @@ import com.terraformersmc.cinderscapes.Cinderscapes;
 import net.minecraft.resources.Identifier;
 import net.ramixin.mixson.Mixson;
 import net.ramixin.mixson.MixsonCodecs;
-import net.ramixin.mixson.enums.DebugOption;
 import net.ramixin.mixson.enums.ErrorPolicy;
 import net.ramixin.mixson.enums.Lifetime;
 
@@ -18,7 +17,6 @@ public final class CinderscapesArmorTrimItemModels {
     }
 
     public static void init() {
-        Mixson.enableDebugOption(DebugOption.EXPORT_PATCHED_FILE);
         /*
          * Add trim materials to vanilla atlases.
          */
