@@ -125,7 +125,7 @@ public class CinderscapesPlacedFeatures {
 
         /* BLACKSTONE SHALES */
         CinderscapesRegistry.register(registerable, WEEPING_VINES, CinderscapesConfiguredFeatures.WEEPING_VINE, CountOnEveryLayerPlacement.of(16), BiomeFilter.biome());
-        CinderscapesRegistry.register(registerable, PATCH_CRIMSON_ROOTS, NetherFeatures.PATCH_CRIMSON_ROOTS, CountOnEveryLayerPlacement.of(12), BiomeFilter.biome());
+        CinderscapesRegistry.register(registerable, PATCH_CRIMSON_ROOTS, NetherFeatures.CRIMSON_ROOTS, CountOnEveryLayerPlacement.of(12), BiomeFilter.biome());
 
         CinderscapesRegistry.register(registerable, SHALES_SOUL_SAND, CinderscapesConfiguredFeatures.ASHY_SOUL_SAND, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(64)), CountPlacement.of(10), InSquarePlacement.spread(), BiomeFilter.biome());
         CinderscapesRegistry.register(registerable, SHALES_SOUL_SOIL, CinderscapesConfiguredFeatures.ASHY_SOUL_SOIL, PlacementUtils.FULL_RANGE, CountPlacement.of(30), InSquarePlacement.spread(), BiomeFilter.biome());

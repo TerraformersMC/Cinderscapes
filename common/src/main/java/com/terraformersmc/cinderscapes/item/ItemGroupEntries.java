@@ -6,9 +6,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Stream;
 
-public record ItemGroupEntries(@Nullable ItemLike relativeItem, ArrayList<ItemStack> items) {
-	ItemGroupEntries(ArrayList<ItemStack> items) {
+public record ItemGroupEntries(@Nullable ItemLike relativeItem, ArrayList<ItemLike> items) {
+	ItemGroupEntries(ArrayList<ItemLike> items) {
 		this(null, items);
 	}
 
@@ -21,14 +22,18 @@ public record ItemGroupEntries(@Nullable ItemLike relativeItem, ArrayList<ItemSt
 	}
 
 	void addItem(ItemStack item) {
-		items.add(item);
+		items.add(item.getItem());
 	}
 
 	void addItem(ItemLike item) {
-		addItem(new ItemStack(item));
+		items.add(item);
 	}
 
-	Collection<ItemStack> getCollection() {
-		return items;
+	Stream<ItemLike> getItemStream() {
+		return items.stream();
+	}
+
+	Collection<ItemStack> getStackCollection() {
+		return items.stream().map(ItemStack::new).toList();
 	}
 }

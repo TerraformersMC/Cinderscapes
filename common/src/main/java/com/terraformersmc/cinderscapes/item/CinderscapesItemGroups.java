@@ -4,8 +4,8 @@ import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.item.CreativeModeTab;
@@ -237,7 +237,7 @@ public class CinderscapesItemGroups {
 		 * Add the items configured above to the Vanilla item groups.
 		 */
 		for (ResourceKey<CreativeModeTab> group : ITEM_GROUP_ENTRY_MAPS.keySet()) {
-			ItemGroupEvents.modifyEntriesEvent(group).register((content) -> {
+			CreativeModeTabEvents.modifyOutputEvent(group).register((content) -> {
 				FeatureFlagSet featureSet = content.getEnabledFeatures();
 				HashMap<ItemLike, ItemGroupEntries> entryMap = ITEM_GROUP_ENTRY_MAPS.get(group);
 
@@ -248,10 +248,10 @@ public class CinderscapesItemGroups {
 					// So, below we have to adjust for any items which may be disabled.
 					if (relative == null) {
 						// Target the end of the Item Group
-						content.acceptAll(entries.getCollection());
+						content.acceptAll(entries.getStackCollection());
 					} else {
 						//Cinderscapes.LOGGER.warn("About to add to Vanilla Item Group '{}' after Item '{}': '{}'", group.getId(), relative, entries.getCollection().stream().map(ItemStack::getItem).collect(Collectors.toList()));
-						content.addAfter(relative, entries.getCollection());
+						content.insertAfter(relative, entries.getStackCollection());
 					}
 				}
 			});
@@ -261,16 +261,15 @@ public class CinderscapesItemGroups {
 		/*
 		 * Also add all the items to Cinderscapes' own item group.
 		 */
-		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ITEM_GROUP, FabricItemGroup.builder()
+		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ITEM_GROUP, FabricCreativeModeTab.builder()
 				.title(Component.literal("Cinderscapes"))
 				.icon(() -> CinderscapesBlocks.UMBRAL_FUNGUS.asItem().getDefaultInstance())
-				.displayItems((context, entries) -> {
+				.displayItems((context, output) ->
 					ITEM_GROUP_ENTRY_MAPS.values().stream()
-							.map(HashMap::values).flatMap(Collection::stream)
-							.map(ItemGroupEntries::getCollection).flatMap(Collection::stream)
-							.collect(Collectors.groupingByConcurrent(ItemStack::getItem)).keySet().stream()
-							.sorted(Comparator.comparing((item) -> item.getName().getString())).forEach(entries::accept);
-				}).build()
+						.map(HashMap::values).flatMap(Collection::stream)
+						.flatMap(ItemGroupEntries::getItemStream).distinct()
+						.forEach(output::accept)
+				).build()
 		);
 	}
 

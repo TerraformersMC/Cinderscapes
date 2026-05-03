@@ -1,4 +1,4 @@
-archivesBaseName = "cinderscapes-worldgen"
+base.archivesName = "cinderscapes-worldgen"
 
 loom {
     accessWidenerPath = file("src/main/resources/cinderscapes-worldgen.accesswidener")
@@ -8,5 +8,5 @@ dependencies {
     implementation project(path: ':cinderscapes-common')
 
     // Biolith for the worldgen API module
-    modImplementation "com.terraformersmc:biolith-fabric:${biolith_version}"
+    implementation "com.terraformersmc:biolith-fabric:${biolith_version}"
 }

@@ -15,8 +15,10 @@ import com.terraformersmc.cinderscapes.block.PottedCrystiniumBlock;
 import com.terraformersmc.cinderscapes.block.PottedPyracinthBlock;
 import com.terraformersmc.cinderscapes.block.PyracinthBlock;
 import com.terraformersmc.cinderscapes.init.helpers.CinderscapesRegistry;
+import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
 import com.terraformersmc.terraform.wood.api.block.PillarLogHelper;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.minecraft.world.level.block.NetherFungusBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -27,7 +29,6 @@ import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.FungusBlock;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -220,11 +221,11 @@ public class CinderscapesBlocks {
         // Ashy Shoals //
         /////////////////
 
-        SCORCHED_STEM = CinderscapesRegistry.register("scorched_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.COLOR_GRAY, MapColor.TERRACOTTA_GRAY));
-        STRIPPED_SCORCHED_STEM = CinderscapesRegistry.register("stripped_scorched_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.COLOR_GRAY));
+        SCORCHED_STEM = CinderscapesRegistry.register("scorched_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.COLOR_GRAY, MapColor.TERRACOTTA_GRAY));
+        STRIPPED_SCORCHED_STEM = CinderscapesRegistry.register("stripped_scorched_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.COLOR_GRAY));
 
-        SCORCHED_HYPHAE = CinderscapesRegistry.register("scorched_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.TERRACOTTA_GRAY));
-        STRIPPED_SCORCHED_HYPHAE = CinderscapesRegistry.register("stripped_scorched_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.COLOR_GRAY));
+        SCORCHED_HYPHAE = CinderscapesRegistry.register("scorched_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.TERRACOTTA_GRAY));
+        STRIPPED_SCORCHED_HYPHAE = CinderscapesRegistry.register("stripped_scorched_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.COLOR_GRAY));
 
         SCORCHED_PLANKS = CinderscapesRegistry.register("scorched_planks", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS).mapColor(MapColor.COLOR_LIGHT_GRAY));
         SCORCHED_SLAB = CinderscapesRegistry.register("scorched_slab", SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SLAB).mapColor(MapColor.COLOR_LIGHT_GRAY));
@@ -262,15 +263,15 @@ public class CinderscapesBlocks {
 
         // Umbral Nylia
 
-        UMBRAL_STEM = CinderscapesRegistry.register("umbral_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.CLAY, MapColor.COLOR_BLUE));
-        STRIPPED_UMBRAL_STEM = CinderscapesRegistry.register("stripped_umbral_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.CLAY));
+        UMBRAL_STEM = CinderscapesRegistry.register("umbral_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.CLAY, MapColor.COLOR_BLUE));
+        STRIPPED_UMBRAL_STEM = CinderscapesRegistry.register("stripped_umbral_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.CLAY));
 
-        UMBRAL_HYPHAE = CinderscapesRegistry.register("umbral_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.COLOR_BLUE));
-        STRIPPED_UMBRAL_HYPHAE = CinderscapesRegistry.register("stripped_umbral_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.CLAY));
+        UMBRAL_HYPHAE = CinderscapesRegistry.register("umbral_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.COLOR_BLUE));
+        STRIPPED_UMBRAL_HYPHAE = CinderscapesRegistry.register("stripped_umbral_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.CLAY));
 
         UMBRAL_NYLIUM = CinderscapesRegistry.register("umbral_nylium", CinderscapesNyliumBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_NYLIUM).mapColor(MapColor.CLAY));
 
-        UMBRAL_FUNGUS = CinderscapesRegistry.register("umbral_fungus", settings -> new FungusBlock(CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS_PLANTED, UMBRAL_NYLIUM, settings), BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FUNGUS).mapColor(MapColor.COLOR_BLUE).lightLevel(state -> 15));
+        UMBRAL_FUNGUS = CinderscapesRegistry.register("umbral_fungus", settings -> new NetherFungusBlock(CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS_PLANTED, UMBRAL_NYLIUM, CinderscapesBlockTags.SUPPORTS_CANOPIED_HUGE_FUNGUS, settings), BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FUNGUS).mapColor(MapColor.COLOR_BLUE).lightLevel(state -> 15));
         POTTED_UMBRAL_FUNGUS = CinderscapesRegistry.register("potted_umbral_fungus", settings -> new FlowerPotBlock(UMBRAL_FUNGUS, settings), BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_WARPED_FUNGUS).lightLevel(state -> 12));
 
         UMBRAL_WART_BLOCK = CinderscapesRegistry.register("umbral_wart_block", CinderscapesTransparentBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK).mapColor(MapColor.COLOR_BLUE).noOcclusion());

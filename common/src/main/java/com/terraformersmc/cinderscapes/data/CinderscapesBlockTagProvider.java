@@ -2,8 +2,8 @@ package com.terraformersmc.cinderscapes.data;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.HolderLookup;
@@ -11,8 +11,8 @@ import net.minecraft.tags.BlockTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProvider {
-	protected CinderscapesBlockTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class CinderscapesBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
+	protected CinderscapesBlockTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 
@@ -61,8 +61,11 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 				.add(CinderscapesBlocks.UMBRAL_HYPHAE)
 				.add(CinderscapesBlocks.UMBRAL_STEM);
 
-		valueLookupBuilder(BlockTags.MUSHROOM_GROW_BLOCK)
+		valueLookupBuilder(BlockTags.HUGE_RED_MUSHROOM_CAN_PLACE_ON)
 				.add(CinderscapesBlocks.NODZOL);
+
+		valueLookupBuilder(BlockTags.HUGE_BROWN_MUSHROOM_CAN_PLACE_ON)
+			.add(CinderscapesBlocks.NODZOL);
 
 		valueLookupBuilder(BlockTags.NETHER_CARVER_REPLACEABLES)
 				.add(CinderscapesBlocks.UMBRAL_NYLIUM)
@@ -271,6 +274,11 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 				.add(CinderscapesBlocks.UMBRAL_STEM)
 				.add(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE)
 				.add(CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
+
+		valueLookupBuilder(BlockTags.SUPPORTS_WARPED_FUNGUS);
+		valueLookupBuilder(CinderscapesBlockTags.SUPPORTS_CANOPIED_HUGE_FUNGUS)
+			.addTag(BlockTags.SUPPORTS_WARPED_FUNGUS);
+
 	}
 
 	@Override

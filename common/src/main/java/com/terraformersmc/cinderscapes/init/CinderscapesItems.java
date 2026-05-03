@@ -1,7 +1,7 @@
 package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.init.helpers.CinderscapesRegistry;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.fabricmc.fabric.api.registry.CompostableRegistry;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -331,7 +331,7 @@ public class CinderscapesItems {
     }
 
     private static void addCompostables() {
-        CompostingChanceRegistry compostingRegistry = CompostingChanceRegistry.INSTANCE;
+        CompostableRegistry compostingRegistry = CompostableRegistry.INSTANCE;
         float BERRY_CHANCE = compostingRegistry.get(Items.SWEET_BERRIES);
         float FLOWER_CHANCE = compostingRegistry.get(Items.POPPY);
         float FUNGUS_CHANCE = compostingRegistry.get(Items.CRIMSON_FUNGUS);

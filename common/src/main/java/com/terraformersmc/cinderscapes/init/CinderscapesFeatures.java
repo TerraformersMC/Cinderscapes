@@ -29,7 +29,6 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.ReplaceSphereConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
@@ -65,10 +64,10 @@ public class CinderscapesFeatures {
     public static VegetationFeatureConfig ASHY_SHOALS_VEGETATION_CONFIG;
     public static VegetationFeatureConfig QUARTZ_CAVERN_VEGETATION_CONFIG;
 
-    public static RandomPatchConfiguration TALL_PHOTOFERN_CONFIG;
-    public static RandomPatchConfiguration LUMINOUS_POD_CONFIG;
+    public static SimpleBlockConfiguration TALL_PHOTOFERN_CONFIG;
+    public static SimpleBlockConfiguration LUMINOUS_POD_CONFIG;
 
-    public static RandomPatchConfiguration BRAMBLE_BERRY_BUSH_CONFIG;
+    public static SimpleBlockConfiguration BRAMBLE_BERRY_BUSH_CONFIG;
 
     public static ReplaceSphereConfiguration SOUL_SAND_REPLACE_CONFIG;
     public static ReplaceSphereConfiguration SOUL_SOIL_REPLACE_CONFIG;
@@ -130,9 +129,9 @@ public class CinderscapesFeatures {
                 )
         );
 
-        TALL_PHOTOFERN_CONFIG = FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(CinderscapesBlocks.TALL_PHOTOFERN.defaultBlockState())), List.of(), 64);
-        LUMINOUS_POD_CONFIG = FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(CinderscapesBlocks.LUMINOUS_POD.defaultBlockState())), List.of(), 64);
-        BRAMBLE_BERRY_BUSH_CONFIG = FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(((BrambleBerryBushBlock) CinderscapesBlocks.BRAMBLE_BERRY_BUSH).getGenerationState())), List.of(), 64);
+        TALL_PHOTOFERN_CONFIG = new SimpleBlockConfiguration(BlockStateProvider.simple(CinderscapesBlocks.TALL_PHOTOFERN.defaultBlockState()));
+        LUMINOUS_POD_CONFIG = new SimpleBlockConfiguration(BlockStateProvider.simple(CinderscapesBlocks.LUMINOUS_POD.defaultBlockState()));
+        BRAMBLE_BERRY_BUSH_CONFIG = new SimpleBlockConfiguration(BlockStateProvider.simple(((BrambleBerryBushBlock) CinderscapesBlocks.BRAMBLE_BERRY_BUSH).getGenerationState()));
 
         SHALE_FEATURE = Registry.register(BuiltInRegistries.FEATURE, Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, "shale"), new ShaleFeature());
 

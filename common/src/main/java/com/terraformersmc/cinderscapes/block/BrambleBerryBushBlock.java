@@ -71,9 +71,9 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
         int age = state.getValue(AGE);
 
         if (age > 1) {
-            int count = age - 1 + world.random.nextInt(2);
+            int count = age - 1 + world.getRandom().nextInt(2);
             popResource(world, pos, new ItemStack(CinderscapesItems.BRAMBLE_BERRIES, count));
-            world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0f, 0.8f + world.random.nextFloat() * 0.4f);
+            world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0f, 0.8f + world.getRandom().nextFloat() * 0.4f);
             BlockState newState = state.setValue(AGE, 1);
             world.setBlock(pos, newState, 2);
             world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, newState));

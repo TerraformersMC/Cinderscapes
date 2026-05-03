@@ -4,8 +4,8 @@ import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
 import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.world.item.Items;
@@ -15,8 +15,8 @@ import net.minecraft.tags.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CinderscapesItemTagProvider extends FabricTagProvider.ItemTagProvider {
-	protected CinderscapesItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture, BlockTagProvider blockTagProvider) {
+public class CinderscapesItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
+	protected CinderscapesItemTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture, BlockTagsProvider blockTagProvider) {
 		super(output, registriesFuture, blockTagProvider);
 	}
 

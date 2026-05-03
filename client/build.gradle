@@ -1,4 +1,4 @@
-archivesBaseName = "cinderscapes-client"
+base.archivesName = "cinderscapes-client"
 
 loom {
 }

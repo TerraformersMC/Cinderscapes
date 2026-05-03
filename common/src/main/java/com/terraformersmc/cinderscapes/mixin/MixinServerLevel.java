@@ -45,7 +45,7 @@ public abstract class MixinServerLevel extends Level {
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void cinderscapes$cacheAshyShoalsEntry(MinecraftServer server, Executor workerExecutor, LevelStorageSource.LevelStorageAccess session, ServerLevelData properties, ResourceKey<Level> worldKey, LevelStem dimensionOptions, boolean debugWorld, long seed, List<CustomSpawner> spawners, boolean shouldTickTime, @Nullable RandomSequences randomSequenceState, CallbackInfo ci) {
+    private void cinderscapes$cacheAshyShoalsEntry(MinecraftServer server, Executor executor, LevelStorageSource.LevelStorageAccess levelStorage, ServerLevelData levelData, ResourceKey dimension, LevelStem levelStem, boolean isDebug, long biomeZoomSeed, List customSpawners, boolean tickTime, CallbackInfo ci) {
         ASHY_SHOALS_PREDICATE = Predicate.isEqual(registryAccess().lookupOrThrow(Registries.BIOME).get(CinderscapesBiomes.ASHY_SHOALS).orElseThrow());
     }
 

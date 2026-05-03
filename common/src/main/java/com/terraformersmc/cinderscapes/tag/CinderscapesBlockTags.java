@@ -10,6 +10,7 @@ public class CinderscapesBlockTags {
     public static final TagKey<Block> ASH_PERMEABLE = CinderscapesBlockTags.of("ash_permeable");
     public static final TagKey<Block> SCORCHED_STEMS = CinderscapesBlockTags.of("scorched_stems");
     public static final TagKey<Block> UMBRAL_STEMS = CinderscapesBlockTags.of("umbral_stems");
+    public static final TagKey<Block> SUPPORTS_CANOPIED_HUGE_FUNGUS = CinderscapesBlockTags.of("supports_canopied_huge_fungus");
 
     @SuppressWarnings("UnnecessaryReturnStatement")
     private CinderscapesBlockTags() {

@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.HolderSet;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -103,7 +104,7 @@ public final class CinderscapesConfiguredFeatures {
 
         CinderscapesRegistry.register(registerable, ASH_PILE, CinderscapesFeatures.ASH_PILE, FeatureConfiguration.NONE);
         CinderscapesRegistry.register(registerable, ASHY_VEGETATION, CinderscapesFeatures.VEGETATION, CinderscapesFeatures.ASHY_SHOALS_VEGETATION_CONFIG);
-        CinderscapesRegistry.register(registerable, BRAMBLE_BERRY_BUSHES, Feature.RANDOM_PATCH, CinderscapesFeatures.BRAMBLE_BERRY_BUSH_CONFIG);
+        CinderscapesRegistry.register(registerable, BRAMBLE_BERRY_BUSHES, Feature.SIMPLE_BLOCK, CinderscapesFeatures.BRAMBLE_BERRY_BUSH_CONFIG);
 
         CinderscapesRegistry.register(registerable, ASHY_SOUL_SAND, Feature.REPLACE_BLOBS, CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG);
         CinderscapesRegistry.register(registerable, ASHY_SOUL_SOIL, Feature.REPLACE_BLOBS, CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG);
@@ -125,8 +126,8 @@ public final class CinderscapesConfiguredFeatures {
         CinderscapesRegistry.register(registerable, UMBRAL_VINE, CinderscapesFeatures.UMBRAL_VINE, FeatureConfiguration.NONE);
 
         CinderscapesRegistry.register(registerable, LUMINOUS_VEGETATION, CinderscapesFeatures.VEGETATION, CinderscapesFeatures.LUMINOUS_GROVE_VEGETATION_CONFIG);
-        CinderscapesRegistry.register(registerable, LUMINOUS_POD, Feature.RANDOM_PATCH, CinderscapesFeatures.LUMINOUS_POD_CONFIG);
-        CinderscapesRegistry.register(registerable, TALL_PHOTOFERN, Feature.RANDOM_PATCH, CinderscapesFeatures.TALL_PHOTOFERN_CONFIG);
+        CinderscapesRegistry.register(registerable, LUMINOUS_POD, Feature.SIMPLE_BLOCK, CinderscapesFeatures.LUMINOUS_POD_CONFIG);
+        CinderscapesRegistry.register(registerable, TALL_PHOTOFERN, Feature.SIMPLE_BLOCK, CinderscapesFeatures.TALL_PHOTOFERN_CONFIG);
 
         CinderscapesRegistry.register(registerable, CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_NOT_PLANTED_CONFIG);
         CinderscapesRegistry.register(registerable, CANOPIED_HUGE_FUNGUS_PLANTED, CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_CONFIG);
