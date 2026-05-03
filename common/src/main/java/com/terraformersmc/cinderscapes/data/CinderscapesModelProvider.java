@@ -367,32 +367,16 @@ public class CinderscapesModelProvider extends FabricModelProvider {
         Identifier modelLocation = ModelLocationUtils.getModelLocation(armor);
         Material itemTexture = TextureMapping.getItemTexture(armor);
         Material overlayTexture = TextureMapping.getItemTexture(armor, "_overlay");
-        List<SelectItemModel.SwitchCase<ResourceKey<TrimMaterial>>> cases = new ArrayList<>(TRIM_MATERIALS.size());
 
         for (ItemModelGenerators.TrimMaterialData material : TRIM_MATERIALS) {
-            Identifier trimModelLocation = modelLocation.withSuffix("_" + material.assets().base().suffix() + "_trim");
+            Identifier trimModelLocation = Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, modelLocation.getPath())
+                .withSuffix("_" + material.assets().base().suffix() + "_trim");
             Material trimOverlayTexture = new Material(slotTrimPrefix.withSuffix("_" + material.assets().assetId(equipmentAssetId).suffix()));
-            ItemModel.Unbaked trimModel;
             if (hasDyedLayer) {
                 generator.generateLayeredItem(trimModelLocation, itemTexture, overlayTexture, trimOverlayTexture);
-                trimModel = ItemModelUtils.tintedModel(trimModelLocation, new Dye(-6265536));
             } else {
                 generator.generateLayeredItem(trimModelLocation, itemTexture, trimOverlayTexture);
-                trimModel = ItemModelUtils.plainModel(trimModelLocation);
             }
-
-            cases.add(ItemModelUtils.when(material.materialKey, trimModel));
         }
-
-        ItemModel.Unbaked untrimmedModel;
-        if (hasDyedLayer) {
-            ModelTemplates.TWO_LAYERED_ITEM.create(modelLocation, TextureMapping.layered(itemTexture, overlayTexture), generator.modelOutput);
-            untrimmedModel = ItemModelUtils.tintedModel(modelLocation, new Dye(-6265536));
-        } else {
-            ModelTemplates.FLAT_ITEM.create(modelLocation, TextureMapping.layer0(itemTexture), generator.modelOutput);
-            untrimmedModel = ItemModelUtils.plainModel(modelLocation);
-        }
-
-        generator.itemModelOutput.accept(armor, ItemModelUtils.select(new TrimMaterialProperty(), untrimmedModel, cases));
     }
 }
