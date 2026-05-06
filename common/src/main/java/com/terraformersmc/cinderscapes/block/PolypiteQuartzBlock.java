@@ -1,72 +1,73 @@
 package com.terraformersmc.cinderscapes.block;
 
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.tick.ScheduledTickView;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class PolypiteQuartzBlock extends Block {
-    public static final EnumProperty<Direction> DIRECTION = EnumProperty.of("direction", Direction.class);
+    public static final EnumProperty<Direction> DIRECTION = EnumProperty.create("direction", Direction.class);
 
     private static final Map<Direction, VoxelShape> DIRECTION_TO_SHAPE = new HashMap<>();
 
-    public PolypiteQuartzBlock(Settings settings) {
-        super(settings.luminance((state) -> CinderscapesConfig.INSTANCE.polypiteLuminance));
+    public PolypiteQuartzBlock(Properties settings) {
+        super(settings.lightLevel((state) -> CinderscapesConfig.INSTANCE.polypiteLuminance));
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(DIRECTION);
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
-        Direction placementSide = state.get(DIRECTION);
-        if (!Block.isFaceFullSquare(world.getBlockState(pos.offset(placementSide)).getCollisionShape(world, pos.offset(placementSide)), placementSide.getOpposite())) {
-            return Blocks.AIR.getDefaultState();
+    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        Direction placementSide = state.getValue(DIRECTION);
+        if (!Block.isFaceFull(world.getBlockState(pos.relative(placementSide)).getCollisionShape(world, pos.relative(placementSide)), placementSide.getOpposite())) {
+            return Blocks.AIR.defaultBlockState();
         }
         return state;
     }
 
     @Override
     @Nullable
-    public BlockState getPlacementState(ItemPlacementContext context) {
-        Direction placeSide = context.getSide();
-        BlockPos placeOnPos = context.getBlockPos().offset(placeSide.getOpposite());
-        BlockState placeOnState = context.getWorld().getBlockState(placeOnPos);
-        return Block.isFaceFullSquare(placeOnState.getCollisionShape(context.getWorld(), placeOnPos), placeSide) ? this.getDefaultState().with(DIRECTION, placeSide.getOpposite()) : Blocks.AIR.getDefaultState();
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        Direction placeSide = context.getClickedFace();
+        BlockPos placeOnPos = context.getClickedPos().relative(placeSide.getOpposite());
+        BlockState placeOnState = context.getLevel().getBlockState(placeOnPos);
+        return Block.isFaceFull(placeOnState.getCollisionShape(context.getLevel(), placeOnPos), placeSide) ? this.defaultBlockState().setValue(DIRECTION, placeSide.getOpposite()) : Blocks.AIR.defaultBlockState();
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return DIRECTION_TO_SHAPE.get(state.get(DIRECTION));
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return DIRECTION_TO_SHAPE.get(state.getValue(DIRECTION));
     }
 
     public BlockState stateOf(Direction dir) {
-        return this.getDefaultState().with(DIRECTION, dir);
+        return this.defaultBlockState().setValue(DIRECTION, dir);
     }
 
     static {
-        DIRECTION_TO_SHAPE.put(Direction.DOWN, Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 4.0D, 14.0D));
-        DIRECTION_TO_SHAPE.put(Direction.UP, Block.createCuboidShape(2.0D, 12.0D, 2.0D, 14.0D, 16.0D, 14.0D));
-        DIRECTION_TO_SHAPE.put(Direction.SOUTH, Block.createCuboidShape(3.0D, 5.0D, 6.0D, 13.0D, 13.0D, 16.0D));
-        DIRECTION_TO_SHAPE.put(Direction.NORTH, Block.createCuboidShape(3.0D, 5.0D, 0.0D, 13.0D, 13.0D, 10.0D));
-        DIRECTION_TO_SHAPE.put(Direction.EAST, Block.createCuboidShape(6.0D, 5.0D, 3.0D, 16.0D, 13.0D, 13.0D));
-        DIRECTION_TO_SHAPE.put(Direction.WEST, Block.createCuboidShape(0.0D, 5.0D, 3.0D, 10.0D, 13.0D, 13.0D));
+        DIRECTION_TO_SHAPE.put(Direction.DOWN, Block.box(2.0D, 0.0D, 2.0D, 14.0D, 4.0D, 14.0D));
+        DIRECTION_TO_SHAPE.put(Direction.UP, Block.box(2.0D, 12.0D, 2.0D, 14.0D, 16.0D, 14.0D));
+        DIRECTION_TO_SHAPE.put(Direction.SOUTH, Block.box(3.0D, 5.0D, 6.0D, 13.0D, 13.0D, 16.0D));
+        DIRECTION_TO_SHAPE.put(Direction.NORTH, Block.box(3.0D, 5.0D, 0.0D, 13.0D, 13.0D, 10.0D));
+        DIRECTION_TO_SHAPE.put(Direction.EAST, Block.box(6.0D, 5.0D, 3.0D, 16.0D, 13.0D, 13.0D));
+        DIRECTION_TO_SHAPE.put(Direction.WEST, Block.box(0.0D, 5.0D, 3.0D, 10.0D, 13.0D, 13.0D));
     }
 }

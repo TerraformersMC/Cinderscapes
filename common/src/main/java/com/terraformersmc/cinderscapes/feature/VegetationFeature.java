@@ -1,12 +1,12 @@
 package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.feature.config.VegetationFeatureConfig;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 public class VegetationFeature extends Feature<VegetationFeatureConfig> {
     public VegetationFeature() {
@@ -14,16 +14,16 @@ public class VegetationFeature extends Feature<VegetationFeatureConfig> {
     }
 
     @Override
-    public boolean generate(FeatureContext<VegetationFeatureConfig> context) {
-        return generateVegetation(context.getWorld(), context.getRandom(), context.getOrigin(), context.getConfig(), 8, 4);
+    public boolean place(FeaturePlaceContext<VegetationFeatureConfig> context) {
+        return generateVegetation(context.level(), context.random(), context.origin(), context.config(), 8, 4);
     }
 
-    public static boolean generateVegetation(WorldAccess world, Random random, BlockPos pos, VegetationFeatureConfig config, int horizontalSpread, int verticalSpread) {
-        BlockState belowState = world.getBlockState(pos.down());
+    public static boolean generateVegetation(LevelAccessor world, RandomSource random, BlockPos pos, VegetationFeatureConfig config, int horizontalSpread, int verticalSpread) {
+        BlockState belowState = world.getBlockState(pos.below());
         BlockState testState = world.getBlockState(pos);
-        while(!(config.placeableStates().contains(belowState) && (world.isAir(pos) || config.replaceableStates().contains(testState)) ) && pos.getY() > 0) {
-            pos = pos.down();
-            belowState = world.getBlockState(pos.down());
+        while(!(config.placeableStates().contains(belowState) && (world.isEmptyBlock(pos) || config.replaceableStates().contains(testState)) ) && pos.getY() > 0) {
+            pos = pos.below();
+            belowState = world.getBlockState(pos.below());
             testState = world.getBlockState(pos);
         }
         int y = pos.getY();
@@ -31,10 +31,10 @@ public class VegetationFeature extends Feature<VegetationFeatureConfig> {
             int setCount = 0;
 
             for(int n = 0; n < horizontalSpread * horizontalSpread; n++) {
-                BlockPos setPos = pos.add(random.nextInt(horizontalSpread) - random.nextInt(horizontalSpread), random.nextInt(verticalSpread) - random.nextInt(verticalSpread), random.nextInt(horizontalSpread) - random.nextInt(horizontalSpread));
-                BlockState setState = config.vegetationStates().get(random, setPos);
-                if ((world.isAir(setPos) || config.replaceableStates().contains(world.getBlockState(setPos))) && setPos.getY() > 0 && setState.canPlaceAt(world, setPos)) {
-                    world.setBlockState(setPos, setState, 2);
+                BlockPos setPos = pos.offset(random.nextInt(horizontalSpread) - random.nextInt(horizontalSpread), random.nextInt(verticalSpread) - random.nextInt(verticalSpread), random.nextInt(horizontalSpread) - random.nextInt(horizontalSpread));
+                BlockState setState = config.vegetationStates().getState(random, setPos);
+                if ((world.isEmptyBlock(setPos) || config.replaceableStates().contains(world.getBlockState(setPos))) && setPos.getY() > 0 && setState.canSurvive(world, setPos)) {
+                    world.setBlock(setPos, setState, 2);
                     setCount++;
                 }
             }

@@ -2,10 +2,10 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
-import net.minecraft.item.equipment.trim.ArmorTrimMaterial;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
+import net.minecraft.world.item.equipment.trim.TrimMaterial;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 
 import java.util.Map;
 
@@ -19,14 +19,14 @@ public final class CinderscapesRegistryAliases {
 	public static void init() {
 		registerStatic();
 		DynamicRegistrySetupCallback.EVENT.register(listener -> listener
-				.getOptional(RegistryKeys.TRIM_MATERIAL)
+				.getOptional(Registries.TRIM_MATERIAL)
 				.ifPresent(CinderscapesRegistryAliases::registerTrimMaterials));
 	}
 
 	private static void registerStatic() {
 	}
 
-	private static void registerTrimMaterials(Registry<ArmorTrimMaterial> trimMaterialRegistry) {
+	private static void registerTrimMaterials(Registry<TrimMaterial> trimMaterialRegistry) {
 		// Armor Trims
 		Map<Identifier, Identifier> TRIMS = Map.ofEntries(
 				entry("rose_quartz",   "cinderscapes_rose_quartz"),
@@ -38,6 +38,6 @@ public final class CinderscapesRegistryAliases {
 	}
 
 	private static Map.Entry<Identifier, Identifier> entry(String oldName, String newName) {
-		return Map.entry(Identifier.of(Cinderscapes.MOD_ID, oldName), Identifier.of(Cinderscapes.MOD_ID, newName));
+		return Map.entry(Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, oldName), Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, newName));
 	}
 }

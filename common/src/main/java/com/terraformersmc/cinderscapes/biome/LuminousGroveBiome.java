@@ -2,94 +2,94 @@ package com.terraformersmc.cinderscapes.biome;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesSoundEvents;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryEntryLookup;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.sound.BiomeAdditionsSound;
-import net.minecraft.sound.BiomeMoodSound;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.attribute.AmbientAdditionsSettings;
+import net.minecraft.world.attribute.AmbientMoodSettings;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.attribute.*;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeEffects;
-import net.minecraft.world.biome.GenerationSettings;
-import net.minecraft.world.biome.SpawnSettings;
-import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.carver.ConfiguredCarver;
-import net.minecraft.world.gen.carver.ConfiguredCarvers;
-import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import net.minecraft.world.gen.feature.NetherPlacedFeatures;
-import net.minecraft.world.gen.feature.OrePlacedFeatures;
-import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeSpecialEffects;
+import net.minecraft.world.level.biome.BiomeGenerationSettings;
+import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.biome.Climate;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.data.worldgen.Carvers;
+import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.data.worldgen.placement.NetherPlacements;
+import net.minecraft.data.worldgen.placement.OrePlacements;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
 import java.util.Optional;
 
 public class LuminousGroveBiome {
-    public static final MultiNoiseUtil.NoiseHypercube NOISE_POINT = MultiNoiseUtil.createNoiseHypercube(0.35F, 0.3F, 0.0F, 0.0F, 0.0F, 0.0F, 0.225F);
+    public static final Climate.ParameterPoint NOISE_POINT = Climate.parameters(0.35F, 0.3F, 0.0F, 0.0F, 0.0F, 0.0F, 0.225F);
 
-    public static Biome create(Registerable<Biome> registerable) {
-        return new Biome.Builder()
+    public static Biome create(BootstrapContext<Biome> registerable) {
+        return new Biome.BiomeBuilder()
                 .generationSettings(createGenerationSettings(registerable))
-                .spawnSettings(createSpawnSettings())
-                .precipitation(false)
+                .mobSpawnSettings(createSpawnSettings())
+                .hasPrecipitation(false)
                 .temperature(2.0F)
                 .downfall(0.0F)
-                .effects(new BiomeEffects.Builder()
+                .specialEffects(new BiomeSpecialEffects.Builder()
                         .waterColor(4159204)
                         .build()
                 )
-                .addEnvironmentAttributes(EnvironmentAttributeMap.builder()
-                        .with(EnvironmentAttributes.AMBIENT_PARTICLES_VISUAL, List.of(new AmbientParticle(ParticleTypes.WARPED_SPORE, 0.01428F)))
-                        .with(EnvironmentAttributes.AMBIENT_SOUNDS_AUDIO, new AmbientSounds(Optional.of(SoundEvents.AMBIENT_WARPED_FOREST_LOOP), Optional.of(new BiomeMoodSound(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0D)), List.of(new BiomeAdditionsSound(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111D))))
-                        .with(EnvironmentAttributes.BACKGROUND_MUSIC_AUDIO, new BackgroundMusic(CinderscapesSoundEvents.LUMINOUS_GROVE_MUSIC))
-                        .with(EnvironmentAttributes.FOG_COLOR_VISUAL, 2297392)
-                        .with(EnvironmentAttributes.SNOW_GOLEM_MELTS_GAMEPLAY, true)
-                        .with(EnvironmentAttributes.WATER_FOG_COLOR_VISUAL, 329011)
+                .putAttributes(EnvironmentAttributeMap.builder()
+                        .set(EnvironmentAttributes.AMBIENT_PARTICLES, List.of(new AmbientParticle(ParticleTypes.WARPED_SPORE, 0.01428F)))
+                        .set(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(Optional.of(SoundEvents.AMBIENT_WARPED_FOREST_LOOP), Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0D)), List.of(new AmbientAdditionsSettings(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111D))))
+                        .set(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(CinderscapesSoundEvents.LUMINOUS_GROVE_MUSIC))
+                        .set(EnvironmentAttributes.FOG_COLOR, 2297392)
+                        .set(EnvironmentAttributes.SNOW_GOLEM_MELTS, true)
+                        .set(EnvironmentAttributes.WATER_FOG_COLOR, 329011)
                         .build()
                 )
                 .build();
     }
 
-    private static GenerationSettings createGenerationSettings(Registerable<Biome> registerable) {
-        RegistryEntryLookup<ConfiguredCarver<?>> configuredCarvers = registerable.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER);
-        RegistryEntryLookup<PlacedFeature> placedFeatures = registerable.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
+    private static BiomeGenerationSettings createGenerationSettings(BootstrapContext<Biome> registerable) {
+        HolderGetter<ConfiguredWorldCarver<?>> configuredCarvers = registerable.lookup(Registries.CONFIGURED_CARVER);
+        HolderGetter<PlacedFeature> placedFeatures = registerable.lookup(Registries.PLACED_FEATURE);
 
-        GenerationSettings.LookupBackedBuilder builder = new GenerationSettings.LookupBackedBuilder(placedFeatures, configuredCarvers);
+        net.minecraft.world.level.biome.BiomeGenerationSettings.Builder builder = new net.minecraft.world.level.biome.BiomeGenerationSettings.Builder(placedFeatures, configuredCarvers);
 
         // DEFAULT MINECRAFT FEATURES
-        builder.carver(ConfiguredCarvers.NETHER_CAVE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA);
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED);
-        DefaultBiomeFeatures.addNetherMineables(builder);
+        builder.addCarver(Carvers.NETHER_CAVE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.GLOWSTONE_EXTRA);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.GLOWSTONE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, OrePlacements.ORE_MAGMA);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.SPRING_CLOSED);
+        BiomeDefaultFeatures.addNetherDefaultOres(builder);
 
         // UMBRAL FUNGUS
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.CANOPIED_HUGE_FUNGUS));
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.CANOPIED_HUGE_FUNGUS));
 
         // SHROOMLIGHT BUSHES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.SHROOMLIGHT_BUSHES));
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.SHROOMLIGHT_BUSHES));
 
         // VEGETATION
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.LUMINOUS_VEGETATION));
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.LUMINOUS_PODS));
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.TALL_PHOTOFERNS));
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.LUMINOUS_VEGETATION));
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.LUMINOUS_PODS));
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.TALL_PHOTOFERNS));
 
         // VINES
-        builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.UMBRAL_VINES));
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.UMBRAL_VINES));
 
         return builder.build();
     }
 
-    private static SpawnSettings createSpawnSettings() {
-        SpawnSettings.Builder builder = new SpawnSettings.Builder();
+    private static MobSpawnSettings createSpawnSettings() {
+        net.minecraft.world.level.biome.MobSpawnSettings.Builder builder = new net.minecraft.world.level.biome.MobSpawnSettings.Builder();
 
         // SPAWNS
-        builder.spawn(SpawnGroup.CREATURE, 60, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 1, 2));
+        builder.addSpawn(MobCategory.CREATURE, 60, new MobSpawnSettings.SpawnerData(EntityType.STRIDER, 1, 2));
 
         return builder.build();
     }

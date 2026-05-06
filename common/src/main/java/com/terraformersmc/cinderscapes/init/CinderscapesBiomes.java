@@ -5,29 +5,29 @@ import com.terraformersmc.cinderscapes.biome.AshyShoalsBiome;
 import com.terraformersmc.cinderscapes.biome.BlackstoneShalesBiome;
 import com.terraformersmc.cinderscapes.biome.LuminousGroveBiome;
 import com.terraformersmc.cinderscapes.biome.QuartzCavernBiome;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.biome.Biome;
 
 import java.util.List;
 
 public class CinderscapesBiomes {
-    public static final RegistryKey<Biome> ASHY_SHOALS = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.MOD_ID, "ashy_shoals"));
-    public static final RegistryKey<Biome> BLACKSTONE_SHALES = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.MOD_ID, "blackstone_shales"));
-    public static final RegistryKey<Biome> LUMINOUS_GROVE = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.MOD_ID, "luminous_grove"));
-    public static final RegistryKey<Biome> QUARTZ_CAVERN = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(Cinderscapes.MOD_ID, "quartz_cavern"));
+    public static final ResourceKey<Biome> ASHY_SHOALS = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, "ashy_shoals"));
+    public static final ResourceKey<Biome> BLACKSTONE_SHALES = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, "blackstone_shales"));
+    public static final ResourceKey<Biome> LUMINOUS_GROVE = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, "luminous_grove"));
+    public static final ResourceKey<Biome> QUARTZ_CAVERN = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, "quartz_cavern"));
 
     @SuppressWarnings("unused")
-    public static final List<RegistryKey<Biome>> BIOMES = List.of(
+    public static final List<ResourceKey<Biome>> BIOMES = List.of(
             ASHY_SHOALS,
             BLACKSTONE_SHALES,
             LUMINOUS_GROVE,
             QUARTZ_CAVERN
     );
 
-    public static void bootstrap(Registerable<Biome> registerable) {
+    public static void bootstrap(BootstrapContext<Biome> registerable) {
         registerable.register(ASHY_SHOALS, AshyShoalsBiome.create(registerable));
         registerable.register(BLACKSTONE_SHALES, BlackstoneShalesBiome.create(registerable));
         registerable.register(LUMINOUS_GROVE, LuminousGroveBiome.create(registerable));

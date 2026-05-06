@@ -2,14 +2,14 @@ package com.terraformersmc.cinderscapes.surfacebuilders;
 
 import com.terraformersmc.biolith.api.surface.BiolithSurfaceBuilder;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.BiomeAccess;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.gen.chunk.BlockColumn;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeManager;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.BlockColumn;
 
 public class AshyShoalsSurfaceBuilder extends BiolithSurfaceBuilder {
 	private final BlockState topMaterial;
@@ -23,21 +23,21 @@ public class AshyShoalsSurfaceBuilder extends BiolithSurfaceBuilder {
     }
 
     @Override
-    public void generate(BiomeAccess biomeAccess, BlockColumn column, Random rand, Chunk chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
-        if (!biomeAccess.getBiome(new BlockPos(x, seaLevel, z)).matchesKey(CinderscapesBiomes.ASHY_SHOALS)) {
+    public void generate(BiomeManager biomeAccess, BlockColumn column, RandomSource rand, ChunkAccess chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
+        if (!biomeAccess.getBiome(new BlockPos(x, seaLevel, z)).is(CinderscapesBiomes.ASHY_SHOALS)) {
             // We care most about sea level.
             return;
         }
 
-        for (int y = chunk.getBottomY(); y < seaLevel + 8; ++y) {
-            BlockState state = column.getState(y);
-            if (state.isAir() && column.getState(y - 1).equals(midMaterial)) {
-                column.setState(y, topMaterial);
-            } else if (state.isOf(Blocks.LAVA) && state.getFluidState().isStill()) {
-                if (column.getState(y + 1).isAir() || rand.nextBoolean() && column.getState(y + 2).isAir()) {
-                    column.setState(y, midMaterial);
+        for (int y = chunk.getMinY(); y < seaLevel + 8; ++y) {
+            BlockState state = column.getBlock(y);
+            if (state.isAir() && column.getBlock(y - 1).equals(midMaterial)) {
+                column.setBlock(y, topMaterial);
+            } else if (state.is(Blocks.LAVA) && state.getFluidState().isSource()) {
+                if (column.getBlock(y + 1).isAir() || rand.nextBoolean() && column.getBlock(y + 2).isAir()) {
+                    column.setBlock(y, midMaterial);
                 } else {
-                    column.setState(y, lowMaterial);
+                    column.setBlock(y, lowMaterial);
                 }
             }
         }

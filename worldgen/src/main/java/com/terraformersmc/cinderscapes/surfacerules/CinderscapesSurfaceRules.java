@@ -2,28 +2,28 @@ package com.terraformersmc.cinderscapes.surfacerules;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.noise.NoiseParametersKeys;
-import net.minecraft.world.gen.surfacebuilder.MaterialRules;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.Noises;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 
 // Contains all of the surface rules used by Cinderscapes
 public class CinderscapesSurfaceRules {
-    public static final MaterialRules.MaterialRule LUMINOUS_GROVE = MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR,
-        MaterialRules.condition(MaterialRules.biome(CinderscapesBiomes.LUMINOUS_GROVE),
-            MaterialRules.condition(MaterialRules.not(MaterialRules.noiseThreshold(NoiseParametersKeys.NETHERRACK, 0.54D)),
-                MaterialRules.condition(MaterialRules.aboveY(YOffset.fixed(31), 0),
-                    MaterialRules.condition(MaterialRules.not(MaterialRules.aboveY(YOffset.fixed(127), 0)),
-                        MaterialRules.sequence(
-                            MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.NETHER_WART, 0.385D, 0.405D),
-                                MaterialRules.block(CinderscapesBlocks.UMBRAL_WART_BLOCK.getDefaultState())),
-                            MaterialRules.block(CinderscapesBlocks.UMBRAL_NYLIUM.getDefaultState())))))));
+    public static final SurfaceRules.RuleSource LUMINOUS_GROVE = SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+        SurfaceRules.ifTrue(SurfaceRules.isBiome(CinderscapesBiomes.LUMINOUS_GROVE),
+            SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.noiseCondition(Noises.NETHERRACK, 0.54D)),
+                SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(31), 0),
+                    SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(127), 0)),
+                        SurfaceRules.sequence(
+                            SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.NETHER_WART, 0.385D, 0.405D),
+                                SurfaceRules.state(CinderscapesBlocks.UMBRAL_WART_BLOCK.defaultBlockState())),
+                            SurfaceRules.state(CinderscapesBlocks.UMBRAL_NYLIUM.defaultBlockState())))))));
 
     // TODO: Actually ATM there are no active Cinderscapes surface rules.  TerraBlender when present overwrites them.
     //       When we migrate to TerraBlender, consider whether to migrate back from surface builders to surface rules...
     // At the moment, there's just Luminous Grove.  To add another, wrap them in MaterialRules.sequence()
-    public static final MaterialRules.MaterialRule CINDERSCAPES_NETHER_RULES = LUMINOUS_GROVE;
+    public static final SurfaceRules.RuleSource CINDERSCAPES_NETHER_RULES = LUMINOUS_GROVE;
 
-	public static MaterialRules.MaterialRule createRules() {
+	public static SurfaceRules.RuleSource createRules() {
         return CINDERSCAPES_NETHER_RULES;
 	}
 

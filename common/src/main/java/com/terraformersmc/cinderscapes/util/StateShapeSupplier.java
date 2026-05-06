@@ -1,11 +1,11 @@
 package com.terraformersmc.cinderscapes.util;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
 
 import java.util.function.Function;
 
@@ -13,6 +13,6 @@ import java.util.function.Function;
  * A function that accepts a block state and returns a voxel shape
  * Used for inline definitions of the block voxel shapes by passing the block state through to return a voxel shape
  *
- * @see Block#getOutlineShape(BlockState, BlockView, BlockPos, ShapeContext)
+ * @see Block#getShape(BlockState, BlockGetter, BlockPos, CollisionContext)
  */
 public interface StateShapeSupplier extends Function<BlockState, VoxelShape> {  }

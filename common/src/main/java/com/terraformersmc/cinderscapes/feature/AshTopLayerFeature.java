@@ -3,54 +3,54 @@ package com.terraformersmc.cinderscapes.feature;
 import com.google.common.base.Suppliers;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class AshTopLayerFeature extends Feature<DefaultFeatureConfig> {
+public class AshTopLayerFeature extends Feature<NoneFeatureConfiguration> {
     public AshTopLayerFeature() {
-        super(DefaultFeatureConfig.CODEC);
+        super(NoneFeatureConfiguration.CODEC);
     }
 
     // Suppress placement validity check because we are evaluating multiple positions.
     @Override
-    public boolean generateIfValid(DefaultFeatureConfig config, StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos) {
-        return this.generate(new FeatureContext<>(Optional.empty(), world, chunkGenerator, random, pos, config));
+    public boolean place(NoneFeatureConfiguration config, WorldGenLevel world, ChunkGenerator chunkGenerator, RandomSource random, BlockPos pos) {
+        return this.place(new FeaturePlaceContext<>(Optional.empty(), world, chunkGenerator, random, pos, config));
     }
 
     @Override
-    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
-        StructureWorldAccess world = context.getWorld();
-        BlockPos origin = context.getOrigin();
-        BlockPos.Mutable pos = new BlockPos.Mutable();
-        BlockPos.Mutable posBelow = new BlockPos.Mutable();
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        WorldGenLevel world = context.level();
+        BlockPos origin = context.origin();
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+        BlockPos.MutableBlockPos posBelow = new BlockPos.MutableBlockPos();
 
         for (int offsetX = 0; offsetX < 16; ++offsetX) {
             for (int offsetZ = 0; offsetZ < 16; ++offsetZ) {
                 int x = origin.getX() + offsetX;
                 int z = origin.getZ() + offsetZ;
-                int topY = world.getTopY(Heightmap.Type.MOTION_BLOCKING, x, z);
+                int topY = world.getHeight(Heightmap.Types.MOTION_BLOCKING, x, z);
                 pos.set(x, topY, z);
                 posBelow.set(x, topY - 1, z);
 
-                while (pos.getY() > world.getBottomY()) {
-                    if (    world.isValidForSetBlock(pos) &&
-                            world.isAir(pos) &&
-                            world.getBlockState(posBelow).isSideSolidFullSquare(world, posBelow, Direction.UP) &&
+                while (pos.getY() > world.getMinY()) {
+                    if (    world.ensureCanWrite(pos) &&
+                            world.isEmptyBlock(pos) &&
+                            world.getBlockState(posBelow).isFaceSturdy(world, posBelow, Direction.UP) &&
                             getValidBiomes(world).contains(world.getBiome(pos).value())) {
-                        world.setBlockState(pos, CinderscapesBlocks.ASH.getDefaultState(), 2);
+                        world.setBlock(pos, CinderscapesBlocks.ASH.defaultBlockState(), 2);
                         pos.setY(pos.getY() - 2);
                     } else {
                         pos.setY(pos.getY() - 1);
@@ -63,10 +63,10 @@ public class AshTopLayerFeature extends Feature<DefaultFeatureConfig> {
         return true;
     }
 
-    private static Set<Biome> getValidBiomes(StructureWorldAccess world) {
-        return Suppliers.memoize(() -> world.getRegistryManager().getOrThrow(RegistryKeys.BIOME).stream()
+    private static Set<Biome> getValidBiomes(WorldGenLevel world) {
+        return Suppliers.memoize(() -> world.registryAccess().lookupOrThrow(Registries.BIOME).stream()
                 .filter(biome -> biome.getGenerationSettings()
-                        .isFeatureAllowed(world.getRegistryManager().getOrThrow(RegistryKeys.PLACED_FEATURE)
+                        .hasFeature(world.registryAccess().lookupOrThrow(Registries.PLACED_FEATURE)
                                 .getValueOrThrow(CinderscapesPlacedFeatures.ASH_TOP_LAYER)))
                 .collect(Collectors.toSet())).get();
     }

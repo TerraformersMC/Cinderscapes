@@ -3,39 +3,40 @@ package com.terraformersmc.cinderscapes.block;
 import com.terraformersmc.cinderscapes.util.StateShapeRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 
 public class CrystiniumBlock extends CinderscapesNetherPlantBlock {
-    public CrystiniumBlock(Settings settings) {
+    public CrystiniumBlock(Properties settings) {
         super(settings);
 
-        StateShapeRegistry.put(this, (state) -> Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0));
+        StateShapeRegistry.put(this, (state) -> Block.box(2.0, 0.0, 2.0, 14.0, 12.0, 14.0));
     }
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        Vec3d center = this.getOutlineShape(state, world, pos, ShapeContext.absent()).getBoundingBox().getCenter();
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+        Vec3 center = this.getShape(state, world, pos, CollisionContext.empty()).bounds().getCenter();
         double x = (double)pos.getX() + center.x;
         double z = (double)pos.getZ() + center.z;
 
         if (random.nextFloat() > 0.8) {
-            world.addParticleClient(ParticleTypes.FIREWORK, x + random.nextFloat() - 0.5f, pos.getY() + random.nextFloat(), z + random.nextFloat() - 0.5f, random.nextFloat() * 0.1 - 0.05, random.nextFloat() * 0.1 - 0.05, random.nextFloat() * 0.1 - 0.05);
+            world.addParticle(ParticleTypes.FIREWORK, x + random.nextFloat() - 0.5f, pos.getY() + random.nextFloat(), z + random.nextFloat() - 0.5f, random.nextFloat() * 0.1 - 0.05, random.nextFloat() * 0.1 - 0.05, random.nextFloat() * 0.1 - 0.05);
         }
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Vec3d modelOffset = state.getModelOffset(pos);
-        return super.getOutlineShape(state, world, pos, context).offset(modelOffset.x, modelOffset.y, modelOffset.z);
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        Vec3 modelOffset = state.getOffset(pos);
+        return super.getShape(state, world, pos, context).move(modelOffset.x, modelOffset.y, modelOffset.z);
     }
 }

@@ -1,32 +1,34 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import net.minecraft.block.AbstractPlantStemBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.StemBlock;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import org.jspecify.annotations.NullMarked;
 
 // TODO: Make a feature config allowing the blockstates to change
-public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig> {
+@NullMarked
+public class BlackstoneWeepingVinesFeature extends Feature<NoneFeatureConfiguration> {
     public BlackstoneWeepingVinesFeature() {
-        super(DefaultFeatureConfig.CODEC);
+        super(NoneFeatureConfiguration.CODEC);
     }
 
     @Override
-    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
-        Random random = context.getRandom();
-        BlockPos pos = context.getOrigin();
-        StructureWorldAccess world = context.getWorld();
-        if (!world.isAir(pos)) {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        RandomSource random = context.random();
+        BlockPos pos = context.origin();
+        WorldGenLevel world = context.level();
+        if (!world.isEmptyBlock(pos)) {
             return false;
         } else {
-            Block block = world.getBlockState(pos.up()).getBlock();
+            Block block = world.getBlockState(pos.above()).getBlock();
             if (block != Blocks.BLACKSTONE && block != Blocks.NETHER_WART_BLOCK) {
                 return false;
             } else {
@@ -37,18 +39,18 @@ public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig>
         }
     }
 
-    private void generateNetherWartBlocksInArea(StructureWorldAccess world, Random random, BlockPos pos) {
-        world.setBlockState(pos, Blocks.NETHER_WART_BLOCK.getDefaultState(), 2);
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-        BlockPos.Mutable mutable2 = new BlockPos.Mutable();
+    private void generateNetherWartBlocksInArea(WorldGenLevel world, RandomSource random, BlockPos pos) {
+        world.setBlock(pos, Blocks.NETHER_WART_BLOCK.defaultBlockState(), 2);
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        BlockPos.MutableBlockPos mutable2 = new BlockPos.MutableBlockPos();
 
         for (int i = 0; i < 200; ++i) {
-            mutable.set(pos, random.nextInt(6) - random.nextInt(6), random.nextInt(2) - random.nextInt(5), random.nextInt(6) - random.nextInt(6));
-            if (world.isAir(mutable)) {
+            mutable.setWithOffset(pos, random.nextInt(6) - random.nextInt(6), random.nextInt(2) - random.nextInt(5), random.nextInt(6) - random.nextInt(6));
+            if (world.isEmptyBlock(mutable)) {
                 int j = 0;
 
                 for (Direction direction : Direction.values()) {
-                    Block block = world.getBlockState(mutable2.set(mutable, direction)).getBlock();
+                    Block block = world.getBlockState(mutable2.setWithOffset(mutable, direction)).getBlock();
                     if (block == Blocks.BLACKSTONE || block == Blocks.NETHER_WART_BLOCK) {
                         ++j;
                     }
@@ -59,21 +61,21 @@ public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig>
                 }
 
                 if (j == 1) {
-                    world.setBlockState(mutable, Blocks.NETHER_WART_BLOCK.getDefaultState(), 2);
+                    world.setBlock(mutable, Blocks.NETHER_WART_BLOCK.defaultBlockState(), 2);
                 }
             }
         }
 
     }
 
-    private void generateVinesInArea(StructureWorldAccess world, Random random, BlockPos pos) {
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
+    private void generateVinesInArea(WorldGenLevel world, RandomSource random, BlockPos pos) {
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         for (int i = 0; i < 100; ++i) {
-            mutable.set(pos, random.nextInt(8) - random.nextInt(8), random.nextInt(2) - random.nextInt(7), random.nextInt(8) - random.nextInt(8));
-            if (world.isAir(mutable)) {
-                Block block = world.getBlockState(mutable.up()).getBlock();
+            mutable.setWithOffset(pos, random.nextInt(8) - random.nextInt(8), random.nextInt(2) - random.nextInt(7), random.nextInt(8) - random.nextInt(8));
+            if (world.isEmptyBlock(mutable)) {
+                Block block = world.getBlockState(mutable.above()).getBlock();
                 if (block == Blocks.BLACKSTONE || block == Blocks.NETHER_WART_BLOCK) {
-                    int j = MathHelper.nextInt(random, 1, 8);
+                    int j = Mth.nextInt(random, 1, 8);
                     if (random.nextInt(6) == 0) {
                         j *= 2;
                     }
@@ -88,14 +90,14 @@ public class BlackstoneWeepingVinesFeature extends Feature<DefaultFeatureConfig>
         }
     }
 
-    public static void generateVineColumn(StructureWorldAccess world, Random random, BlockPos.Mutable pos, int length, int minAge, int maxAge) {
+    public static void generateVineColumn(WorldGenLevel world, RandomSource random, BlockPos.MutableBlockPos pos, int length, int minAge, int maxAge) {
         for (int i = 0; i <= length; ++i) {
-            if (world.isAir(pos)) {
-                if (i == length || !world.isAir(pos.down())) {
-                    world.setBlockState(pos, Blocks.WEEPING_VINES.getDefaultState().with(AbstractPlantStemBlock.AGE, MathHelper.nextInt(random, minAge, maxAge)), 2);
+            if (world.isEmptyBlock(pos)) {
+                if (i == length || !world.isEmptyBlock(pos.below())) {
+                    world.setBlock(pos, Blocks.WEEPING_VINES.defaultBlockState().setValue(StemBlock.AGE, Mth.nextInt(random, minAge, maxAge)), 2);
                     break;
                 }
-                world.setBlockState(pos, Blocks.WEEPING_VINES_PLANT.getDefaultState(), 2);
+                world.setBlock(pos, Blocks.WEEPING_VINES_PLANT.defaultBlockState(), 2);
             }
             pos.move(Direction.DOWN);
         }

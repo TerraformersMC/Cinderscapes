@@ -6,14 +6,19 @@ import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.*;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.resource.featuretoggle.FeatureSet;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
@@ -22,8 +27,8 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class CinderscapesItemGroups {
-	private static final RegistryKey<ItemGroup> ITEM_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Cinderscapes.MOD_ID, "items"));
-	private static final HashMap<RegistryKey<ItemGroup>, HashMap<ItemConvertible, ItemGroupEntries>> ITEM_GROUP_ENTRY_MAPS;
+	private static final ResourceKey<CreativeModeTab> ITEM_GROUP = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, "items"));
+	private static final HashMap<ResourceKey<CreativeModeTab>, HashMap<ItemLike, ItemGroupEntries>> ITEM_GROUP_ENTRY_MAPS;
 
 	static {
 		ITEM_GROUP_ENTRY_MAPS = new HashMap<>(8);
@@ -58,139 +63,139 @@ public class CinderscapesItemGroups {
 		// BUILDING BLOCKS
 
 		// Wood items
-		addGroupEntry(CinderscapesBlocks.SCORCHED_STEM, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_HYPHAE, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.STRIPPED_SCORCHED_STEM, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_PLANKS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_STAIRS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_SLAB, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_FENCE, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_FENCE_GATE, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_DOOR, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_TRAPDOOR, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_PRESSURE_PLATE, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_BUTTON, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_STEM, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_HYPHAE, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.STRIPPED_SCORCHED_STEM, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_PLANKS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_STAIRS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_SLAB, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_FENCE, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_FENCE_GATE, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_DOOR, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_TRAPDOOR, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_PRESSURE_PLATE, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_BUTTON, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
 
-		addGroupEntry(CinderscapesBlocks.UMBRAL_STEM, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_HYPHAE, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.STRIPPED_UMBRAL_STEM, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_PLANKS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_STAIRS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_SLAB, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_FENCE, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_FENCE_GATE, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_DOOR, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_TRAPDOOR, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_PRESSURE_PLATE, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_BUTTON, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_STEM, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_HYPHAE, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.STRIPPED_UMBRAL_STEM, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_PLANKS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_STAIRS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_SLAB, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_FENCE, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_FENCE_GATE, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_DOOR, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_TRAPDOOR, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_PRESSURE_PLATE, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_BUTTON, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_WOOD);
 
 		// Quartz Items
-		addGroupEntry(CinderscapesBlocks.CRYSTALLINE_QUARTZ, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.CRYSTALLINE_QUARTZ, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
 
-		addGroupEntry(CinderscapesBlocks.SULFUR_QUARTZ_BLOCK, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SULFUR_QUARTZ_STAIRS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SULFUR_QUARTZ_SLAB, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SULFUR_QUARTZ_BRICKS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SULFUR_QUARTZ_PILLAR, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_STAIRS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_SLAB, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SULFUR_QUARTZ_BLOCK, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SULFUR_QUARTZ_STAIRS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SULFUR_QUARTZ_SLAB, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SULFUR_QUARTZ_BRICKS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SULFUR_QUARTZ_PILLAR, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_STAIRS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_SLAB, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
 
-		addGroupEntry(CinderscapesBlocks.ROSE_QUARTZ_BLOCK, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.ROSE_QUARTZ_STAIRS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.ROSE_QUARTZ_SLAB, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.ROSE_QUARTZ_BRICKS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.ROSE_QUARTZ_PILLAR, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_STAIRS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_SLAB, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.ROSE_QUARTZ_BLOCK, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.ROSE_QUARTZ_STAIRS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.ROSE_QUARTZ_SLAB, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.ROSE_QUARTZ_BRICKS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.ROSE_QUARTZ_PILLAR, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_STAIRS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_SLAB, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
 
-		addGroupEntry(CinderscapesBlocks.SMOKY_QUARTZ_BLOCK, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOKY_QUARTZ_STAIRS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOKY_QUARTZ_SLAB, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOKY_QUARTZ_BRICKS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOKY_QUARTZ_PILLAR, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_SLAB, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
-		addGroupEntry(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOKY_QUARTZ_BLOCK, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOKY_QUARTZ_STAIRS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOKY_QUARTZ_SLAB, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOKY_QUARTZ_BRICKS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOKY_QUARTZ_PILLAR, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_SLAB, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
+		addGroupEntry(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_QUARTZ);
 
 		// Storage Blocks
-		addGroupEntry(CinderscapesBlocks.SULFUR_BLOCK, ItemGroups.BUILDING_BLOCKS, BUILDING_NETHER_STORAGE_BLOCK);
+		addGroupEntry(CinderscapesBlocks.SULFUR_BLOCK, CreativeModeTabs.BUILDING_BLOCKS, BUILDING_NETHER_STORAGE_BLOCK);
 
 
 		// NATURAL
 
 		// Ores
-		addGroupEntry(CinderscapesBlocks.SULFUR_QUARTZ_ORE, ItemGroups.NATURAL, NATURAL_QUARTZ_ORE);
-		addGroupEntry(CinderscapesBlocks.ROSE_QUARTZ_ORE, ItemGroups.NATURAL, NATURAL_QUARTZ_ORE);
-		addGroupEntry(CinderscapesBlocks.SMOKY_QUARTZ_ORE, ItemGroups.NATURAL, NATURAL_QUARTZ_ORE);
-		addGroupEntry(CinderscapesBlocks.SULFUR_ORE, ItemGroups.NATURAL, NATURAL_QUARTZ_ORE);
-		addGroupEntry(CinderscapesBlocks.SULFUR_BLOCK, ItemGroups.NATURAL, NATURAL_QUARTZ_ORE);
+		addGroupEntry(CinderscapesBlocks.SULFUR_QUARTZ_ORE, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_QUARTZ_ORE);
+		addGroupEntry(CinderscapesBlocks.ROSE_QUARTZ_ORE, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_QUARTZ_ORE);
+		addGroupEntry(CinderscapesBlocks.SMOKY_QUARTZ_ORE, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_QUARTZ_ORE);
+		addGroupEntry(CinderscapesBlocks.SULFUR_ORE, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_QUARTZ_ORE);
+		addGroupEntry(CinderscapesBlocks.SULFUR_BLOCK, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_QUARTZ_ORE);
 
 		// Snow-like
-		addGroupEntry(CinderscapesBlocks.ASH_BLOCK, ItemGroups.NATURAL, NATURAL_SNOWLIKE);
-		addGroupEntry(CinderscapesBlocks.ASH, ItemGroups.NATURAL, NATURAL_SNOWLIKE);
+		addGroupEntry(CinderscapesBlocks.ASH_BLOCK, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_SNOWLIKE);
+		addGroupEntry(CinderscapesBlocks.ASH, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_SNOWLIKE);
 
 		// Nylium
-		addGroupEntry(CinderscapesBlocks.UMBRAL_NYLIUM, ItemGroups.NATURAL, NATURAL_NYLIUM);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_NYLIUM, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NYLIUM);
 		if (CinderscapesConfig.INSTANCE.easterEggs) {
-			addGroupEntry(CinderscapesBlocks.NODZOL, ItemGroups.NATURAL, NATURAL_NYLIUM);
+			addGroupEntry(CinderscapesBlocks.NODZOL, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NYLIUM);
 		}
 
 		// Stems and worldgen Hyphae
-		addGroupEntry(CinderscapesBlocks.SCORCHED_STEM, ItemGroups.NATURAL, NATURAL_STEM);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_HYPHAE, ItemGroups.NATURAL, NATURAL_STEM);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_STEM, ItemGroups.NATURAL, NATURAL_STEM);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_HYPHAE, ItemGroups.NATURAL, NATURAL_STEM);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_STEM, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_STEM);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_HYPHAE, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_STEM);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_STEM, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_STEM);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_HYPHAE, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_STEM);
 
 		// Fungus
-		addGroupEntry(CinderscapesBlocks.UMBRAL_FUNGUS, ItemGroups.NATURAL, NATURAL_FUNGUS);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_FUNGUS, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_FUNGUS);
 
 		// Wart
-		addGroupEntry(CinderscapesBlocks.UMBRAL_WART_BLOCK, ItemGroups.NATURAL, NATURAL_WART_BLOCK);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_FLESH_BLOCK, ItemGroups.NATURAL, NATURAL_WART_BLOCK);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_WART_BLOCK, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_WART_BLOCK);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_FLESH_BLOCK, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_WART_BLOCK);
 
 		// Vegetation
-		addGroupEntry(CinderscapesBlocks.TWILIGHT_FESCUES, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.TWILIGHT_TENDRILS, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_SPROUTS, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_TENDRILS, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.PHOTOFERN, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_SHRUB, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.PYRACINTH, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.CRYSTINIUM, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.POLYPITE_QUARTZ, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.POLYPITE_ROSE_QUARTZ, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.TWILIGHT_VINE_BLOCK, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.GHASTLY_ECTOPLASM, ItemGroups.NATURAL, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.TWILIGHT_FESCUES, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.TWILIGHT_TENDRILS, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_SPROUTS, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_TENDRILS, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.PHOTOFERN, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_SHRUB, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.PYRACINTH, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.CRYSTINIUM, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.POLYPITE_QUARTZ, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.POLYPITE_ROSE_QUARTZ, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.TWILIGHT_VINE_BLOCK, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.GHASTLY_ECTOPLASM, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_NETHER_VEGETATION);
 
 		// Tall Plants
-		addGroupEntry(CinderscapesBlocks.TALL_PHOTOFERN, ItemGroups.NATURAL, NATURAL_TALL_VEGETATION);
-		addGroupEntry(CinderscapesBlocks.LUMINOUS_POD, ItemGroups.NATURAL, NATURAL_TALL_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.TALL_PHOTOFERN, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_TALL_VEGETATION);
+		addGroupEntry(CinderscapesBlocks.LUMINOUS_POD, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_TALL_VEGETATION);
 
 		// Berries
-		addGroupEntry(CinderscapesItems.BRAMBLE_BERRIES, ItemGroups.NATURAL, NATURAL_BERRIES);
+		addGroupEntry(CinderscapesItems.BRAMBLE_BERRIES, CreativeModeTabs.NATURAL_BLOCKS, NATURAL_BERRIES);
 
 
 		// FUNCTIONAL
 
 		// Wood Items
-		addGroupEntry(CinderscapesBlocks.SCORCHED_SHELF, ItemGroups.FUNCTIONAL, FUNCTIONAL_NETHER_SHELF);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_SIGN, ItemGroups.FUNCTIONAL, FUNCTIONAL_NETHER_SIGN);
-		addGroupEntry(CinderscapesBlocks.SCORCHED_HANGING_SIGN, ItemGroups.FUNCTIONAL, FUNCTIONAL_NETHER_SIGN);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_SHELF, ItemGroups.FUNCTIONAL, FUNCTIONAL_NETHER_SHELF);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_SIGN, ItemGroups.FUNCTIONAL, FUNCTIONAL_NETHER_SIGN);
-		addGroupEntry(CinderscapesBlocks.UMBRAL_HANGING_SIGN, ItemGroups.FUNCTIONAL, FUNCTIONAL_NETHER_SIGN);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_SHELF, CreativeModeTabs.FUNCTIONAL_BLOCKS, FUNCTIONAL_NETHER_SHELF);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_SIGN, CreativeModeTabs.FUNCTIONAL_BLOCKS, FUNCTIONAL_NETHER_SIGN);
+		addGroupEntry(CinderscapesBlocks.SCORCHED_HANGING_SIGN, CreativeModeTabs.FUNCTIONAL_BLOCKS, FUNCTIONAL_NETHER_SIGN);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_SHELF, CreativeModeTabs.FUNCTIONAL_BLOCKS, FUNCTIONAL_NETHER_SHELF);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_SIGN, CreativeModeTabs.FUNCTIONAL_BLOCKS, FUNCTIONAL_NETHER_SIGN);
+		addGroupEntry(CinderscapesBlocks.UMBRAL_HANGING_SIGN, CreativeModeTabs.FUNCTIONAL_BLOCKS, FUNCTIONAL_NETHER_SIGN);
 
 
 		// REDSTONE
@@ -211,16 +216,16 @@ public class CinderscapesItemGroups {
 		// FOOD AND DRINK
 
 		// Berries
-		addGroupEntry(CinderscapesItems.BRAMBLE_BERRIES, ItemGroups.FOOD_AND_DRINK, FOOD_BERRIES);
+		addGroupEntry(CinderscapesItems.BRAMBLE_BERRIES, CreativeModeTabs.FOOD_AND_DRINKS, FOOD_BERRIES);
 
 
 		// INGREDIENTS
 
 		// Quartz
-		addGroupEntry(CinderscapesItems.SULFUR_QUARTZ, ItemGroups.INGREDIENTS, INGREDIENTS_QUARTZ);
-		addGroupEntry(CinderscapesItems.ROSE_QUARTZ, ItemGroups.INGREDIENTS, INGREDIENTS_QUARTZ);
-		addGroupEntry(CinderscapesItems.SMOKY_QUARTZ, ItemGroups.INGREDIENTS, INGREDIENTS_QUARTZ);
-		addGroupEntry(CinderscapesItems.SULFUR, ItemGroups.INGREDIENTS, INGREDIENTS_QUARTZ);
+		addGroupEntry(CinderscapesItems.SULFUR_QUARTZ, CreativeModeTabs.INGREDIENTS, INGREDIENTS_QUARTZ);
+		addGroupEntry(CinderscapesItems.ROSE_QUARTZ, CreativeModeTabs.INGREDIENTS, INGREDIENTS_QUARTZ);
+		addGroupEntry(CinderscapesItems.SMOKY_QUARTZ, CreativeModeTabs.INGREDIENTS, INGREDIENTS_QUARTZ);
+		addGroupEntry(CinderscapesItems.SULFUR, CreativeModeTabs.INGREDIENTS, INGREDIENTS_QUARTZ);
 
 		// SPAWN EGGS
 
@@ -231,19 +236,19 @@ public class CinderscapesItemGroups {
 		/*
 		 * Add the items configured above to the Vanilla item groups.
 		 */
-		for (RegistryKey<ItemGroup> group : ITEM_GROUP_ENTRY_MAPS.keySet()) {
+		for (ResourceKey<CreativeModeTab> group : ITEM_GROUP_ENTRY_MAPS.keySet()) {
 			ItemGroupEvents.modifyEntriesEvent(group).register((content) -> {
-				FeatureSet featureSet = content.getEnabledFeatures();
-				HashMap<ItemConvertible, ItemGroupEntries> entryMap = ITEM_GROUP_ENTRY_MAPS.get(group);
+				FeatureFlagSet featureSet = content.getEnabledFeatures();
+				HashMap<ItemLike, ItemGroupEntries> entryMap = ITEM_GROUP_ENTRY_MAPS.get(group);
 
-				for (ItemConvertible relative : entryMap.keySet()) {
+				for (ItemLike relative : entryMap.keySet()) {
 					ItemGroupEntries entries = entryMap.get(relative);
 
 					// FAPI does not give us a way to add at a feature-flag-disabled location.
 					// So, below we have to adjust for any items which may be disabled.
 					if (relative == null) {
 						// Target the end of the Item Group
-						content.addAll(entries.getCollection());
+						content.acceptAll(entries.getCollection());
 					} else {
 						//Cinderscapes.LOGGER.warn("About to add to Vanilla Item Group '{}' after Item '{}': '{}'", group.getId(), relative, entries.getCollection().stream().map(ItemStack::getItem).collect(Collectors.toList()));
 						content.addAfter(relative, entries.getCollection());
@@ -256,26 +261,26 @@ public class CinderscapesItemGroups {
 		/*
 		 * Also add all the items to Cinderscapes' own item group.
 		 */
-		Registry.register(Registries.ITEM_GROUP, ITEM_GROUP, FabricItemGroup.builder()
-				.displayName(Text.literal("Cinderscapes"))
-				.icon(() -> CinderscapesBlocks.UMBRAL_FUNGUS.asItem().getDefaultStack())
-				.entries((context, entries) -> {
+		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ITEM_GROUP, FabricItemGroup.builder()
+				.title(Component.literal("Cinderscapes"))
+				.icon(() -> CinderscapesBlocks.UMBRAL_FUNGUS.asItem().getDefaultInstance())
+				.displayItems((context, entries) -> {
 					ITEM_GROUP_ENTRY_MAPS.values().stream()
 							.map(HashMap::values).flatMap(Collection::stream)
 							.map(ItemGroupEntries::getCollection).flatMap(Collection::stream)
 							.collect(Collectors.groupingByConcurrent(ItemStack::getItem)).keySet().stream()
-							.sorted(Comparator.comparing((item) -> item.getName().getString())).forEach(entries::add);
+							.sorted(Comparator.comparing((item) -> item.getName().getString())).forEach(entries::accept);
 				}).build()
 		);
 	}
 
-	public static void addGroupEntry(ItemConvertible item, RegistryKey<ItemGroup> group) {
+	public static void addGroupEntry(ItemLike item, ResourceKey<CreativeModeTab> group) {
 		// Appends the item to the bottom of the group.
 		addGroupEntry(item, group, null);
 	}
 
-	public static void addGroupEntry(ItemConvertible item, RegistryKey<ItemGroup> group, @Nullable ItemConvertible relative) {
-		HashMap<ItemConvertible, ItemGroupEntries> entryMap = ITEM_GROUP_ENTRY_MAPS.computeIfAbsent(group, (key) -> new HashMap<>(32));
+	public static void addGroupEntry(ItemLike item, ResourceKey<CreativeModeTab> group, @Nullable ItemLike relative) {
+		HashMap<ItemLike, ItemGroupEntries> entryMap = ITEM_GROUP_ENTRY_MAPS.computeIfAbsent(group, (key) -> new HashMap<>(32));
 		ItemGroupEntries entries = entryMap.computeIfAbsent(relative, ItemGroupEntries::empty);
 		entries.addItem(item);
 	}

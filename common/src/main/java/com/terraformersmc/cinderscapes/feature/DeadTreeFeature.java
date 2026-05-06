@@ -11,35 +11,35 @@ import com.terraformersmc.terraform.shapes.impl.layer.pathfinder.AddLayer;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.RotateLayer;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
 import com.terraformersmc.terraform.shapes.impl.validator.SafelistValidator;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import java.util.Arrays;
 
-public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
+public class DeadTreeFeature extends Feature<NoneFeatureConfiguration> {
     public DeadTreeFeature() {
-        super(DefaultFeatureConfig.CODEC);
+        super(NoneFeatureConfiguration.CODEC);
     }
 
     @Override
-    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
-        Random random = context.getRandom();
-        BlockPos pos = context.getOrigin();
-        StructureWorldAccess world = context.getWorld();
-        if (world.getBlockState(pos.down()).getBlock() == CinderscapesBlocks.ASH) {
-            pos = pos.down();
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        RandomSource random = context.random();
+        BlockPos pos = context.origin();
+        WorldGenLevel world = context.level();
+        if (world.getBlockState(pos.below()).getBlock() == CinderscapesBlocks.ASH) {
+            pos = pos.below();
         }
-        if (!Block.isFaceFullSquare(world.getBlockState(pos.down()).getCollisionShape(world, pos.down()), Direction.UP)) {
+        if (!Block.isFaceFull(world.getBlockState(pos.below()).getCollisionShape(world, pos.below()), Direction.UP)) {
             return false;
         }
-        if (world.getBlockState(pos.down()).getBlock() == Blocks.MAGMA_BLOCK || world.getBlockState(pos.down()).getBlock() == CinderscapesBlocks.SCORCHED_STEM) {
+        if (world.getBlockState(pos.below()).getBlock() == Blocks.MAGMA_BLOCK || world.getBlockState(pos.below()).getBlock() == CinderscapesBlocks.SCORCHED_STEM) {
             return false;
         }
 
@@ -53,23 +53,23 @@ public class DeadTreeFeature extends Feature<DefaultFeatureConfig> {
                 .applyLayer(new TranslateLayer(Position.of(pos)));
 
         Validator safelistValidator = new SafelistValidator(world,  Arrays.asList(
-                Blocks.AIR.getDefaultState(),
-                CinderscapesBlocks.ASH.getDefaultState()
+                Blocks.AIR.defaultBlockState(),
+                CinderscapesBlocks.ASH.defaultBlockState()
         ));
 
         boolean trunkSafe = safelistValidator.validate(trunkShape);
         boolean topperSafe = safelistValidator.validate(topperShape);
 
         if (trunkSafe && topperSafe) {
-            trunkShape.fill(new SimpleFiller(world, CinderscapesBlocks.SCORCHED_STEM.getDefaultState()));
-            topperShape.fill(new SimpleFiller(world, CinderscapesBlocks.SCORCHED_HYPHAE.getDefaultState()));
+            trunkShape.fill(new SimpleFiller(world, CinderscapesBlocks.SCORCHED_STEM.defaultBlockState()));
+            topperShape.fill(new SimpleFiller(world, CinderscapesBlocks.SCORCHED_HYPHAE.defaultBlockState()));
             return true;
         }
 
         return false;
     }
 
-    private static Shape recursiveTreeTopper(Random random, int minLength, int maxLength, int minSpread, int maxSpread, int minChildren, int maxChildren, int totalRecursionLevel, int recursionCounter) {
+    private static Shape recursiveTreeTopper(RandomSource random, int minLength, int maxLength, int minSpread, int maxSpread, int minChildren, int maxChildren, int totalRecursionLevel, int recursionCounter) {
         Shape shape = Shapes.rectanglarPrism(1, 1, 1);
 
         if (recursionCounter == 0) {

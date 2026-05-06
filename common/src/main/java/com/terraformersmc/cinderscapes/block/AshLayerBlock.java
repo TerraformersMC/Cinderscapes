@@ -1,17 +1,18 @@
 package com.terraformersmc.cinderscapes.block;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SnowBlock;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.SnowLayerBlock;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 
-public class AshLayerBlock extends SnowBlock {
-    public AshLayerBlock(Settings settings) {
+public class AshLayerBlock extends SnowLayerBlock {
+    public AshLayerBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
     }
 }

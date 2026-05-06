@@ -1,28 +1,28 @@
 package com.terraformersmc.cinderscapes.feature;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 // TODO: Rewrite using the upcoming shapes library
 // TODO: Make a feature config allowing the material and size range to change
-public class AshPileFeature extends Feature<DefaultFeatureConfig> {
+public class AshPileFeature extends Feature<NoneFeatureConfiguration> {
     public AshPileFeature() {
-        super(DefaultFeatureConfig.CODEC);
+        super(NoneFeatureConfiguration.CODEC);
     }
 
     @Override
-    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
-        Random random = context.getRandom();
-        BlockPos pos = context.getOrigin();
-        StructureWorldAccess world = context.getWorld();
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        RandomSource random = context.random();
+        BlockPos pos = context.origin();
+        WorldGenLevel world = context.level();
         int yradius = random.nextInt(5) + 7;
 
         while (true) {
@@ -36,37 +36,37 @@ public class AshPileFeature extends Feature<DefaultFeatureConfig> {
                     break search;
                 }
 
-                if (world.isAir(pos.down())) {
+                if (world.isEmptyBlock(pos.below())) {
                     break search;
                 }
 
                 for (int y = 1; y <= 4; y++) {
-                    Block block = world.getBlockState(pos.down(y)).getBlock();
+                    Block block = world.getBlockState(pos.below(y)).getBlock();
                     if (!(block == Blocks.NETHERRACK || block == Blocks.SOUL_SOIL || block == Blocks.GRAVEL)) {
                         break search;
                     }
                 }
 
                 for (int i = 0; i < 50; i++) {
-                    BlockPos setPos = pos.add(random.nextInt(5) - random.nextInt(5), 0, random.nextInt(5) - random.nextInt(5));
+                    BlockPos setPos = pos.offset(random.nextInt(5) - random.nextInt(5), 0, random.nextInt(5) - random.nextInt(5));
 
                     BlockState setState = world.getBlockState(setPos);
 
-                    while (world.isAir(setPos.down()) || world.getBlockState(setPos.down()).isOf(CinderscapesBlocks.ASH)) {
-                        setPos = setPos.down();
+                    while (world.isEmptyBlock(setPos.below()) || world.getBlockState(setPos.below()).is(CinderscapesBlocks.ASH)) {
+                        setPos = setPos.below();
                     }
 
-                    while (setState.isOf(CinderscapesBlocks.ASH_BLOCK) && setPos.getY() < 256) {
-                        if (world.isAir(setPos.up()) || world.getBlockState(setPos.up()).isOf(CinderscapesBlocks.ASH)) {
-                            setPos = setPos.up();
+                    while (setState.is(CinderscapesBlocks.ASH_BLOCK) && setPos.getY() < 256) {
+                        if (world.isEmptyBlock(setPos.above()) || world.getBlockState(setPos.above()).is(CinderscapesBlocks.ASH)) {
+                            setPos = setPos.above();
                             setState = world.getBlockState(setPos);
                         } else {
                             break;
                         }
                     }
 
-                    if (world.isAir(setPos) || world.getBlockState(setPos).isOf(CinderscapesBlocks.ASH)) {
-                        world.setBlockState(setPos, CinderscapesBlocks.ASH_BLOCK.getDefaultState(), 4);
+                    if (world.isEmptyBlock(setPos) || world.getBlockState(setPos).is(CinderscapesBlocks.ASH)) {
+                        world.setBlock(setPos, CinderscapesBlocks.ASH_BLOCK.defaultBlockState(), 4);
                     }
                 }
 
@@ -74,7 +74,7 @@ public class AshPileFeature extends Feature<DefaultFeatureConfig> {
                 return true;
             }
 
-            pos = pos.down();
+            pos = pos.below();
         }
     }
 }

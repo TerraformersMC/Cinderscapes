@@ -1,6 +1,6 @@
 package com.terraformersmc.cinderscapes.init;
 
-import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class CinderscapesBlockEntityTypes {
 	public static void init() {

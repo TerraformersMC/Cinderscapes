@@ -7,10 +7,10 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.minecraft.client.render.BlockRenderLayer;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
 
 @SuppressWarnings("unused")
 @Environment(EnvType.CLIENT)
@@ -20,7 +20,7 @@ public class CinderscapesClient implements ClientModInitializer {
     public void onInitializeClient() {
         CinderscapesArmorTrimItemModels.init();
 
-        BlockRenderLayerMap.putBlocks(BlockRenderLayer.TRANSLUCENT,
+        BlockRenderLayerMap.putBlocks(ChunkSectionLayer.TRANSLUCENT,
                 // Ashy Shoals
 
                 // Blackstone Shales
@@ -36,7 +36,7 @@ public class CinderscapesClient implements ClientModInitializer {
                 CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ
         );
 
-        BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT,
+        BlockRenderLayerMap.putBlocks(ChunkSectionLayer.CUTOUT,
                 // Ashy Shoals
                 CinderscapesBlocks.BRAMBLE_BERRY_BUSH,
                 CinderscapesBlocks.POTTED_PYRACINTH,
@@ -76,8 +76,8 @@ public class CinderscapesClient implements ClientModInitializer {
         );
 
         ItemTooltipCallback.EVENT.register((stack, context, type, lines) -> {
-            if (stack.isOf(CinderscapesBlocks.NODZOL.asItem())) {
-                lines.add(Text.translatable("block.cinderscapes.nodzol.description").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
+            if (stack.is(CinderscapesBlocks.NODZOL.asItem())) {
+                lines.add(Component.translatable("block.cinderscapes.nodzol.description").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
             }
         });
     }

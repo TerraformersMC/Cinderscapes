@@ -10,7 +10,7 @@ import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.cinderscapes.surfacebuilders.CinderscapesSurfaceBuilders;
 import com.terraformersmc.cinderscapes.surfacerules.CinderscapesSurfaceRules;
 import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
 
 import static com.terraformersmc.cinderscapes.init.CinderscapesBiomes.*;
 
@@ -31,7 +31,7 @@ public class CinderscapesBiomeAPIGeneration implements Runnable {
     public void run() {
         // Register the Cinderscapes surface rules.
         SurfaceGeneration.addNetherSurfaceRules(
-                Identifier.of(Cinderscapes.MOD_ID, "surface_rules"),
+                Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, "surface_rules"),
                 CinderscapesSurfaceRules.createRules());
 
         // Register the Cinderscapes surface builders.
