@@ -31,11 +31,32 @@
   "icon": "assets/cinderscapes/icon.png",
   "environment": "*",
   "entrypoints": {
+    "client": [
+      "com.terraformersmc.cinderscapes.CinderscapesClient"
+    ],
+    "main": [
+      "com.terraformersmc.cinderscapes.Cinderscapes"
+    ],
+    "terraform-biome-remapper": [
+      "com.terraformersmc.cinderscapes.biome.CinderscapesBiomeRemappings"
+    ],
+    "fabric-datagen": [
+      "com.terraformersmc.cinderscapes.data.CinderscapesDatagen"
+    ],
     "modmenu": [
       "com.terraformersmc.cinderscapes.integration.CinderscapesModMenu"
     ]
   },
+  "accessWidener": "cinderscapes.accesswidener",
+  "mixins": [
+    {
+      "config": "mixins.cinderscapes-client.json",
+      "environment": "client"
+    },
+    "mixins.cinderscapes-common.json"
+  ],
   "depends": {
+    "biolith": ">=3.2.0-",
     "fabricloader": ">=0.18.0",
     "fabric-api": ">=0.144.0",
     "minecraft": ">=26.1 <26.2",

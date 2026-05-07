@@ -8,11 +8,4 @@ pluginManagement {
     }
 }
 
-include "client"
-include "common"
-include "worldgen"
-
 rootProject.name = "cinderscapes"
-project(':client').name = "cinderscapes-client"
-project(':common').name = "cinderscapes-common"
-project(':worldgen').name = "cinderscapes-worldgen"

@@ -1,5 +1,0 @@
-base.archivesName = "cinderscapes-client"
-
-dependencies {
-    implementation project(path: ':cinderscapes-common')
-}
