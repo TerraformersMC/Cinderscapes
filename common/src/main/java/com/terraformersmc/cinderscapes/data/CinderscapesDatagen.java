@@ -16,6 +16,7 @@ public class CinderscapesDatagen implements DataGeneratorEntrypoint {
 		pack.addProvider(CinderscapesBlockLootTableProvider::new);
 		CinderscapesBlockTagProvider blockTagProvider = pack.addProvider(CinderscapesBlockTagProvider::new);
 		pack.addProvider((output, registries) -> new CinderscapesItemTagProvider(output, registries, blockTagProvider));
+		pack.addProvider(CinderscapesVillagerTradeKeyTagProvider::new);
 		pack.addProvider(CinderscapesModelProvider::new);
 		pack.addProvider(CinderscapesRecipeProvider::new);
 	}

@@ -5,6 +5,7 @@ import com.terraformersmc.cinderscapes.init.CinderscapesArmorTrimMaterials;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
+import com.terraformersmc.cinderscapes.villager.CinderscapesVillagerTrades;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.Holder;
@@ -27,6 +28,7 @@ public class CinderscapesDynamicRegistryProvider extends FabricDynamicRegistryPr
 		registryBuilder.add(Registries.CONFIGURED_FEATURE, CinderscapesConfiguredFeatures::bootstrap);
 		registryBuilder.add(Registries.PLACED_FEATURE, CinderscapesPlacedFeatures::bootstrap);
 		registryBuilder.add(Registries.BIOME, CinderscapesBiomes::bootstrap);
+		registryBuilder.add(Registries.VILLAGER_TRADE, CinderscapesVillagerTrades::bootstrap);
 
 		// other registries
 		registryBuilder.add(Registries.TRIM_MATERIAL, CinderscapesArmorTrimMaterials::bootstrap);
@@ -38,6 +40,7 @@ public class CinderscapesDynamicRegistryProvider extends FabricDynamicRegistryPr
 		addAll(entries, registries.lookupOrThrow(Registries.CONFIGURED_FEATURE), Cinderscapes.MOD_ID);
 		addAll(entries, registries.lookupOrThrow(Registries.PLACED_FEATURE), Cinderscapes.MOD_ID);
 		addAll(entries, registries.lookupOrThrow(Registries.BIOME), Cinderscapes.MOD_ID);
+		addAll(entries, registries.lookupOrThrow(Registries.VILLAGER_TRADE), Cinderscapes.MOD_ID);
 
 		// other registries
 		addAll(entries, registries.lookupOrThrow(Registries.TRIM_MATERIAL), Cinderscapes.MOD_ID);
