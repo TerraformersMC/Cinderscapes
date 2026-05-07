@@ -1,8 +1,6 @@
 package com.terraformersmc.cinderscapes.block;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -39,27 +37,26 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData) {
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData) {
         return new ItemStack(CinderscapesItems.BRAMBLE_BERRIES);
     }
 
     @Override
-    public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity, InsideBlockEffectApplier handler, boolean initial) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier handler, boolean initial) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.HOGLIN && entity.getType() != EntityType.ZOGLIN) {
             entity.makeStuckInBlock(state, new Vec3(0.800000011920929D, 0.75D, 0.800000011920929D));
-            if (!world.isClientSide() && state.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
+            if (!level.isClientSide() && state.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
                 double d = Math.abs(entity.getX() - entity.xOld);
                 double e = Math.abs(entity.getZ() - entity.zOld);
-                if (world instanceof ServerLevel serverWorld && (d >= 0.003000000026077032D || e >= 0.003000000026077032D)) {
-                    entity.hurtServer(serverWorld, world.damageSources().sweetBerryBush(), 1.0f);
+                if (level instanceof ServerLevel serverLevel && (d >= 0.003000000026077032D || e >= 0.003000000026077032D)) {
+                    entity.hurtServer(serverLevel, level.damageSources().sweetBerryBush(), 1.0f);
                 }
             }
         }
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return switch (state.getValue(AGE)) {
             case 0 -> SMALL_SHAPE;
             case 1 -> MEDIUM_SHAPE;
@@ -68,25 +65,25 @@ public class BrambleBerryBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         int age = state.getValue(AGE);
 
         if (age > 1) {
-            int count = age - 1 + world.getRandom().nextInt(2);
-            popResource(world, pos, new ItemStack(CinderscapesItems.BRAMBLE_BERRIES, count));
-            world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0f, 0.8f + world.getRandom().nextFloat() * 0.4f);
+            int count = age - 1 + level.getRandom().nextInt(2);
+            popResource(level, pos, new ItemStack(CinderscapesItems.BRAMBLE_BERRIES, count));
+            level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0f, 0.8f + level.getRandom().nextFloat() * 0.4f);
             BlockState newState = state.setValue(AGE, 1);
-            world.setBlock(pos, newState, 2);
-            world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, newState));
+            level.setBlock(pos, newState, 2);
+            level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, newState));
 
             return InteractionResult.SUCCESS;
         }
 
-        return super.useWithoutItem(state, world, pos, player, hit);
+        return super.useWithoutItem(state, level, pos, player, hit);
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState floor, BlockGetter level, BlockPos pos) {
         return floor.is(Blocks.NETHERRACK) || floor.is(Blocks.SOUL_SOIL) || floor.is(Blocks.SOUL_SAND) || floor.is(Blocks.GRAVEL);
     }
 

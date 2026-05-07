@@ -3,7 +3,7 @@ package com.terraformersmc.cinderscapes;
 import com.terraformersmc.cinderscapes.biomegen.CinderscapesBiolithGeneration;
 import com.terraformersmc.cinderscapes.config.CinderscapesConfig;
 import com.terraformersmc.cinderscapes.init.*;
-import com.terraformersmc.cinderscapes.item.CinderscapesItemGroups;
+import com.terraformersmc.cinderscapes.item.CinderscapesCreativeModeTabs;
 import com.terraformersmc.cinderscapes.surface.builders.CinderscapesSurfaceBuilders;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -28,7 +28,7 @@ public class Cinderscapes implements ModInitializer {
 		CinderscapesFeatures.init();
 		CinderscapesSoundEvents.init();
 		CinderscapesTrades.init();
-		CinderscapesItemGroups.init();
+		CinderscapesCreativeModeTabs.init();
 		CinderscapesRegistryAliases.init();
 
 		if (FabricLoader.getInstance().isModLoaded("biolith")) {

@@ -13,17 +13,17 @@ import java.util.List;
 public class RegionalSafelistValidator implements Validator {
 
     private final List<BlockState> safeStates;
-    private final LevelSimulatedReader testableWorld;
+    private final LevelSimulatedReader level;
     private final Direction dir;
 
-    public RegionalSafelistValidator(LevelSimulatedReader world, Direction dir, List<BlockState> safeStates) {
+    public RegionalSafelistValidator(LevelSimulatedReader level, Direction dir, List<BlockState> safeStates) {
         this.safeStates = safeStates;
-        this.testableWorld = world;
+        this.level = level;
         this.dir = dir;
     }
 
-    public RegionalSafelistValidator(LevelSimulatedReader world, Direction dir, BlockState...safeStates) {
-        this(world, dir, Arrays.asList(safeStates));
+    public RegionalSafelistValidator(LevelSimulatedReader level, Direction dir, BlockState...safeStates) {
+        this(level, dir, Arrays.asList(safeStates));
     }
 
     @Override
@@ -34,12 +34,12 @@ public class RegionalSafelistValidator implements Validator {
             double depth = shape.max().getX() - shape.min().getX();
 
             return switch (dir) {
-                case UP -> testableWorld.isStateAtPosition(position.toBlockPos(), (state) -> position.getY() > shape.min().getY() + height / 4 ? state.isAir() : safeStates.contains(state) || state.isAir());
-                case DOWN -> testableWorld.isStateAtPosition(position.toBlockPos(), (state) -> position.getY() < shape.min().getY() + height * 3 / 4 ? state.isAir() : safeStates.contains(state) || state.isAir());
-                case SOUTH -> testableWorld.isStateAtPosition(position.toBlockPos(), (state) -> position.getZ() > shape.min().getZ() + width / 4 ? state.isAir() : safeStates.contains(state) || state.isAir());
-                case NORTH -> testableWorld.isStateAtPosition(position.toBlockPos(), (state) -> position.getZ() < shape.min().getZ() + width * 3 / 4 ? state.isAir() : safeStates.contains(state) || state.isAir());
-                case EAST -> testableWorld.isStateAtPosition(position.toBlockPos(), (state) -> position.getX() > shape.min().getX() + depth / 4 ? state.isAir() : safeStates.contains(state) || state.isAir());
-                case WEST -> testableWorld.isStateAtPosition(position.toBlockPos(), (state) -> position.getX() < shape.min().getX() + depth * 3 / 4 ? state.isAir() : safeStates.contains(state) || state.isAir());
+                case UP -> level.isStateAtPosition(position.toBlockPos(), (state) -> position.getY() > shape.min().getY() + height / 4 ? state.isAir() : safeStates.contains(state) || state.isAir());
+                case DOWN -> level.isStateAtPosition(position.toBlockPos(), (state) -> position.getY() < shape.min().getY() + height * 3 / 4 ? state.isAir() : safeStates.contains(state) || state.isAir());
+                case SOUTH -> level.isStateAtPosition(position.toBlockPos(), (state) -> position.getZ() > shape.min().getZ() + width / 4 ? state.isAir() : safeStates.contains(state) || state.isAir());
+                case NORTH -> level.isStateAtPosition(position.toBlockPos(), (state) -> position.getZ() < shape.min().getZ() + width * 3 / 4 ? state.isAir() : safeStates.contains(state) || state.isAir());
+                case EAST -> level.isStateAtPosition(position.toBlockPos(), (state) -> position.getX() > shape.min().getX() + depth / 4 ? state.isAir() : safeStates.contains(state) || state.isAir());
+                case WEST -> level.isStateAtPosition(position.toBlockPos(), (state) -> position.getX() < shape.min().getX() + depth * 3 / 4 ? state.isAir() : safeStates.contains(state) || state.isAir());
             };
         });
     }

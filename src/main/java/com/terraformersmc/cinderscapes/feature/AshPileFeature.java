@@ -24,7 +24,7 @@ public class AshPileFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         RandomSource random = context.random();
         BlockPos pos = context.origin();
-        WorldGenLevel world = context.level();
+        WorldGenLevel level = context.level();
         int yradius = random.nextInt(5) + 7;
 
         while (true) {
@@ -38,12 +38,12 @@ public class AshPileFeature extends Feature<NoneFeatureConfiguration> {
                     break search;
                 }
 
-                if (world.isEmptyBlock(pos.below())) {
+                if (level.isEmptyBlock(pos.below())) {
                     break search;
                 }
 
                 for (int y = 1; y <= 4; y++) {
-                    Block block = world.getBlockState(pos.below(y)).getBlock();
+                    Block block = level.getBlockState(pos.below(y)).getBlock();
                     if (!(block == Blocks.NETHERRACK || block == Blocks.SOUL_SOIL || block == Blocks.GRAVEL)) {
                         break search;
                     }
@@ -52,23 +52,23 @@ public class AshPileFeature extends Feature<NoneFeatureConfiguration> {
                 for (int i = 0; i < 50; i++) {
                     BlockPos setPos = pos.offset(random.nextInt(5) - random.nextInt(5), 0, random.nextInt(5) - random.nextInt(5));
 
-                    BlockState setState = world.getBlockState(setPos);
+                    BlockState setState = level.getBlockState(setPos);
 
-                    while (world.isEmptyBlock(setPos.below()) || world.getBlockState(setPos.below()).is(CinderscapesBlocks.ASH)) {
+                    while (level.isEmptyBlock(setPos.below()) || level.getBlockState(setPos.below()).is(CinderscapesBlocks.ASH)) {
                         setPos = setPos.below();
                     }
 
                     while (setState.is(CinderscapesBlocks.ASH_BLOCK) && setPos.getY() < 256) {
-                        if (world.isEmptyBlock(setPos.above()) || world.getBlockState(setPos.above()).is(CinderscapesBlocks.ASH)) {
+                        if (level.isEmptyBlock(setPos.above()) || level.getBlockState(setPos.above()).is(CinderscapesBlocks.ASH)) {
                             setPos = setPos.above();
-                            setState = world.getBlockState(setPos);
+                            setState = level.getBlockState(setPos);
                         } else {
                             break;
                         }
                     }
 
-                    if (world.isEmptyBlock(setPos) || world.getBlockState(setPos).is(CinderscapesBlocks.ASH)) {
-                        world.setBlock(setPos, CinderscapesBlocks.ASH_BLOCK.defaultBlockState(), 4);
+                    if (level.isEmptyBlock(setPos) || level.getBlockState(setPos).is(CinderscapesBlocks.ASH)) {
+                        level.setBlock(setPos, CinderscapesBlocks.ASH_BLOCK.defaultBlockState(), 4);
                     }
                 }
 

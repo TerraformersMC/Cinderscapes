@@ -33,7 +33,7 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
     @Override
     public boolean place(FeaturePlaceContext<CanopiedHugeFungusFeatureConfig> context) {
         CanopiedHugeFungusFeatureConfig config = context.config();
-        WorldGenLevel world = context.level();
+        WorldGenLevel level = context.level();
         BlockPos pos = context.origin();
         RandomSource random = context.random();
 
@@ -42,14 +42,14 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
         // If the feature is being generated from a fungus block
         if (config.planted()) {
             // If the block the fungus is placed on isn't a soil block
-            if (world.getBlockState(pos.below()) != config.soilBlock()) {
+            if (level.getBlockState(pos.below()) != config.soilBlock()) {
                 return false;
             }
 
             // Check the 3x3 area under the stem
             boolean solidGround = Shape.of((ipos) -> true, Position.of(2, 0, 2), Position.of(-1, -1, -1))
                     .applyLayer(Layer.translate(Position.of(pos)))
-                    .stream().map(Position::toBlockPos).allMatch((ipos) -> !world.isEmptyBlock(ipos) && Block.isFaceFull(world.getBlockState(ipos).getCollisionShape(world, pos.below()), Direction.UP));
+                    .stream().map(Position::toBlockPos).allMatch((ipos) -> !level.isEmptyBlock(ipos) && Block.isFaceFull(level.getBlockState(ipos).getCollisionShape(level, pos.below()), Direction.UP));
 
             // If they are not all solid blocks
             if (!solidGround) {
@@ -57,7 +57,7 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
             }
 
             // We have to tolerate a fungus block (sapling) at ground zero if we were planted.
-            BlockState groundZero = world.getBlockState(pos);
+            BlockState groundZero = level.getBlockState(pos);
             if (groundZero.getBlock() instanceof NetherFungusBlock) {
                 baseSafeList.add(groundZero);
             }
@@ -102,25 +102,25 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
                 .applyLayer(Layer.translate(Position.of(canopyPos.toBlockPos().below())));
 
         // The stem and canopy must be placed in open air, but the base can replace some ground blocks
-        boolean baseClear = Validator.safelist(world, baseSafeList).validate(base);
-        boolean stemClear = Validator.air((LevelSimulatedReader) world).validate(stem);
-        boolean canopyClear = Stream.of(canopy, flesh, detailBlocks, fleshDripping, canopyDripping).allMatch((shape) -> Validator.air((LevelSimulatedReader) world).validate(shape));
+        boolean baseClear = Validator.safelist(level, baseSafeList).validate(base);
+        boolean stemClear = Validator.air((LevelSimulatedReader) level).validate(stem);
+        boolean canopyClear = Stream.of(canopy, flesh, detailBlocks, fleshDripping, canopyDripping).allMatch((shape) -> Validator.air((LevelSimulatedReader) level).validate(shape));
 
         if (baseClear && stemClear && canopyClear) {
             // canopy
-            canopy.fill(Filler.simple(world, config.canopyBlock()));
-            canopyDripping.fill(Filler.randomSimple(world, config.canopyBlock(), random, 0.5f));
-            flesh.fill(Filler.simple(world, config.fleshBlock()));
-            fleshDripping.fill(Filler.randomSimple(world, config.fleshBlock(), random, 0.5f));
-            detailBlocks.fill(Filler.randomSimple(world, config.decorationBlock(), random, 0.2f));
+            canopy.fill(Filler.simple(level, config.canopyBlock()));
+            canopyDripping.fill(Filler.randomSimple(level, config.canopyBlock(), random, 0.5f));
+            flesh.fill(Filler.simple(level, config.fleshBlock()));
+            fleshDripping.fill(Filler.randomSimple(level, config.fleshBlock(), random, 0.5f));
+            detailBlocks.fill(Filler.randomSimple(level, config.decorationBlock(), random, 0.2f));
 
             // stem
-            stem.fill(Filler.simple(world, config.stemBlock()));
-            base.fill(Filler.simple(world, config.hyphaeBlock()));
+            stem.fill(Filler.simple(level, config.stemBlock()));
+            base.fill(Filler.simple(level, config.hyphaeBlock()));
 
             // level platform for generated fungus
             if (!config.planted()) {
-                makePlatform(world, config, pos);
+                makePlatform(level, config, pos);
             }
 
             return true;
@@ -129,20 +129,20 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
         return false;
     }
 
-    private void makePlatform(WorldGenLevel world, CanopiedHugeFungusFeatureConfig config, BlockPos origin) {
+    private void makePlatform(WorldGenLevel level, CanopiedHugeFungusFeatureConfig config, BlockPos origin) {
         // Iterate through the region beneath the base of the fungus; for some reason, rectangle() does not work
         for (BlockPos pos : Shapes.rectangularPrism(3, 1, 3).applyLayer(Layer.translate(Position.of(origin))).stream().map(Position::toBlockPos).toList()) {
             // Look down several blocks for solid ground and build it up with Netherrack to our level if we find it
             for (int i = 1; i < 5; ++i) {
-                if (world.getBlockState(pos.below(i)).isRedstoneConductor(world, pos.below(i))) {
+                if (level.getBlockState(pos.below(i)).isRedstoneConductor(level, pos.below(i))) {
                     for (; i > 1; --i) {
-                        world.setBlock(pos.below(i), Blocks.NETHERRACK.defaultBlockState(), 3);
+                        level.setBlock(pos.below(i), Blocks.NETHERRACK.defaultBlockState(), 3);
                     }
                     break;
                 }
             }
             // Shrooms grow on Nylium ... under Shrooms shall ye find Nylium
-            world.setBlock(pos.below(), config.soilBlock(), 3);
+            level.setBlock(pos.below(), config.soilBlock(), 3);
         }
     }
 }

@@ -23,7 +23,7 @@ public class LuminousGroveSurfaceBuilder extends BiolithSurfaceBuilder {
     }
 
     @Override
-    public void generate(BiomeManager biomeAccess, BlockColumn column, RandomSource rand, ChunkAccess chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
+    public void generate(BiomeManager biomeAccess, BlockColumn column, RandomSource random, ChunkAccess chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
         BlockPos pos = new BlockPos(x, -128, z);
         boolean inAir = false;
 
@@ -35,7 +35,7 @@ public class LuminousGroveSurfaceBuilder extends BiolithSurfaceBuilder {
                 inAir = true;
             } else {
                 if (inAir && state.is(lowMaterial.getBlock()) && super.filterBiome(biomeAccess.getBiome(pos.atY(y)))) {
-                    column.setBlock(y, rand.nextFloat() < 0.99f ? topMaterial : midMaterial);
+                    column.setBlock(y, random.nextFloat() < 0.99f ? topMaterial : midMaterial);
                 }
                 inAir = false;
             }

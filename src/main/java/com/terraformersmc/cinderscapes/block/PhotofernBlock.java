@@ -23,20 +23,20 @@ public class PhotofernBlock extends CinderscapesNetherPlantBlock implements Bone
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
 		CinderscapesNetherTallPlantBlock tallPhotofern = (CinderscapesNetherTallPlantBlock) CinderscapesBlocks.TALL_PHOTOFERN;
-		if (tallPhotofern.defaultBlockState().canSurvive(world, pos) && world.isEmptyBlock(pos.above())) {
-			DoublePlantBlock.placeAt(world, tallPhotofern.defaultBlockState(), pos, 2);
+		if (tallPhotofern.defaultBlockState().canSurvive(level, pos) && level.isEmptyBlock(pos.above())) {
+			DoublePlantBlock.placeAt(level, tallPhotofern.defaultBlockState(), pos, 2);
 		}
 	}
 }

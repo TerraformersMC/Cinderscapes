@@ -37,9 +37,9 @@ public class PolypiteQuartzBlock extends Block {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+    public BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
         Direction placementSide = state.getValue(DIRECTION);
-        if (!Block.isFaceFull(world.getBlockState(pos.relative(placementSide)).getCollisionShape(world, pos.relative(placementSide)), placementSide.getOpposite())) {
+        if (!Block.isFaceFull(level.getBlockState(pos.relative(placementSide)).getCollisionShape(level, pos.relative(placementSide)), placementSide.getOpposite())) {
             return Blocks.AIR.defaultBlockState();
         }
         return state;
@@ -55,7 +55,7 @@ public class PolypiteQuartzBlock extends Block {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return DIRECTION_TO_SHAPE.get(state.getValue(DIRECTION));
     }
 

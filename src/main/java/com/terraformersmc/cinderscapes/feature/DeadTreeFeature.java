@@ -31,14 +31,14 @@ public class DeadTreeFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         RandomSource random = context.random();
         BlockPos pos = context.origin();
-        WorldGenLevel world = context.level();
-        if (world.getBlockState(pos.below()).getBlock() == CinderscapesBlocks.ASH) {
+        WorldGenLevel level = context.level();
+        if (level.getBlockState(pos.below()).getBlock() == CinderscapesBlocks.ASH) {
             pos = pos.below();
         }
-        if (!Block.isFaceFull(world.getBlockState(pos.below()).getCollisionShape(world, pos.below()), Direction.UP)) {
+        if (!Block.isFaceFull(level.getBlockState(pos.below()).getCollisionShape(level, pos.below()), Direction.UP)) {
             return false;
         }
-        if (world.getBlockState(pos.below()).getBlock() == Blocks.MAGMA_BLOCK || world.getBlockState(pos.below()).getBlock() == CinderscapesBlocks.SCORCHED_STEM) {
+        if (level.getBlockState(pos.below()).getBlock() == Blocks.MAGMA_BLOCK || level.getBlockState(pos.below()).getBlock() == CinderscapesBlocks.SCORCHED_STEM) {
             return false;
         }
 
@@ -51,7 +51,7 @@ public class DeadTreeFeature extends Feature<NoneFeatureConfiguration> {
                 .applyLayer(Layer.translate(Position.of(0, trunkHeight, 0)))
                 .applyLayer(Layer.translate(Position.of(pos)));
 
-        Validator safelistValidator = Validator.safelist(world,  Arrays.asList(
+        Validator safelistValidator = Validator.safelist(level,  Arrays.asList(
                 Blocks.AIR.defaultBlockState(),
                 CinderscapesBlocks.ASH.defaultBlockState()
         ));
@@ -60,8 +60,8 @@ public class DeadTreeFeature extends Feature<NoneFeatureConfiguration> {
         boolean topperSafe = safelistValidator.validate(topperShape);
 
         if (trunkSafe && topperSafe) {
-            trunkShape.fill(Filler.simple(world, CinderscapesBlocks.SCORCHED_STEM.defaultBlockState()));
-            topperShape.fill(Filler.simple(world, CinderscapesBlocks.SCORCHED_HYPHAE.defaultBlockState()));
+            trunkShape.fill(Filler.simple(level, CinderscapesBlocks.SCORCHED_STEM.defaultBlockState()));
+            topperShape.fill(Filler.simple(level, CinderscapesBlocks.SCORCHED_HYPHAE.defaultBlockState()));
             return true;
         }
 

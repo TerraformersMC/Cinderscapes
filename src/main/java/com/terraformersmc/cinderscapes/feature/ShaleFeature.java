@@ -24,15 +24,15 @@ public class ShaleFeature extends Feature<ShaleFeatureConfig> {
     public boolean place(FeaturePlaceContext<ShaleFeatureConfig> context) {
         RandomSource random = context.random();
         ShaleFeatureConfig config = context.config();
-        WorldGenLevel world = context.level();
+        WorldGenLevel level = context.level();
         BlockPos pos = context.origin();
 
-        if (world.isEmptyBlock(pos) || !world.getBlockState(pos.above()).isAir() || world.getBlockState(pos).is(Blocks.BLACKSTONE)) {
+        if (level.isEmptyBlock(pos) || !level.getBlockState(pos.above()).isAir() || level.getBlockState(pos).is(Blocks.BLACKSTONE)) {
             return false;
         }
 
         float radius = random.nextInt(config.max() - config.min()) + config.min();
-        if (world.getBlockState(pos).is(Blocks.LAVA)) {
+        if (level.getBlockState(pos).is(Blocks.LAVA)) {
             radius = radius * 1.5f;
         }
         float ztheta = (random.nextFloat() * 30) - 15;
@@ -41,7 +41,7 @@ public class ShaleFeature extends Feature<ShaleFeatureConfig> {
         Shapes.ellipsoid(2, radius / 1.5, radius)
                 .applyLayer(Layer.rotate(Quaternion.of(0, ytheta, ztheta, true)))
                 .applyLayer(Layer.translate(Position.of(pos)))
-                .fill(Filler.simple(world, config.state()));
+                .fill(Filler.simple(level, config.state()));
 
         return true;
     }

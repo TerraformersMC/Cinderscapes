@@ -12,10 +12,10 @@ public class CinderscapesDatagen implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = dataGenerator.createPack();
 
 		pack.addProvider(CinderscapesDynamicRegistryProvider::new);
-		pack.addProvider(CinderscapesBiomeTagProvider::new);
-		pack.addProvider(CinderscapesBlockLootTableProvider::new);
-		CinderscapesBlockTagProvider blockTagProvider = pack.addProvider(CinderscapesBlockTagProvider::new);
-		pack.addProvider((output, registries) -> new CinderscapesItemTagProvider(output, registries, blockTagProvider));
+		pack.addProvider(CinderscapesBiomeTagsProvider::new);
+		pack.addProvider(CinderscapesBlockLootSubProvider::new);
+		CinderscapesBlockTagsProvider blockTagProvider = pack.addProvider(CinderscapesBlockTagsProvider::new);
+		pack.addProvider((output, registries) -> new CinderscapesItemTagsProvider(output, registries, blockTagProvider));
 		pack.addProvider(CinderscapesVillagerTradeKeyTagProvider::new);
 		pack.addProvider(CinderscapesModelProvider::new);
 		pack.addProvider(CinderscapesRecipeProvider::new);

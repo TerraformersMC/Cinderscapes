@@ -23,7 +23,7 @@ public class AshyShoalsSurfaceBuilder extends BiolithSurfaceBuilder {
     }
 
     @Override
-    public void generate(BiomeManager biomeAccess, BlockColumn column, RandomSource rand, ChunkAccess chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
+    public void generate(BiomeManager biomeAccess, BlockColumn column, RandomSource random, ChunkAccess chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
         if (!biomeAccess.getBiome(new BlockPos(x, seaLevel, z)).is(CinderscapesBiomes.ASHY_SHOALS)) {
             // We care most about sea level.
             return;
@@ -34,7 +34,7 @@ public class AshyShoalsSurfaceBuilder extends BiolithSurfaceBuilder {
             if (state.isAir() && column.getBlock(y - 1).equals(midMaterial)) {
                 column.setBlock(y, topMaterial);
             } else if (state.is(Blocks.LAVA) && state.getFluidState().isSource()) {
-                if (column.getBlock(y + 1).isAir() || rand.nextBoolean() && column.getBlock(y + 2).isAir()) {
+                if (column.getBlock(y + 1).isAir() || random.nextBoolean() && column.getBlock(y + 2).isAir()) {
                     column.setBlock(y, midMaterial);
                 } else {
                     column.setBlock(y, lowMaterial);

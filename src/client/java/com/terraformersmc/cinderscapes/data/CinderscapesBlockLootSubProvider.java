@@ -29,8 +29,8 @@ import org.jspecify.annotations.NullMarked;
 import java.util.concurrent.CompletableFuture;
 
 @NullMarked
-public class CinderscapesBlockLootTableProvider extends FabricBlockLootSubProvider {
-	protected CinderscapesBlockLootTableProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class CinderscapesBlockLootSubProvider extends FabricBlockLootSubProvider {
+	protected CinderscapesBlockLootSubProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 

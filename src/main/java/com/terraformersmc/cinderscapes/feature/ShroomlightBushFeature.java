@@ -22,7 +22,7 @@ public class ShroomlightBushFeature extends Feature<NoneFeatureConfiguration> {
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         BlockPos pos = context.origin();
-        WorldGenLevel world = context.level();
+        WorldGenLevel level = context.level();
 
         while (true) {
             search: {
@@ -38,7 +38,7 @@ public class ShroomlightBushFeature extends Feature<NoneFeatureConfiguration> {
                 }
 
                 // If there's air under the blob then move down
-                if (world.isEmptyBlock(pos.below())) {
+                if (level.isEmptyBlock(pos.below())) {
                     break search;
                 }
 
@@ -46,7 +46,7 @@ public class ShroomlightBushFeature extends Feature<NoneFeatureConfiguration> {
                 for (int x = -1; x <= 1; x++) {
                     for (int y = -1; y <= 2; y++) {
                         for (int z = -1; z <= 1; z++) {
-                            Block block = world.getBlockState(pos.above(y).north(z).east(x)).getBlock();
+                            Block block = level.getBlockState(pos.above(y).north(z).east(x)).getBlock();
                             if (y >= 0) {
                                 if (block != Blocks.AIR) break search;
                             } else {
@@ -67,7 +67,7 @@ public class ShroomlightBushFeature extends Feature<NoneFeatureConfiguration> {
                             // This is literally just the formula for a sphere, so yeah
                             // If the block in question is within the sphere then fill it
                             if (Math.sqrt((xi*xi)+(yi*yi)+(zi*zi)) <= 1.5) {
-                                world.setBlock(question, Blocks.SHROOMLIGHT.defaultBlockState(), 0);
+                                level.setBlock(question, Blocks.SHROOMLIGHT.defaultBlockState(), 0);
                             }
                         }
                     }

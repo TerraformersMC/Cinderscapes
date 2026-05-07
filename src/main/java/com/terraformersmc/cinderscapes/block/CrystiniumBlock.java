@@ -25,19 +25,19 @@ public class CrystiniumBlock extends CinderscapesNetherPlantBlock {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        Vec3 center = this.getShape(state, world, pos, CollisionContext.empty()).bounds().getCenter();
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        Vec3 center = this.getShape(state, level, pos, CollisionContext.empty()).bounds().getCenter();
         double x = (double)pos.getX() + center.x;
         double z = (double)pos.getZ() + center.z;
 
         if (random.nextFloat() > 0.8) {
-            world.addParticle(ParticleTypes.FIREWORK, x + random.nextFloat() - 0.5f, pos.getY() + random.nextFloat(), z + random.nextFloat() - 0.5f, random.nextFloat() * 0.1 - 0.05, random.nextFloat() * 0.1 - 0.05, random.nextFloat() * 0.1 - 0.05);
+            level.addParticle(ParticleTypes.FIREWORK, x + random.nextFloat() - 0.5f, pos.getY() + random.nextFloat(), z + random.nextFloat() - 0.5f, random.nextFloat() * 0.1 - 0.05, random.nextFloat() * 0.1 - 0.05, random.nextFloat() * 0.1 - 0.05);
         }
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         Vec3 modelOffset = state.getOffset(pos);
-        return super.getShape(state, world, pos, context).move(modelOffset.x, modelOffset.y, modelOffset.z);
+        return super.getShape(state, level, pos, context).move(modelOffset.x, modelOffset.y, modelOffset.z);
     }
 }

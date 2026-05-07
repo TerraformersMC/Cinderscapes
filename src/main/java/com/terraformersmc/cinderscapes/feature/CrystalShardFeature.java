@@ -24,7 +24,7 @@ public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
     @Override
     public boolean place(FeaturePlaceContext<CrystalShardFeatureConfig> context) {
         RandomSource random = context.random();
-        WorldGenLevel world = context.level();
+        WorldGenLevel level = context.level();
         BlockPos pos = context.origin();
         CrystalShardFeatureConfig config = context.config();
 
@@ -47,8 +47,8 @@ public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
         shape
                 .applyLayer(Layer.rotate(Quaternion.of(config.dir().getRotation())))
                 .applyLayer(Layer.translate(Position.of(pos)))
-                .validate(new RegionalSafelistValidator(world, config.dir(), config.whitelist()),
-                        validShape -> validShape.fill(Filler.simple(world, config.state()))
+                .validate(new RegionalSafelistValidator(level, config.dir(), config.whitelist()),
+                        validShape -> validShape.fill(Filler.simple(level, config.state()))
                 );
 
         return true;

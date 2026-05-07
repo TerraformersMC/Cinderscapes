@@ -13,8 +13,8 @@ import org.jspecify.annotations.NullMarked;
 import java.util.concurrent.CompletableFuture;
 
 @NullMarked
-public class CinderscapesBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
-	protected CinderscapesBlockTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class CinderscapesBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
+	protected CinderscapesBlockTagsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 

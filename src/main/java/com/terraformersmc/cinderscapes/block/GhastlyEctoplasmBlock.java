@@ -29,33 +29,31 @@ public class GhastlyEctoplasmBlock extends Block {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return state.getValue(GhastlyEctoplasmBlock.TYPE) == GhastlyEctoplasmBlock.Type.BOTTOM ? Block.box(3.0D, 2.5D, 3.0D, 13.0D, 16.0D, 13.0D) : Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
     }
 
     @Override
-    @Deprecated
-    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        BlockState aboveState = world.getBlockState(pos.above());
-        return (!world.isEmptyBlock(pos.above()) && Block.isFaceFull(aboveState.getCollisionShape(world, pos.above()), Direction.DOWN)) || aboveState.getBlock() == this;
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        BlockState aboveState = level.getBlockState(pos.above());
+        return (!level.isEmptyBlock(pos.above()) && Block.isFaceFull(aboveState.getCollisionShape(level, pos.above()), Direction.DOWN)) || aboveState.getBlock() == this;
     }
 
     @Override
-    @Deprecated
-    public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
-        world.setBlockAndUpdate(pos, evaluateState(state, pos, world));
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean notify) {
+        level.setBlockAndUpdate(pos, evaluateState(state, pos, level));
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
-        return evaluateState(state, pos, world);
+    public BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        return evaluateState(state, pos, level);
     }
 
-    public BlockState evaluateState(BlockState currentState, BlockPos currentPos, LevelReader world) {
-        BlockState aboveState = world.getBlockState(currentPos.above());
-        BlockState belowState = world.getBlockState(currentPos.below());
-        BlockState twoBelowState = world.getBlockState(currentPos.below(2));
-        if (!canSurvive(currentState, world, currentPos)) {
+    public BlockState evaluateState(BlockState currentState, BlockPos currentPos, LevelReader level) {
+        BlockState aboveState = level.getBlockState(currentPos.above());
+        BlockState belowState = level.getBlockState(currentPos.below());
+        BlockState twoBelowState = level.getBlockState(currentPos.below(2));
+        if (!canSurvive(currentState, level, currentPos)) {
             return Blocks.AIR.defaultBlockState();
         }
         if (aboveState.getBlock() != this && belowState.getBlock() == this && twoBelowState.getBlock() == this) {

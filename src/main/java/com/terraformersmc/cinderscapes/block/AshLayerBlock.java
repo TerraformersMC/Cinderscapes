@@ -14,6 +14,6 @@ public class AshLayerBlock extends SnowLayerBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
     }
 }

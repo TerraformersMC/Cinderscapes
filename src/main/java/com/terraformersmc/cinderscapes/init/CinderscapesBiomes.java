@@ -27,11 +27,11 @@ public class CinderscapesBiomes {
             QUARTZ_CAVERN
     );
 
-    public static void bootstrap(BootstrapContext<Biome> registerable) {
-        registerable.register(ASHY_SHOALS, AshyShoalsBiome.create(registerable));
-        registerable.register(BLACKSTONE_SHALES, BlackstoneShalesBiome.create(registerable));
-        registerable.register(LUMINOUS_GROVE, LuminousGroveBiome.create(registerable));
-        registerable.register(QUARTZ_CAVERN, QuartzCavernBiome.create(registerable));
+    public static void bootstrap(BootstrapContext<Biome> context) {
+        context.register(ASHY_SHOALS, AshyShoalsBiome.create(context));
+        context.register(BLACKSTONE_SHALES, BlackstoneShalesBiome.create(context));
+        context.register(LUMINOUS_GROVE, LuminousGroveBiome.create(context));
+        context.register(QUARTZ_CAVERN, QuartzCavernBiome.create(context));
     }
 }
 

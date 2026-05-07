@@ -3,15 +3,12 @@ package com.terraformersmc.cinderscapes;
 import com.terraformersmc.cinderscapes.init.CinderscapesArmorTrimItemModels;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 
 @SuppressWarnings("unused")
-@Environment(EnvType.CLIENT)
 public class CinderscapesClient implements ClientModInitializer {
 
     @Override

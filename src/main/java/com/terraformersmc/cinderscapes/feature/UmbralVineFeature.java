@@ -30,44 +30,44 @@ public class UmbralVineFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         RandomSource random = context.random();
         BlockPos pos = context.origin();
-        WorldGenLevel world = context.level();
+        WorldGenLevel level = context.level();
         while (pos.getY() > context.chunkGenerator().getSeaLevel()) {
             search: {
-                if ( world.getBlockState(pos).getBlock() != Blocks.NETHERRACK ) break search;
-                if ( world.isEmptyBlock(pos.above()) ) break search;
+                if ( level.getBlockState(pos).getBlock() != Blocks.NETHERRACK ) break search;
+                if ( level.isEmptyBlock(pos.above()) ) break search;
                 boolean airBelow = false;
                 for (int y = 0; y < 6; y++) {
-                    if (world.isEmptyBlock(pos.below(y))) airBelow = true;
+                    if (level.isEmptyBlock(pos.below(y))) airBelow = true;
                 }
                 if (!airBelow) break search;
-                if ( world.isEmptyBlock(pos.north()) && !world.isEmptyBlock(pos.south()) && !world.isEmptyBlock(pos.east()) && !world.isEmptyBlock(pos.west()) ) return angleVine(world, pos, Direction8.NORTH, random);
-                if ( world.isEmptyBlock(pos.south()) && !world.isEmptyBlock(pos.north()) && !world.isEmptyBlock(pos.east()) && !world.isEmptyBlock(pos.west()) ) return angleVine(world, pos, Direction8.SOUTH, random);
-                if ( world.isEmptyBlock(pos.east()) && !world.isEmptyBlock(pos.south()) && !world.isEmptyBlock(pos.north()) && !world.isEmptyBlock(pos.west()) ) return angleVine(world, pos, Direction8.EAST, random);
-                if ( world.isEmptyBlock(pos.west()) && !world.isEmptyBlock(pos.south()) && !world.isEmptyBlock(pos.east()) && !world.isEmptyBlock(pos.north()) ) return angleVine(world, pos, Direction8.WEST, random);
+                if ( level.isEmptyBlock(pos.north()) && !level.isEmptyBlock(pos.south()) && !level.isEmptyBlock(pos.east()) && !level.isEmptyBlock(pos.west()) ) return angleVine(level, pos, Direction8.NORTH, random);
+                if ( level.isEmptyBlock(pos.south()) && !level.isEmptyBlock(pos.north()) && !level.isEmptyBlock(pos.east()) && !level.isEmptyBlock(pos.west()) ) return angleVine(level, pos, Direction8.SOUTH, random);
+                if ( level.isEmptyBlock(pos.east()) && !level.isEmptyBlock(pos.south()) && !level.isEmptyBlock(pos.north()) && !level.isEmptyBlock(pos.west()) ) return angleVine(level, pos, Direction8.EAST, random);
+                if ( level.isEmptyBlock(pos.west()) && !level.isEmptyBlock(pos.south()) && !level.isEmptyBlock(pos.east()) && !level.isEmptyBlock(pos.north()) ) return angleVine(level, pos, Direction8.WEST, random);
             }
             pos = pos.below();
         }
         return false;
     }
 
-    public boolean angleVine(WorldGenLevel world, BlockPos origin, Direction8 dir, RandomSource random) {
+    public boolean angleVine(WorldGenLevel level, BlockPos origin, Direction8 dir, RandomSource random) {
         int eightWayOffset = random.nextBoolean() ? 1 : -1;
 
         // Bias towards cardinal vines because ordinal vines are inherently twice as likely.
-        return (buildVine(world, origin, dir, random) ||
-                buildVine(world, origin, getEightWayClockwiseRotation(dir,  eightWayOffset), random) ||
-                buildVine(world, origin, getEightWayClockwiseRotation(dir, -eightWayOffset), random));
+        return (buildVine(level, origin, dir, random) ||
+                buildVine(level, origin, getEightWayClockwiseRotation(dir,  eightWayOffset), random) ||
+                buildVine(level, origin, getEightWayClockwiseRotation(dir, -eightWayOffset), random));
     }
 
-    public boolean buildVine(WorldGenLevel world, BlockPos origin, Direction8 dir, RandomSource random) {
+    public boolean buildVine(WorldGenLevel level, BlockPos origin, Direction8 dir, RandomSource random) {
         final ChunkPos chunkOrigin = ChunkPos.containing(origin);
         final BlockPos.MutableBlockPos terminus = origin.mutable();
 
         // Generation is restricted to the current and adjacent chunks, to match limits imposed by Minecraft.
         terminus.move(5 * dir.getStepX(), 0, 5 * dir.getStepZ());
         while (chunkOrigin.getChessboardDistance(ChunkPos.containing(terminus)) < 2) {
-            if (world.getBlockState(terminus).getBlock() == Blocks.NETHERRACK) {
-                return modifiedLine(world, CinderscapesBlocks.TWILIGHT_VINE_BLOCK.defaultBlockState(), terminus, origin, random);
+            if (level.getBlockState(terminus).getBlock() == Blocks.NETHERRACK) {
+                return modifiedLine(level, CinderscapesBlocks.TWILIGHT_VINE_BLOCK.defaultBlockState(), terminus, origin, random);
             }
             terminus.move(dir.getStepX(), 0, dir.getStepZ());
         }
@@ -75,7 +75,7 @@ public class UmbralVineFeature extends Feature<NoneFeatureConfiguration> {
         return false;
     }
 
-    public static boolean modifiedLine(WorldGenLevel world, BlockState state, BlockPos to, BlockPos from, RandomSource random) {
+    public static boolean modifiedLine(WorldGenLevel level, BlockState state, BlockPos to, BlockPos from, RandomSource random) {
         int dx = to.getX() - from.getX();
         int dy = to.getY() - from.getY();
         int dz = to.getZ() - from.getZ();
@@ -88,24 +88,24 @@ public class UmbralVineFeature extends Feature<NoneFeatureConfiguration> {
         // Check if all of the blocks are air or netherrack
         for (float t = 0; t < dt; t += 0.25f) {
             BlockPos pos = BlockPos.containing(from.getX() + ((float)dx/dt)*t, from.getY() + ((float)dy/dt)*t + MathHelper.map(t*t - dt*t, -dt*dt/4.0f, 0, randomDroop, 0), from.getZ() + ((float)dz/dt)*t);
-            if (!world.isEmptyBlock(pos) && world.getBlockState(pos).getBlock() != Blocks.NETHERRACK) return false;
+            if (!level.isEmptyBlock(pos) && level.getBlockState(pos).getBlock() != Blocks.NETHERRACK) return false;
         }
 
         // If they are then generate the thing
         for (float t = 0; t < dt; t += 0.25f) {
             BlockPos pos = BlockPos.containing(from.getX() + ((float)dx/dt)*t, from.getY() + ((float)dy/dt)*t + MathHelper.map(t*t - dt*t, -dt*dt/4.0f, 0, randomDroop, 0), from.getZ() + ((float)dz/dt)*t);
-            world.setBlock(pos, state, 0);
+            level.setBlock(pos, state, 0);
 
             if (random.nextFloat() > 0.8f) {
                 int ectoHeight = random.nextInt(3) + 1;
                 boolean clear = true;
                 for (int i = 1; i <= ectoHeight; i++) {
-                    if (!world.isEmptyBlock(pos.below(i))) clear = false;
+                    if (!level.isEmptyBlock(pos.below(i))) clear = false;
                 }
 
                 if (clear) {
                     for (int i = 1; i <= ectoHeight; i++) {
-                        if (world.isEmptyBlock(pos.below(i))) {
+                        if (level.isEmptyBlock(pos.below(i))) {
                             BlockState ectoState = ((GhastlyEctoplasmBlock) CinderscapesBlocks.GHASTLY_ECTOPLASM).typeOf(GhastlyEctoplasmBlock.Type.MIDDLE);
                             if (i == ectoHeight) {
                                 ectoState = ((GhastlyEctoplasmBlock) CinderscapesBlocks.GHASTLY_ECTOPLASM).typeOf(GhastlyEctoplasmBlock.Type.BOTTOM);
@@ -113,7 +113,7 @@ public class UmbralVineFeature extends Feature<NoneFeatureConfiguration> {
                             if (i == 1 && ectoHeight >= 3) {
                                 ectoState = ((GhastlyEctoplasmBlock) CinderscapesBlocks.GHASTLY_ECTOPLASM).typeOf(GhastlyEctoplasmBlock.Type.TOP);
                             }
-                            world.setBlock(pos.below(i), ectoState, 0);
+                            level.setBlock(pos.below(i), ectoState, 0);
                         }
                     }
                 }

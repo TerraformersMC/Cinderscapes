@@ -19,12 +19,12 @@ public class CinderscapesNyliumBlock extends NyliumBlock {
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
-        Block block = world.getBlockState(pos).getBlock();
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+        Block block = level.getBlockState(pos).getBlock();
         BlockPos blockPos = pos.above();
 
         if (block == CinderscapesBlocks.UMBRAL_NYLIUM) {
-            VegetationFeature.generateVegetation(world, random, blockPos, CinderscapesFeatures.LUMINOUS_GROVE_VEGETATION_CONFIG, 3, 1);
+            VegetationFeature.generateVegetation(level, random, blockPos, CinderscapesFeatures.LUMINOUS_GROVE_VEGETATION_CONFIG, 3, 1);
         }
     }
 }

@@ -35,12 +35,12 @@ public class CinderscapesNetherTallPlantBlock extends DoublePlantBlock {
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
-        return floor.is(BlockTags.NYLIUM) || floor.is(Blocks.SOUL_SOIL) || floor.is(Blocks.NETHERRACK) || super.mayPlaceOn(floor, world, pos);
+    protected boolean mayPlaceOn(BlockState floor, BlockGetter level, BlockPos pos) {
+        return floor.is(BlockTags.NYLIUM) || floor.is(Blocks.SOUL_SOIL) || floor.is(Blocks.NETHERRACK) || super.mayPlaceOn(floor, level, pos);
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return StateShapeRegistry.getShape(state);
     }
 }

@@ -29,15 +29,15 @@ public class CinderscapesVillagerTrades {
     public static final ResourceKey<VillagerTrade> MASON_5_EMERALD_SMOKY_QUARTZ_BLOCK = resourceKey("mason/5/emerald_smoky_quartz_block");
     public static final ResourceKey<VillagerTrade> MASON_5_EMERALD_SULFUR_QUARTZ_BLOCK = resourceKey("mason/5/emerald_sulfur_quartz_block");
 
-    public static void bootstrap(BootstrapContext<VillagerTrade> registerable) {
-        HolderGetter<Item> items = registerable.lookup(Registries.ITEM);
+    public static void bootstrap(BootstrapContext<VillagerTrade> context) {
+        HolderGetter<Item> items = context.lookup(Registries.ITEM);
 
         for (Pair<ResourceKey<VillagerTrade>, Item> pair : List.of(
                 Pair.of(MASON_4_ROSE_QUARTZ_EMERALD, CinderscapesItems.ROSE_QUARTZ),
                 Pair.of(MASON_4_SMOKY_QUARTZ_EMERALD, CinderscapesItems.SMOKY_QUARTZ),
                 Pair.of(MASON_4_SULFUR_QUARTZ_EMERALD, CinderscapesItems.SULFUR_QUARTZ)
         )) {
-            registerable.register(pair.getLeft(), new VillagerTrade(
+            context.register(pair.getLeft(), new VillagerTrade(
                     new TradeCost(pair.getRight(), 12),
                     new ItemStackTemplate(Items.EMERALD),
                     12,
@@ -56,7 +56,7 @@ public class CinderscapesVillagerTrades {
                 Pair.of(MASON_5_EMERALD_SMOKY_QUARTZ_BLOCK, CinderscapesItems.SMOKY_QUARTZ_BLOCK.asItem()),
                 Pair.of(MASON_5_EMERALD_SULFUR_QUARTZ_BLOCK, CinderscapesItems.SULFUR_QUARTZ_BLOCK.asItem())
         )) {
-            registerable.register(entry.getLeft(), new VillagerTrade(
+            context.register(entry.getLeft(), new VillagerTrade(
                     new TradeCost(Items.EMERALD, 1),
                     new ItemStackTemplate(entry.getRight()),
                     12,

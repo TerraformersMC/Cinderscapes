@@ -18,10 +18,10 @@ public class CinderscapesArmorTrimMaterials {
     public static final ResourceKey<TrimMaterial> SMOKY_QUARTZ = createRegistryKey("cinderscapes_smoky_quartz");
     public static final ResourceKey<TrimMaterial> SULFUR_QUARTZ = createRegistryKey("cinderscapes_sulfur_quartz");
 
-    public static void bootstrap(BootstrapContext<TrimMaterial> registerable) {
-        TrimMaterials.register(registerable, ROSE_QUARTZ, Style.EMPTY.withColor(0xE77391), CinderscapesArmorTrimAssets.ROSE_QUARTZ);
-        TrimMaterials.register(registerable, SMOKY_QUARTZ, Style.EMPTY.withColor(0x5a4b46), CinderscapesArmorTrimAssets.SMOKY_QUARTZ);
-        TrimMaterials.register(registerable, SULFUR_QUARTZ, Style.EMPTY.withColor(0xbaa938), CinderscapesArmorTrimAssets.SULFUR_QUARTZ);
+    public static void bootstrap(BootstrapContext<TrimMaterial> context) {
+        TrimMaterials.register(context, ROSE_QUARTZ, Style.EMPTY.withColor(0xE77391), CinderscapesArmorTrimAssets.ROSE_QUARTZ);
+        TrimMaterials.register(context, SMOKY_QUARTZ, Style.EMPTY.withColor(0x5a4b46), CinderscapesArmorTrimAssets.SMOKY_QUARTZ);
+        TrimMaterials.register(context, SULFUR_QUARTZ, Style.EMPTY.withColor(0xbaa938), CinderscapesArmorTrimAssets.SULFUR_QUARTZ);
     }
 
     private static ResourceKey<TrimMaterial> createRegistryKey(String id) {

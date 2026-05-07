@@ -24,19 +24,19 @@ public class PolypiteQuartzFeature extends Feature<PolypiteQuartzFeatureConfig> 
     public boolean place(FeaturePlaceContext<PolypiteQuartzFeatureConfig> context) {
         RandomSource random = context.random();
         BlockPos pos = context.origin();
-        WorldGenLevel world = context.level();
-        if (world.isEmptyBlock(pos)) {
+        WorldGenLevel level = context.level();
+        if (level.isEmptyBlock(pos)) {
             List<Direction> valid_faces = new ArrayList<>();
             for (Direction dir : Direction.values()) {
                 BlockPos placeOnPos = pos.relative(dir);
-                BlockState placeOnState = world.getBlockState(placeOnPos);
+                BlockState placeOnState = level.getBlockState(placeOnPos);
                 if (placeOnState.is(Blocks.NETHERRACK)) {
                     valid_faces.add(dir);
                 }
             }
             if (!valid_faces.isEmpty()) {
                 Direction setDir = valid_faces.get(random.nextInt(valid_faces.size()));
-                world.setBlock(pos, context.config().quartzMaterial().stateOf(setDir), 0);
+                level.setBlock(pos, context.config().quartzMaterial().stateOf(setDir), 0);
                 return true;
             }
         }
