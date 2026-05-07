@@ -3,16 +3,17 @@ package com.terraformersmc.cinderscapes.block;
 import com.mojang.serialization.MapCodec;
 import com.terraformersmc.cinderscapes.util.StateShapeRegistry;
 import com.terraformersmc.cinderscapes.util.StateShapeSupplier;
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class CinderscapesNetherTallPlantBlock extends DoublePlantBlock {
     public static final MapCodec<CinderscapesNetherTallPlantBlock> CODEC = CinderscapesNetherTallPlantBlock.simpleCodec(CinderscapesNetherTallPlantBlock::new);
 

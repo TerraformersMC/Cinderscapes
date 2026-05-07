@@ -1,11 +1,11 @@
 package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.Registry;
 import net.minecraft.core.Holder;
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.sounds.SoundEvent;
 
 public class CinderscapesSoundEvents {
 	public static final Holder<SoundEvent> ASHY_SHOALS_MUSIC = add("music.nether.ashy_shoals");

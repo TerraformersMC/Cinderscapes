@@ -2,13 +2,14 @@ package com.terraformersmc.cinderscapes.util;
 
 import com.terraformersmc.terraform.shapes.api.Shape;
 import com.terraformersmc.terraform.shapes.api.validator.Validator;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Arrays;
 import java.util.List;
 
+// Specialized version of Terraform Shapes API's SafelistValidator to ensure uncrowded placement.
 public class RegionalSafelistValidator implements Validator {
 
     private final List<BlockState> safeStates;

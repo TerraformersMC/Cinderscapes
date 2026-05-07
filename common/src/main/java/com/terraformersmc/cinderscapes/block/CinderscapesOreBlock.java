@@ -1,8 +1,7 @@
 package com.terraformersmc.cinderscapes.block;
 
-import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.DropExperienceBlock;
 
 public class CinderscapesOreBlock extends DropExperienceBlock {
     public CinderscapesOreBlock(Properties settings) {

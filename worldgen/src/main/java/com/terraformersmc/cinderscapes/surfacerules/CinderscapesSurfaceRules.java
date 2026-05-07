@@ -2,9 +2,9 @@ package com.terraformersmc.cinderscapes.surfacerules;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.SurfaceRules;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 
 // Contains all of the surface rules used by Cinderscapes
 public class CinderscapesSurfaceRules {
@@ -26,8 +26,4 @@ public class CinderscapesSurfaceRules {
 	public static SurfaceRules.RuleSource createRules() {
         return CINDERSCAPES_NETHER_RULES;
 	}
-
-    // Initializes the surface builders added by Cinderscapes
-    public static void init() {
-    }
 }

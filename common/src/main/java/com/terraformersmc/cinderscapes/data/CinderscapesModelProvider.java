@@ -5,33 +5,30 @@ import com.terraformersmc.cinderscapes.block.GhastlyEctoplasmBlock;
 import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
 import com.terraformersmc.cinderscapes.init.*;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-import net.minecraft.client.data.models.model.ModelLocationUtils;
-import net.minecraft.client.data.models.model.ModelTemplate;
-import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TextureSlot;
-import net.minecraft.client.data.models.model.TexturedModel;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.client.data.*;
-import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.EquipmentAssets;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.resources.Identifier;
-import net.minecraft.core.Direction;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.List;
 import java.util.Optional;
 
+@NullMarked
 public class CinderscapesModelProvider extends FabricModelProvider {
     private static final List<ItemModelGenerators.TrimMaterialData> TRIM_MATERIALS = List.of(
             new ItemModelGenerators.TrimMaterialData(CinderscapesArmorTrimAssets.ROSE_QUARTZ, CinderscapesArmorTrimMaterials.ROSE_QUARTZ),
@@ -39,16 +36,16 @@ public class CinderscapesModelProvider extends FabricModelProvider {
             new ItemModelGenerators.TrimMaterialData(CinderscapesArmorTrimAssets.SULFUR_QUARTZ, CinderscapesArmorTrimMaterials.SULFUR_QUARTZ)
     );
 
-    public CinderscapesModelProvider(FabricDataOutput output) {
+    public CinderscapesModelProvider(FabricPackOutput output) {
         super(output);
     }
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators generator) {
 
-        /////////////////
+        /*///////////////
         // Ashy Shoals //
-        /////////////////
+        ///////////////*/
 
         // Scorched wood set
         generator.family(CinderscapesBlockFamilies.SCORCHED.getBaseBlock()).generateFor(CinderscapesBlockFamilies.SCORCHED);
@@ -86,9 +83,9 @@ public class CinderscapesModelProvider extends FabricModelProvider {
         this.registerBlockItemModel(generator, CinderscapesBlocks.ASH_BLOCK);
 
 
-        ////////////////////
+        /*//////////////////
         // Luminous Grove //
-        ////////////////////
+        //////////////////*/
 
         // Umbral wood set
         generator.family(CinderscapesBlockFamilies.UMBRAL.getBaseBlock()).generateFor(CinderscapesBlockFamilies.UMBRAL);
@@ -142,9 +139,9 @@ public class CinderscapesModelProvider extends FabricModelProvider {
 
 
 
-        ///////////////////
+        /*/////////////////
         // Quartz Cavern //
-        ///////////////////
+        /////////////////*/
 
         // Rose Quartz set
         generator.family(CinderscapesBlockFamilies.ROSE_QUARTZ_BLOCK.getBaseBlock()).generateFor(CinderscapesBlockFamilies.ROSE_QUARTZ_BLOCK);
@@ -210,9 +207,9 @@ public class CinderscapesModelProvider extends FabricModelProvider {
         generator.createPlant(CinderscapesBlocks.CRYSTINIUM, CinderscapesBlocks.POTTED_CRYSTINIUM, BlockModelGenerators.PlantType.NOT_TINTED);
 
 
-        ///////////
+        /*/////////
         // Other //
-        ///////////
+        /////////*/
 
         generator.createNyliumBlock(CinderscapesBlocks.NODZOL);
         this.registerBlockItemModel(generator, CinderscapesBlocks.NODZOL);
@@ -338,27 +335,27 @@ public class CinderscapesModelProvider extends FabricModelProvider {
         generator.registerSimpleItemModel(block, ModelLocationUtils.getModelLocation(block));
     }
 
-    private void uploadArmor(ItemModelGenerators generator, Identifier id, Identifier layer0, Identifier layer1) {
+    private void generateLayeredItem(ItemModelGenerators generator, Identifier id, Material layer0, Material layer1) {
         ModelTemplates.TWO_LAYERED_ITEM.create(id, TextureMapping.layered(layer0, layer1), generator.modelOutput);
     }
 
-    private void uploadArmor(ItemModelGenerators generator, Identifier id, Identifier layer0, Identifier layer1, Identifier layer2) {
+    private void generateLayeredItem(ItemModelGenerators generator, Identifier id, Material layer0, Material layer1, Material layer2) {
         ModelTemplates.THREE_LAYERED_ITEM.create(id, TextureMapping.layered(layer0, layer1, layer2), generator.modelOutput);
     }
 
-    private void registerArmorTrims(ItemModelGenerators generator, Item armor, ResourceKey<EquipmentAsset> equipmentKey, Identifier trimIdPrefix, boolean dyeable) {
+    private void registerArmorTrims(ItemModelGenerators generator, Item armor, ResourceKey<EquipmentAsset> equipmentKey, Identifier slotTrimPrefix, boolean hasDyedLayer) {
         Identifier armorModelId = ModelLocationUtils.getModelLocation(armor);
-        Identifier armorTextures = TextureMapping.getItemTexture(armor);
-        Identifier armorOverlayTextures = TextureMapping.getItemTexture(armor, "_overlay");
+        Material armorTextures = TextureMapping.getItemTexture(armor);
+        Material armorOverlayTextures = TextureMapping.getItemTexture(armor, "_overlay");
         for (ItemModelGenerators.TrimMaterialData trimMaterial : TRIM_MATERIALS) {
             Identifier trimmedModelId = Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, armorModelId.getPath())
                     .withSuffix("_" + trimMaterial.assets().base().suffix() + "_trim");
-            Identifier trimTextureId = trimIdPrefix
-                    .withSuffix("_" + trimMaterial.assets().assetId(equipmentKey).suffix());
-            if (dyeable) {
-                this.uploadArmor(generator, trimmedModelId, armorTextures, armorOverlayTextures, trimTextureId);
+            Material trimTextureId = new Material(slotTrimPrefix
+                    .withSuffix("_" + trimMaterial.assets().assetId(equipmentKey).suffix()));
+            if (hasDyedLayer) {
+                this.generateLayeredItem(generator, trimmedModelId, armorTextures, armorOverlayTextures, trimTextureId);
             } else {
-                this.uploadArmor(generator, trimmedModelId, armorTextures, trimTextureId);
+                this.generateLayeredItem(generator, trimmedModelId, armorTextures, trimTextureId);
             }
         }
     }

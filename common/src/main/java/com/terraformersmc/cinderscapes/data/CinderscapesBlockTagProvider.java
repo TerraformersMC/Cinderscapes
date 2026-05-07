@@ -2,17 +2,19 @@ package com.terraformersmc.cinderscapes.data;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProvider {
-	protected CinderscapesBlockTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+@NullMarked
+public class CinderscapesBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
+	protected CinderscapesBlockTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 
@@ -61,15 +63,15 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 				.add(CinderscapesBlocks.UMBRAL_HYPHAE)
 				.add(CinderscapesBlocks.UMBRAL_STEM);
 
-		valueLookupBuilder(BlockTags.MUSHROOM_GROW_BLOCK)
-				.add(CinderscapesBlocks.NODZOL);
-
 		valueLookupBuilder(BlockTags.NETHER_CARVER_REPLACEABLES)
 				.add(CinderscapesBlocks.UMBRAL_NYLIUM)
 				.add(CinderscapesBlocks.UMBRAL_WART_BLOCK);
 
 		valueLookupBuilder(BlockTags.NYLIUM)
 				.add(CinderscapesBlocks.UMBRAL_NYLIUM);
+
+		valueLookupBuilder(BlockTags.OVERRIDES_MUSHROOM_LIGHT_REQUIREMENT)
+				.add(CinderscapesBlocks.NODZOL);
 
 		valueLookupBuilder(BlockTags.PLANKS)
 				.add(CinderscapesBlocks.UMBRAL_PLANKS)
@@ -265,6 +267,9 @@ public class CinderscapesBlockTagProvider extends FabricTagProvider.BlockTagProv
 				.add(CinderscapesBlocks.SCORCHED_STEM)
 				.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE)
 				.add(CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
+
+		valueLookupBuilder(CinderscapesBlockTags.SUPPORTS_UMBRAL_FUNGUS)
+				.addTag(BlockTags.SUPPORTS_WARPED_FUNGUS);
 
 		valueLookupBuilder(CinderscapesBlockTags.UMBRAL_STEMS)
 				.add(CinderscapesBlocks.UMBRAL_HYPHAE)

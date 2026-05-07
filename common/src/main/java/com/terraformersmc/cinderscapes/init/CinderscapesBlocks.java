@@ -2,42 +2,25 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.block.*;
 import com.terraformersmc.cinderscapes.init.helpers.CinderscapesRegistry;
+import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
 import com.terraformersmc.terraform.wood.api.block.PillarLogHelper;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ButtonBlock;
-import net.minecraft.world.level.block.CeilingHangingSignBlock;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.FenceBlock;
-import net.minecraft.world.level.block.FenceGateBlock;
-import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.FungusBlock;
-import net.minecraft.world.level.block.PressurePlateBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.ShelfBlock;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.StandingSignBlock;
-import net.minecraft.world.level.block.TrapDoorBlock;
-import net.minecraft.world.level.block.WallHangingSignBlock;
-import net.minecraft.world.level.block.WallSignBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 
 public class CinderscapesBlocks {
 
-    /////////////////
+    /*///////////////
     // Ashy Shoals //
-    /////////////////
+    ///////////////*/
 
     public static Block SCORCHED_STEM;
     public static Block STRIPPED_SCORCHED_STEM;
@@ -75,9 +58,9 @@ public class CinderscapesBlocks {
     public static Block PYRACINTH;
     public static Block POTTED_PYRACINTH;
 
-    ////////////////////
+    /*//////////////////
     // Luminous Grove //
-    ////////////////////
+    //////////////////*/
 
     // Umbral Nylia
 
@@ -128,9 +111,9 @@ public class CinderscapesBlocks {
     public static Block POTTED_LUMINOUS_POD;
     public static Block GHASTLY_ECTOPLASM;
 
-    ///////////
+    /*/////////
     // Other //
-    ///////////
+    /////////*/
 
     public static Block BRAMBLE_BERRY_BUSH;
 
@@ -139,9 +122,9 @@ public class CinderscapesBlocks {
     public static Block SULFUR_BLOCK;
     public static Block SULFUR_ORE;
 
-    ///////////////////
+    /*/////////////////
     // Quartz Cavern //
-    ///////////////////
+    /////////////////*/
 
     public static Block CRYSTINIUM;
     public static Block POTTED_CRYSTINIUM;
@@ -203,15 +186,15 @@ public class CinderscapesBlocks {
 
     public static void init() {
 
-        /////////////////
+        /*///////////////
         // Ashy Shoals //
-        /////////////////
+        ///////////////*/
 
-        SCORCHED_STEM = CinderscapesRegistry.register("scorched_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.COLOR_GRAY, MapColor.TERRACOTTA_GRAY));
-        STRIPPED_SCORCHED_STEM = CinderscapesRegistry.register("stripped_scorched_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.COLOR_GRAY));
+        SCORCHED_STEM = CinderscapesRegistry.register("scorched_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.COLOR_GRAY, MapColor.TERRACOTTA_GRAY));
+        STRIPPED_SCORCHED_STEM = CinderscapesRegistry.register("stripped_scorched_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.COLOR_GRAY));
 
-        SCORCHED_HYPHAE = CinderscapesRegistry.register("scorched_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.TERRACOTTA_GRAY));
-        STRIPPED_SCORCHED_HYPHAE = CinderscapesRegistry.register("stripped_scorched_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.COLOR_GRAY));
+        SCORCHED_HYPHAE = CinderscapesRegistry.register("scorched_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.TERRACOTTA_GRAY));
+        STRIPPED_SCORCHED_HYPHAE = CinderscapesRegistry.register("stripped_scorched_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.COLOR_GRAY));
 
         SCORCHED_PLANKS = CinderscapesRegistry.register("scorched_planks", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS).mapColor(MapColor.COLOR_LIGHT_GRAY));
         SCORCHED_SLAB = CinderscapesRegistry.register("scorched_slab", SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SLAB).mapColor(MapColor.COLOR_LIGHT_GRAY));
@@ -243,21 +226,21 @@ public class CinderscapesBlocks {
         PYRACINTH = CinderscapesRegistry.register("pyracinth", PyracinthBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_ROOTS).mapColor(MapColor.COLOR_ORANGE));
         POTTED_PYRACINTH = CinderscapesRegistry.register("potted_pyracinth", PottedPyracinthBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM));
 
-        ////////////////////
+        /*//////////////////
         // Luminous Grove //
-        ////////////////////
+        //////////////////*/
 
         // Umbral Nylia
 
-        UMBRAL_STEM = CinderscapesRegistry.register("umbral_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.CLAY, MapColor.COLOR_BLUE));
-        STRIPPED_UMBRAL_STEM = CinderscapesRegistry.register("stripped_umbral_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.CLAY));
+        UMBRAL_STEM = CinderscapesRegistry.register("umbral_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.CLAY, MapColor.COLOR_BLUE));
+        STRIPPED_UMBRAL_STEM = CinderscapesRegistry.register("stripped_umbral_stem", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.CLAY));
 
-        UMBRAL_HYPHAE = CinderscapesRegistry.register("umbral_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.COLOR_BLUE));
-        STRIPPED_UMBRAL_HYPHAE = CinderscapesRegistry.register("stripped_umbral_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherSettings(MapColor.CLAY));
+        UMBRAL_HYPHAE = CinderscapesRegistry.register("umbral_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.COLOR_BLUE));
+        STRIPPED_UMBRAL_HYPHAE = CinderscapesRegistry.register("stripped_umbral_hyphae", RotatedPillarBlock::new, PillarLogHelper.createNetherProperties(MapColor.CLAY));
 
         UMBRAL_NYLIUM = CinderscapesRegistry.register("umbral_nylium", CinderscapesNyliumBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_NYLIUM).mapColor(MapColor.CLAY));
 
-        UMBRAL_FUNGUS = CinderscapesRegistry.register("umbral_fungus", settings -> new FungusBlock(CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS_PLANTED, UMBRAL_NYLIUM, settings), BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FUNGUS).mapColor(MapColor.COLOR_BLUE).lightLevel(state -> 15));
+        UMBRAL_FUNGUS = CinderscapesRegistry.register("umbral_fungus", settings -> new NetherFungusBlock(CinderscapesConfiguredFeatures.CANOPIED_HUGE_FUNGUS_PLANTED, UMBRAL_NYLIUM, CinderscapesBlockTags.SUPPORTS_UMBRAL_FUNGUS, settings), BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FUNGUS).mapColor(MapColor.COLOR_BLUE).lightLevel(state -> 15));
         POTTED_UMBRAL_FUNGUS = CinderscapesRegistry.register("potted_umbral_fungus", settings -> new FlowerPotBlock(UMBRAL_FUNGUS, settings), BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_WARPED_FUNGUS).lightLevel(state -> 12));
 
         UMBRAL_WART_BLOCK = CinderscapesRegistry.register("umbral_wart_block", CinderscapesTransparentBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK).mapColor(MapColor.COLOR_BLUE).noOcclusion());
@@ -296,9 +279,9 @@ public class CinderscapesBlocks {
         POTTED_LUMINOUS_POD = CinderscapesRegistry.register("potted_luminous_pod", settings -> new FlowerPotBlock(LUMINOUS_POD, settings), BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_WARPED_ROOTS).lightLevel(state -> 12));
         GHASTLY_ECTOPLASM = CinderscapesRegistry.register("ghastly_ectoplasm", GhastlyEctoplasmBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WEEPING_VINES_PLANT).mapColor(MapColor.QUARTZ).sound(SoundType.ROOTS));
 
-        ///////////
+        /*/////////
         // Other //
-        ///////////
+        /////////*/
 
         BRAMBLE_BERRY_BUSH = CinderscapesRegistry.register("bramble_berry_bush", BrambleBerryBushBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH).mapColor(MapColor.TERRACOTTA_BLACK));
 
@@ -307,9 +290,9 @@ public class CinderscapesBlocks {
         SULFUR_BLOCK = CinderscapesRegistry.register("sulfur_block", Block::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).instrument(NoteBlockInstrument.SNARE).strength(0.5F, 0.5f).sound(SoundType.GRAVEL));
         SULFUR_ORE = CinderscapesRegistry.register("sulfur_ore", CinderscapesOreBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_QUARTZ_ORE).mapColor(MapColor.COLOR_YELLOW).sound(SoundType.NETHER_ORE).requiresCorrectToolForDrops());
 
-        ///////////////////
+        /*/////////////////
         // Quartz Cavern //
-        ///////////////////
+        /////////////////*/
 
         CRYSTINIUM = CinderscapesRegistry.register("crystinium", CrystiniumBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_ROOTS).mapColor(MapColor.COLOR_YELLOW));
         POTTED_CRYSTINIUM = CinderscapesRegistry.register("potted_crystinium", PottedCrystiniumBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM));

@@ -5,9 +5,9 @@ import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.block.AshLayerBlock;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.tags.BiomeTags;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.HashMap;
 

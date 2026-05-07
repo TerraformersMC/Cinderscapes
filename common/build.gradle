@@ -1,4 +1,4 @@
-archivesBaseName = "cinderscapes-common"
+base.archivesName = "cinderscapes-common"
 
 loom {
     accessWidenerPath = file("src/main/resources/cinderscapes-common.accesswidener")

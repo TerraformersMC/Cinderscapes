@@ -1,23 +1,19 @@
 package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.init.helpers.CinderscapesRegistry;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.HangingSignItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.SignItem;
-import net.minecraft.world.item.component.Consumables;
-import net.minecraft.world.food.FoodProperties;
+import net.fabricmc.fabric.api.registry.CompostableRegistry;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 
 public class CinderscapesItems {
 
-    /////////////////
+    /*///////////////
     // Ashy Shoals //
-    /////////////////
+    ///////////////*/
 
     public static BlockItem SCORCHED_STEM;
     public static BlockItem STRIPPED_SCORCHED_STEM;
@@ -49,9 +45,9 @@ public class CinderscapesItems {
 
     public static BlockItem PYRACINTH;
 
-    ////////////////////
+    /*//////////////////
     // Luminous Grove //
-    ////////////////////
+    //////////////////*/
 
     // Umbral Nylia
 
@@ -94,9 +90,9 @@ public class CinderscapesItems {
     public static BlockItem LUMINOUS_POD;
     public static BlockItem GHASTLY_ECTOPLASM;
 
-    ///////////
+    /*/////////
     // Other //
-    ///////////
+    /////////*/
 
     public static Item ASH_PILE;
 
@@ -113,9 +109,9 @@ public class CinderscapesItems {
     public static Item SMOKY_QUARTZ;
     public static Item SULFUR_QUARTZ;
 
-    ///////////////////
+    /*/////////////////
     // Quartz Cavern //
-    ///////////////////
+    /////////////////*/
 
     public static BlockItem CRYSTINIUM;
 
@@ -172,9 +168,9 @@ public class CinderscapesItems {
 
     public static void init() {
 
-        /////////////////
+        /*///////////////
         // Ashy Shoals //
-        /////////////////
+        ///////////////*/
 
         SCORCHED_STEM = CinderscapesRegistry.registerBlockItem("scorched_stem", CinderscapesBlocks.SCORCHED_STEM);
         STRIPPED_SCORCHED_STEM = CinderscapesRegistry.registerBlockItem("stripped_scorched_stem", CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
@@ -206,9 +202,9 @@ public class CinderscapesItems {
 
         PYRACINTH = CinderscapesRegistry.registerBlockItem("pyracinth", CinderscapesBlocks.PYRACINTH);
 
-        ////////////////////
+        /*//////////////////
         // Luminous Grove //
-        ////////////////////
+        //////////////////*/
 
         // Umbral Nylia
 
@@ -251,9 +247,9 @@ public class CinderscapesItems {
         LUMINOUS_POD = CinderscapesRegistry.registerBlockItem("luminous_pod", CinderscapesBlocks.LUMINOUS_POD);
         GHASTLY_ECTOPLASM = CinderscapesRegistry.registerBlockItem("ghastly_ectoplasm", CinderscapesBlocks.GHASTLY_ECTOPLASM);
 
-        ///////////
+        /*/////////
         // Other //
-        ///////////
+        /////////*/
 
         ASH_PILE = CinderscapesRegistry.register("ash_pile", Item::new, new Item.Properties());
 
@@ -270,9 +266,9 @@ public class CinderscapesItems {
         SMOKY_QUARTZ = CinderscapesRegistry.register("smoky_quartz", Item::new, new Item.Properties().trimMaterial(CinderscapesArmorTrimMaterials.SMOKY_QUARTZ));
         SULFUR_QUARTZ = CinderscapesRegistry.register("sulfur_quartz", Item::new, new Item.Properties().trimMaterial(CinderscapesArmorTrimMaterials.SULFUR_QUARTZ));
 
-        ///////////////////
+        /*/////////////////
         // Quartz Cavern //
-        ///////////////////
+        /////////////////*/
 
         CRYSTINIUM = CinderscapesRegistry.registerBlockItem("crystinium", CinderscapesBlocks.CRYSTINIUM);
 
@@ -331,7 +327,7 @@ public class CinderscapesItems {
     }
 
     private static void addCompostables() {
-        CompostingChanceRegistry compostingRegistry = CompostingChanceRegistry.INSTANCE;
+        CompostableRegistry compostingRegistry = CompostableRegistry.INSTANCE;
         float BERRY_CHANCE = compostingRegistry.get(Items.SWEET_BERRIES);
         float FLOWER_CHANCE = compostingRegistry.get(Items.POPPY);
         float FUNGUS_CHANCE = compostingRegistry.get(Items.CRIMSON_FUNGUS);

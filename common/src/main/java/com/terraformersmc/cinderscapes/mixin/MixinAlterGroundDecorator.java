@@ -1,8 +1,8 @@
 package com.terraformersmc.cinderscapes.mixin;
 
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.treedecorators.AlterGroundDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import org.spongepowered.asm.mixin.Mixin;

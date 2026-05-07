@@ -5,25 +5,28 @@ import com.terraformersmc.cinderscapes.init.CinderscapesBlockFamilies;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CookingBookCategory;
+import net.minecraft.world.item.crafting.Ingredient;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+@NullMarked
 public class CinderscapesRecipeProvider extends FabricRecipeProvider {
-	protected CinderscapesRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+	protected CinderscapesRecipeProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 
@@ -95,11 +98,13 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 
 				oreBlasting(List.of(CinderscapesItems.SULFUR_ORE),
 						RecipeCategory.MISC,
+						CookingBookCategory.MISC,
 						CinderscapesItems.SULFUR,
 						0.1f, 100, "blasting");
 
 				oreSmelting(List.of(CinderscapesItems.SULFUR_ORE),
 						RecipeCategory.MISC,
+						CookingBookCategory.MISC,
 						CinderscapesItems.SULFUR,
 						0.1f, 200, "smelting");
 
@@ -107,7 +112,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 				// quartz recipes
 				chiseled(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK, CinderscapesBlocks.ROSE_QUARTZ_SLAB);
 				stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK, CinderscapesBlocks.ROSE_QUARTZ_BLOCK);
-				oreSmelting(List.of(CinderscapesBlocks.ROSE_QUARTZ_ORE), RecipeCategory.MISC, CinderscapesItems.ROSE_QUARTZ, 0.2f, 200, "misc");
+				oreSmelting(List.of(CinderscapesBlocks.ROSE_QUARTZ_ORE), RecipeCategory.MISC, CookingBookCategory.MISC, CinderscapesItems.ROSE_QUARTZ, 0.2f, 200, "misc");
 				shaped(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.ROSE_QUARTZ_BLOCK, 1)
 						.pattern("qq")
 						.pattern("qq")
@@ -116,7 +121,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 						.save(output);
 				polished(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.ROSE_QUARTZ_BRICKS, CinderscapesBlocks.ROSE_QUARTZ_BLOCK);
 				stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.ROSE_QUARTZ_BRICKS, CinderscapesBlocks.ROSE_QUARTZ_BLOCK);
-				oreBlasting(List.of(CinderscapesBlocks.ROSE_QUARTZ_ORE), RecipeCategory.MISC, CinderscapesItems.ROSE_QUARTZ, 0.2f, 100, "misc");
+				oreBlasting(List.of(CinderscapesBlocks.ROSE_QUARTZ_ORE), RecipeCategory.MISC, CookingBookCategory.MISC, CinderscapesItems.ROSE_QUARTZ, 0.2f, 100, "misc");
 				shaped(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.ROSE_QUARTZ_PILLAR, 2)
 						.pattern("Q")
 						.pattern("Q")
@@ -132,7 +137,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 						.unlockedBy("has_quartz_blocks", this.has(CinderscapesItemTags.ROSE_QUARTZ_CONVERTIBLES))
 						.save(output);
 				stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.ROSE_QUARTZ_STAIRS, CinderscapesBlocks.ROSE_QUARTZ_BLOCK);
-				oreSmelting(List.of(CinderscapesBlocks.ROSE_QUARTZ_BLOCK), RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOOTH_ROSE_QUARTZ, 0.1f, 200, "building_blocks");
+				oreSmelting(List.of(CinderscapesBlocks.ROSE_QUARTZ_BLOCK), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.BLOCKS, CinderscapesBlocks.SMOOTH_ROSE_QUARTZ, 0.1f, 200, "building_blocks");
 				slab(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_SLAB, CinderscapesBlocks.SMOOTH_ROSE_QUARTZ);
 				stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_SLAB, CinderscapesBlocks.SMOOTH_ROSE_QUARTZ, 2);
 				stairBuilder(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_STAIRS, Ingredient.of(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ))
@@ -142,7 +147,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 
 				chiseled(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK, CinderscapesBlocks.SMOKY_QUARTZ_SLAB);
 				stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK, CinderscapesBlocks.SMOKY_QUARTZ_BLOCK);
-				oreSmelting(List.of(CinderscapesBlocks.SMOKY_QUARTZ_ORE), RecipeCategory.MISC, CinderscapesItems.SMOKY_QUARTZ, 0.2f, 200, "misc");
+				oreSmelting(List.of(CinderscapesBlocks.SMOKY_QUARTZ_ORE), RecipeCategory.MISC, CookingBookCategory.MISC, CinderscapesItems.SMOKY_QUARTZ, 0.2f, 200, "misc");
 				shaped(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOKY_QUARTZ_BLOCK, 1)
 						.pattern("qq")
 						.pattern("qq")
@@ -151,7 +156,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 						.save(output);
 				polished(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOKY_QUARTZ_BRICKS, CinderscapesBlocks.SMOKY_QUARTZ_BLOCK);
 				stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOKY_QUARTZ_BRICKS, CinderscapesBlocks.SMOKY_QUARTZ_BLOCK);
-				oreBlasting(List.of(CinderscapesBlocks.SMOKY_QUARTZ_ORE), RecipeCategory.MISC, CinderscapesItems.SMOKY_QUARTZ, 0.2f, 100, "misc");
+				oreBlasting(List.of(CinderscapesBlocks.SMOKY_QUARTZ_ORE), RecipeCategory.MISC, CookingBookCategory.MISC, CinderscapesItems.SMOKY_QUARTZ, 0.2f, 100, "misc");
 				shaped(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOKY_QUARTZ_PILLAR, 2)
 						.pattern("Q")
 						.pattern("Q")
@@ -167,7 +172,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 						.unlockedBy("has_quartz_blocks", this.has(CinderscapesItemTags.SMOKY_QUARTZ_CONVERTIBLES))
 						.save(output);
 				stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOKY_QUARTZ_STAIRS, CinderscapesBlocks.SMOKY_QUARTZ_BLOCK);
-				oreSmelting(List.of(CinderscapesBlocks.SMOKY_QUARTZ_BLOCK), RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ, 0.1f, 200, "building_blocks");
+				oreSmelting(List.of(CinderscapesBlocks.SMOKY_QUARTZ_BLOCK), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.BLOCKS, CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ, 0.1f, 200, "building_blocks");
 				slab(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_SLAB, CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ);
 				stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_SLAB, CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ, 2);
 				stairBuilder(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS, Ingredient.of(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ))
@@ -177,7 +182,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 
 				chiseled(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK, CinderscapesBlocks.SULFUR_QUARTZ_SLAB);
 				stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK, CinderscapesBlocks.SULFUR_QUARTZ_BLOCK);
-				oreSmelting(List.of(CinderscapesBlocks.SULFUR_QUARTZ_ORE), RecipeCategory.MISC, CinderscapesItems.SULFUR_QUARTZ, 0.2f, 200, "misc");
+				oreSmelting(List.of(CinderscapesBlocks.SULFUR_QUARTZ_ORE), RecipeCategory.MISC, CookingBookCategory.MISC, CinderscapesItems.SULFUR_QUARTZ, 0.2f, 200, "misc");
 				shaped(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SULFUR_QUARTZ_BLOCK, 1)
 						.pattern("qq")
 						.pattern("qq")
@@ -186,7 +191,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 						.save(output);
 				polished(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SULFUR_QUARTZ_BRICKS, CinderscapesBlocks.SULFUR_QUARTZ_BLOCK);
 				stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SULFUR_QUARTZ_BRICKS, CinderscapesBlocks.SULFUR_QUARTZ_BLOCK);
-				oreBlasting(List.of(CinderscapesBlocks.SULFUR_QUARTZ_ORE), RecipeCategory.MISC, CinderscapesItems.SULFUR_QUARTZ, 0.2f, 100, "misc");
+				oreBlasting(List.of(CinderscapesBlocks.SULFUR_QUARTZ_ORE), RecipeCategory.MISC, CookingBookCategory.MISC, CinderscapesItems.SULFUR_QUARTZ, 0.2f, 100, "misc");
 				shaped(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SULFUR_QUARTZ_PILLAR, 2)
 						.pattern("Q")
 						.pattern("Q")
@@ -202,7 +207,7 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 						.unlockedBy("has_quartz_blocks", this.has(CinderscapesItemTags.SULFUR_QUARTZ_CONVERTIBLES))
 						.save(output);
 				stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SULFUR_QUARTZ_STAIRS, CinderscapesBlocks.SULFUR_QUARTZ_BLOCK);
-				oreSmelting(List.of(CinderscapesBlocks.SULFUR_QUARTZ_BLOCK), RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ, 0.1f, 200, "building_blocks");
+				oreSmelting(List.of(CinderscapesBlocks.SULFUR_QUARTZ_BLOCK), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.BLOCKS, CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ, 0.1f, 200, "building_blocks");
 				slab(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_SLAB, CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ);
 				stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_SLAB, CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ, 2);
 				stairBuilder(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_STAIRS, Ingredient.of(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ))

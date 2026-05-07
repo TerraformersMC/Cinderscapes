@@ -38,7 +38,7 @@ public class CinderscapesBlockFamilies {
 			.slab(CinderscapesBlocks.ROSE_QUARTZ_SLAB)
 			// breaks model gen
 			//.chiseled(CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK)
-			.dontGenerateRecipe()
+			.dontGenerateCraftingRecipe()
 			.getFamily();
 	public static final BlockFamily SMOOTH_ROSE_QUARTZ = BlockFamilies.familyBuilder(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ)
 			.stairs(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_STAIRS)
@@ -49,7 +49,7 @@ public class CinderscapesBlockFamilies {
 			.slab(CinderscapesBlocks.SMOKY_QUARTZ_SLAB)
 			// breaks model gen
 			//.chiseled(CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK)
-			.dontGenerateRecipe()
+			.dontGenerateCraftingRecipe()
 			.getFamily();
 	public static final BlockFamily SMOOTH_SMOKY_QUARTZ = BlockFamilies.familyBuilder(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ)
 			.stairs(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS)
@@ -60,7 +60,7 @@ public class CinderscapesBlockFamilies {
 			.slab(CinderscapesBlocks.SULFUR_QUARTZ_SLAB)
 			// breaks model gen
 			//.chiseled(CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK)
-			.dontGenerateRecipe()
+			.dontGenerateCraftingRecipe()
 			.getFamily();
 	public static final BlockFamily SMOOTH_SULFUR_QUARTZ = BlockFamilies.familyBuilder(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ)
 			.stairs(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_STAIRS)

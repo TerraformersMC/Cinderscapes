@@ -28,7 +28,6 @@ public class Cinderscapes implements ModInitializer {
 		CinderscapesItems.init();
 		CinderscapesBlockEntityTypes.init();
 		CinderscapesPlacementModifierTypes.init();
-		CinderscapesFeatures.init();
 		CinderscapesSoundEvents.init();
 		CinderscapesTrades.init();
 		CinderscapesItemGroups.init();

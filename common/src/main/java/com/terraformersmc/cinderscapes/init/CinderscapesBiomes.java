@@ -5,10 +5,10 @@ import com.terraformersmc.cinderscapes.biome.AshyShoalsBiome;
 import com.terraformersmc.cinderscapes.biome.BlackstoneShalesBiome;
 import com.terraformersmc.cinderscapes.biome.LuminousGroveBiome;
 import com.terraformersmc.cinderscapes.biome.QuartzCavernBiome;
-import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 
 import java.util.List;

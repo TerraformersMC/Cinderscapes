@@ -1,7 +1,4 @@
-archivesBaseName = "cinderscapes-client"
-
-loom {
-}
+base.archivesName = "cinderscapes-client"
 
 dependencies {
     implementation project(path: ':cinderscapes-common')

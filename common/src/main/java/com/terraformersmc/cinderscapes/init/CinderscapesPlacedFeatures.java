@@ -4,30 +4,22 @@ import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.init.helpers.CinderscapesRegistry;
 import com.terraformersmc.cinderscapes.placementmodifier.SafelistRangeCeilingPlacementModifier;
 import com.terraformersmc.cinderscapes.placementmodifier.SafelistRangeFloorPlacementModifier;
+import net.minecraft.core.Direction;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.NetherFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.core.HolderGetter;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
-import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
-import net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement;
-import net.minecraft.world.level.levelgen.placement.CountPlacement;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
-import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
 
@@ -103,7 +95,13 @@ public class CinderscapesPlacedFeatures {
 
         CinderscapesRegistry.register(registerable, ASH_PILES, CinderscapesConfiguredFeatures.ASH_PILE, CountOnEveryLayerPlacement.of(2), BiomeFilter.biome());
         CinderscapesRegistry.register(registerable, ASHY_VEGETATION, CinderscapesConfiguredFeatures.ASHY_VEGETATION, CountOnEveryLayerPlacement.of(16), BiomeFilter.biome());
-        CinderscapesRegistry.register(registerable, BRAMBLE_BERRY_BUSHES, CinderscapesConfiguredFeatures.BRAMBLE_BERRY_BUSHES, CountOnEveryLayerPlacement.of(1), BiomeFilter.biome());
+        CinderscapesRegistry.register(registerable, BRAMBLE_BERRY_BUSHES, CinderscapesConfiguredFeatures.BRAMBLE_BERRY_BUSHES,
+                PlacementUtils.FULL_RANGE,
+                BiomeFilter.biome(),
+                CountPlacement.of(64),
+                RandomOffsetPlacement.ofTriangle(7, 3),
+                BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)
+        );
 
         CinderscapesRegistry.register(registerable, ASHY_SOUL_SAND, CinderscapesConfiguredFeatures.ASHY_SOUL_SAND, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(64)), CountPlacement.of(5), InSquarePlacement.spread(), BiomeFilter.biome());
         CinderscapesRegistry.register(registerable, ASHY_SOUL_SOIL, CinderscapesConfiguredFeatures.ASHY_SOUL_SOIL, PlacementUtils.FULL_RANGE, CountPlacement.of(10), InSquarePlacement.spread(), BiomeFilter.biome());
@@ -125,7 +123,7 @@ public class CinderscapesPlacedFeatures {
 
         /* BLACKSTONE SHALES */
         CinderscapesRegistry.register(registerable, WEEPING_VINES, CinderscapesConfiguredFeatures.WEEPING_VINE, CountOnEveryLayerPlacement.of(16), BiomeFilter.biome());
-        CinderscapesRegistry.register(registerable, PATCH_CRIMSON_ROOTS, NetherFeatures.PATCH_CRIMSON_ROOTS, CountOnEveryLayerPlacement.of(12), BiomeFilter.biome());
+        CinderscapesRegistry.register(registerable, PATCH_CRIMSON_ROOTS, NetherFeatures.CRIMSON_ROOTS, CountOnEveryLayerPlacement.of(12), BiomeFilter.biome());
 
         CinderscapesRegistry.register(registerable, SHALES_SOUL_SAND, CinderscapesConfiguredFeatures.ASHY_SOUL_SAND, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(64)), CountPlacement.of(10), InSquarePlacement.spread(), BiomeFilter.biome());
         CinderscapesRegistry.register(registerable, SHALES_SOUL_SOIL, CinderscapesConfiguredFeatures.ASHY_SOUL_SOIL, PlacementUtils.FULL_RANGE, CountPlacement.of(30), InSquarePlacement.spread(), BiomeFilter.biome());
@@ -149,8 +147,8 @@ public class CinderscapesPlacedFeatures {
         CinderscapesRegistry.register(registerable, UMBRAL_VINES, CinderscapesConfiguredFeatures.UMBRAL_VINE, CountOnEveryLayerPlacement.of(5), BiomeFilter.biome());
 
         CinderscapesRegistry.register(registerable, LUMINOUS_VEGETATION, CinderscapesConfiguredFeatures.LUMINOUS_VEGETATION, CountOnEveryLayerPlacement.of(8), BiomeFilter.biome());
-        CinderscapesRegistry.register(registerable, LUMINOUS_PODS, CinderscapesConfiguredFeatures.LUMINOUS_POD, CountOnEveryLayerPlacement.of(7), RarityFilter.onAverageOnceEvery(32), BiomeFilter.biome());
-        CinderscapesRegistry.register(registerable, TALL_PHOTOFERNS, CinderscapesConfiguredFeatures.TALL_PHOTOFERN, CountOnEveryLayerPlacement.of(7), RarityFilter.onAverageOnceEvery(32), BiomeFilter.biome());
+        CinderscapesRegistry.register(registerable, LUMINOUS_PODS, CinderscapesConfiguredFeatures.LUMINOUS_POD, CountOnEveryLayerPlacement.of(7), BiomeFilter.biome());
+        CinderscapesRegistry.register(registerable, TALL_PHOTOFERNS, CinderscapesConfiguredFeatures.TALL_PHOTOFERN, CountOnEveryLayerPlacement.of(7), BiomeFilter.biome());
 
         final List<BlockState> CANOPIED_HUGE_FUNGUS_SAFELIST = List.of(
                 CinderscapesBlocks.UMBRAL_NYLIUM.defaultBlockState(),

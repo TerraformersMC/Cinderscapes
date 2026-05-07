@@ -1,12 +1,12 @@
 package com.terraformersmc.cinderscapes.mixin;
 
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.NetherrackBlock;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

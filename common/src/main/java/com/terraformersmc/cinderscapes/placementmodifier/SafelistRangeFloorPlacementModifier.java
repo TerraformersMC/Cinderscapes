@@ -3,18 +3,20 @@ package com.terraformersmc.cinderscapes.placementmodifier;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacementModifierTypes;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.placement.PlacementContext;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+@NullMarked
 public class SafelistRangeFloorPlacementModifier extends PlacementModifier {
     public static final MapCodec<SafelistRangeFloorPlacementModifier> MODIFIER_CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(

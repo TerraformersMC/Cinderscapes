@@ -2,10 +2,10 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
-import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.equipment.trim.TrimMaterial;
 
 import java.util.Map;
 

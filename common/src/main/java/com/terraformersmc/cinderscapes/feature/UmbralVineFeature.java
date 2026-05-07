@@ -3,16 +3,16 @@ package com.terraformersmc.cinderscapes.feature;
 import com.terraformersmc.cinderscapes.block.GhastlyEctoplasmBlock;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.util.MathHelper;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.ChunkPos;
 import net.minecraft.core.Direction8;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.jspecify.annotations.NullMarked;
 
 @NullMarked
@@ -60,12 +60,12 @@ public class UmbralVineFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     public boolean buildVine(WorldGenLevel world, BlockPos origin, Direction8 dir, RandomSource random) {
-        final ChunkPos chunkOrigin = new ChunkPos(origin);
+        final ChunkPos chunkOrigin = ChunkPos.containing(origin);
         final BlockPos.MutableBlockPos terminus = origin.mutable();
 
         // Generation is restricted to the current and adjacent chunks, to match limits imposed by Minecraft.
         terminus.move(5 * dir.getStepX(), 0, 5 * dir.getStepZ());
-        while (chunkOrigin.getChessboardDistance(new ChunkPos(terminus)) < 2) {
+        while (chunkOrigin.getChessboardDistance(ChunkPos.containing(terminus)) < 2) {
             if (world.getBlockState(terminus).getBlock() == Blocks.NETHERRACK) {
                 return modifiedLine(world, CinderscapesBlocks.TWILIGHT_VINE_BLOCK.defaultBlockState(), terminus, origin, random);
             }

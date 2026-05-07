@@ -2,16 +2,20 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
-import com.terraformersmc.cinderscapes.feature.config.*;
+import com.terraformersmc.cinderscapes.feature.config.CrystalShardFeatureConfig;
+import com.terraformersmc.cinderscapes.feature.config.PolypiteQuartzFeatureConfig;
+import com.terraformersmc.cinderscapes.feature.config.ShaleFeatureConfig;
 import com.terraformersmc.cinderscapes.init.helpers.CinderscapesRegistry;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
@@ -21,8 +25,6 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.minecraft.resources.Identifier;
-import net.minecraft.core.Direction;
 
 import java.util.List;
 
@@ -100,8 +102,8 @@ public final class CinderscapesConfiguredFeatures {
         CinderscapesRegistry.register(registerable, DEBRIS_ORE_SMALL, Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(RULE_TEST_BASE_STONE_NETHER, Blocks.ANCIENT_DEBRIS.defaultBlockState())), 2, 1.0f));
 
         CinderscapesRegistry.register(registerable, ASH_PILE, CinderscapesFeatures.ASH_PILE, FeatureConfiguration.NONE);
-        CinderscapesRegistry.register(registerable, ASHY_VEGETATION, CinderscapesFeatures.VEGETATION, CinderscapesFeatures.ASHY_SHOALS_VEGETATION_CONFIG);
-        CinderscapesRegistry.register(registerable, BRAMBLE_BERRY_BUSHES, Feature.RANDOM_PATCH, CinderscapesFeatures.BRAMBLE_BERRY_BUSH_CONFIG);
+        CinderscapesRegistry.register(registerable, ASHY_VEGETATION, CinderscapesFeatures.CINDERSCAPES_VEGETATION, CinderscapesFeatures.ASHY_SHOALS_VEGETATION_CONFIG);
+        CinderscapesRegistry.register(registerable, BRAMBLE_BERRY_BUSHES, Feature.SIMPLE_BLOCK, CinderscapesFeatures.BRAMBLE_BERRY_BUSH_CONFIG);
 
         CinderscapesRegistry.register(registerable, ASHY_SOUL_SAND, Feature.REPLACE_BLOBS, CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG);
         CinderscapesRegistry.register(registerable, ASHY_SOUL_SOIL, Feature.REPLACE_BLOBS, CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG);
@@ -111,7 +113,7 @@ public final class CinderscapesConfiguredFeatures {
         CinderscapesRegistry.register(registerable, DEAD_TREE, CinderscapesFeatures.DEAD_TREE, FeatureConfiguration.NONE);
 
         /* BLACKSTONE SHALES */
-        CinderscapesRegistry.register(registerable, WEEPING_VINE, Feature.WEEPING_VINES, FeatureConfiguration.NONE);
+        CinderscapesRegistry.register(registerable, WEEPING_VINE, CinderscapesFeatures.BLACKSTONE_WEEPING_VINES, FeatureConfiguration.NONE);
 
         CinderscapesRegistry.register(registerable, SHALES_SOUL_SAND, Feature.REPLACE_BLOBS, CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG);
         CinderscapesRegistry.register(registerable, SHALES_SOUL_SOIL, Feature.REPLACE_BLOBS, CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG);
@@ -122,15 +124,15 @@ public final class CinderscapesConfiguredFeatures {
         CinderscapesRegistry.register(registerable, SHROOMLIGHT_BUSH, CinderscapesFeatures.SHROOMLIGHT_BUSH, FeatureConfiguration.NONE);
         CinderscapesRegistry.register(registerable, UMBRAL_VINE, CinderscapesFeatures.UMBRAL_VINE, FeatureConfiguration.NONE);
 
-        CinderscapesRegistry.register(registerable, LUMINOUS_VEGETATION, CinderscapesFeatures.VEGETATION, CinderscapesFeatures.LUMINOUS_GROVE_VEGETATION_CONFIG);
-        CinderscapesRegistry.register(registerable, LUMINOUS_POD, Feature.RANDOM_PATCH, CinderscapesFeatures.LUMINOUS_POD_CONFIG);
-        CinderscapesRegistry.register(registerable, TALL_PHOTOFERN, Feature.RANDOM_PATCH, CinderscapesFeatures.TALL_PHOTOFERN_CONFIG);
+        CinderscapesRegistry.register(registerable, LUMINOUS_VEGETATION, CinderscapesFeatures.CINDERSCAPES_VEGETATION, CinderscapesFeatures.LUMINOUS_GROVE_VEGETATION_CONFIG);
+        CinderscapesRegistry.register(registerable, LUMINOUS_POD, Feature.SIMPLE_BLOCK, CinderscapesFeatures.LUMINOUS_POD_CONFIG);
+        CinderscapesRegistry.register(registerable, TALL_PHOTOFERN, Feature.SIMPLE_BLOCK, CinderscapesFeatures.TALL_PHOTOFERN_CONFIG);
 
         CinderscapesRegistry.register(registerable, CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_NOT_PLANTED_CONFIG);
         CinderscapesRegistry.register(registerable, CANOPIED_HUGE_FUNGUS_PLANTED, CinderscapesFeatures.CANOPIED_HUGE_FUNGUS, CinderscapesFeatures.UMBRAL_FUNGUS_CONFIG);
 
         /* QUARTZ CAVERN */
-        CinderscapesRegistry.register(registerable, QUARTZ_VEGETATION, CinderscapesFeatures.VEGETATION, CinderscapesFeatures.QUARTZ_CAVERN_VEGETATION_CONFIG);
+        CinderscapesRegistry.register(registerable, QUARTZ_VEGETATION, CinderscapesFeatures.CINDERSCAPES_VEGETATION, CinderscapesFeatures.QUARTZ_CAVERN_VEGETATION_CONFIG);
 
         CinderscapesRegistry.register(registerable, QUARTZ_ORE, Feature.ORE, new OreConfiguration(RULE_TEST_NETHERRACK, Blocks.NETHER_QUARTZ_ORE.defaultBlockState(), 14));
         CinderscapesRegistry.register(registerable, SULFUR_QUARTZ_ORE, Feature.ORE, new OreConfiguration(RULE_TEST_NETHERRACK, CinderscapesBlocks.SULFUR_QUARTZ_ORE.defaultBlockState(), 14));

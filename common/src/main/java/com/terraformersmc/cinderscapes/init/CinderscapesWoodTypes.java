@@ -2,8 +2,8 @@ package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
-import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class CinderscapesWoodTypes {
 	public static final WoodType SCORCHED = WoodTypeBuilder.copyOf(WoodType.CRIMSON)
