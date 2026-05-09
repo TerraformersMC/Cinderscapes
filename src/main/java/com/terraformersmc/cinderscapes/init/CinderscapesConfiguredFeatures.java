@@ -48,7 +48,7 @@ public final class CinderscapesConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_TREE = createRegistryKey("ashy_shoals/dead_tree");
 
     /* BLACKSTONE SHALES */
-    public static final ResourceKey<ConfiguredFeature<?, ?>> WEEPING_VINE = createRegistryKey("blackstone_shales/weeping_vine");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BLACKSTONE_WEEPING_VINES = createRegistryKey("blackstone_shales/weeping_vines");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> SHALES_SOUL_SAND = createRegistryKey("blackstone_shales/soul_sand");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SHALES_SOUL_SOIL = createRegistryKey("blackstone_shales/soul_soil");
@@ -113,7 +113,7 @@ public final class CinderscapesConfiguredFeatures {
         CinderscapesRegistry.register(context, DEAD_TREE, CinderscapesFeatures.DEAD_TREE, FeatureConfiguration.NONE);
 
         /* BLACKSTONE SHALES */
-        CinderscapesRegistry.register(context, WEEPING_VINE, CinderscapesFeatures.BLACKSTONE_WEEPING_VINES, FeatureConfiguration.NONE);
+        CinderscapesRegistry.register(context, BLACKSTONE_WEEPING_VINES, CinderscapesFeatures.BLACKSTONE_WEEPING_VINES, FeatureConfiguration.NONE);
 
         CinderscapesRegistry.register(context, SHALES_SOUL_SAND, Feature.REPLACE_BLOBS, CinderscapesFeatures.SOUL_SAND_REPLACE_CONFIG);
         CinderscapesRegistry.register(context, SHALES_SOUL_SOIL, Feature.REPLACE_BLOBS, CinderscapesFeatures.SOUL_SOIL_REPLACE_CONFIG);

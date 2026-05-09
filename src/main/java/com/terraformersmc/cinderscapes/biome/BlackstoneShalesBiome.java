@@ -53,7 +53,7 @@ public class BlackstoneShalesBiome {
         HolderGetter<ConfiguredWorldCarver<?>> configuredCarvers = registerable.lookup(Registries.CONFIGURED_CARVER);
         HolderGetter<PlacedFeature> placedFeatures = registerable.lookup(Registries.PLACED_FEATURE);
 
-        net.minecraft.world.level.biome.BiomeGenerationSettings.Builder builder = new net.minecraft.world.level.biome.BiomeGenerationSettings.Builder(placedFeatures, configuredCarvers);
+        BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(placedFeatures, configuredCarvers);
 
         // DEFAULT MINECRAFT FEATURES
         builder.addCarver(Carvers.NETHER_CAVE);
@@ -70,22 +70,22 @@ public class BlackstoneShalesBiome {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, OrePlacements.ORE_QUARTZ_DELTAS);
         BiomeDefaultFeatures.addAncientDebris(builder);
 
-        // VEGETATION
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.WEEPING_VINES));
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.PATCH_CRIMSON_ROOTS));
-
         // NETHERRACK REPLACERS
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.SHALES_SOUL_SAND));
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.SHALES_SOUL_SOIL));
 
         // SHALES
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.SHALES));
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.SHALES));
+
+        // VEGETATION
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.BLACKSTONE_WEEPING_VINES));
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.PATCH_CRIMSON_ROOTS));
 
         return builder.build();
     }
 
     private static MobSpawnSettings createSpawnSettings() {
-        net.minecraft.world.level.biome.MobSpawnSettings.Builder builder = new net.minecraft.world.level.biome.MobSpawnSettings.Builder();
+        MobSpawnSettings.Builder builder = new MobSpawnSettings.Builder();
 
         // SPAWNS
         builder.addSpawn(MobCategory.MONSTER,  40, new MobSpawnSettings.SpawnerData(EntityType.GHAST, 1, 1));

@@ -52,7 +52,7 @@ public class LuminousGroveBiome {
         HolderGetter<ConfiguredWorldCarver<?>> configuredCarvers = registerable.lookup(Registries.CONFIGURED_CARVER);
         HolderGetter<PlacedFeature> placedFeatures = registerable.lookup(Registries.PLACED_FEATURE);
 
-        net.minecraft.world.level.biome.BiomeGenerationSettings.Builder builder = new net.minecraft.world.level.biome.BiomeGenerationSettings.Builder(placedFeatures, configuredCarvers);
+        BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(placedFeatures, configuredCarvers);
 
         // DEFAULT MINECRAFT FEATURES
         builder.addCarver(Carvers.NETHER_CAVE);
@@ -80,7 +80,7 @@ public class LuminousGroveBiome {
     }
 
     private static MobSpawnSettings createSpawnSettings() {
-        net.minecraft.world.level.biome.MobSpawnSettings.Builder builder = new net.minecraft.world.level.biome.MobSpawnSettings.Builder();
+        MobSpawnSettings.Builder builder = new MobSpawnSettings.Builder();
 
         // SPAWNS
         builder.addSpawn(MobCategory.CREATURE, 60, new MobSpawnSettings.SpawnerData(EntityType.STRIDER, 1, 2));

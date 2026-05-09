@@ -41,7 +41,7 @@ public class CinderscapesPlacedFeatures {
     public static final ResourceKey<PlacedFeature> DEAD_TREES = createRegistryKey("ashy_shoals/dead_trees");
 
     /* BLACKSTONE SHALES */
-    public static final ResourceKey<PlacedFeature> WEEPING_VINES = createRegistryKey("blackstone_shales/weeping_vines");
+    public static final ResourceKey<PlacedFeature> BLACKSTONE_WEEPING_VINES = createRegistryKey("blackstone_shales/weeping_vines");
     public static final ResourceKey<PlacedFeature> PATCH_CRIMSON_ROOTS = createRegistryKey("blackstone_shales/patch_crimson_roots");
 
     public static final ResourceKey<PlacedFeature> SHALES_SOUL_SAND = createRegistryKey("blackstone_shales/soul_sand");
@@ -93,13 +93,12 @@ public class CinderscapesPlacedFeatures {
         CinderscapesRegistry.register(context, DEBRIS_ORE_LARGE, CinderscapesConfiguredFeatures.DEBRIS_ORE_LARGE, HeightRangePlacement.triangle(VerticalAnchor.absolute(8), VerticalAnchor.absolute(24)), CountPlacement.of(4), InSquarePlacement.spread(), BiomeFilter.biome());
         CinderscapesRegistry.register(context, DEBRIS_ORE_SMALL, CinderscapesConfiguredFeatures.DEBRIS_ORE_SMALL, PlacementUtils.RANGE_8_8, CountPlacement.of(4), InSquarePlacement.spread(), BiomeFilter.biome());
 
-        CinderscapesRegistry.register(context, ASH_PILES, CinderscapesConfiguredFeatures.ASH_PILE, CountOnEveryLayerPlacement.of(2), BiomeFilter.biome());
-        CinderscapesRegistry.register(context, ASHY_VEGETATION, CinderscapesConfiguredFeatures.ASHY_VEGETATION, CountOnEveryLayerPlacement.of(16), BiomeFilter.biome());
+        CinderscapesRegistry.register(context, ASH_PILES, CinderscapesConfiguredFeatures.ASH_PILE, CountOnEveryLayerPlacement.of(1), BiomeFilter.biome());
+        CinderscapesRegistry.register(context, ASHY_VEGETATION, CinderscapesConfiguredFeatures.ASHY_VEGETATION, CountOnEveryLayerPlacement.of(20), BiomeFilter.biome());
         CinderscapesRegistry.register(context, BRAMBLE_BERRY_BUSHES, CinderscapesConfiguredFeatures.BRAMBLE_BERRY_BUSHES,
-                PlacementUtils.FULL_RANGE,
-                BiomeFilter.biome(),
-                CountPlacement.of(64),
+                CountOnEveryLayerPlacement.of(64),
                 RandomOffsetPlacement.ofTriangle(7, 3),
+                BiomeFilter.biome(),
                 BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)
         );
 
@@ -122,8 +121,13 @@ public class CinderscapesPlacedFeatures {
         );
 
         /* BLACKSTONE SHALES */
-        CinderscapesRegistry.register(context, WEEPING_VINES, CinderscapesConfiguredFeatures.WEEPING_VINE, CountOnEveryLayerPlacement.of(16), BiomeFilter.biome());
-        CinderscapesRegistry.register(context, PATCH_CRIMSON_ROOTS, NetherFeatures.CRIMSON_ROOTS, CountOnEveryLayerPlacement.of(12), BiomeFilter.biome());
+        CinderscapesRegistry.register(context, BLACKSTONE_WEEPING_VINES, CinderscapesConfiguredFeatures.BLACKSTONE_WEEPING_VINES, CountPlacement.of(1024), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome());
+        CinderscapesRegistry.register(context, PATCH_CRIMSON_ROOTS, NetherFeatures.CRIMSON_ROOTS,
+                CountOnEveryLayerPlacement.of(128),
+                RandomOffsetPlacement.ofTriangle(7, 3),
+                BiomeFilter.biome(),
+                BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)
+        );
 
         CinderscapesRegistry.register(context, SHALES_SOUL_SAND, CinderscapesConfiguredFeatures.ASHY_SOUL_SAND, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(64)), CountPlacement.of(10), InSquarePlacement.spread(), BiomeFilter.biome());
         CinderscapesRegistry.register(context, SHALES_SOUL_SOIL, CinderscapesConfiguredFeatures.ASHY_SOUL_SOIL, PlacementUtils.FULL_RANGE, CountPlacement.of(30), InSquarePlacement.spread(), BiomeFilter.biome());

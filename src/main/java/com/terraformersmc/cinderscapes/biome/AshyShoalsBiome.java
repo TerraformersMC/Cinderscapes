@@ -52,7 +52,7 @@ public class AshyShoalsBiome {
         HolderGetter<ConfiguredWorldCarver<?>> configuredCarvers = registerable.lookup(Registries.CONFIGURED_CARVER);
         HolderGetter<PlacedFeature> placedFeatures = registerable.lookup(Registries.PLACED_FEATURE);
 
-        net.minecraft.world.level.biome.BiomeGenerationSettings.Builder builder = new net.minecraft.world.level.biome.BiomeGenerationSettings.Builder(placedFeatures, configuredCarvers);
+        BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(placedFeatures, configuredCarvers);
 
         // DEFAULT MINECRAFT FEATURES
         builder.addCarver(Carvers.NETHER_CAVE);
@@ -71,7 +71,7 @@ public class AshyShoalsBiome {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.ASHY_GRAVEL));
 
         // ASH PILES
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.ASH_PILES));
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.ASH_PILES));
 
         // FEATURES
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, placedFeatures.getOrThrow(CinderscapesPlacedFeatures.DEAD_TREES));
@@ -89,15 +89,15 @@ public class AshyShoalsBiome {
     }
 
     private static MobSpawnSettings createSpawnSettings() {
-        net.minecraft.world.level.biome.MobSpawnSettings.Builder builder = new net.minecraft.world.level.biome.MobSpawnSettings.Builder();
+        MobSpawnSettings.Builder builder = new MobSpawnSettings.Builder();
 
         // SPAWNS
-        builder.addSpawn(MobCategory.MONSTER,  1, new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 1, 4));
-        builder.addSpawn(MobCategory.MONSTER,  1, new MobSpawnSettings.SpawnerData(EntityType.ZOGLIN, 1, 1));
-        builder.addSpawn(MobCategory.MONSTER,  1, new MobSpawnSettings.SpawnerData(EntityType.ENDERMAN, 4, 4));
+        builder.addSpawn(MobCategory.MONSTER,   1, new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 1, 4));
+        builder.addSpawn(MobCategory.MONSTER,   1, new MobSpawnSettings.SpawnerData(EntityType.ZOGLIN, 1, 1));
+        builder.addSpawn(MobCategory.MONSTER,   1, new MobSpawnSettings.SpawnerData(EntityType.ENDERMAN, 4, 4));
         builder.addSpawn(MobCategory.CREATURE, 60, new MobSpawnSettings.SpawnerData(EntityType.STRIDER, 1, 2));
-        builder.addSpawn(MobCategory.MONSTER, 20, new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 5, 5));
-        builder.addSpawn(MobCategory.MONSTER, 50, new MobSpawnSettings.SpawnerData(EntityType.GHAST, 4, 4));
+        builder.addSpawn(MobCategory.MONSTER,  20, new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 5, 5));
+        builder.addSpawn(MobCategory.MONSTER,  50, new MobSpawnSettings.SpawnerData(EntityType.GHAST, 4, 4));
 
         return builder.build();
     }

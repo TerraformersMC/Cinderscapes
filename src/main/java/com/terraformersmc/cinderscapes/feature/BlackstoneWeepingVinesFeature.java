@@ -7,7 +7,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.StemBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -25,15 +25,18 @@ public class BlackstoneWeepingVinesFeature extends Feature<NoneFeatureConfigurat
         RandomSource random = context.random();
         BlockPos pos = context.origin();
         WorldGenLevel level = context.level();
+
         if (!level.isEmptyBlock(pos)) {
             return false;
         } else {
             Block block = level.getBlockState(pos.above()).getBlock();
+
             if (block != Blocks.BLACKSTONE && block != Blocks.NETHER_WART_BLOCK) {
                 return false;
             } else {
                 this.generateNetherWartBlocksInArea(level, random, pos);
                 this.generateVinesInArea(level, random, pos);
+
                 return true;
             }
         }
@@ -50,8 +53,9 @@ public class BlackstoneWeepingVinesFeature extends Feature<NoneFeatureConfigurat
                 int j = 0;
 
                 for (Direction direction : Direction.values()) {
-                    Block block = level.getBlockState(mutable2.setWithOffset(mutable, direction)).getBlock();
-                    if (block == Blocks.BLACKSTONE || block == Blocks.NETHER_WART_BLOCK) {
+                    BlockState state = level.getBlockState(mutable2.setWithOffset(mutable, direction));
+
+                    if (state.is(Blocks.BLACKSTONE) || state.is(Blocks.NETHER_WART_BLOCK)) {
                         ++j;
                     }
 
@@ -65,17 +69,19 @@ public class BlackstoneWeepingVinesFeature extends Feature<NoneFeatureConfigurat
                 }
             }
         }
-
     }
 
     private void generateVinesInArea(WorldGenLevel level, RandomSource random, BlockPos pos) {
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+
         for (int i = 0; i < 100; ++i) {
             mutable.setWithOffset(pos, random.nextInt(8) - random.nextInt(8), random.nextInt(2) - random.nextInt(7), random.nextInt(8) - random.nextInt(8));
             if (level.isEmptyBlock(mutable)) {
-                Block block = level.getBlockState(mutable.above()).getBlock();
-                if (block == Blocks.BLACKSTONE || block == Blocks.NETHER_WART_BLOCK) {
+                BlockState state = level.getBlockState(mutable.above());
+
+                if (state.is(Blocks.BLACKSTONE) || state.is(Blocks.NETHER_WART_BLOCK)) {
                     int j = Mth.nextInt(random, 1, 8);
+
                     if (random.nextInt(6) == 0) {
                         j *= 2;
                     }
@@ -84,17 +90,17 @@ public class BlackstoneWeepingVinesFeature extends Feature<NoneFeatureConfigurat
                         j = 1;
                     }
 
-                    generateVineColumn(level, random, mutable, j, 17, 25);
+                    generateVineColumn(level, random, mutable, j);
                 }
             }
         }
     }
 
-    public static void generateVineColumn(WorldGenLevel level, RandomSource random, BlockPos.MutableBlockPos pos, int length, int minAge, int maxAge) {
+    public static void generateVineColumn(WorldGenLevel level, RandomSource random, BlockPos.MutableBlockPos pos, int length) {
         for (int i = 0; i <= length; ++i) {
             if (level.isEmptyBlock(pos)) {
                 if (i == length || !level.isEmptyBlock(pos.below())) {
-                    level.setBlock(pos, Blocks.WEEPING_VINES.defaultBlockState().setValue(StemBlock.AGE, Mth.nextInt(random, minAge, maxAge)), 2);
+                    level.setBlock(pos, Blocks.WEEPING_VINES.defaultBlockState(), 2);
                     break;
                 }
                 level.setBlock(pos, Blocks.WEEPING_VINES_PLANT.defaultBlockState(), 2);

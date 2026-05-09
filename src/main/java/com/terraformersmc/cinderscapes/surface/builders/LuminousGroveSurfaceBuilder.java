@@ -26,10 +26,8 @@ public class LuminousGroveSurfaceBuilder extends BiolithSurfaceBuilder {
     public void generate(BiomeManager biomeAccess, BlockColumn column, RandomSource random, ChunkAccess chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
         BlockPos pos = new BlockPos(x, -128, z);
         boolean inAir = false;
-
-        // Set in-biome netherrack
-        // TODO: It would be nicer to make this start below the ceiling bedrock.
-        for (int y = chunk.getMaxY(); y >= seaLevel - 1; --y) {
+        // Set in-biome netherrack from just below the ceiling (vheight) to just level with the lava sea.
+        for (int y = vHeight - 1; y >= seaLevel - 1; --y) {
             BlockState state = column.getBlock(y);
             if (state.isAir()) {
                 inAir = true;

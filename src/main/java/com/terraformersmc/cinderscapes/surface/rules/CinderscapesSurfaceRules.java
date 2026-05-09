@@ -18,7 +18,8 @@ public class CinderscapesSurfaceRules {
                                 SurfaceRules.state(CinderscapesBlocks.UMBRAL_WART_BLOCK.defaultBlockState())),
                             SurfaceRules.state(CinderscapesBlocks.UMBRAL_NYLIUM.defaultBlockState())))))));
 
-    // At the moment, there's just Luminous Grove.  To add another, wrap them in MaterialRules.sequence()
+    // At the moment, all surface gen is via surface builders.  These rules are never installed.
+    // Here's an example Luminous Grove.  To add another, wrap them in MaterialRules.sequence()
     public static final SurfaceRules.RuleSource CINDERSCAPES_NETHER_RULES = LUMINOUS_GROVE;
 
 	public static SurfaceRules.RuleSource createRules() {

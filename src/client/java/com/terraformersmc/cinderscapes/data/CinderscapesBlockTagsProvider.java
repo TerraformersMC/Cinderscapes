@@ -46,6 +46,12 @@ public class CinderscapesBlockTagsProvider extends FabricTagsProvider.BlockTagsP
 				.add(CinderscapesBlocks.POTTED_TWILIGHT_TENDRILS)
 				.add(CinderscapesBlocks.POTTED_UMBRAL_FUNGUS);
 
+		valueLookupBuilder(BlockTags.HUGE_BROWN_MUSHROOM_CAN_PLACE_ON)
+				.add(CinderscapesBlocks.UMBRAL_NYLIUM);
+
+		valueLookupBuilder(BlockTags.HUGE_RED_MUSHROOM_CAN_PLACE_ON)
+				.add(CinderscapesBlocks.UMBRAL_NYLIUM);
+
 		valueLookupBuilder(BlockTags.INSIDE_STEP_SOUND_BLOCKS)
 				.add(CinderscapesBlocks.ASH)
 				.add(CinderscapesBlocks.SCORCHED_SPROUTS)

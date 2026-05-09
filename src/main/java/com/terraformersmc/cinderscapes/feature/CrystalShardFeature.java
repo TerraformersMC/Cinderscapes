@@ -30,8 +30,7 @@ public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
 
         int amount = random.nextInt(3) + 2;
 
-        // TODO: Convert to Shapes.empty()
-        Shape shape = Shape.of((point) -> false, Position.of(0, 0, 0), Position.of(0, 0, 0));
+        Shape shape = Shapes.empty();
         for (int i = 0; i < amount; i++) {
             int height = random.nextInt(8) + 14;
             float radius = random.nextFloat() * 2 + 2;
