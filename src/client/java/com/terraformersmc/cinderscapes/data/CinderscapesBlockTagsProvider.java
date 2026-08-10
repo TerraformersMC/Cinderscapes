@@ -1,13 +1,15 @@
 package com.terraformersmc.cinderscapes.data;
 
-import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlockIds;
+import com.terraformersmc.cinderscapes.init.CinderscapesBlockItemIds;
 import com.terraformersmc.cinderscapes.tag.CinderscapesBlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.tags.BlockItemTagsProvider;
+import net.minecraft.references.BlockIds;
+import net.minecraft.references.BlockItemIds;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Blocks;
 import org.jspecify.annotations.NullMarked;
 
 import java.util.concurrent.CompletableFuture;
@@ -23,265 +25,157 @@ public class CinderscapesBlockTagsProvider extends FabricTagsProvider.BlockTagsP
 		/*
 		 * Basic block tags
 		 */
-		valueLookupBuilder(BlockTags.ENDERMAN_HOLDABLE)
-				.add(CinderscapesBlocks.NODZOL)
-				.add(CinderscapesBlocks.UMBRAL_FUNGUS)
-				.add(CinderscapesBlocks.UMBRAL_NYLIUM);
+		tag(BlockTags.ENDERMAN_HOLDABLE)
+				.add(CinderscapesBlockItemIds.NODZOL.block())
+				.add(CinderscapesBlockItemIds.UMBRAL_FUNGUS.block())
+				.add(CinderscapesBlockItemIds.UMBRAL_NYLIUM.block());
 
-		valueLookupBuilder(BlockTags.FENCE_GATES)
-				.add(CinderscapesBlocks.SCORCHED_FENCE_GATE)
-				.add(CinderscapesBlocks.UMBRAL_FENCE_GATE);
+		tag(BlockTags.FLOWER_POTS)
+				.add(CinderscapesBlockIds.POTTED_CRYSTINIUM)
+				.add(CinderscapesBlockIds.POTTED_LUMINOUS_POD)
+				.add(CinderscapesBlockIds.POTTED_PHOTOFERN)
+				.add(CinderscapesBlockIds.POTTED_POLYPITE_QUARTZ)
+				.add(CinderscapesBlockIds.POTTED_POLYPITE_ROSE_QUARTZ)
+				.add(CinderscapesBlockIds.POTTED_POLYPITE_SMOKY_QUARTZ)
+				.add(CinderscapesBlockIds.POTTED_POLYPITE_SULFUR_QUARTZ)
+				.add(CinderscapesBlockIds.POTTED_PYRACINTH)
+				.add(CinderscapesBlockIds.POTTED_SCORCHED_SHRUB)
+				.add(CinderscapesBlockIds.POTTED_SCORCHED_TENDRILS)
+				.add(CinderscapesBlockIds.POTTED_TWILIGHT_TENDRILS)
+				.add(CinderscapesBlockIds.POTTED_UMBRAL_FUNGUS);
 
-		valueLookupBuilder(BlockTags.FLOWER_POTS)
-				.add(CinderscapesBlocks.POTTED_CRYSTINIUM)
-				.add(CinderscapesBlocks.POTTED_LUMINOUS_POD)
-				.add(CinderscapesBlocks.POTTED_PHOTOFERN)
-				.add(CinderscapesBlocks.POTTED_POLYPITE_QUARTZ)
-				.add(CinderscapesBlocks.POTTED_POLYPITE_ROSE_QUARTZ)
-				.add(CinderscapesBlocks.POTTED_POLYPITE_SMOKY_QUARTZ)
-				.add(CinderscapesBlocks.POTTED_POLYPITE_SULFUR_QUARTZ)
-				.add(CinderscapesBlocks.POTTED_PYRACINTH)
-				.add(CinderscapesBlocks.POTTED_SCORCHED_SHRUB)
-				.add(CinderscapesBlocks.POTTED_SCORCHED_TENDRILS)
-				.add(CinderscapesBlocks.POTTED_TWILIGHT_TENDRILS)
-				.add(CinderscapesBlocks.POTTED_UMBRAL_FUNGUS);
+		tag(BlockTags.HUGE_BROWN_MUSHROOM_CAN_PLACE_ON)
+				.add(CinderscapesBlockItemIds.UMBRAL_NYLIUM.block());
 
-		valueLookupBuilder(BlockTags.HUGE_BROWN_MUSHROOM_CAN_PLACE_ON)
-				.add(CinderscapesBlocks.UMBRAL_NYLIUM);
+		tag(BlockTags.HUGE_RED_MUSHROOM_CAN_PLACE_ON)
+				.add(CinderscapesBlockItemIds.UMBRAL_NYLIUM.block());
 
-		valueLookupBuilder(BlockTags.HUGE_RED_MUSHROOM_CAN_PLACE_ON)
-				.add(CinderscapesBlocks.UMBRAL_NYLIUM);
+		tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS)
+				.add(CinderscapesBlockItemIds.ASH.block())
+				.add(CinderscapesBlockItemIds.SCORCHED_SPROUTS.block())
+				.add(CinderscapesBlockItemIds.SCORCHED_TENDRILS.block())
+				.add(CinderscapesBlockItemIds.TWILIGHT_FESCUES.block())
+				.add(CinderscapesBlockItemIds.TWILIGHT_TENDRILS.block());
 
-		valueLookupBuilder(BlockTags.INSIDE_STEP_SOUND_BLOCKS)
-				.add(CinderscapesBlocks.ASH)
-				.add(CinderscapesBlocks.SCORCHED_SPROUTS)
-				.add(CinderscapesBlocks.SCORCHED_TENDRILS)
-				.add(CinderscapesBlocks.TWILIGHT_FESCUES)
-				.add(CinderscapesBlocks.TWILIGHT_TENDRILS);
+		tag(BlockTags.NETHER_CARVER_REPLACEABLES)
+				.add(CinderscapesBlockItemIds.UMBRAL_NYLIUM.block())
+				.add(CinderscapesBlockItemIds.UMBRAL_WART_BLOCK.block());
 
-		valueLookupBuilder(BlockTags.LOGS)
-				.add(CinderscapesBlocks.SCORCHED_HYPHAE)
-				.add(CinderscapesBlocks.SCORCHED_STEM)
-				.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE)
-				.add(CinderscapesBlocks.STRIPPED_SCORCHED_STEM)
-				.add(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE)
-				.add(CinderscapesBlocks.STRIPPED_UMBRAL_STEM)
-				.add(CinderscapesBlocks.UMBRAL_HYPHAE)
-				.add(CinderscapesBlocks.UMBRAL_STEM);
+		tag(BlockTags.NYLIUM)
+				.add(CinderscapesBlockItemIds.UMBRAL_NYLIUM.block());
 
-		valueLookupBuilder(BlockTags.NETHER_CARVER_REPLACEABLES)
-				.add(CinderscapesBlocks.UMBRAL_NYLIUM)
-				.add(CinderscapesBlocks.UMBRAL_WART_BLOCK);
+		tag(BlockTags.OVERRIDES_MUSHROOM_LIGHT_REQUIREMENT)
+				.add(CinderscapesBlockItemIds.NODZOL.block());
 
-		valueLookupBuilder(BlockTags.NYLIUM)
-				.add(CinderscapesBlocks.UMBRAL_NYLIUM);
+		tag(BlockTags.CEILING_HANGING_SIGNS)
+				.add(CinderscapesBlockItemIds.SCORCHED_HANGING_SIGN.block())
+				.add(CinderscapesBlockItemIds.UMBRAL_HANGING_SIGN.block());
 
-		valueLookupBuilder(BlockTags.OVERRIDES_MUSHROOM_LIGHT_REQUIREMENT)
-				.add(CinderscapesBlocks.NODZOL);
+		tag(BlockTags.WALL_HANGING_SIGNS)
+				.add(CinderscapesBlockIds.SCORCHED_WALL_HANGING_SIGN)
+				.add(CinderscapesBlockIds.UMBRAL_WALL_HANGING_SIGN);
 
-		valueLookupBuilder(BlockTags.PLANKS)
-				.add(CinderscapesBlocks.UMBRAL_PLANKS)
-				.add(CinderscapesBlocks.SCORCHED_PLANKS);
+		tag(BlockTags.STANDING_SIGNS)
+				.add(CinderscapesBlockItemIds.SCORCHED_SIGN.block())
+				.add(CinderscapesBlockItemIds.UMBRAL_SIGN.block());
 
-		valueLookupBuilder(BlockTags.CEILING_HANGING_SIGNS)
-				.add(CinderscapesBlocks.SCORCHED_HANGING_SIGN)
-				.add(CinderscapesBlocks.UMBRAL_HANGING_SIGN);
-
-		valueLookupBuilder(BlockTags.WALL_HANGING_SIGNS)
-				.add(CinderscapesBlocks.SCORCHED_WALL_HANGING_SIGN)
-				.add(CinderscapesBlocks.UMBRAL_WALL_HANGING_SIGN);
-
-		valueLookupBuilder(BlockTags.STANDING_SIGNS)
-				.add(CinderscapesBlocks.SCORCHED_SIGN)
-				.add(CinderscapesBlocks.UMBRAL_SIGN);
-
-		valueLookupBuilder(BlockTags.WALL_SIGNS)
-				.add(CinderscapesBlocks.SCORCHED_WALL_SIGN)
-				.add(CinderscapesBlocks.UMBRAL_WALL_SIGN);
-
-		valueLookupBuilder(BlockTags.SLABS)
-				.add(CinderscapesBlocks.ROSE_QUARTZ_SLAB)
-				.add(CinderscapesBlocks.SMOKY_QUARTZ_SLAB)
-				.add(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_SLAB)
-				.add(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_SLAB)
-				.add(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_SLAB)
-				.add(CinderscapesBlocks.SULFUR_QUARTZ_SLAB);
-
-		valueLookupBuilder(BlockTags.SMALL_FLOWERS)
-				.add(CinderscapesBlocks.CRYSTINIUM)
-				.add(CinderscapesBlocks.PYRACINTH)
-				.add(CinderscapesBlocks.SCORCHED_TENDRILS)
-				.add(CinderscapesBlocks.TWILIGHT_TENDRILS);
-
-		valueLookupBuilder(BlockTags.STAIRS)
-				.add(CinderscapesBlocks.ROSE_QUARTZ_STAIRS)
-				.add(CinderscapesBlocks.SMOKY_QUARTZ_STAIRS)
-				.add(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_STAIRS)
-				.add(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS)
-				.add(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_STAIRS)
-				.add(CinderscapesBlocks.SULFUR_QUARTZ_STAIRS);
-
-		valueLookupBuilder(BlockTags.WART_BLOCKS)
-				.add(CinderscapesBlocks.UMBRAL_WART_BLOCK);
-
-		valueLookupBuilder(BlockTags.WOODEN_BUTTONS)
-				.add(CinderscapesBlocks.SCORCHED_BUTTON)
-				.add(CinderscapesBlocks.UMBRAL_BUTTON);
-
-		valueLookupBuilder(BlockTags.WOODEN_DOORS)
-				.add(CinderscapesBlocks.SCORCHED_DOOR)
-				.add(CinderscapesBlocks.UMBRAL_DOOR);
-
-		valueLookupBuilder(BlockTags.WOODEN_FENCES)
-				.add(CinderscapesBlocks.SCORCHED_FENCE)
-				.add(CinderscapesBlocks.UMBRAL_FENCE);
-
-		valueLookupBuilder(BlockTags.WOODEN_PRESSURE_PLATES)
-				.add(CinderscapesBlocks.SCORCHED_PRESSURE_PLATE)
-				.add(CinderscapesBlocks.UMBRAL_PRESSURE_PLATE);
-
-		valueLookupBuilder(BlockTags.WOODEN_SHELVES)
-				.add(CinderscapesBlocks.SCORCHED_SHELF)
-				.add(CinderscapesBlocks.UMBRAL_SHELF);
-
-		valueLookupBuilder(BlockTags.WOODEN_SLABS)
-				.add(CinderscapesBlocks.SCORCHED_SLAB)
-				.add(CinderscapesBlocks.UMBRAL_SLAB);
-
-		valueLookupBuilder(BlockTags.WOODEN_STAIRS)
-				.add(CinderscapesBlocks.SCORCHED_STAIRS)
-				.add(CinderscapesBlocks.UMBRAL_STAIRS);
-
-		valueLookupBuilder(BlockTags.WOODEN_TRAPDOORS)
-				.add(CinderscapesBlocks.SCORCHED_TRAPDOOR)
-				.add(CinderscapesBlocks.UMBRAL_TRAPDOOR);
+		tag(BlockTags.WALL_SIGNS)
+				.add(CinderscapesBlockIds.SCORCHED_WALL_SIGN)
+				.add(CinderscapesBlockIds.UMBRAL_WALL_SIGN);
 
 
 		/*
 		 * Tool block tags
 		 */
-		valueLookupBuilder(BlockTags.MINEABLE_WITH_AXE)
-				.add(CinderscapesBlocks.SCORCHED_HYPHAE)
-				.add(CinderscapesBlocks.SCORCHED_STEM)
-				.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE)
-				.add(CinderscapesBlocks.STRIPPED_SCORCHED_STEM)
-				.add(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE)
-				.add(CinderscapesBlocks.STRIPPED_UMBRAL_STEM)
-				.add(CinderscapesBlocks.TWILIGHT_VINE_BLOCK)
-				.add(CinderscapesBlocks.UMBRAL_FUNGUS)
-				.add(CinderscapesBlocks.UMBRAL_HYPHAE)
-				.add(CinderscapesBlocks.UMBRAL_STEM);
+		tag(BlockTags.MINEABLE_WITH_AXE)
+				.add(CinderscapesBlockItemIds.SCORCHED_HYPHAE.block())
+				.add(CinderscapesBlockItemIds.SCORCHED_STEM.block())
+				.add(CinderscapesBlockItemIds.STRIPPED_SCORCHED_HYPHAE.block())
+				.add(CinderscapesBlockItemIds.STRIPPED_SCORCHED_STEM.block())
+				.add(CinderscapesBlockItemIds.STRIPPED_UMBRAL_HYPHAE.block())
+				.add(CinderscapesBlockItemIds.STRIPPED_UMBRAL_STEM.block())
+				.add(CinderscapesBlockItemIds.TWILIGHT_VINE_BLOCK.block())
+				.add(CinderscapesBlockItemIds.UMBRAL_FUNGUS.block())
+				.add(CinderscapesBlockItemIds.UMBRAL_HYPHAE.block())
+				.add(CinderscapesBlockItemIds.UMBRAL_STEM.block());
 
-		valueLookupBuilder(BlockTags.MINEABLE_WITH_HOE)
-				.add(CinderscapesBlocks.UMBRAL_FLESH_BLOCK)
-				.add(CinderscapesBlocks.UMBRAL_WART_BLOCK);
+		tag(BlockTags.MINEABLE_WITH_HOE)
+				.add(CinderscapesBlockItemIds.UMBRAL_FLESH_BLOCK.block())
+				.add(CinderscapesBlockItemIds.UMBRAL_WART_BLOCK.block());
 
-		valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
-				.add(CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK)
-				.add(CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK)
-				.add(CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK)
-				.add(CinderscapesBlocks.CRYSTALLINE_QUARTZ)
-				.add(CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ)
-				.add(CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ)
-				.add(CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ)
-				.add(CinderscapesBlocks.NODZOL)
-				.add(CinderscapesBlocks.POLYPITE_QUARTZ)
-				.add(CinderscapesBlocks.POLYPITE_ROSE_QUARTZ)
-				.add(CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ)
-				.add(CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ)
-				.add(CinderscapesBlocks.ROSE_QUARTZ_BLOCK)
-				.add(CinderscapesBlocks.ROSE_QUARTZ_BRICKS)
-				.add(CinderscapesBlocks.ROSE_QUARTZ_ORE)
-				.add(CinderscapesBlocks.ROSE_QUARTZ_PILLAR)
-				.add(CinderscapesBlocks.ROSE_QUARTZ_SLAB)
-				.add(CinderscapesBlocks.ROSE_QUARTZ_STAIRS)
-				.add(CinderscapesBlocks.SMOKY_QUARTZ_BLOCK)
-				.add(CinderscapesBlocks.SMOKY_QUARTZ_BRICKS)
-				.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE)
-				.add(CinderscapesBlocks.SMOKY_QUARTZ_PILLAR)
-				.add(CinderscapesBlocks.SMOKY_QUARTZ_SLAB)
-				.add(CinderscapesBlocks.SMOKY_QUARTZ_STAIRS)
-				.add(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ)
-				.add(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_SLAB)
-				.add(CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_STAIRS)
-				.add(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ)
-				.add(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_SLAB)
-				.add(CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS)
-				.add(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ)
-				.add(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_SLAB)
-				.add(CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_STAIRS)
-				.add(CinderscapesBlocks.SULFUR_ORE)
-				.add(CinderscapesBlocks.SULFUR_QUARTZ_BLOCK)
-				.add(CinderscapesBlocks.SULFUR_QUARTZ_BRICKS)
-				.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE)
-				.add(CinderscapesBlocks.SULFUR_QUARTZ_PILLAR)
-				.add(CinderscapesBlocks.SULFUR_QUARTZ_SLAB)
-				.add(CinderscapesBlocks.SULFUR_QUARTZ_STAIRS)
-				.add(CinderscapesBlocks.UMBRAL_NYLIUM);
+		tag(BlockTags.MINEABLE_WITH_PICKAXE)
+				.add(CinderscapesBlockItemIds.CHISELED_ROSE_QUARTZ_BLOCK.block())
+				.add(CinderscapesBlockItemIds.CHISELED_SMOKY_QUARTZ_BLOCK.block())
+				.add(CinderscapesBlockItemIds.CHISELED_SULFUR_QUARTZ_BLOCK.block())
+				.add(CinderscapesBlockItemIds.CRYSTALLINE_QUARTZ.block())
+				.add(CinderscapesBlockItemIds.CRYSTALLINE_ROSE_QUARTZ.block())
+				.add(CinderscapesBlockItemIds.CRYSTALLINE_SMOKY_QUARTZ.block())
+				.add(CinderscapesBlockItemIds.CRYSTALLINE_SULFUR_QUARTZ.block())
+				.add(CinderscapesBlockItemIds.NODZOL.block())
+				.add(CinderscapesBlockItemIds.POLYPITE_QUARTZ.block())
+				.add(CinderscapesBlockItemIds.POLYPITE_ROSE_QUARTZ.block())
+				.add(CinderscapesBlockItemIds.POLYPITE_SMOKY_QUARTZ.block())
+				.add(CinderscapesBlockItemIds.POLYPITE_SULFUR_QUARTZ.block())
+				.add(CinderscapesBlockItemIds.ROSE_QUARTZ_BLOCK.block())
+				.add(CinderscapesBlockItemIds.ROSE_QUARTZ_BRICKS.block())
+				.add(CinderscapesBlockItemIds.ROSE_QUARTZ_ORE.block())
+				.add(CinderscapesBlockItemIds.ROSE_QUARTZ_PILLAR.block())
+				.add(CinderscapesBlockItemIds.ROSE_QUARTZ_SLAB.block())
+				.add(CinderscapesBlockItemIds.ROSE_QUARTZ_STAIRS.block())
+				.add(CinderscapesBlockItemIds.SMOKY_QUARTZ_BLOCK.block())
+				.add(CinderscapesBlockItemIds.SMOKY_QUARTZ_BRICKS.block())
+				.add(CinderscapesBlockItemIds.SMOKY_QUARTZ_ORE.block())
+				.add(CinderscapesBlockItemIds.SMOKY_QUARTZ_PILLAR.block())
+				.add(CinderscapesBlockItemIds.SMOKY_QUARTZ_SLAB.block())
+				.add(CinderscapesBlockItemIds.SMOKY_QUARTZ_STAIRS.block())
+				.add(CinderscapesBlockItemIds.SMOOTH_ROSE_QUARTZ.block())
+				.add(CinderscapesBlockItemIds.SMOOTH_ROSE_QUARTZ_SLAB.block())
+				.add(CinderscapesBlockItemIds.SMOOTH_ROSE_QUARTZ_STAIRS.block())
+				.add(CinderscapesBlockItemIds.SMOOTH_SMOKY_QUARTZ.block())
+				.add(CinderscapesBlockItemIds.SMOOTH_SMOKY_QUARTZ_SLAB.block())
+				.add(CinderscapesBlockItemIds.SMOOTH_SMOKY_QUARTZ_STAIRS.block())
+				.add(CinderscapesBlockItemIds.SMOOTH_SULFUR_QUARTZ.block())
+				.add(CinderscapesBlockItemIds.SMOOTH_SULFUR_QUARTZ_SLAB.block())
+				.add(CinderscapesBlockItemIds.SMOOTH_SULFUR_QUARTZ_STAIRS.block())
+				.add(CinderscapesBlockItemIds.SULFUR_ORE.block())
+				.add(CinderscapesBlockItemIds.SULFUR_QUARTZ_BLOCK.block())
+				.add(CinderscapesBlockItemIds.SULFUR_QUARTZ_BRICKS.block())
+				.add(CinderscapesBlockItemIds.SULFUR_QUARTZ_ORE.block())
+				.add(CinderscapesBlockItemIds.SULFUR_QUARTZ_PILLAR.block())
+				.add(CinderscapesBlockItemIds.SULFUR_QUARTZ_SLAB.block())
+				.add(CinderscapesBlockItemIds.SULFUR_QUARTZ_STAIRS.block())
+				.add(CinderscapesBlockItemIds.UMBRAL_NYLIUM.block());
 
-		valueLookupBuilder(BlockTags.MINEABLE_WITH_SHOVEL)
-				.add(CinderscapesBlocks.ASH)
-				.add(CinderscapesBlocks.ASH_BLOCK);
-
-
-		/*
-		 * Conventional block tags
-		 */
-		valueLookupBuilder(ConventionalBlockTags.ORES)
-				.add(CinderscapesBlocks.SULFUR_ORE);
-
-		valueLookupBuilder(ConventionalBlockTags.ORES_IN_GROUND_NETHERRACK)
-				.add(CinderscapesBlocks.ROSE_QUARTZ_ORE)
-				.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE)
-				.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE)
-				.add(CinderscapesBlocks.SULFUR_ORE);
-
-		valueLookupBuilder(ConventionalBlockTags.QUARTZ_ORES)
-				.add(CinderscapesBlocks.ROSE_QUARTZ_ORE)
-				.add(CinderscapesBlocks.SMOKY_QUARTZ_ORE)
-				.add(CinderscapesBlocks.SULFUR_QUARTZ_ORE);
-
-		valueLookupBuilder(ConventionalBlockTags.STRIPPED_LOGS)
-				.add(CinderscapesBlocks.STRIPPED_SCORCHED_STEM)
-				.add(CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
-
-		valueLookupBuilder(ConventionalBlockTags.STRIPPED_WOODS)
-				.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE)
-				.add(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE);
+		tag(BlockTags.MINEABLE_WITH_SHOVEL)
+				.add(CinderscapesBlockItemIds.ASH.block())
+				.add(CinderscapesBlockItemIds.ASH_BLOCK.block());
 
 
 		/*
 		 * Local block tags
 		 */
-		valueLookupBuilder(CinderscapesBlockTags.ASH_PERMEABLE)
+		tag(CinderscapesBlockTags.ASH_PERMEABLE)
 				.addTag(BlockTags.NYLIUM)
-				.add(CinderscapesBlocks.ASH)
-				.add(CinderscapesBlocks.ASH_BLOCK)
-				.add(Blocks.BASALT)
-				.add(Blocks.BEDROCK)
-				.add(Blocks.BLACKSTONE)
-				.add(Blocks.GLOWSTONE)
-				.add(Blocks.GRAVEL)
-				.add(Blocks.LAVA)
-				.add(Blocks.NETHERRACK)
-				.add(CinderscapesBlocks.NODZOL)
-				.add(Blocks.SOUL_SAND)
-				.add(Blocks.SOUL_SOIL);
+				.add(CinderscapesBlockItemIds.ASH.block())
+				.add(CinderscapesBlockItemIds.ASH_BLOCK.block())
+				.add(BlockItemIds.BASALT.block())
+				.add(BlockItemIds.BEDROCK.block())
+				.add(BlockItemIds.BLACKSTONE.block())
+				.add(BlockItemIds.GLOWSTONE.block())
+				.add(BlockItemIds.GRAVEL.block())
+				.add(BlockIds.LAVA)
+				.add(BlockItemIds.NETHERRACK.block())
+				.add(CinderscapesBlockItemIds.NODZOL.block())
+				.add(BlockItemIds.SOUL_SAND.block())
+				.add(BlockItemIds.SOUL_SOIL.block());
 
-		valueLookupBuilder(CinderscapesBlockTags.SCORCHED_STEMS)
-				.add(CinderscapesBlocks.SCORCHED_HYPHAE)
-				.add(CinderscapesBlocks.SCORCHED_STEM)
-				.add(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE)
-				.add(CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
-
-		valueLookupBuilder(CinderscapesBlockTags.SUPPORTS_UMBRAL_FUNGUS)
+		tag(CinderscapesBlockTags.SUPPORTS_UMBRAL_FUNGUS)
 				.addOptionalTag(BlockTags.SUPPORTS_WARPED_FUNGUS);
 
-		valueLookupBuilder(CinderscapesBlockTags.UMBRAL_STEMS)
-				.add(CinderscapesBlocks.UMBRAL_HYPHAE)
-				.add(CinderscapesBlocks.UMBRAL_STEM)
-				.add(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE)
-				.add(CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
+		/*
+		 * Run BlockItem block tags
+		 */
+		new CinderscapesBlockItemTagsProvider(tagId -> BlockItemTagsProvider.wrapForBlocks(this.tag(tagId.block()))).run();
 	}
 
 	@Override

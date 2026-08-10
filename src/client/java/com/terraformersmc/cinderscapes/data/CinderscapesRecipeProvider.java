@@ -4,6 +4,7 @@ import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlockFamilies;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
+import com.terraformersmc.cinderscapes.tag.CinderscapesBlockItemTags;
 import com.terraformersmc.cinderscapes.tag.CinderscapesItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -218,19 +219,17 @@ public class CinderscapesRecipeProvider extends FabricRecipeProvider {
 
 				// wood recipes
 				generateRecipes(CinderscapesBlockFamilies.SCORCHED, enabledFeatures);
-				planksFromLogs(CinderscapesBlocks.SCORCHED_PLANKS, CinderscapesItemTags.SCORCHED_STEMS, 4);
+				planksFromLogs(CinderscapesBlocks.SCORCHED_PLANKS, CinderscapesBlockItemTags.SCORCHED_STEMS.item(), 4);
 				woodFromLogs(CinderscapesBlocks.SCORCHED_HYPHAE, CinderscapesBlocks.SCORCHED_STEM);
 				woodFromLogs(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE, CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
 				// (no scorched boat at this time)
-				hangingSign(CinderscapesItems.SCORCHED_HANGING_SIGN, CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
 				shelf(CinderscapesBlocks.SCORCHED_SHELF, CinderscapesItems.STRIPPED_SCORCHED_STEM);
 
 				generateRecipes(CinderscapesBlockFamilies.UMBRAL, enabledFeatures);
-				planksFromLogs(CinderscapesBlocks.UMBRAL_PLANKS, CinderscapesItemTags.UMBRAL_STEMS, 4);
+				planksFromLogs(CinderscapesBlocks.UMBRAL_PLANKS, CinderscapesBlockItemTags.UMBRAL_STEMS.item(), 4);
 				woodFromLogs(CinderscapesBlocks.UMBRAL_HYPHAE, CinderscapesBlocks.UMBRAL_STEM);
 				woodFromLogs(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE, CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
 				// (no umbral boat at this time)
-				hangingSign(CinderscapesItems.UMBRAL_HANGING_SIGN, CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
 				shelf(CinderscapesBlocks.UMBRAL_SHELF, CinderscapesItems.STRIPPED_UMBRAL_STEM);
 			}
 		};

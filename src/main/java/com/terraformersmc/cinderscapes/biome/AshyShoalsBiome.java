@@ -12,7 +12,7 @@ import net.minecraft.data.worldgen.placement.NetherPlacements;
 import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.attribute.*;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -92,12 +92,12 @@ public class AshyShoalsBiome {
         MobSpawnSettings.Builder builder = new MobSpawnSettings.Builder();
 
         // SPAWNS
-        builder.addSpawn(MobCategory.MONSTER,   1, new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 1, 4));
-        builder.addSpawn(MobCategory.MONSTER,   1, new MobSpawnSettings.SpawnerData(EntityType.ZOGLIN, 1, 1));
-        builder.addSpawn(MobCategory.MONSTER,   1, new MobSpawnSettings.SpawnerData(EntityType.ENDERMAN, 4, 4));
-        builder.addSpawn(MobCategory.CREATURE, 60, new MobSpawnSettings.SpawnerData(EntityType.STRIDER, 1, 2));
-        builder.addSpawn(MobCategory.MONSTER,  20, new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 5, 5));
-        builder.addSpawn(MobCategory.MONSTER,  50, new MobSpawnSettings.SpawnerData(EntityType.GHAST, 4, 4));
+        builder.addSpawn(MobCategory.MONSTER,   1, new MobSpawnSettings.SpawnerData(EntityTypes.ZOMBIFIED_PIGLIN, 1, 4));
+        builder.addSpawn(MobCategory.MONSTER,   1, new MobSpawnSettings.SpawnerData(EntityTypes.ZOGLIN, 1, 1));
+        builder.addSpawn(MobCategory.MONSTER,   1, new MobSpawnSettings.SpawnerData(EntityTypes.ENDERMAN, 4, 4));
+        builder.addSpawn(MobCategory.CREATURE, 60, new MobSpawnSettings.SpawnerData(EntityTypes.STRIDER, 1, 2));
+        builder.addSpawn(MobCategory.MONSTER,  20, new MobSpawnSettings.SpawnerData(EntityTypes.SKELETON, 5, 5));
+        builder.addSpawn(MobCategory.MONSTER,  50, new MobSpawnSettings.SpawnerData(EntityTypes.GHAST, 4, 4));
 
         return builder.build();
     }

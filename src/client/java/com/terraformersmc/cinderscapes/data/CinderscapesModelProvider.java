@@ -52,7 +52,6 @@ public class CinderscapesModelProvider extends FabricModelProvider {
         generator.createShelf(CinderscapesBlocks.SCORCHED_SHELF, CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
         generator.woodProvider(CinderscapesBlocks.SCORCHED_STEM).logWithHorizontal(CinderscapesBlocks.SCORCHED_STEM).wood(CinderscapesBlocks.SCORCHED_HYPHAE);
         generator.woodProvider(CinderscapesBlocks.STRIPPED_SCORCHED_STEM).logWithHorizontal(CinderscapesBlocks.STRIPPED_SCORCHED_STEM).wood(CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE);
-        generator.createHangingSign(CinderscapesBlockFamilies.SCORCHED.getBaseBlock(), CinderscapesBlocks.SCORCHED_HANGING_SIGN, CinderscapesBlocks.SCORCHED_WALL_HANGING_SIGN);
         // Item models missed by vanilla code
         this.registerBlockItemModel(generator, CinderscapesBlocks.SCORCHED_FENCE_GATE);
         this.registerBlockItemModel(generator, CinderscapesBlocks.SCORCHED_PLANKS);
@@ -92,7 +91,6 @@ public class CinderscapesModelProvider extends FabricModelProvider {
         generator.createShelf(CinderscapesBlocks.UMBRAL_SHELF, CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
         generator.woodProvider(CinderscapesBlocks.UMBRAL_STEM).logWithHorizontal(CinderscapesBlocks.UMBRAL_STEM).wood(CinderscapesBlocks.UMBRAL_HYPHAE);
         generator.woodProvider(CinderscapesBlocks.STRIPPED_UMBRAL_STEM).logWithHorizontal(CinderscapesBlocks.STRIPPED_UMBRAL_STEM).wood(CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE);
-        generator.createHangingSign(CinderscapesBlockFamilies.UMBRAL.getBaseBlock(), CinderscapesBlocks.UMBRAL_HANGING_SIGN, CinderscapesBlocks.UMBRAL_WALL_HANGING_SIGN);
         generator.createPlantWithDefaultItem(CinderscapesBlocks.UMBRAL_FUNGUS, CinderscapesBlocks.POTTED_UMBRAL_FUNGUS, BlockModelGenerators.PlantType.NOT_TINTED);
         // Item models missed by vanilla code
         this.registerBlockItemModel(generator, CinderscapesBlocks.UMBRAL_FENCE_GATE);

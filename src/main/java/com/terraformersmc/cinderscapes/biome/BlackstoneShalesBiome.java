@@ -13,7 +13,7 @@ import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.attribute.*;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -88,11 +88,11 @@ public class BlackstoneShalesBiome {
         MobSpawnSettings.Builder builder = new MobSpawnSettings.Builder();
 
         // SPAWNS
-        builder.addSpawn(MobCategory.MONSTER,  40, new MobSpawnSettings.SpawnerData(EntityType.GHAST, 1, 1));
-        builder.addSpawn(MobCategory.MONSTER,  15, new MobSpawnSettings.SpawnerData(EntityType.PIGLIN, 4, 4));
-        builder.addSpawn(MobCategory.MONSTER, 100, new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 4, 4));
-        builder.addSpawn(MobCategory.MONSTER, 100, new MobSpawnSettings.SpawnerData(EntityType.MAGMA_CUBE, 2, 5));
-        builder.addSpawn(MobCategory.CREATURE, 60, new MobSpawnSettings.SpawnerData(EntityType.STRIDER, 1, 2));
+        builder.addSpawn(MobCategory.MONSTER,  40, new MobSpawnSettings.SpawnerData(EntityTypes.GHAST, 1, 1));
+        builder.addSpawn(MobCategory.MONSTER,  15, new MobSpawnSettings.SpawnerData(EntityTypes.PIGLIN, 4, 4));
+        builder.addSpawn(MobCategory.MONSTER, 100, new MobSpawnSettings.SpawnerData(EntityTypes.ZOMBIFIED_PIGLIN, 4, 4));
+        builder.addSpawn(MobCategory.MONSTER, 100, new MobSpawnSettings.SpawnerData(EntityTypes.MAGMA_CUBE, 2, 5));
+        builder.addSpawn(MobCategory.CREATURE, 60, new MobSpawnSettings.SpawnerData(EntityTypes.STRIDER, 1, 2));
 
         return builder.build();
     }

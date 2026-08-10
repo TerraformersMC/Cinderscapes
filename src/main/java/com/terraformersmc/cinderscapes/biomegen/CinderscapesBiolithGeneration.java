@@ -18,7 +18,7 @@ public class CinderscapesBiolithGeneration {
 		// Register the Cinderscapes surface rules.
 		//SurfaceGeneration.addNetherSurfaceRules(
 		//		Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, "surface_rules"),
-		//		CinderscapesSurfaceRules.createRules());
+		//		CinderscapesSurfaceRules::bootstrap);
 
 		// Register the Cinderscapes surface builders.
 		CinderscapesSurfaceBuilders.getBuilders().forEach(SurfaceGeneration::addSurfaceBuilder);

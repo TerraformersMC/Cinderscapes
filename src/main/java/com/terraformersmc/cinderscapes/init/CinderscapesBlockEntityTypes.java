@@ -1,10 +1,10 @@
 package com.terraformersmc.cinderscapes.init;
 
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityTypes;
 
 public class CinderscapesBlockEntityTypes {
 	public static void init() {
-		BlockEntityType.SHELF.addValidBlock(CinderscapesBlocks.SCORCHED_SHELF);
-		BlockEntityType.SHELF.addValidBlock(CinderscapesBlocks.UMBRAL_SHELF);
+		BlockEntityTypes.SHELF.addValidBlock(CinderscapesBlocks.SCORCHED_SHELF);
+		BlockEntityTypes.SHELF.addValidBlock(CinderscapesBlocks.UMBRAL_SHELF);
 	}
 }

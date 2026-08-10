@@ -6,9 +6,12 @@ import net.minecraft.data.BlockFamily;
 public class CinderscapesBlockFamilies {
 	// Wood
 	public static final BlockFamily SCORCHED = BlockFamilies.familyBuilder(CinderscapesBlocks.SCORCHED_PLANKS)
+			.log(CinderscapesBlocks.SCORCHED_STEM)
+			.strippedLog(CinderscapesBlocks.STRIPPED_SCORCHED_STEM)
 			.button(CinderscapesBlocks.SCORCHED_BUTTON)
 			.fence(CinderscapesBlocks.SCORCHED_FENCE)
 			.fenceGate(CinderscapesBlocks.SCORCHED_FENCE_GATE)
+			.hangingSign(CinderscapesBlocks.SCORCHED_HANGING_SIGN, CinderscapesBlocks.SCORCHED_WALL_HANGING_SIGN)
 			.pressurePlate(CinderscapesBlocks.SCORCHED_PRESSURE_PLATE)
 			.sign(CinderscapesBlocks.SCORCHED_SIGN, CinderscapesBlocks.SCORCHED_WALL_SIGN)
 			.slab(CinderscapesBlocks.SCORCHED_SLAB)
@@ -19,9 +22,12 @@ public class CinderscapesBlockFamilies {
 			.recipeUnlockedBy("has_planks")
 			.getFamily();
 	public static final BlockFamily UMBRAL = BlockFamilies.familyBuilder(CinderscapesBlocks.UMBRAL_PLANKS)
+			.log(CinderscapesBlocks.UMBRAL_STEM)
+			.strippedLog(CinderscapesBlocks.STRIPPED_UMBRAL_STEM)
 			.button(CinderscapesBlocks.UMBRAL_BUTTON)
 			.fence(CinderscapesBlocks.UMBRAL_FENCE)
 			.fenceGate(CinderscapesBlocks.UMBRAL_FENCE_GATE)
+			.hangingSign(CinderscapesBlocks.UMBRAL_HANGING_SIGN, CinderscapesBlocks.UMBRAL_WALL_HANGING_SIGN)
 			.pressurePlate(CinderscapesBlocks.UMBRAL_PRESSURE_PLATE)
 			.sign(CinderscapesBlocks.UMBRAL_SIGN, CinderscapesBlocks.UMBRAL_WALL_SIGN)
 			.slab(CinderscapesBlocks.UMBRAL_SLAB)
