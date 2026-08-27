@@ -1,6 +1,6 @@
 {
   "biome.cinderscapes.ashy_shoals": "Depósitos de cinzas",
-  "biome.cinderscapes.blackstone_shales": "Folhelos de pedra-negra",
+  "biome.cinderscapes.blackstone_shales": "Folhelhos de pedra-negra",
   "biome.cinderscapes.luminous_grove": "Bosque luminoso",
   "biome.cinderscapes.quartz_cavern": "Cavernas de quartzo",
 
@@ -15,13 +15,13 @@
   "block.cinderscapes.crystalline_smoky_quartz": "Quartzo Fumê Cristalino",
   "block.cinderscapes.crystalline_sulfur_quartz": "Quartzo Enxofre Cristalino",
   "block.cinderscapes.crystinium": "Cristínio",
-  "block.cinderscapes.ghastly_ectoplasm": "Extoplasma Medonho",
-  "block.cinderscapes.luminous_pod": "Vagem-Luminosa",
-  "block.cinderscapes.photofern": "Photomambaia",
-  "block.cinderscapes.polypite_quartz": "Agregado de Quartzo",
-  "block.cinderscapes.polypite_rose_quartz": "Agregado de Quartzo Rosé",
-  "block.cinderscapes.polypite_smoky_quartz": "Agregado de Quartzo Fumê",
-  "block.cinderscapes.polypite_sulfur_quartz": "Agregado de Quartzo Enxofre",
+  "block.cinderscapes.ghastly_ectoplasm": "Ectoplasma Medonho",
+  "block.cinderscapes.luminous_pod": "Vagem Luminosa",
+  "block.cinderscapes.photofern": "Fotomambaia",
+  "block.cinderscapes.polypite_quartz": "Pólipo de Quartzo",
+  "block.cinderscapes.polypite_rose_quartz": "Pólipo de Quartzo Rosé",
+  "block.cinderscapes.polypite_smoky_quartz": "Pólipo de Quartzo Fumê",
+  "block.cinderscapes.polypite_sulfur_quartz": "Pólipo de Quartzo Enxofre",
   "block.cinderscapes.pyracinth": "Piracinto",
   "block.cinderscapes.rose_quartz_block": "Bloco de Quartzo Rosé",
   "block.cinderscapes.rose_quartz_bricks": "Tijolos de Quartzo Rosé",
@@ -36,7 +36,7 @@
   "block.cinderscapes.scorched_hanging_sign": "Placa Suspensa Chamuscada",
   "block.cinderscapes.scorched_hyphae": "Hifas Chamuscadas",
   "block.cinderscapes.scorched_planks": "Tábuas Chamuscadas",
-  "block.cinderscapes.scorched_pressure_plate": "Placa de Pressão Chamuscadas",
+  "block.cinderscapes.scorched_pressure_plate": "Placa de Pressão Chamuscada",
   "block.cinderscapes.scorched_shelf": "Estante Chamuscada",
   "block.cinderscapes.scorched_shrub": "Arbusto Chamuscado",
   "block.cinderscapes.scorched_sign": "Placa Chamuscada",
@@ -97,7 +97,7 @@
   "block.cinderscapes.umbral_wart_block": "Bloco de Fungo Umbrático",
 
   "block.cinderscapes.nodzol": "Nodzol",
-  "block.cinderscapes.nodzol.description": "Esse bloco é nursed (não faço ideia de como traduzir isso)...",
+  "block.cinderscapes.nodzol.description": "Esse bloco é nursed",
 
   "itemGroup.cinderscapes.items": "Cinderscapes",
   "item.cinderscapes.ash_pile": "Pilha de Cinzas",
@@ -113,7 +113,7 @@
   "item.cinderscapes.music_disc_luminous_plantation": "Disco Musical",
   "item.cinderscapes.music_disc_luminous_plantation.desc": "LudoCrypt - Luminous Plantation",
 
-  "item.cinderscapes.nodzol.description": "Esse bloco é nursed (não faço ideia de como traduzir isso)...",
+  "item.cinderscapes.nodzol.description": "Esse bloco é nursed",
 
   "tag.item.c.dark_ashes_dusts": "Pós de Cinzas Escuras",
   "tag.item.c.quartz": "Quartzo",
@@ -138,7 +138,7 @@
   "text.autoconfig.cinderscapes.option.polypiteLuminance.@Tooltip": "Afeta apenas chunks novos gerados (mapeamento de luz)",
   "text.autoconfig.cinderscapes.option.biomes": "Modificar geração de biomas",
   "text.autoconfig.cinderscapes.option.biomes.enableAshyShoals": "Permitir o bioma \"Depósitos de cinzas\"",
-  "text.autoconfig.cinderscapes.option.biomes.enableBlackstoneShales": "Permitir o bioma \"Folhelos de pedra-negra\"",
+  "text.autoconfig.cinderscapes.option.biomes.enableBlackstoneShales": "Permitir o bioma \"Folhelhos de pedra-negra\"",
   "text.autoconfig.cinderscapes.option.biomes.enableLuminousGrove": "Permitir o bioma \"Bosque luminoso\"",
   "text.autoconfig.cinderscapes.option.biomes.enableQuartzCavern": "Permitir o bioma \"Cavernas de quartzo\"",
 
