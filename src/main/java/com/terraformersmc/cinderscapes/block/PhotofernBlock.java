@@ -8,6 +8,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -19,21 +20,21 @@ public class PhotofernBlock extends CinderscapesNetherPlantBlock implements Bone
 	public PhotofernBlock(Properties settings) {
 		super(settings);
 
-		StateShapeRegistry.put(this, (state) -> Block.box(2.0, 0.0, 2.0, 14.0, 12.0, 14.0));
+		StateShapeRegistry.put(this, (_) -> Block.box(2.0, 0.0, 2.0, 14.0, 12.0, 14.0));
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
 		return true;
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
 		CinderscapesNetherTallPlantBlock tallPhotofern = (CinderscapesNetherTallPlantBlock) CinderscapesBlocks.TALL_PHOTOFERN;
 		if (tallPhotofern.defaultBlockState().canSurvive(level, pos) && level.isEmptyBlock(pos.above())) {
 			DoublePlantBlock.placeAt(level, tallPhotofern.defaultBlockState(), pos, 2);

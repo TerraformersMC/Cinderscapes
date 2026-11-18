@@ -57,10 +57,6 @@ public class CinderscapesBlockTagsProvider extends FabricTagsProvider.BlockTagsP
 				.add(CinderscapesBlockItemIds.TWILIGHT_FESCUES.block())
 				.add(CinderscapesBlockItemIds.TWILIGHT_TENDRILS.block());
 
-		tag(BlockTags.NETHER_CARVER_REPLACEABLES)
-				.add(CinderscapesBlockItemIds.UMBRAL_NYLIUM.block())
-				.add(CinderscapesBlockItemIds.UMBRAL_WART_BLOCK.block());
-
 		tag(BlockTags.NYLIUM)
 				.add(CinderscapesBlockItemIds.UMBRAL_NYLIUM.block());
 

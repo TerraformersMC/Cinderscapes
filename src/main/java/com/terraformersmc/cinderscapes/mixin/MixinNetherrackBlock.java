@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.NetherrackBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,7 +19,7 @@ import java.util.List;
 @Mixin(NetherrackBlock.class)
 public class MixinNetherrackBlock {
     @Inject(method = "performBonemeal", at = @At("RETURN"))
-    private void cinderscapes$growNetherrackAction(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, CallbackInfo ci) {
+    private void cinderscapes$growNetherrackAction(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source, CallbackInfo ci) {
         BlockState vanillaState = level.getBlockState(pos);
         List<BlockState> potentialStates = new ArrayList<>();
 

@@ -12,12 +12,12 @@ import net.minecraft.data.worldgen.placement.NetherPlacements;
 import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.attribute.*;
 import net.minecraft.world.entity.EntityTypes;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
@@ -41,16 +41,16 @@ public class BlackstoneShalesBiome {
                         .set(EnvironmentAttributes.AMBIENT_PARTICLES, List.of(new AmbientParticle(ParticleTypes.WHITE_ASH, 0.118093334F)))
                         .set(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(Optional.of(SoundEvents.AMBIENT_NETHER_WASTES_LOOP), Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0D)), List.of(new AmbientAdditionsSettings(SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, 0.0111D))))
                         .set(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(CinderscapesSoundEvents.BLACKSTONE_SHALES_MUSIC))
-                        .set(EnvironmentAttributes.FOG_COLOR, 6235392)
+                        .set(EnvironmentAttributes.FOG_COLOR, ARGB.vector3fFromRGB24(6235392))
                         .set(EnvironmentAttributes.SNOW_GOLEM_MELTS, true)
-                        .set(EnvironmentAttributes.WATER_FOG_COLOR, 4341314)
+                        .set(EnvironmentAttributes.WATER_FOG_COLOR, ARGB.vector3fFromRGB24(4341314))
                         .build()
                 )
                 .build();
     }
 
     private static BiomeGenerationSettings createGenerationSettings(BootstrapContext<Biome> registerable) {
-        HolderGetter<ConfiguredWorldCarver<?>> configuredCarvers = registerable.lookup(Registries.CONFIGURED_CARVER);
+        HolderGetter<WorldCarver> configuredCarvers = registerable.lookup(Registries.CARVER);
         HolderGetter<PlacedFeature> placedFeatures = registerable.lookup(Registries.PLACED_FEATURE);
 
         BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(placedFeatures, configuredCarvers);
@@ -88,11 +88,11 @@ public class BlackstoneShalesBiome {
         MobSpawnSettings.Builder builder = new MobSpawnSettings.Builder();
 
         // SPAWNS
-        builder.addSpawn(MobCategory.MONSTER,  40, new MobSpawnSettings.SpawnerData(EntityTypes.GHAST, 1, 1));
-        builder.addSpawn(MobCategory.MONSTER,  15, new MobSpawnSettings.SpawnerData(EntityTypes.PIGLIN, 4, 4));
-        builder.addSpawn(MobCategory.MONSTER, 100, new MobSpawnSettings.SpawnerData(EntityTypes.ZOMBIFIED_PIGLIN, 4, 4));
-        builder.addSpawn(MobCategory.MONSTER, 100, new MobSpawnSettings.SpawnerData(EntityTypes.MAGMA_CUBE, 2, 5));
-        builder.addSpawn(MobCategory.CREATURE, 60, new MobSpawnSettings.SpawnerData(EntityTypes.STRIDER, 1, 2));
+        builder.addSpawn(EntityTypes.GHAST, 40, 1, 1);
+        builder.addSpawn(EntityTypes.PIGLIN, 15, 4, 4);
+        builder.addSpawn(EntityTypes.ZOMBIFIED_PIGLIN, 100, 4, 4);
+        builder.addSpawn(EntityTypes.MAGMA_CUBE, 100, 2, 5);
+        builder.addSpawn(EntityTypes.STRIDER, 60, 1, 2);
 
         return builder.build();
     }

@@ -23,7 +23,7 @@ public class LuminousGroveSurfaceBuilder extends BiolithSurfaceBuilder {
     }
 
     @Override
-    public void generate(BiomeManager biomeAccess, BlockColumn column, RandomSource random, ChunkAccess chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
+    public void generateLate(BiomeManager biomeAccess, BlockColumn column, RandomSource random, ChunkAccess chunk, Biome biome, int x, int z, int vHeight, int seaLevel, int surfaceMinY) {
         BlockPos pos = new BlockPos(x, -128, z);
         boolean inAir = false;
         // Set in-biome netherrack from just below the ceiling (vheight) to just level with the lava sea.

@@ -1,41 +1,69 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import com.terraformersmc.cinderscapes.feature.config.VegetationFeatureConfig;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import org.jspecify.annotations.NullMarked;
 
+import java.util.List;
+
 @NullMarked
-public class VegetationFeature extends Feature<VegetationFeatureConfig> {
-    public VegetationFeature() {
-        super(VegetationFeatureConfig.CODEC);
+public record VegetationFeature(BlockStateProvider vegetationState, List<BlockState> placeableStates, List<BlockState> replaceableStates, int horizontalSpread, int verticalSpread) implements Feature {
+    public static final MapCodec<VegetationFeature> CODEC = RecordCodecBuilder.mapCodec(
+            instance -> instance.group(
+                    BlockStateProvider.DIRECT_CODEC.fieldOf("vegetation_state").forGetter(VegetationFeature::vegetationState),
+                    BlockState.CODEC.listOf().fieldOf("placeable_states").forGetter(VegetationFeature::placeableStates),
+                    BlockState.CODEC.listOf().fieldOf("replaceable_states").forGetter(VegetationFeature::replaceableStates),
+                    ExtraCodecs.POSITIVE_INT.fieldOf("horizontal_spread").forGetter(VegetationFeature::horizontalSpread),
+                    ExtraCodecs.POSITIVE_INT.fieldOf("vertical_spread").forGetter(VegetationFeature::verticalSpread)
+            ).apply(instance, VegetationFeature::new)
+    );
+
+    public VegetationFeature {
+        if (horizontalSpread < 1 || verticalSpread < 1) {
+            throw new IllegalArgumentException("spread values must be positive integers");
+        }
+    }
+
+    public static VegetationFeature of(BlockStateProvider vegetationStates, List<BlockState> placeableStates) {
+        return of(vegetationStates, placeableStates, List.of());
+    }
+
+    public static VegetationFeature of(BlockStateProvider vegetationState, List<BlockState> placeableStates, List<BlockState> replaceableStates) {
+        return new VegetationFeature(vegetationState, placeableStates, replaceableStates, 8, 4);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<VegetationFeatureConfig> context) {
-        return generateVegetation(context.level(), context.random(), context.origin(), context.config(), 8, 4);
+    public MapCodec<? extends VegetationFeature> codec() {
+        return CODEC;
     }
 
-    public static boolean generateVegetation(WorldGenLevel level, RandomSource random, BlockPos pos, VegetationFeatureConfig config, int horizontalSpread, int verticalSpread) {
-        BlockState belowState = level.getBlockState(pos.below());
-        BlockState testState = level.getBlockState(pos);
-        while(!(config.placeableStates().contains(belowState) && (level.isEmptyBlock(pos) || config.replaceableStates().contains(testState)) ) && pos.getY() > 0) {
-            pos = pos.below();
-            belowState = level.getBlockState(pos.below());
-            testState = level.getBlockState(pos);
+    @Override
+    public boolean place(WorldGenLevel level, ChunkGenerator chunkGenerator, RandomSource random, BlockPos origin) {
+        BlockState belowState = level.getBlockState(origin.below());
+        BlockState testState = level.getBlockState(origin);
+
+        while(!(placeableStates.contains(belowState) && (level.isEmptyBlock(origin) || replaceableStates.contains(testState)) ) && origin.getY() > 0) {
+            origin = origin.below();
+            belowState = level.getBlockState(origin.below());
+            testState = level.getBlockState(origin);
         }
-        int y = pos.getY();
+
+        int y = origin.getY();
         if (y >= 1 && y + 1 < 256) {
             int setCount = 0;
 
             for(int n = 0; n < horizontalSpread * horizontalSpread; n++) {
-                BlockPos setPos = pos.offset(random.nextInt(horizontalSpread) - random.nextInt(horizontalSpread), random.nextInt(verticalSpread) - random.nextInt(verticalSpread), random.nextInt(horizontalSpread) - random.nextInt(horizontalSpread));
-                BlockState setState = config.vegetationStates().getState(level, random, setPos);
-                if ((level.isEmptyBlock(setPos) || config.replaceableStates().contains(level.getBlockState(setPos))) && setPos.getY() > 0 && setState.canSurvive(level, setPos)) {
+                BlockPos setPos = origin.offset(random.nextInt(horizontalSpread) - random.nextInt(horizontalSpread), random.nextInt(verticalSpread) - random.nextInt(verticalSpread), random.nextInt(horizontalSpread) - random.nextInt(horizontalSpread));
+                BlockState setState = vegetationState.getState(level, random, setPos);
+                if ((level.isEmptyBlock(setPos) || replaceableStates.contains(level.getBlockState(setPos))) && setPos.getY() > 0 && setState.canSurvive(level, setPos)) {
                     level.setBlock(setPos, setState, 2);
                     setCount++;
                 }

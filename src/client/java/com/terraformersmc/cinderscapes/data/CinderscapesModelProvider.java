@@ -1,6 +1,5 @@
 package com.terraformersmc.cinderscapes.data;
 
-import com.terraformersmc.cinderscapes.Cinderscapes;
 import com.terraformersmc.cinderscapes.block.GhastlyEctoplasmBlock;
 import com.terraformersmc.cinderscapes.block.PolypiteQuartzBlock;
 import com.terraformersmc.cinderscapes.init.*;
@@ -12,14 +11,10 @@ import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
-import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.equipment.EquipmentAsset;
-import net.minecraft.world.item.equipment.EquipmentAssets;
+import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -30,10 +25,10 @@ import java.util.Optional;
 
 @NullMarked
 public class CinderscapesModelProvider extends FabricModelProvider {
-    private static final List<ItemModelGenerators.TrimMaterialData> TRIM_MATERIALS = List.of(
-            new ItemModelGenerators.TrimMaterialData(CinderscapesArmorTrimAssets.ROSE_QUARTZ, CinderscapesArmorTrimMaterials.ROSE_QUARTZ),
-            new ItemModelGenerators.TrimMaterialData(CinderscapesArmorTrimAssets.SMOKY_QUARTZ, CinderscapesArmorTrimMaterials.SMOKY_QUARTZ),
-            new ItemModelGenerators.TrimMaterialData(CinderscapesArmorTrimAssets.SULFUR_QUARTZ, CinderscapesArmorTrimMaterials.SULFUR_QUARTZ)
+    private static final List<ResourceKey<TrimMaterial>> TRIM_MATERIALS = List.of(
+            CinderscapesTrimMaterials.ROSE_QUARTZ,
+            CinderscapesTrimMaterials.SMOKY_QUARTZ,
+            CinderscapesTrimMaterials.SULFUR_QUARTZ
     );
 
     public CinderscapesModelProvider(FabricPackOutput output) {
@@ -242,37 +237,6 @@ public class CinderscapesModelProvider extends FabricModelProvider {
         generator.generateFlatItem(CinderscapesItems.SCORCHED_SPROUTS, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(CinderscapesItems.TALL_PHOTOFERN, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(CinderscapesItems.TWILIGHT_FESCUES, ModelTemplates.FLAT_ITEM);
-
-        // Armor items with Cinderscapes trim materials
-        this.registerArmorTrims(generator, Items.TURTLE_HELMET, EquipmentAssets.TURTLE_SCUTE, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
-        this.registerArmorTrims(generator, Items.LEATHER_HELMET, EquipmentAssets.LEATHER, ItemModelGenerators.TRIM_PREFIX_HELMET, true);
-        this.registerArmorTrims(generator, Items.LEATHER_CHESTPLATE, EquipmentAssets.LEATHER, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, true);
-        this.registerArmorTrims(generator, Items.LEATHER_LEGGINGS, EquipmentAssets.LEATHER, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, true);
-        this.registerArmorTrims(generator, Items.LEATHER_BOOTS, EquipmentAssets.LEATHER, ItemModelGenerators.TRIM_PREFIX_BOOTS, true);
-        this.registerArmorTrims(generator, Items.COPPER_HELMET, EquipmentAssets.COPPER, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
-        this.registerArmorTrims(generator, Items.COPPER_CHESTPLATE, EquipmentAssets.COPPER, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
-        this.registerArmorTrims(generator, Items.COPPER_LEGGINGS, EquipmentAssets.COPPER, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
-        this.registerArmorTrims(generator, Items.COPPER_BOOTS, EquipmentAssets.COPPER, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
-        this.registerArmorTrims(generator, Items.CHAINMAIL_HELMET, EquipmentAssets.CHAINMAIL, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
-        this.registerArmorTrims(generator, Items.CHAINMAIL_CHESTPLATE, EquipmentAssets.CHAINMAIL, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
-        this.registerArmorTrims(generator, Items.CHAINMAIL_LEGGINGS, EquipmentAssets.CHAINMAIL, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
-        this.registerArmorTrims(generator, Items.CHAINMAIL_BOOTS, EquipmentAssets.CHAINMAIL, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
-        this.registerArmorTrims(generator, Items.IRON_HELMET, EquipmentAssets.IRON, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
-        this.registerArmorTrims(generator, Items.IRON_CHESTPLATE, EquipmentAssets.IRON, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
-        this.registerArmorTrims(generator, Items.IRON_LEGGINGS, EquipmentAssets.IRON, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
-        this.registerArmorTrims(generator, Items.IRON_BOOTS, EquipmentAssets.IRON, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
-        this.registerArmorTrims(generator, Items.DIAMOND_HELMET, EquipmentAssets.DIAMOND, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
-        this.registerArmorTrims(generator, Items.DIAMOND_CHESTPLATE, EquipmentAssets.DIAMOND, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
-        this.registerArmorTrims(generator, Items.DIAMOND_LEGGINGS, EquipmentAssets.DIAMOND, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
-        this.registerArmorTrims(generator, Items.DIAMOND_BOOTS, EquipmentAssets.DIAMOND, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
-        this.registerArmorTrims(generator, Items.GOLDEN_HELMET, EquipmentAssets.GOLD, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
-        this.registerArmorTrims(generator, Items.GOLDEN_CHESTPLATE, EquipmentAssets.GOLD, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
-        this.registerArmorTrims(generator, Items.GOLDEN_LEGGINGS, EquipmentAssets.GOLD, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
-        this.registerArmorTrims(generator, Items.GOLDEN_BOOTS, EquipmentAssets.GOLD, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
-        this.registerArmorTrims(generator, Items.NETHERITE_HELMET, EquipmentAssets.NETHERITE, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
-        this.registerArmorTrims(generator, Items.NETHERITE_CHESTPLATE, EquipmentAssets.NETHERITE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
-        this.registerArmorTrims(generator, Items.NETHERITE_LEGGINGS, EquipmentAssets.NETHERITE, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
-        this.registerArmorTrims(generator, Items.NETHERITE_BOOTS, EquipmentAssets.NETHERITE, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
     }
 
 
@@ -331,30 +295,5 @@ public class CinderscapesModelProvider extends FabricModelProvider {
      */
     private void registerBlockItemModel(BlockModelGenerators generator, Block block) {
         generator.registerSimpleItemModel(block, ModelLocationUtils.getModelLocation(block));
-    }
-
-    private void generateLayeredItem(ItemModelGenerators generator, Identifier id, Material layer0, Material layer1) {
-        ModelTemplates.TWO_LAYERED_ITEM.create(id, TextureMapping.layered(layer0, layer1), generator.modelOutput);
-    }
-
-    private void generateLayeredItem(ItemModelGenerators generator, Identifier id, Material layer0, Material layer1, Material layer2) {
-        ModelTemplates.THREE_LAYERED_ITEM.create(id, TextureMapping.layered(layer0, layer1, layer2), generator.modelOutput);
-    }
-
-    private void registerArmorTrims(ItemModelGenerators generator, Item armor, ResourceKey<EquipmentAsset> equipmentKey, Identifier slotTrimPrefix, boolean hasDyedLayer) {
-        Identifier armorModelId = ModelLocationUtils.getModelLocation(armor);
-        Material armorTextures = TextureMapping.getItemTexture(armor);
-        Material armorOverlayTextures = TextureMapping.getItemTexture(armor, "_overlay");
-        for (ItemModelGenerators.TrimMaterialData trimMaterial : TRIM_MATERIALS) {
-            Identifier trimmedModelId = Identifier.fromNamespaceAndPath(Cinderscapes.MOD_ID, armorModelId.getPath())
-                    .withSuffix("_" + trimMaterial.assets().base().suffix() + "_trim");
-            Material trimTextureId = new Material(slotTrimPrefix
-                    .withSuffix("_" + trimMaterial.assets().assetId(equipmentKey).suffix()));
-            if (hasDyedLayer) {
-                this.generateLayeredItem(generator, trimmedModelId, armorTextures, armorOverlayTextures, trimTextureId);
-            } else {
-                this.generateLayeredItem(generator, trimmedModelId, armorTextures, trimTextureId);
-            }
-        }
     }
 }

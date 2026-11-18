@@ -1,6 +1,5 @@
 package com.terraformersmc.cinderscapes.block;
 
-import com.mojang.serialization.MapCodec;
 import com.terraformersmc.cinderscapes.util.StateShapeRegistry;
 import com.terraformersmc.cinderscapes.util.StateShapeSupplier;
 import net.minecraft.core.BlockPos;
@@ -16,8 +15,6 @@ import org.jspecify.annotations.NullMarked;
 
 @NullMarked
 public class CinderscapesNetherPlantBlock extends VegetationBlock {
-    public static final MapCodec<CinderscapesNetherPlantBlock> CODEC = CinderscapesNetherPlantBlock.simpleCodec(CinderscapesNetherPlantBlock::new);
-
     public CinderscapesNetherPlantBlock(StateShapeSupplier supplier, Properties settings) {
         super(settings.offsetType(BlockBehaviour.OffsetType.XZ));
 
@@ -26,12 +23,6 @@ public class CinderscapesNetherPlantBlock extends VegetationBlock {
 
     public CinderscapesNetherPlantBlock(Properties settings) {
         super(settings.offsetType(BlockBehaviour.OffsetType.XZ));
-    }
-
-    @Override
-    protected MapCodec<? extends VegetationBlock> codec() {
-        //noinspection ConstantConditions
-        return null;
     }
 
     @Override

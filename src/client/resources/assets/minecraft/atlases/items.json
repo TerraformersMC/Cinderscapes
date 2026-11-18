@@ -1,0 +1,24 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:directory",
+      "prefix": "item/",
+      "source": "item"
+    },
+    {
+      "type": "minecraft:paletted_permutations",
+      "palette_key": "minecraft:trim_base",
+      "permutations": {
+        "cinderscapes_rose_quartz": "cinderscapes:trim/cinderscapes_rose_quartz",
+        "cinderscapes_smoky_quartz": "cinderscapes:trim/cinderscapes_smoky_quartz",
+        "cinderscapes_sulfur_quartz": "cinderscapes:trim/cinderscapes_sulfur_quartz"
+      },
+      "textures": [
+        "minecraft:trims/items/helmet_trim",
+        "minecraft:trims/items/chestplate_trim",
+        "minecraft:trims/items/leggings_trim",
+        "minecraft:trims/items/boots_trim"
+      ]
+    }
+  ]
+}

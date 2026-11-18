@@ -1,6 +1,5 @@
 package com.terraformersmc.cinderscapes.block;
 
-import com.mojang.serialization.MapCodec;
 import com.terraformersmc.cinderscapes.util.StateShapeRegistry;
 import com.terraformersmc.cinderscapes.util.StateShapeSupplier;
 import net.minecraft.core.BlockPos;
@@ -15,8 +14,6 @@ import org.jspecify.annotations.NullMarked;
 
 @NullMarked
 public class CinderscapesNetherTallPlantBlock extends DoublePlantBlock {
-    public static final MapCodec<CinderscapesNetherTallPlantBlock> CODEC = CinderscapesNetherTallPlantBlock.simpleCodec(CinderscapesNetherTallPlantBlock::new);
-
     public CinderscapesNetherTallPlantBlock(StateShapeSupplier supplier, Properties settings) {
         super(settings);
 
@@ -25,13 +22,6 @@ public class CinderscapesNetherTallPlantBlock extends DoublePlantBlock {
 
     public CinderscapesNetherTallPlantBlock(Properties settings) {
         super(settings);
-    }
-
-    @Override
-    public MapCodec<DoublePlantBlock> codec() {
-        // Don't look at me; this is how the Fabric folks say we're going to do it...
-        //noinspection unchecked
-        return (MapCodec<DoublePlantBlock>) (Object) CODEC;
     }
 
     @Override

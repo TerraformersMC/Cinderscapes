@@ -23,7 +23,7 @@ public class AshyShoalsSurfaceBuilder extends BiolithSurfaceBuilder {
     }
 
     @Override
-    public void generate(BiomeManager biomeAccess, BlockColumn column, RandomSource random, ChunkAccess chunk, Biome biome, int x, int z, int vHeight, int seaLevel) {
+    public void generateLate(BiomeManager biomeAccess, BlockColumn column, RandomSource random, ChunkAccess chunk, Biome biome, int x, int z, int vHeight, int seaLevel, int surfaceMinY) {
         if (!biomeAccess.getBiome(new BlockPos(x, seaLevel, z)).is(CinderscapesBiomes.ASHY_SHOALS)) {
             // We care most about sea level.
             return;

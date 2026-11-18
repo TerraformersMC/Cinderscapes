@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.feature;
 
+import com.mojang.serialization.MapCodec;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.terraform.shapes.api.Position;
 import com.terraformersmc.terraform.shapes.api.Quaternion;
@@ -14,42 +15,41 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.jspecify.annotations.NullMarked;
 
 import java.util.Arrays;
 
 @NullMarked
-public class DeadTreeFeature extends Feature<NoneFeatureConfiguration> {
-    public DeadTreeFeature() {
-        super(NoneFeatureConfiguration.CODEC);
+public class DeadTreeFeature implements Feature {
+    public static final MapCodec<DeadTreeFeature> CODEC = MapCodec.unit(DeadTreeFeature::new);
+
+    @Override
+    public MapCodec<DeadTreeFeature> codec() {
+        return CODEC;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-        RandomSource random = context.random();
-        BlockPos pos = context.origin();
-        WorldGenLevel level = context.level();
-        if (level.getBlockState(pos.below()).getBlock() == CinderscapesBlocks.ASH) {
-            pos = pos.below();
+    public boolean place(WorldGenLevel level, ChunkGenerator chunkGenerator, RandomSource random, BlockPos origin) {
+        if (level.getBlockState(origin.below()).getBlock() == CinderscapesBlocks.ASH) {
+            origin = origin.below();
         }
-        if (!Block.isFaceFull(level.getBlockState(pos.below()).getCollisionShape(level, pos.below()), Direction.UP)) {
+        if (!Block.isFaceFull(level.getBlockState(origin.below()).getCollisionShape(level, origin.below()), Direction.UP)) {
             return false;
         }
-        if (level.getBlockState(pos.below()).getBlock() == Blocks.MAGMA_BLOCK || level.getBlockState(pos.below()).getBlock() == CinderscapesBlocks.SCORCHED_STEM) {
+        if (level.getBlockState(origin.below()).getBlock() == Blocks.MAGMA_BLOCK || level.getBlockState(origin.below()).getBlock() == CinderscapesBlocks.SCORCHED_STEM) {
             return false;
         }
 
         int trunkHeight = random.nextInt(4) + 4;
 
         Shape trunkShape = verticalLine(trunkHeight, Quaternion.of(1, 0, 0, 0))
-            .applyLayer(Layer.translate(Position.of(pos)));
+                .applyLayer(Layer.translate(Position.of(origin)));
 
         Shape topperShape = recursiveTreeTopper(random, 2, 4, 15, 45, 2, 5, 3, 3)
                 .applyLayer(Layer.translate(Position.of(0, trunkHeight, 0)))
-                .applyLayer(Layer.translate(Position.of(pos)));
+                .applyLayer(Layer.translate(Position.of(origin)));
 
         Validator safelistValidator = Validator.safelist(level,  Arrays.asList(
                 Blocks.AIR.defaultBlockState(),
@@ -62,6 +62,7 @@ public class DeadTreeFeature extends Feature<NoneFeatureConfiguration> {
         if (trunkSafe && topperSafe) {
             trunkShape.fill(Filler.simple(level, CinderscapesBlocks.SCORCHED_STEM.defaultBlockState()));
             topperShape.fill(Filler.simple(level, CinderscapesBlocks.SCORCHED_HYPHAE.defaultBlockState()));
+
             return true;
         }
 
@@ -90,6 +91,6 @@ public class DeadTreeFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     private static Shape verticalLine(int height, Quaternion rotation) {
-        return Shape.of((pos) -> true, Position.of(1, height, 1), Position.of(0, 0, 0)).applyLayer(Layer.rotate(rotation));
+        return Shape.of(_ -> true, Position.of(1, height, 1), Position.of(0, 0, 0)).applyLayer(Layer.rotate(rotation));
     }
 }

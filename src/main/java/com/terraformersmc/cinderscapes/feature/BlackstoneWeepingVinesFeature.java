@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.feature;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
@@ -8,34 +9,32 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.jspecify.annotations.NullMarked;
 
 // TODO: Make a feature config allowing the blockstates to change
 @NullMarked
-public class BlackstoneWeepingVinesFeature extends Feature<NoneFeatureConfiguration> {
-    public BlackstoneWeepingVinesFeature() {
-        super(NoneFeatureConfiguration.CODEC);
+public class BlackstoneWeepingVinesFeature implements Feature {
+    public static final MapCodec<BlackstoneWeepingVinesFeature> CODEC = MapCodec.unit(BlackstoneWeepingVinesFeature::new);
+
+    @Override
+    public MapCodec<BlackstoneWeepingVinesFeature> codec() {
+        return CODEC;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-        RandomSource random = context.random();
-        BlockPos pos = context.origin();
-        WorldGenLevel level = context.level();
-
-        if (!level.isEmptyBlock(pos)) {
+    public boolean place(WorldGenLevel level, ChunkGenerator chunkGenerator, RandomSource random, BlockPos origin) {
+        if (!level.isEmptyBlock(origin)) {
             return false;
         } else {
-            Block block = level.getBlockState(pos.above()).getBlock();
+            Block block = level.getBlockState(origin.above()).getBlock();
 
             if (block != Blocks.BLACKSTONE && block != Blocks.NETHER_WART_BLOCK) {
                 return false;
             } else {
-                this.generateNetherWartBlocksInArea(level, random, pos);
-                this.generateVinesInArea(level, random, pos);
+                this.generateNetherWartBlocksInArea(level, random, origin);
+                this.generateVinesInArea(level, random, origin);
 
                 return true;
             }

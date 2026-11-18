@@ -1,6 +1,7 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import com.terraformersmc.cinderscapes.feature.config.CrystalShardFeatureConfig;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.terraformersmc.cinderscapes.util.RegionalSafelistValidator;
 import com.terraformersmc.terraform.shapes.api.Position;
 import com.terraformersmc.terraform.shapes.api.Quaternion;
@@ -9,25 +10,33 @@ import com.terraformersmc.terraform.shapes.api.Shapes;
 import com.terraformersmc.terraform.shapes.api.filler.Filler;
 import com.terraformersmc.terraform.shapes.api.layer.Layer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import org.jspecify.annotations.NullMarked;
 
+import java.util.List;
+
 @NullMarked
-public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
-    public CrystalShardFeature() {
-        super(CrystalShardFeatureConfig.CODEC);
+public record CrystalShardFeature(BlockState state, Direction direction, List<BlockState> whitelist) implements Feature {
+    public static final MapCodec<CrystalShardFeature> CODEC = RecordCodecBuilder.mapCodec(
+            instance -> instance.group(
+                    BlockState.CODEC.fieldOf("state").forGetter(CrystalShardFeature::state),
+                    Direction.CODEC.fieldOf("direction").forGetter(CrystalShardFeature::direction),
+                    BlockState.CODEC.listOf().fieldOf("whitelist").forGetter(CrystalShardFeature::whitelist)
+            ).apply(instance, CrystalShardFeature::new)
+    );
+
+    @Override
+    public MapCodec<CrystalShardFeature> codec() {
+        return CODEC;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<CrystalShardFeatureConfig> context) {
-        RandomSource random = context.random();
-        WorldGenLevel level = context.level();
-        BlockPos pos = context.origin();
-        CrystalShardFeatureConfig config = context.config();
-
+    public boolean place(WorldGenLevel level, ChunkGenerator chunkGenerator, RandomSource random, BlockPos origin) {
         int amount = random.nextInt(3) + 2;
 
         Shape shape = Shapes.empty();
@@ -44,10 +53,11 @@ public class CrystalShardFeature extends Feature<CrystalShardFeatureConfig> {
         }
 
         shape
-                .applyLayer(Layer.rotate(Quaternion.of(config.dir().getRotation())))
-                .applyLayer(Layer.translate(Position.of(pos)))
-                .validate(new RegionalSafelistValidator(level, config.dir(), config.whitelist()),
-                        validShape -> validShape.fill(Filler.simple(level, config.state()))
+                .applyLayer(Layer.rotate(Quaternion.of(direction.getRotation())))
+                .applyLayer(Layer.translate(Position.of(origin)))
+                .validate(
+                        new RegionalSafelistValidator(level, direction, whitelist),
+                        validShape -> validShape.fill(Filler.simple(level, state))
                 );
 
         return true;

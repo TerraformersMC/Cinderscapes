@@ -1,52 +1,54 @@
 package com.terraformersmc.cinderscapes.feature;
 
+import com.mojang.serialization.MapCodec;
 import com.terraformersmc.cinderscapes.block.GhastlyEctoplasmBlock;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.util.MathHelper;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction8;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.jspecify.annotations.NullMarked;
 
+import static net.minecraft.core.CompositeDirection.Direction8;
+
 @NullMarked
-public class UmbralVineFeature extends Feature<NoneFeatureConfiguration> {
-    public UmbralVineFeature() {
-        super(NoneFeatureConfiguration.CODEC);
+public class UmbralVineFeature implements Feature {
+    public static final MapCodec<UmbralVineFeature> CODEC = MapCodec.unit(UmbralVineFeature::new);
+
+    @Override
+    public MapCodec<UmbralVineFeature> codec() {
+        return CODEC;
     }
 
     // TODO: Implement a FeatureConfig to change the material
     // TODO: Add the dip height to the potential delta values
-    // TODO: Allow it to go at angles and stuff (intermediate approach via EightWayDirection)
+    // TODO: Allow it to go at angles and stuff (intermediate approach via CompositeDirection.Direction8)
     // TODO: Figure out the chunk boundary issue (worked-around by shortening vines)
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-        RandomSource random = context.random();
-        BlockPos pos = context.origin();
-        WorldGenLevel level = context.level();
-        while (pos.getY() > context.chunkGenerator().getSeaLevel()) {
+    public boolean place(WorldGenLevel level, ChunkGenerator chunkGenerator, RandomSource random, BlockPos origin) {
+        while (origin.getY() > chunkGenerator.getSeaLevel()) {
             search: {
-                if ( level.getBlockState(pos).getBlock() != Blocks.NETHERRACK ) break search;
-                if ( level.isEmptyBlock(pos.above()) ) break search;
+                if ( level.getBlockState(origin).getBlock() != Blocks.NETHERRACK ) break search;
+                if ( level.isEmptyBlock(origin.above()) ) break search;
                 boolean airBelow = false;
                 for (int y = 0; y < 6; y++) {
-                    if (level.isEmptyBlock(pos.below(y))) airBelow = true;
+                    if (level.isEmptyBlock(origin.below(y))) airBelow = true;
                 }
                 if (!airBelow) break search;
-                if ( level.isEmptyBlock(pos.north()) && !level.isEmptyBlock(pos.south()) && !level.isEmptyBlock(pos.east()) && !level.isEmptyBlock(pos.west()) ) return angleVine(level, pos, Direction8.NORTH, random);
-                if ( level.isEmptyBlock(pos.south()) && !level.isEmptyBlock(pos.north()) && !level.isEmptyBlock(pos.east()) && !level.isEmptyBlock(pos.west()) ) return angleVine(level, pos, Direction8.SOUTH, random);
-                if ( level.isEmptyBlock(pos.east()) && !level.isEmptyBlock(pos.south()) && !level.isEmptyBlock(pos.north()) && !level.isEmptyBlock(pos.west()) ) return angleVine(level, pos, Direction8.EAST, random);
-                if ( level.isEmptyBlock(pos.west()) && !level.isEmptyBlock(pos.south()) && !level.isEmptyBlock(pos.east()) && !level.isEmptyBlock(pos.north()) ) return angleVine(level, pos, Direction8.WEST, random);
+                if ( level.isEmptyBlock(origin.north()) && !level.isEmptyBlock(origin.south()) && !level.isEmptyBlock(origin.east()) && !level.isEmptyBlock(origin.west()) ) return angleVine(level, origin, Direction8.NORTH, random);
+                if ( level.isEmptyBlock(origin.south()) && !level.isEmptyBlock(origin.north()) && !level.isEmptyBlock(origin.east()) && !level.isEmptyBlock(origin.west()) ) return angleVine(level, origin, Direction8.SOUTH, random);
+                if ( level.isEmptyBlock(origin.east()) && !level.isEmptyBlock(origin.south()) && !level.isEmptyBlock(origin.north()) && !level.isEmptyBlock(origin.west()) ) return angleVine(level, origin, Direction8.EAST, random);
+                if ( level.isEmptyBlock(origin.west()) && !level.isEmptyBlock(origin.south()) && !level.isEmptyBlock(origin.east()) && !level.isEmptyBlock(origin.north()) ) return angleVine(level, origin, Direction8.WEST, random);
             }
-            pos = pos.below();
+            origin = origin.below();
         }
+
         return false;
     }
 

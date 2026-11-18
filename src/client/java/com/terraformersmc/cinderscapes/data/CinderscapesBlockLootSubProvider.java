@@ -6,11 +6,10 @@ import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import com.terraformersmc.cinderscapes.init.CinderscapesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
+import net.minecraft.advancements.predicates.BlockPredicate;
 import net.minecraft.advancements.predicates.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -20,10 +19,9 @@ import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.predicates.MatchBlock;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import org.jspecify.annotations.NullMarked;
 
 import java.util.concurrent.CompletableFuture;
@@ -36,8 +34,6 @@ public class CinderscapesBlockLootSubProvider extends FabricBlockLootSubProvider
 
 	@Override
 	public void generate() {
-		HolderLookup.RegistryLookup<Enchantment> enchantmentRegistry = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
-
 		// simple blocks
 		dropSelf(CinderscapesBlocks.ASH_BLOCK);
 		dropSelf(CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK);
@@ -154,21 +150,21 @@ public class CinderscapesBlockLootSubProvider extends FabricBlockLootSubProvider
 
 
 		// tall plant drops
-		add(CinderscapesBlocks.LUMINOUS_POD, block -> createShearsOnlyDrop(block).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2))));
-		add(CinderscapesBlocks.TALL_PHOTOFERN, createShearsOnlyDrop(CinderscapesBlocks.PHOTOFERN).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2))));
+		add(CinderscapesBlocks.LUMINOUS_POD, block -> createShearsOnlyDrop(block).apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(2))));
+		add(CinderscapesBlocks.TALL_PHOTOFERN, createShearsOnlyDrop(CinderscapesBlocks.PHOTOFERN).apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(2))));
 
 
 		// berry drops
 		add(CinderscapesBlocks.BRAMBLE_BERRY_BUSH, block -> applyExplosionDecay(block, LootTable.lootTable()
 			.withPool(
-				LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CinderscapesBlocks.BRAMBLE_BERRY_BUSH).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BrambleBerryBushBlock.AGE, 3)))
-					.add(LootItem.lootTableItem(CinderscapesItems.BRAMBLE_BERRIES)).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0f, 3.0f)))
-					.apply(ApplyBonusCount.addUniformBonusCount(enchantmentRegistry.getOrThrow(Enchantments.FORTUNE)))
+				LootPool.lootPool().when(MatchBlock.blockMatches(BlockPredicate.Builder.block().of(blocks, block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BrambleBerryBushBlock.AGE, 3))))
+					.add(LootItem.lootTableItem(CinderscapesItems.BRAMBLE_BERRIES)).apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 3)))
+					.apply(ApplyBonusCount.addUniformBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE)))
 			)
 			.withPool(
-				LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CinderscapesBlocks.BRAMBLE_BERRY_BUSH).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BrambleBerryBushBlock.AGE, 2)))
-					.add(LootItem.lootTableItem(CinderscapesItems.BRAMBLE_BERRIES)).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 2.0f)))
-					.apply(ApplyBonusCount.addUniformBonusCount(enchantmentRegistry.getOrThrow(Enchantments.FORTUNE)))
+				LootPool.lootPool().when(MatchBlock.blockMatches(BlockPredicate.Builder.block().of(blocks, block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BrambleBerryBushBlock.AGE, 2))))
+					.add(LootItem.lootTableItem(CinderscapesItems.BRAMBLE_BERRIES)).apply(SetItemCountFunction.setCount(ContextIntProviders.between(1, 2)))
+					.apply(ApplyBonusCount.addUniformBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE)))
 			)
 		));
 
@@ -179,13 +175,13 @@ public class CinderscapesBlockLootSubProvider extends FabricBlockLootSubProvider
 					.add(AlternativesEntry.alternatives(
 							AlternativesEntry.alternatives(
 									AshLayerBlock.LAYERS.getPossibleValues(), layers -> LootItem.lootTableItem(CinderscapesItems.ASH_PILE)
-											.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(AshLayerBlock.LAYERS, layers)))
-											.apply(SetItemCountFunction.setCount(ConstantValue.exactly(layers)))
+											.when(MatchBlock.blockMatches(BlockPredicate.Builder.block().of(blocks, block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(AshLayerBlock.LAYERS, layers))))
+											.apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(layers)))
 							).when(doesNotHaveSilkTouch()),
 								AlternativesEntry.alternatives(
 										AshLayerBlock.LAYERS.getPossibleValues(), layers -> layers == 8 ? LootItem.lootTableItem(CinderscapesBlocks.ASH_BLOCK) : LootItem.lootTableItem(CinderscapesBlocks.ASH)
-												.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(AshLayerBlock.LAYERS, layers)))
-												.apply(SetItemCountFunction.setCount(ConstantValue.exactly(layers)))
+												.when(MatchBlock.blockMatches(BlockPredicate.Builder.block().of(blocks, block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(AshLayerBlock.LAYERS, layers))))
+												.apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(layers)))
 								)
 					))
 		));

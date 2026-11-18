@@ -15,7 +15,6 @@ import net.minecraft.world.item.trading.VillagerTrade;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
-import java.util.Optional;
 
 public class CinderscapesVillagerTrades {
     public static final ResourceKey<VillagerTrade> MASON_4_ROSE_QUARTZ_EMERALD = resourceKey("mason/4/rose_quartz_emerald");
@@ -37,15 +36,13 @@ public class CinderscapesVillagerTrades {
                 Pair.of(MASON_4_SMOKY_QUARTZ_EMERALD, CinderscapesItems.SMOKY_QUARTZ),
                 Pair.of(MASON_4_SULFUR_QUARTZ_EMERALD, CinderscapesItems.SULFUR_QUARTZ)
         )) {
-            context.register(pair.getLeft(), new VillagerTrade(
+            context.register(pair.getLeft(), VillagerTrade.builder(
                     new TradeCost(pair.getRight(), 12),
                     new ItemStackTemplate(Items.EMERALD),
                     12,
                     30,
-                    0.05F,
-                    Optional.empty(),
-                    List.of()
-            ));
+                    0.05F
+            ).build());
         }
 
         for (Pair<ResourceKey<VillagerTrade>, Item> entry : List.of(
@@ -56,15 +53,13 @@ public class CinderscapesVillagerTrades {
                 Pair.of(MASON_5_EMERALD_SMOKY_QUARTZ_BLOCK, CinderscapesItems.SMOKY_QUARTZ_BLOCK.asItem()),
                 Pair.of(MASON_5_EMERALD_SULFUR_QUARTZ_BLOCK, CinderscapesItems.SULFUR_QUARTZ_BLOCK.asItem())
         )) {
-            context.register(entry.getLeft(), new VillagerTrade(
+            context.register(entry.getLeft(), VillagerTrade.builder(
                     new TradeCost(Items.EMERALD, 1),
                     new ItemStackTemplate(entry.getRight()),
                     12,
                     30,
-                    0.05F,
-                    Optional.empty(),
-                    List.of()
-            ));
+                    0.05F
+            ).build());
         }
     }
 

@@ -19,13 +19,12 @@ public class Cinderscapes implements ModInitializer {
 	public void onInitialize() {
 		CinderscapesConfig.init();
 
-		CinderscapesArmorTrimAssets.init();
 		CinderscapesSpawnRestrictions.init();
 		CinderscapesBlocks.init();
 		CinderscapesItems.init();
 		CinderscapesBlockEntityTypes.init();
 		CinderscapesPlacementModifierTypes.init();
-		CinderscapesFeatures.init();
+		CinderscapesFeatureTypes.init();
 		CinderscapesSoundEvents.init();
 		CinderscapesTrades.init();
 		CinderscapesCreativeModeTabs.init();

@@ -1,9 +1,9 @@
 package com.terraformersmc.cinderscapes.data;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
-import com.terraformersmc.cinderscapes.init.CinderscapesArmorTrimMaterials;
+import com.terraformersmc.cinderscapes.init.CinderscapesTrimMaterials;
 import com.terraformersmc.cinderscapes.init.CinderscapesBiomes;
-import com.terraformersmc.cinderscapes.init.CinderscapesConfiguredFeatures;
+import com.terraformersmc.cinderscapes.init.CinderscapesFeatures;
 import com.terraformersmc.cinderscapes.init.CinderscapesPlacedFeatures;
 import com.terraformersmc.cinderscapes.villager.CinderscapesVillagerTrades;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
@@ -25,19 +25,19 @@ public class CinderscapesDynamicRegistryProvider extends FabricDynamicRegistryPr
 
 	public static void buildRegistry(RegistrySetBuilder registryBuilder) {
 		// worldgen
-		registryBuilder.add(Registries.CONFIGURED_FEATURE, CinderscapesConfiguredFeatures::bootstrap);
+		registryBuilder.add(Registries.FEATURE, CinderscapesFeatures::bootstrap);
 		registryBuilder.add(Registries.PLACED_FEATURE, CinderscapesPlacedFeatures::bootstrap);
 		registryBuilder.add(Registries.BIOME, CinderscapesBiomes::bootstrap);
 		registryBuilder.add(Registries.VILLAGER_TRADE, CinderscapesVillagerTrades::bootstrap);
 
 		// other registries
-		registryBuilder.add(Registries.TRIM_MATERIAL, CinderscapesArmorTrimMaterials::bootstrap);
+		registryBuilder.add(Registries.TRIM_MATERIAL, CinderscapesTrimMaterials::bootstrap);
 	}
 
 	@Override
 	public void configure(HolderLookup.Provider registries, Entries entries) {
 		// worldgen
-		addAll(entries, registries.lookupOrThrow(Registries.CONFIGURED_FEATURE), Cinderscapes.MOD_ID);
+		addAll(entries, registries.lookupOrThrow(Registries.FEATURE), Cinderscapes.MOD_ID);
 		addAll(entries, registries.lookupOrThrow(Registries.PLACED_FEATURE), Cinderscapes.MOD_ID);
 		addAll(entries, registries.lookupOrThrow(Registries.BIOME), Cinderscapes.MOD_ID);
 		addAll(entries, registries.lookupOrThrow(Registries.VILLAGER_TRADE), Cinderscapes.MOD_ID);

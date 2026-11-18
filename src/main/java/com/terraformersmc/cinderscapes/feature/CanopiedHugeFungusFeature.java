@@ -1,6 +1,8 @@
 package com.terraformersmc.cinderscapes.feature;
 
-import com.terraformersmc.cinderscapes.feature.config.CanopiedHugeFungusFeatureConfig;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.terraformersmc.terraform.shapes.api.Position;
 import com.terraformersmc.terraform.shapes.api.Shape;
 import com.terraformersmc.terraform.shapes.api.Shapes;
@@ -16,8 +18,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.NetherFungusBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import org.jspecify.annotations.NullMarked;
 
 import java.util.ArrayList;
@@ -25,31 +27,38 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @NullMarked
-public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeatureConfig> {
-    public CanopiedHugeFungusFeature() {
-        super(CanopiedHugeFungusFeatureConfig.CODEC);
+public record CanopiedHugeFungusFeature(BlockState soilBlock, BlockState hyphaeBlock, BlockState stemBlock, BlockState canopyBlock, BlockState fleshBlock, BlockState decorationBlock, boolean planted) implements Feature {
+    public static final MapCodec<CanopiedHugeFungusFeature> CODEC = RecordCodecBuilder.mapCodec(
+            instance -> instance.group(
+                    BlockState.CODEC.fieldOf("soil_block").forGetter(CanopiedHugeFungusFeature::soilBlock),
+                    BlockState.CODEC.fieldOf("hyphae_block").forGetter(CanopiedHugeFungusFeature::hyphaeBlock),
+                    BlockState.CODEC.fieldOf("stem_block").forGetter(CanopiedHugeFungusFeature::stemBlock),
+                    BlockState.CODEC.fieldOf("canopy_block").forGetter(CanopiedHugeFungusFeature::canopyBlock),
+                    BlockState.CODEC.fieldOf("flesh_block").forGetter(CanopiedHugeFungusFeature::fleshBlock),
+                    BlockState.CODEC.fieldOf("decoration_block").forGetter(CanopiedHugeFungusFeature::decorationBlock),
+                    Codec.BOOL.optionalFieldOf("planted", false).forGetter(CanopiedHugeFungusFeature::planted)
+            ).apply(instance, CanopiedHugeFungusFeature::new)
+    );
+
+    public MapCodec<CanopiedHugeFungusFeature> codec() {
+        return CODEC;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<CanopiedHugeFungusFeatureConfig> context) {
-        CanopiedHugeFungusFeatureConfig config = context.config();
-        WorldGenLevel level = context.level();
-        BlockPos pos = context.origin();
-        RandomSource random = context.random();
-
-        final List<BlockState> baseSafeList = new ArrayList<>(List.of(config.soilBlock(), Blocks.AIR.defaultBlockState(), Blocks.NETHERRACK.defaultBlockState()));
+    public boolean place(WorldGenLevel level, ChunkGenerator chunkGenerator, RandomSource random, BlockPos origin) {
+        final List<BlockState> baseSafeList = new ArrayList<>(List.of(soilBlock, Blocks.AIR.defaultBlockState(), Blocks.NETHERRACK.defaultBlockState()));
 
         // If the feature is being generated from a fungus block
-        if (config.planted()) {
+        if (planted) {
             // If the block the fungus is placed on isn't a soil block
-            if (level.getBlockState(pos.below()) != config.soilBlock()) {
+            if (level.getBlockState(origin.below()) != soilBlock) {
                 return false;
             }
 
             // Check the 3x3 area under the stem
-            boolean solidGround = Shape.of((ipos) -> true, Position.of(2, 0, 2), Position.of(-1, -1, -1))
-                    .applyLayer(Layer.translate(Position.of(pos)))
-                    .stream().map(Position::toBlockPos).allMatch((ipos) -> !level.isEmptyBlock(ipos) && Block.isFaceFull(level.getBlockState(ipos).getCollisionShape(level, pos.below()), Direction.UP));
+            boolean solidGround = Shape.of(_ -> true, Position.of(2, 0, 2), Position.of(-1, -1, -1))
+                    .applyLayer(Layer.translate(Position.of(origin)))
+                    .stream().map(Position::toBlockPos).allMatch((ipos) -> !level.isEmptyBlock(ipos) && Block.isFaceFull(level.getBlockState(ipos).getCollisionShape(level, origin.below()), Direction.UP));
 
             // If they are not all solid blocks
             if (!solidGround) {
@@ -57,7 +66,7 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
             }
 
             // We have to tolerate a fungus block (sapling) at ground zero if we were planted.
-            BlockState groundZero = level.getBlockState(pos);
+            BlockState groundZero = level.getBlockState(origin);
             if (groundZero.getBlock() instanceof NetherFungusBlock) {
                 baseSafeList.add(groundZero);
             }
@@ -70,18 +79,18 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
 
         Shape stem = Shapes.ellipticalPrism(1.4D, 1.4D, 0.8D * stemHeight)
                 .applyLayer(Layer.translate(Position.of(0, 0.6D * (stemHeight - 1), 0)))
-                .applyLayer(Layer.translate(Position.of(pos)));
+                .applyLayer(Layer.translate(Position.of(origin)));
 
         Shape base = Shapes.rectangularPrism(3, 0.2D * stemHeight, 3)
                 .applyLayer(Layer.translate(Position.of(0, 0.1D * (stemHeight - 1), 0)))
-                .applyLayer(Layer.translate(Position.of(pos)));
+                .applyLayer(Layer.translate(Position.of(origin)));
 
         // Generate a random canopy radius and height
         int canopyRadius = random.nextInt(3) + 6;
         int canopyHeight = random.nextInt(5) + 5;
 
         // Create a value for where the center of the canopy should be
-        Position canopyPos = Position.of(pos.above(stemHeight - canopyHeight + 2));
+        Position canopyPos = Position.of(origin.above(stemHeight - canopyHeight + 2));
 
         Shape canopy = Shapes.hemiEllipsoid(canopyRadius, canopyRadius, canopyHeight)
                 .applyLayer(Layer.subtract(Shapes.hemiEllipsoid(canopyRadius - 1, canopyRadius - 1, canopyHeight - 1)))
@@ -108,19 +117,19 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
 
         if (baseClear && stemClear && canopyClear) {
             // canopy
-            canopy.fill(Filler.simple(level, config.canopyBlock()));
-            canopyDripping.fill(Filler.randomSimple(level, config.canopyBlock(), random, 0.5f));
-            flesh.fill(Filler.simple(level, config.fleshBlock()));
-            fleshDripping.fill(Filler.randomSimple(level, config.fleshBlock(), random, 0.5f));
-            detailBlocks.fill(Filler.randomSimple(level, config.decorationBlock(), random, 0.2f));
+            canopy.fill(Filler.simple(level, canopyBlock));
+            canopyDripping.fill(Filler.randomSimple(level, canopyBlock, random, 0.5f));
+            flesh.fill(Filler.simple(level, fleshBlock));
+            fleshDripping.fill(Filler.randomSimple(level, fleshBlock, random, 0.5f));
+            detailBlocks.fill(Filler.randomSimple(level, decorationBlock, random, 0.2f));
 
             // stem
-            stem.fill(Filler.simple(level, config.stemBlock()));
-            base.fill(Filler.simple(level, config.hyphaeBlock()));
+            stem.fill(Filler.simple(level, stemBlock));
+            base.fill(Filler.simple(level, hyphaeBlock));
 
             // level platform for generated fungus
-            if (!config.planted()) {
-                makePlatform(level, config, pos);
+            if (!planted) {
+                makePlatform(level, origin);
             }
 
             return true;
@@ -129,7 +138,7 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
         return false;
     }
 
-    private void makePlatform(WorldGenLevel level, CanopiedHugeFungusFeatureConfig config, BlockPos origin) {
+    private void makePlatform(WorldGenLevel level, BlockPos origin) {
         // Iterate through the region beneath the base of the fungus; for some reason, rectangle() does not work
         for (BlockPos pos : Shapes.rectangularPrism(3, 1, 3).applyLayer(Layer.translate(Position.of(origin))).stream().map(Position::toBlockPos).toList()) {
             // Look down several blocks for solid ground and build it up with Netherrack to our level if we find it
@@ -142,7 +151,7 @@ public class CanopiedHugeFungusFeature extends Feature<CanopiedHugeFungusFeature
                 }
             }
             // Shrooms grow on Nylium ... under Shrooms shall ye find Nylium
-            level.setBlock(pos.below(), config.soilBlock(), 3);
+            level.setBlock(pos.below(), soilBlock, 3);
         }
     }
 }

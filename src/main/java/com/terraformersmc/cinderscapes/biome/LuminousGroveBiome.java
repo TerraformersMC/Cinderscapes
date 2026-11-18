@@ -11,12 +11,12 @@ import net.minecraft.data.worldgen.Carvers;
 import net.minecraft.data.worldgen.placement.NetherPlacements;
 import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.attribute.*;
 import net.minecraft.world.entity.EntityTypes;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
@@ -40,16 +40,16 @@ public class LuminousGroveBiome {
                         .set(EnvironmentAttributes.AMBIENT_PARTICLES, List.of(new AmbientParticle(ParticleTypes.WARPED_SPORE, 0.01428F)))
                         .set(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(Optional.of(SoundEvents.AMBIENT_WARPED_FOREST_LOOP), Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0D)), List.of(new AmbientAdditionsSettings(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111D))))
                         .set(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(CinderscapesSoundEvents.LUMINOUS_GROVE_MUSIC))
-                        .set(EnvironmentAttributes.FOG_COLOR, 2297392)
+                        .set(EnvironmentAttributes.FOG_COLOR, ARGB.vector3fFromRGB24(2297392))
                         .set(EnvironmentAttributes.SNOW_GOLEM_MELTS, true)
-                        .set(EnvironmentAttributes.WATER_FOG_COLOR, 329011)
+                        .set(EnvironmentAttributes.WATER_FOG_COLOR, ARGB.vector3fFromRGB24(329011))
                         .build()
                 )
                 .build();
     }
 
     private static BiomeGenerationSettings createGenerationSettings(BootstrapContext<Biome> registerable) {
-        HolderGetter<ConfiguredWorldCarver<?>> configuredCarvers = registerable.lookup(Registries.CONFIGURED_CARVER);
+        HolderGetter<WorldCarver> configuredCarvers = registerable.lookup(Registries.CARVER);
         HolderGetter<PlacedFeature> placedFeatures = registerable.lookup(Registries.PLACED_FEATURE);
 
         BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(placedFeatures, configuredCarvers);
@@ -83,7 +83,7 @@ public class LuminousGroveBiome {
         MobSpawnSettings.Builder builder = new MobSpawnSettings.Builder();
 
         // SPAWNS
-        builder.addSpawn(MobCategory.CREATURE, 60, new MobSpawnSettings.SpawnerData(EntityTypes.STRIDER, 1, 2));
+        builder.addSpawn(EntityTypes.STRIDER, 60, 1, 2);
 
         return builder.build();
     }

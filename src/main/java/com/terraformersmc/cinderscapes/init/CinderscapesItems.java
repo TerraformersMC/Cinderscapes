@@ -1,13 +1,20 @@
 package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.init.helpers.CinderscapesRegistry;
-import net.fabricmc.fabric.api.registry.CompostableRegistry;
+import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
+import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.Compostable;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
+
+import java.util.Collection;
+import java.util.List;
 
 public class CinderscapesItems {
 
@@ -33,7 +40,7 @@ public class CinderscapesItems {
     public static BlockItem SCORCHED_SHELF;
     public static BlockItem SCORCHED_TRAPDOOR;
 
-    public static SignItem SCORCHED_SIGN;
+    public static BlockItem SCORCHED_SIGN;
     public static HangingSignItem SCORCHED_HANGING_SIGN;
 
     public static BlockItem SCORCHED_SHRUB;
@@ -76,7 +83,7 @@ public class CinderscapesItems {
     public static BlockItem UMBRAL_SHELF;
     public static BlockItem UMBRAL_TRAPDOOR;
 
-    public static SignItem UMBRAL_SIGN;
+    public static BlockItem UMBRAL_SIGN;
     public static HangingSignItem UMBRAL_HANGING_SIGN;
 
     // Other
@@ -172,35 +179,35 @@ public class CinderscapesItems {
         // Ashy Shoals //
         ///////////////*/
 
-        SCORCHED_STEM = CinderscapesRegistry.registerBlockItem("scorched_stem", CinderscapesBlocks.SCORCHED_STEM);
-        STRIPPED_SCORCHED_STEM = CinderscapesRegistry.registerBlockItem("stripped_scorched_stem", CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
+        SCORCHED_STEM = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_STEM, CinderscapesBlocks.SCORCHED_STEM);
+        STRIPPED_SCORCHED_STEM = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.STRIPPED_SCORCHED_STEM, CinderscapesBlocks.STRIPPED_SCORCHED_STEM);
 
-        SCORCHED_HYPHAE = CinderscapesRegistry.registerBlockItem("scorched_hyphae", CinderscapesBlocks.SCORCHED_HYPHAE);
-        STRIPPED_SCORCHED_HYPHAE = CinderscapesRegistry.registerBlockItem("stripped_scorched_hyphae", CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE);
+        SCORCHED_HYPHAE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_HYPHAE, CinderscapesBlocks.SCORCHED_HYPHAE);
+        STRIPPED_SCORCHED_HYPHAE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.STRIPPED_SCORCHED_HYPHAE, CinderscapesBlocks.STRIPPED_SCORCHED_HYPHAE);
 
-        SCORCHED_PLANKS = CinderscapesRegistry.registerBlockItem("scorched_planks", CinderscapesBlocks.SCORCHED_PLANKS);
-        SCORCHED_SLAB = CinderscapesRegistry.registerBlockItem("scorched_slab", CinderscapesBlocks.SCORCHED_SLAB);
-        SCORCHED_STAIRS = CinderscapesRegistry.registerBlockItem("scorched_stairs", CinderscapesBlocks.SCORCHED_STAIRS);
+        SCORCHED_PLANKS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_PLANKS, CinderscapesBlocks.SCORCHED_PLANKS);
+        SCORCHED_SLAB = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_SLAB, CinderscapesBlocks.SCORCHED_SLAB);
+        SCORCHED_STAIRS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_STAIRS, CinderscapesBlocks.SCORCHED_STAIRS);
 
-        SCORCHED_BUTTON = CinderscapesRegistry.registerBlockItem("scorched_button", CinderscapesBlocks.SCORCHED_BUTTON);
-        SCORCHED_DOOR = CinderscapesRegistry.registerBlockItem("scorched_door", CinderscapesBlocks.SCORCHED_DOOR);
-        SCORCHED_FENCE = CinderscapesRegistry.registerBlockItem("scorched_fence", CinderscapesBlocks.SCORCHED_FENCE);
-        SCORCHED_FENCE_GATE = CinderscapesRegistry.registerBlockItem("scorched_fence_gate", CinderscapesBlocks.SCORCHED_FENCE_GATE);
-        SCORCHED_PRESSURE_PLATE = CinderscapesRegistry.registerBlockItem("scorched_pressure_plate", CinderscapesBlocks.SCORCHED_PRESSURE_PLATE);
-        SCORCHED_SHELF = CinderscapesRegistry.registerBlockItem("scorched_shelf", CinderscapesBlocks.SCORCHED_SHELF);
-        SCORCHED_TRAPDOOR = CinderscapesRegistry.registerBlockItem("scorched_trapdoor", CinderscapesBlocks.SCORCHED_TRAPDOOR);
+        SCORCHED_BUTTON = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_BUTTON, CinderscapesBlocks.SCORCHED_BUTTON);
+        SCORCHED_DOOR = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_DOOR, CinderscapesBlocks.SCORCHED_DOOR);
+        SCORCHED_FENCE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_FENCE, CinderscapesBlocks.SCORCHED_FENCE);
+        SCORCHED_FENCE_GATE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_FENCE_GATE, CinderscapesBlocks.SCORCHED_FENCE_GATE);
+        SCORCHED_PRESSURE_PLATE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_PRESSURE_PLATE, CinderscapesBlocks.SCORCHED_PRESSURE_PLATE);
+        SCORCHED_SHELF = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_SHELF, CinderscapesBlocks.SCORCHED_SHELF);
+        SCORCHED_TRAPDOOR = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_TRAPDOOR, CinderscapesBlocks.SCORCHED_TRAPDOOR);
 
-        SCORCHED_SIGN = CinderscapesRegistry.register("scorched_sign", settings -> new SignItem(CinderscapesBlocks.SCORCHED_SIGN, CinderscapesBlocks.SCORCHED_WALL_SIGN, settings), new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
-        SCORCHED_HANGING_SIGN = CinderscapesRegistry.register("scorched_hanging_sign", settings -> new HangingSignItem(CinderscapesBlocks.SCORCHED_HANGING_SIGN, CinderscapesBlocks.SCORCHED_WALL_HANGING_SIGN, settings), new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
+        SCORCHED_SIGN = CinderscapesRegistry.register(CinderscapesBlockItemIds.SCORCHED_SIGN, settings -> new StandingAndWallBlockItem(CinderscapesBlocks.SCORCHED_SIGN, CinderscapesBlocks.SCORCHED_WALL_SIGN, Direction.DOWN, settings), new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
+        SCORCHED_HANGING_SIGN = CinderscapesRegistry.register(CinderscapesBlockItemIds.SCORCHED_HANGING_SIGN, settings -> new HangingSignItem(CinderscapesBlocks.SCORCHED_HANGING_SIGN, CinderscapesBlocks.SCORCHED_WALL_HANGING_SIGN, settings), new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
 
-        SCORCHED_SHRUB = CinderscapesRegistry.registerBlockItem("scorched_shrub", CinderscapesBlocks.SCORCHED_SHRUB);
-        SCORCHED_SPROUTS = CinderscapesRegistry.registerBlockItem("scorched_sprouts", CinderscapesBlocks.SCORCHED_SPROUTS);
-        SCORCHED_TENDRILS = CinderscapesRegistry.registerBlockItem("scorched_tendrils", CinderscapesBlocks.SCORCHED_TENDRILS);
+        SCORCHED_SHRUB = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_SHRUB, CinderscapesBlocks.SCORCHED_SHRUB);
+        SCORCHED_SPROUTS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_SPROUTS, CinderscapesBlocks.SCORCHED_SPROUTS);
+        SCORCHED_TENDRILS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SCORCHED_TENDRILS, CinderscapesBlocks.SCORCHED_TENDRILS);
 
-        ASH = CinderscapesRegistry.registerBlockItem("ash", CinderscapesBlocks.ASH);
-        ASH_BLOCK = CinderscapesRegistry.registerBlockItem("ash_block", CinderscapesBlocks.ASH_BLOCK);
+        ASH = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.ASH, CinderscapesBlocks.ASH);
+        ASH_BLOCK = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.ASH_BLOCK, CinderscapesBlocks.ASH_BLOCK);
 
-        PYRACINTH = CinderscapesRegistry.registerBlockItem("pyracinth", CinderscapesBlocks.PYRACINTH);
+        PYRACINTH = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.PYRACINTH, CinderscapesBlocks.PYRACINTH);
 
         /*//////////////////
         // Luminous Grove //
@@ -208,150 +215,173 @@ public class CinderscapesItems {
 
         // Umbral Nylia
 
-        UMBRAL_STEM = CinderscapesRegistry.registerBlockItem("umbral_stem", CinderscapesBlocks.UMBRAL_STEM);
-        STRIPPED_UMBRAL_STEM = CinderscapesRegistry.registerBlockItem("stripped_umbral_stem", CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
+        UMBRAL_STEM = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_STEM, CinderscapesBlocks.UMBRAL_STEM);
+        STRIPPED_UMBRAL_STEM = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.STRIPPED_UMBRAL_STEM, CinderscapesBlocks.STRIPPED_UMBRAL_STEM);
 
-        UMBRAL_HYPHAE = CinderscapesRegistry.registerBlockItem("umbral_hyphae", CinderscapesBlocks.UMBRAL_HYPHAE);
-        STRIPPED_UMBRAL_HYPHAE = CinderscapesRegistry.registerBlockItem("stripped_umbral_hyphae", CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE);
+        UMBRAL_HYPHAE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_HYPHAE, CinderscapesBlocks.UMBRAL_HYPHAE);
+        STRIPPED_UMBRAL_HYPHAE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.STRIPPED_UMBRAL_HYPHAE, CinderscapesBlocks.STRIPPED_UMBRAL_HYPHAE);
 
-        UMBRAL_NYLIUM = CinderscapesRegistry.registerBlockItem("umbral_nylium", CinderscapesBlocks.UMBRAL_NYLIUM);
+        UMBRAL_NYLIUM = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_NYLIUM, CinderscapesBlocks.UMBRAL_NYLIUM);
 
-        UMBRAL_FUNGUS = CinderscapesRegistry.registerBlockItem("umbral_fungus", CinderscapesBlocks.UMBRAL_FUNGUS);
+        UMBRAL_FUNGUS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_FUNGUS, CinderscapesBlocks.UMBRAL_FUNGUS);
 
-        UMBRAL_WART_BLOCK = CinderscapesRegistry.registerBlockItem("umbral_wart_block", CinderscapesBlocks.UMBRAL_WART_BLOCK);
-        UMBRAL_FLESH_BLOCK = CinderscapesRegistry.registerBlockItem("umbral_flesh_block", CinderscapesBlocks.UMBRAL_FLESH_BLOCK);
+        UMBRAL_WART_BLOCK = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_WART_BLOCK, CinderscapesBlocks.UMBRAL_WART_BLOCK);
+        UMBRAL_FLESH_BLOCK = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_FLESH_BLOCK, CinderscapesBlocks.UMBRAL_FLESH_BLOCK);
 
-        UMBRAL_PLANKS = CinderscapesRegistry.registerBlockItem("umbral_planks", CinderscapesBlocks.UMBRAL_PLANKS);
-        UMBRAL_SLAB = CinderscapesRegistry.registerBlockItem("umbral_slab", CinderscapesBlocks.UMBRAL_SLAB);
-        UMBRAL_STAIRS = CinderscapesRegistry.registerBlockItem("umbral_stairs", CinderscapesBlocks.UMBRAL_STAIRS);
+        UMBRAL_PLANKS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_PLANKS, CinderscapesBlocks.UMBRAL_PLANKS);
+        UMBRAL_SLAB = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_SLAB, CinderscapesBlocks.UMBRAL_SLAB);
+        UMBRAL_STAIRS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_STAIRS, CinderscapesBlocks.UMBRAL_STAIRS);
 
-        UMBRAL_BUTTON = CinderscapesRegistry.registerBlockItem("umbral_button", CinderscapesBlocks.UMBRAL_BUTTON);
-        UMBRAL_DOOR = CinderscapesRegistry.registerBlockItem("umbral_door", CinderscapesBlocks.UMBRAL_DOOR);
-        UMBRAL_FENCE = CinderscapesRegistry.registerBlockItem("umbral_fence", CinderscapesBlocks.UMBRAL_FENCE);
-        UMBRAL_FENCE_GATE = CinderscapesRegistry.registerBlockItem("umbral_fence_gate", CinderscapesBlocks.UMBRAL_FENCE_GATE);
-        UMBRAL_PRESSURE_PLATE = CinderscapesRegistry.registerBlockItem("umbral_pressure_plate", CinderscapesBlocks.UMBRAL_PRESSURE_PLATE);
-        UMBRAL_SHELF = CinderscapesRegistry.registerBlockItem("umbral_shelf", CinderscapesBlocks.UMBRAL_SHELF);
-        UMBRAL_TRAPDOOR = CinderscapesRegistry.registerBlockItem("umbral_trapdoor", CinderscapesBlocks.UMBRAL_TRAPDOOR);
+        UMBRAL_BUTTON = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_BUTTON, CinderscapesBlocks.UMBRAL_BUTTON);
+        UMBRAL_DOOR = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_DOOR, CinderscapesBlocks.UMBRAL_DOOR);
+        UMBRAL_FENCE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_FENCE, CinderscapesBlocks.UMBRAL_FENCE);
+        UMBRAL_FENCE_GATE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_FENCE_GATE, CinderscapesBlocks.UMBRAL_FENCE_GATE);
+        UMBRAL_PRESSURE_PLATE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_PRESSURE_PLATE, CinderscapesBlocks.UMBRAL_PRESSURE_PLATE);
+        UMBRAL_SHELF = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_SHELF, CinderscapesBlocks.UMBRAL_SHELF);
+        UMBRAL_TRAPDOOR = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.UMBRAL_TRAPDOOR, CinderscapesBlocks.UMBRAL_TRAPDOOR);
 
-        UMBRAL_SIGN = CinderscapesRegistry.register("umbral_sign", settings -> new SignItem(CinderscapesBlocks.UMBRAL_SIGN, CinderscapesBlocks.UMBRAL_WALL_SIGN, settings), new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
-        UMBRAL_HANGING_SIGN = CinderscapesRegistry.register("umbral_hanging_sign", settings -> new HangingSignItem(CinderscapesBlocks.UMBRAL_HANGING_SIGN, CinderscapesBlocks.UMBRAL_WALL_HANGING_SIGN, settings), new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
+        UMBRAL_SIGN = CinderscapesRegistry.register(CinderscapesBlockItemIds.UMBRAL_SIGN, settings -> new StandingAndWallBlockItem(CinderscapesBlocks.UMBRAL_SIGN, CinderscapesBlocks.UMBRAL_WALL_SIGN, Direction.DOWN, settings), new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
+        UMBRAL_HANGING_SIGN = CinderscapesRegistry.register(CinderscapesBlockItemIds.UMBRAL_HANGING_SIGN, settings -> new HangingSignItem(CinderscapesBlocks.UMBRAL_HANGING_SIGN, CinderscapesBlocks.UMBRAL_WALL_HANGING_SIGN, settings), new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
 
         // Other
 
-        TWILIGHT_VINE_BLOCK = CinderscapesRegistry.registerBlockItem("twilight_vine_block", CinderscapesBlocks.TWILIGHT_VINE_BLOCK);
-        TWILIGHT_TENDRILS = CinderscapesRegistry.registerBlockItem("twilight_tendrils", CinderscapesBlocks.TWILIGHT_TENDRILS);
-        TWILIGHT_FESCUES = CinderscapesRegistry.registerBlockItem("twilight_fescues", CinderscapesBlocks.TWILIGHT_FESCUES);
-        PHOTOFERN = CinderscapesRegistry.registerBlockItem("photofern", CinderscapesBlocks.PHOTOFERN);
-        TALL_PHOTOFERN = CinderscapesRegistry.registerBlockItem("tall_photofern", CinderscapesBlocks.TALL_PHOTOFERN);
+        TWILIGHT_VINE_BLOCK = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.TWILIGHT_VINE_BLOCK, CinderscapesBlocks.TWILIGHT_VINE_BLOCK);
+        TWILIGHT_TENDRILS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.TWILIGHT_TENDRILS, CinderscapesBlocks.TWILIGHT_TENDRILS);
+        TWILIGHT_FESCUES = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.TWILIGHT_FESCUES, CinderscapesBlocks.TWILIGHT_FESCUES);
+        PHOTOFERN = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.PHOTOFERN, CinderscapesBlocks.PHOTOFERN);
+        TALL_PHOTOFERN = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.TALL_PHOTOFERN, CinderscapesBlocks.TALL_PHOTOFERN);
 
-        LUMINOUS_POD = CinderscapesRegistry.registerBlockItem("luminous_pod", CinderscapesBlocks.LUMINOUS_POD);
-        GHASTLY_ECTOPLASM = CinderscapesRegistry.registerBlockItem("ghastly_ectoplasm", CinderscapesBlocks.GHASTLY_ECTOPLASM);
+        LUMINOUS_POD = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.LUMINOUS_POD, CinderscapesBlocks.LUMINOUS_POD);
+        GHASTLY_ECTOPLASM = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.GHASTLY_ECTOPLASM, CinderscapesBlocks.GHASTLY_ECTOPLASM);
 
         /*/////////
         // Other //
         /////////*/
 
-        ASH_PILE = CinderscapesRegistry.register("ash_pile", Item::new, new Item.Properties());
+        ASH_PILE = CinderscapesRegistry.register(CinderscapesItemIds.ASH_PILE, Item::new, new Item.Properties());
 
-        BRAMBLE_BERRIES = CinderscapesRegistry.register("bramble_berries", settings -> new BlockItem(CinderscapesBlocks.BRAMBLE_BERRY_BUSH, settings.useItemDescriptionPrefix()), new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).alwaysEdible().build(), Consumables.defaultFood().onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600, 0), 0.8F)).build()));
+        BRAMBLE_BERRIES = CinderscapesRegistry.register(CinderscapesItemIds.BRAMBLE_BERRIES, settings -> new BlockItem(CinderscapesBlocks.BRAMBLE_BERRY_BUSH, settings.useItemDescriptionPrefix()), new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).alwaysEdible().build(), Consumables.defaultFood().onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600, 0), 0.8F)).build()));
 
-        NODZOL = CinderscapesRegistry.registerBlockItem("nodzol", CinderscapesBlocks.NODZOL);
+        NODZOL = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.NODZOL, CinderscapesBlocks.NODZOL);
 
-        SULFUR = CinderscapesRegistry.register("sulfur", Item::new, new Item.Properties());
+        SULFUR = CinderscapesRegistry.register(CinderscapesItemIds.SULFUR, Item::new, new Item.Properties());
 
-        SULFUR_BLOCK = CinderscapesRegistry.registerBlockItem("sulfur_block", CinderscapesBlocks.SULFUR_BLOCK);
-        SULFUR_ORE = CinderscapesRegistry.registerBlockItem("sulfur_ore", CinderscapesBlocks.SULFUR_ORE);
+        SULFUR_BLOCK = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SULFUR_BLOCK, CinderscapesBlocks.SULFUR_BLOCK);
+        SULFUR_ORE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SULFUR_ORE, CinderscapesBlocks.SULFUR_ORE);
 
-        ROSE_QUARTZ = CinderscapesRegistry.register("rose_quartz", Item::new, new Item.Properties().trimMaterial(CinderscapesArmorTrimMaterials.ROSE_QUARTZ));
-        SMOKY_QUARTZ = CinderscapesRegistry.register("smoky_quartz", Item::new, new Item.Properties().trimMaterial(CinderscapesArmorTrimMaterials.SMOKY_QUARTZ));
-        SULFUR_QUARTZ = CinderscapesRegistry.register("sulfur_quartz", Item::new, new Item.Properties().trimMaterial(CinderscapesArmorTrimMaterials.SULFUR_QUARTZ));
+        ROSE_QUARTZ = CinderscapesRegistry.register(CinderscapesItemIds.ROSE_QUARTZ, Item::new, new Item.Properties().trimMaterial(CinderscapesTrimMaterials.ROSE_QUARTZ));
+        SMOKY_QUARTZ = CinderscapesRegistry.register(CinderscapesItemIds.SMOKY_QUARTZ, Item::new, new Item.Properties().trimMaterial(CinderscapesTrimMaterials.SMOKY_QUARTZ));
+        SULFUR_QUARTZ = CinderscapesRegistry.register(CinderscapesItemIds.SULFUR_QUARTZ, Item::new, new Item.Properties().trimMaterial(CinderscapesTrimMaterials.SULFUR_QUARTZ));
 
         /*/////////////////
         // Quartz Cavern //
         /////////////////*/
 
-        CRYSTINIUM = CinderscapesRegistry.registerBlockItem("crystinium", CinderscapesBlocks.CRYSTINIUM);
+        CRYSTINIUM = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.CRYSTINIUM, CinderscapesBlocks.CRYSTINIUM);
 
-        CRYSTALLINE_QUARTZ = CinderscapesRegistry.registerBlockItem("crystalline_quartz", CinderscapesBlocks.CRYSTALLINE_QUARTZ);
-        POLYPITE_QUARTZ = CinderscapesRegistry.registerBlockItem("polypite_quartz", CinderscapesBlocks.POLYPITE_QUARTZ);
+        CRYSTALLINE_QUARTZ = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.CRYSTALLINE_QUARTZ, CinderscapesBlocks.CRYSTALLINE_QUARTZ);
+        POLYPITE_QUARTZ = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.POLYPITE_QUARTZ, CinderscapesBlocks.POLYPITE_QUARTZ);
 
         // Sulfur Quartz
 
-        SULFUR_QUARTZ_ORE = CinderscapesRegistry.registerBlockItem("sulfur_quartz_ore", CinderscapesBlocks.SULFUR_QUARTZ_ORE);
-        SULFUR_QUARTZ_BLOCK = CinderscapesRegistry.registerBlockItem("sulfur_quartz_block", CinderscapesBlocks.SULFUR_QUARTZ_BLOCK);
-        CHISELED_SULFUR_QUARTZ_BLOCK = CinderscapesRegistry.registerBlockItem("chiseled_sulfur_quartz_block", CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK);
-        SULFUR_QUARTZ_PILLAR = CinderscapesRegistry.registerBlockItem("sulfur_quartz_pillar", CinderscapesBlocks.SULFUR_QUARTZ_PILLAR);
-        SULFUR_QUARTZ_STAIRS = CinderscapesRegistry.registerBlockItem("sulfur_quartz_stairs", CinderscapesBlocks.SULFUR_QUARTZ_STAIRS);
-        SULFUR_QUARTZ_SLAB = CinderscapesRegistry.registerBlockItem("sulfur_quartz_slab", CinderscapesBlocks.SULFUR_QUARTZ_SLAB);
-        SMOOTH_SULFUR_QUARTZ = CinderscapesRegistry.registerBlockItem("smooth_sulfur_quartz", CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ);
-        SMOOTH_SULFUR_QUARTZ_STAIRS = CinderscapesRegistry.registerBlockItem("smooth_sulfur_quartz_stairs", CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_STAIRS);
-        SMOOTH_SULFUR_QUARTZ_SLAB = CinderscapesRegistry.registerBlockItem("smooth_sulfur_quartz_slab", CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_SLAB);
-        SULFUR_QUARTZ_BRICKS = CinderscapesRegistry.registerBlockItem("sulfur_quartz_bricks", CinderscapesBlocks.SULFUR_QUARTZ_BRICKS);
+        SULFUR_QUARTZ_ORE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SULFUR_QUARTZ_ORE, CinderscapesBlocks.SULFUR_QUARTZ_ORE);
+        SULFUR_QUARTZ_BLOCK = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SULFUR_QUARTZ_BLOCK, CinderscapesBlocks.SULFUR_QUARTZ_BLOCK);
+        CHISELED_SULFUR_QUARTZ_BLOCK = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.CHISELED_SULFUR_QUARTZ_BLOCK, CinderscapesBlocks.CHISELED_SULFUR_QUARTZ_BLOCK);
+        SULFUR_QUARTZ_PILLAR = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SULFUR_QUARTZ_PILLAR, CinderscapesBlocks.SULFUR_QUARTZ_PILLAR);
+        SULFUR_QUARTZ_STAIRS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SULFUR_QUARTZ_STAIRS, CinderscapesBlocks.SULFUR_QUARTZ_STAIRS);
+        SULFUR_QUARTZ_SLAB = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SULFUR_QUARTZ_SLAB, CinderscapesBlocks.SULFUR_QUARTZ_SLAB);
+        SMOOTH_SULFUR_QUARTZ = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOOTH_SULFUR_QUARTZ, CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ);
+        SMOOTH_SULFUR_QUARTZ_STAIRS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOOTH_SULFUR_QUARTZ_STAIRS, CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_STAIRS);
+        SMOOTH_SULFUR_QUARTZ_SLAB = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOOTH_SULFUR_QUARTZ_SLAB, CinderscapesBlocks.SMOOTH_SULFUR_QUARTZ_SLAB);
+        SULFUR_QUARTZ_BRICKS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SULFUR_QUARTZ_BRICKS, CinderscapesBlocks.SULFUR_QUARTZ_BRICKS);
 
-        CRYSTALLINE_SULFUR_QUARTZ = CinderscapesRegistry.registerBlockItem("crystalline_sulfur_quartz", CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ);
-        POLYPITE_SULFUR_QUARTZ = CinderscapesRegistry.registerBlockItem("polypite_sulfur_quartz", CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ);
+        CRYSTALLINE_SULFUR_QUARTZ = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.CRYSTALLINE_SULFUR_QUARTZ, CinderscapesBlocks.CRYSTALLINE_SULFUR_QUARTZ);
+        POLYPITE_SULFUR_QUARTZ = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.POLYPITE_SULFUR_QUARTZ, CinderscapesBlocks.POLYPITE_SULFUR_QUARTZ);
 
         // Rose Quartz
 
-        ROSE_QUARTZ_ORE = CinderscapesRegistry.registerBlockItem("rose_quartz_ore", CinderscapesBlocks.ROSE_QUARTZ_ORE);
-        ROSE_QUARTZ_BLOCK = CinderscapesRegistry.registerBlockItem("rose_quartz_block", CinderscapesBlocks.ROSE_QUARTZ_BLOCK);
-        CHISELED_ROSE_QUARTZ_BLOCK = CinderscapesRegistry.registerBlockItem("chiseled_rose_quartz_block", CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK);
-        ROSE_QUARTZ_PILLAR = CinderscapesRegistry.registerBlockItem("rose_quartz_pillar", CinderscapesBlocks.ROSE_QUARTZ_PILLAR);
-        ROSE_QUARTZ_STAIRS = CinderscapesRegistry.registerBlockItem("rose_quartz_stairs", CinderscapesBlocks.ROSE_QUARTZ_STAIRS);
-        ROSE_QUARTZ_SLAB = CinderscapesRegistry.registerBlockItem("rose_quartz_slab", CinderscapesBlocks.ROSE_QUARTZ_SLAB);
-        SMOOTH_ROSE_QUARTZ = CinderscapesRegistry.registerBlockItem("smooth_rose_quartz", CinderscapesBlocks.SMOOTH_ROSE_QUARTZ);
-        SMOOTH_ROSE_QUARTZ_STAIRS = CinderscapesRegistry.registerBlockItem("smooth_rose_quartz_stairs", CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_STAIRS);
-        SMOOTH_ROSE_QUARTZ_SLAB = CinderscapesRegistry.registerBlockItem("smooth_rose_quartz_slab", CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_SLAB);
-        ROSE_QUARTZ_BRICKS = CinderscapesRegistry.registerBlockItem("rose_quartz_bricks", CinderscapesBlocks.ROSE_QUARTZ_BRICKS);
+        ROSE_QUARTZ_ORE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.ROSE_QUARTZ_ORE, CinderscapesBlocks.ROSE_QUARTZ_ORE);
+        ROSE_QUARTZ_BLOCK = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.ROSE_QUARTZ_BLOCK, CinderscapesBlocks.ROSE_QUARTZ_BLOCK);
+        CHISELED_ROSE_QUARTZ_BLOCK = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.CHISELED_ROSE_QUARTZ_BLOCK, CinderscapesBlocks.CHISELED_ROSE_QUARTZ_BLOCK);
+        ROSE_QUARTZ_PILLAR = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.ROSE_QUARTZ_PILLAR, CinderscapesBlocks.ROSE_QUARTZ_PILLAR);
+        ROSE_QUARTZ_STAIRS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.ROSE_QUARTZ_STAIRS, CinderscapesBlocks.ROSE_QUARTZ_STAIRS);
+        ROSE_QUARTZ_SLAB = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.ROSE_QUARTZ_SLAB, CinderscapesBlocks.ROSE_QUARTZ_SLAB);
+        SMOOTH_ROSE_QUARTZ = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOOTH_ROSE_QUARTZ, CinderscapesBlocks.SMOOTH_ROSE_QUARTZ);
+        SMOOTH_ROSE_QUARTZ_STAIRS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOOTH_ROSE_QUARTZ_STAIRS, CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_STAIRS);
+        SMOOTH_ROSE_QUARTZ_SLAB = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOOTH_ROSE_QUARTZ_SLAB, CinderscapesBlocks.SMOOTH_ROSE_QUARTZ_SLAB);
+        ROSE_QUARTZ_BRICKS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.ROSE_QUARTZ_BRICKS, CinderscapesBlocks.ROSE_QUARTZ_BRICKS);
 
-        CRYSTALLINE_ROSE_QUARTZ = CinderscapesRegistry.registerBlockItem("crystalline_rose_quartz", CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ);
-        POLYPITE_ROSE_QUARTZ = CinderscapesRegistry.registerBlockItem("polypite_rose_quartz", CinderscapesBlocks.POLYPITE_ROSE_QUARTZ);
+        CRYSTALLINE_ROSE_QUARTZ = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.CRYSTALLINE_ROSE_QUARTZ, CinderscapesBlocks.CRYSTALLINE_ROSE_QUARTZ);
+        POLYPITE_ROSE_QUARTZ = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.POLYPITE_ROSE_QUARTZ, CinderscapesBlocks.POLYPITE_ROSE_QUARTZ);
 
         // Smoky Quartz
 
-        SMOKY_QUARTZ_ORE = CinderscapesRegistry.registerBlockItem("smoky_quartz_ore", CinderscapesBlocks.SMOKY_QUARTZ_ORE);
-        SMOKY_QUARTZ_BLOCK = CinderscapesRegistry.registerBlockItem("smoky_quartz_block", CinderscapesBlocks.SMOKY_QUARTZ_BLOCK);
-        CHISELED_SMOKY_QUARTZ_BLOCK = CinderscapesRegistry.registerBlockItem("chiseled_smoky_quartz_block", CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK);
-        SMOKY_QUARTZ_PILLAR = CinderscapesRegistry.registerBlockItem("smoky_quartz_pillar", CinderscapesBlocks.SMOKY_QUARTZ_PILLAR);
-        SMOKY_QUARTZ_STAIRS = CinderscapesRegistry.registerBlockItem("smoky_quartz_stairs", CinderscapesBlocks.SMOKY_QUARTZ_STAIRS);
-        SMOKY_QUARTZ_SLAB = CinderscapesRegistry.registerBlockItem("smoky_quartz_slab", CinderscapesBlocks.SMOKY_QUARTZ_SLAB);
-        SMOOTH_SMOKY_QUARTZ = CinderscapesRegistry.registerBlockItem("smooth_smoky_quartz", CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ);
-        SMOOTH_SMOKY_QUARTZ_STAIRS = CinderscapesRegistry.registerBlockItem("smooth_smoky_quartz_stairs", CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS);
-        SMOOTH_SMOKY_QUARTZ_SLAB = CinderscapesRegistry.registerBlockItem("smooth_smoky_quartz_slab", CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_SLAB);
-        SMOKY_QUARTZ_BRICKS = CinderscapesRegistry.registerBlockItem("smoky_quartz_bricks", CinderscapesBlocks.SMOKY_QUARTZ_BRICKS);
+        SMOKY_QUARTZ_ORE = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOKY_QUARTZ_ORE, CinderscapesBlocks.SMOKY_QUARTZ_ORE);
+        SMOKY_QUARTZ_BLOCK = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOKY_QUARTZ_BLOCK, CinderscapesBlocks.SMOKY_QUARTZ_BLOCK);
+        CHISELED_SMOKY_QUARTZ_BLOCK = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.CHISELED_SMOKY_QUARTZ_BLOCK, CinderscapesBlocks.CHISELED_SMOKY_QUARTZ_BLOCK);
+        SMOKY_QUARTZ_PILLAR = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOKY_QUARTZ_PILLAR, CinderscapesBlocks.SMOKY_QUARTZ_PILLAR);
+        SMOKY_QUARTZ_STAIRS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOKY_QUARTZ_STAIRS, CinderscapesBlocks.SMOKY_QUARTZ_STAIRS);
+        SMOKY_QUARTZ_SLAB = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOKY_QUARTZ_SLAB, CinderscapesBlocks.SMOKY_QUARTZ_SLAB);
+        SMOOTH_SMOKY_QUARTZ = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOOTH_SMOKY_QUARTZ, CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ);
+        SMOOTH_SMOKY_QUARTZ_STAIRS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOOTH_SMOKY_QUARTZ_STAIRS, CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS);
+        SMOOTH_SMOKY_QUARTZ_SLAB = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOOTH_SMOKY_QUARTZ_SLAB, CinderscapesBlocks.SMOOTH_SMOKY_QUARTZ_SLAB);
+        SMOKY_QUARTZ_BRICKS = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.SMOKY_QUARTZ_BRICKS, CinderscapesBlocks.SMOKY_QUARTZ_BRICKS);
 
-        CRYSTALLINE_SMOKY_QUARTZ = CinderscapesRegistry.registerBlockItem("crystalline_smoky_quartz", CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ);
-        POLYPITE_SMOKY_QUARTZ = CinderscapesRegistry.registerBlockItem("polypite_smoky_quartz", CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ);
+        CRYSTALLINE_SMOKY_QUARTZ = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.CRYSTALLINE_SMOKY_QUARTZ, CinderscapesBlocks.CRYSTALLINE_SMOKY_QUARTZ);
+        POLYPITE_SMOKY_QUARTZ = CinderscapesRegistry.registerBlockItem(CinderscapesBlockItemIds.POLYPITE_SMOKY_QUARTZ, CinderscapesBlocks.POLYPITE_SMOKY_QUARTZ);
 
         addCompostables();
     }
 
     private static void addCompostables() {
-        CompostableRegistry compostingRegistry = CompostableRegistry.INSTANCE;
-        float BERRY_CHANCE = compostingRegistry.get(Items.SWEET_BERRIES);
-        float FLOWER_CHANCE = compostingRegistry.get(Items.POPPY);
-        float FUNGUS_CHANCE = compostingRegistry.get(Items.CRIMSON_FUNGUS);
-        float GRASS_CHANCE = compostingRegistry.get(Items.SHORT_GRASS);
-        float WART_BLOCK_CHANCE = compostingRegistry.get(Items.NETHER_WART_BLOCK);
+        Collection<Item> berries = List.of(
+                BRAMBLE_BERRIES
+        );
 
-        compostingRegistry.add(BRAMBLE_BERRIES, BERRY_CHANCE);
+        Collection<Item> grass = List.of(
+                SCORCHED_SHRUB,
+                SCORCHED_SPROUTS,
+                SCORCHED_TENDRILS,
+                TWILIGHT_FESCUES,
+                TWILIGHT_TENDRILS
+        );
 
-        compostingRegistry.add(SCORCHED_SHRUB, GRASS_CHANCE);
-        compostingRegistry.add(SCORCHED_SPROUTS, GRASS_CHANCE);
-        compostingRegistry.add(SCORCHED_TENDRILS, GRASS_CHANCE);
-        compostingRegistry.add(TWILIGHT_FESCUES, GRASS_CHANCE);
-        compostingRegistry.add(TWILIGHT_TENDRILS, GRASS_CHANCE);
+        Collection<Item> flowers = List.of(
+                CRYSTINIUM,
+                GHASTLY_ECTOPLASM,
+                LUMINOUS_POD,
+                PHOTOFERN,
+                PYRACINTH,
+                TALL_PHOTOFERN,
+                UMBRAL_FUNGUS
+        );
 
-        compostingRegistry.add(CRYSTINIUM, FLOWER_CHANCE);
-        compostingRegistry.add(GHASTLY_ECTOPLASM, FLOWER_CHANCE);
-        compostingRegistry.add(LUMINOUS_POD, FLOWER_CHANCE);
-        compostingRegistry.add(PHOTOFERN, FLOWER_CHANCE);
-        compostingRegistry.add(PYRACINTH, FLOWER_CHANCE);
-        compostingRegistry.add(TALL_PHOTOFERN, FLOWER_CHANCE);
-        compostingRegistry.add(UMBRAL_FUNGUS, FUNGUS_CHANCE);
+        Collection<Item> wartBlocks = List.of(
+                TWILIGHT_VINE_BLOCK,
+                UMBRAL_FLESH_BLOCK,
+                UMBRAL_WART_BLOCK
+        );
 
-        compostingRegistry.add(TWILIGHT_VINE_BLOCK, WART_BLOCK_CHANCE);
-        compostingRegistry.add(UMBRAL_FLESH_BLOCK, WART_BLOCK_CHANCE);
-        compostingRegistry.add(UMBRAL_WART_BLOCK, WART_BLOCK_CHANCE);
+        DefaultItemComponentEvents.MODIFY.register(modifyContext -> {
+            modifyContext.modify(berries, (builder, _, _) ->
+                    builder.set(DataComponents.COMPOSTABLE,
+                            new Compostable(ContextIntProviders.COMPOSTABLE_LOW))
+            );
+
+            modifyContext.modify(grass, (builder, _, _) ->
+                    builder.set(DataComponents.COMPOSTABLE,
+                            new Compostable(ContextIntProviders.COMPOSTABLE_LOW))
+            );
+
+            modifyContext.modify(flowers, (builder, _, _) ->
+                    builder.set(DataComponents.COMPOSTABLE,
+                            new Compostable(ContextIntProviders.COMPOSTABLE_MEDIUM))
+            );
+
+            modifyContext.modify(wartBlocks, (builder, _, _) ->
+                    builder.set(DataComponents.COMPOSTABLE,
+                            new Compostable(ContextIntProviders.COMPOSTABLE_MEDIUM_HIGH))
+            );
+        });
     }
 }

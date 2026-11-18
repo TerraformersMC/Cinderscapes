@@ -1,5 +1,6 @@
 package com.terraformersmc.cinderscapes.feature;
 
+import com.mojang.serialization.MapCodec;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -7,50 +8,49 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.jspecify.annotations.NullMarked;
 
 // TODO: Rewrite using the upcoming shapes library
 // TODO: Make a feature config allowing the material and size range to change
 @NullMarked
-public class AshPileFeature extends Feature<NoneFeatureConfiguration> {
-    public AshPileFeature() {
-        super(NoneFeatureConfiguration.CODEC);
+public class AshPileFeature implements Feature {
+    public static final MapCodec<AshPileFeature> CODEC = MapCodec.unit(AshPileFeature::new);
+
+    @Override
+    public MapCodec<AshPileFeature> codec() {
+        return CODEC;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-        RandomSource random = context.random();
-        BlockPos pos = context.origin();
-        WorldGenLevel level = context.level();
+    public boolean place(WorldGenLevel level, ChunkGenerator chunkGenerator, RandomSource random, BlockPos origin) {
         int yradius = random.nextInt(5) + 7;
 
         while (true) {
             search:
             {
-                if (pos.getY() <= 3) {
+                if (origin.getY() <= 3) {
                     return false;
                 }
 
-                if (pos.getY() > (128 - 2 * yradius)) {
+                if (origin.getY() > (128 - 2 * yradius)) {
                     break search;
                 }
 
-                if (level.isEmptyBlock(pos.below())) {
+                if (level.isEmptyBlock(origin.below())) {
                     break search;
                 }
 
                 for (int y = 1; y <= 4; y++) {
-                    Block block = level.getBlockState(pos.below(y)).getBlock();
+                    Block block = level.getBlockState(origin.below(y)).getBlock();
                     if (!(block == Blocks.NETHERRACK || block == Blocks.SOUL_SOIL || block == Blocks.GRAVEL)) {
                         break search;
                     }
                 }
 
                 for (int i = 0; i < 50; i++) {
-                    BlockPos setPos = pos.offset(random.nextInt(5) - random.nextInt(5), 0, random.nextInt(5) - random.nextInt(5));
+                    BlockPos setPos = origin.offset(random.nextInt(5) - random.nextInt(5), 0, random.nextInt(5) - random.nextInt(5));
 
                     BlockState setState = level.getBlockState(setPos);
 
@@ -76,7 +76,7 @@ public class AshPileFeature extends Feature<NoneFeatureConfiguration> {
                 return true;
             }
 
-            pos = pos.below();
+            origin = origin.below();
         }
     }
 }
