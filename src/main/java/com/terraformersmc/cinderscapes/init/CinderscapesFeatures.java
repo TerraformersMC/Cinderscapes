@@ -1,6 +1,7 @@
 package com.terraformersmc.cinderscapes.init;
 
 import com.terraformersmc.cinderscapes.Cinderscapes;
+import com.terraformersmc.cinderscapes.block.AshLayerBlock;
 import com.terraformersmc.cinderscapes.block.BrambleBerryBushBlock;
 import com.terraformersmc.cinderscapes.feature.*;
 import com.terraformersmc.cinderscapes.init.helpers.CinderscapesRegistry;
@@ -101,7 +102,11 @@ public final class CinderscapesFeatures {
         CinderscapesRegistry.register(context, DEBRIS_ORE_LARGE, new OreFeature(List.of(BlockReplacement.replace(RULE_TEST_BASE_STONE_NETHER, Blocks.ANCIENT_DEBRIS.defaultBlockState())), 3, 1.0f));
         CinderscapesRegistry.register(context, DEBRIS_ORE_SMALL, new OreFeature(List.of(BlockReplacement.replace(RULE_TEST_BASE_STONE_NETHER, Blocks.ANCIENT_DEBRIS.defaultBlockState())), 2, 1.0f));
 
-        CinderscapesRegistry.register(context, ASH_PILE, new AshPileFeature());
+        CinderscapesRegistry.register(context, ASH_PILE, new AshPileFeature(
+                CinderscapesBlocks.ASH_BLOCK.defaultBlockState(),
+                List.of(Blocks.NETHERRACK.defaultBlockState(), Blocks.SOUL_SOIL.defaultBlockState(), Blocks.SOUL_SAND.defaultBlockState(), Blocks.GRAVEL.defaultBlockState()),
+                List.of(CinderscapesBlocks.ASH.defaultBlockState().setValue(AshLayerBlock.LAYERS, 1))
+        ));
         CinderscapesRegistry.register(context, ASHY_VEGETATION, VegetationFeature.of(
                 new WeightedStateProvider(WeightedList.<BlockState>builder()
                         .add(CinderscapesBlocks.SCORCHED_SHRUB.defaultBlockState(), 2)
