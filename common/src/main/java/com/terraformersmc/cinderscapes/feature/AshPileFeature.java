@@ -1,7 +1,12 @@
 package com.terraformersmc.cinderscapes.feature;
 
+import com.terraformersmc.cinderscapes.block.AshLayerBlock;
 import com.terraformersmc.cinderscapes.init.CinderscapesBlocks;
-import net.minecraft.block.Block;
+import com.terraformersmc.terraform.shapes.api.Position;
+import com.terraformersmc.terraform.shapes.api.Shape;
+import com.terraformersmc.terraform.shapes.impl.Shapes;
+import com.terraformersmc.terraform.shapes.impl.layer.pathfinder.AddLayer;
+import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -11,9 +16,13 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
-// TODO: Rewrite using the upcoming shapes library
-// TODO: Make a feature config allowing the material and size range to change
+import java.util.List;
+
 public class AshPileFeature extends Feature<DefaultFeatureConfig> {
+    private static final BlockState MATERIAL = CinderscapesBlocks.ASH_BLOCK.getDefaultState();
+    private static final List<BlockState> SUPPORTS = List.of(Blocks.NETHERRACK.getDefaultState(), Blocks.SOUL_SOIL.getDefaultState(), Blocks.SOUL_SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState());
+    private static final List<BlockState> REPLACEABLE = List.of(CinderscapesBlocks.ASH.getDefaultState().with(AshLayerBlock.LAYERS, 1));
+
     public AshPileFeature() {
         super(DefaultFeatureConfig.CODEC);
     }
@@ -21,60 +30,101 @@ public class AshPileFeature extends Feature<DefaultFeatureConfig> {
     @Override
     public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
         Random random = context.getRandom();
-        BlockPos pos = context.getOrigin();
-        StructureWorldAccess world = context.getWorld();
-        int yradius = random.nextInt(5) + 7;
+        BlockPos origin = context.getOrigin();
+        StructureWorldAccess level = context.getWorld();
+
+        int xRadius = random.nextInt(3) + 3;
+        int zRadius = random.nextInt(3) + 3;
+        int yRadius = random.nextInt(2) + 2;
+        BlockPos.Mutable pos = origin.mutableCopy();
 
         while (true) {
-            search:
-            {
-                if (pos.getY() <= 3) {
+            if (pos.getY() - 5 < level.getBottomY()) {
+                // Cannot generate below build height
+                return false;
+            }
+
+            if (validateSupport(level, pos)) {
+                if (pos.getY() + yRadius > level.getTopYInclusive()) {
+                    // Cannot generate above build height
                     return false;
                 }
 
-                if (pos.getY() > (128 - 2 * yradius)) {
-                    break search;
-                }
+                Position anchor = Position.of(pos);
 
-                if (world.isAir(pos.down())) {
-                    break search;
-                }
+                // final shape (array to enable reassignment)
+                // In the Shapes API for Minecraft 26.x and above, this is available as Shapes.empty()
+                Shape[] pile = { Shape.of((point) -> false, Position.of(0, 0, 0), Position.of(0, 0, 0)) };
 
-                for (int y = 1; y <= 4; y++) {
-                    Block block = world.getBlockState(pos.down(y)).getBlock();
-                    if (!(block == Blocks.NETHERRACK || block == Blocks.SOUL_SOIL || block == Blocks.GRAVEL)) {
-                        break search;
-                    }
-                }
+                // idealized (initial) shape
+                Shape ellipsoid = Shapes.ellipsoid(xRadius, zRadius, yRadius);
+                ellipsoid
+                        .stream().filter(position -> position.getY() == 0)
+                        .forEach(column -> {
+                            pos.set(anchor.getX() + column.getX(), anchor.getY(), anchor.getZ() + column.getZ());
+                            addColumn(level, random, pile, pos, ellipsoid, column);
+                        });
 
-                for (int i = 0; i < 50; i++) {
-                    BlockPos setPos = pos.add(random.nextInt(5) - random.nextInt(5), 0, random.nextInt(5) - random.nextInt(5));
+                pile[0]
+                        .applyLayer(new TranslateLayer(anchor))
+                        .fill(position -> {
+                                    pos.set(position.getX(), position.getY(), position.getZ());
 
-                    BlockState setState = world.getBlockState(setPos);
+                            if (validateReplacement(level, pos)) {
+                                level.setBlockState(pos, MATERIAL, 4);
+                            }
+                        });
 
-                    while (world.isAir(setPos.down()) || world.getBlockState(setPos.down()).isOf(CinderscapesBlocks.ASH)) {
-                        setPos = setPos.down();
-                    }
-
-                    while (setState.isOf(CinderscapesBlocks.ASH_BLOCK) && setPos.getY() < 256) {
-                        if (world.isAir(setPos.up()) || world.getBlockState(setPos.up()).isOf(CinderscapesBlocks.ASH)) {
-                            setPos = setPos.up();
-                            setState = world.getBlockState(setPos);
-                        } else {
-                            break;
-                        }
-                    }
-
-                    if (world.isAir(setPos) || world.getBlockState(setPos).isOf(CinderscapesBlocks.ASH)) {
-                        world.setBlockState(setPos, CinderscapesBlocks.ASH_BLOCK.getDefaultState(), 4);
-                    }
-                }
-
-                // Return because we are done generating and return true to indicate a successful generation
+                // Successful generation
                 return true;
             }
 
-            pos = pos.down();
+            pos.setY(pos.getY() - 1);
         }
+    }
+
+    private void addColumn(StructureWorldAccess level, Random random, Shape[] pile, BlockPos.Mutable pos, Shape ellipsoid, Position column) {
+        int height = 0;
+        int bottom = 4;
+
+        // find column height
+        //noinspection StatementWithEmptyBody
+        while (ellipsoid.equation().test(column.move(0, ++height, 0)));
+
+        // find column bottom displacement
+        pos.setY(pos.getY() + bottom);
+        while (bottom >= -4 && !validateSupport(level, pos)) {
+            pos.setY(pos.getY() - 1);
+            if (!validateReplacement(level, pos)) {
+                // This is an attempt to place the column on something that shouldn't be directly under it
+                return;
+            }
+            --bottom;
+        }
+
+        // displacement of -5 or lower disqualifies column placement
+        if (bottom >= -4) {
+            // fuzz the top a bit
+            if (height > 0 && random.nextBoolean()) {
+                --height;
+            }
+
+            pile[0] = pile[0]
+                    .applyLayer(new AddLayer(Shapes.rectanglarPrism(1, height, 1)
+                            .applyLayer(new TranslateLayer(column.move(0, bottom, 0)))));
+
+        }
+    }
+
+    private boolean validateReplacement(StructureWorldAccess level, BlockPos pos) {
+        return level.isAir(pos) || REPLACEABLE.contains(level.getBlockState(pos));
+    }
+
+    private boolean validateSupport(StructureWorldAccess level, BlockPos.Mutable pos) {
+        pos.setY(pos.getY() - 1);
+        BlockState blockState = level.getBlockState(pos);
+        pos.setY(pos.getY() + 1);
+
+        return SUPPORTS.contains(blockState);
     }
 }
